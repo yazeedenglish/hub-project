@@ -1,6 +1,34 @@
 /* =========================================================
    YAZEED ENGLISH — COURSE ACCESS CHECK
-   SUPABASE VERSION
+   SUPABASE + BACKGROUND ACCESS CHECK
+========================================================= */
+
+
+/* =========================================================
+   SETTINGS
+========================================================= */
+
+// TESTING:
+// 10 seconds = 10 / 60 minutes
+//
+// When you're finished testing, change this to:
+//
+// 60  = 60 minutes
+// 120 = 120 minutes
+// 5   = 5 minutes
+
+const ACCESS_CHECK_MINUTES = 10 / 60;
+
+
+/*
+   Convert minutes to milliseconds
+*/
+const ACCESS_CHECK_INTERVAL =
+    ACCESS_CHECK_MINUTES * 60 * 1000;
+
+
+/* =========================================================
+   SUPABASE
 ========================================================= */
 
 const SUPABASE_URL =
@@ -9,6 +37,7 @@ const SUPABASE_URL =
 const SUPABASE_PUBLISHABLE_KEY =
     "sb_publishable_4CSu5Xqo99OK5o4EJom_Pg_tvelza_h";
 
+
 const supabaseClient =
     window.supabase.createClient(
         SUPABASE_URL,
@@ -16,25 +45,52 @@ const supabaseClient =
     );
 
 
+/* =========================================================
+   PREVENT MULTIPLE BACKGROUND CHECKS
+========================================================= */
+
+let backgroundCheckStarted = false;
+
+let accessCheckInProgress = false;
+
+
+/* =========================================================
+   MAIN ACCESS CHECK
+========================================================= */
+
 async function checkCourseAccess(courseKey) {
 
+    /*
+       Get saved customer access
+    */
     const savedAccess =
-        localStorage.getItem("yazeed_current_access");
+        localStorage.getItem(
+            "yazeed_current_access"
+        );
+
 
     /*
        No saved access
     */
     if (!savedAccess) {
-        window.location.href = "/activate.html";
+
+        window.location.href =
+            "/activate.html";
+
         return false;
     }
 
 
     let access;
 
+
+    /*
+       Read saved access safely
+    */
     try {
 
-        access = JSON.parse(savedAccess);
+        access =
+            JSON.parse(savedAccess);
 
     } catch (error) {
 
@@ -74,6 +130,17 @@ async function checkCourseAccess(courseKey) {
     }
 
 
+    /*
+       Prevent overlapping requests
+    */
+    if (accessCheckInProgress) {
+        return true;
+    }
+
+
+    accessCheckInProgress = true;
+
+
     try {
 
         /*
@@ -93,19 +160,33 @@ async function checkCourseAccess(courseKey) {
             );
 
 
+        /*
+           Supabase returned an error
+        */
         if (error) {
 
             console.error(
-                "Supabase error:",
+                "Supabase access check error:",
                 error
             );
 
-            throw error;
+            /*
+               IMPORTANT:
+
+               Do NOT kick the customer out just
+               because of a temporary network/
+               Supabase problem.
+
+               The customer keeps their current
+               access until a successful check
+               confirms that it has been revoked.
+            */
+            return true;
         }
 
 
         /*
-           Order does not exist
+           Order no longer exists
         */
         if (
             !data ||
@@ -114,6 +195,10 @@ async function checkCourseAccess(courseKey) {
 
             localStorage.removeItem(
                 "yazeed_current_access"
+            );
+
+            alert(
+                "تعذر العثور على رقم الطلب. يرجى التواصل معنا."
             );
 
             window.location.href =
@@ -127,9 +212,10 @@ async function checkCourseAccess(courseKey) {
             data[0];
 
 
-        /*
-           Entire order deactivated
-        */
+        /* =================================================
+           ENTIRE ORDER DEACTIVATED
+        ================================================= */
+
         if (
             order.active !== true
         ) {
@@ -149,19 +235,16 @@ async function checkCourseAccess(courseKey) {
         }
 
 
-        /*
-           Check the specific course
-        */
+        /* =================================================
+           SPECIFIC COURSE DEACTIVATED
+        ================================================= */
+
         if (
             order[courseKey] !== true
         ) {
 
-            alert(
-                "ليس لديك وصول إلى هذه الدورة."
-            );
-
             /*
-               Update saved permissions
+               Update saved permissions first
             */
             access.products = {
 
@@ -185,6 +268,14 @@ async function checkCourseAccess(courseKey) {
             );
 
 
+            alert(
+                "تم إلغاء صلاحية الوصول إلى هذه الدورة."
+            );
+
+
+            /*
+               Send customer back to HUB
+            */
             window.location.href =
                 "/";
 
@@ -192,9 +283,13 @@ async function checkCourseAccess(courseKey) {
         }
 
 
+        /* =================================================
+           ACCESS STILL VALID
+        ================================================= */
+
         /*
-           Update local permissions
-           in case admin changed anything.
+           Refresh local permissions in case
+           the admin changed another course.
         */
         access.products = {
 
@@ -218,9 +313,6 @@ async function checkCourseAccess(courseKey) {
         );
 
 
-        /*
-           Access confirmed
-        */
         return true;
 
 
@@ -231,10 +323,91 @@ async function checkCourseAccess(courseKey) {
             error
         );
 
-        alert(
-            "تعذر التحقق من صلاحية الوصول. يرجى المحاولة مرة أخرى."
-        );
 
-        return false;
+        /*
+           Fail safely.
+
+           A temporary browser/network problem
+           should NOT randomly kick a paying
+           customer out of the course.
+        */
+        return true;
+
+
+    } finally {
+
+        accessCheckInProgress = false;
     }
+}
+
+
+/* =========================================================
+   BACKGROUND CHECK
+========================================================= */
+
+function startBackgroundAccessCheck(courseKey) {
+
+    /*
+       Prevent accidentally creating
+       multiple timers.
+    */
+    if (backgroundCheckStarted) {
+        return;
+    }
+
+
+    backgroundCheckStarted = true;
+
+
+    console.log(
+        "Background access check started.",
+        "Interval:",
+        ACCESS_CHECK_INTERVAL,
+        "ms"
+    );
+
+
+    setInterval(
+        async function () {
+
+            console.log(
+                "Running background access check..."
+            );
+
+
+            await checkCourseAccess(
+                courseKey
+            );
+
+        },
+        ACCESS_CHECK_INTERVAL
+    );
+}
+
+
+/* =========================================================
+   AUTOMATICALLY START BACKGROUND CHECK
+========================================================= */
+
+function initializeCourseAccess(courseKey) {
+
+    /*
+       First check immediately
+    */
+    checkCourseAccess(
+        courseKey
+    ).then(function (hasAccess) {
+
+        /*
+           Only start the background timer
+           if the initial access check succeeded.
+        */
+        if (hasAccess) {
+
+            startBackgroundAccessCheck(
+                courseKey
+            );
+        }
+
+    });
 }
