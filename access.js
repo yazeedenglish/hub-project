@@ -8,17 +8,11 @@
    SETTINGS
 ========================================================= */
 
-// TESTING:
-// 10 seconds = 10 / 60 minutes
-//
-// When you're finished testing, change this to:
-//
 // 60  = 60 minutes
 // 120 = 120 minutes
 // 5   = 5 minutes
 
-const ACCESS_CHECK_MINUTES = 10 / 60;
-
+const ACCESS_CHECK_MINUTES = 60;
 
 /*
    Convert minutes to milliseconds
