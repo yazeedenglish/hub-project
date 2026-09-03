@@ -1,0 +1,790 @@
+/* =========================================================
+   YAZEED ENGLISH HUB
+========================================================= */
+
+:root {
+    --paper: #F5F6F2;
+    --ink: #00273a;
+    --ink-soft: #5B645F;
+    --indigo: #00689b;
+    --course-button: #00689b;
+    --line: #DCDFD6;
+    --card: #FFFFFF;
+    --danger: #C94C4C;
+    --white: #FFFFFF;
+    --success: #15803d;
+}
+
+body.dark {
+    --paper: #15181C;
+    --ink: #E8EAE4;
+    --ink-soft: #9AA39B;
+    --card: #1E2227;
+    --line: #33383B;
+    --indigo: #00689b;
+    --course-button: #0088C7;
+    --danger: #E2897A;
+    --success: #4ade80;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+
+    font-family: "Tajawal", sans-serif;
+
+    background: var(--paper);
+    color: var(--ink);
+
+    transition:
+        background 0.25s ease,
+        color 0.25s ease;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button,
+a {
+    -webkit-tap-highlight-color: transparent;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.top-header {
+    position: relative;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 18px 35px;
+
+    border-bottom: 1px solid var(--line);
+
+    background: var(--card);
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+}
+
+.brand-logo {
+    width: 42px;
+    height: 42px;
+
+    object-fit: contain;
+
+    flex-shrink: 0;
+}
+
+.brand-text {
+    display: flex;
+    flex-direction: column;
+
+    gap: 1px;
+}
+
+.brand-text strong {
+    font-size: 15px;
+    font-weight: 900;
+}
+
+.brand-text span {
+    font-size: 11px;
+    color: var(--ink-soft);
+}
+
+.theme-buttons {
+    display: flex;
+    align-items: center;
+}
+
+.theme-btn {
+    width: 38px;
+    height: 38px;
+
+    border: 1px solid var(--line);
+    border-radius: 10px;
+
+    background: var(--card);
+    color: var(--ink);
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.theme-btn:hover {
+    border-color: var(--indigo);
+    transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+.main-website {
+    width: 100%;
+    max-width: 1200px;
+
+    margin: auto;
+
+    padding:
+        0
+        25px
+        60px;
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero-section {
+    text-align: center;
+
+    padding:
+        75px
+        20px
+        50px;
+}
+
+.hero-small-title {
+    color: var(--indigo);
+
+    font-weight: 900;
+
+    font-size: 12px;
+
+    letter-spacing: 2px;
+}
+
+.hero-section h1 {
+    margin:
+        8px
+        0;
+
+    font-size: 52px;
+
+    line-height: 1.25;
+
+    font-weight: 900;
+}
+
+.hero-section p {
+    max-width: 650px;
+
+    margin:
+        0
+        auto;
+
+    color: var(--ink-soft);
+
+    line-height: 1.8;
+}
+
+
+/* =========================================================
+   CONTENT
+========================================================= */
+
+.content-section {
+    margin-top: 30px;
+}
+
+.section-heading {
+    text-align: center;
+
+    margin-bottom: 30px;
+}
+
+.section-label {
+    display: inline-block;
+
+    margin-bottom: 8px;
+
+    color: var(--indigo);
+
+    font-size: 12px;
+
+    font-weight: 900;
+
+    letter-spacing: 2px;
+}
+
+.section-heading h2,
+.store-section h2 {
+    margin: 0;
+
+    font-size: 30px;
+
+    font-weight: 900;
+}
+
+.section-heading p,
+.store-section p {
+    margin:
+        7px
+        0
+        0;
+
+    color: var(--ink-soft);
+}
+
+
+/* =========================================================
+   COURSE GRID
+========================================================= */
+
+.course-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 22px;
+}
+
+
+/* =========================================================
+   COURSE CARD
+========================================================= */
+
+.course-card {
+    position: relative;
+
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+
+    min-height: 370px;
+
+    background: var(--card);
+
+    border:
+        1px solid
+        var(--line);
+
+    border-radius: 22px;
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
+
+    animation:
+        cardIn
+        0.5s
+        ease
+        both;
+}
+
+.course-card:hover {
+    transform:
+        translateY(-6px);
+
+    box-shadow:
+        0
+        18px
+        42px
+        rgba(
+            0,
+            39,
+            58,
+            0.10
+        );
+}
+
+
+/* =========================================================
+   IMAGE
+========================================================= */
+
+.course-image-wrap {
+    position: relative;
+
+    height: 205px;
+
+    overflow: hidden;
+
+    background: var(--paper);
+}
+
+.course-image {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+    transition:
+        transform 0.45s ease;
+}
+
+.course-card:hover .course-image {
+    transform:
+        scale(1.035);
+}
+
+.course-image-placeholder {
+    width: 100%;
+    height: 100%;
+
+    display: grid;
+    place-items: center;
+
+    background:
+        radial-gradient(
+            circle at 50% 25%,
+            rgba(
+                0,
+                104,
+                155,
+                0.12
+            ),
+            transparent 45%
+        ),
+        var(--paper);
+
+    color: var(--indigo);
+
+    font-size: 42px;
+
+    font-weight: 900;
+}
+
+
+/* =========================================================
+   LOCK
+========================================================= */
+
+.course-lock-overlay {
+    position: absolute;
+
+    inset: 0;
+
+    display: grid;
+
+    place-items: center;
+
+    background:
+        rgba(
+            2,
+            13,
+            20,
+            0.34
+        );
+
+    backdrop-filter:
+        blur(2px);
+}
+
+.course-lock {
+    width: 64px;
+    height: 64px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 18px;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.94
+        );
+
+    box-shadow:
+        0
+        14px
+        35px
+        rgba(
+            0,
+            0,
+            0,
+            0.18
+        );
+
+    font-size: 28px;
+}
+
+
+/* =========================================================
+   CARD CONTENT
+========================================================= */
+
+.course-body {
+    flex: 1;
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 22px;
+}
+
+.course-status {
+    align-self: flex-start;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    min-height: 28px;
+
+    padding:
+        5px
+        10px;
+
+    border-radius: 999px;
+
+    background: var(--paper);
+
+    color: var(--ink-soft);
+
+    font-size: 11px;
+
+    font-weight: 900;
+
+    margin-bottom: 13px;
+}
+
+.course-status.active {
+    color: var(--success);
+}
+
+.course-status.expired {
+    color: var(--danger);
+}
+
+.course-card h3 {
+    margin:
+        0
+        0
+        7px;
+
+    font-size: 22px;
+
+    font-weight: 900;
+}
+
+.course-card p {
+    margin: 0;
+
+    color: var(--ink-soft);
+
+    line-height: 1.8;
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   ACTIONS
+========================================================= */
+
+.course-actions {
+    display: grid;
+
+    gap: 10px;
+
+    margin-top: auto;
+
+    padding-top: 20px;
+}
+
+.course-btn {
+    width: 100%;
+
+    min-height: 46px;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    border-radius: 12px;
+
+    font-family: inherit;
+
+    font-weight: 900;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.course-btn.primary {
+    border: none;
+
+    background:
+        var(--course-button);
+
+    color: white;
+}
+
+.course-btn.primary:hover {
+    transform:
+        translateY(-2px);
+
+    opacity: 0.92;
+}
+
+.course-btn.secondary {
+    border:
+        1px solid
+        var(--line);
+
+    background:
+        transparent;
+
+    color: var(--ink);
+}
+
+.course-btn.secondary:hover {
+    border-color:
+        var(--indigo);
+
+    color:
+        var(--indigo);
+
+    transform:
+        translateY(-2px);
+}
+
+
+/* =========================================================
+   STORE
+========================================================= */
+
+.store-section {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 25px;
+
+    margin-top: 70px;
+
+    padding:
+        34px
+        30px;
+
+    background:
+        var(--card);
+
+    border:
+        1px solid
+        var(--line);
+
+    border-radius: 24px;
+
+    box-shadow:
+        0
+        15px
+        40px
+        rgba(
+            0,
+            39,
+            58,
+            0.07
+        );
+}
+
+.store-btn {
+    flex-shrink: 0;
+
+    min-width: 190px;
+
+    min-height: 50px;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 15px;
+
+    padding:
+        14px
+        24px;
+
+    border-radius: 14px;
+
+    background:
+        var(--indigo);
+
+    color: white;
+
+    font-weight: 900;
+
+    box-shadow:
+        0
+        10px
+        25px
+        rgba(
+            0,
+            104,
+            155,
+            0.25
+        );
+
+    transition: 0.2s;
+}
+
+.store-btn:hover {
+    transform:
+        translateY(-3px);
+
+    box-shadow:
+        0
+        15px
+        30px
+        rgba(
+            0,
+            104,
+            155,
+            0.35
+        );
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.site-footer {
+    margin-top: 30px;
+
+    padding:
+        0
+        25px
+        30px;
+
+    text-align: center;
+}
+
+.footer-line {
+    width: 100%;
+
+    height: 1px;
+
+    margin-bottom: 20px;
+
+    background:
+        var(--line);
+}
+
+.site-footer p {
+    margin: 0;
+
+    color: var(--ink-soft);
+
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   ANIMATION
+========================================================= */
+
+@keyframes cardIn {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 800px) {
+
+    .hero-section h1 {
+        font-size: 42px;
+    }
+
+    .store-section {
+        flex-direction: column;
+
+        align-items: stretch;
+
+        text-align: center;
+    }
+
+    .store-btn {
+        width: 100%;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .top-header {
+        padding: 15px;
+    }
+
+    .main-website {
+        padding:
+            0
+            15px
+            45px;
+    }
+
+    .hero-section {
+        padding-top: 50px;
+    }
+
+    .hero-section h1 {
+        font-size: 35px;
+    }
+
+    .course-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .course-image-wrap {
+        height: 190px;
+    }
+
+}
