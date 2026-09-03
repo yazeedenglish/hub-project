@@ -330,7 +330,7 @@ function renderCourses() {
                     "course-btn secondary";
 
                 activate.href =
-                    "/activate.html";
+                    "/activate/";
 
                 activate.textContent =
                     "تفعيل الوصول";

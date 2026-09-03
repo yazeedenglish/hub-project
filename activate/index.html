@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+
+<html lang="ar" dir="rtl">
+
+<head>
+
+```
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>Yazeed English — دخول الدورات</title>
+
+
+<!-- =====================================================
+     TAJAWAL
+====================================================== -->
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap"
+    rel="stylesheet"
+>
+
+
+<style>
+
+    /* =========================================================
+       YAZEED ENGLISH — ACTIVATION PAGE
+       MATCHING MAIN PROJECT IDENTITY
+    ========================================================= */
+
+
+    /* =========================================================
+       BASIC VARIABLES
+    ========================================================= */
+
+    :root {
+
+        --paper: #F5F6F2;
+
+        --ink: #00273a;
+
+        --ink-soft: #5B645F;
+
+        --indigo: #00689b;
+
+        --line: #DCDFD6;
+
+        --card: #FFFFFF;
+
+        --danger: #C94C4C;
+
+        --white: #FFFFFF;
+    }
+
+
+    /* =========================================================
+       DARK MODE
+    ========================================================= */
+
+    body.dark {
+
+        --paper: #15181C;
+
+        --ink: #E8EAE4;
+
+        --ink-soft: #9AA39B;
+
+        --card: #1E2227;
+
+        --line: #33383B;
+
+        --indigo: #0088C7;
+
+        --danger: #E2897A;
+    }
+
+
+    /* =========================================================
+       GLOBAL RESET
+    ========================================================= */
+
+    * {
+
+        box-sizing: border-box;
+    }
+
+
+    html {
+
+        min-height: 100%;
+    }
+
+
+    body {
+
+        margin: 0;
+
+        min-height: 100vh;
+
+        font-family:
+            "Tajawal",
+            sans-serif;
+
+        background: var(--paper);
+
+        color: var(--ink);
+
+        transition:
+            background 0.25s ease,
+            color 0.25s ease;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        padding: 25px;
+    }
+
+
+    /* =========================================================
+       ACCESS SCREEN
+    ========================================================= */
+
+    .access-screen {
+
+        width: 100%;
+
+        min-height: 100vh;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        padding: 30px 0;
+    }
+
+
+    /* =========================================================
+       ACCESS BOX
+    ========================================================= */
+
+    .access-box {
+
+        width: 100%;
+
+        max-width: 430px;
+
+        background: var(--card);
+
+        border:
+            1px solid
+            var(--line);
+
+        border-radius: 24px;
+
+        padding: 42px 40px;
+
+        text-align: center;
+
+        box-shadow:
+            0 20px 60px
+            rgba(0, 39, 58, 0.08);
+
+        transition:
+            background 0.25s ease,
+            border-color 0.25s ease,
+            box-shadow 0.25s ease;
+    }
+
+
+    /* =========================================================
+       ACCESS LOGO
+    ========================================================= */
+
+    .access-logo {
+
+        width: 65px;
+
+        height: 65px;
+
+        margin:
+            0 auto 18px;
+
+        background: var(--indigo);
+
+        color: var(--white);
+
+        border-radius: 18px;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        font-size: 20px;
+
+        font-weight: 900;
+
+        letter-spacing: -0.5px;
+    }
+
+
+    /* =========================================================
+       BRAND
+    ========================================================= */
+
+    .access-brand {
+
+        color: var(--indigo);
+
+        font-size: 13px;
+
+        font-weight: 900;
+
+        letter-spacing: 1px;
+
+        margin-bottom: 8px;
+    }
+
+
+    /* =========================================================
+       MAIN TITLE
+    ========================================================= */
+
+    .access-box h1 {
+
+        margin: 0;
+
+        font-size: 27px;
+
+        font-weight: 900;
+
+        color: var(--ink);
+
+        line-height: 1.4;
+    }
+
+
+    /* =========================================================
+       SUBTITLE
+    ========================================================= */
+
+    .access-box h2 {
+
+        margin: 6px 0 15px;
+
+        font-size: 15px;
+
+        color: var(--indigo);
+
+        font-weight: 800;
+    }
+
+
+    /* =========================================================
+       DESCRIPTION
+    ========================================================= */
+
+    .access-description {
+
+        color: var(--ink-soft);
+
+        line-height: 1.9;
+
+        font-size: 14px;
+
+        margin:
+            0 0 27px;
+    }
+
+
+    /* =========================================================
+       FORM
+    ========================================================= */
+
+    #accessForm {
+
+        display: flex;
+
+        flex-direction: column;
+
+        text-align: right;
+    }
+
+
+    /* =========================================================
+       ORDER LABEL
+    ========================================================= */
+
+    .order-label {
+
+        color: var(--ink);
+
+        font-size: 13px;
+
+        font-weight: 800;
+
+        margin-bottom: 8px;
+    }
+
+
+    /* =========================================================
+       ORDER INPUT
+    ========================================================= */
+
+    .password-input {
+
+        width: 100%;
+
+        padding: 14px 15px;
+
+        border:
+            1px solid
+            var(--line);
+
+        border-radius: 12px;
+
+        background: var(--paper);
+
+        color: var(--ink);
+
+        font-family: inherit;
+
+        font-size: 16px;
+
+        outline: none;
+
+        text-align: center;
+
+        transition:
+            border-color 0.2s ease,
+            box-shadow 0.2s ease,
+            background 0.2s ease;
+    }
+
+
+    .password-input::placeholder {
+
+        color: var(--ink-soft);
+
+        opacity: 0.7;
+    }
+
+
+    .password-input:hover {
+
+        border-color: #BFC6BF;
+    }
+
+
+    .password-input:focus {
+
+        border-color: var(--indigo);
+
+        box-shadow:
+            0 0 0 3px
+            rgba(0, 104, 155, 0.10);
+    }
+
+
+    /* =========================================================
+       CONSENT
+    ========================================================= */
+
+    .consent-label {
+
+        display: flex;
+
+        align-items: flex-start;
+
+        gap: 10px;
+
+        text-align: right;
+
+        margin: 20px 0;
+
+        font-size: 12px;
+
+        line-height: 1.8;
+
+        color: var(--ink-soft);
+
+        cursor: pointer;
+    }
+
+
+    .consent-label input {
+
+        width: 17px;
+
+        height: 17px;
+
+        flex-shrink: 0;
+
+        margin:
+            3px 0 0;
+
+        accent-color: var(--indigo);
+
+        cursor: pointer;
+    }
+
+
+    /* =========================================================
+       CONTINUE BUTTON
+    ========================================================= */
+
+    .continue-btn {
+
+        width: 100%;
+
+        padding: 14px;
+
+        border: none;
+
+        border-radius: 12px;
+
+        background: var(--indigo);
+
+        color: var(--white);
+
+        font-family: inherit;
+
+        font-size: 15px;
+
+        font-weight: 900;
+
+        cursor: pointer;
+
+        box-shadow:
+            0 8px 20px
+            rgba(0, 104, 155, 0.20);
+
+        transition:
+            transform 0.2s ease,
+            opacity 0.2s ease,
+            box-shadow 0.2s ease;
+    }
+
+
+    .continue-btn:hover {
+
+        transform: translateY(-2px);
+
+        opacity: 0.94;
+
+        box-shadow:
+            0 12px 25px
+            rgba(0, 104, 155, 0.27);
+    }
+
+
+    .continue-btn:active {
+
+        transform: translateY(0);
+    }
+
+
+    .continue-btn:disabled {
+
+        cursor: not-allowed;
+
+        opacity: 0.55;
+
+        transform: none;
+
+        box-shadow: none;
+    }
+
+
+    /* =========================================================
+       MESSAGE
+    ========================================================= */
+
+    #message {
+
+        margin:
+            18px 0 0;
+
+        text-align: center;
+
+        color: var(--ink-soft);
+
+        font-size: 13px;
+
+        line-height: 1.8;
+
+        min-height: 20px;
+    }
+
+
+    /* =========================================================
+       SUCCESS TITLE
+    ========================================================= */
+
+    #message h3 {
+
+        margin:
+            0 0 5px;
+
+        color: var(--indigo);
+
+        font-size: 19px;
+
+        font-weight: 900;
+    }
+
+
+    /* =========================================================
+       SUCCESS TEXT
+    ========================================================= */
+
+    #message p {
+
+        margin:
+            0 0 14px;
+    }
+
+
+    /* =========================================================
+       CONTINUE LINK
+    ========================================================= */
+
+    #message a {
+
+        display: inline-flex !important;
+
+        align-items: center;
+
+        justify-content: center;
+
+        min-height: 46px;
+
+        padding:
+            0 22px;
+
+        border-radius: 11px;
+
+        background: var(--indigo);
+
+        color: var(--white);
+
+        text-decoration: none;
+
+        font-family: inherit;
+
+        font-size: 14px;
+
+        font-weight: 900;
+
+        box-shadow:
+            0 8px 18px
+            rgba(0, 104, 155, 0.20);
+
+        transition:
+            transform 0.2s ease,
+            opacity 0.2s ease;
+    }
+
+
+    #message a:hover {
+
+        transform: translateY(-2px);
+
+        opacity: 0.92;
+    }
+
+
+    /* =========================================================
+       FOOTER
+    ========================================================= */
+
+    .access-footer {
+
+        margin-top: 25px;
+
+        padding-top: 18px;
+
+        border-top:
+            1px solid
+            var(--line);
+
+        color: var(--ink-soft);
+
+        font-size: 11px;
+
+        text-align: center;
+    }
+
+
+    /* =========================================================
+       MOBILE
+    ========================================================= */
+
+    @media (max-width: 550px) {
+
+        body {
+
+            padding: 15px;
+        }
+
+
+        .access-screen {
+
+            padding: 15px 0;
+        }
+
+
+        .access-box {
+
+            padding:
+                32px 22px;
+
+            border-radius: 20px;
+        }
+
+
+        .access-logo {
+
+            width: 58px;
+
+            height: 58px;
+
+            border-radius: 16px;
+
+            font-size: 18px;
+
+            margin-bottom: 15px;
+        }
+
+
+        .access-box h1 {
+
+            font-size: 24px;
+        }
+
+
+        .access-box h2 {
+
+            font-size: 14px;
+        }
+
+
+        .access-description {
+
+            font-size: 13px;
+
+            margin-bottom: 23px;
+        }
+
+
+        .password-input {
+
+            padding: 13px;
+        }
+
+
+        .continue-btn {
+
+            padding: 13px;
+        }
+    }
+
+
+    /* =========================================================
+       SMALL PHONES
+    ========================================================= */
+
+    @media (max-width: 380px) {
+
+        .access-box {
+
+            padding:
+                28px 18px;
+        }
+
+
+        .access-box h1 {
+
+            font-size: 22px;
+        }
+
+
+        .access-description {
+
+            font-size: 12px;
+        }
+
+
+        .consent-label {
+
+            font-size: 11px;
+        }
+    }
+
+
+    /* =========================================================
+       REDUCED MOTION
+    ========================================================= */
+
+    @media (prefers-reduced-motion: reduce) {
+
+        * {
+
+            transition: none !important;
+        }
+    }
+
+</style>
+```
+
+</head>
+
+<body>
+
+```
+<div class="access-screen">
+
+
+    <main class="access-box">
+
+
+        <!-- =================================================
+             LOGO
+        ================================================== -->
+
+        <div class="access-logo">
+            YE
+        </div>
+
+
+        <!-- =================================================
+             BRAND
+        ================================================== -->
+
+        <div class="access-brand">
+            YAZEED ENGLISH
+        </div>
+
+
+        <!-- =================================================
+             TITLE
+        ================================================== -->
+
+        <h1>
+            الوصول إلى دوراتك
+        </h1>
+
+
+        <h2>
+            أدخل بيانات الطلب للمتابعة
+        </h2>
+
+
+        <!-- =================================================
+             DESCRIPTION
+        ================================================== -->
+
+        <p class="access-description">
+            أدخل رقم الطلب للوصول إلى الدورات التي اشتريتها.
+        </p>
+
+
+        <!-- =================================================
+             FORM
+        ================================================== -->
+
+        <form id="accessForm">
+
+
+            <label
+                class="order-label"
+                for="orderNumber"
+            >
+                رقم الطلب
+            </label>
+
+
+            <input
+                class="password-input"
+                type="text"
+                id="orderNumber"
+                name="orderNumber"
+                placeholder="أدخل رقم الطلب"
+                autocomplete="off"
+                required
+            >
+
+
+            <!-- =============================================
+                 CONSENT
+            ============================================== -->
+
+            <label class="consent-label">
+
+
+                <input
+                    type="checkbox"
+                    id="consent"
+                    required
+                >
+
+
+                <span>
+                    أتعهد بعدم مشاركة أو تسريب محتوى الدورات
+                    أو بيانات الوصول الخاصة بي مع الآخرين.
+                </span>
+
+
+            </label>
+
+
+            <!-- =============================================
+                 BUTTON
+            ============================================== -->
+
+            <button
+                class="continue-btn"
+                type="submit"
+            >
+                متابعة
+            </button>
+
+
+        </form>
+
+
+        <!-- =================================================
+             MESSAGE
+        ================================================== -->
+
+        <div id="message"></div>
+
+
+        <!-- =================================================
+             FOOTER
+        ================================================== -->
+
+        <div class="access-footer">
+            Yazeed English
+        </div>
+
+
+    </main>
+
+
+</div>
+
+
+<!-- =========================================================
+     SUPABASE
+========================================================== -->
+
+<script
+    src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
+></script>
+
+
+<!-- =========================================================
+     CUSTOMER ACTIVATION
+========================================================== -->
+
+<script src="activate.js"></script>
+```
+
+</body>
+
+</html>

@@ -69,7 +69,7 @@ async function checkCourseAccess(courseKey) {
     if (!savedAccess) {
 
         window.location.href =
-            "/activate.html";
+            "/activate/";
 
         return false;
     }
@@ -98,7 +98,7 @@ async function checkCourseAccess(courseKey) {
         );
 
         window.location.href =
-            "/activate.html";
+            "/activate/";
 
         return false;
     }
@@ -118,7 +118,7 @@ async function checkCourseAccess(courseKey) {
         );
 
         window.location.href =
-            "/activate.html";
+            "/activate/";
 
         return false;
     }
@@ -196,7 +196,7 @@ async function checkCourseAccess(courseKey) {
             );
 
             window.location.href =
-                "/activate.html";
+                "/activate/";
 
             return false;
         }
@@ -223,7 +223,7 @@ async function checkCourseAccess(courseKey) {
             );
 
             window.location.href =
-                "/activate.html";
+                "/activate/";
 
             return false;
         }
