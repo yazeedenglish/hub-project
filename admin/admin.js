@@ -108,134 +108,76 @@ async function checkAdminLogin() {
 function showLoginScreen() {
 
     document.body.innerHTML = `
+        <main class="login-page">
+            <div class="login-card">
 
-        <main style="
-            min-height:100vh;
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            padding:20px;
-        ">
-
-            <div style="
-                width:100%;
-                max-width:420px;
-                background:white;
-                padding:32px;
-                border-radius:20px;
-                box-shadow:0 10px 40px rgba(0,0,0,0.08);
-            ">
-
-                <h1 style="
-                    margin-top:0;
-                    text-align:center;
-                ">
+                <div class="login-brand">
                     Yazeed English
+                </div>
+
+                <div class="login-label">
+                    لوحة تحكم الإدارة
+                </div>
+
+                <h1>
+                    تسجيل دخول الإدارة
                 </h1>
 
-                <h2 style="
-                    text-align:center;
-                    margin-bottom:10px;
-                ">
-                    تسجيل دخول الإدارة
-                </h2>
-
-                <p style="
-                    text-align:center;
-                    color:#666;
-                    margin-bottom:25px;
-                ">
+                <p class="login-description">
                     هذه الصفحة مخصصة للإدارة فقط.
                 </p>
 
                 <form id="adminLoginForm">
 
-                    <label
-                        for="adminEmail"
-                        style="display:block;margin-bottom:8px;"
-                    >
-                        البريد الإلكتروني
-                    </label>
+                    <div class="login-field">
+                        <label for="adminEmail">
+                            البريد الإلكتروني
+                        </label>
 
-                    <input
-                        id="adminEmail"
-                        type="email"
-                        required
-                        autocomplete="email"
-                        style="
-                            width:100%;
-                            box-sizing:border-box;
-                            padding:12px;
-                            margin-bottom:16px;
-                            border:1px solid #ddd;
-                            border-radius:10px;
-                            font-size:16px;
-                        "
-                    >
+                        <input
+                            id="adminEmail"
+                            type="email"
+                            required
+                            autocomplete="email"
+                            placeholder="أدخل البريد الإلكتروني"
+                        >
+                    </div>
 
-                    <label
-                        for="adminPassword"
-                        style="display:block;margin-bottom:8px;"
-                    >
-                        كلمة المرور
-                    </label>
+                    <div class="login-field">
+                        <label for="adminPassword">
+                            كلمة المرور
+                        </label>
 
-                    <input
-                        id="adminPassword"
-                        type="password"
-                        required
-                        autocomplete="current-password"
-                        style="
-                            width:100%;
-                            box-sizing:border-box;
-                            padding:12px;
-                            margin-bottom:16px;
-                            border:1px solid #ddd;
-                            border-radius:10px;
-                            font-size:16px;
-                        "
-                    >
+                        <input
+                            id="adminPassword"
+                            type="password"
+                            required
+                            autocomplete="current-password"
+                            placeholder="أدخل كلمة المرور"
+                        >
+                    </div>
 
                     <button
                         type="submit"
-                        style="
-                            width:100%;
-                            padding:13px;
-                            border:0;
-                            border-radius:10px;
-                            background:#2563eb;
-                            color:white;
-                            font-size:16px;
-                            cursor:pointer;
-                        "
+                        class="primary login-button"
                     >
                         تسجيل الدخول
                     </button>
 
                     <p
                         id="loginMessage"
-                        style="
-                            text-align:center;
-                            color:#dc2626;
-                            margin-top:15px;
-                        "
+                        class="login-message"
                     ></p>
 
                 </form>
 
             </div>
-
         </main>
-
     `;
-
 
     document
         .getElementById("adminLoginForm")
-        .addEventListener(
-            "submit",
-            handleLogin
-        );
+        .addEventListener("submit", handleLogin);
 
 }
 
