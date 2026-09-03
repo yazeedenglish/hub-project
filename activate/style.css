@@ -1,231 +1,695 @@
-@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap');
 
-/* =========================================================
-   VARIABLES & THEME CONFIGURATION
-========================================================= */
-:root {
-    --paper: #F5F6F2;
-    --ink: #00273a;
-    --ink-soft: #5B645F;
-    --indigo: #00689b;
-    --indigo-hover: #005580;
-    --line: #DCDFD6;
-    --card: #FFFFFF;
-    --danger: #C94C4C;
-}
+    /* =========================================================
+       YAZEED ENGLISH — ACTIVATION PAGE
+       MATCHING MAIN PROJECT IDENTITY
+    ========================================================= */
 
-body.dark {
-    --paper: #15181C;
-    --ink: #E8EAE4;
-    --ink-soft: #9AA39B;
-    --card: #1E2227;
-    --line: #33383B;
-    --indigo: #0088C7;
-    --indigo-hover: #009be3;
-    --danger: #E2897A;
-}
 
-/* =========================================================
-   BASE RESET & LAYOUT SETUP
-========================================================= */
-* {
-    box-sizing: border-box;
-}
+    /* =========================================================
+       BASIC VARIABLES
+    ========================================================= */
 
-body {
-    margin: 0;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 30px 15px;
-    font-family: "Tajawal", sans-serif;
-    background:
-        radial-gradient(
-            circle at top right,
-            rgba(0, 104, 155, 0.08),
-            transparent 38%
-        ),
-        var(--paper);
-    color: var(--ink);
-    transition: background 0.25s ease, color 0.25s ease;
-}
+    :root {
 
-[hidden] {
-    display: none !important;
-}
+        --paper: #F5F6F2;
 
-.icon-box {
-    width: 60px;
-    height: 60px;
-    margin: 0 auto 20px;
-    display: grid;
-    place-items: center;
-    background: var(--indigo);
-    color: #FFFFFF;
-    border-radius: 12px; /* نفس انحناء الزر */
-    box-shadow: 0 4px 10px rgba(0, 104, 155, 0.2);
-    transition: transform 0.2s ease;
-}
+        --ink: #00273a;
 
-.icon-box:hover {
-    transform: translateY(-2px);
-}
+        --ink-soft: #5B645F;
 
-/* =========================================================
-   MAIN CARD CONTAINER
-========================================================= */
-main {
-    width: 100%;
-    max-width: 480px;
-    padding: 40px;
-    background: var(--card);
-    border: 1px solid var(--line);
-    border-radius: 24px;
-    box-shadow: 0 20px 60px rgba(0, 39, 58, 0.09);
-    text-align: center;
-}
+        --indigo: #00689b;
 
-/* =========================================================
-   TYPOGRAPHY
-========================================================= */
-main h1 {
-    margin: 0 0 4px;
-    color: var(--indigo);
-    font-size: 13px;
-    font-weight: 900;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-}
+        --line: #DCDFD6;
 
-main h2 {
-    margin: 0 0 10px;
-    color: var(--ink);
-    font-size: 26px;
-    font-weight: 900;
-}
+        --card: #FFFFFF;
 
-main p {
-    margin: 0 0 25px;
+        --danger: #C94C4C;
+
+        --white: #FFFFFF;
+    }
+
+
+    /* =========================================================
+       DARK MODE
+    ========================================================= */
+
+    body.dark {
+
+        --paper: #15181C;
+
+        --ink: #E8EAE4;
+
+        --ink-soft: #9AA39B;
+
+        --card: #1E2227;
+
+        --line: #33383B;
+
+        --indigo: #0088C7;
+
+        --danger: #E2897A;
+    }
+
+
+    /* =========================================================
+       GLOBAL RESET
+    ========================================================= */
+
+    * {
+
+        box-sizing: border-box;
+    }
+
+
+    html {
+
+        min-height: 100%;
+    }
+
+
+    body {
+
+        margin: 0;
+
+        min-height: 100vh;
+
+        font-family:
+            "Tajawal",
+            sans-serif;
+
+        background: var(--paper);
+
+        color: var(--ink);
+
+        transition:
+            background 0.25s ease,
+            color 0.25s ease;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        padding: 25px;
+    }
+
+
+    /* =========================================================
+       ACCESS SCREEN
+    ========================================================= */
+
+    .access-screen {
+
+        width: 100%;
+
+        min-height: 100vh;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        padding: 30px 0;
+    }
+
+
+    /* =========================================================
+       ACCESS BOX
+    ========================================================= */
+
+    .access-box {
+
+        width: 100%;
+
+        max-width: 430px;
+
+        background: var(--card);
+
+        border:
+            1px solid
+            var(--line);
+
+        border-radius: 24px;
+
+        padding: 42px 40px;
+
+        text-align: center;
+
+        box-shadow:
+            0 20px 60px
+            rgba(0, 39, 58, 0.08);
+
+        transition:
+            background 0.25s ease,
+            border-color 0.25s ease,
+            box-shadow 0.25s ease;
+    }
+
+
+    /* =========================================================
+       ACCESS LOGO
+    ========================================================= */
+
+    .access-logo {
+
+        width: 65px;
+
+        height: 65px;
+
+        margin:
+            0 auto 18px;
+
+        background: var(--indigo);
+
+        color: var(--white);
+
+        border-radius: 18px;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+    }
+
+
+    .access-logo svg {
+
+        width: 30px;
+
+        height: 30px;
+
+        stroke: currentColor;
+
+        stroke-width: 2;
+
+        fill: none;
+
+        stroke-linecap: round;
+
+        stroke-linejoin: round;
+    }
+
+
+    /* =========================================================
+       BRAND
+    ========================================================= */
+
+    .access-brand {
+
+        color: var(--indigo);
+
+        font-size: 13px;
+
+        font-weight: 900;
+
+        letter-spacing: 1px;
+
+        margin-bottom: 8px;
+    }
+
+
+    /* =========================================================
+       MAIN TITLE
+    ========================================================= */
+
+    .access-box h1 {
+
+        margin: 0;
+
+        font-size: 27px;
+
+        font-weight: 900;
+
+        color: var(--ink);
+
+        line-height: 1.6;
+    }
+
+
+    /* =========================================================
+       SUBTITLE
+    ========================================================= */
+
+    .access-box h2 {
+
+        margin: 6px 0 15px;
+
+        font-size: 15px;
+
+        color: var(--indigo);
+
+        font-weight: 800;
+    }
+
+
+    /* =========================================================
+       DESCRIPTION
+    ========================================================= */
+
+   .access-description {
     color: var(--ink-soft);
     font-size: 14px;
-    line-height: 1.8;
+    margin: 10px 0 27px;
 }
 
-/* =========================================================
-   FORM STYLES
-========================================================= */
-form {
-    display: flex;
-    flex-direction: column;
-}
 
-/* Input Field Label */
-form > label[for="orderNumber"] {
-    display: block;
-    margin: 0 0 7px;
-    text-align: right;
-    color: var(--ink);
-    font-size: 13px;
-    font-weight: 800;
-}
+    /* =========================================================
+       FORM
+    ========================================================= */
 
-/* Text Input */
-form input[type="text"] {
+    #accessForm {
+
+        display: flex;
+
+        flex-direction: column;
+
+        text-align: right;
+    }
+
+
+    /* =========================================================
+       ORDER LABEL
+    ========================================================= */
+
+    .order-label {
+
+        color: var(--ink);
+
+        font-size: 13px;
+
+        font-weight: 800;
+
+        margin-bottom: 13px;
+    }
+
+
+    /* =========================================================
+       ORDER INPUT
+    ========================================================= */
+
+    .password-input {
+
+        width: 100%;
+
+        padding: 14px 15px;
+
+        border:
+            1px solid
+            var(--line);
+
+        border-radius: 12px;
+
+        background: var(--paper);
+
+        color: var(--ink);
+
+        font-family: inherit;
+
+        font-size: 16px;
+
+        outline: none;
+
+        text-align: center;
+
+        transition:
+            border-color 0.2s ease,
+            box-shadow 0.2s ease,
+            background 0.2s ease;
+    }
+
+
+    .password-input::placeholder {
+
+        color: var(--ink-soft);
+
+        opacity: 0.7;
+    }
+
+
+    .password-input:hover {
+
+        border-color: #BFC6BF;
+    }
+
+
+    .password-input:focus {
+
+        border-color: var(--indigo);
+
+        box-shadow:
+            0 0 0 3px
+            rgba(0, 104, 155, 0.10);
+    }
+
+
+    /* =========================================================
+       CONSENT
+    ========================================================= */
+
+    .consent-label {
+
+        display: flex;
+
+        align-items: flex-start;
+
+        gap: 10px;
+
+        text-align: right;
+
+        margin: 20px 0 8px;
+
+        font-size: 12px;
+
+        line-height: 1.8;
+
+        color: var(--ink-soft);
+
+        cursor: pointer;
+
+        transition: color 0.2s ease;
+    }
+
+
+    .consent-label input {
+
+        width: 17px;
+
+        height: 17px;
+
+        flex-shrink: 0;
+
+        margin:
+            3px 0 0;
+
+        accent-color: var(--indigo);
+
+        cursor: pointer;
+    }
+
+
+    /* =========================================================
+       CONSENT ERROR
+    ========================================================= */
+
+    .consent-error {
+
+        display: none;
+
+        align-items: center;
+
+        gap: 7px;
+
+        margin:
+            0 0 16px;
+
+        color: var(--danger);
+
+        font-size: 12px;
+
+        font-weight: 700;
+
+        line-height: 1.7;
+    }
+
+
+    .consent-error.visible {
+
+        display: flex;
+    }
+
+
+    .consent-error-icon {
+
+        width: 17px;
+
+        height: 17px;
+
+        flex-shrink: 0;
+
+        border:
+            1.5px solid
+            currentColor;
+
+        border-radius: 50%;
+
+        display: inline-flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        font-size: 10px;
+
+        font-weight: 900;
+    }
+
+
+    .consent-label.has-error {
+
+        color: var(--danger);
+    }
+
+
+    /* =========================================================
+       CONTINUE BUTTON
+    ========================================================= */
+
+    .continue-btn {
     width: 100%;
-    min-height: 52px;
-    margin-bottom: 20px;
-    padding: 12px 14px;
-    border: 1px solid var(--line);
-    border-radius: 12px;
-    background: var(--paper);
-    color: var(--ink);
-    outline: none;
-    font-family: inherit;
-    font-size: 16px;
-    text-align: center;
-    letter-spacing: 2px;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
-}
 
-form input[type="text"]:focus {
-    border-color: var(--indigo);
-    box-shadow: 0 0 0 4px rgba(0, 104, 155, 0.10);
-}
+    margin-top: 17px;
 
-/* Consent Label & Checkbox Wrapper */
-form label:has(input[type="checkbox"]) {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    margin-bottom: 25px;
-    text-align: right;
-    color: var(--ink-soft);
-    font-size: 13px;
-    line-height: 1.7;
-    cursor: pointer;
-}
+    padding: 14px;
 
-/* Checkbox Style */
-form input[type="checkbox"] {
-    width: 18px;
-    height: 18px;
-    flex-shrink: 0;
-    margin-top: 3px;
-    accent-color: var(--indigo);
-    cursor: pointer;
-}
+        border: none;
 
-/* Submit Button */
-form button[type="submit"] {
-    width: 100%;
-    min-height: 50px;
-    border: none;
-    border-radius: 12px;
-    background: var(--indigo);
-    color: #FFFFFF;
-    font-family: inherit;
-    font-size: 15px;
-    font-weight: 900;
-    cursor: pointer;
-    transition: background 0.2s ease, transform 0.2s ease, opacity 0.2s ease;
-}
+        border-radius: 12px;
 
-form button[type="submit"]:hover:not(:disabled) {
-    background: var(--indigo-hover);
-    transform: translateY(-2px);
-}
+        background: var(--indigo);
 
-form button[type="submit"]:disabled {
-    cursor: not-allowed;
-    opacity: 0.45;
-}
+        color: var(--white);
 
-/* =========================================================
-   STATUS MESSAGE
-========================================================= */
-#message {
-    min-height: 21px;
-    margin: 15px 0 0;
-    color: var(--danger);
-    font-size: 13px;
-    line-height: 1.7;
-    text-align: center;
-}
+        font-family: inherit;
 
-/* =========================================================
-   RESPONSIVE DESIGN
-========================================================= */
-@media (max-width: 600px) {
-    body {
-        padding: 15px;
+        font-size: 15px;
+
+        font-weight: 900;
+
+        cursor: pointer;
+
+        box-shadow:
+            0 8px 20px
+            rgba(0, 104, 155, 0.20);
+
+        transition:
+            transform 0.2s ease,
+            opacity 0.2s ease,
+            box-shadow 0.2s ease;
     }
 
-    main {
-        padding: 30px 20px;
+
+    .continue-btn:hover {
+
+        transform: translateY(-2px);
+
+        opacity: 0.94;
+
+        box-shadow:
+            0 12px 25px
+            rgba(0, 104, 155, 0.27);
     }
 
-    main h2 {
-        font-size: 22px;
+
+    .continue-btn:active {
+
+        transform: translateY(0);
     }
-}
+
+
+    .continue-btn:disabled {
+
+        cursor: not-allowed;
+
+        opacity: 0.55;
+
+        transform: none;
+
+        box-shadow: none;
+    }
+
+
+    /* =========================================================
+       MESSAGE
+    ========================================================= */
+
+    #message {
+
+        margin:
+            18px 0 0;
+
+        text-align: center;
+
+        color: var(--ink-soft);
+
+        font-size: 13px;
+
+        line-height: 1.8;
+
+        min-height: 20px;
+    }
+
+
+    /* =========================================================
+       FOOTER
+    ========================================================= */
+
+    .access-footer {
+
+        margin-top: 25px;
+
+        padding-top: 18px;
+
+        border-top:
+            1px solid
+            var(--line);
+
+        color: var(--ink-soft);
+
+        font-size: 11px;
+
+        text-align: center;
+    }
+
+
+    /* =========================================================
+       MOBILE
+    ========================================================= */
+
+    @media (max-width: 550px) {
+
+        body {
+
+            padding: 15px;
+        }
+
+
+        .access-screen {
+
+            padding: 15px 0;
+        }
+
+
+        .access-box {
+
+            padding:
+                32px 22px;
+
+            border-radius: 20px;
+        }
+
+
+        .access-logo {
+
+            width: 58px;
+
+            height: 58px;
+
+            border-radius: 16px;
+
+            margin-bottom: 15px;
+        }
+
+
+        .access-logo svg {
+
+            width: 27px;
+
+            height: 27px;
+        }
+
+
+        .access-box h1 {
+
+            font-size: 24px;
+        }
+
+
+        .access-box h2 {
+
+            font-size: 14px;
+        }
+
+
+        .access-description {
+
+            font-size: 13px;
+
+            margin-bottom: 23px;
+        }
+
+
+        .password-input {
+
+            padding: 13px;
+        }
+
+
+        .continue-btn {
+
+            padding: 13px;
+        }
+    }
+
+
+    /* =========================================================
+       SMALL PHONES
+    ========================================================= */
+
+    @media (max-width: 380px) {
+
+        .access-box {
+
+            padding:
+                28px 18px;
+        }
+
+
+        .access-box h1 {
+
+            font-size: 22px;
+        }
+
+
+        .access-description {
+
+            font-size: 12px;
+        }
+
+
+        .consent-label {
+
+            font-size: 11px;
+        }
+
+
+        .consent-error {
+
+            font-size: 11px;
+        }
+    }
+
+
+    /* =========================================================
+       REDUCED MOTION
+    ========================================================= */
+
+    @media (prefers-reduced-motion: reduce) {
+
+        * {
+
+            transition: none !important;
+        }
+    }

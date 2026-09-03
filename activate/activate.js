@@ -215,57 +215,7 @@ form.addEventListener(
                 JSON.stringify(accessData)
             );
 
-
-            /* -----------------------------------------
-               SUCCESS MESSAGE
-            ----------------------------------------- */
-
-            message.innerHTML = "";
-
-
-            const title =
-                document.createElement("h3");
-
-            title.textContent =
-                "تم التحقق من طلبك ✓";
-
-
-            message.appendChild(
-                title
-            );
-
-
-            const text =
-                document.createElement("p");
-
-            text.textContent =
-                "يمكنك الآن الدخول إلى الدورات التي اشتريتها.";
-
-
-            message.appendChild(
-                text
-            );
-
-
-            const continueButton =
-                document.createElement("a");
-
-            continueButton.href =
-                "/";
-
-            continueButton.textContent =
-                "متابعة إلى مركز الدورات";
-
-            continueButton.style.display =
-                "inline-block";
-
-            continueButton.style.marginTop =
-                "20px";
-
-
-            message.appendChild(
-                continueButton
-            );
+            window.location.replace("/");
 
 
         } catch (error) {
