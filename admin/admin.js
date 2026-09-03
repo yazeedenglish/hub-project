@@ -1080,3 +1080,101 @@ async function initializeAdmin() {
 
 
 initializeAdmin();
+
+/* =========================================================
+   DARK MODE
+========================================================= */
+
+const themeToggle =
+    document.getElementById("themeToggle");
+
+const themeIcon =
+    document.getElementById("themeIcon");
+
+
+function applyTheme(theme) {
+
+    if (theme === "dark") {
+
+        document.body.classList.add("dark");
+
+        if (themeIcon) {
+            themeIcon.textContent = "☀";
+        }
+
+        if (themeToggle) {
+            themeToggle.setAttribute(
+                "aria-label",
+                "تفعيل الوضع الفاتح"
+            );
+        }
+
+    } else {
+
+        document.body.classList.remove("dark");
+
+        if (themeIcon) {
+            themeIcon.textContent = "☾";
+        }
+
+        if (themeToggle) {
+            themeToggle.setAttribute(
+                "aria-label",
+                "تفعيل الوضع الداكن"
+            );
+        }
+
+    }
+
+}
+
+
+const savedTheme =
+    localStorage.getItem("yazeed_admin_theme");
+
+
+if (savedTheme === "dark") {
+
+    applyTheme("dark");
+
+} else {
+
+    applyTheme("light");
+
+}
+
+
+if (themeToggle) {
+
+    themeToggle.addEventListener(
+        "click",
+        function () {
+
+            const isDark =
+                document.body.classList.contains("dark");
+
+
+            if (isDark) {
+
+                applyTheme("light");
+
+                localStorage.setItem(
+                    "yazeed_admin_theme",
+                    "light"
+                );
+
+            } else {
+
+                applyTheme("dark");
+
+                localStorage.setItem(
+                    "yazeed_admin_theme",
+                    "dark"
+                );
+
+            }
+
+        }
+    );
+
+}
