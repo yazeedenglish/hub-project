@@ -8,6 +8,8 @@
    SETTINGS
 ========================================================= */
 
+const DEVELOPER_MODE = true;
+
 // 60  = 60 minutes
 // 120 = 120 minutes
 // 5   = 5 minutes
@@ -53,6 +55,10 @@ let accessCheckInProgress = false;
 ========================================================= */
 
 async function checkCourseAccess(courseKey) {
+
+    if (DEVELOPER_MODE) {
+        return true;
+    }
 
     /*
        Get saved customer access
