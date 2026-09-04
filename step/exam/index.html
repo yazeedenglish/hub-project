@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Yazeed English — STEP Mock Test</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+
+    <header class="top-header">
+
+        <div class="brand">
+
+            <div class="brand-logo">
+                Y
+            </div>
+
+            <div class="brand-text">
+                <strong>Yazeed English</strong>
+                <span>STEP Mock Test</span>
+            </div>
+
+        </div>
+
+        <button
+            id="themeBtn"
+            class="theme-btn"
+            type="button"
+            aria-label="تغيير المظهر"
+        >
+            ☾
+        </button>
+
+    </header>
+
+
+    <main class="main-website">
+
+        <!-- =================================================
+             INTRO PAGE
+        ================================================== -->
+
+        <section id="introPage">
+
+            <div class="page-header">
+
+                <div class="page-label">
+                    STEP MOCK TEST
+                </div>
+
+                <h1>
+                    اختبار STEP المحاكي
+                </h1>
+
+                <p>
+                    اختبر مستواك في اللغة الإنجليزية من خلال اختبار
+                    محاكي مكوّن من الاستماع والقراءة والقواعد.
+                    لديك ساعتان لإكمال الاختبار.
+                </p>
+
+            </div>
+
+
+            <!-- EXAM SECTIONS -->
+
+            <div class="exam-overview">
+
+                <div class="overview-card">
+
+                    <div class="overview-icon">
+                        🎧
+                    </div>
+
+                    <div class="overview-number">
+                        20
+                    </div>
+
+                    <h2>
+                        Listening
+                    </h2>
+
+                    <p>
+                        20 سؤال استماع
+                        <br>
+                        5 مقاطع صوتية
+                    </p>
+
+                </div>
+
+
+                <div class="overview-card">
+
+                    <div class="overview-icon">
+                        📖
+                    </div>
+
+                    <div class="overview-number">
+                        40
+                    </div>
+
+                    <h2>
+                        Reading
+                    </h2>
+
+                    <p>
+                        40 سؤال قراءة
+                        <br>
+                        موزعة على عدة قطع
+                    </p>
+
+                </div>
+
+
+                <div class="overview-card">
+
+                    <div class="overview-icon">
+                        ✏️
+                    </div>
+
+                    <div class="overview-number">
+                        40
+                    </div>
+
+                    <h2>
+                        Grammar
+                    </h2>
+
+                    <p>
+                        40 سؤال قواعد
+                        <br>
+                        سؤال واحد في كل شاشة
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- EXAM INFO -->
+
+            <div class="exam-info">
+
+                <div>
+                    <span>
+                        عدد الأسئلة
+                    </span>
+
+                    <strong>
+                        100 سؤال
+                    </strong>
+                </div>
+
+                <div>
+                    <span>
+                        مدة الاختبار
+                    </span>
+
+                    <strong>
+                        ساعتان
+                    </strong>
+                </div>
+
+                <div>
+                    <span>
+                        الدرجة
+                    </span>
+
+                    <strong>
+                        من 100
+                    </strong>
+                </div>
+
+            </div>
+
+
+            <!-- NOTICE -->
+
+            <div class="notice-card">
+
+                <strong>
+                    قبل أن تبدأ
+                </strong>
+
+                <ul>
+
+                    <li>
+                        يبدأ العداد مباشرة بعد الضغط على "ابدأ الاختبار".
+                    </li>
+
+                    <li>
+                        كل مقطع استماع يمكن تشغيله مرة واحدة فقط.
+                    </li>
+
+                    <li>
+                        لن تظهر الإجابات الصحيحة أثناء الاختبار.
+                    </li>
+
+                    <li>
+                        عند انتهاء الوقت سيتم إنهاء الاختبار تلقائيًا.
+                    </li>
+
+                    <li>
+                        يمكنك الانتقال بين الأسئلة ومراجعة إجاباتك.
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <!-- START -->
+
+            <button
+                id="startBtn"
+                class="primary-btn large-btn"
+                type="button"
+            >
+
+                ابدأ الاختبار
+
+                <span>
+                    ←
+                </span>
+
+            </button>
+
+        </section>
+
+
+        <!-- =================================================
+             TEST PAGE
+        ================================================== -->
+
+        <section
+            id="testPage"
+            class="hidden"
+        >
+
+            <div class="test-sticky">
+
+                <div class="test-top">
+
+                    <div>
+
+                        <div class="section-label">
+                            STEP MOCK TEST
+                        </div>
+
+                        <div
+                            id="sectionTitle"
+                            class="test-section-title"
+                        >
+                            الاستماع
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        id="timerBox"
+                        class="timer-box"
+                    >
+
+                        <span>
+                            الوقت المتبقي
+                        </span>
+
+                        <strong id="timerValue">
+                            02:00:00
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="progress-row">
+
+                    <span id="progressText">
+                        السؤال 1 من 100
+                    </span>
+
+                    <span id="progressPercent">
+                        1%
+                    </span>
+
+                </div>
+
+
+                <div class="progress-track">
+
+                    <div
+                        id="progressBar"
+                        class="progress-bar"
+                    ></div>
+
+                </div>
+
+            </div>
+
+
+            <div id="testContent"></div>
+
+
+            <!-- NAVIGATION -->
+
+            <div class="test-navigation">
+
+                <button
+                    id="previousBtn"
+                    class="secondary-btn"
+                    type="button"
+                >
+                    السابق
+                </button>
+
+
+                <button
+                    id="nextBtn"
+                    class="primary-btn"
+                    type="button"
+                >
+                    التالي
+                </button>
+
+
+                <button
+                    id="finishBtn"
+                    class="finish-btn hidden"
+                    type="button"
+                >
+                    إنهاء الاختبار
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             RESULT PAGE
+        ================================================== -->
+
+        <section
+            id="resultPage"
+            class="hidden"
+        >
+
+            <div class="page-header result-header">
+
+                <div class="page-label">
+                    YOUR RESULT
+                </div>
+
+                <h1>
+                    نتيجتك
+                </h1>
+
+                <p id="resultMessage"></p>
+
+            </div>
+
+
+            <div
+                id="resultHero"
+                class="result-hero"
+            >
+
+                <div class="score-circle">
+
+                    <span id="finalScore">
+                        0
+                    </span>
+
+                    <small>
+                        / 100
+                    </small>
+
+                </div>
+
+
+                <div class="level-label">
+                    مستواك
+                </div>
+
+                <h2 id="levelName">
+                    ضعيف
+                </h2>
+
+            </div>
+
+
+            <!-- BREAKDOWN -->
+
+            <div class="result-breakdown">
+
+                <div class="result-card">
+
+                    <span>
+                        🎧 الاستماع
+                    </span>
+
+                    <strong id="listeningScore">
+                        0 / 20
+                    </strong>
+
+                </div>
+
+
+                <div class="result-card">
+
+                    <span>
+                        📖 القراءة
+                    </span>
+
+                    <strong id="readingScore">
+                        0 / 40
+                    </strong>
+
+                </div>
+
+
+                <div class="result-card">
+
+                    <span>
+                        ✏️ القواعد
+                    </span>
+
+                    <strong id="grammarScore">
+                        0 / 40
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- COURSE CTA -->
+
+            <div
+                id="courseCta"
+                class="course-cta hidden"
+            >
+
+                <div class="cta-label">
+                    YAZEED ENGLISH
+                </div>
+
+                <h2>
+                    مستواك يحتاج إلى تطوير؟
+                </h2>
+
+                <p>
+                    ابدأ من الأساسيات وطوّر مهاراتك في
+                    الاستماع والقراءة والقواعد مع دورة STEP التعليمية.
+                </p>
+
+                <a
+                    href="https://course.yazeedenglish.com"
+                    target="_blank"
+                    rel="noopener"
+                    class="primary-btn"
+                >
+                    دورة STEP التعليمية
+                    <span>↗</span>
+                </a>
+
+            </div>
+
+
+            <div class="result-actions">
+
+                <button
+                    id="restartBtn"
+                    class="primary-btn"
+                    type="button"
+                >
+                    إعادة الاختبار
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer class="site-footer">
+
+        <div class="footer-line"></div>
+
+        <p>
+            © Yazeed English — STEP Mock Test
+        </p>
+
+    </footer>
+
+
+    <!-- CONFETTI -->
+
+    <canvas
+        id="confettiCanvas"
+        class="confetti-canvas"
+    ></canvas>
+
+
+    <!-- CLAPPING -->
+
+    <audio
+        id="clapAudio"
+        src="audio/celebration.mp3"
+        preload="auto"
+    ></audio>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
