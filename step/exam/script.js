@@ -975,8 +975,16 @@ const clapAudio =
    EXAM STATE
    ========================================================= */
 
+   // 10 seconds for test:  const TOTAL_TIME = 10;
+
 const TOTAL_TIME =
     2 * 60 * 60;
+
+// Test results messages easily :    
+
+const TEST_MODE = false;
+
+const TEST_SCORE = 81;    
 
 let remainingSeconds =
     TOTAL_TIME;
@@ -1008,10 +1016,7 @@ let readingAnswers =
     Array(40).fill(null);
 
 let grammarAnswers =
-    Array(40).fill(null);
-
-let flaggedQuestions = Array(100).fill(false);    
-
+    Array(40).fill(null); 
 
 /* =========================================================
    TOTAL QUESTIONS
@@ -1076,7 +1081,6 @@ function startExam() {
     listeningAnswers.fill(null);
     readingAnswers.fill(null);
     grammarAnswers.fill(null);
-    flaggedQuestions.fill(false);
 
     showPage(testPage);
 
@@ -1225,18 +1229,12 @@ const groupClass =
         ? "group-active"
         : "";
 
-const flaggedClass =
-    flaggedQuestions[i]
-        ? "flagged"
-        : "";
-
-
         html += `
 
             <button
                 type="button"
-                class="question-number-btn ${current ? "current" : ""} ${answered ? "answered" : ""} ${groupClass} ${flaggedClass}"
-                "
+                class="question-number-btn ${current ? "current" : ""} ${answered ? "answered" : ""} ${groupClass}"
+
                 data-global-question="${i + 1}"
             >
                 ${i + 1}
@@ -1547,20 +1545,8 @@ function renderCurrent() {
 function createQuestionCard(question, number, selected) {
     const letters = ["A", "B", "C", "D"];
 
-    const isFlagged = flaggedQuestions[number];
-
     return `
-        <div class="question-card ${isFlagged ? "flagged" : ""}" data-question="${number}">
-
-            <button
-                type="button"
-                class="question-flag ${isFlagged ? "active" : ""}"
-                data-flag-question="${number}"
-                aria-label="${isFlagged ? "إلغاء تحديد السؤال" : "تحديد السؤال للمراجعة"}"
-                title="${isFlagged ? "إلغاء التحديد" : "تحديد للمراجعة"}"
-            >
-                <span class="flag-icon">⚑</span>
-            </button>
+        <div class="question-card" data-question="${number}">
 
             <div class="question-top">
                 <div class="question-number">${number + 1}</div>
@@ -1584,52 +1570,6 @@ function createQuestionCard(question, number, selected) {
 
         </div>
     `;
-}
-
-function attachFlagListeners() {
-
-    document.querySelectorAll(".question-flag").forEach(button => {
-
-        button.addEventListener("click", () => {
-
-            const questionIndex =
-                Number(button.dataset.flagQuestion);
-
-            flaggedQuestions[questionIndex] =
-                !flaggedQuestions[questionIndex];
-
-            const isFlagged =
-                flaggedQuestions[questionIndex];
-
-            button.classList.toggle("active", isFlagged);
-
-            button.setAttribute(
-                "aria-label",
-                isFlagged
-                    ? "إلغاء تحديد السؤال"
-                    : "تحديد السؤال للمراجعة"
-            );
-
-            button.setAttribute(
-                "title",
-                isFlagged
-                    ? "إلغاء التحديد"
-                    : "تحديد للمراجعة"
-            );
-
-            const card =
-                button.closest(".question-card");
-
-            card.classList.toggle(
-                "flagged",
-                isFlagged
-            );
-
-            renderQuestionNavigator();
-        });
-
-    });
-
 }
 
 
@@ -2123,8 +2063,6 @@ function attachAnswerListeners(type) {
         });
 
     });
-
-    attachFlagListeners();
 }
 
 
@@ -2412,6 +2350,15 @@ function goPrevious() {
 
 function calculateScore() {
 
+      if (TEST_MODE) {
+        return {
+            listeningScore: 18,
+            readingScore: 36,
+            grammarScore: 35,
+            total: TEST_SCORE
+        };
+    }
+
     let listeningScore =
         0;
 
@@ -2524,73 +2471,41 @@ function calculateScore() {
 function getLevel(score) {
 
     if (score <= 20) {
-
         return {
-            name: "ضعيف",
-
+            name: "تأسيسي",
             message:
-                "هذه النتيجة تشير إلى أنك تحتاج إلى بناء أساس أقوى في اللغة الإنجليزية."
+                "تحتاج إلى بناء أساس قوي في اللغة الإنجليزية"
         };
-
     }
-
 
     if (score <= 40) {
-
         return {
-            name: "يحتاج إلى تحسين",
-
+            name: "مبتدئ",
             message:
-                "لديك بعض المهارات الجيدة، ولكن ما زالت هناك جوانب مهمة تحتاج إلى تطوير."
+                "لديك أساس جيد ولكن تحتاج إلى مزيد من التدريب"
         };
-
     }
-
 
     if (score <= 60) {
-
         return {
             name: "متوسط",
-
             message:
-                "لديك أساس جيد ويمكنك الوصول إلى مستوى أعلى مع التدريب المنتظم."
+                "أداء جيد! يمكنك تحقيق تقدم أكبر مع التدريب المستمر"
         };
-
     }
 
-
-    if (score <= 74) {
-
+    if (score <= 80) {
         return {
-            name: "جيد",
-
+            name: "فوق المتوسط",
             message:
-                "أداء جيد. مع المزيد من التدريب يمكنك رفع نتيجتك والوصول إلى مستوى متقدم."
+                "أداء جيد جدًا! واصل التطور أنت قريب من المستوى المتقدم"
         };
-
     }
-
-
-    if (score <= 89) {
-
-        return {
-            name: "متقدم",
-
-            message:
-                "أداء ممتاز. لديك مستوى قوي في مهارات الاختبار."
-        };
-
-    }
-
 
     return {
-
-        name:
-            "ممتاز",
-
+        name: "متقدم",
         message:
-            "نتيجة استثنائية! حافظ على مستواك واستمر في التطور."
-
+            "أداء ممتاز! مستواك يؤهلك لخوض الاختبار الفعلي بثقة"
     };
 }
 
@@ -2681,12 +2596,12 @@ function finishExam(timeExpired = false) {
     ).textContent =
         level.name;
 
-
+// to change result messsage when the timer finishes
     document.getElementById(
         "resultMessage"
     ).textContent =
         timeExpired
-            ? "انتهى الوقت وتم إنهاء الاختبار تلقائيًا. " +
+            ? "" +
               level.message
             : level.message;
 
@@ -2716,7 +2631,7 @@ function finishExam(timeExpired = false) {
 
     courseCta.classList.toggle(
         "hidden",
-        scores.total > 40
+        scores.total > 80
     );
 
 
@@ -2727,11 +2642,11 @@ function finishExam(timeExpired = false) {
 
     /*
         المتفوقون:
-        75+
+        81+
     */
 
     if (
-        scores.total >= 75
+        scores.total >= 81
     ) {
 
         setTimeout(
@@ -2774,75 +2689,149 @@ function playClapping() {
    ========================================================= */
 
 function startConfetti() {
+    const canvas = document.getElementById("confettiCanvas");
+    const ctx = canvas.getContext("2d");
 
-    const canvas =
-        document.getElementById(
-            "confettiCanvas"
-        );
+    let animationId;
+    const duration = 3000; // 10 seconds
+    const startTime = performance.now();
 
-
-    const ctx =
-        canvas.getContext(
-            "2d"
-        );
-
-
-    canvas.width =
-        window.innerWidth;
-
-    canvas.height =
-        window.innerHeight;
-
+    const colors = [
+        "#00689B",
+        "#16A34A",
+        "#FBBF24",
+        "#DC2626",
+        "#7C3AED",
+        "#F97316"
+    ];
 
     const pieces = [];
 
-
-    for (
-        let i = 0;
-        i < 180;
-        i++
-    ) {
-
-        pieces.push({
-
-            x:
-                Math.random() *
-                canvas.width,
-
-            y:
-                -Math.random() *
-                canvas.height,
-
-            size:
-                5 +
-                Math.random() * 8,
-
-            speed:
-                2 +
-                Math.random() * 4,
-
-            rotation:
-                Math.random() *
-                Math.PI,
-
-            rotationSpeed:
-                -.08 +
-                Math.random() * .16,
-
-            drift:
-                -1.5 +
-                Math.random() * 3
-
-        });
-
+    function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
     }
 
+    resizeCanvas();
 
-    let frames =
-        0;
+    window.addEventListener("resize", resizeCanvas);
 
+    function createPiece(x = Math.random() * canvas.width, y = -20) {
+        return {
+            x,
+            y,
 
-    function draw() {
+            size:
+                6 + Math.random() * 8,
+
+            speed:
+                2.5 + Math.random() * 3.5,
+
+            drift:
+                -0.8 + Math.random() * 1.6,
+
+            sway:
+                Math.random() * Math.PI * 2,
+
+            swaySpeed:
+                0.015 + Math.random() * 0.025,
+
+            rotation:
+                Math.random() * Math.PI * 2,
+
+            rotationSpeed:
+                -0.12 + Math.random() * 0.24,
+
+            flip:
+                Math.random() * Math.PI * 2,
+
+            flipSpeed:
+                0.05 + Math.random() * 0.08,
+
+            opacity:
+                0.8 + Math.random() * 0.2,
+
+            color:
+                colors[
+                    Math.floor(
+                        Math.random() * colors.length
+                    )
+                ],
+
+            shape:
+                Math.random() > 0.25
+                    ? "rect"
+                    : "circle"
+        };
+    }
+
+    // Initial burst
+    for (let i = 0; i < 220; i++) {
+        const piece = createPiece();
+
+        piece.y =
+            -Math.random() * canvas.height * 0.8;
+
+        piece.speed =
+            2 + Math.random() * 4;
+
+        pieces.push(piece);
+    }
+
+    function drawPiece(piece) {
+        ctx.save();
+
+        ctx.translate(
+            piece.x,
+            piece.y
+        );
+
+        ctx.rotate(
+            piece.rotation
+        );
+
+        // Creates a subtle 3D flipping effect
+        const scaleX =
+            Math.cos(piece.flip);
+
+        ctx.scale(
+            scaleX,
+            1
+        );
+
+        ctx.globalAlpha =
+            piece.opacity;
+
+        ctx.fillStyle =
+            piece.color;
+
+        if (piece.shape === "circle") {
+            ctx.beginPath();
+
+            ctx.arc(
+                0,
+                0,
+                piece.size / 2,
+                0,
+                Math.PI * 2
+            );
+
+            ctx.fill();
+        } else {
+            ctx.fillRect(
+                -piece.size / 2,
+                -piece.size / 2,
+                piece.size,
+                piece.size * 0.65
+            );
+        }
+
+        ctx.restore();
+    }
+
+    function draw(now) {
+        const elapsed =
+            now - startTime;
 
         ctx.clearRect(
             0,
@@ -2851,75 +2840,71 @@ function startConfetti() {
             canvas.height
         );
 
-
-        pieces.forEach(
-            piece => {
-
-                piece.y +=
-                    piece.speed;
-
-                piece.x +=
-                    piece.drift;
-
-                piece.rotation +=
-                    piece.rotationSpeed;
-
-
-                ctx.save();
-
-
-                ctx.translate(
-                    piece.x,
-                    piece.y
+        // Add new pieces while the animation is running
+        if (elapsed < duration) {
+            for (let i = 0; i < 4; i++) {
+                pieces.push(
+                    createPiece()
                 );
-
-
-                ctx.rotate(
-                    piece.rotation
-                );
-
-
-                ctx.fillStyle =
-                    [
-                        "#00689B",
-                        "#16A34A",
-                        "#FBBF24",
-                        "#DC2626",
-                        "#7C3AED"
-                    ][
-                        Math.floor(
-                            Math.random() * 5
-                        )
-                    ];
-
-
-                ctx.fillRect(
-                    -piece.size / 2,
-                    -piece.size / 2,
-                    piece.size,
-                    piece.size * .65
-                );
-
-
-                ctx.restore();
-
             }
-        );
+        }
 
+        pieces.forEach(piece => {
+            piece.y += piece.speed;
 
-        frames++;
+            piece.sway +=
+                piece.swaySpeed;
 
+            piece.x +=
+                piece.drift +
+                Math.sin(piece.sway) * 0.6;
 
+            piece.rotation +=
+                piece.rotationSpeed;
+
+            piece.flip +=
+                piece.flipSpeed;
+
+            // Fade near the bottom
+            if (
+                piece.y >
+                canvas.height * 0.75
+            ) {
+                const fadeProgress =
+                    (piece.y -
+                        canvas.height * 0.75) /
+                    (canvas.height * 0.3);
+
+                piece.opacity =
+                    Math.max(
+                        0,
+                        1 - fadeProgress
+                    );
+            }
+
+            drawPiece(piece);
+        });
+
+        // Remove pieces that are completely off-screen
+        for (let i = pieces.length - 1; i >= 0; i--) {
+            if (
+                pieces[i].y >
+                    canvas.height + 40 ||
+                pieces[i].opacity <= 0
+            ) {
+                pieces.splice(i, 1);
+            }
+        }
+
+        // Keep animating until the 10-second duration
+        // has passed and all remaining confetti is gone
         if (
-            frames < 360
+            elapsed < duration ||
+            pieces.length > 0
         ) {
-
-            requestAnimationFrame(
-                draw
-            );
-
+            animationId =
+                requestAnimationFrame(draw);
         } else {
-
             ctx.clearRect(
                 0,
                 0,
@@ -2927,12 +2912,15 @@ function startConfetti() {
                 canvas.height
             );
 
+            window.removeEventListener(
+                "resize",
+                resizeCanvas
+            );
         }
-
     }
 
-
-    draw();
+    animationId =
+        requestAnimationFrame(draw);
 }
 
 
@@ -2977,8 +2965,8 @@ themeBtn.addEventListener(
 
         themeBtn.textContent =
             dark
-                ? "☀"
-                : "☾";
+                ? "☀️"
+                : "🌙";
 
 
         localStorage.setItem(
@@ -3005,7 +2993,7 @@ if (
     );
 
     themeBtn.textContent =
-        "☀";
+        "☀️";
 }
 
 
