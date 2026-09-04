@@ -928,8 +928,20 @@ const nextBtn =
 const finishBtn =
     document.getElementById("finishBtn");
 
+const finishModal = document.getElementById("finishModal");
+
+const finishModalMessage = document.getElementById("finishModalMessage");
+
+const cancelFinishBtn = document.getElementById("cancelFinishBtn");
+
+const confirmFinishBtn = document.getElementById("confirmFinishBtn");  
+  
+
 const testContent =
     document.getElementById("testContent");
+
+const questionNavigator =
+    document.getElementById("questionNavigator");    
 
 const sectionTitle =
     document.getElementById("sectionTitle");
@@ -998,6 +1010,8 @@ let readingAnswers =
 let grammarAnswers =
     Array(40).fill(null);
 
+let flaggedQuestions = Array(100).fill(false);    
+
 
 /* =========================================================
    TOTAL QUESTIONS
@@ -1062,6 +1076,7 @@ function startExam() {
     listeningAnswers.fill(null);
     readingAnswers.fill(null);
     grammarAnswers.fill(null);
+    flaggedQuestions.fill(false);
 
     showPage(testPage);
 
@@ -1133,6 +1148,361 @@ function updateTimer() {
     );
 }
 
+/* =========================================================
+   QUESTION NAVIGATOR
+   ========================================================= */
+
+function renderQuestionNavigator() {
+
+    let html = "";
+
+
+    for (
+        let i = 0;
+        i < totalQuestions;
+        i++
+    ) {
+
+        let answered = false;
+
+        /*
+            Listening
+            الأسئلة 1–20
+        */
+
+        if (i < listeningTotal) {
+
+            answered =
+                listeningAnswers[i] !== null;
+
+        }
+
+
+        /*
+            Reading
+            الأسئلة 21–60
+        */
+
+        else if (
+            i < listeningTotal + readingTotal
+        ) {
+
+            const index =
+                i - listeningTotal;
+
+            answered =
+                readingAnswers[index] !== null;
+
+        }
+
+
+        /*
+            Grammar
+            الأسئلة 61–100
+        */
+
+        else {
+
+            const index =
+                i -
+                listeningTotal -
+                readingTotal;
+
+            answered =
+                grammarAnswers[index] !== null;
+
+        }
+
+
+        const current = i + 1 === getQuestionNumber();
+
+const group = getQuestionGroup(i);
+
+const currentIndex = getQuestionNumber() - 1;
+
+const groupClass =
+    group.includes(currentIndex)
+        ? "group-active"
+        : "";
+
+const flaggedClass =
+    flaggedQuestions[i]
+        ? "flagged"
+        : "";
+
+
+        html += `
+
+            <button
+                type="button"
+                class="question-number-btn ${current ? "current" : ""} ${answered ? "answered" : ""} ${groupClass} ${flaggedClass}"
+                "
+                data-global-question="${i + 1}"
+            >
+                ${i + 1}
+            </button>
+
+        `;
+
+    }
+
+
+    questionNavigator.innerHTML =
+        html;
+
+
+    questionNavigator
+        .querySelectorAll(
+            ".question-number-btn"
+        )
+        .forEach(button => {
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    const number =
+                        Number(
+                            button.dataset
+                                .globalQuestion
+                        );
+
+                    goToQuestion(
+                        number
+                    );
+
+                }
+            );
+
+        });
+
+
+    scrollCurrentQuestionIntoView();
+
+}
+
+function getQuestionGroup(index) {
+
+    /*
+        LISTENING
+        كل 4 أسئلة مرتبطة بنفس المقطع
+    */
+
+    if (index < listeningTotal) {
+
+        const passageIndex =
+            Math.floor(index / 4);
+
+        const start =
+            passageIndex * 4;
+
+        return [
+            start,
+            start + 1,
+            start + 2,
+            start + 3
+        ];
+
+    }
+
+
+    /*
+        READING
+        كل Passage يمثل مجموعة واحدة
+    */
+
+    if (
+        index <
+        listeningTotal + readingTotal
+    ) {
+
+        let remaining =
+            index - listeningTotal;
+
+        let start =
+            listeningTotal;
+
+
+        for (
+            let i = 0;
+            i < readingData.length;
+            i++
+        ) {
+
+            const count =
+                readingData[i].questions.length;
+
+
+            if (
+                remaining < count
+            ) {
+
+                return Array.from(
+                    {
+                        length: count
+                    },
+                    (_, questionIndex) =>
+                        start + questionIndex
+                );
+
+            }
+
+
+            remaining -= count;
+
+            start += count;
+
+        }
+
+    }
+
+
+    /*
+        GRAMMAR
+        كل سؤال مستقل
+    */
+
+    return [index];
+
+}
+
+
+/* =========================================================
+   GO TO QUESTION
+   ========================================================= */
+
+function goToQuestion(number) {
+
+    /*
+        تحويل رقم السؤال إلى index
+        يبدأ من صفر.
+    */
+
+    const index =
+        number - 1;
+
+
+    /*
+        LISTENING
+        الأسئلة 1–20
+    */
+
+    if (
+        index < listeningTotal
+    ) {
+
+        currentSection =
+            0;
+
+        currentItem =
+            Math.floor(
+                index / 4
+            );
+
+    }
+
+
+    /*
+        READING
+        الأسئلة 21–60
+    */
+
+    else if (
+        index <
+        listeningTotal + readingTotal
+    ) {
+
+        currentSection =
+            1;
+
+
+        let remaining =
+            index - listeningTotal;
+
+
+        currentItem =
+            0;
+
+
+        for (
+            let i = 0;
+            i < readingData.length;
+            i++
+        ) {
+
+            const passageQuestions =
+                readingData[i].questions.length;
+
+
+            if (
+                remaining <
+                passageQuestions
+            ) {
+
+                currentItem =
+                    i;
+
+                break;
+
+            }
+
+
+            remaining -=
+                passageQuestions;
+
+        }
+
+    }
+
+
+    /*
+        GRAMMAR
+        الأسئلة 61–100
+    */
+
+    else {
+
+        currentSection =
+            2;
+
+        currentItem =
+            index -
+            listeningTotal -
+            readingTotal;
+
+    }
+
+
+    renderCurrent();
+
+}
+
+
+/* =========================================================
+   SCROLL CURRENT QUESTION NUMBER
+   ========================================================= */
+
+function scrollCurrentQuestionIntoView() {
+
+    const currentButton =
+        questionNavigator.querySelector(
+            ".question-number-btn.current"
+        );
+
+
+    if (!currentButton) {
+        return;
+    }
+
+
+    currentButton.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+        inline: "center"
+    });
+
+}
+
 
 /* =========================================================
    RENDER
@@ -1154,14 +1524,19 @@ function renderCurrent() {
 
     }
 
+
     updateNavigation();
 
     updateProgress();
+
+    renderQuestionNavigator();
+
 
     window.scrollTo({
         top: 0,
         behavior: "smooth"
     });
+
 }
 
 
@@ -1169,67 +1544,92 @@ function renderCurrent() {
    QUESTION CARD
    ========================================================= */
 
-function createQuestionCard(
-    question,
-    number,
-    selected
-) {
+function createQuestionCard(question, number, selected) {
+    const letters = ["A", "B", "C", "D"];
 
-    const letters =
-        ["A", "B", "C", "D"];
-
+    const isFlagged = flaggedQuestions[number];
 
     return `
+        <div class="question-card ${isFlagged ? "flagged" : ""}" data-question="${number}">
 
-        <div
-            class="question-card"
-            data-question="${number}"
-        >
+            <button
+                type="button"
+                class="question-flag ${isFlagged ? "active" : ""}"
+                data-flag-question="${number}"
+                aria-label="${isFlagged ? "إلغاء تحديد السؤال" : "تحديد السؤال للمراجعة"}"
+                title="${isFlagged ? "إلغاء التحديد" : "تحديد للمراجعة"}"
+            >
+                <span class="flag-icon">⚑</span>
+            </button>
 
             <div class="question-top">
+                <div class="question-number">${number + 1}</div>
 
-                <div class="question-number">
-                    ${number + 1}
-                </div>
-
-                <p class="question-text">
-                    ${question.text}
-                </p>
-
+                <p class="question-text">${question.text}</p>
             </div>
 
-
             <div class="answers">
-
-                ${question.options.map(
-                    (option, index) => `
-
+                ${question.options.map((option, index) => `
                     <button
                         type="button"
-                        class="answer-btn ${
-                            selected === index
-                                ? "selected"
-                                : ""
-                        }"
+                        class="answer-btn ${selected === index ? "selected" : ""}"
                         data-answer="${index}"
                         data-question-index="${number}"
                     >
-
-                        <span class="answer-letter">
-                            ${letters[index]}
-                        </span>
-
+                        <span class="answer-letter">${letters[index]}</span>
                         ${option}
-
                     </button>
-
                 `).join("")}
-
             </div>
 
         </div>
-
     `;
+}
+
+function attachFlagListeners() {
+
+    document.querySelectorAll(".question-flag").forEach(button => {
+
+        button.addEventListener("click", () => {
+
+            const questionIndex =
+                Number(button.dataset.flagQuestion);
+
+            flaggedQuestions[questionIndex] =
+                !flaggedQuestions[questionIndex];
+
+            const isFlagged =
+                flaggedQuestions[questionIndex];
+
+            button.classList.toggle("active", isFlagged);
+
+            button.setAttribute(
+                "aria-label",
+                isFlagged
+                    ? "إلغاء تحديد السؤال"
+                    : "تحديد السؤال للمراجعة"
+            );
+
+            button.setAttribute(
+                "title",
+                isFlagged
+                    ? "إلغاء التحديد"
+                    : "تحديد للمراجعة"
+            );
+
+            const card =
+                button.closest(".question-card");
+
+            card.classList.toggle(
+                "flagged",
+                isFlagged
+            );
+
+            renderQuestionNavigator();
+        });
+
+    });
+
 }
 
 
@@ -1687,93 +2087,44 @@ function renderGrammar() {
    ANSWERS
    ========================================================= */
 
-function attachAnswerListeners(
-    type
-) {
+function attachAnswerListeners(type) {
 
-    document
-        .querySelectorAll(
-            ".answer-btn"
-        )
-        .forEach(button => {
+    document.querySelectorAll(".answer-btn").forEach(button => {
 
-            button.addEventListener(
-                "click",
-                () => {
+        button.addEventListener("click", () => {
 
-                    const questionIndex =
-                        Number(
-                            button.dataset
-                                .questionIndex
-                        );
+            const questionIndex =
+                Number(button.dataset.questionIndex);
 
-                    const answer =
-                        Number(
-                            button.dataset
-                                .answer
-                        );
+            const answer =
+                Number(button.dataset.answer);
 
+            if (type === "listening") {
+                listeningAnswers[questionIndex] = answer;
+            }
 
-                    if (
-                        type === "listening"
-                    ) {
+            if (type === "reading") {
+                readingAnswers[questionIndex] = answer;
+            }
 
-                        listeningAnswers[
-                            questionIndex
-                        ] = answer;
+            if (type === "grammar") {
+                grammarAnswers[questionIndex] = answer;
+            }
 
-                    }
+            const card =
+                button.closest(".question-card");
 
+            card.querySelectorAll(".answer-btn")
+                .forEach(btn =>
+                    btn.classList.remove("selected")
+                );
 
-                    if (
-                        type === "reading"
-                    ) {
-
-                        readingAnswers[
-                            questionIndex
-                        ] = answer;
-
-                    }
-
-
-                    if (
-                        type === "grammar"
-                    ) {
-
-                        grammarAnswers[
-                            questionIndex
-                        ] = answer;
-
-                    }
-
-
-                    const card =
-                        button.closest(
-                            ".question-card"
-                        );
-
-
-                    card
-                        .querySelectorAll(
-                            ".answer-btn"
-                        )
-                        .forEach(
-                            btn =>
-                                btn.classList
-                                    .remove(
-                                        "selected"
-                                    )
-                        );
-
-
-                    button.classList.add(
-                        "selected"
-                    );
-
-                }
-            );
-
+            button.classList.add("selected");
         });
+
+    });
+
+    attachFlagListeners();
 }
 
 
@@ -2243,6 +2594,51 @@ function getLevel(score) {
     };
 }
 
+function confirmFinishExam() {
+
+    const unansweredListening =
+        listeningAnswers.filter(answer => answer === null).length;
+
+    const unansweredReading =
+        readingAnswers.filter(answer => answer === null).length;
+
+    const unansweredGrammar =
+        grammarAnswers.filter(answer => answer === null).length;
+
+    const unanswered =
+        unansweredListening +
+        unansweredReading +
+        unansweredGrammar;
+
+    const message =
+    unanswered > 0
+        ? `لديك <strong>${unanswered} سؤالًا غير مجاب</strong>`
+        : `لقد أجبت على جميع الأسئلة.`;
+
+finishModalMessage.innerHTML = message;
+
+finishModal.classList.remove("hidden");
+}
+
+cancelFinishBtn.addEventListener(
+    "click",
+    () => {
+
+        finishModal.classList.add("hidden");
+
+    }
+);
+
+confirmFinishBtn.addEventListener(
+    "click",
+    () => {
+
+        finishModal.classList.add("hidden");
+
+        finishExam(false);
+
+    }
+);
 
 /* =========================================================
    FINISH
@@ -2645,7 +3041,7 @@ finishBtn.addEventListener(
     "click",
     () => {
 
-        finishExam(false);
+        confirmFinishExam();
 
     }
 );

@@ -9,7 +9,7 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>Yazeed English — STEP Mock Test</title>
+    <title>Yazeed English — اختبار ستيب المحاكي</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -38,7 +38,7 @@
 
             <div class="brand-text">
                 <strong>Yazeed English</strong>
-                <span>STEP Mock Test</span>
+                <span>STEP Simulator</span>
             </div>
 
         </div>
@@ -66,7 +66,7 @@
             <div class="page-header">
 
                 <div class="page-label">
-                    STEP MOCK TEST
+                    STEP EXAM SIMULATOR
                 </div>
 
                 <h1>
@@ -74,9 +74,8 @@
                 </h1>
 
                 <p>
-                    اختبر مستواك في اللغة الإنجليزية من خلال اختبار
-                    محاكي مكوّن من الاستماع والقراءة والقواعد.
-                    لديك ساعتان لإكمال الاختبار.
+                    اختبر مستواك في ستيب بطريقة فعلية
+           
                 </p>
 
             </div>
@@ -101,9 +100,7 @@
                     </h2>
 
                     <p>
-                        20 سؤال استماع
-                        <br>
-                        5 مقاطع صوتية
+20 سؤال قسم الاستماع
                     </p>
 
                 </div>
@@ -124,9 +121,7 @@
                     </h2>
 
                     <p>
-                        40 سؤال قراءة
-                        <br>
-                        موزعة على عدة قطع
+40 سؤال قسم القراءة
                     </p>
 
                 </div>
@@ -147,9 +142,7 @@
                     </h2>
 
                     <p>
-                        40 سؤال قواعد
-                        <br>
-                        سؤال واحد في كل شاشة
+40 سؤال قسم القواعد
                     </p>
 
                 </div>
@@ -319,8 +312,49 @@
 
             </div>
 
+<div id="questionNavigator" class="question-navigator"></div>
 
             <div id="testContent"></div>
+
+            <!-- =========================================================
+     FINISH EXAM CONFIRMATION MODAL
+     ========================================================= -->
+
+<div id="finishModal" class="finish-modal hidden">
+
+    <div class="finish-modal-overlay"></div>
+
+    <div class="finish-modal-card">
+
+        <h2>هل أنت متأكد من إنهاء الاختبار؟</h2>
+
+        <p id="finishModalMessage">
+            لديك 0 سؤالًا غير مجاب
+        </p>
+
+        <div class="finish-modal-actions">
+
+            <button
+                type="button"
+                id="cancelFinishBtn"
+                class="finish-modal-cancel"
+            >
+                متابعة الاختبار
+            </button>
+
+            <button
+                type="button"
+                id="confirmFinishBtn"
+                class="finish-modal-confirm"
+            >
+                إنهاء الاختبار
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
 
 
             <!-- NAVIGATION -->
@@ -513,7 +547,7 @@
         <div class="footer-line"></div>
 
         <p>
-            © Yazeed English — STEP Mock Test
+Yazeed English - STEP Exam Simulator
         </p>
 
     </footer>
