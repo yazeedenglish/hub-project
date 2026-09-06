@@ -13,15 +13,15 @@ const COURSES = {
     step: {
         key: "step",
 
-        title: "STEP Course",
+        title: "دورة اختبار ستيب",
 
         description:
-            "دورة STEP لتطوير مهاراتك والاستعداد للاختبار.",
+            "تعلّم أهم المهارات والاستراتيجيات للوصول الى درجة أحلامك",
 
         url: "/step",
 
         purchaseUrl:
-            STORE_URL,
+            "https://yazeedenglish.com/ar/%D9%83%D8%AA%D8%A7%D8%A8-%D8%A7%D8%AE%D8%AA%D8%A8%D8%A7%D8%B1-%D8%B3%D8%AA%D9%8A%D8%A8-step/p788306677",
 
         image:
             "images/step.png",
@@ -34,15 +34,15 @@ const COURSES = {
     english: {
         key: "english",
 
-        title: "English Course",
+        title: "دليل الانجليزية الشامل",
 
         description:
-            "القارئ التفاعلي الخاص بدورة English.",
+            "رحلتك من الصفر الى الاحتراف في اللغة الانجليزية",
 
         url: "/course",
 
         purchaseUrl:
-            STORE_URL,
+            "https://yazeedenglish.com/ar/%D9%83%D8%AA%D8%A7%D8%A8-%D8%AF%D9%84%D9%8A%D9%84-%D8%A7%D9%84%D8%A7%D9%86%D8%AC%D9%84%D9%8A%D8%B2%D9%8A%D8%A9-%D8%A7%D9%84%D8%B4%D8%A7%D9%85%D9%84/p295866233",
 
         image:
             "images/english.png",
@@ -55,31 +55,31 @@ const COURSES = {
     trab6: {
         key: "trab6",
 
-        title: "Trab6",
+        title: "ترابط الكلمات",
 
         description:
-            "الوصول إلى محتوى Trab6 التفاعلي.",
+            "طريقة مبتكرة وممتعة لحفظ الكلمات الانجليزية",
 
         url: "/trab6",
 
         purchaseUrl:
-            STORE_URL,
+            "https://yazeedenglish.com/ar/%D9%83%D8%AA%D8%A7%D8%A8-%D8%AA%D8%B1%D8%A7%D8%A8%D8%B7-%D8%A7%D9%84%D9%83%D9%84%D9%85%D8%A7%D8%AA/p331712928",
 
         image:
             "images/trab6.png",
 
         fallback:
-            "T6"
+            "ترابط الكلمات"
     },
 
 
     writing: {
         key: "writing",
 
-        title: "Writing",
+        title: "تعليم الكتابة بخط اليد",
 
         description:
-            "الوصول إلى محتوى Writing التفاعلي.",
+            "تعلّم مهارة الكتابة الإنجليزية بخط اليد بأسلوب سهل وعملي",
 
         url: "/writing",
 
@@ -90,7 +90,7 @@ const COURSES = {
             "images/writing.png",
 
         fallback:
-            "WR"
+            "قريبًا"
     }
 
 };

@@ -8,7 +8,7 @@
    SETTINGS
 ========================================================= */
 
-const DEVELOPER_MODE = true;
+const DEVELOPER_MODE = false;
 
 // 60  = 60 minutes
 // 120 = 120 minutes
