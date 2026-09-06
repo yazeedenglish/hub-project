@@ -11,273 +11,273 @@
 const listeningData = [
 
     {
-        title: "Listening Passage 1",
-        audio: "audio/listening_1.mp3",
+    title: "Listening Passage 1", // Daily Schedule // Beginner
+    audio: "audio/listening_1.mp3",
 
-        questions: [
+    questions: [
 
-            {
-                text: "Why is the student calling the office?",
-                options: [
-                    "To cancel a class",
-                    "To ask about registration",
-                    "To report a problem",
-                    "To request a refund"
-                ],
-                answer: 1
-            },
+        {
+            text: "What time does the man get up?",
+            options: [
+                "at 6:00 a.m",
+                "at 5:00 a.m",
+                "at 7:00 a.m",
+                "at 8:00 a.m"
+            ],
+            answer: 1
+        },
 
-            {
-                text: "When does the meeting begin?",
-                options: [
-                    "8:00",
-                    "8:30",
-                    "9:00",
-                    "9:30"
-                ],
-                answer: 2
-            },
+        {
+            text: "What time does he get to work?",
+            options: [
+                "at 9:00 a.m",
+                "at 8:00 a.m",
+                "at 7:00 a.m",
+                "at 6:00 a.m"
+            ],
+            answer: 1
+        },
 
-            {
-                text: "What does the woman suggest?",
-                options: [
-                    "Calling tomorrow",
-                    "Sending an email",
-                    "Visiting the office",
-                    "Talking to the teacher"
-                ],
-                answer: 2
-            },
+        {
+            text: "What does he do with his family around 6:30 p.m?",
+            options: [
+                "They eat dinner",
+                "They play games",
+                "They read books together",
+                "They play football"
+            ],
+            answer: 0
+        },
 
-            {
-                text: "What will the student probably do next?",
-                options: [
-                    "Go home",
-                    "Send an email",
-                    "Visit the library",
-                    "Attend a meeting"
-                ],
-                answer: 1
-            }
+        {
+            text: "What do the man and his wife do after the kids go to bed?",
+            options: [
+                "They watch TV",
+                "They play games",
+                "They clean the house",
+                "They work in the garden"
+            ],
+            answer: 0
+        }
 
-        ]
-    },
-
-
-    {
-        title: "Listening Passage 2",
-        audio: "audio/listening2.mp3",
-
-        questions: [
-
-            {
-                text: "What is the conversation mainly about?",
-                options: [
-                    "A new apartment",
-                    "A university course",
-                    "A job interview",
-                    "A travel plan"
-                ],
-                answer: 1
-            },
-
-            {
-                text: "Why does the man need help?",
-                options: [
-                    "He missed a class",
-                    "He lost his book",
-                    "He cannot access a website",
-                    "He forgot an appointment"
-                ],
-                answer: 2
-            },
-
-            {
-                text: "What does the woman recommend?",
-                options: [
-                    "Restarting the computer",
-                    "Contacting technical support",
-                    "Buying a new device",
-                    "Changing the course"
-                ],
-                answer: 1
-            },
-
-            {
-                text: "When will the problem probably be solved?",
-                options: [
-                    "Today",
-                    "Tomorrow",
-                    "Next week",
-                    "Next month"
-                ],
-                answer: 0
-            }
-
-        ]
-    },
+    ]
+},
 
 
     {
-        title: "Listening Passage 3",
-        audio: "audio/listening3.mp3",
+    title: "Listening Passage 2",  // Washer and dryer // Intermediate // Delete last 2 seconds
+    audio: "audio/listening_2.mp3",
 
-        questions: [
+    questions: [
 
-            {
-                text: "Where are the speakers most likely talking?",
-                options: [
-                    "At a restaurant",
-                    "At a hospital",
-                    "At an airport",
-                    "At a bank"
-                ],
-                answer: 0
-            },
+        {
+            text: "What thing caused a mess in the dryer?",
+            options: [
+                "colored paper",
+                "a pen",
+                "chewing gum",
+                "a piece of clothing"
+            ],
+            answer: 1
+        },
 
-            {
-                text: "What does the customer want?",
-                options: [
-                    "A different table",
-                    "A vegetarian meal",
-                    "A larger drink",
-                    "A dessert"
-                ],
-                answer: 1
-            },
+        {
+            text: "What clothing did the woman have in the dryer?",
+            options: [
+                "sweaters",
+                "jeans",
+                "shorts",
+                "jackets"
+            ],
+            answer: 2
+        },
 
-            {
-                text: "What does the waiter apologize for?",
-                options: [
-                    "The price",
-                    "The delay",
-                    "The noise",
-                    "The menu"
-                ],
-                answer: 1
-            },
+        {
+            text: "Who does the man need to call?",
+            options: [
+                "his office",
+                "his friends",
+                "a repair company",
+                "his wife"
+            ],
+            answer: 1
+        },
 
-            {
-                text: "What will the waiter bring?",
-                options: [
-                    "A new menu",
-                    "A bill",
-                    "A vegetarian dish",
-                    "A cup of coffee"
-                ],
-                answer: 2
-            }
+        {
+            text: "The man is going to get new clothes for his wife _____.",
+            options: [
+                "from his sister",
+                "at a store",
+                "at home",
+                "from his friend"
+            ],
+            answer: 1
+        }
 
-        ]
-    },
-
-
-    {
-        title: "Listening Passage 4",
-        audio: "audio/listening4.mp3",
-
-        questions: [
-
-            {
-                text: "What is the announcement about?",
-                options: [
-                    "A school event",
-                    "A flight delay",
-                    "A weather warning",
-                    "A sports game"
-                ],
-                answer: 1
-            },
-
-            {
-                text: "How long is the delay?",
-                options: [
-                    "Thirty minutes",
-                    "One hour",
-                    "Two hours",
-                    "Three hours"
-                ],
-                answer: 1
-            },
-
-            {
-                text: "What should passengers do?",
-                options: [
-                    "Leave the airport",
-                    "Change terminals",
-                    "Wait near the gate",
-                    "Call the airline"
-                ],
-                answer: 2
-            },
-
-            {
-                text: "Which information is repeated?",
-                options: [
-                    "The gate number",
-                    "The destination",
-                    "The departure time",
-                    "The flight number"
-                ],
-                answer: 3
-            }
-
-        ]
-    },
+    ]
+},
 
 
     {
-        title: "Listening Passage 5",
-        audio: "audio/listening5.mp3",
+    title: "Listening Passage 3", // Detective Agency // Intermediate
+    audio: "audio/listening_3.mp3",
 
-        questions: [
+    questions: [
 
-            {
-                text: "What are the speakers discussing?",
-                options: [
-                    "A research project",
-                    "A family trip",
-                    "A new restaurant",
-                    "A sports club"
-                ],
-                answer: 0
-            },
+        {
+            text: "What is the name of the detective agency?",
+            options: [
+                "Jones Detective Agency",
+                "Johnson Detective Agency",
+                "Jordon Detective Agency",
+                "Jackson Detective Agency"
+            ],
+            answer: 0
+        },
 
-            {
-                text: "What problem does the student mention?",
-                options: [
-                    "Lack of time",
-                    "Lack of money",
-                    "A missing document",
-                    "A difficult teacher"
-                ],
-                answer: 0
-            },
+        {
+            text: "The man is having a problem with his _____.",
+            options: [
+                "boss",
+                "girlfriend",
+                "roommate",
+                "neighbor"
+            ],
+            answer: 2
+        },
 
-            {
-                text: "What solution is suggested?",
-                options: [
-                    "Working with a partner",
-                    "Changing the topic",
-                    "Asking for more time",
-                    "Dropping the project"
-                ],
-                answer: 2
-            },
+        {
+            text: "The man is complaining about missing _____.",
+            options: [
+                "clothing",
+                "food",
+                "money",
+                "computer"
+            ],
+            answer: 1
+        },
 
-            {
-                text: "What does the student agree to do?",
-                options: [
-                    "Call the teacher",
-                    "Submit the project today",
-                    "Ask for an extension",
-                    "Start a new project"
-                ],
-                answer: 2
-            }
+        {
+            text: "What suggestion does the receptionist give the man regarding his problem?",
+            options: [
+                "He should seek out some counseling for advice",
+                "He ought to contact the police to discuss the issues",
+                "He could move to a new place",
+                "He should talk to his parents about the problem"
+            ],
+            answer: 0
+        }
 
-        ]
-    }
+    ]
+},
+
+
+    {
+    title: "Listening Passage 4", // Drama Free Rental // Intermediate
+    audio: "audio/listening_4.mp3",
+
+    questions: [
+
+        {
+            text: "What did James hear at 1 a.m.?",
+            options: [
+                "Loud music",
+                "People arguing",
+                "A car alarm",
+                "Someone knocking on a door"
+            ],
+            answer: 0
+        },
+
+        {
+            text: "Why did someone leave a note on James’s windshield?",
+            options: [
+                "His car lights were on",
+                "He blocked a driveway",
+                "He parked too far from the curb",
+                "He had left the windows open"
+            ],
+            answer: 2
+        },
+
+        {
+            text: "What does James want to improve outside his apartment?",
+            options: [
+                "Keeping his car clean",
+                "Finding a parking space",
+                "Parking his car",
+                "Driving at night"
+            ],
+            answer: 2
+        },
+
+        {
+            text: "Why didn’t James go downstairs to talk to the neighbors?",
+            options: [
+                "He didn’t know which apartment it was",
+                "He didn’t want to create neighborhood drama",
+                "He was too tired to talk to the neighbors",
+                "He thought the neighbors were not at home"
+            ],
+            answer: 1
+        }
+
+    ]
+},
+
+
+    {
+    title: "Listening Passage 5", // A Free Cell Phone // Difficult
+    audio: "audio/listening_5.mp3",
+
+    questions: [
+
+        {
+            text: "The girl needs a phone to _____.",
+            options: [
+                "call family in case of an emergency",
+                "make cheaper calls with it",
+                "use it to check her email",
+                "stay in contact with her friends"
+            ],
+            answer: 0
+        },
+
+        {
+            text: "When customers buy a smartphone, they receive _____.",
+            options: [
+                "other smartphone accessories",
+                "a smartphone adapter for the car",
+                "money back for buying the phone",
+                "a discount on their monthly service"
+            ],
+            answer: 2
+        },
+
+        {
+            text: "What is one major feature of the calling plan?",
+            options: [
+                "1000 free weekday minutes",
+                "unlimited weekday minutes",
+                "1000 anytime minutes",
+                "unlimited calls to family members"
+            ],
+            answer: 0
+        },
+
+        {
+            text: "What is the term of service for this plan?",
+            options: [
+                "3 months",
+                "6 months",
+                "9 months",
+                "12 months"
+            ],
+            answer: 1
+        }
+
+    ]
+}
 
 ];
 
@@ -290,521 +290,589 @@ const listeningData = [
 const readingData = [
 
     {
-        title: "The Benefits of Reading",
+        title: "Fish", // 4 Questions
 
-        text: `Reading is one of the most useful activities for people who want to improve their knowledge and language skills. Regular reading can introduce learners to new vocabulary, different writing styles, and ideas from many areas of life.
+        text: `(1) Fish are cold-blooded vertebrates that live in water. They differ greatly in size, shape, color and habits. Some fish may look like worms, while others may resemble rocks. All the colors of the rainbow can be found in fish. Some fish are very brightly colored while others can be very dull.
 
-Researchers have also found that reading regularly can improve concentration. Unlike short online messages, longer texts require readers to stay focused for a longer period.
+(2) Fish can live in almost any conditions of water. They can live in the freezing waters of Antarctica, hot jungle streams, lakes and fast flowing mountain rivers. Nearly all fish get their oxygen from water. Although we cannot see it, water does contain oxygen. To get this oxygen, the fish forces water through its gills. The gills absorb oxygen and release carbon dioxide into the water which then passes out through the gills.
 
-However, choosing suitable material is important. A text that is far above a learner's level may be frustrating, while a text that is too easy may not provide enough challenge.`,
+(3) Scientists have found over 21,000 different kinds of fish. They continue to find more species each year. Scientists who study fish are called ichthyologists. Fish are truly amazing animals to study and observe`,
 
         questions: [
 
             {
-                text: "What is the main purpose of the passage?",
+                text: "What is the main idea of the passage?",
                 options: [
-                    "To explain why reading is useful",
-                    "To compare books and websites",
-                    "To describe a research experiment",
-                    "To criticize modern education"
-                ],
-                answer: 0
-            },
-
-            {
-                text: "Reading can introduce learners to:",
-                options: [
-                    "Only new vocabulary",
-                    "New vocabulary and ideas",
-                    "Only different cultures",
-                    "Only academic subjects"
-                ],
-                answer: 1
-            },
-
-            {
-                text: "What can longer texts improve?",
-                options: [
-                    "Memory of numbers",
-                    "Physical fitness",
-                    "Concentration",
-                    "Typing speed"
+                    "the types of fish",
+                    "the colors of fish",
+                    "fish are fascinating animals",
+                    "how fish live and play in water"
                 ],
                 answer: 2
             },
 
             {
-                text: "Why should learners choose suitable materials?",
+                text: "The word resemble in Paragraph (1) is closest in meaning to ...............",
                 options: [
-                    "Easy books are always better",
-                    "Difficult texts can be frustrating",
-                    "Researchers require it",
-                    "Schools only allow certain books"
+                    "differ from",
+                    "look like",
+                    "live in",
+                    "move"
                 ],
                 answer: 1
             },
 
             {
-                text: "The word 'frustrating' is closest in meaning to:",
+                text: "The word it in Paragraph (2) refers to ……….",
                 options: [
-                    "Confusing and discouraging",
-                    "Interesting",
-                    "Expensive",
-                    "Short"
-                ],
-                answer: 0
-            },
-
-            {
-                text: "What can be inferred about very easy texts?",
-                options: [
-                    "They may not challenge learners enough",
-                    "They are impossible to understand",
-                    "They improve concentration the most",
-                    "They are recommended for everyone"
-                ],
-                answer: 0
-            },
-
-            {
-                text: "What is one benefit of regular reading?",
-                options: [
-                    "It eliminates all mistakes",
-                    "It develops knowledge and language skills",
-                    "It guarantees high grades",
-                    "It replaces conversation"
+                    "fish",
+                    "water",
+                    "a river",
+                    "oxygen"
                 ],
                 answer: 1
             },
 
             {
-                text: "The passage suggests that reading should be:",
+                text: "According to Paragraph (3), it is expected that in the new Norma the scientists will find more …………",
                 options: [
-                    "Regular and appropriate to the learner",
-                    "Only academic",
-                    "Very difficult",
-                    "Done once a month"
-                ],
-                answer: 0
-            }
-
-        ]
-    },
-
-
-    {
-        title: "Urban Green Spaces",
-
-        text: `As cities grow, parks and other green spaces are becoming increasingly important. Trees, gardens, and public parks can provide residents with places to relax and exercise.
-
-Green spaces may have environmental benefits as well. Trees can provide shade on hot days, and plants can help reduce some forms of air pollution. Parks can also create habitats for birds and insects.
-
-Despite these advantages, maintaining urban green spaces can be expensive. City governments must pay for water, workers, equipment, and repairs.`,
-
-        questions: [
-
-            {
-                text: "Why are green spaces important in cities?",
-                options: [
-                    "They increase traffic",
-                    "They provide places to relax and exercise",
-                    "They reduce the number of buildings",
-                    "They eliminate all pollution"
-                ],
-                answer: 1
-            },
-
-            {
-                text: "What can trees provide on hot days?",
-                options: [
-                    "Food",
-                    "Transportation",
-                    "Shade",
-                    "Electricity"
-                ],
-                answer: 2
-            },
-
-            {
-                text: "Green spaces can provide habitats for:",
-                options: [
-                    "Only birds",
-                    "Birds and insects",
-                    "Only insects",
-                    "Farm animals"
-                ],
-                answer: 1
-            },
-
-            {
-                text: "What is one challenge mentioned?",
-                options: [
-                    "Parks are too popular",
-                    "Maintenance can be expensive",
-                    "Trees grow too quickly",
-                    "Cities have too much water"
-                ],
-                answer: 1
-            },
-
-            {
-                text: "What does 'maintaining' mean?",
-                options: [
-                    "Taking care of",
-                    "Removing",
-                    "Designing",
-                    "Selling"
-                ],
-                answer: 0
-            },
-
-            {
-                text: "Which is NOT mentioned as a maintenance cost?",
-                options: [
-                    "Water",
-                    "Workers",
-                    "Equipment",
-                    "Public transportation"
-                ],
-                answer: 3
-            },
-
-            {
-                text: "What environmental benefit is mentioned?",
-                options: [
-                    "Trees can provide shade",
-                    "Parks create roads",
-                    "Gardens increase traffic",
-                    "Trees remove all pollution"
-                ],
-                answer: 0
-            },
-
-            {
-                text: "What is the passage mainly about?",
-                options: [
-                    "The importance and challenges of urban green spaces",
-                    "How to build roads",
-                    "The history of cities",
-                    "Problems with insects"
-                ],
-                answer: 0
-            }
-
-        ]
-    },
-
-
-    {
-        title: "Learning a New Language",
-
-        text: `Learning a new language takes time, but regular practice can make the process more manageable. Many learners begin by memorizing individual words. Although vocabulary is important, understanding how words work together is equally valuable.
-
-Listening to the language every day can help learners become familiar with pronunciation and natural speech. Speaking is also important because it gives learners a chance to use new vocabulary actively.
-
-Technology has made language practice easier. Learners can use videos, online dictionaries, language applications, and digital courses. However, technology is most effective when learners use it consistently.`,
-
-        questions: [
-
-            {
-                text: "What is the passage mainly about?",
-                options: [
-                    "Ways to make language learning effective",
-                    "The history of language apps",
-                    "Why vocabulary is unnecessary",
-                    "Problems with modern technology"
-                ],
-                answer: 0
-            },
-
-            {
-                text: "What is important besides vocabulary?",
-                options: [
-                    "Understanding how words work together",
-                    "Memorizing every dictionary",
-                    "Avoiding speaking",
-                    "Studying only grammar"
-                ],
-                answer: 0
-            },
-
-            {
-                text: "Daily listening can help with:",
-                options: [
-                    "Handwriting",
-                    "Pronunciation and natural speech",
-                    "Mathematics",
-                    "Memory of dates"
-                ],
-                answer: 1
-            },
-
-            {
-                text: "Why is speaking useful?",
-                options: [
-                    "It avoids mistakes",
-                    "It allows active use of vocabulary",
-                    "It replaces listening",
-                    "It makes grammar unnecessary"
-                ],
-                answer: 1
-            },
-
-            {
-                text: "Mistakes are described as:",
-                options: [
-                    "A normal part of learning",
-                    "A sign of failure",
-                    "Always avoidable",
-                    "Caused by technology"
-                ],
-                answer: 0
-            },
-
-            {
-                text: "Which tool is mentioned?",
-                options: [
-                    "Digital courses",
-                    "Calculators",
-                    "Weather maps",
-                    "Video games"
-                ],
-                answer: 0
-            },
-
-            {
-                text: "Technology is most effective when used:",
-                options: [
-                    "Once a month",
-                    "Only before exams",
-                    "Consistently",
-                    "Without speaking"
-                ],
-                answer: 2
-            },
-
-            {
-                text: "The word 'occasionally' is closest in meaning to:",
-                options: [
-                    "Regularly",
-                    "Sometimes",
-                    "Immediately",
-                    "Carefully"
-                ],
-                answer: 1
-            }
-
-        ]
-    },
-
-
-    {
-        title: "Sleep and Daily Performance",
-
-        text: `Sleep plays an important role in physical and mental performance. People who regularly sleep too little may find it difficult to concentrate, remember information, or maintain a stable mood during the day.
-
-The amount of sleep people need can vary. Age, lifestyle, and individual differences all influence sleep requirements.
-
-Experts often recommend creating a relaxing routine before bedtime. Reducing bright screen use and keeping the bedroom comfortable may make it easier to prepare for sleep.`,
-
-        questions: [
-
-            {
-                text: "What is the main idea?",
-                options: [
-                    "Sleep can affect daily performance",
-                    "Everyone needs exactly eight hours",
-                    "Screens always prevent sleep",
-                    "Sleep is only important for children"
-                ],
-                answer: 0
-            },
-
-            {
-                text: "Too little sleep may make it difficult to:",
-                options: [
-                    "Concentrate",
-                    "Walk",
-                    "Eat",
-                    "Read a clock"
-                ],
-                answer: 0
-            },
-
-            {
-                text: "What can influence sleep requirements?",
-                options: [
-                    "Only age",
-                    "Age, lifestyle, and individual differences",
-                    "Only lifestyle",
-                    "Weather"
-                ],
-                answer: 1
-            },
-
-            {
-                text: "What may help prepare someone for sleep?",
-                options: [
-                    "A relaxing routine",
-                    "Bright screens",
-                    "Heavy meals",
-                    "Working all night"
-                ],
-                answer: 0
-            },
-
-            {
-                text: "Healthy habits can:",
-                options: [
-                    "Guarantee perfect sleep",
-                    "Support a consistent routine",
-                    "Replace sleep",
-                    "Eliminate all tiredness"
-                ],
-                answer: 1
-            },
-
-            {
-                text: "Which bedtime habit is mentioned?",
-                options: [
-                    "Reducing bright screen use",
-                    "Drinking more coffee",
-                    "Exercising at midnight",
-                    "Studying all night"
-                ],
-                answer: 0
-            },
-
-            {
-                text: "The word 'requirements' is closest in meaning to:",
-                options: [
-                    "Needs",
-                    "Problems",
-                    "Schedules",
-                    "Locations"
-                ],
-                answer: 0
-            },
-
-            {
-                text: "Why is sleep important according to the passage?",
-                options: [
-                    "It supports physical and mental performance",
-                    "It guarantees success",
-                    "It replaces exercise",
-                    "It prevents every illness"
-                ],
-                answer: 0
-            }
-
-        ]
-    },
-
-
-    {
-        title: "Public Transportation",
-
-        text: `Public transportation allows large numbers of people to travel without each person using a private car. Buses, trains, and metro systems can be especially useful in crowded cities where roads become busy during peak hours.
-
-A reliable transportation system can help people reach schools, workplaces, and public services. For some residents, public transportation may be their main way of traveling.
-
-However, transportation systems require planning and investment. Vehicles must be maintained, routes must be designed carefully, and schedules need to match passenger demand.`,
-
-        questions: [
-
-            {
-                text: "What is one advantage of public transportation?",
-                options: [
-                    "Many people can travel without private cars",
-                    "It requires no planning",
-                    "It is always free",
-                    "It removes every traffic problem"
-                ],
-                answer: 0
-            },
-
-            {
-                text: "Where can public transportation be especially useful?",
-                options: [
-                    "Crowded cities",
-                    "Private homes",
-                    "Empty fields",
-                    "Only airports"
-                ],
-                answer: 0
-            },
-
-            {
-                text: "What can a reliable system help people reach?",
-                options: [
-                    "Schools and workplaces",
-                    "Only restaurants",
-                    "Only airports",
-                    "Only shopping centers"
-                ],
-                answer: 0
-            },
-
-            {
-                text: "For some residents, public transportation is:",
-                options: [
-                    "A luxury",
-                    "Their main way of traveling",
-                    "Only for tourists",
-                    "Too expensive"
-                ],
-                answer: 1
-            },
-
-            {
-                text: "What is required to operate a transportation system?",
-                options: [
-                    "Planning and investment",
-                    "Only more roads",
-                    "Fewer vehicles",
-                    "No schedules"
-                ],
-                answer: 0
-            },
-
-            {
-                text: "Schedules should match:",
-                options: [
-                    "Weather",
-                    "Passenger demand",
-                    "Building height",
-                    "School subjects"
-                ],
-                answer: 1
-            },
-
-            {
-                text: "The word 'practical' is closest in meaning to:",
-                options: [
-                    "Useful",
-                    "Expensive",
-                    "Unusual",
-                    "Temporary"
-                ],
-                answer: 0
-            },
-
-            {
-                text: "Which vehicle is NOT mentioned?",
-                options: [
-                    "Buses",
-                    "Trains",
-                    "Metro systems",
-                    "Airplanes"
+                    "fish",
+                    "animals",
+                    "kinds of animals",
+                    "species of animals"
                 ],
                 answer: 3
             }
 
         ]
-    }
+    },
+
+    {
+        title: "Swiss Canal", // 4 Questions
+
+        text: `(1) In 1859, thanks to the efforts of a French diplomat and politician, Ferdinand de
+Lesseps, work started on the Suez Canal. Though he was not an engineer, he had
+been haunted by the idea of the canal since his youth. De Lesseps spent a decade
+supervising the massive operation that involved the excavation of about 97 million
+cubic yards of earth.
+
+(2) De Lesseps first established an artificial harbor at Port Said as a base and had a
+canal dug from the Nile to the Suez to provide fresh-water for the 20.000 laborers.
+
+(3) The official opening was on November 17, 1869. Representatives of almost every
+European royal family attended the inauguration celebration. Ships from France,
+Russia, Austria, Italy ,Britain, and the United States sailed through the canal and
+de Lesseps’ dream was finally a reality. The total cost of the project was an
+estimated $ 105 million, which at the time was a lot of money. This was more than
+twice the original estimate, but it was a tiny sum compared with the value of the
+canal to world trade.`,
+
+        questions: [
+
+            {
+                text: "According to Paragraph (1), De Lesseps was everything EXCEPT---",
+                options: [
+                    "an engineer",
+                    "a diplomat",
+                    "a politician",
+                    "a Frenchman"
+                ],
+                answer: 0
+            },
+
+            {
+                text: "According to paragraph (2), what was Port Said?",
+                options: [
+                    "a Mediterranean port",
+                    "a useful natural harbor",
+                    "a large new city",
+                    "a man-made harbor"
+                ],
+                answer: 3
+            },
+
+            {
+                text: "What does paragraph (3), say about building the Suez Canal compared to modern standards ?",
+                options: [
+                    "It was very important politically.",
+                    "It was extremely inexpensive .",
+                    "It was very time-consuming.",
+                    "It was extremely inefficient"
+                ],
+                answer: 2
+            },
+
+            {
+                text: "According to Paragraph (3), to whom was building the canal the most important ?",
+                options: [
+                    "the Arab world",
+                    "the Europeans",
+                    "the Egyptians",
+                    "the royalty"
+                ],
+                answer: 1
+            }
+
+        ]
+    },
+
+    {
+        title: "World War II", // 5 Questions
+
+        text: `(1) Modern wars bring death and destruction wherever they occur. Sophisticated weapons have been developed that can wipe out a whole city. The most destructive war in history is World War II, fought from 1939 to 1945. World War II involved gigantic struggles not only in Europe but in Asia, Africa, and the Pacific as well. More than 25 million military personnel and 30 million civilians were killed in the war. Its conduct strained the economic capabilities of the major nations and left many countries on the edge of collapse. World War II cost more than any three previous wars combined.
+
+(2) Disasters continued even after the war ended. Damage to communication networks disrupted the transport of raw materials and finished products. The irregularity of supplies to industry and the destruction inflicted on the production apparatus resulted in a considerable number of temporary layoffs. Even in the victorious countries. food rationing continued well after the end of the war. Crime and law-breaking increased. The simultaneous reconstruction of accommodation, industry and the transport infrastructure stifled national economies. Under these conditions, people were first and foremost preoccupied with the restrictions affecting everyday life and often had difficulty in thinking about their long-term future. The shortage of coal in the very hard winter of 1946-1947 led to widespread strikes and mass demonstrations.`,
+
+        questions: [
+
+            {
+                text: "The word occur in Paragraph (1) is closest in meaning to …..",
+                options: [
+                    "go",
+                    "fight",
+                    "stand",
+                    "happen"
+                ],
+                answer: 3
+            },
+
+            {
+                text: "Why can some weapons destroy a whole city",
+                options: [
+                    "Because modern weapons are more advanced",
+                    "Because nowadays cities are smaller",
+                    "Because modern weapons are bigger",
+                    "Because delivery systems are faster"
+                ],
+                answer: 0
+            },
+
+            {
+                text: "According to Paragraph (1), World War II started in……….. .",
+                options: [
+                    "1936",
+                    "1939",
+                    "1945",
+                    "1954"
+                ],
+                answer: 1
+            },
+
+            {
+                text: "Compared to other wars, which of the following statements is true concerning World War ll ?",
+                options: [
+                    "Fewer cities were destroyed",
+                    "More destruction happened",
+                    "Less destruction happened",
+                    "Fewer people died"
+                ],
+                answer: 1
+            },
+
+            {
+                text: "When World War ll ended ………..",
+                options: [
+                    "life went back to normal",
+                    "life became simpler",
+                    "disasters remained",
+                    "disasters stopped"
+                ],
+                answer: 2
+            }
+
+        ]
+    },
+
+    {
+        title: "Device Driver", // 4 Questions
+
+        text: `(1) A device driver is software that helps a peripheral device establish communication with a computer. This type of software is used by printers, monitors, graphics cards, sound cards, and modems. Once installed, a device driver usually runs in the background without opening a window on the screen. Suppose you connect a new printer to your computer. You might also have to install a printer driver or select a preinstalled driver. After the device driver is installed, it runs in the background to send data to the printer whenever you begin a print job.
+
+(2) On a Mac, you can click the Apple icon, select About this Mac, and then select More Info to look at a list of devices connected to your computer. By selecting a device, you can view information about it, including the driver version number. It's always important to remain up- to-date, so check the manufacturer's website to make sure that your version is current. On a PC, if you need to update a device driver or change its settings. you can usually access the driver by using the Start menu's Control Panel option and opening the System icon. Then use the Device Manager option to view a list of your computer system hardware and corresponding device drivers.`,
+
+        questions: [
+
+            {
+                text: "The main purpose of a device driver is to ………..",
+                options: [
+                    "begin a print job",
+                    "run in the background",
+                    "connect to the internet",
+                    "connect hardware to the computer"
+                ],
+                answer: 3
+            },
+
+            {
+                text: "The word current in Paragraph (2) is closest in meaning to .",
+                options: [
+                    "paid",
+                    "legal",
+                    "recent",
+                    "registered"
+                ],
+                answer: 2
+            },
+
+            {
+                text: "The main idea of the passage is to explain how .",
+                options: [
+                    "a printer is installed",
+                    "a device driver works",
+                    "to use a personal computer",
+                    "important it is to update your device driver"
+                ],
+                answer: 1
+            },
+
+            {
+                text: "A device driver is best described as a …..",
+                options: [
+                    "type of printer",
+                    "type of modem",
+                    "piece of software",
+                    "peripheral device"
+                ],
+                answer: 2
+            }
+
+        ]
+    },
+
+    {
+    title: "Radio in Saudi Arabia", // 4 Questions
+
+    text: `(1) The history of radio in Saudi Arabia goes back to 1949 when the airwaves were filled with the recitation of the Holy Qur'an that won the hearts of millions across the Kingdom. In the early decades, expensive, large wooden box radios were confined to the elite. Later, more advanced transistor radios reached the rest of the people. Today, in Saudi Arabia radio has been completely transformed by the various private players that have entered the sector since the government opened up licenses to them, creating more variety to add to the public stations. With the introduction of social media, many broadcasters thought that the time for radio was over. However the reality is quite different. Many listeners tune in to online radio stations nowadays, and a large number of listeners tune in while driving.
+
+(2) Though there is a wide range of choice available to Arabic listeners, English listeners have little choice in the Kingdom. Only a few stations offer broadcast services in English such as Radio Riyadh. Meanwhile, Jeddah Radio's Urdu service broadcasts in the afternoon and has a large following. These programs are particularly popular during Hajj season, as they contain a variety of topics supported by the Ministry of Islamic Affairs.`,
+
+    questions: [
+
+        {
+            text: "Which of the following is TRUE?",
+            options: [
+                "All Saudi stations are privately owned",
+                "A lot of people listen to the radio in their cars",
+                "Urdu is the most common language on the radio",
+                "Radio Riyadh is the only English language station available"
+            ],
+            answer: 1
+        },
+
+        {
+            text: "The word them in Paragraph (1) refers to …..",
+            options: [
+                "radios",
+                "government",
+                "private players",
+                "the rest of the people"
+            ],
+            answer: 2
+        },
+
+        {
+            text: "You can understand from Paragraph (1) that ………..",
+            options: [
+                "radios are rarely used in Saudi Arabia",
+                "radio broadcasters control media licensing",
+                "the early use for radio was mainly to play music",
+                "developments in technology made radios cheaper"
+            ],
+            answer: 3
+        },
+
+        {
+            text: "At what time of day are you most likely to hear the Urdu language service?",
+            options: [
+                "5am",
+                "9am",
+                "3pm",
+                "8pm"
+            ],
+            answer: 2
+        }
+
+    ]
+},
+
+{
+    title: "GMO Bananas", // Questions 3
+
+    text: `(1) Each year, thousands of children in East Africa go blind or die because they don't get enough vitamin A. Now, with the support of the Bill and Melinda Gates Foundation, Ugandan, American and Australian researchers are trying to develop a potential fix: a genetically modified banana that packs a significantly larger vitamin A punch.
+
+(2) The bananas have already been successfully tested on gerbils. Researchers created the new bananas by slightly tweaking its genome so that the fruit contains more alpha and beta caroteno-plantsynthesized substances that animals convert into vitamin A. The new bananas have a slight orange shade but taste the same as nongenetically modified bananas. Human trials just began in Iowa, and if they're successful, farmers in Uganda will be growing the GMO bananas by 2020. About 70 percent of people there rely on bananas as a major staple of their diets, so delivering the extra vitamin boost through the fruit should be an effective means of helping to alleviate vitamin A deficiency. If the GM banana scheme helps reduce death and blindness rates in Uganda, it could be transferred to other countries or applied to other fruits, like plantains.
+
+(3) Bananas are not the only food whose yield or nutritional profile could be improved with genetic engineering. With climate change threatening to disrupt existing crops and growing global populations demanding more of those supplies, genetic engineering could be a solution for making the most of limited space and resources. Quite a number of foods that fit this profile have already been created including virus resistant squash, and disease-resistant potatoes.`,
+
+    questions: [
+
+        {
+            text: "What is the writer's main purpose?",
+            options: [
+                "to support Bill Gates",
+                "to advertise",
+                "to inform",
+                "to warn"
+            ],
+            answer: 2
+        },
+
+        {
+            text: "What is one important idea that the writer mentions?",
+            options: [
+                "That animals like to eat the orange bananas",
+                "That a lack of vitamin A makes people go blind",
+                "That children in Africa need better food",
+                "That Uganda is a rich country in East Africa"
+            ],
+            answer: 1
+        },
+
+        {
+            text: "What is one important idea that the writer mentions?",
+            options: [
+                "That Ugandans have grown bananas for centuries",
+                "That the way we produce food is changing",
+                "That climate change is a serious global problem",
+                "That genetically modified bananas may save lives"
+            ],
+            answer: 3
+        }
+
+    ]
+},
+
+{
+    title: "The Spinal Cord", // Questions 4
+
+    text: `(1) The spinal cord is an information highway connecting the nervous system to the brain. Ascending neural areas send up sensory information, and descending areas send back motorcontrol information. A look at the neural pathways that control our reflexes, our automatic responses to stimuli, shows the spinal cords work. A simple spinal-reflex path is composed of a single sensory neuron and a single motor neuron, which often communicate through an interneuron.
+
+(2) One such path makes up the pain reflex. When your fingers touch a hot stove, neural activity excited by the heat travels via sensory neurons to interneurons in your spinal cord. These interneurons respond by activating motor neurons to the muscles in your arm, causing you to jerk your hand away.
+
+(3) Because the simple pain-reflex pathway runs through the spinal cord and out, you jerk your hand from a candle's flame before your brain receives and responds to the information that causes you to feel pain. Information travels to and from the brain by way of the spinal cord. Were the top of your spinal cord severed, you would not feel such pain. Or pleasure. Your brain would literally be out of touch with your body. Thus, you would lose all sensation and voluntary movement in body regions whose sensory and motor neurons connect with the spinal cord below its point of injury.`,
+
+    questions: [
+
+        {
+            text: "What helps information travel up and down the spine?",
+            options: [
+                "the brain",
+                "neural paths",
+                "the air we breathe",
+                "automatic responses"
+            ],
+            answer: 1
+        },
+
+        {
+            text: "According to Paragraph (2), what finally makes you take your hand away from something hot?",
+            options: [
+                "Sensory neurons and interneurons",
+                "Your fingers touching a hot stove",
+                "Motor neurons in arm muscles",
+                "Our natural fear of pain"
+            ],
+            answer: 2
+        },
+
+        {
+            text: "When would your brain stop receiving information from the spinal cord?",
+            options: [
+                "When the pain-reflex pathway ran through the spinal cord and out",
+                "If there were serious damage to the spinal cord",
+                "If you stopped experiencing pleasure or pain",
+                "When you were sleeping very heavily"
+            ],
+            answer: 1
+        },
+
+        {
+            text: "The word connecting in Paragraph (1) is closest in meaning to…………",
+            options: [
+                "adding",
+                "feeling",
+                "joining",
+                "moving"
+            ],
+            answer: 2
+        }
+
+    ]
+},
+
+{
+    title: "Pioneers of Modern Medicine", // Questions 5
+
+    text: `(1) Medieval physicians relied on the works of the ancient physician Galen. Galen, however, had made many errors, in part because he had limited knowledge of human anatomy. During the Renaissance, physicians made new efforts to study the human body. In 1543, Andreas Vesalius published "The Structure of the Human Body," the first accurate and detailed study of human anatomy. Vesalius used whatever means he could to increase his knowledge of anatomy. He used friendships with people of influence to get invitations to autopsies. He also autopsied bodies that he himself obtained - counting on friends in the local government to look the other way.
+
+(2) In the early 1540s, French physician Ambroise Paré developed a new and more effective ointment for preventing infection. He also developed new surgical techniques, introduced the use of artificial limbs, and invented several scientific instruments. Then in the early 1600s, William Harvey, an English scholar, described the circulation of the blood for the first time. He showed how the heart serves as a pump to force blood through veins and arteries. Later in the century, the Dutch inventor Anton van Leeuwenhoek perfected the microscope and became the first human to see cells and microorganisms. These pioneering scientists opened the way for further discoveries.`,
+
+    questions: [
+
+        {
+            text: "What was the main reason Galen made mistakes in his writing?",
+            options: [
+                "He only studied the anatomy of animals",
+                "He copied the work of ancient physicians",
+                "He made little effort to study human anatomy",
+                "He had little information about human anatomy"
+            ],
+            answer: 3
+        },
+
+        {
+            text: "How was Vesalius able to get dead bodies for his research?",
+            options: [
+                "He wrote a book about anatomy",
+                "He paid doctors for dead bodies to study",
+                "His friends in the local government allowed him",
+                "He had a very good knowledge of anatomy"
+            ],
+            answer: 2
+        },
+
+        {
+            text: "What is one reason new discoveries were possible after the 1600s?",
+            options: [
+                "Many scientists were friends and worked together",
+                "Leeuwenhoek developed a better microscope",
+                "Ambroise Pare opened a medical school",
+                "William Harvey discovered the heart"
+            ],
+            answer: 1
+        },
+
+        {
+            text: "The word accurate in Paragraph (1) is closest in meaning to ……",
+            options: [
+                "public",
+                "healthy",
+                "correct",
+                "famous"
+            ],
+            answer: 2
+        },
+
+        {
+            text: "The word introduced in Paragraph (2) is closest in meaning to ……",
+            options: [
+                "changed",
+                "broke",
+                "ended",
+                "began"
+            ],
+            answer: 3
+        }
+
+    ]
+},
+
+{
+    title: "Composition of Compounds", // Questions 3
+
+    text: `(1) A chemical formula, in combination with the molar masses of its main elements, indicates the relative quantities of each element in a compound, which is extremely useful information. For example, about 30 years ago, scientists began to suspect that synthetic compounds known as chlorofluorocarbons (or CFCs) were destroying the ozone in Earth's upper atmosphere.
+
+(2) Upper atmospheric ozone is important because it shields life on Earth from the sun's harmful ultraviolet light. CFCs are chemically inert compounds that were used primarily as refrigerants and industrial solvents. Over time, however, CFCs began to accumulate in the atmosphere. In the upper atmosphere, sunlight break bonds within CFCs, resulting in the release of chlorine atoms. The chlorine atoms then react with ozone, converting it into O2. Therefore, the harmful part of CFCs is the chlorine atoms that they carry.`,
+
+    questions: [
+
+        {
+            text: "The word shields in Paragraph (2) is closest in meaning to …………………",
+            options: [
+                "cleans",
+                "carries",
+                "protects",
+                "improves"
+            ],
+            answer: 2
+        },
+
+        {
+            text: "The word accumulate in Paragraph (2) is closest in meaning to .………………",
+            options: [
+                "collect",
+                "change",
+                "arrive",
+                "disappear"
+            ],
+            answer: 0
+        },
+
+        {
+            text: "The word bonds in Paragraph (2) is closest in meaning to .………………………",
+            options: [
+                "options",
+                "steps",
+                "rules",
+                "connections"
+            ],
+            answer: 3
+        }
+
+    ]
+},
+
+{
+    title: "Ancient Birds", // Questions 4
+
+    text: `(1) Giant birds of the past have names that speak for themselves. The Elephant bird, a native of Madagascar and the largest known giant bird, stood at over nine feet tall and weighed in at 1,000 pounds or more, until it went extinct about 1,000 years ago. Australia's Mthirung, nicknamed "Thunderbird," which disappeared nearly 50,000 years ago, is thought to have been nearly seven feet tall and weighed between 500 and 1,000 pounds. But until now, no one had ever found evidence of these towering avians in Europe.
+
+(2) Today, researchers describe the first fossil of a giant bird found in Crimea. Dated at around 1.8 million years old, the specimen makes experts question previous assumptions that giant birds were not part of the region's fauna during that period.
+
+(3) A team of paleontologists dug up the fossil, an unusually large femur bone, in Taurida Cave, located on the Crimean Peninsula in the northern Black Sea. The cave was only discovered last June when the construction of a new highway revealed its entrance.
+
+(4) Based on the femur's dimensions, the team calculated that the bird would have weighed around 992 pounds as much as an adult polar bear-making it the third largest bird ever recorded. Daniel Field, a scientist at the University of Cambridge, says, “It raises exciting questions about the factors that gave rise to these giant birds, and the factors that drove them to extinction."`,
+
+    questions: [
+
+        {
+            text: "What two phrases does the writer use to say that the birds were very large?",
+            options: [
+                "giant bird and towering avian",
+                "elephant bird and native of Madagascar",
+                "large femur bone and the region's fauna",
+                "seven feet tall and nicknamed \"Thunderbird\""
+            ],
+            answer: 0
+        },
+
+        {
+            text: "Which of the following does the writer say is a fact?",
+            options: [
+                "The Thunderbird lived in Australia and Europe",
+                "The femur is the largest bone in the body",
+                "The Elephant bird was over nine feet tall",
+                "Researchers found a polar bear fossil"
+            ],
+            answer: 2
+        },
+
+        {
+            text: "What can we understand about the giant bird of Crimea from Paragraph (3)?",
+            options: [
+                "Researchers found it at the bottom of the Black Sea",
+                "Highway workers found it at a construction site",
+                "Researchers did not find all the bones",
+                "We can see it in the Crimea Museum"
+            ],
+            answer: 2
+        },
+
+        {
+            text: "What can be understood about Daniel Field from Paragraph (4)?",
+            options: [
+                "He studies fossils",
+                "He found the fossil",
+                "He weighed the fossil",
+                "He studies at Cambridge University"
+            ],
+            answer: 0
+        }
+
+    ]
+}
 
 ];
-
 
 /* =========================================================
    GRAMMAR
@@ -813,85 +881,128 @@ However, transportation systems require planning and investment. Vehicles must b
 
 const grammarData = [
 
-    ["She _____ to work every day.", ["go", "goes", "going", "gone"], 1],
+    ["The teacher told Muhammed to visit his office ...... the morning.",
+        ["with", "in", "to", "on"], 1],
 
-    ["If I _____ more time, I would learn another language.", ["have", "had", "will have", "having"], 1],
+    ["........ the team did not play well, they managed to win the game.",
+        ["Even", "In case", "Although", "In spite of"], 2],
 
-    ["They _____ dinner when I arrived.", ["have", "were having", "are having", "had have"], 1],
+    ["Nora thought she arrived on time for the train, ......... the train had already left the station.",
+        ["so", "but", "and", "because"], 1],
 
-    ["This is the _____ book I have ever read.", ["interesting", "more interesting", "most interesting", "interest"], 2],
+    ["There were ....... students waiting outside the school building.",
+        ["none", "a little", "plenty", "several"], 3],
 
-    ["He has lived here _____ 2019.", ["for", "since", "during", "from"], 1],
+    ["We have taught our children that .......... comes first.",
+        ["education", "one education", "the education", "each education"], 0],
 
-    ["There aren't _____ apples in the basket.", ["much", "many", "little", "any much"], 1],
+    ["Does Helen play ......... sport?",
+        ["plenty", "much", "most", "loads"], 1],
 
-    ["My brother is _____ than me.", ["tall", "taller", "tallest", "more tall"], 1],
+    ["If the company does well this year, they ........... new offices.",
+        ["were built", "have built", "would build", "will build"], 3],
 
-    ["The report _____ yesterday.", ["finished", "was finished", "is finish", "has finish"], 1],
+    ["If Mark has some spare clothes, he ......... them with poor people.",
+        ["would share", "shared", "shares", "had shared"], 2],
 
-    ["I enjoy _____ English podcasts.", ["listen", "listening to", "to listening", "listened"], 1],
+    ["Ashgan's son is very ill. She ........ look after him 24/7.",
+        ["might", "must", "could", "has"], 1],
 
-    ["You _____ wear a seat belt while driving.", ["must", "might", "could", "would"], 0],
+    ["Mrs. Smith, you're enjoying ........, aren't you?",
+        ["you", "your", "yourself", "yourselves"], 2],
 
-    ["By next year, she _____ her degree.", ["will complete", "will have completed", "completed", "has complete"], 1],
+    ["Is this the person ........ laptop you broke?",
+        ["whose", "which", "who", "that"], 0],
 
-    ["Neither Ali nor Ahmed _____ available.", ["are", "were", "is", "be"], 2],
+    ["Amy: Is Kate waiting for someone? Kate: What did Amy ask? Lucy: She asked.......... waiting for someone.",
+        ["how you are", "are you", "were you", "if you were"], 3],
 
-    ["The woman _____ lives next door is a doctor.", ["which", "who", "where", "whose"], 1],
+    ["Let's first .......... to Will's parents.",
+        ["to talking", "talking", "to talk", "talk"], 3],
 
-    ["I haven't seen him _____ Monday.", ["for", "since", "during", "at"], 1],
+    ["Ali and Ahmed think this is the best chocolate they ..........",
+        ["ever eat", "had ever eaten", "have ever eaten", "would ever have eaten"], 2],
 
-    ["We need _____ information before deciding.", ["more", "many", "a few", "several"], 0],
+    ["By the time I was born, my grandfather ........ dead for five years.",
+        ["was", "has been", "had been", "used to be"], 2],
 
-    ["He asked me _____ I needed help.", ["whether", "what", "which", "whose"], 0],
+    ["Most fashionable clothing .......... in Italy.",
+        ["is made", "make", "is making", "made"], 0],
 
-    ["The students _____ studying for the exam now.", ["is", "are", "was", "be"], 1],
+    ["Mark was so hungry that he stopped ......... a sandwich.",
+        ["to having", "to have", "having", "have"], 1],
 
-    ["She is interested _____ learning Spanish.", ["on", "at", "in", "for"], 2],
+    ["When we talked to the owners, we learnt that the car ...........",
+        ["is already selling", "was already selling", "has already being sold", "had already been sold"], 3],
 
-    ["I _____ my homework before I went out.", ["finish", "finished", "had finished", "have finish"], 2],
+    ["If we had left immediately, a lot of time could ...........",
+        ["be saving", "be saved", "have been saving", "have been saved"], 3],
 
-    ["There is _____ water in the bottle.", ["a few", "many", "a little", "few"], 2],
+    ["It is possible to visit the site .......... children are accompanied by their parents.",
+        ["as long as", "as though", "whereas", "unless"], 0],
 
-    ["If it rains, we _____ at home.", ["stay", "will stay", "stayed", "would stayed"], 1],
+    ["This washing machine appears new. It .............",
+        ["would have been replacing", "must have been replaced", "will have replaced", "has been replacing"], 1],
 
-    ["He speaks English _____ than his brother.", ["well", "better", "best", "good"], 1],
+    ["Jenny's mom told her .......... rude again.",
+        ["mustn't be", "not being", "don't be", "not to be"], 3],
 
-    ["The meeting starts _____ 9 a.m.", ["in", "on", "at", "by"], 2],
+    ["In which sentence is all PUNCTUATION correct?",
+        ["What a beautiful day it is? Let's go outside to have a picnic.", "What a beautiful day it is, Let's go outside to have a picnic.", "What a beautiful day it is! Let's go outside to have a picnic.", "What a beautiful day it is. Let's go outside to have a picnic."], 2],
 
-    ["She _____ never been to London.", ["have", "has", "is", "was"], 1],
+    ["I suggest using your car. ............ has broken down.",
+        ["Ourselves", "Ourself", "Ours", "Our"], 2],
 
-    ["I am looking forward to _____ you.", ["meet", "meeting", "met", "meets"], 1],
+    ["Saudi Arabia has some wonderful places for pilgrims and tourists to visit. ........., Makkah, Madina, Alula and Alumluj.",
+        ["For example", "In addition", "In contrast", "However"], 0],
 
-    ["The car _____ by my father last week.", ["bought", "was bought", "is buying", "has buy"], 1],
+    ["Choose the BEST WAY to make the following sentences in a paragraph: (1) Ahmed helped them through the early months at the school. (2) Five years on, they now think of Kuwait as home. (3) Emma and Jack were excited about their new job in Kuwait. (4) When they arrived, they met their new boss, Ahmed.",
+        ["(3), (4), (1), (2).", "(1), (4), (3), (2).", "(3), (1), (2), (4).", "(1), (3), (2), (4)."], 0],
 
-    ["We have lived here _____ five years.", ["since", "for", "from", "during"], 1],
+    ["Which sentence has the CORRECT WORD ORDER?",
+        ["China overtook the USA to become in 2012 the biggest exporter of goods in the world.",
+         "In 2012, China overtook the USA to become the biggest exporter of goods in the world.",
+         "Overtook China the USA in 2012 to become the biggest exporter of goods in the world.",
+         "In 2012, to become the biggest exporter of goods China overtook the USA in the world."], 1],
 
-    ["Would you like _____ coffee?", ["some", "any", "many", "few"], 0],
+    ["Chris learned how to play tennis when he was young,............ his brother can't play at all.",
+        ["but", "then", "since", "therefore"], 0],
 
-    ["He is afraid _____ spiders.", ["from", "of", "at", "with"], 1],
+    ["In which sentence is all CAPITALIZATION correct?",
+        ["Yesterday, she bought four books to prepare for her teaching job at paris university.", "Yesterday, she bought four books to prepare for her teaching job at Paris University.", "Yesterday, she bought four books to prepare for her teaching job at Paris university", "Yesterday, She bought four books to prepare for her teaching job at Paris University."], 1],
 
-    ["She can _____ very fast.", ["runs", "running", "run", "ran"], 2],
+    ["Last week, Adam writes three essays about biology and sent them to his teacher.",
+        ["writes", "about", "them", "his teacher"], 0],
 
-    ["I wish I _____ more confident.", ["am", "were", "will be", "have"], 1],
+    ["Sara met her friend ………….. she went to her favorite restaurant to have lunch.",
+        ["so", "when", "during", "although"], 1],
 
-    ["The children _____ already eaten lunch.", ["has", "have", "is", "was"], 1],
+    ["Chris read many papers before he …………. his essay.",
+        ["write", "is writing", "wrote", "has written"], 2],
 
-    ["This problem is _____ than the previous one.", ["difficult", "more difficult", "most difficult", "difficulty"], 1],
+    ["Where did I put my phone? I …………… for it since 2 o’clock.",
+        ["look", "am looking", "have been looking", "had looked"], 2],
 
-    ["He arrived _____ than expected.", ["early", "earlier", "earliest", "more early"], 1],
+    ["The entire session was ruined because some people behaved …………..",
+        ["disruptive", "disruptiveness", "disruptively", "disruption"], 2],
 
-    ["The teacher told us _____ quiet.", ["be", "to be", "being", "been"], 1],
+    ["Chris asked the man ……………… was sitting at the reception desk to help him.",
+        ["whose", "who", "which", "where"], 1],
 
-    ["I don't have _____ money with me.", ["many", "much", "few", "several"], 1],
+    ["If Steve wakes up before 6 a.m., he …………… for a jog.",
+        ["going to go", "went", "had gone", "goes"], 3],
 
-    ["She _____ TV when the phone rang.", ["watched", "was watching", "has watched", "watches"], 1],
+    ["Sameh crashed his car when he ……………. at his phone.",
+        ["looks", "looked", "have looked", "had looked"], 1],
 
-    ["They decided _____ a new car.", ["buy", "buying", "to buy", "bought"], 2],
+    ["The teacher wasn’t able to help, so Lisa and Mary finished the project by …………..",
+        ["ourselves", "oneselves", "theirselves", "themselves"], 3],
 
-    ["The opposite of 'cheap' is _____.", ["small", "expensive", "easy", "slow"], 1],
+    ["The meat is so soft, I cooked it ………….. 4 hours.",
+        ["for", "from", "since", "during"], 0],
 
-    ["He has _____ finished the assignment.", ["already", "yet already", "still yet", "ever"], 0]
+    ["Sam arrived late to the party. By the time he came, the cake ……………..",
+        ["had been eaten", "being eaten", "is eaten", "ate"], 0]
 
 ].map(item => ({
     text: item[0],
