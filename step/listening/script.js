@@ -2,6 +2,25 @@
    YAZEED ENGLISH — STEP LISTENING PRACTICE
    ========================================================= */
 
+   const BUNNY_AUDIO_CDN = "https://vz-c82b2256-40f.b-cdn.net/";
+
+function getAudioUrl(audio) {
+
+    if (!audio) return "";
+
+    // If it's already a complete URL
+    if (audio.startsWith("http")) {
+        return audio;
+    }
+
+    // If it's a local audio file
+    if (audio.startsWith("audio/")) {
+        return audio;
+    }
+
+    // Otherwise, treat it as a Bunny Audio ID
+    return BUNNY_AUDIO_CDN + audio + "/play_720p.mp4";
+}
 
 /* =========================================================
    LISTENING DATA
@@ -10,7 +29,7 @@
 const LISTENING_DATA = [
 
     {
-        audio: "audio/listening-01.mp3",
+        audio: "dd01af8c-1185-4cee-b43a-51523ab23515",
 // Hotel Room Service // Easy
         questions: [
             {
@@ -50,7 +69,7 @@ const LISTENING_DATA = [
 
 
     {
-        audio: "audio/listening-02.mp3",
+        audio: "4553683d-b07d-4c7a-8115-2eb9c92529fb",
 // RestaurantOrder // Easy
         questions: [
             {
@@ -90,7 +109,7 @@ const LISTENING_DATA = [
 
 
     {
-        audio: "audio/listening-03.mp3",
+        audio: "463bfe67-b02a-471b-a588-f2eeade1b601",
 // Hotel Reservation // Easy
         questions: [
             {
@@ -130,7 +149,7 @@ const LISTENING_DATA = [
 
 
     {
-        audio: "audio/listening-04.mp3",
+        audio: "4f78502a-109a-4b62-84f0-0ebb83f5d71f",
 // Hiking Family // Intermediate
         questions: [
             {
@@ -170,7 +189,7 @@ const LISTENING_DATA = [
 
 
     {
-        audio: "audio/listening-05.mp3",
+        audio: "cdcb1404-a63f-4f0e-82b4-351eb23e5a64",
 // Driver License // Intermediate
         questions: [
             {
@@ -210,7 +229,7 @@ const LISTENING_DATA = [
 
 
     {
-        audio: "audio/listening-06.mp3",
+        audio: "381c7ea1-6a8c-4323-8cdf-498f6a06ca29",
 // School supplies // Intermediate
         questions: [
             {
@@ -250,7 +269,7 @@ const LISTENING_DATA = [
 
 
     {
-        audio: "audio/listening-07.mp3",
+        audio: "307e73de-ac78-428b-b82f-5698ab3b77a1",
 // Medical Advice // Intermediate
         questions: [
             {
@@ -290,7 +309,7 @@ const LISTENING_DATA = [
 
 
     {
-        audio: "audio/listening-08.mp3",
+        audio: "d64c4b0f-2241-44f3-9fc5-c2b0ddf23eed",
 // TV Guide // Intermediate
         questions: [
             {
@@ -330,7 +349,7 @@ const LISTENING_DATA = [
 
 
     {
-        audio: "audio/listening-09.mp3",
+        audio: "eb1999e8-8c0d-4931-9a10-461184256193",
 // Babysitter // Hard
         questions: [
             {
@@ -370,7 +389,7 @@ const LISTENING_DATA = [
 
 
     {
-        audio: "audio/listening-10.mp3",
+        audio: "1547d182-cbc6-4589-8418-835d06320351",
 // Store Return // Hard
         questions: [
             {
@@ -646,7 +665,7 @@ function loadListening(index) {
     audioPlayer.pause();
 
     audioPlayer.src =
-        listening.audio;
+    getAudioUrl(listening.audio);
 
     audioPlayer.load();
 

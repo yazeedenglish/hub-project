@@ -8,11 +8,34 @@
    5 AUDIO FILES × 4 QUESTIONS = 20
    ========================================================= */
 
+   const BUNNY_AUDIO_CDN = "https://vz-c82b2256-40f.b-cdn.net/";
+
+function getAudioUrl(audio) {
+
+    if (!audio) return "";
+
+    // If it's already a complete URL
+    if (audio.startsWith("http")) {
+        return audio;
+    }
+
+    // If it's a local audio file
+    if (audio.startsWith("audio/")) {
+        return audio;
+    }
+
+    // Otherwise, treat it as a Bunny Audio ID
+    return BUNNY_AUDIO_CDN + audio + "/play_720p.mp4";
+}
+
+ // ========================================================= */
+
+
 const listeningData = [
 
     {
     title: "Listening Passage 1", // Daily Schedule // Beginner
-    audio: "audio/listening_1.mp3",
+    audio: "7057a30a-2caa-4cbb-85ac-de0621cb239b",
 
     questions: [
 
@@ -66,7 +89,7 @@ const listeningData = [
 
     {
     title: "Listening Passage 2",  // Washer and dryer // Intermediate // Delete last 2 seconds
-    audio: "audio/listening_2.mp3",
+    audio: "191f8b95-6a80-4449-a8c7-34047dcf7714",
 
     questions: [
 
@@ -120,7 +143,7 @@ const listeningData = [
 
     {
     title: "Listening Passage 3", // Detective Agency // Intermediate
-    audio: "audio/listening_3.mp3",
+    audio: "c0ddd846-751c-4b40-a629-f6139396395f",
 
     questions: [
 
@@ -174,7 +197,7 @@ const listeningData = [
 
     {
     title: "Listening Passage 4", // Drama Free Rental // Intermediate
-    audio: "audio/listening_4.mp3",
+    audio: "3ddd1686-bbd0-4987-abac-ad7bbb5777b7",
 
     questions: [
 
@@ -228,7 +251,7 @@ const listeningData = [
 
     {
     title: "Listening Passage 5", // A Free Cell Phone // Difficult
-    audio: "audio/listening_5.mp3",
+    audio: "e2a23aea-a776-4126-85a7-b9b22a94cc0f",
 
     questions: [
 
@@ -1797,7 +1820,7 @@ function renderListening() {
 
             <audio
                 id="hiddenAudio"
-                src="${passage.audio}"
+                src="${getAudioUrl(passage.audio)}"
                 preload="metadata"
             ></audio>
 
