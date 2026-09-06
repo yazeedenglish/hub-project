@@ -25,6 +25,132 @@
 
 </head>
 
+<!-- =====================================================
+     FINAL QUIZ MODAL
+     ===================================================== -->
+
+<div
+    id="finalQuizModal"
+    class="final-quiz-modal"
+    aria-hidden="true"
+>
+
+    <div
+        class="final-quiz-overlay"
+        id="finalQuizOverlay"
+    ></div>
+
+
+    <div
+        class="final-quiz-box"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="finalQuizTitle"
+    >
+
+        <div class="final-quiz-header">
+
+            <div>
+
+                <div
+                    class="final-quiz-section-label"
+                    id="finalQuizSectionLabel"
+                >
+                    Final Quiz
+                </div>
+
+                <h2 id="finalQuizTitle">
+                    Final Quiz
+                </h2>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="final-quiz-close"
+                id="finalQuizClose"
+                aria-label="Close quiz"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <div class="final-quiz-progress">
+
+            <span id="finalQuizQuestionNumber">
+                Question 1 of 10
+            </span>
+
+            <div class="final-quiz-progress-track">
+
+                <div
+                    class="final-quiz-progress-fill"
+                    id="finalQuizProgressFill"
+                ></div>
+
+            </div>
+
+        </div>
+
+
+        <div
+            class="final-quiz-content"
+            id="finalQuizContent"
+        >
+
+            <h3
+                class="final-quiz-question"
+                id="finalQuizQuestion"
+            >
+            </h3>
+
+
+            <div
+                class="final-quiz-answers"
+                id="finalQuizAnswers"
+            >
+            </div>
+
+        </div>
+
+
+        <div
+            class="final-quiz-result"
+            id="finalQuizResult"
+        >
+        </div>
+
+
+        <div class="final-quiz-navigation">
+
+            <button
+                type="button"
+                class="final-quiz-nav-btn secondary"
+                id="finalQuizPrevious"
+            >
+                <span>→</span>
+                السابق
+            </button>
+
+
+            <button
+                type="button"
+                class="final-quiz-nav-btn primary"
+                id="finalQuizNext"
+            >
+                التالي
+                <span>←</span>
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
 
 <body>
 

@@ -797,43 +797,833 @@ const LISTENING_QUESTIONS = [
 
 ];
 
-// ============================================================
-// FINAL SECTION QUIZZES
-// ============================================================
-
 const FINAL_QUIZZES = {
 
     vocabulary: {
         enabled: true,
-        title: "Vocabulary Final Quiz",
-        description: "اختبار نهاية قسم المفردات",
+        title: "Vocabulary Quiz",
+        description: "اختبار قسم المفردات",
         url: "https://example.com/vocabulary-quiz",
-        buttonText: "اختبار المفردات"
+        buttonText: "اختبار المفردات",
+
+        questions: [
+
+    {
+        question: "ما معنى وظيفة؟",
+        answers: [
+            "Salary",
+            "Function",
+            "Schedule",
+            "Department"
+        ],
+        correct: 1
+    },
+
+    {
+        question: "ما معنى صورة؟",
+        answers: [
+            "Document",
+            "Message",
+            "Image",
+            "Website"
+        ],
+        correct: 2
+    },
+
+    {
+        question: "ما معنى اتفاق؟",
+        answers: [
+            "Meeting",
+            "Argument",
+            "Agreement",
+            "Decision"
+        ],
+        correct: 2
+    },
+
+    {
+        question: "ما معنى استثمار؟",
+        answers: [
+            "Purchase",
+            "Loan",
+            "Salary",
+            "Investment"
+        ],
+        correct: 3
+    },
+
+    {
+        question: "ما معنى إمكانية؟",
+        answers: [
+            "Problem",
+            "Potential",
+            "Limit",
+            "Failure"
+        ],
+        correct: 1
+    },
+
+    {
+        question: "ما معنى مرجع؟",
+        answers: [
+            "Reference",
+            "Chapter",
+            "Question",
+            "Subject"
+        ],
+        correct: 0
+    },
+
+    {
+        question: "ما معنى بيان؟",
+        answers: [
+            "Statement",
+            "Question",
+            "Conversation",
+            "Meeting"
+        ],
+        correct: 0
+    },
+
+    {
+        question: "ما معنى إدارة؟",
+        answers: [
+            "Office",
+            "Employee",
+            "Management",
+            "Customer"
+        ],
+        correct: 2
+    },
+
+    {
+        question: "ما معنى اقتصاد؟",
+        answers: [
+            "Government",
+            "Economy",
+            "Currency",
+            "Market"
+        ],
+        correct: 1
+    },
+
+    {
+        question: "ما معنى رسمي؟",
+        answers: [
+            "Official",
+            "Private",
+            "Personal",
+            "Local"
+        ],
+        correct: 0
+    },
+
+    {
+        question: "ما معنى دليل؟",
+        answers: [
+            "Warning",
+            "Question",
+            "Warning",
+            "Evidence"
+        ],
+        correct: 3
+    },
+
+    {
+        question: "ما معنى بيانات؟",
+        answers: [
+            "Data",
+            "Statistics",
+            "Device",
+            "Program"
+        ],
+        correct: 0
+    },
+
+    {
+        question: "ما معنى هيكل؟",
+        answers: [
+            "Structure",
+            "Surface",
+            "Material",
+            "Location"
+        ],
+        correct: 0
+    },
+
+    {
+        question: "ما معنى مجتمع؟",
+        answers: [
+            "Building",
+            "Community",
+            "Company",
+            "Family"
+        ],
+        correct: 1
+    },
+
+    {
+        question: "ما معنى منتج؟",
+        answers: [
+            "Factory",
+            "Customer",
+            "Product",
+            "Advertisement"
+        ],
+        correct: 2
+    },
+
+    {
+        question: "ما معنى مستوى؟",
+        answers: [
+            "Direction",
+            "Distance",
+            "Level",
+            "Size"
+        ],
+        correct: 2
+    },
+
+    {
+        question: "ما معنى سبب؟",
+        answers: [
+            "Reason",
+            "Effect",
+            "Result",
+            "Problem"
+        ],
+        correct: 0
+    },
+
+    {
+        question: "ما معنى خدمة؟",
+        answers: [
+            "Customer",
+            "Product",
+            "Service",
+            "Payment"
+        ],
+        correct: 2
+    },
+
+    {
+        question: "ما معنى تقرير؟",
+        answers: [
+            "Report",
+            "Meeting",
+            "Interview",
+            "Survey"
+        ],
+        correct: 0
+    },
+
+    {
+        question: "ما معنى شركة؟",
+        answers: [
+            "Customer",
+            "Employee",
+            "Company",
+            "Office"
+        ],
+        correct: 2
+    }
+
+]
     },
 
     grammar: {
         enabled: true,
-        title: "Grammar Final Quiz",
-        description: "اختبار نهاية قسم القواعد",
+        title: "Grammar Quiz",
+        description: "اختبار قسم القواعد",
         url: "https://example.com/grammar-quiz",
-        buttonText: "اختبار القواعد"
+        buttonText: "اختبار القواعد",
+
+        questions: [
+
+    {
+        question: "What are you .......... home?",
+        answers: [
+            "in",
+            "at",
+            "to",
+            "on"
+        ],
+        correct: 1
+    },
+
+    {
+        question: "Steve made sure he arrived early for his interview ............... prepare fully",
+        answers: [
+            "for to",
+            "and for",
+            "so that to",
+            "in order to"
+        ],
+        correct: 3
+    },
+
+    {
+        question: "Could you talk .............., please? Hannah is still asleep",
+        answers: [
+            "more quieter",
+            "more quietly",
+            "quietlier",
+            "quieter"
+        ],
+        correct: 1
+    },
+
+    {
+        question: "Which is the ................ language to learn, English or Spanish?",
+        answers: [
+            "easy",
+            "easily",
+            "easiest",
+            "easier"
+        ],
+        correct: 3
+    },
+
+    {
+        question: "I’d be very frightened if a lion ................. me",
+        answers: [
+            "attacks",
+            "will attack",
+            "has attacked",
+            "attacked"
+        ],
+        correct: 3
+    },
+
+    {
+        question: "If I tell her the truth, she ................... angry",
+        answers: [
+            "is",
+            "was",
+            "will be",
+            "would be"
+        ],
+        correct: 2
+    },
+
+    {
+        question: "Take a sweater in case it ................. cold at night",
+        answers: [
+            "got",
+            "gets",
+            "will get",
+            "would get"
+        ],
+        correct: 1
+    },
+
+    {
+        question: "Adam .............. a book now",
+        answers: [
+            "reads",
+            "reading",
+            "is reads",
+            "is reading"
+        ],
+        correct: 3
+    },
+
+    {
+        question: "When I go to King Saud University Library, I usually ............",
+        answers: [
+            "am studying",
+            "will study",
+            "studied",
+            "study"
+        ],
+        correct: 3
+    },
+
+    {
+        question: "The entire session was ruined because some people behaved .......",
+        answers: [
+            "disruptive",
+            "disruptiveness",
+            "disruptively",
+            "disruption"
+        ],
+        correct: 2
+    },
+
+    {
+        question: "The meat is so soft, I cooked it ................ 4 hours",
+        answers: [
+            "For",
+            "from",
+            "since",
+            "during"
+        ],
+        correct: 0
+    },
+
+    {
+        question: "I burned my hand while I ........... my dinner",
+        answers: [
+            "have cooked",
+            "cooked",
+            "cook",
+            "was cooking"
+        ],
+        correct: 3
+    },
+
+    {
+        question: "Let me know when you ............. your meal and I will bring you coffee",
+        answers: [
+            "finished",
+            "finish",
+            "finishes",
+            "finishing"
+        ],
+        correct: 1
+    },
+
+    {
+        question: "When I came for my job interview, neither the receptionist ............ the secretary knew where the interview was",
+        answers: [
+            "nor",
+            "so",
+            "either",
+            "neither"
+        ],
+        correct: 0
+    },
+
+    {
+        question: "You have traveled a long way so you ............. like to rest a little",
+        answers: [
+            "must",
+            "could",
+            "might",
+            "should"
+        ],
+        correct: 2
+    },
+
+    {
+        question: "The strawberries ............ by the children who picked them",
+        answers: [
+            "have all eating",
+            "were all eaten",
+            "were all eating",
+            "had all eaten"
+        ],
+        correct: 1
+    },
+
+    {
+        question: "Tomorrow I ......... travel to Abha",
+        answers: [
+            "am going",
+            "ought",
+            "would",
+            "will"
+        ],
+        correct: 3
+    },
+
+    {
+        question: "I haven't seen the new Toyota .....",
+        answers: [
+            "yet",
+            "before",
+            "already",
+            "yesterday"
+        ],
+        correct: 0
+    },
+
+    {
+        question: "The water in the lake ........ last winter",
+        answers: [
+            "freeze",
+            "froze",
+            "freezes",
+            "frozen"
+        ],
+        correct: 1
+    },
+
+    {
+        question: "Cathy and I ................ in the train for several hours when, finally, the sun came out",
+        answers: [
+            "had been walking",
+            "have been walking",
+            "were walking",
+            "had walking"
+        ],
+        correct: 0
+    }
+
+]
     },
 
     reading: {
         enabled: true,
-        title: "Reading Final Quiz",
-        description: "اختبار نهاية قسم القراءة",
+        title: "Reading Quiz",
+        description: "اختبار قسم القراءة",
         url: "https://example.com/reading-quiz",
-        buttonText: "اختبار القراءة"
+        buttonText: "اختبار القراءة",
+
+        questions: [
+
+    {
+        question: "According to Paragraph (2), where has Mei Lan been living?",
+        answers: [
+            "in Sichuan, China",
+            "in Atlanta, Georgia",
+            "in an American research center",
+            "in the Chengdu Panda Research Center"
+        ],
+        correct: 1
+    },
+
+    {
+        question: "According to Paragraph (3), Ben taught Mike that being brave involves …………",
+        answers: [
+            "working with proper tools",
+            "avoiding fire hazards",
+            "losing one's courage",
+            "caring for others"
+        ],
+        correct: 3
+    },
+
+    {
+        question: "The words these amazing creatures in Paragraph (1) refer to ………….",
+        answers: [
+            "bees",
+            "insects",
+            "scientists",
+            "communities"
+        ],
+        correct: 1
+    },
+
+    {
+        question: "This passage is about .............",
+        answers: [
+            "university teacher",
+            "medical doctor",
+            "patient",
+            "nurse"
+        ],
+        correct: 1
+    },
+
+    {
+        question: "What is the main topic of the passage?",
+        answers: [
+            "Neurotransmitters and movement",
+            "Neurotransmitters and cells",
+            "Dopamine and the brain",
+            "Dopamine and health"
+        ],
+        correct: 2
+    },
+
+    {
+        question: "According to Paragraph (3), who supported Ali when he refused to join the army?",
+        answers: [
+            "his fans",
+            "the jury",
+            "the Vietnamese",
+            "the supreme court"
+        ],
+        correct: 3
+    },
+
+    {
+        question: "Which city may expect to see storm clouds?",
+        answers: [
+            "Makkah",
+            "Riyadh",
+            "Hail",
+            "Baha"
+        ],
+        correct: 3
+    },
+
+    {
+        question: "What is the main food crop in Madagascar?",
+        answers: [
+            "cobalt",
+            "potatoes",
+            "tea",
+            "rice"
+        ],
+        correct: 3
+    },
+
+    {
+        question: "How long were Rome's aqueducts in total?",
+        answers: [
+            "269 miles",
+            "46 miles",
+            "315 miles",
+            "112 miles"
+        ],
+        correct: 2
+    },
+
+    {
+        question: "What two things do cells use for mitosis?",
+        answers: [
+            "water and dairy",
+            "lipids and cereals",
+            "amino acids and lipids",
+            "amino acids and vegetables"
+        ],
+        correct: 2
+    },
+
+    {
+        question: "The word promote is closest in meaning to ……......",
+        answers: [
+            "help",
+            "find",
+            "need",
+            "knowledge"
+        ],
+        correct: 0
+    },
+
+    {
+        question: "The word far-fetched is closest in meaning to .....",
+        answers: [
+            "difficult to believe",
+            "easy to believe",
+            "definite",
+            "clear"
+        ],
+        correct: 0
+    },
+
+    {
+        question: "The word major is closest in meaning to ……………",
+        answers: [
+            "important",
+            "basic",
+            "tiny",
+            "secondary"
+        ],
+        correct: 0
+    },
+
+    {
+        question: "The word carved is closest in meaning to ……......",
+        answers: [
+            "sourced",
+            "planned",
+            "shaped",
+            "copied"
+        ],
+        correct: 2
+    },
+
+    {
+        question: "The word maintain is closest in meaning to",
+        answers: [
+            "share",
+            "find",
+            "keep",
+            "improve"
+        ],
+        correct: 2
+    },
+
+    {
+        question: "The word obtaining is closest in meaning to ………………..",
+        answers: [
+            "spending",
+            "thinking",
+            "writing",
+            "getting"
+        ],
+        correct: 3
+    },
+
+    {
+        question: "The word sequence is closest in meaning to",
+        answers: [
+            "Improvement",
+            "Experience",
+            "Success",
+            "Order"
+        ],
+        correct: 3
+    },
+
+    {
+        question: "The word sufficient is closest in meaning to",
+        answers: [
+            "important",
+            "extra",
+            "enough",
+            "different"
+        ],
+        correct: 2
+    },
+
+    {
+        question: "The word essential is closest in meaning to ..........",
+        answers: [
+            "healthy",
+            "important",
+            "dispensable",
+            "comprehensive"
+        ],
+        correct: 1
+    },
+
+    {
+        question: "The word identify is closest in meaning to ……………",
+        answers: [
+            "name",
+            "destroy",
+            "relax",
+            "sell"
+        ],
+        correct: 0
+    }
+
+]
     },
 
     listening: {
         enabled: true,
         title: "Listening Practice",
         description: "صفحة تدريبات الاستماع",
-        url: "https://example.com/listening-quiz",
-        buttonText: "اختبار الاستماع"
+        url: "https://hub.yazeedenglish.com/step/listening",
+        buttonText: "صفحة التدريبات"
+    },
+
+    listeningFinal: {
+    enabled: true,
+    title: "Listening Quiz",
+    description: "اختبار اسئلة الاستماع من الملف",
+    buttonText: "اختبار الاستماع",
+
+    questions: [
+
+    {
+        question: "Where does the lecturer tell the students to search first?",
+        answers: [
+            "Wikipedia",
+            "Google",
+            "The university website",
+            "The library database"
+        ],
+        correct: 1
+    },
+
+    {
+        question: "What is the conversation mainly about?",
+        answers: [
+            "The construction of the Eiffel Tower",
+            "The location of the Eiffel Tower",
+            "The architecture of the Eiffel Tower",
+            "The history of the Eiffel Tower"
+        ],
+        correct: 3
+    },
+
+    {
+        question: "What is the passage mainly about?",
+        answers: [
+            "English language",
+            "Geography",
+            "Math",
+            "Physics"
+        ],
+        correct: 1
+    },
+
+    {
+        question: "What is the main idea of the listening?",
+        answers: [
+            "The history of Coca-Cola",
+            "The development of soft drinks",
+            "The history of Pepsi",
+            "The popularity of Pepsi"
+        ],
+        correct: 2
+    },
+
+    {
+        question: "How can countries reduce overfishing?",
+        answers: [
+            "If they increase fishing limits",
+            "If they cooperate with each other",
+            "If they use larger fishing boats",
+            "If they fish in different areas"
+        ],
+        correct: 1
+    },
+
+    {
+        question: "What is the new idea in IKEA?",
+        answers: [
+            "Online furniture delivery",
+            "Second-hand furniture",
+            "Custom furniture",
+            "Cheaper furniture"
+        ],
+        correct: 2
+    },
+
+    {
+        question: "What does Arwa make?",
+        answers: [
+            "She makes a photo album",
+            "She makes a memory book",
+            "She makes a travel journal",
+            "She makes a scrapbook"
+        ],
+        correct: 1
+    },
+
+    {
+        question: "How much is the pizza?",
+        answers: [
+            "55 SR",
+            "60 SR",
+            "65 SR",
+            "70 SR"
+        ],
+        correct: 2
+    },
+
+    {
+        question: "When was the first electronic computer created?",
+        answers: [
+            "1930",
+            "1940",
+            "1950",
+            "1960"
+        ],
+        correct: 1
+    },
+
+    {
+        question: "What is the main idea of the telescope?",
+        answers: [
+            "To make objects look bigger",
+            "To make objects look brighter",
+            "To help people find distant objects",
+            "To allow people to see objects clearly"
+        ],
+        correct: 0
     }
+
+]
+
+}
 
 };
 
@@ -970,10 +1760,12 @@ function renderCourses() {
 
     });
 
+
     const buttons =
         courseGrid.querySelectorAll(
             "[data-course-index]"
         );
+
 
     buttons.forEach((button) => {
 
@@ -992,6 +1784,67 @@ function renderCourses() {
         );
 
     });
+
+
+    // ========================================================
+    // FINAL GRAMMAR QUIZ
+    // ========================================================
+
+    const finalQuiz =
+        FINAL_QUIZZES.grammar;
+
+
+    if (
+        finalQuiz &&
+        finalQuiz.enabled
+    ) {
+
+        const finalCard =
+            document.createElement("article");
+
+        finalCard.className =
+            "course-card final-quiz-card";
+
+
+        finalCard.innerHTML = `
+
+            <div class="course-number">
+                ✓
+            </div>
+
+            <h4>
+                ${finalQuiz.title}
+            </h4>
+
+            <p>
+                ${finalQuiz.description}
+            </p>
+
+            <button
+                class="course-btn final-quiz-btn"
+                type="button"
+            >
+                ${finalQuiz.buttonText}
+            </button>
+
+        `;
+
+
+        courseGrid.appendChild(finalCard);
+
+
+        finalCard
+            .querySelector(".final-quiz-btn")
+            .addEventListener(
+                "click",
+                () => {
+
+                    openFinalQuiz("grammar");
+
+                }
+            );
+
+    }
 
 }
 
@@ -1076,9 +1929,9 @@ function renderCoursesForSection(lessons, containerId) {
 
     });
 
-    // ========================================================
+ // ========================================================
 // FINAL VOCABULARY QUIZ
-// ============================================================
+// ========================================================
 
 const finalQuiz =
     FINAL_QUIZZES.vocabulary;
@@ -1097,8 +1950,8 @@ if (
     finalCard.innerHTML = `
 
         <div class="course-number">
-    ✓
-</div>
+            ✓
+        </div>
 
         <h4>
             ${finalQuiz.title}
@@ -1126,11 +1979,7 @@ if (
             "click",
             () => {
 
-                window.open(
-                    finalQuiz.url,
-                    "_blank",
-                    "noopener,noreferrer"
-                );
+                openFinalQuiz("vocabulary");
 
             }
         );
@@ -1138,7 +1987,6 @@ if (
 }
 
 }
-
 
 // ============================================================
 // CREATE READING / LISTENING CARDS
@@ -1225,71 +2073,138 @@ function renderQuestionSection(
 
     });
 
-
     // ========================================================
-    // FINAL QUIZ CARD
-    // ========================================================
+// FINAL QUIZ CARD
+// ========================================================
 
-    const finalQuiz =
-        FINAL_QUIZZES[sectionType];
+const finalQuiz =
+    FINAL_QUIZZES[sectionType];
+
+if (
+    finalQuiz &&
+    finalQuiz.enabled
+) {
+
+    const finalCard =
+        document.createElement("article");
+
+    finalCard.className =
+        "course-card final-quiz-card";
+
+    finalCard.innerHTML = `
+
+        <div class="course-number">
+            ✓
+        </div>
+
+        <h4>
+            ${finalQuiz.title}
+        </h4>
+
+        <p>
+            ${finalQuiz.description}
+        </p>
+
+        <button
+            class="course-btn final-quiz-btn"
+            type="button"
+        >
+            ${finalQuiz.buttonText}
+        </button>
+
+    `;
+
+    container.appendChild(finalCard);
+
+
+    const finalQuizButton =
+        finalCard.querySelector(
+            ".final-quiz-btn"
+        );
+
+
+    finalQuizButton.addEventListener(
+        "click",
+        () => {
+
+            openFinalQuiz(sectionType);
+
+        }
+    );
+
+}
+
+// ========================================================
+// FINAL LISTENING QUIZ
+// ========================================================
+
+if (
+    sectionType === "listening"
+) {
+
+    const listeningFinalQuiz =
+        FINAL_QUIZZES.listeningFinal;
+
 
     if (
-        finalQuiz &&
-        finalQuiz.enabled
+        listeningFinalQuiz &&
+        listeningFinalQuiz.enabled
     ) {
 
-        const finalCard =
+        const listeningFinalCard =
             document.createElement("article");
 
-        finalCard.className =
+        listeningFinalCard.className =
             "course-card final-quiz-card";
 
-        finalCard.innerHTML = `
+
+        listeningFinalCard.innerHTML = `
 
             <div class="course-number">
                 ✓
             </div>
 
             <h4>
-                ${finalQuiz.title}
+                ${listeningFinalQuiz.title}
             </h4>
 
             <p>
-                ${finalQuiz.description}
+                ${listeningFinalQuiz.description}
             </p>
 
             <button
                 class="course-btn final-quiz-btn"
                 type="button"
             >
-                ${finalQuiz.buttonText}
+                ${listeningFinalQuiz.buttonText}
             </button>
 
         `;
 
-        container.appendChild(finalCard);
 
-
-        const finalQuizButton =
-            finalCard.querySelector(
-                ".final-quiz-btn"
-            );
-
-
-        finalQuizButton.addEventListener(
-            "click",
-            () => {
-
-                window.open(
-                    finalQuiz.url,
-                    "_blank",
-                    "noopener,noreferrer"
-                );
-
-            }
+        container.appendChild(
+            listeningFinalCard
         );
 
+
+        listeningFinalCard
+            .querySelector(
+                ".final-quiz-btn"
+            )
+            .addEventListener(
+                "click",
+                () => {
+
+                    openFinalQuiz(
+                        "listeningFinal"
+                    );
+
+                }
+            );
+
     }
+
+}
 
 }
 
@@ -1374,8 +2289,7 @@ function openVocabularyLesson(
         lesson.description;
 
     courseVideo.pause();
-
-loadVideo(question.video);
+loadVideo(lesson.video);
 
     videoPlaceholder.classList.remove(
         "hidden"
@@ -2192,12 +3106,23 @@ if (previousBtn) {
         "click",
         () => {
 
-            // Reading or Listening.
+            if (currentSectionType === "vocabulary") {
+
+                if (currentQuestionIndex > 0) {
+
+                    openVocabularyLesson(
+                        currentQuestionList,
+                        currentQuestionIndex - 1
+                    );
+
+                }
+
+                return;
+            }
+
             if (currentSectionType) {
 
-                if (
-                    currentQuestionIndex > 0
-                ) {
+                if (currentQuestionIndex > 0) {
 
                     openQuestion(
                         currentQuestionList,
@@ -2210,10 +3135,7 @@ if (previousBtn) {
                 return;
             }
 
-            // Grammar.
-            if (
-                currentCourseIndex > 0
-            ) {
+            if (currentCourseIndex > 0) {
 
                 openCourse(
                     currentCourseIndex - 1
@@ -2237,7 +3159,23 @@ if (nextBtn) {
         "click",
         () => {
 
-            // Reading or Listening.
+            if (currentSectionType === "vocabulary") {
+
+                if (
+                    currentQuestionIndex <
+                    currentQuestionList.length - 1
+                ) {
+
+                    openVocabularyLesson(
+                        currentQuestionList,
+                        currentQuestionIndex + 1
+                    );
+
+                }
+
+                return;
+            }
+
             if (currentSectionType) {
 
                 if (
@@ -2256,7 +3194,6 @@ if (nextBtn) {
                 return;
             }
 
-            // Grammar.
             if (
                 currentCourseIndex <
                 COURSES.length - 1
@@ -2331,65 +3268,971 @@ renderCoursesForSection(
     
 );
 
-// ========================================================
-// FINAL GRAMMAR QUIZ
-// ========================================================
+        /* =========================================================
+   YAZEED ENGLISH — FINAL QUIZ SYSTEM
+   ========================================================= */
 
-const finalQuiz =
-    FINAL_QUIZZES.grammar;
 
-if (
-    finalQuiz &&
-    finalQuiz.enabled
+/* =========================================================
+   ELEMENTS
+   ========================================================= */
+
+const finalQuizModal =
+    document.getElementById("finalQuizModal");
+
+const finalQuizOverlay =
+    document.getElementById("finalQuizOverlay");
+
+const finalQuizClose =
+    document.getElementById("finalQuizClose");
+
+const finalQuizSectionLabel =
+    document.getElementById("finalQuizSectionLabel");
+
+const finalQuizTitle =
+    document.getElementById("finalQuizTitle");
+
+const finalQuizQuestionNumber =
+    document.getElementById("finalQuizQuestionNumber");
+
+const finalQuizProgressFill =
+    document.getElementById("finalQuizProgressFill");
+
+const finalQuizContent =
+    document.getElementById("finalQuizContent");
+
+const finalQuizQuestion =
+    document.getElementById("finalQuizQuestion");
+
+const finalQuizAnswers =
+    document.getElementById("finalQuizAnswers");
+
+const finalQuizResult =
+    document.getElementById("finalQuizResult");
+
+const finalQuizPrevious =
+    document.getElementById("finalQuizPrevious");
+
+const finalQuizNext =
+    document.getElementById("finalQuizNext");
+
+
+/* =========================================================
+   STATE
+   ========================================================= */
+
+let activeFinalQuizType = null;
+
+let activeFinalQuizQuestions = [];
+
+let activeFinalQuizIndex = 0;
+
+let activeFinalQuizAnswers = [];
+
+let activeFinalQuizScore = 0;
+
+let finalQuizFinished = false;
+
+
+/* =========================================================
+   OPEN FINAL QUIZ
+   ========================================================= */
+
+function openFinalQuiz(type) {
+
+    const quiz =
+        FINAL_QUIZZES[type];
+
+
+    if (
+        !quiz ||
+        !quiz.enabled
+    ) {
+        return;
+    }
+
+
+    /*
+       Listening remains external.
+    */
+
+    if (
+        type === "listening"
+    ) {
+
+        window.open(
+            quiz.url,
+            "_blank",
+            "noopener,noreferrer"
+        );
+
+        return;
+    }
+
+
+    /*
+       Vocabulary, Grammar and Reading
+       use the internal quiz modal.
+    */
+
+    if (
+        !quiz.questions ||
+        quiz.questions.length === 0
+    ) {
+        return;
+    }
+
+
+    activeFinalQuizType =
+        type;
+
+
+    activeFinalQuizQuestions =
+        quiz.questions;
+
+
+    activeFinalQuizIndex =
+        0;
+
+
+    activeFinalQuizAnswers =
+        new Array(
+            activeFinalQuizQuestions.length
+        ).fill(null);
+
+
+    activeFinalQuizScore =
+        0;
+
+
+    finalQuizFinished =
+        false;
+
+
+    finalQuizSectionLabel.textContent =
+        quiz.title;
+
+
+    finalQuizTitle.textContent =
+        quiz.title;
+
+
+    finalQuizModal.classList.add(
+        "active"
+    );
+
+
+    finalQuizModal.setAttribute(
+        "aria-hidden",
+        "false"
+    );
+
+
+    document.body.classList.add(
+        "final-quiz-open"
+    );
+
+
+    finalQuizPrevious.style.display =
+        "";
+
+
+    finalQuizNext.style.display =
+        "";
+
+
+    renderFinalQuizQuestion();
+
+
+    document.body.style.overflow =
+        "hidden";
+}
+
+
+/* =========================================================
+   CLOSE FINAL QUIZ
+   ========================================================= */
+
+function closeFinalQuiz() {
+
+    resetFinalQuiz();
+
+    finalQuizModal.classList.remove(
+        "active"
+    );
+
+    finalQuizModal.setAttribute(
+        "aria-hidden",
+        "true"
+    );
+
+    document.body.classList.remove(
+        "final-quiz-open"
+    );
+
+    document.body.style.overflow =
+        "";
+
+    hideFinalQuizExitConfirmation();
+}
+
+
+function showFinalQuizExitConfirmation() {
+
+    let confirmation =
+        document.getElementById(
+            "finalQuizExitConfirmation"
+        );
+
+
+    if (!confirmation) {
+
+        confirmation =
+            document.createElement("div");
+
+        confirmation.id =
+            "finalQuizExitConfirmation";
+
+        confirmation.className =
+            "final-quiz-exit-confirmation";
+
+
+        confirmation.innerHTML = `
+
+            <div class="final-quiz-exit-box">
+
+                <div class="final-quiz-exit-icon">
+                    !
+                </div>
+
+                <h3>الخروج من الاختبار؟</h3>
+
+                <p>
+                    ستفقد تقدمك إذا غادرت هذا الاختبار
+                </p>
+
+                <div class="final-quiz-exit-actions">
+
+                    <button
+                        type="button"
+                        class="final-quiz-exit-cancel"
+                    >
+                        الغاء
+                    </button>
+
+                    <button
+                        type="button"
+                        class="final-quiz-exit-confirm"
+                    >
+                        خروج
+                    </button>
+
+                </div>
+
+            </div>
+
+        `;
+
+
+        document.body.appendChild(
+            confirmation
+        );
+
+
+        confirmation
+            .querySelector(
+                ".final-quiz-exit-cancel"
+            )
+            .addEventListener(
+                "click",
+                hideFinalQuizExitConfirmation
+            );
+
+
+        confirmation
+            .querySelector(
+                ".final-quiz-exit-confirm"
+            )
+            .addEventListener(
+                "click",
+                closeFinalQuiz
+            );
+
+    }
+
+
+    confirmation.classList.add(
+        "active"
+    );
+
+}
+
+
+function hideFinalQuizExitConfirmation() {
+
+    const confirmation =
+        document.getElementById(
+            "finalQuizExitConfirmation"
+        );
+
+
+    if (confirmation) {
+
+        confirmation.classList.remove(
+            "active"
+        );
+
+    }
+
+}
+
+
+function requestCloseFinalQuiz() {
+
+    /*
+       If the quiz is already finished,
+       close immediately without confirmation.
+    */
+
+    if (finalQuizFinished) {
+
+        closeFinalQuiz();
+
+        return;
+
+    }
+
+
+    /*
+       Quiz is still in progress,
+       so show the custom confirmation.
+    */
+
+    showFinalQuizExitConfirmation();
+
+}
+
+
+/* =========================================================
+   RESET FINAL QUIZ
+   ========================================================= */
+
+function resetFinalQuiz() {
+
+    activeFinalQuizType =
+        null;
+
+    activeFinalQuizQuestions =
+        [];
+
+    activeFinalQuizIndex =
+        0;
+
+    activeFinalQuizAnswers =
+        [];
+
+    activeFinalQuizScore =
+        0;
+
+    finalQuizFinished =
+        false;
+}
+
+
+/* =========================================================
+   RENDER QUESTION
+   ========================================================= */
+
+function renderFinalQuizQuestion() {
+
+    if (
+        !activeFinalQuizQuestions.length
+    ) {
+        return;
+    }
+
+
+    const question =
+        activeFinalQuizQuestions[
+            activeFinalQuizIndex
+        ];
+
+
+    const totalQuestions =
+        activeFinalQuizQuestions.length;
+
+
+    const questionNumber =
+        activeFinalQuizIndex + 1;
+
+
+    /* -----------------------------------------
+       Header
+       ----------------------------------------- */
+
+    finalQuizQuestionNumber.textContent =
+        `Question ${questionNumber} of ${totalQuestions}`;
+
+
+    finalQuizProgressFill.style.width =
+        `${(questionNumber / totalQuestions) * 100}%`;
+
+
+    finalQuizQuestion.textContent =
+        question.question;
+
+
+    finalQuizAnswers.innerHTML =
+        "";
+
+
+    finalQuizResult.textContent =
+        "";
+
+
+    /* -----------------------------------------
+       Create answers
+       ----------------------------------------- */
+
+    question.answers.forEach(
+        (answer, answerIndex) => {
+
+            const button =
+                document.createElement("button");
+
+
+            button.type =
+                "button";
+
+
+            button.className =
+                "final-quiz-answer";
+
+
+            const answerNumber =
+                document.createElement("span");
+
+
+            answerNumber.className =
+                "final-quiz-answer-number";
+
+
+            answerNumber.textContent =
+                String.fromCharCode(
+                    65 + answerIndex
+                );
+
+
+            const answerText =
+                document.createElement("span");
+
+
+            answerText.textContent =
+                answer;
+
+
+            button.appendChild(
+                answerNumber
+            );
+
+
+            button.appendChild(
+                answerText
+            );
+
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    selectFinalQuizAnswer(
+                        answerIndex
+                    );
+
+                }
+            );
+
+
+            finalQuizAnswers.appendChild(
+                button
+            );
+
+        }
+    );
+
+
+    /* -----------------------------------------
+       Restore previous answer
+       ----------------------------------------- */
+
+    const previousAnswer =
+        activeFinalQuizAnswers[
+            activeFinalQuizIndex
+        ];
+
+
+    if (
+        previousAnswer !== null
+    ) {
+
+        showFinalQuizAnswerResult(
+            previousAnswer
+        );
+
+    }
+
+
+    updateFinalQuizNavigation();
+}
+
+
+/* =========================================================
+   SELECT ANSWER
+   ========================================================= */
+
+function selectFinalQuizAnswer(
+    selectedIndex
 ) {
 
-    const finalCard =
-        document.createElement("article");
+    /*
+       Don't allow answering a question
+       more than once.
+    */
 
-    finalCard.className =
-        "course-card final-quiz-card";
+    if (
+        activeFinalQuizAnswers[
+            activeFinalQuizIndex
+        ] !== null
+    ) {
+        return;
+    }
 
-    finalCard.innerHTML = `
 
-        <div class="course-number">
-            ✓
+    const question =
+        activeFinalQuizQuestions[
+            activeFinalQuizIndex
+        ];
+
+
+    const isCorrect =
+        selectedIndex ===
+        question.correct;
+
+
+    /*
+       Save answer.
+    */
+
+    activeFinalQuizAnswers[
+        activeFinalQuizIndex
+    ] = selectedIndex;
+
+
+    /*
+       Update score.
+    */
+
+    if (isCorrect) {
+
+        activeFinalQuizScore++;
+
+    }
+
+
+    showFinalQuizAnswerResult(
+        selectedIndex
+    );
+}
+
+
+/* =========================================================
+   SHOW ANSWER RESULT
+   ========================================================= */
+
+function showFinalQuizAnswerResult(
+    selectedIndex
+) {
+
+    const question =
+        activeFinalQuizQuestions[
+            activeFinalQuizIndex
+        ];
+
+
+    const buttons =
+        finalQuizAnswers.querySelectorAll(
+            ".final-quiz-answer"
+        );
+
+
+    buttons.forEach(
+        (button) => {
+
+            button.disabled =
+                true;
+
+        }
+    );
+
+
+    /*
+       Selected answer.
+    */
+
+    if (
+        selectedIndex !== null &&
+        buttons[selectedIndex]
+    ) {
+
+        if (
+            selectedIndex ===
+            question.correct
+        ) {
+
+            buttons[selectedIndex]
+                .classList.add(
+                    "correct"
+                );
+
+            buttons[selectedIndex]
+                .querySelector(
+                    ".final-quiz-answer-number"
+                )
+                .textContent = "✓";
+
+        } else {
+
+            buttons[selectedIndex]
+                .classList.add(
+                    "incorrect"
+                );
+
+            buttons[selectedIndex]
+                .querySelector(
+                    ".final-quiz-answer-number"
+                )
+                .textContent = "✕";
+
+
+            /*
+               Reveal correct answer.
+            */
+
+            buttons[question.correct]
+                .classList.add(
+                    "correct"
+                );
+
+            buttons[question.correct]
+                .querySelector(
+                    ".final-quiz-answer-number"
+                )
+                .textContent = "✓";
+        }
+    }
+
+
+    updateFinalQuizNavigation();
+}
+
+
+/* =========================================================
+   NAVIGATION
+   ========================================================= */
+
+function updateFinalQuizNavigation() {
+
+    const totalQuestions =
+        activeFinalQuizQuestions.length;
+
+
+    const isFirst =
+        activeFinalQuizIndex === 0;
+
+
+    const isLast =
+        activeFinalQuizIndex ===
+        totalQuestions - 1;
+
+
+    const hasAnswered =
+        activeFinalQuizAnswers[
+            activeFinalQuizIndex
+        ] !== null;
+
+
+    finalQuizPrevious.disabled =
+        isFirst;
+
+
+    finalQuizNext.disabled =
+        !hasAnswered;
+
+
+    if (isLast) {
+
+        finalQuizNext.textContent =
+            "النتيجة";
+
+    } else {
+
+        finalQuizNext.innerHTML = `
+            التالي
+            <span>←</span>
+        `;
+
+    }
+
+
+    finalQuizPrevious.innerHTML = `
+        <span>→</span>
+        السابق
+    `;
+}
+
+
+/* =========================================================
+   NEXT
+   ========================================================= */
+
+finalQuizNext.addEventListener(
+    "click",
+    () => {
+
+        const totalQuestions =
+            activeFinalQuizQuestions.length;
+
+
+        const isLast =
+            activeFinalQuizIndex ===
+            totalQuestions - 1;
+
+
+        if (isLast) {
+
+            showFinalQuizScore();
+
+            return;
+        }
+
+
+        activeFinalQuizIndex++;
+
+
+        renderFinalQuizQuestion();
+    }
+);
+
+
+/* =========================================================
+   PREVIOUS
+   ========================================================= */
+
+finalQuizPrevious.addEventListener(
+    "click",
+    () => {
+
+        if (
+            activeFinalQuizIndex === 0
+        ) {
+            return;
+        }
+
+
+        activeFinalQuizIndex--;
+
+
+        renderFinalQuizQuestion();
+    }
+);
+
+
+/* =========================================================
+   SHOW SCORE
+   ========================================================= */
+
+function showFinalQuizScore() {
+
+    finalQuizFinished = true;
+
+    const totalQuestions =
+        activeFinalQuizQuestions.length;
+
+    finalQuizQuestionNumber.textContent =
+        "Quiz Complete";
+
+    finalQuizProgressFill.style.width =
+        "100%";
+
+    finalQuizQuestion.textContent =
+        "";
+
+    finalQuizResult.textContent =
+        "";
+
+    finalQuizAnswers.innerHTML = `
+
+        <div class="final-quiz-score-screen">
+
+            <div class="final-quiz-score-label">
+                النتيجة النهائية
+            </div>
+
+            <div class="final-quiz-score">
+                ${activeFinalQuizScore} / ${totalQuestions}
+            </div>
+
+            <button
+                type="button"
+                class="final-quiz-restart"
+                id="finalQuizRestart"
+            >
+                إعادة الاختبار
+            </button>
+
         </div>
-
-        <h4>
-            ${finalQuiz.title}
-        </h4>
-
-        <p>
-            ${finalQuiz.description}
-        </p>
-
-        <button
-            class="course-btn final-quiz-btn"
-            type="button"
-        >
-            ${finalQuiz.buttonText}
-        </button>
 
     `;
 
-    courseGrid.appendChild(finalCard);
+    finalQuizPrevious.style.display =
+        "none";
 
+    finalQuizNext.style.display =
+        "none";
 
-    finalCard
-        .querySelector(".final-quiz-btn")
+    document
+        .getElementById("finalQuizRestart")
         .addEventListener(
             "click",
-            () => {
-
-                window.open(
-                    finalQuiz.url,
-                    "_blank",
-                    "noopener,noreferrer"
-                );
-
-            }
+            restartFinalQuiz
         );
-
 }
+
+
+/* =========================================================
+   RESTART
+   ========================================================= */
+
+function restartFinalQuiz() {
+
+    const quiz =
+        FINAL_QUIZZES[
+            activeFinalQuizType
+        ];
+
+
+    if (!quiz) {
+        return;
+    }
+
+
+    activeFinalQuizQuestions =
+        quiz.questions;
+
+
+    activeFinalQuizIndex =
+        0;
+
+
+    activeFinalQuizAnswers =
+        new Array(
+            activeFinalQuizQuestions.length
+        ).fill(null);
+
+
+    activeFinalQuizScore =
+        0;
+
+
+    finalQuizFinished =
+        false;
+
+
+    finalQuizPrevious.style.display =
+        "";
+
+
+    finalQuizNext.style.display =
+        "";
+
+
+    finalQuizSectionLabel.textContent =
+        quiz.title;
+
+
+    finalQuizTitle.textContent =
+        quiz.title;
+
+
+    renderFinalQuizQuestion();
+}
+
+
+/* =========================================================
+   CLOSE EVENTS
+   ========================================================= */
+
+finalQuizClose.addEventListener(
+    "click",
+    requestCloseFinalQuiz
+);
+
+
+/*
+   Clicking the dark blurred background
+   does NOT close the quiz.
+
+   The user must use X so they don't
+   accidentally lose their progress.
+*/
+
+
+/* =========================================================
+   ESCAPE KEY
+   ========================================================= */
+
+document.addEventListener(
+    "keydown",
+    (event) => {
+
+        if (
+            event.key !== "Escape"
+        ) {
+            return;
+        }
+
+
+        const confirmation =
+            document.getElementById(
+                "finalQuizExitConfirmation"
+            );
+
+
+        if (
+            confirmation &&
+            confirmation.classList.contains(
+                "active"
+            )
+        ) {
+
+            hideFinalQuizExitConfirmation();
+
+            return;
+
+        }
+
+
+        if (
+            finalQuizModal.classList.contains(
+                "active"
+            )
+        ) {
+
+            requestCloseFinalQuiz();
+
+        }
+
+    }
+);
 
 lucide.createIcons();
