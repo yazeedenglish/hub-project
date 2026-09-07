@@ -807,6 +807,32 @@ select {
 }
 
 /* =========================================================
+   PDF INTERNAL LINKS
+========================================================= */
+
+.pdf-link-layer {
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 3;
+
+    pointer-events: none;
+}
+
+.pdf-link {
+    display: block;
+
+    pointer-events: auto;
+
+    position: absolute;
+
+    cursor: pointer;
+
+    background: transparent;
+}
+
+/* =========================================================
    ANNOTATION CANVAS
 ========================================================= */
 

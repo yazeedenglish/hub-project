@@ -1099,7 +1099,7 @@ function applyTheme(theme) {
         document.body.classList.add("dark");
 
         if (themeIcon) {
-            themeIcon.textContent = "☀";
+            themeIcon.textContent = "☀️";
         }
 
         if (themeToggle) {
@@ -1114,7 +1114,7 @@ function applyTheme(theme) {
         document.body.classList.remove("dark");
 
         if (themeIcon) {
-            themeIcon.textContent = "☾";
+            themeIcon.textContent = "🌙";
         }
 
         if (themeToggle) {

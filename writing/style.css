@@ -807,6 +807,32 @@ select {
 }
 
 /* =========================================================
+   PDF INTERNAL LINKS
+========================================================= */
+
+.pdf-link-layer {
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 3;
+
+    pointer-events: none;
+}
+
+.pdf-link {
+    display: block;
+
+    pointer-events: auto;
+
+    position: absolute;
+
+    cursor: pointer;
+
+    background: transparent;
+}
+
+/* =========================================================
    ANNOTATION CANVAS
 ========================================================= */
 
@@ -1544,5 +1570,31 @@ body[data-reader-mode="hand"] .textLayer {
         font-size:
             12px;
     }
+}
+
+.color-drawer {
+    display: flex;
+    gap: 8px;
+    padding: 10px;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+}
+
+.color-option {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 2px solid #ddd;
+    cursor: pointer;
+    padding: 0;
+}
+
+.color-option:hover {
+    transform: scale(1.1);
+}
+
+.color-drawer.hidden {
+    display: none;
 }
 
