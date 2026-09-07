@@ -306,7 +306,7 @@ function renderCourses() {
                     course.url;
 
                 enter.textContent =
-                    "دخول الدورة";
+                    "دخول";
 
                 actions.appendChild(
                     enter
