@@ -2141,6 +2141,11 @@ penTool.addEventListener(
             "pen"
         );
 
+
+        colorDrawer.classList.toggle(
+            "hidden"
+        );
+
     }
 );
 
@@ -2311,6 +2316,34 @@ function getPageAnnotations(
    ANNOTATION CANVAS
 ========================================================= */
 
+let currentDrawColor = "#dc2626";
+    
+
+const colorDrawer =
+    document.getElementById("colorDrawer");
+
+
+document
+    .querySelectorAll(".color-option")
+    .forEach(button => {
+
+        button.addEventListener(
+            "click",
+            () => {
+
+                currentDrawColor =
+                    button.dataset.color;
+
+
+                colorDrawer.classList.add(
+                    "hidden"
+                );
+
+            }
+        );
+
+    });
+
 function setupAnnotationCanvas(
     canvas,
     pageContainer,
@@ -2363,15 +2396,18 @@ function setupAnnotationCanvas(
 
                 activeDrawing = {
 
-                    pageNumber,
+    pageNumber,
 
-                    points:
-                        [point],
+    points:
+        [point],
 
-                    width:
-                        4
+    width:
+        4,
 
-                };
+    color:
+        currentDrawColor
+
+};
 
 
                 redrawAnnotations(
@@ -2758,7 +2794,7 @@ function drawStrokeOnContext(
 
 
     ctx.strokeStyle =
-        "#dc2626";
+    stroke.color || "#dc2626";
 
 
     ctx.lineWidth =

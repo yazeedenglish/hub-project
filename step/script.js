@@ -1041,7 +1041,7 @@ const FINAL_QUIZZES = {
         questions: [
 
     {
-        question: "What are you .......... home?",
+        question: "What are you doing .......... home?",
         answers: [
             "in",
             "at",
