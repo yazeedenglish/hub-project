@@ -348,8 +348,8 @@ button {
 }
 
 .finish-btn {
-    background: var(--ink);
-    color: var(--indigo);
+    background: var(--indigo);
+    color: var(--paper);
     border: none;
 }
 
