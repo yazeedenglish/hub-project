@@ -3236,7 +3236,7 @@ if (examSimulatorBtn) {
         () => {
 
             window.location.href =
-                "https://step.yazeedenglish.com";
+                "https://hub.yazeedenglish.com/step/exam";
 
         }
     );
