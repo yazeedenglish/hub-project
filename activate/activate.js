@@ -3,76 +3,41 @@
    FRONTEND ONLY
 ========================================================= */
 
-
-/* =========================================================
-   ACCESS CODES
-========================================================= */
-
 const ACCESS_CODES = {
-
     step: "111111",
-
     english: "222222",
-
-    trab6: "333333",
-
-    writing: "444444"
-
+    trab6: "381625",
+    writing: "927461"
 };
-
-
-/* =========================================================
-   COURSE URLS
-========================================================= */
 
 const COURSE_URLS = {
-
     step: "/step/",
-
     english: "/course/",
-
     trab6: "/trab6/",
-
     writing: "/writing/"
-
 };
-
-
-/* =========================================================
-   SETTINGS
-========================================================= */
 
 const ACCESS_STORAGE_KEY =
     "yazeed_current_access";
-
 
 const ACCESS_DURATION =
     30 * 24 * 60 * 60 * 1000;
 
 
-/* =========================================================
-   ELEMENTS
-========================================================= */
-
 const form =
     document.getElementById("accessForm");
-
 
 const message =
     document.getElementById("message");
 
-
 const orderNumberInput =
     document.getElementById("orderNumber");
-
 
 const accessCodeInput =
     document.getElementById("accessCode");
 
-
 const consentInput =
     document.getElementById("consent");
-
 
 const consentError =
     document.getElementById("consentError");
@@ -88,48 +53,29 @@ form.addEventListener(
 
         event.preventDefault();
 
-
         const orderNumber =
-            orderNumberInput
-                .value
-                .trim();
-
+            orderNumberInput.value.trim();
 
         const accessCode =
-            accessCodeInput
-                .value
-                .trim();
-
+            accessCodeInput.value.trim();
 
         const consent =
             consentInput.checked;
 
 
-        /* -----------------------------------------
-           HIDE OLD ERRORS
-        ----------------------------------------- */
-
         if (consentError) {
-
             consentError.style.display =
                 "none";
-
         }
-
 
         message.textContent = "";
 
 
-        /* -----------------------------------------
-           ORDER NUMBER
-           EXACTLY 9 DIGITS
-        ----------------------------------------- */
+        /* =================================================
+           CHECK ORDER NUMBER
+        ================================================= */
 
-        if (
-            !/^\d{9}$/.test(
-                orderNumber
-            )
-        ) {
+        if (!/^\d{9}$/.test(orderNumber)) {
 
             message.textContent =
                 "رقم الطلب يجب أن يتكون من 9 أرقام.";
@@ -138,9 +84,9 @@ form.addEventListener(
         }
 
 
-        /* -----------------------------------------
-           ACCESS CODE
-        ----------------------------------------- */
+        /* =================================================
+           CHECK ACCESS CODE
+        ================================================= */
 
         if (!accessCode) {
 
@@ -151,29 +97,26 @@ form.addEventListener(
         }
 
 
-        /* -----------------------------------------
-           CONSENT
-        ----------------------------------------- */
+        /* =================================================
+           CHECK CONSENT
+        ================================================= */
 
         if (!consent) {
 
             if (consentError) {
-
                 consentError.style.display =
                     "flex";
-
             }
 
             return;
         }
 
 
-        /* -----------------------------------------
-           FIND PRODUCT
-        ----------------------------------------- */
+        /* =================================================
+           FIND PRODUCT FROM ACCESS CODE
+        ================================================= */
 
         let selectedProduct = null;
-
 
         for (
             const product in ACCESS_CODES
@@ -188,15 +131,9 @@ form.addEventListener(
                     product;
 
                 break;
-
             }
-
         }
 
-
-        /* -----------------------------------------
-           INVALID ACCESS CODE
-        ----------------------------------------- */
 
         if (!selectedProduct) {
 
@@ -207,20 +144,78 @@ form.addEventListener(
         }
 
 
-        /* -----------------------------------------
-           CREATE ACCESS SESSION
-        ----------------------------------------- */
+        /* =================================================
+           GET EXISTING ACCESS
+        ================================================= */
 
-        const accessData = {
+        let accessData = null;
 
-            orderNumber:
-                orderNumber,
+        const savedAccess =
+            localStorage.getItem(
+                ACCESS_STORAGE_KEY
+            );
 
-            product:
-                selectedProduct,
 
-            consentAccepted:
-                true,
+        if (savedAccess) {
+
+            try {
+
+                accessData =
+                    JSON.parse(savedAccess);
+
+            } catch (error) {
+
+                console.error(
+                    "Invalid saved access:",
+                    error
+                );
+
+                accessData = null;
+            }
+        }
+
+
+        /* =================================================
+           CREATE NEW ACCESS IF NEEDED
+        ================================================= */
+
+        if (
+            !accessData ||
+            accessData.orderNumber !== orderNumber
+        ) {
+
+            accessData = {
+
+                orderNumber:
+                    orderNumber,
+
+                products: {},
+
+                consentAccepted:
+                    true
+
+            };
+
+        }
+
+
+        /* =================================================
+           MAKE SURE PRODUCTS EXISTS
+        ================================================= */
+
+        if (!accessData.products) {
+            accessData.products = {};
+        }
+
+
+        /* =================================================
+           ADD THE NEW COURSE
+           WITHOUT REMOVING OTHER COURSES
+        ================================================= */
+
+        accessData.products[selectedProduct] = {
+
+            active: true,
 
             activatedAt:
                 Date.now(),
@@ -232,31 +227,26 @@ form.addEventListener(
         };
 
 
-        /* -----------------------------------------
-           SAVE SESSION
-        ----------------------------------------- */
+        accessData.consentAccepted =
+            true;
+
+
+        /* =================================================
+           SAVE ALL ACTIVE COURSES
+        ================================================= */
 
         localStorage.setItem(
-
             ACCESS_STORAGE_KEY,
-
-            JSON.stringify(
-                accessData
-            )
-
+            JSON.stringify(accessData)
         );
 
 
-        /* -----------------------------------------
-           REDIRECT
-        ----------------------------------------- */
+        /* =================================================
+           GO TO ACTIVATED COURSE
+        ================================================= */
 
         window.location.replace(
-
-            COURSE_URLS[
-                selectedProduct
-            ]
-
+            COURSE_URLS[selectedProduct]
         );
 
     }

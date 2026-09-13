@@ -201,9 +201,12 @@ function renderCourses() {
         function (course, index) {
 
             const isActive =
-                access &&
-                access.products &&
-                access.products[course.key] === true;
+    access &&
+    access.products &&
+    access.products[course.key] &&
+    access.products[course.key].active === true &&
+    access.products[course.key].expiresAt &&
+    Date.now() < access.products[course.key].expiresAt;
 
             const card =
                 document.createElement("article");
