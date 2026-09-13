@@ -13,7 +13,7 @@ const ACCESS_STORAGE_KEY =
     "yazeed_current_access";
 
 const ACCESS_DURATION =
-    30 * 24 * 60 * 60 * 1000;
+    90 * 24 * 60 * 60 * 1000;
 
 const COURSE_URLS = {
     step: "/step/",
