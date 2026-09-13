@@ -4,6 +4,9 @@
 
 const STORE_URL = "https://yazeedenglish.com";
 
+const logoutButton =
+    document.getElementById("logoutButton");
+
 /* =========================================================
    COURSES
 ========================================================= */
@@ -461,6 +464,45 @@ themeToggle.addEventListener(
     }
 );
 
+/* =========================================================
+   LOGOUT
+========================================================= */
+
+function updateLogoutButton() {
+
+    if (!logoutButton) {
+        return;
+    }
+
+    const savedAccess =
+        localStorage.getItem(
+            "yazeed_current_access"
+        );
+
+    logoutButton.style.display =
+        savedAccess
+            ? "block"
+            : "none";
+}
+
+
+if (logoutButton) {
+
+    logoutButton.addEventListener(
+        "click",
+        function () {
+
+            localStorage.removeItem(
+                "yazeed_current_access"
+            );
+
+            renderCourses();
+
+            updateLogoutButton();
+        }
+    );
+}
+
 
 /* =========================================================
    START
@@ -469,6 +511,8 @@ themeToggle.addEventListener(
 applyTheme();
 
 renderCourses();
+
+updateLogoutButton();
 
 
 window.addEventListener(

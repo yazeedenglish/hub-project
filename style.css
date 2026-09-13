@@ -114,6 +114,8 @@ a {
 .theme-buttons {
     display: flex;
     align-items: center;
+    flex-direction: row-reverse;
+    gap: 10px;
 }
 
 .theme-btn {
@@ -787,4 +789,23 @@ a {
         height: 190px;
     }
 
+}
+
+.logout-button {
+    display: none;
+    border: 1px solid var(--line);
+    background: transparent;
+    color: var(--ink);
+    padding: 9px 16px;
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.logout-button:hover {
+    border-color: var(--indigo);
+    transform: translateY(-2px);
 }
