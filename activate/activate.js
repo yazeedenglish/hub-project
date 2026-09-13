@@ -1,25 +1,53 @@
 /* =========================================================
    YAZEED ENGLISH — CUSTOMER ACTIVATION
-   SUPABASE VERSION
+   FRONTEND ONLY
 ========================================================= */
 
 
 /* =========================================================
-   SUPABASE CONFIG
+   ACCESS CODES
 ========================================================= */
 
-const SUPABASE_URL =
-    "https://mldejpjuluiavdhdumqa.supabase.co";
+const ACCESS_CODES = {
 
-const SUPABASE_PUBLISHABLE_KEY =
-    "sb_publishable_4CSu5Xqo99OK5o4EJom_Pg_tvelza_h";
+    step: "111111",
+
+    english: "222222",
+
+    trab6: "333333",
+
+    writing: "444444"
+
+};
 
 
-const supabaseClient =
-    window.supabase.createClient(
-        SUPABASE_URL,
-        SUPABASE_PUBLISHABLE_KEY
-    );
+/* =========================================================
+   COURSE URLS
+========================================================= */
+
+const COURSE_URLS = {
+
+    step: "/step/",
+
+    english: "/course/",
+
+    trab6: "/trab6/",
+
+    writing: "/writing/"
+
+};
+
+
+/* =========================================================
+   SETTINGS
+========================================================= */
+
+const ACCESS_STORAGE_KEY =
+    "yazeed_current_access";
+
+
+const ACCESS_DURATION =
+    30 * 24 * 60 * 60 * 1000;
 
 
 /* =========================================================
@@ -29,8 +57,25 @@ const supabaseClient =
 const form =
     document.getElementById("accessForm");
 
+
 const message =
     document.getElementById("message");
+
+
+const orderNumberInput =
+    document.getElementById("orderNumber");
+
+
+const accessCodeInput =
+    document.getElementById("accessCode");
+
+
+const consentInput =
+    document.getElementById("consent");
+
+
+const consentError =
+    document.getElementById("consentError");
 
 
 /* =========================================================
@@ -39,193 +84,180 @@ const message =
 
 form.addEventListener(
     "submit",
-    async function (event) {
+    function (event) {
 
         event.preventDefault();
 
 
         const orderNumber =
-            document
-                .getElementById("orderNumber")
+            orderNumberInput
+                .value
+                .trim();
+
+
+        const accessCode =
+            accessCodeInput
                 .value
                 .trim();
 
 
         const consent =
-            document
-                .getElementById("consent")
-                .checked;
+            consentInput.checked;
 
 
         /* -----------------------------------------
-           VALIDATION
+           HIDE OLD ERRORS
         ----------------------------------------- */
 
-        if (!orderNumber) {
+        if (consentError) {
 
-            message.textContent =
-                "يرجى إدخال رقم الطلب.";
-
-            return;
+            consentError.style.display =
+                "none";
 
         }
 
+
+        message.textContent = "";
+
+
+        /* -----------------------------------------
+           ORDER NUMBER
+           EXACTLY 9 DIGITS
+        ----------------------------------------- */
+
+        if (
+            !/^\d{9}$/.test(
+                orderNumber
+            )
+        ) {
+
+            message.textContent =
+                "رقم الطلب يجب أن يتكون من 9 أرقام.";
+
+            return;
+        }
+
+
+        /* -----------------------------------------
+           ACCESS CODE
+        ----------------------------------------- */
+
+        if (!accessCode) {
+
+            message.textContent =
+                "يرجى إدخال رمز الوصول.";
+
+            return;
+        }
+
+
+        /* -----------------------------------------
+           CONSENT
+        ----------------------------------------- */
 
         if (!consent) {
 
-            message.textContent =
-                "يجب الموافقة على التعهد للمتابعة.";
+            if (consentError) {
+
+                consentError.style.display =
+                    "flex";
+
+            }
 
             return;
+        }
+
+
+        /* -----------------------------------------
+           FIND PRODUCT
+        ----------------------------------------- */
+
+        let selectedProduct = null;
+
+
+        for (
+            const product in ACCESS_CODES
+        ) {
+
+            if (
+                accessCode ===
+                ACCESS_CODES[product]
+            ) {
+
+                selectedProduct =
+                    product;
+
+                break;
+
+            }
 
         }
 
 
         /* -----------------------------------------
-           LOADING
+           INVALID ACCESS CODE
         ----------------------------------------- */
 
-        message.textContent =
-            "جارٍ التحقق من رقم الطلب...";
-
-
-        try {
-
-            /* -----------------------------------------
-               SECURE DATABASE FUNCTION
-            ----------------------------------------- */
-
-            const {
-                data,
-                error
-            } =
-                await supabaseClient
-                    .rpc(
-                        "get_order_access",
-                        {
-                            p_order_number:
-                                orderNumber
-                        }
-                    );
-
-
-            if (error) {
-
-                console.error(
-                    "Supabase error:",
-                    error
-                );
-
-                throw error;
-
-            }
-
-
-            /* -----------------------------------------
-               ORDER NOT FOUND
-            ----------------------------------------- */
-
-            if (
-                !data ||
-                data.length === 0
-            ) {
-
-                message.textContent =
-                    "رقم الطلب غير صحيح.";
-
-                return;
-
-            }
-
-
-            const order =
-                data[0];
-
-
-            /* -----------------------------------------
-               ORDER DEACTIVATED
-            ----------------------------------------- */
-
-            if (
-                order.active !== true
-            ) {
-
-                message.textContent =
-                    "هذا الطلب غير نشط حاليًا. يرجى التواصل معنا.";
-
-                return;
-
-            }
-
-
-            /* -----------------------------------------
-               CHECK COURSES
-            ----------------------------------------- */
-
-            const hasCourse =
-                order.step === true ||
-                order.english === true ||
-                order.trab6 === true ||
-                order.writing === true;
-
-
-            if (!hasCourse) {
-
-                message.textContent =
-                    "لا توجد دورات مفعلة لهذا الطلب.";
-
-                return;
-
-            }
-
-
-            /* -----------------------------------------
-               SAVE ACCESS
-            ----------------------------------------- */
-
-            const accessData = {
-
-                orderNumber:
-                    order.order_number,
-
-                consentAccepted:
-                    true,
-
-                products: {
-
-                    step:
-                        order.step === true,
-
-                    english:
-                        order.english === true,
-
-                    trab6:
-                        order.trab6 === true,
-
-                    writing:
-                        order.writing === true
-
-                }
-
-            };
-
-
-            localStorage.setItem(
-                "yazeed_current_access",
-                JSON.stringify(accessData)
-            );
-
-            window.location.replace("/");
-
-
-        } catch (error) {
-
-            console.error(error);
+        if (!selectedProduct) {
 
             message.textContent =
-                "حدث خطأ أثناء التحقق من الطلب.";
+                "رمز الوصول غير صحيح.";
 
+            return;
         }
+
+
+        /* -----------------------------------------
+           CREATE ACCESS SESSION
+        ----------------------------------------- */
+
+        const accessData = {
+
+            orderNumber:
+                orderNumber,
+
+            product:
+                selectedProduct,
+
+            consentAccepted:
+                true,
+
+            activatedAt:
+                Date.now(),
+
+            expiresAt:
+                Date.now() +
+                ACCESS_DURATION
+
+        };
+
+
+        /* -----------------------------------------
+           SAVE SESSION
+        ----------------------------------------- */
+
+        localStorage.setItem(
+
+            ACCESS_STORAGE_KEY,
+
+            JSON.stringify(
+                accessData
+            )
+
+        );
+
+
+        /* -----------------------------------------
+           REDIRECT
+        ----------------------------------------- */
+
+        window.location.replace(
+
+            COURSE_URLS[
+                selectedProduct
+            ]
+
+        );
 
     }
 );

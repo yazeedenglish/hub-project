@@ -92,7 +92,7 @@
         ================================================== -->
 
         <p class="access-description">
-           أدخل رقم الطلب لتفعيل المحتوى الخاص بك
+         أدخل رقم الطلب ورمز الوصول لتفعيل المحتوى
         </p>
 
 
@@ -107,19 +107,40 @@
                 class="order-label"
                 for="orderNumber"
             >
-                رقم الطلب
+
             </label>
 
 
             <input
-                class="password-input"
-                type="text"
-                id="orderNumber"
-                name="orderNumber"
-                placeholder="أدخل رقم الطلب"
-                autocomplete="off"
-                required
-            >
+    class="password-input"
+    type="text"
+    id="orderNumber"
+    name="orderNumber"
+    placeholder="أدخل رقم الطلب"
+    inputmode="numeric"
+    maxlength="9"
+    autocomplete="off"
+    required
+>
+
+<label
+    class="order-label"
+    for="accessCode"
+>
+
+</label>
+
+<input
+    class="password-input"
+    type="text"
+    id="accessCode"
+    name="accessCode"
+    placeholder="أدخل رمز الوصول"
+    inputmode="numeric"
+    maxlength="6"
+    autocomplete="off"
+    required
+>
 
 
             <!-- =============================================
@@ -189,15 +210,6 @@
 
 
 </div>
-
-
-<!-- =========================================================
-     SUPABASE
-========================================================== -->
-
-<script
-    src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
-></script>
 
 
 <!-- =========================================================
