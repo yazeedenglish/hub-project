@@ -4,10 +4,10 @@
 ========================================================= */
 
 const ACCESS_CODES = {
-    step: "111111",
-    english: "222222",
-    trab6: "381625",
-    writing: "927461"
+    step: "512731",
+    english: "705164",
+    trab6: "317826",
+    writing: "654209"
 };
 
 const COURSE_URLS = {
@@ -78,7 +78,7 @@ form.addEventListener(
         if (!/^\d{9}$/.test(orderNumber)) {
 
             message.textContent =
-                "رقم الطلب يجب أن يتكون من 9 أرقام.";
+                "رقم الطلب أو رمز الوصول غير صحيح";
 
             return;
         }
@@ -138,7 +138,7 @@ form.addEventListener(
         if (!selectedProduct) {
 
             message.textContent =
-                "رمز الوصول غير صحيح.";
+                "رقم الطلب أو رمز الوصول غير صحيح";
 
             return;
         }

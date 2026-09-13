@@ -27,7 +27,7 @@ const COURSES = {
             "https://yazeedenglish.com/ar/%D9%83%D8%AA%D8%A7%D8%A8-%D8%A7%D8%AE%D8%AA%D8%A8%D8%A7%D8%B1-%D8%B3%D8%AA%D9%8A%D8%A8-step/p788306677",
 
         image:
-            "images/step.png",
+            "https://file.yazeedenglish.com/STEP-Cover.png",
 
         fallback:
             "STEP"
@@ -48,7 +48,7 @@ const COURSES = {
             "https://yazeedenglish.com/ar/%D9%83%D8%AA%D8%A7%D8%A8-%D8%AF%D9%84%D9%8A%D9%84-%D8%A7%D9%84%D8%A7%D9%86%D8%AC%D9%84%D9%8A%D8%B2%D9%8A%D8%A9-%D8%A7%D9%84%D8%B4%D8%A7%D9%85%D9%84/p295866233",
 
         image:
-            "images/english.png",
+            "https://file.yazeedenglish.com/english.png",
 
         fallback:
             "EN"
@@ -69,7 +69,7 @@ const COURSES = {
             "https://yazeedenglish.com/ar/%D9%83%D8%AA%D8%A7%D8%A8-%D8%AA%D8%B1%D8%A7%D8%A8%D8%B7-%D8%A7%D9%84%D9%83%D9%84%D9%85%D8%A7%D8%AA/p331712928",
 
         image:
-            "images/trab6.png",
+            "https://file.yazeedenglish.com/trab6.png",
 
         fallback:
             "ترابط الكلمات"

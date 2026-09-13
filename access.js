@@ -3,10 +3,10 @@
 ========================================================= */
 
 const ACCESS_CODES = {
-    step: "111111",
-    english: "222222",
-    trab6: "381625",
-    writing: "927461"
+    step: "512731",
+    english: "705164",
+    trab6: "317826",
+    writing: "654209"
 };
 
 const ACCESS_STORAGE_KEY =

@@ -693,3 +693,8 @@
             transition: none !important;
         }
     }
+
+    .access-logo {
+    font-size: 27px;
+    line-height: 1;
+}
