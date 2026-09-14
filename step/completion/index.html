@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>شهادة إكمال دورة STEP | Yazeed English</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <main class="page">
+
+        <!-- =========================
+             INTRO
+        ========================== -->
+
+        <section class="intro-section" id="introSection">
+
+            <div class="brand">
+                YAZEED ENGLISH
+            </div>
+
+            <div class="intro-icon">
+                🏆
+            </div>
+
+            <h1>
+               شهادة إتمام الدورة
+            </h1>
+
+            <p class="intro-text">
+         أدخل اسمك لتحصل على شهادة إتمام الدورة
+            </p>
+
+
+            <div class="selection-box">
+
+                <h2>
+                    أكمل بيانات الشهادة
+                </h2>
+
+
+                <!-- NAME -->
+
+                <label for="studentName">
+                    الاسم
+                </label>
+
+                <input
+                    type="text"
+                    id="studentName"
+                    placeholder="اكتب اسمك هنا"
+                    maxlength="40"
+                    autocomplete="name"
+                >
+
+
+                <p
+                    class="error-message"
+                    id="errorMessage"
+                ></p>
+
+
+                <button
+                    id="showAchievement"
+                    class="primary-button"
+                    type="button"
+                >
+                    عرض شهادتي
+                    <span>←</span>
+                </button>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             CERTIFICATE
+        ========================== -->
+
+        <section
+            class="achievement-section hidden"
+            id="achievementSection"
+        >
+
+            <div class="achievement-header">
+
+                <div class="success-icon">
+                    ✓
+                </div>
+
+                <p class="eyebrow">
+                    YAZEED ENGLISH
+                </p>
+
+                <h1>
+                    مبروك، <span id="displayName"></span>!
+                </h1>
+
+                <p>
+                   أتممت دورة اختبار ستيب من منصة يزيد للانجليزية
+                </p>
+
+            </div>
+
+            <!-- =========================
+                 CERTIFICATE
+            ========================== -->
+
+            <div class="certificate-wrapper">
+
+                <div
+                    class="certificate"
+                    id="certificate"
+                >
+
+                    <div class="certificate-top">
+
+                        <span>
+                            منصة يزيد للانجليزية
+                        </span>
+
+                        <span>
+                            STEP Course
+                        </span>
+
+                    </div>
+
+
+                    <div class="certificate-content">
+
+                        <div class="certificate-medal">
+                            🏆
+                        </div>
+
+                        <p class="certificate-label">
+                            شهادة إتمام الدورة
+                        </p>
+
+
+                        <h2 id="certificateName">
+                            اسم الطالب
+                        </h2>
+
+
+                        <p class="certificate-description">
+قد أتم بنجاح دورة التجهيز لاختبار ستيب والتي تتضمن أكثر من 100 مقطع تعليمي
+                           
+                        </p>
+
+
+                        <div class="certificate-line"></div>
+
+
+                        <!-- SCORE -->
+
+                        <div class="certificate-score">
+
+                            <span>
+وقد حصل على درجة
+                            </span>
+
+                            <strong id="certificateScore">
+                                0
+                            </strong>
+
+                            <small>
+                                / 100
+                            </small>
+
+                             <span>
+                               في الاختبار المحاكي
+                            </span>
+
+                        </div>
+
+
+                        <div class="certificate-details">
+
+    <div>
+        <strong>9+</strong>
+        <span>ساعات تعليمية</span>
+    </div>
+
+    <div>
+        <strong>250+</strong>
+        <span>صفحة تعليمية</span>
+    </div>
+
+</div>
+
+</div>
+
+
+                    <div class="certificate-bottom">
+
+                        <span> 
+                            إنجاز يستحق أن تفتخر به
+                        </span>
+
+                        <span id="certificateDate">
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- =========================
+                 ACTIONS
+            ========================== -->
+
+            <div class="actions">
+
+                <button
+                    id="downloadCertificate"
+                    class="primary-button"
+                    type="button"
+                >
+                    تحميل الشهادة
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+        Yazeed English
+    </footer>
+
+
+    <!-- html2canvas -->
+
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js">
+    </script>
+
+<script src="../../access.js"></script>
+
+<script>
+    initializeCourseAccess("step");
+</script>
+
+<script src="script.js"></script>
+
+</body>
+
+</html>

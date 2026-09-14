@@ -1098,9 +1098,6 @@ const progressBar =
 const themeBtn =
     document.getElementById("themeBtn");
 
-const courseCta =
-    document.getElementById("courseCta");
-
 const clapAudio =
     document.getElementById("clapAudio");
 
@@ -2762,12 +2759,6 @@ function finishExam(timeExpired = false) {
         التسويق حاليًا للدرجات 0–40.
         تستطيع تعديل هذا الشرط لاحقًا.
     */
-
-    courseCta.classList.toggle(
-        "hidden",
-        scores.total > 80
-    );
-
 
     showPage(
         resultPage
