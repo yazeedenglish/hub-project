@@ -73,38 +73,6 @@ showAchievementButton.addEventListener(
             return;
         }
 
-
-        /* =========================
-           GET EXAM SCORE
-        ========================= */
-
-        const savedScore =
-            localStorage.getItem("stepExamScore");
-
-
-        const score =
-            Number(savedScore);
-
-
-        /* =========================
-           VALIDATE SCORE
-        ========================= */
-
-        if (
-            savedScore === null ||
-            savedScore === "" ||
-            !Number.isFinite(score) ||
-            score < 0 ||
-            score > 100
-        ) {
-
-            errorMessage.textContent =
-                "لم يتم العثور على نتيجة الاختبار المحاكي.";
-
-            return;
-        }
-
-
         /* =========================
            NAME
         ========================= */
@@ -114,14 +82,6 @@ showAchievementButton.addEventListener(
 
         certificateName.textContent =
             name;
-
-
-        /* =========================
-           SCORE
-        ========================= */
-
-        certificateScore.textContent =
-            score;
 
         /* =========================
            DATE
