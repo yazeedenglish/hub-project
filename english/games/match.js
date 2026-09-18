@@ -1,52 +1,229 @@
 /* =========================================================
+   YAZEED ENGLISH
    GAME: MATCH WORDS
+========================================================= */
+
+
+/* =========================================================
+   WORD BANK
+   Add your 100 words here
 ========================================================= */
 
 const MATCH_WORDS = [
 
-    {
-        english: "Apple",
-        arabic: "تفاحة"
-    },
+    { english: "Apple", arabic: "تفاحة" },
+    { english: "Book", arabic: "كتاب" },
+    { english: "House", arabic: "منزل" },
+    { english: "Water", arabic: "ماء" },
+    { english: "School", arabic: "مدرسة" },
+    { english: "Friend", arabic: "صديق" },
+    { english: "Family", arabic: "عائلة" },
+    { english: "Morning", arabic: "صباح" },
+    { english: "Food", arabic: "طعام" },
+    { english: "Window", arabic: "نافذة" },
 
-    {
-        english: "Book",
-        arabic: "كتاب"
-    },
+    { english: "Teacher", arabic: "معلم" },
+    { english: "Student", arabic: "طالب" },
+    { english: "Happy", arabic: "سعيد" },
+    { english: "Strong", arabic: "قوي" },
+    { english: "Fast", arabic: "سريع" },
+    { english: "Beautiful", arabic: "جميل" },
+    { english: "Important", arabic: "مهم" },
+    { english: "Question", arabic: "سؤال" },
+    { english: "Answer", arabic: "إجابة" },
+    { english: "Problem", arabic: "مشكلة" },
 
-    {
-        english: "House",
-        arabic: "منزل"
-    },
+    { english: "Improve", arabic: "يحسن" },
+    { english: "Choose", arabic: "يختار" },
+    { english: "Remember", arabic: "يتذكر" },
+    { english: "Understand", arabic: "يفهم" },
+    { english: "Practice", arabic: "يتدرب" },
+    { english: "Different", arabic: "مختلف" },
+    { english: "Possible", arabic: "ممكن" },
+    { english: "Experience", arabic: "خبرة" },
+    { english: "Knowledge", arabic: "معرفة" },
+    { english: "Success", arabic: "نجاح" },
 
-    {
-        english: "Teacher",
-        arabic: "معلم"
-    },
+    { english: "Reason", arabic: "سبب" },
+    { english: "Example", arabic: "مثال" },
+    { english: "Decision", arabic: "قرار" },
+    { english: "Purpose", arabic: "هدف" },
+    { english: "Result", arabic: "نتيجة" },
+    { english: "Develop", arabic: "يطور" },
+    { english: "Increase", arabic: "يزيد" },
+    { english: "Reduce", arabic: "يقلل" },
+    { english: "Prepare", arabic: "يستعد" },
+    { english: "Continue", arabic: "يستمر" },
 
-    {
-        english: "Beautiful",
-        arabic: "جميل"
-    },
+    { english: "Achieve", arabic: "يحقق" },
+    { english: "Require", arabic: "يتطلب" },
+    { english: "Determine", arabic: "يحدد" },
+    { english: "Consider", arabic: "يعتبر" },
+    { english: "Maintain", arabic: "يحافظ على" },
+    { english: "Approach", arabic: "نهج" },
+    { english: "Challenge", arabic: "تحدي" },
+    { english: "Opportunity", arabic: "فرصة" },
+    { english: "Environment", arabic: "بيئة" },
+    { english: "Available", arabic: "متاح" },
 
-    {
-        english: "Important",
-        arabic: "مهم"
-    }
+    { english: "Essential", arabic: "أساسي" },
+    { english: "Significant", arabic: "مهم للغاية" },
+    { english: "Consequences", arabic: "عواقب" },
+    { english: "Reliable", arabic: "موثوق" },
+    { english: "Advantage", arabic: "ميزة" },
+    { english: "Influence", arabic: "تأثير" },
+    { english: "Specific", arabic: "محدد" },
+    { english: "Accurate", arabic: "دقيق" },
+    { english: "Effective", arabic: "فعال" },
+    { english: "Relevant", arabic: "ذو صلة" },
+
+    { english: "Allow", arabic: "يسمح" },
+    { english: "Avoid", arabic: "يتجنب" },
+    { english: "Believe", arabic: "يعتقد" },
+    { english: "Describe", arabic: "يصف" },
+    { english: "Explain", arabic: "يشرح" },
+    { english: "Suggest", arabic: "يقترح" },
+    { english: "Support", arabic: "يدعم" },
+    { english: "Provide", arabic: "يوفر" },
+    { english: "Include", arabic: "يشمل" },
+    { english: "Create", arabic: "ينشئ" },
+
+    { english: "Compare", arabic: "يقارن" },
+    { english: "Identify", arabic: "يحدد" },
+    { english: "Mention", arabic: "يذكر" },
+    { english: "Accept", arabic: "يقبل" },
+    { english: "Refuse", arabic: "يرفض" },
+    { english: "Depend", arabic: "يعتمد" },
+    { english: "Prevent", arabic: "يمنع" },
+    { english: "Protect", arabic: "يحمي" },
+    { english: "Establish", arabic: "يؤسس" },
+    { english: "Recognize", arabic: "يتعرف على" },
+
+    { english: "Recommend", arabic: "يوصي" },
+    { english: "Replace", arabic: "يستبدل" },
+    { english: "Discover", arabic: "يكتشف" },
+    { english: "Analyze", arabic: "يحلل" },
+    { english: "Appropriate", arabic: "مناسب" },
+    { english: "Beneficial", arabic: "مفيد" },
+    { english: "Complex", arabic: "معقد" },
+    { english: "Efficient", arabic: "كفؤ" },
+    { english: "Frequent", arabic: "متكرر" },
+    { english: "Potential", arabic: "محتمل" },
+
+    { english: "Require", arabic: "يتطلب" },
+    { english: "Achieve", arabic: "يحقق" },
+    { english: "Analyze", arabic: "يحلل" },
+    { english: "Determine", arabic: "يحدد" },
+    { english: "Establish", arabic: "يؤسس" },
+    { english: "Maintain", arabic: "يحافظ على" },
+    { english: "Recommend", arabic: "يوصي" },
+    { english: "Significant", arabic: "مهم للغاية" },
+    { english: "Advantage", arabic: "ميزة" },
+    { english: "Evidence", arabic: "دليل" }
 
 ];
 
 
+/* =========================================================
+   SHUFFLE
+========================================================= */
+
+function shuffleMatch(array) {
+
+    const result = [...array];
+
+    for (let i = result.length - 1; i > 0; i--) {
+
+        const j =
+            Math.floor(
+                Math.random() * (i + 1)
+            );
+
+        [
+            result[i],
+            result[j]
+        ] = [
+            result[j],
+            result[i]
+        ];
+    }
+
+    return result;
+}
+
+
+/* =========================================================
+   START GAME
+========================================================= */
+
 window.startMatchGame = function(container) {
 
-    let index = 0;
+    let questions = [];
+
+    let currentIndex = 0;
 
     let score = 0;
 
+    let streak = 0;
+
+    let answered = false;
+
+
+    /* =====================================================
+       FINISH GAME WITH X
+    ===================================================== */
+
+    window.finishCurrentGame = function () {
+
+        if (window.matchGameFinished) {
+
+            closeGame();
+
+            return;
+        }
+
+        window.matchGameFinished = true;
+
+        renderResult();
+
+    };
+
+
+    /* =====================================================
+       START / RESTART
+    ===================================================== */
+
+    function startGame() {
+
+        window.matchGameFinished = false;
+
+        questions =
+            shuffleMatch(MATCH_WORDS);
+
+        currentIndex = 0;
+
+        score = 0;
+
+        streak = 0;
+
+        answered = false;
+
+        renderQuestion();
+
+    }
+
+
+    /* =====================================================
+       RENDER QUESTION
+    ===================================================== */
 
     function renderQuestion() {
 
-        if (index >= MATCH_WORDS.length) {
+        if (
+            currentIndex >= questions.length
+        ) {
+
+            window.matchGameFinished = true;
 
             renderResult();
 
@@ -55,41 +232,47 @@ window.startMatchGame = function(container) {
 
 
         const current =
-            MATCH_WORDS[index];
+            questions[currentIndex];
 
 
-        const otherWords =
-            MATCH_WORDS
-                .filter(
+        answered = false;
+
+
+        const wrongAnswers =
+            shuffleMatch(
+
+                MATCH_WORDS.filter(
                     word =>
-                        word.arabic !== current.arabic
+                        word.english !==
+                        current.english
                 )
-                .sort(
-                    () => Math.random() - 0.5
-                )
-                .slice(0, 3);
+
+            ).slice(0, 3);
 
 
-        const options = [
-            current,
-            ...otherWords
-        ].sort(
-            () => Math.random() - 0.5
-        );
+        const options =
+            shuffleMatch([
+                current,
+                ...wrongAnswers
+            ]);
 
 
         container.innerHTML = `
 
-            <div class="game-screen">
+            <div class="game-screen match-screen">
 
                 <div class="game-progress">
 
                     <span>
-                        ${index + 1} / ${MATCH_WORDS.length}
+                        ${currentIndex + 1} / ${questions.length}
                     </span>
 
                     <span class="game-score">
                         النقاط: ${score}
+                    </span>
+
+                    <span class="game-streak">
+                        🔥 ${streak}
                     </span>
 
                 </div>
@@ -113,7 +296,7 @@ window.startMatchGame = function(container) {
                             <button
                                 type="button"
                                 class="game-option"
-                                data-answer="${option.arabic}"
+                                data-answer="${option.english}"
                             >
                                 ${option.arabic}
                             </button>
@@ -123,71 +306,252 @@ window.startMatchGame = function(container) {
 
                 </div>
 
+
+                <div
+                    class="match-feedback"
+                    aria-live="polite"
+                ></div>
+
             </div>
 
         `;
 
 
-        container
-            .querySelectorAll(".game-option")
-            .forEach(button => {
+        setupAnswers(current);
+
+    }
+
+
+    /* =====================================================
+       ANSWERS
+    ===================================================== */
+
+    function setupAnswers(current) {
+
+        const buttons =
+            container.querySelectorAll(
+                ".game-option"
+            );
+
+
+        buttons.forEach(
+            button => {
 
                 button.addEventListener(
                     "click",
                     () => {
 
+                        if (answered) {
+                            return;
+                        }
+
+
+                        answered = true;
+
+
                         const correct =
                             button.dataset.answer ===
-                            current.arabic;
+                            current.english;
+
+
+                        buttons.forEach(
+                            option =>
+                                option.disabled = true
+                        );
 
 
                         if (correct) {
 
                             score++;
 
+                            streak++;
+
+
                             button.classList.add(
                                 "correct"
                             );
 
+
+                            const streakElement =
+                                container.querySelector(
+                                    ".game-streak"
+                                );
+
+
+                            if (streakElement) {
+
+                                streakElement.classList.add(
+                                    "streak-active"
+                                );
+
+                            }
+
+
+                            showFeedback(
+                                "أحسنت! إجابة صحيحة 🎉",
+                                "correct"
+                            );
+
+
+                            playSuccessAnimation(
+                                button
+                            );
+
+
                         } else {
 
+                            streak = 0;
+
+
                             button.classList.add(
+                                "wrong"
+                            );
+
+
+                            buttons.forEach(
+                                option => {
+
+                                    if (
+                                        option.dataset.answer ===
+                                        current.english
+                                    ) {
+
+                                        option.classList.add(
+                                            "correct"
+                                        );
+
+                                    }
+
+                                }
+                            );
+
+
+                            showFeedback(
+                                `الإجابة الصحيحة: ${current.arabic}`,
                                 "wrong"
                             );
 
                         }
 
 
-                        container
-                            .querySelectorAll(
-                                ".game-option"
-                            )
-                            .forEach(
-                                option =>
-                                    option.disabled = true
-                            );
-
-
                         setTimeout(
                             () => {
 
-                                index++;
+                                currentIndex++;
 
                                 renderQuestion();
 
                             },
-                            650
+                            correct ? 850 : 1100
                         );
 
                     }
                 );
 
-            });
+            }
+        );
 
     }
 
 
+    /* =====================================================
+       FEEDBACK
+    ===================================================== */
+
+    function showFeedback(
+        message,
+        type
+    ) {
+
+        const feedback =
+            container.querySelector(
+                ".match-feedback"
+            );
+
+
+        if (!feedback) {
+            return;
+        }
+
+
+        feedback.textContent =
+            message;
+
+
+        feedback.className =
+            `match-feedback ${type}`;
+
+    }
+
+
+    /* =====================================================
+       SUCCESS ANIMATION
+    ===================================================== */
+
+    function playSuccessAnimation(button) {
+
+        button.classList.add(
+            "success-pop"
+        );
+
+
+        setTimeout(
+            () => {
+
+                button.classList.remove(
+                    "success-pop"
+                );
+
+            },
+            700
+        );
+
+    }
+
+
+    /* =====================================================
+       RESULT
+    ===================================================== */
+
     function renderResult() {
+
+        const total =
+            currentIndex;
+
+
+        const percentage =
+            total > 0
+                ? Math.round(
+                    (score / total) * 100
+                )
+                : 0;
+
+
+        let message;
+
+
+        if (percentage >= 90) {
+
+            message =
+                "ممتاز جدًا! أداء رائع 🔥";
+
+        } else if (percentage >= 70) {
+
+            message =
+                "أداء رائع! استمر 👏";
+
+        } else if (percentage >= 50) {
+
+            message =
+                "جيد! حاول مرة أخرى لتحسن نتيجتك 💪";
+
+        } else {
+
+            message =
+                "استمر في التدريب وستتحسن مع الوقت 📚";
+
+        }
+
 
         container.innerHTML = `
 
@@ -195,17 +559,41 @@ window.startMatchGame = function(container) {
 
                 <div class="game-result">
 
+                    <div class="result-icon">
+                        🎉
+                    </div>
+
+
                     <h3>
-                        أحسنت! 🎉
+                        انتهت اللعبة
                     </h3>
 
+
                     <p>
-                        حصلت على
-                        <strong>${score}</strong>
-                        من
-                        <strong>${MATCH_WORDS.length}</strong>
-                        إجابات صحيحة.
+                        ${message}
                     </p>
+
+
+                    <div class="result-score">
+
+                        <strong>
+                            ${score}
+                        </strong>
+
+                        <span>
+                            من ${total}
+                        </span>
+
+                    </div>
+
+
+                    <p class="result-percentage">
+                        نسبة الإجابات الصحيحة:
+                        <strong>
+                            ${percentage}%
+                        </strong>
+                    </p>
+
 
                     <button
                         type="button"
@@ -222,23 +610,24 @@ window.startMatchGame = function(container) {
         `;
 
 
-        document
-            .getElementById("restartMatch")
-            .addEventListener(
-                "click",
-                () => {
-
-                    index = 0;
-                    score = 0;
-
-                    renderQuestion();
-
-                }
+        const restart =
+            container.querySelector(
+                "#restartMatch"
             );
+
+
+        restart.addEventListener(
+            "click",
+            startGame
+        );
 
     }
 
 
-    renderQuestion();
+    /* =====================================================
+       INITIALIZE
+    ===================================================== */
+
+    startGame();
 
 };

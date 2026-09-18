@@ -299,10 +299,13 @@ function closeGame() {
    CLOSE EVENTS
 ========================================================= */
 
-closeGameButton.addEventListener(
-    "click",
-    closeGame
-);
+closeGameButton.addEventListener("click", () => {
+    if (typeof window.finishCurrentGame === "function") {
+        window.finishCurrentGame();
+    } else {
+        closeGame();
+    }
+});
 
 
 document.querySelector(
