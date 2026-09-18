@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Yazeed English - الألعاب</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+
+    <header class="topbar">
+
+        <div class="topbar-inner">
+
+            <a href="/english/" class="brand">
+
+                <div class="brand-icon">
+                    Y
+                </div>
+
+                <div class="brand-text">
+
+                    <h1>Yazeed English</h1>
+
+                    <p>اللغة الإنجليزية</p>
+
+                </div>
+
+            </a>
+
+
+            <button
+                id="themeToggle"
+                class="theme-toggle"
+                type="button"
+                aria-label="تغيير المظهر"
+            >
+                🌙
+            </button>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =====================================================
+         MAIN
+    ====================================================== -->
+
+    <main class="page-container">
+
+
+        <section class="hero">
+
+            <span class="hero-label">
+                🎮 YAZEED ENGLISH
+            </span>
+
+            <h2>
+                الألعاب
+            </h2>
+
+            <p>
+                تعلّم الإنجليزية بطريقة ممتعة من خلال مجموعة من الألعاب
+                والتحديات التفاعلية.
+            </p>
+
+        </section>
+
+
+
+        <!-- =================================================
+             GAMES GRID
+        ================================================== -->
+
+        <section class="games-section">
+
+            <div
+                id="gamesGrid"
+                class="games-grid"
+            ></div>
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =====================================================
+         GAME MODAL
+    ====================================================== -->
+
+    <div
+        id="gameModal"
+        class="game-modal"
+        hidden
+        aria-hidden="true"
+    >
+
+        <div
+            class="game-modal-backdrop"
+            data-close-game
+        ></div>
+
+
+        <section
+            class="game-modal-card"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="gameTitle"
+        >
+
+            <header class="game-modal-header">
+
+                <div>
+
+                    <span
+                        id="gameCategory"
+                        class="game-category"
+                    ></span>
+
+                    <h2 id="gameTitle">
+                        اللعبة
+                    </h2>
+
+                </div>
+
+
+                <button
+                    id="closeGame"
+                    class="close-game"
+                    type="button"
+                    aria-label="إغلاق اللعبة"
+                >
+                    ×
+                </button>
+
+            </header>
+
+
+            <div
+                id="gameContent"
+                class="game-content"
+            ></div>
+
+        </section>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         ACCESS
+    ====================================================== -->
+
+    <script src="../../access.js"></script>
+
+    <script>
+        initializeCourseAccess("english");
+    </script>
+
+
+
+    <!-- =====================================================
+         GAMES
+    ====================================================== -->
+
+    <script src="games/match.js"></script>
+    <script src="games/scramble.js"></script>
+    <script src="games/guess.js"></script>
+    <script src="games/mistake.js"></script>
+    <script src="games/survival.js"></script>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
