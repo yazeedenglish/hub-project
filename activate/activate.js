@@ -12,7 +12,7 @@ const ACCESS_CODES = {
 
 const COURSE_URLS = {
     step: "/step/",
-    english: "/course/",
+    english: "/english/",
     trab6: "/trab6/",
     writing: "/writing/"
 };

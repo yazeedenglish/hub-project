@@ -1,0 +1,1023 @@
+/* =========================================================
+   YAZEED ENGLISH — ENGLISH HUB
+========================================================= */
+
+:root {
+
+    --paper: #F5F6F2;
+
+    --ink: #00273a;
+
+    --ink-soft: #5B645F;
+
+    --indigo: #00689b;
+
+    --course-button: #00689b;
+
+    --line: #DCDFD6;
+
+    --card: #FFFFFF;
+
+    --white: #FFFFFF;
+
+}
+
+
+body.dark {
+
+    --paper: #15181C;
+
+    --ink: #E8EAE4;
+
+    --ink-soft: #9AA39B;
+
+    --card: #1E2227;
+
+    --line: #33383B;
+
+    --indigo: #00689b;
+
+    --course-button: #0088C7;
+
+}
+
+
+* {
+    box-sizing: border-box;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+
+    margin: 0;
+
+    min-height: 100vh;
+
+    font-family:
+        "Tajawal",
+        sans-serif;
+
+    background:
+        var(--paper);
+
+    color:
+        var(--ink);
+
+    transition:
+        background 0.25s ease,
+        color 0.25s ease;
+
+}
+
+
+a {
+
+    color: inherit;
+
+    text-decoration: none;
+
+}
+
+
+button,
+a {
+
+    -webkit-tap-highlight-color:
+        transparent;
+
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.top-header {
+
+    position: relative;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding:
+        18px 35px;
+
+    border-bottom:
+        1px solid
+        var(--line);
+
+    background:
+        var(--card);
+
+    transition:
+        background 0.25s ease,
+        border-color 0.25s ease;
+
+}
+
+
+.brand {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+}
+
+
+.brand-logo {
+    width: 42px;
+    height: 42px;
+
+    object-fit: contain;
+
+    flex-shrink: 0;
+}
+
+
+/*
+    When you get your logo:
+
+    .brand-logo-placeholder {
+        display: none;
+    }
+
+    .brand-logo {
+        width: 42px;
+        height: 42px;
+        object-fit: contain;
+    }
+*/
+
+
+.brand-text {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 1px;
+
+}
+
+
+.brand-text strong {
+
+    font-size: 15px;
+
+    font-weight: 900;
+
+}
+
+
+.brand-text span {
+
+    font-size: 11px;
+
+    color:
+        var(--ink-soft);
+
+}
+
+
+.header-actions {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+}
+
+
+.theme-btn {
+
+    width: 38px;
+
+    height: 38px;
+
+    display: grid;
+
+    place-items: center;
+
+    border:
+        1px solid
+        var(--line);
+
+    border-radius: 10px;
+
+    background:
+        var(--card);
+
+    color:
+        var(--ink);
+
+    cursor: pointer;
+
+    font-family: inherit;
+
+    font-size: 17px;
+
+    transition:
+        0.2s ease;
+
+}
+
+
+.theme-btn:hover {
+
+    border-color:
+        var(--indigo);
+
+    transform:
+        translateY(-2px);
+
+}
+
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+.main-website {
+
+    width: 100%;
+
+    max-width: 1200px;
+
+    margin:
+        auto;
+
+    padding:
+        0
+        25px
+        60px;
+
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero-section {
+
+    text-align: center;
+
+    padding:
+        75px
+        20px
+        50px;
+
+}
+
+
+.hero-small-title {
+
+    color:
+        var(--indigo);
+
+    font-size: 12px;
+
+    font-weight: 900;
+
+    letter-spacing: 2px;
+
+}
+
+
+.hero-section h1 {
+
+    margin:
+        8px
+        0;
+
+    font-size: 52px;
+
+    line-height: 1.25;
+
+    font-weight: 900;
+
+}
+
+
+.hero-section p {
+
+    max-width: 650px;
+
+    margin:
+        0
+        auto;
+
+    color:
+        var(--ink-soft);
+
+    line-height: 1.8;
+
+    font-size: 15px;
+
+}
+
+
+/* =========================================================
+   SECTION HEADING
+========================================================= */
+
+.content-section {
+
+    margin-top: 30px;
+
+}
+
+
+.section-heading {
+
+    text-align: center;
+
+    margin-bottom: 30px;
+
+}
+
+
+.section-label {
+
+    display: inline-block;
+
+    margin-bottom: 8px;
+
+    color:
+        var(--indigo);
+
+    font-size: 12px;
+
+    font-weight: 900;
+
+    letter-spacing: 2px;
+
+}
+
+
+.section-heading h2 {
+
+    margin: 0;
+
+    font-size: 30px;
+
+    font-weight: 900;
+
+}
+
+
+.section-heading p {
+
+    margin:
+        7px
+        0
+        0;
+
+    color:
+        var(--ink-soft);
+
+}
+
+
+/* =========================================================
+   ENGLISH GRID
+========================================================= */
+
+.english-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            2,
+            minmax(0, 1fr)
+        );
+
+    gap: 22px;
+
+}
+
+
+/* =========================================================
+   ENGLISH CARD
+========================================================= */
+
+.english-card {
+
+    position: relative;
+
+    overflow: hidden;
+
+    display: flex;
+
+    flex-direction: column;
+
+    min-height: 390px;
+
+    background:
+        var(--card);
+
+    border:
+        1px solid
+        var(--line);
+
+    border-radius: 22px;
+
+    opacity: 0;
+
+    animation:
+        cardIn
+        0.55s
+        ease
+        forwards;
+
+    animation-delay:
+        var(--card-delay);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
+
+}
+
+
+.english-card::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(
+                0,
+                104,
+                155,
+                0.08
+            ),
+            transparent 45%
+        );
+
+    opacity: 0;
+
+    transition:
+        opacity 0.3s ease;
+
+}
+
+
+.english-card:hover {
+
+    transform:
+        translateY(-7px);
+
+    border-color:
+        rgba(
+            0,
+            104,
+            155,
+            0.45
+        );
+
+    box-shadow:
+        0
+        20px
+        45px
+        rgba(
+            0,
+            39,
+            58,
+            0.11
+        );
+
+}
+
+
+body.dark .english-card:hover {
+
+    box-shadow:
+        0
+        20px
+        45px
+        rgba(
+            0,
+            0,
+            0,
+            0.30
+        );
+
+}
+
+
+.english-card:hover::before {
+
+    opacity: 1;
+
+}
+
+
+/* =========================================================
+   CARD MEDIA
+========================================================= */
+
+.card-media {
+
+    position: relative;
+
+    height: 235px;
+
+    overflow: hidden;
+
+    display: grid;
+
+    place-items: center;
+
+    background:
+        radial-gradient(
+            circle at 50% 30%,
+            rgba(
+                0,
+                104,
+                155,
+                0.13
+            ),
+            transparent 55%
+        ),
+        var(--paper);
+
+}
+
+
+/*
+    Future image support:
+
+    <img
+        src="assets/book.jpg"
+        class="card-image"
+        alt=""
+    >
+
+    The image will automatically fill
+    the entire media area.
+*/
+
+
+.card-image {
+
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+    transition:
+        transform 0.45s ease;
+
+}
+
+
+.english-card:hover .card-image {
+
+    transform:
+        scale(1.035);
+
+}
+
+
+/* =========================================================
+   CARD ICON
+========================================================= */
+
+.card-icon {
+
+    position: relative;
+
+    z-index: 2;
+
+    width: 96px;
+
+    height: 96px;
+
+    display: grid;
+
+    place-items: center;
+
+    border:
+        1px solid
+        rgba(
+            0,
+            104,
+            155,
+            0.16
+        );
+
+    border-radius: 25px;
+
+    background:
+        var(--card);
+
+    box-shadow:
+        0
+        15px
+        35px
+        rgba(
+            0,
+            39,
+            58,
+            0.10
+        );
+
+    font-size: 44px;
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+
+}
+
+
+.english-card:hover .card-icon {
+
+    transform:
+        translateY(-5px)
+        scale(1.04);
+
+    box-shadow:
+        0
+        18px
+        38px
+        rgba(
+            0,
+            104,
+            155,
+            0.16
+        );
+
+}
+
+
+/* =========================================================
+   CARD CONTENT
+========================================================= */
+
+.card-content {
+
+    flex: 1;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: space-between;
+
+    padding:
+        23px;
+
+}
+
+
+.card-content h3 {
+
+    margin:
+        0
+        0
+        7px;
+
+    font-size: 23px;
+
+    font-weight: 900;
+
+}
+
+
+.card-content p {
+
+    max-width: 500px;
+
+    margin: 0;
+
+    color:
+        var(--ink-soft);
+
+    font-size: 13px;
+
+    line-height: 1.8;
+
+}
+
+
+/* =========================================================
+   CARD ACTION
+========================================================= */
+
+.card-action {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-top: 22px;
+
+    padding-top: 17px;
+
+    border-top:
+        1px solid
+        var(--line);
+
+    color:
+        var(--indigo);
+
+    font-size: 13px;
+
+    font-weight: 900;
+
+}
+
+
+.arrow {
+
+    width: 34px;
+
+    height: 34px;
+
+    display: grid;
+
+    place-items: center;
+
+    border-radius: 10px;
+
+    background:
+        rgba(
+            0,
+            104,
+            155,
+            0.08
+        );
+
+    font-size: 18px;
+
+    transition:
+        transform 0.25s ease,
+        background 0.25s ease;
+
+}
+
+
+.english-card:hover .arrow {
+
+    transform:
+        translateX(-4px);
+
+    background:
+        rgba(
+            0,
+            104,
+            155,
+            0.14
+        );
+
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.site-footer {
+
+    margin-top: 30px;
+
+    padding:
+        0
+        25px
+        30px;
+
+    text-align: center;
+
+}
+
+
+.footer-line {
+
+    width: 100%;
+
+    height: 1px;
+
+    margin-bottom: 20px;
+
+    background:
+        var(--line);
+
+}
+
+
+.site-footer p {
+
+    margin: 0;
+
+    color:
+        var(--ink-soft);
+
+    font-size: 12px;
+
+}
+
+
+/* =========================================================
+   ANIMATION
+========================================================= */
+
+@keyframes cardIn {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(18px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+
+    }
+
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 800px) {
+
+    .hero-section h1 {
+
+        font-size: 42px;
+
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .top-header {
+
+        padding:
+            15px;
+
+    }
+
+
+    .main-website {
+
+        padding:
+            0
+            15px
+            45px;
+
+    }
+
+
+    .hero-section {
+
+        padding:
+            50px
+            15px
+            35px;
+
+    }
+
+
+    .hero-section h1 {
+
+        font-size: 35px;
+
+    }
+
+
+    .hero-section p {
+
+        font-size: 14px;
+
+    }
+
+
+    .english-grid {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .english-card {
+
+        min-height:
+            365px;
+
+    }
+
+
+    .card-media {
+
+        height:
+            205px;
+
+    }
+
+
+    .card-icon {
+
+        width: 86px;
+
+        height: 86px;
+
+        font-size: 39px;
+
+    }
+
+
+    .card-content {
+
+        padding:
+            20px;
+
+    }
+
+
+    .card-content h3 {
+
+        font-size: 21px;
+
+    }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+
+        scroll-behavior: auto;
+
+    }
+
+
+    *,
+    *::before,
+    *::after {
+
+        animation-duration:
+            0.01ms !important;
+
+        animation-iteration-count:
+            1 !important;
+
+        transition-duration:
+            0.01ms !important;
+
+    }
+
+}

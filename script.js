@@ -42,7 +42,7 @@ const COURSES = {
         description:
             "رحلتك من الصفر الى الاحتراف في اللغة الانجليزية",
 
-        url: "/course",
+        url: "/english",
 
         purchaseUrl:
             "https://yazeedenglish.com/ar/%D9%83%D8%AA%D8%A7%D8%A8-%D8%AF%D9%84%D9%8A%D9%84-%D8%A7%D9%84%D8%A7%D9%86%D8%AC%D9%84%D9%8A%D8%B2%D9%8A%D8%A9-%D8%A7%D9%84%D8%B4%D8%A7%D9%85%D9%84/p295866233",
