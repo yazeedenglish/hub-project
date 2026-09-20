@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Exams — Yazeed English</title>
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+
+    <header class="top-header">
+
+        <div class="brand">
+
+            <img
+                src="https://file.yazeedenglish.com/logo.png"
+                alt="Yazeed English"
+                class="brand-logo"
+            >
+
+            <div class="brand-text">
+
+                <strong>
+                    Yazeed English
+                </strong>
+
+                <span>
+                    منصة يزيد للانجليزية
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="header-actions">
+
+            <button
+                type="button"
+                class="theme-btn"
+                id="themeToggle"
+                aria-label="تغيير المظهر"
+            >
+                🌙
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- =====================================================
+         PAGE
+    ====================================================== -->
+
+    <main class="page-container">
+
+
+        <!-- HERO -->
+
+        <section class="hero">
+
+            <span class="hero-label">
+               اختبر معلوماتك
+            </span>
+
+            <h1>
+                اختبارات قصيرة
+            </h1>
+
+            <p>
+               اختبر فهمك ومعلوماتك من خلال اختبارات قصيرة ومتنوعة
+            </p>
+
+        </section>
+
+
+        <!-- =================================================
+             QUIZ GRID
+        ================================================== -->
+
+        <section
+            class="quiz-grid"
+            id="quizGrid"
+        ></section>
+
+
+    </main>
+
+
+    <!-- =====================================================
+         QUIZ MODAL
+    ====================================================== -->
+
+    <div
+        class="quiz-modal"
+        id="quizModal"
+        hidden
+        aria-hidden="true"
+    >
+
+        <div
+            class="quiz-modal-backdrop"
+            data-close-quiz
+        ></div>
+
+
+        <div
+            class="quiz-modal-card"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="quizTitle"
+        >
+
+            <div class="quiz-modal-header">
+
+                <div>
+
+                    <span
+                        class="quiz-category"
+                        id="quizCategory"
+                    >
+                        القواعد
+                    </span>
+
+                    <h2 id="quizTitle">
+                        الاختبار
+                    </h2>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="close-quiz"
+                    id="closeQuiz"
+                    aria-label="إغلاق"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            <div
+                class="quiz-content"
+                id="quizContent"
+            ></div>
+
+        </div>
+
+    </div>
+
+
+<!-- =====================================================
+         ACCESS
+    ====================================================== -->
+
+    <script src="../../access.js"></script>
+
+    <script>
+        initializeCourseAccess("english");
+    </script>
+
+
+    <!-- =====================================================
+         QUIZ FILES
+    ====================================================== -->
+
+    <script src="quiz1.js"></script>
+    <script src="quiz2.js"></script>
+    <script src="quiz3.js"></script>
+    <script src="quiz4.js"></script>
+    <script src="quiz5.js"></script>
+    <script src="quiz6.js"></script>
+    <script src="quiz7.js"></script>
+    <script src="quiz8.js"></script>
+    <script src="quiz9.js"></script>
+    <script src="quiz10.js"></script>
+    <script src="quiz11.js"></script>
+
+    <!-- MAIN SCRIPT -->
+
+    <script src="script.js"></script>
+
+
+</body>
+
+</html>

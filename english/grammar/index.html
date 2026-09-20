@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+    <!-- This tells the browser to use modern HTML5. -->
+    <meta charset="UTF-8">
+
+    <!-- This makes the website responsive on phones and tablets. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- This is the title shown in the browser tab. -->
+    <title>Yazeed English - Grammar</title>
+
+    <!-- This connects the Tajawal Arabic font from Google Fonts. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <!-- This loads the Tajawal font with several font weights. -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- This connects our external CSS file. -->
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+</head>
+
+<!-- =====================================================
+     FINAL QUIZ MODAL
+     ===================================================== -->
+
+<div
+    id="finalQuizModal"
+    class="final-quiz-modal"
+    aria-hidden="true"
+>
+
+    <div
+        class="final-quiz-overlay"
+        id="finalQuizOverlay"
+    ></div>
+
+
+    <div
+        class="final-quiz-box"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="finalQuizTitle"
+    >
+
+        <div class="final-quiz-header">
+
+            <div>
+
+                <div
+                    class="final-quiz-section-label"
+                    id="finalQuizSectionLabel"
+                >
+                    Final Quiz
+                </div>
+
+                <h2 id="finalQuizTitle">
+                    Final Quiz
+                </h2>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="final-quiz-close"
+                id="finalQuizClose"
+                aria-label="Close quiz"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <div class="final-quiz-progress">
+
+            <span id="finalQuizQuestionNumber">
+                Question 1 of 10
+            </span>
+
+            <div class="final-quiz-progress-track">
+
+                <div
+                    class="final-quiz-progress-fill"
+                    id="finalQuizProgressFill"
+                ></div>
+
+            </div>
+
+        </div>
+
+
+        <div
+            class="final-quiz-content"
+            id="finalQuizContent"
+        >
+
+            <h3
+                class="final-quiz-question"
+                id="finalQuizQuestion"
+            >
+            </h3>
+
+
+            <div
+                class="final-quiz-answers"
+                id="finalQuizAnswers"
+            >
+            </div>
+
+        </div>
+
+
+        <div
+            class="final-quiz-result"
+            id="finalQuizResult"
+        >
+        </div>
+
+
+        <div class="final-quiz-navigation">
+
+            <button
+                type="button"
+                class="final-quiz-nav-btn secondary"
+                id="finalQuizPrevious"
+            >
+                <span>→</span>
+                السابق
+            </button>
+
+
+            <button
+                type="button"
+                class="final-quiz-nav-btn primary"
+                id="finalQuizNext"
+            >
+                التالي
+                <span>←</span>
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<body>
+
+    <!-- ===================================================== -->
+    <!-- TOP HEADER                                            -->
+    <!-- ===================================================== -->
+
+    <!-- This is the small header at the top of the website. -->
+    <header class="top-header">
+
+        <!-- This contains the website name and logo. -->
+        <div class="brand">
+
+            <!-- This is the small logo placeholder. -->
+            <div class="brand">
+
+        <!-- This displays your actual Yazeed English logo. -->
+        <img
+            src="https://file.yazeedenglish.com/logo.png"
+            alt="Yazeed English Logo"
+            class="brand-logo"
+        >
+
+            <!-- This contains the brand text. -->
+            <div class="brand-text">
+
+                <!-- Main brand name. -->
+                <strong>Yazeed English</strong>
+
+                <!-- Small description. -->
+                <span>Grammar lessons</span>
+
+            </div>
+
+        </div>
+
+
+        <div class="theme-buttons">
+
+    <!-- Course file button. -->
+
+
+    <!-- This button switches between light and dark mode. -->
+    <button id="themeToggle" class="theme-btn" aria-label="تغيير الوضع">
+
+        <!-- Moon is shown initially. -->
+        🌙
+
+    </button>
+
+    <a
+        href="https://hub.yazeedenglish.com/step/file"
+        class="course-file-btn"
+        target="_blank"
+        rel="noopener noreferrer"
+    >
+        ملف الدورة
+    </a>
+
+</div>
+
+</header>
+
+
+    <!-- ===================================================== -->
+    <!-- MAIN WEBSITE                                          -->
+    <!-- ===================================================== -->
+
+    <!-- This is the actual course website. -->
+   <main id="mainWebsite" class="main-website">
+
+
+        <!-- ================================================= -->
+        <!-- HERO SECTION                                      -->
+        <!-- ================================================= -->
+
+        <section class="hero-section">
+
+            <!-- Small brand label. -->
+            <span class="hero-small-title">
+                YAZEED ENGLISH
+            </span>
+
+            <!-- Main page title. -->
+            <h1>
+دروس قسم القواعد
+            </h1>
+
+            <!-- Arabic description. -->
+            <p>
+               اختر أي درس من القائمة أدناه لمشاهدة الفيديو التعليمي
+            </p>
+
+        </section>
+
+        <!-- ================================================= -->
+        <!-- SECTION 1 - GRAMMAR                               -->
+        <!-- ================================================= -->
+
+        <section class="content-section">
+
+            </div>
+
+
+            <!-- JavaScript will create the 10 courses here. -->
+            <div
+                id="courseGrid"
+                class="course-grid"
+            ></div>
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- ===================================================== -->
+    <!-- COURSE VIDEO MODAL                                    -->
+    <!-- ===================================================== -->
+
+    <!-- This is the popup that opens when a course is clicked. -->
+    <div
+        id="courseModal"
+        class="modal hidden"
+    >
+
+        <!-- Video modal box. -->
+        <div class="video-modal">
+
+
+            <!-- Modal top bar. -->
+            <div class="video-header">
+
+                <!-- Current course title. -->
+                <h3 id="modalTitle">
+                    Present Simple
+                </h3>
+
+                <!-- Close button. -->
+                <button
+    id="closeModalBtn"
+    class="close-btn"
+    title="إغلاق"
+>
+    <i data-lucide="x"></i>
+</button>
+
+            </div>
+
+
+            <!-- Video area. -->
+            <div class="video-container">
+
+                <!-- Placeholder shown before video loads. -->
+                <div
+                    id="videoPlaceholder"
+                    class="video-placeholder"
+                >
+
+                    <!-- Placeholder logo. -->
+                    <div class="placeholder-logo">
+                        YE
+                    </div>
+
+                    <!-- Placeholder text. -->
+                    <p>
+                        Yazeed English
+                    </p>
+
+                </div>
+
+
+                <!-- HTML5 video. -->
+                <video
+                    id="courseVideo"
+                    playsinline
+                    preload="metadata"
+                ></video>
+
+            </div>
+
+
+            <div class="video-controls">
+
+    <!-- Play / Pause -->
+    <button
+    id="playBtn"
+    class="control-btn play-control"
+    title="تشغيل / إيقاف"
+>
+    <i data-lucide="play"></i>
+</button>
+
+
+    <button class="control-btn skip-btn" id="backwardBtn" title="رجوع">
+    <i data-lucide="rotate-ccw"></i>
+    <span></span>
+</button>
+
+<button class="control-btn skip-btn" id="forwardBtn" title="تقديم">
+    <i data-lucide="rotate-cw"></i>
+    <span></span>
+</button>
+
+
+    <!-- Current video time -->
+    <span id="currentTime" class="time-display">
+        00:00
+    </span>
+
+
+    <!-- Progress bar -->
+    <input
+        id="progressBar"
+        class="progress-bar"
+        type="range"
+        min="0"
+        max="100"
+        value="0"
+    >
+
+
+    <!-- Total video time -->
+    <span id="durationTime" class="time-display">
+        00:00
+    </span>
+
+
+    <button
+    id="volumeBtn"
+    class="control-btn volume-btn"
+    title="كتم الصوت"
+    type="button"
+>
+    <i data-lucide="volume-2"></i>
+</button>
+
+<input
+    id="volumeBar"
+    class="volume-bar"
+    type="range"
+    min="0"
+    max="1"
+    step="0.01"
+    value="1"
+>
+
+
+    <!-- Playback speed -->
+    <select
+        id="speedSelect"
+        class="speed-select"
+    >
+
+        <option value="0.75">
+            0.75×
+        </option>
+
+        <option value="1" selected>
+            1×
+        </option>
+
+        <option value="1.25">
+            1.25×
+        </option>
+
+        <option value="1.5">
+            1.5×
+        </option>
+
+        <option value="2">
+            2×
+        </option>
+
+    </select>
+
+
+    <!-- Fullscreen -->
+    <button
+    id="fullscreenBtn"
+    class="control-btn fullscreen-control"
+    title="ملء الشاشة"
+>
+    <i data-lucide="maximize"></i>
+</button>
+
+</div>
+
+
+            <!-- Lesson information. -->
+            <div class="lesson-info">
+
+                <!-- Lesson title. -->
+                <h3 id="lessonTitle">
+                    Present Simple
+                </h3>
+
+                <!-- Lesson description. -->
+                <p id="lessonDescription">
+                    شرح قاعدة المضارع البسيط.
+                </p>
+
+            </div>
+
+
+            <!-- Previous and next buttons. -->
+            <div class="lesson-navigation">
+
+                <!-- Previous lesson. -->
+                <button
+                    id="previousBtn"
+                    class="navigation-btnP"
+                >
+                    → السابق
+                </button>
+
+                <!-- Next lesson. -->
+                <button
+                    id="nextBtn"
+                    class="navigation-btnN"
+                >
+                    التالي ←
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ===================================================== -->
+<!-- FOOTER                                                -->
+<!-- ===================================================== -->
+
+<!-- This is the footer at the bottom of the website. -->
+<footer class="site-footer">
+
+    <!-- This line separates the footer from the content. -->
+    <div class="footer-line"></div>
+
+    <!-- Copyright text. -->
+    <p>
+        جميع الحقوق محفوظة © 2026 Yazeed English
+    </p>
+
+</footer>
+
+
+
+<script src="../../access.js"></script>
+
+<script>
+    initializeCourseAccess("english");
+</script>
+
+<script type="module" src="script.js"></script>
+
+</body>
+
+</html>>>
