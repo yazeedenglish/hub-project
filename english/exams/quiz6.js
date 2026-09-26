@@ -5,113 +5,333 @@
 const quiz6 = [
 
     {
-        question: "He ___ to work every morning.",
+        question: "What does “Cough” mean?",
         options: [
-            "go",
-            "goes",
-            "going",
-            "gone"
+            "حُمى",
+            "سٌعال",
+            "ألم",
+            "إصابة"
         ],
-        answer: "goes"
+        answer: "سٌعال"
     },
 
     {
-        question: "I have lived here ___ five years.",
+        question: "What is the English word for “ممرض | ممرضة”?",
         options: [
-            "since",
-            "for",
-            "at",
-            "on"
+            "Doctor",
+            "Patient",
+            "Nurse",
+            "Dentist"
         ],
-        answer: "for"
+        answer: "Nurse"
     },
 
     {
-        question: "She ___ watching TV now.",
+        question: "What does “Hospital” mean?",
         options: [
-            "is",
-            "are",
-            "do",
-            "has"
+            "مستشفى",
+            "استقبال",
+            "طوارئ",
+            "عيادة"
         ],
-        answer: "is"
+        answer: "مستشفى"
     },
 
     {
-        question: "I saw ___ interesting movie yesterday.",
+        question: "Which word means “طبيب | طبيبة”?",
         options: [
-            "a",
-            "an",
-            "the",
-            "no article"
+            "Surgeon",
+            "Doctor",
+            "Nurse",
+            "Dentist"
         ],
-        answer: "an"
+        answer: "Doctor"
     },
 
     {
-        question: "Ali is my brother. ___ is older than me.",
+        question: "What does “Pain” mean?",
         options: [
-            "He",
-            "She",
-            "It",
-            "They"
+            "أعراض",
+            "إصابة",
+            "ألم",
+            "حساسية"
         ],
-        answer: "He"
+        answer: "ألم"
     },
 
     {
-        question: "___ you speak English?",
+        question: "What is the English word for “استقبال”?",
         options: [
-            "Does",
-            "Do",
-            "Are",
-            "Has"
+            "Emergency",
+            "Reception",
+            "Appointment",
+            "Hospital"
         ],
-        answer: "Do"
+        answer: "Reception"
     },
 
     {
-        question: "They ___ their homework yesterday.",
+        question: "What does “Appointment” mean?",
         options: [
-            "finish",
-            "finishes",
-            "finished",
-            "finishing"
+            "موعد",
+            "فحص دوري",
+            "وصفة طبية",
+            "استقبال"
         ],
-        answer: "finished"
+        answer: "موعد"
     },
 
     {
-        question: "The keys are ___ the table.",
+        question: "Which word means “حُمى”?",
         options: [
-            "on",
-            "at",
-            "to",
-            "for"
+            "Cough",
+            "Fever",
+            "Dizziness",
+            "Nausea"
         ],
-        answer: "on"
+        answer: "Fever"
     },
 
     {
-        question: "She has ___ her work.",
+        question: "What does “Injury” mean?",
         options: [
-            "finish",
-            "finished",
-            "finishing",
-            "finishes"
+            "عدوى",
+            "إصابة",
+            "ألم الظهر",
+            "حساسية"
         ],
-        answer: "finished"
+        answer: "إصابة"
     },
 
     {
-        question: "This bag belongs to me. It is ___.",
+        question: "What is the English word for “كرسي متحرك”?",
         options: [
-            "my",
-            "mine",
-            "me",
-            "I"
+            "Ambulance",
+            "Wheelchair",
+            "Bandage",
+            "Injection"
         ],
-        answer: "mine"
+        answer: "Wheelchair"
+    },
+
+    {
+        question: "What does “Medicine” mean?",
+        options: [
+            "دواء",
+            "حقنة",
+            "ضمادة",
+            "وصفة طبية"
+        ],
+        answer: "دواء"
+    },
+
+    {
+        question: "Which word means “حساسية”?",
+        options: [
+            "Infection",
+            "Allergy",
+            "Symptoms",
+            "Fever"
+        ],
+        answer: "Allergy"
+    },
+
+    {
+        question: "What does “Injection” mean?",
+        options: [
+            "أشعة",
+            "عملية جراحية",
+            "حقنة",
+            "تحليل دم"
+        ],
+        answer: "حقنة"
+    },
+
+    {
+        question: "What is the English word for “طبيب جرّاح”?",
+        options: [
+            "Dentist",
+            "Doctor",
+            "Surgeon",
+            "Nurse"
+        ],
+        answer: "Surgeon"
+    },
+
+    {
+        question: "What does “Surgery” mean?",
+        options: [
+            "عملية جراحية",
+            "فحص دوري",
+            "تخدير",
+            "أشعة"
+        ],
+        answer: "عملية جراحية"
+    },
+
+    {
+        question: "Which word means “أشعة”?",
+        options: [
+            "Blood Test",
+            "X-ray",
+            "Check-up",
+            "Prescription"
+        ],
+        answer: "X-ray"
+    },
+
+    {
+        question: "What does “Patient” mean?",
+        options: [
+            "طبيب",
+            "ممرض",
+            "مريض",
+            "جرّاح"
+        ],
+        answer: "مريض"
+    },
+
+    {
+        question: "What is the English word for “طوارئ”?",
+        options: [
+            "Reception",
+            "Emergency",
+            "Intensive Care Unit",
+            "Hospital"
+        ],
+        answer: "Emergency"
+    },
+
+    {
+        question: "What does “Blood Test” mean?",
+        options: [
+            "تحليل دم",
+            "أشعة",
+            "فحص دوري",
+            "ضغط الدم"
+        ],
+        answer: "تحليل دم"
+    },
+
+    {
+        question: "Which word means “وصفة طبية”?",
+        options: [
+            "Medicine",
+            "Prescription",
+            "Symptoms",
+            "Appointment"
+        ],
+        answer: "Prescription"
+    },
+
+    {
+        question: "What does “Intensive Care Unit” mean?",
+        options: [
+            "الاستقبال",
+            "الطوارئ",
+            "العناية المركزة",
+            "المستشفى"
+        ],
+        answer: "العناية المركزة"
+    },
+
+    {
+        question: "What is the English word for “سيارة الإسعاف”?",
+        options: [
+            "Wheelchair",
+            "Ambulance",
+            "Emergency",
+            "Bandage"
+        ],
+        answer: "Ambulance"
+    },
+
+    {
+        question: "What does “Bandage” mean?",
+        options: [
+            "ضمادة",
+            "حقنة",
+            "دواء",
+            "تخدير"
+        ],
+        answer: "ضمادة"
+    },
+
+    {
+        question: "Which word means “طبيب أسنان”?",
+        options: [
+            "Surgeon",
+            "Nurse",
+            "Dentist",
+            "Doctor"
+        ],
+        answer: "Dentist"
+    },
+
+    {
+        question: "What does “Toothache” mean?",
+        options: [
+            "صداع",
+            "ألم الأسنان",
+            "ألم البطن",
+            "ألم الظهر"
+        ],
+        answer: "ألم الأسنان"
+    },
+
+    {
+        question: "What is the English word for “فحص دوري”?",
+        options: [
+            "Check-up",
+            "Blood Test",
+            "Appointment",
+            "X-ray"
+        ],
+        answer: "Check-up"
+    },
+
+    {
+        question: "What does “Symptoms” mean?",
+        options: [
+            "أعراض",
+            "عدوى",
+            "حساسية",
+            "إصابة"
+        ],
+        answer: "أعراض"
+    },
+
+    {
+        question: "Which word means “عدوى”?",
+        options: [
+            "Allergy",
+            "Infection",
+            "Fever",
+            "Cough"
+        ],
+        answer: "Infection"
+    },
+
+    {
+        question: "What does “Sore Throat” mean?",
+        options: [
+            "صداع",
+            "ألم البطن",
+            "التهاب الحلق",
+            "ألم الظهر"
+        ],
+        answer: "التهاب الحلق"
+    },
+
+    {
+        question: "What is the English word for “صداع”?",
+        options: [
+            "Dizziness",
+            "Headache",
+            "Nausea",
+            "Sore Throat"
+        ],
+        answer: "Headache"
     }
 
 ];

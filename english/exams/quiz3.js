@@ -5,113 +5,333 @@
 const quiz3 = [
 
     {
-        question: "The book is ___ the table.",
+        question: "What is the English word for “منديل”?",
         options: [
-            "in",
-            "on",
-            "at",
-            "to"
+            "Napkin",
+            "Spoon",
+            "Plate",
+            "Fork"
         ],
-        answer: "on"
+        answer: "Napkin"
     },
 
     {
-        question: "She lives ___ Riyadh.",
+        question: "What does “Spoon” mean?",
         options: [
-            "at",
-            "on",
-            "in",
-            "to"
+            "شوكة",
+            "ملعقة",
+            "سكين",
+            "طبق"
         ],
-        answer: "in"
+        answer: "ملعقة"
     },
 
     {
-        question: "I wake up ___ 7 o'clock.",
+        question: "What is the English word for “شوكة”?",
         options: [
-            "in",
-            "on",
-            "at",
-            "for"
+            "Knife",
+            "Spoon",
+            "Fork",
+            "Plate"
         ],
-        answer: "at"
+        answer: "Fork"
     },
 
     {
-        question: "We have a meeting ___ Monday.",
+        question: "What does “Knife” mean?",
         options: [
-            "at",
-            "in",
-            "on",
-            "for"
+            "سكين",
+            "ملعقة",
+            "شوكة",
+            "منديل"
         ],
-        answer: "on"
+        answer: "سكين"
     },
 
     {
-        question: "He has lived here ___ 2020.",
+        question: "What is the English word for “ملح”?",
         options: [
-            "for",
-            "since",
-            "at",
-            "from"
+            "Sugar",
+            "Pepper",
+            "Salt",
+            "Soda"
         ],
-        answer: "since"
+        answer: "Salt"
     },
 
     {
-        question: "I have studied English ___ three years.",
+        question: "What does “Sugar” mean?",
         options: [
-            "since",
-            "for",
-            "at",
-            "on"
+            "فلفل",
+            "ملح",
+            "سكر",
+            "عصير"
         ],
-        answer: "for"
+        answer: "سكر"
     },
 
     {
-        question: "She went ___ the store.",
+        question: "What is the English word for “فلفل”?",
         options: [
-            "at",
-            "to",
-            "on",
-            "in"
+            "Salt",
+            "Pepper",
+            "Sugar",
+            "Soup"
         ],
-        answer: "to"
+        answer: "Pepper"
     },
 
     {
-        question: "The children are ___ the classroom.",
+        question: "What does “Menu” mean?",
         options: [
-            "in",
-            "on",
-            "at",
-            "to"
+            "فاتورة",
+            "قائمة",
+            "حجز",
+            "طاولة"
         ],
-        answer: "in"
+        answer: "قائمة"
     },
 
     {
-        question: "The meeting starts ___ the morning.",
+        question: "What is the English word for “نادل”?",
         options: [
-            "at",
-            "on",
-            "in",
-            "to"
+            "Chef",
+            "Customer",
+            "Waiter",
+            "Manager"
         ],
-        answer: "in"
+        answer: "Waiter"
     },
 
     {
-        question: "He arrived ___ the airport early.",
+        question: "What is the English word for “شاي”?",
         options: [
-            "at",
-            "in",
-            "on",
-            "to"
+            "Coffee",
+            "Juice",
+            "Tea",
+            "Soda"
         ],
-        answer: "at"
+        answer: "Tea"
+    },
+
+    {
+        question: "What does “Soda” mean?",
+        options: [
+            "عصير",
+            "شاي",
+            "مشروب غازي",
+            "قهوة"
+        ],
+        answer: "مشروب غازي"
+    },
+
+    {
+        question: "What is the English word for “مقبلات”?",
+        options: [
+            "Dessert",
+            "Main course",
+            "Appetizer",
+            "Soup"
+        ],
+        answer: "Appetizer"
+    },
+
+    {
+        question: "What does “Main course” mean?",
+        options: [
+            "وجبة رئيسية",
+            "مقبلات",
+            "حلى",
+            "سلطة"
+        ],
+        answer: "وجبة رئيسية"
+    },
+
+    {
+        question: "What is the English word for “حلى”?",
+        options: [
+            "Salad",
+            "Dessert",
+            "Soup",
+            "Appetizer"
+        ],
+        answer: "Dessert"
+    },
+
+    {
+        question: "What does “Soup” mean?",
+        options: [
+            "سلطة",
+            "حساء",
+            "حلى",
+            "وجبة رئيسية"
+        ],
+        answer: "حساء"
+    },
+
+    {
+        question: "What is the English word for “سلطة”?",
+        options: [
+            "Salad",
+            "Soup",
+            "Dessert",
+            "Juice"
+        ],
+        answer: "Salad"
+    },
+
+    {
+        question: "What does “Juice” mean?",
+        options: [
+            "قهوة",
+            "شاي",
+            "عصير",
+            "مشروب غازي"
+        ],
+        answer: "عصير"
+    },
+
+    {
+        question: "What is the English word for “حجز”?",
+        options: [
+            "Reservation",
+            "Bill",
+            "Tip",
+            "Table"
+        ],
+        answer: "Reservation"
+    },
+
+    {
+        question: "What does “Reservation” mean?",
+        options: [
+            "فاتورة",
+            "حجز",
+            "إكرامية",
+            "طاولة"
+        ],
+        answer: "حجز"
+    },
+
+    {
+        question: "What is the English word for “مقلي”?",
+        options: [
+            "Boiled",
+            "Grilled",
+            "Fried",
+            "Fresh"
+        ],
+        answer: "Fried"
+    },
+
+    {
+        question: "What does “Grilled” mean?",
+        options: [
+            "مسلوق",
+            "مقلي",
+            "مشوي",
+            "بارد"
+        ],
+        answer: "مشوي"
+    },
+
+    {
+        question: "What is the English word for “مسلوق”?",
+        options: [
+            "Fried",
+            "Grilled",
+            "Boiled",
+            "Fresh"
+        ],
+        answer: "Boiled"
+    },
+
+    {
+        question: "What does “Plate” mean?",
+        options: [
+            "طاولة",
+            "طبق",
+            "فاتورة",
+            "ملعقة"
+        ],
+        answer: "طبق"
+    },
+
+    {
+        question: "What is the English word for “سفري”?",
+        options: [
+            "Reservation",
+            "Takeaway",
+            "Table",
+            "Menu"
+        ],
+        answer: "Takeaway"
+    },
+
+    {
+        question: "What does “Table” mean?",
+        options: [
+            "طاولة",
+            "طبق",
+            "قائمة",
+            "فاتورة"
+        ],
+        answer: "طاولة"
+    },
+
+    {
+        question: "What is the English word for “فاتورة”?",
+        options: [
+            "Tip",
+            "Bill",
+            "Reservation",
+            "Menu"
+        ],
+        answer: "Bill"
+    },
+
+    {
+        question: "What does “Tip” mean?",
+        options: [
+            "فاتورة",
+            "حجز",
+            "إكرامية",
+            "طاولة"
+        ],
+        answer: "إكرامية"
+    },
+
+    {
+        question: "What does “Can I see the menu, please?” mean?",
+        options: [
+            "هل يمكنني رؤية القائمة، من فضلك؟",
+            "هل يمكنني الحصول على الفاتورة، من فضلك؟",
+            "أود أن أطلب، من فضلك",
+            "هل يمكنك إحضار كوب من الماء، من فضلك؟"
+        ],
+        answer: "هل يمكنني رؤية القائمة، من فضلك؟"
+    },
+
+    {
+        question: "What does “I would like to order, please” mean?",
+        options: [
+            "هل يمكنني رؤية القائمة، من فضلك؟",
+            "أود أن أطلب، من فضلك",
+            "هل يمكنني الحصول على الفاتورة، من فضلك؟",
+            "ما المكونات الموجودة في هذه الوجبة؟"
+        ],
+        answer: "أود أن أطلب، من فضلك"
+    },
+
+    {
+        question: "What does “Can I get the bill, please?” mean?",
+        options: [
+            "هل يمكنني الحصول على الفاتورة، من فضلك؟",
+            "هل يمكنني رؤية القائمة، من فضلك؟",
+            "أود أن أطلب، من فضلك",
+            "هل يمكنك إحضار كوب من الماء، من فضلك؟"
+        ],
+        answer: "هل يمكنني الحصول على الفاتورة، من فضلك؟"
     }
 
 ];

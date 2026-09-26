@@ -5,113 +5,333 @@
 const quiz9 = [
 
     {
-        question: "airport",
+        question: "What does “Suitcase” mean?",
         options: [
-            "go",
-            "goes",
-            "going",
-            "gone"
+            "أمتعة",
+            "حقيبة سفر",
+            "جواز سفر",
+            "تذكرة"
         ],
-        answer: "goes"
+        answer: "حقيبة سفر"
     },
 
     {
-        question: "I have lived here ___ five years.",
+        question: "What is the English word for “طائرة”?",
         options: [
-            "since",
-            "for",
-            "at",
-            "on"
+            "Airport",
+            "Plane",
+            "Pilot",
+            "Flight"
         ],
-        answer: "for"
+        answer: "Plane"
     },
 
     {
-        question: "She ___ watching TV now.",
+        question: "What does “Airport” mean?",
         options: [
-            "is",
-            "are",
-            "do",
-            "has"
+            "مطار",
+            "صالة",
+            "بوابة",
+            "رحلة"
         ],
-        answer: "is"
+        answer: "مطار"
     },
 
     {
-        question: "I saw ___ interesting movie yesterday.",
+        question: "Which word means “طيار”?",
         options: [
-            "a",
-            "an",
-            "the",
-            "no article"
+            "Passenger",
+            "Pilot",
+            "Passport",
+            "Pilot"
         ],
-        answer: "an"
+        answer: "Pilot"
     },
 
     {
-        question: "Ali is my brother. ___ is older than me.",
+        question: "What does “Ticket” mean?",
         options: [
-            "He",
-            "She",
-            "It",
-            "They"
+            "تأشيرة",
+            "بطاقة الصعود",
+            "تذكرة",
+            "جواز سفر"
         ],
-        answer: "He"
+        answer: "تذكرة"
     },
 
     {
-        question: "___ you speak English?",
+        question: "What is the English word for “جواز سفر”?",
         options: [
-            "Does",
-            "Do",
-            "Are",
-            "Has"
+            "Visa",
+            "Ticket",
+            "Passport",
+            "Boarding pass"
         ],
-        answer: "Do"
+        answer: "Passport"
     },
 
     {
-        question: "They ___ their homework yesterday.",
+        question: "What does “Visa” mean?",
         options: [
-            "finish",
-            "finishes",
-            "finished",
-            "finishing"
+            "تأشيرة",
+            "تذكرة",
+            "جواز سفر",
+            "بطاقة الصعود"
         ],
-        answer: "finished"
+        answer: "تأشيرة"
     },
 
     {
-        question: "The keys are ___ the table.",
+        question: "Which word means “بطاقة الصعود”?",
         options: [
-            "on",
-            "at",
-            "to",
-            "for"
+            "Ticket",
+            "Luggage",
+            "Boarding pass",
+            "Passport"
         ],
-        answer: "on"
+        answer: "Boarding pass"
     },
 
     {
-        question: "She has ___ her work.",
+        question: "What does “Luggage” mean?",
         options: [
-            "finish",
-            "finished",
-            "finishing",
-            "finishes"
+            "أمتعة",
+            "حقيبة سفر",
+            "مقعد",
+            "بوابة"
         ],
-        answer: "finished"
+        answer: "أمتعة"
     },
 
     {
-        question: "This bag belongs to me. It is ___.",
+        question: "What is the English word for “صالة”?",
         options: [
-            "my",
-            "mine",
-            "me",
-            "I"
+            "Gate",
+            "Terminal",
+            "Arrivals",
+            "Departures"
         ],
-        answer: "mine"
+        answer: "Terminal"
+    },
+
+    {
+        question: "What does “Land” mean?",
+        options: [
+            "إقلاع",
+            "هبوط",
+            "وصول",
+            "مغادرة"
+        ],
+        answer: "هبوط"
+    },
+
+    {
+        question: "Which word means “إقلاع”?",
+        options: [
+            "Flight",
+            "Land",
+            "Take off",
+            "Arrivals"
+        ],
+        answer: "Take off"
+    },
+
+    {
+        question: "What does “Flight” mean?",
+        options: [
+            "رحلة",
+            "بوابة",
+            "صالة",
+            "مقعد"
+        ],
+        answer: "رحلة"
+    },
+
+    {
+        question: "What is the English word for “الوصول”?",
+        options: [
+            "Departures",
+            "Arrivals",
+            "Land",
+            "Terminal"
+        ],
+        answer: "Arrivals"
+    },
+
+    {
+        question: "What does “Gate” mean?",
+        options: [
+            "صالة",
+            "بوابة",
+            "مقعد",
+            "مغادرة"
+        ],
+        answer: "بوابة"
+    },
+
+    {
+        question: "Which word means “المغادرة”?",
+        options: [
+            "Arrivals",
+            "Flight",
+            "Departures",
+            "Terminal"
+        ],
+        answer: "Departures"
+    },
+
+    {
+        question: "What does “Seat” mean?",
+        options: [
+            "مقعد",
+            "حزام الأمان",
+            "بوابة",
+            "تذكرة"
+        ],
+        answer: "مقعد"
+    },
+
+    {
+        question: "What is the English word for “حزام الأمان”?",
+        options: [
+            "Seat",
+            "Seatbelt",
+            "Boarding pass",
+            "Luggage"
+        ],
+        answer: "Seatbelt"
+    },
+
+    {
+        question: "Which item do you need to enter your flight?",
+        options: [
+            "Passport",
+            "Suitcase",
+            "Boarding pass",
+            "Seat"
+        ],
+        answer: "Boarding pass"
+    },
+
+    {
+        question: "Which document is used when traveling internationally?",
+        options: [
+            "Gate",
+            "Passport",
+            "Luggage",
+            "Terminal"
+        ],
+        answer: "Passport"
+    },
+
+    {
+        question: "You want help finding your gate. What should you ask?",
+        options: [
+            "Are there any delays?",
+            "Where is the lost and found?",
+            "Can you help me find my gate?",
+            "Can I get a refund for my ticket?"
+        ],
+        answer: "Can you help me find my gate?"
+    },
+
+    {
+        question: "You lost an item at the airport. Where should you ask about it?",
+        options: [
+            "The gate",
+            "The lost and found",
+            "The terminal",
+            "The departures"
+        ],
+        answer: "The lost and found"
+    },
+
+    {
+        question: "You want to know if your flight is late. What should you ask?",
+        options: [
+            "Can I have a boarding pass, please?",
+            "Are there any delays?",
+            "Where is the lost and found?",
+            "How do I get to the car rental desk?"
+        ],
+        answer: "Are there any delays?"
+    },
+
+    {
+        question: "You want your money back for your ticket. What should you ask?",
+        options: [
+            "Can I get a refund for my ticket?",
+            "Can you help me find my gate?",
+            "Can I have a boarding pass, please?",
+            "Are there any delays?"
+        ],
+        answer: "Can I get a refund for my ticket?"
+    },
+
+    {
+        question: "What does “Can I have a boarding pass, please?” mean?",
+        options: [
+            "هل هناك أي تأخيرات؟",
+            "هل يمكنني الحصول على استرداد لتذكرتي؟",
+            "هل يمكنني الحصول على بطاقة الصعود، من فضلك؟",
+            "أين مكتب المفقودات؟"
+        ],
+        answer: "هل يمكنني الحصول على بطاقة الصعود، من فضلك؟"
+    },
+
+    {
+        question: "What does “How do I get to the car rental desk?” mean?",
+        options: [
+            "كيف أصل إلى مكتب تأجير السيارات؟",
+            "هل يمكنك مساعدتي في العثور على بوابتي؟",
+            "أين مكتب المفقودات؟",
+            "هل هناك أي تأخيرات؟"
+        ],
+        answer: "كيف أصل إلى مكتب تأجير السيارات؟"
+    },
+
+    {
+        question: "Which word refers to the place where passengers wait before boarding?",
+        options: [
+            "Terminal",
+            "Pilot",
+            "Passport",
+            "Suitcase"
+        ],
+        answer: "Terminal"
+    },
+
+    {
+        question: "Which word describes a plane leaving the ground?",
+        options: [
+            "Land",
+            "Arrivals",
+            "Take off",
+            "Departures"
+        ],
+        answer: "Take off"
+    },
+
+    {
+        question: "Which word describes a plane coming down to the ground?",
+        options: [
+            "Flight",
+            "Land",
+            "Take off",
+            "Gate"
+        ],
+        answer: "Land"
+    },
+
+    {
+        question: "Which item is used to keep you safely seated during a flight?",
+        options: [
+            "Boarding pass",
+            "Luggage",
+            "Seatbelt",
+            "Ticket"
+        ],
+        answer: "Seatbelt"
     }
 
 ];

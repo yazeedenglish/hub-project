@@ -5,113 +5,333 @@
 const quiz8 = [
 
     {
-        question: "work",
+        question: "What does “Manager” mean?",
         options: [
-            "go",
-            "goes",
-            "going",
-            "gone"
+            "موظف",
+            "مدير",
+            "عميل",
+            "منصب"
         ],
-        answer: "goes"
+        answer: "مدير"
     },
 
     {
-        question: "I have lived here ___ five years.",
+        question: "What is the English word for “موظف”?",
         options: [
-            "since",
-            "for",
-            "at",
-            "on"
+            "Manager",
+            "Client",
+            "Employee",
+            "Team"
         ],
-        answer: "for"
+        answer: "Employee"
     },
 
     {
-        question: "She ___ watching TV now.",
+        question: "What does “Meeting” mean?",
         options: [
-            "is",
-            "are",
-            "do",
-            "has"
+            "اجتماع",
+            "تقرير",
+            "مشروع",
+            "مهمة"
         ],
-        answer: "is"
+        answer: "اجتماع"
     },
 
     {
-        question: "I saw ___ interesting movie yesterday.",
+        question: "Which word means “تقرير”?",
         options: [
-            "a",
-            "an",
-            "the",
-            "no article"
+            "Project",
+            "Presentation",
+            "Report",
+            "Contract"
         ],
-        answer: "an"
+        answer: "Report"
     },
 
     {
-        question: "Ali is my brother. ___ is older than me.",
+        question: "What does “Project” mean?",
         options: [
-            "He",
-            "She",
-            "It",
-            "They"
+            "وظيفة",
+            "شركة",
+            "مشروع",
+            "ميزانية"
         ],
-        answer: "He"
+        answer: "مشروع"
     },
 
     {
-        question: "___ you speak English?",
+        question: "What is the English word for “وظيفة”?",
         options: [
-            "Does",
-            "Do",
-            "Are",
-            "Has"
+            "Position",
+            "Job",
+            "Task",
+            "Company"
         ],
-        answer: "Do"
+        answer: "Job"
     },
 
     {
-        question: "They ___ their homework yesterday.",
+        question: "What does “Team” mean?",
         options: [
-            "finish",
-            "finishes",
-            "finished",
-            "finishing"
+            "فريق",
+            "موظف",
+            "عميل",
+            "مدير"
         ],
-        answer: "finished"
+        answer: "فريق"
     },
 
     {
-        question: "The keys are ___ the table.",
+        question: "Which word means “عميل”?",
         options: [
-            "on",
-            "at",
-            "to",
-            "for"
+            "Employee",
+            "Manager",
+            "Client",
+            "Company"
         ],
-        answer: "on"
+        answer: "Client"
     },
 
     {
-        question: "She has ___ her work.",
+        question: "What does “Budget” mean?",
         options: [
-            "finish",
-            "finished",
-            "finishing",
-            "finishes"
+            "راتب",
+            "عقد",
+            "ميزانية",
+            "تقرير"
         ],
-        answer: "finished"
+        answer: "ميزانية"
     },
 
     {
-        question: "This bag belongs to me. It is ___.",
+        question: "What is the English word for “منصب”?",
         options: [
-            "my",
-            "mine",
-            "me",
-            "I"
+            "Position",
+            "Job",
+            "Office",
+            "Task"
         ],
-        answer: "mine"
+        answer: "Position"
+    },
+
+    {
+        question: "What does “Office” mean?",
+        options: [
+            "شركة",
+            "مكتب",
+            "منصب",
+            "فريق"
+        ],
+        answer: "مكتب"
+    },
+
+    {
+        question: "Which word means “عرض تقديمي”?",
+        options: [
+            "Communication",
+            "Report",
+            "Presentation",
+            "Meeting"
+        ],
+        answer: "Presentation"
+    },
+
+    {
+        question: "What does “Communication” mean?",
+        options: [
+            "تواصل",
+            "توقيع",
+            "تعاون",
+            "اجتماع"
+        ],
+        answer: "تواصل"
+    },
+
+    {
+        question: "What is the English word for “مهمة”?",
+        options: [
+            "Project",
+            "Task",
+            "Job",
+            "Position"
+        ],
+        answer: "Task"
+    },
+
+    {
+        question: "What does “Company” mean?",
+        options: [
+            "مكتب",
+            "شركة",
+            "فريق",
+            "عميل"
+        ],
+        answer: "شركة"
+    },
+
+    {
+        question: "Which word means “راتب”?",
+        options: [
+            "Contract",
+            "Budget",
+            "Salary",
+            "Position"
+        ],
+        answer: "Salary"
+    },
+
+    {
+        question: "What does “Signature” mean?",
+        options: [
+            "توقيع",
+            "عقد",
+            "راتب",
+            "تقرير"
+        ],
+        answer: "توقيع"
+    },
+
+    {
+        question: "What is the English word for “عقد”?",
+        options: [
+            "Report",
+            "Contract",
+            "Signature",
+            "Budget"
+        ],
+        answer: "Contract"
+    },
+
+    {
+        question: "What does “Job” refer to?",
+        options: [
+            "وظيفة",
+            "مهمة",
+            "منصب",
+            "مشروع"
+        ],
+        answer: "وظيفة"
+    },
+
+    {
+        question: "Which word refers to money planned for a project or company?",
+        options: [
+            "Salary",
+            "Budget",
+            "Contract",
+            "Report"
+        ],
+        answer: "Budget"
+    },
+
+    {
+        question: "Which word refers to a person who works for a company?",
+        options: [
+            "Client",
+            "Manager",
+            "Employee",
+            "Position"
+        ],
+        answer: "Employee"
+    },
+
+    {
+        question: "Which word refers to a person or organization receiving services from a company?",
+        options: [
+            "Team",
+            "Manager",
+            "Client",
+            "Employee"
+        ],
+        answer: "Client"
+    },
+
+    {
+        question: "Which word refers to a group of people working together?",
+        options: [
+            "Company",
+            "Team",
+            "Office",
+            "Position"
+        ],
+        answer: "Team"
+    },
+
+    {
+        question: "You want to discuss your opinion about a project. What should you ask?",
+        options: [
+            "Can we schedule a meeting?",
+            "Can you help me with this task?",
+            "What are your thoughts on this project?",
+            "I need clarification on this matter"
+        ],
+        answer: "What are your thoughts on this project?"
+    },
+
+    {
+        question: "You want to arrange a meeting. What should you say?",
+        options: [
+            "Can we schedule a meeting?",
+            "Can you help me with this task?",
+            "What are your thoughts on this project?",
+            "I need clarification on this matter"
+        ],
+        answer: "Can we schedule a meeting?"
+    },
+
+    {
+        question: "You need assistance with a task. What should you say?",
+        options: [
+            "Let's set some goals for this quarter",
+            "Can you help me with this task?",
+            "Can we schedule a meeting?",
+            "I’m looking forward to collaborating with you"
+        ],
+        answer: "Can you help me with this task?"
+    },
+
+    {
+        question: "What does “I’m looking forward to collaborating with you” mean?",
+        options: [
+            "أحتاج إلى توضيح بشأن هذه المسألة",
+            "أنا أتطلع إلى التعاون معك",
+            "دعونا نحدد بعض الأهداف لهذا الربع",
+            "هل يمكنك مساعدتي في هذه المهمة؟"
+        ],
+        answer: "أنا أتطلع إلى التعاون معك"
+    },
+
+    {
+        question: "What does “I need clarification on this matter” mean?",
+        options: [
+            "ما رأيك في هذا المشروع؟",
+            "أحتاج إلى توضيح بشأن هذه المسألة",
+            "هل يمكننا تحديد موعد للاجتماع؟",
+            "دعونا نحدد بعض الأهداف لهذا الربع"
+        ],
+        answer: "أحتاج إلى توضيح بشأن هذه المسألة"
+    },
+
+    {
+        question: "What does “Let’s set some goals for this quarter” mean?",
+        options: [
+            "أنا أتطلع إلى التعاون معك",
+            "هل يمكنك مساعدتي في هذه المهمة؟",
+            "دعونا نحدد بعض الأهداف لهذا الربع",
+            "أحتاج إلى توضيح بشأن هذه المسألة"
+        ],
+        answer: "دعونا نحدد بعض الأهداف لهذا الربع"
+    },
+
+    {
+        question: "Which word refers to a formal agreement between people or companies?",
+        options: [
+            "Signature",
+            "Contract",
+            "Report",
+            "Presentation"
+        ],
+        answer: "Contract"
     }
 
 ];

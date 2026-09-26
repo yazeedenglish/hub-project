@@ -3,6 +3,51 @@
 ========================================================= */
 
 
+const ENGLISH_CARDS = {
+
+    book: true,
+
+    exams: true,
+
+    grammar: true,
+
+    writing: false,
+
+    stories: false,
+
+    games: true
+
+};
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    if (!ENGLISH_CARDS.book) {
+        document.getElementById("book-card")?.remove();
+    }
+
+    if (!ENGLISH_CARDS.exams) {
+        document.getElementById("exams-card")?.remove();
+    }
+
+    if (!ENGLISH_CARDS.grammar) {
+        document.getElementById("grammar-card")?.remove();
+    }
+
+    if (!ENGLISH_CARDS.writing) {
+        document.getElementById("writing-card")?.remove();
+    }
+
+    if (!ENGLISH_CARDS.stories) {
+        document.getElementById("stories-card")?.remove();
+    }
+
+    if (!ENGLISH_CARDS.games) {
+        document.getElementById("games-card")?.remove();
+    }
+
+});
+
+
 /* =========================================================
    THEME
 ========================================================= */

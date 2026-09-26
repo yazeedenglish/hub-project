@@ -5,113 +5,333 @@
 const quiz5 = [
 
     {
-        question: "Sarah is my friend. ___ is very kind.",
+        question: "What does “Vegetables” mean?",
         options: [
-            "He",
-            "She",
-            "It",
-            "They"
+            "فواكه",
+            "خضروات",
+            "لحوم",
+            "بهارات"
         ],
-        answer: "She"
+        answer: "خضروات"
     },
 
     {
-        question: "Tom and I are students. ___ study together.",
+        question: "What is the English word for “فواكه”?",
         options: [
-            "We",
-            "They",
-            "He",
-            "Them"
+            "Vegetables",
+            "Fruits",
+            "Dairy",
+            "Spices"
         ],
-        answer: "We"
+        answer: "Fruits"
     },
 
     {
-        question: "I saw Ahmed yesterday. I spoke to ___.",
+        question: "What does “Chicken” mean?",
         options: [
-            "he",
-            "him",
-            "his",
-            "himself"
+            "سمك",
+            "لحم",
+            "دجاج",
+            "خبز"
         ],
-        answer: "him"
+        answer: "دجاج"
     },
 
     {
-        question: "This book belongs to me. It is ___.",
+        question: "What is the English word for “خبز”?",
         options: [
-            "my",
-            "mine",
-            "me",
-            "I"
+            "Bread",
+            "Butter",
+            "Flour",
+            "Cheese"
         ],
-        answer: "mine"
+        answer: "Bread"
     },
 
     {
-        question: "The children are playing. ___ are happy.",
+        question: "What does “Canned goods” mean?",
         options: [
-            "He",
-            "She",
-            "They",
-            "It"
+            "أطعمة مجمدة",
+            "أطعمة معلبة",
+            "منتجات الألبان",
+            "حبوب الإفطار"
         ],
-        answer: "They"
+        answer: "أطعمة معلبة"
     },
 
     {
-        question: "I bought this phone for ___.",
+        question: "Which word means “أطعمة مجمدة”?",
         options: [
-            "I",
-            "my",
-            "me",
-            "mine"
+            "Fresh",
+            "Frozen foods",
+            "Canned goods",
+            "Dairy"
         ],
-        answer: "me"
+        answer: "Frozen foods"
     },
 
     {
-        question: "This is ___ car.",
+        question: "Which word refers to the object you use to carry groceries?",
         options: [
-            "I",
-            "me",
-            "my",
-            "mine"
+            "Cart",
+            "Cereal",
+            "Plate",
+            "Cream"
         ],
-        answer: "my"
+        answer: "Cart"
     },
 
     {
-        question: "The cat is hungry. ___ wants food.",
+        question: "What does “Nuts” mean?",
         options: [
-            "He",
-            "She",
-            "It",
-            "They"
+            "حبوب الإفطار",
+            "مكسرات",
+            "بهارات",
+            "مخلل"
         ],
-        answer: "It"
+        answer: "مكسرات"
     },
 
     {
-        question: "Those bags belong to Ali and me. They are ___.",
+        question: "What is the English word for “طحين”?",
         options: [
-            "our",
-            "ours",
-            "us",
-            "we"
+            "Oil",
+            "Flour",
+            "Jam",
+            "Spices"
         ],
-        answer: "ours"
+        answer: "Flour"
     },
 
     {
-        question: "We prepared the food ___.",
+        question: "What does “Fresh” mean?",
         options: [
-            "ourselves",
-            "our",
-            "us",
-            "ours"
+            "مجمد",
+            "معلب",
+            "طازج",
+            "مقلي"
         ],
-        answer: "ourselves"
+        answer: "طازج"
+    },
+
+    {
+        question: "Which word means “بهارات”?",
+        options: [
+            "Spices",
+            "Pickles",
+            "Olive",
+            "Jam"
+        ],
+        answer: "Spices"
+    },
+
+    {
+        question: "What does “Jam” mean?",
+        options: [
+            "طحين",
+            "مخلل",
+            "زيت",
+            "مربى"
+        ],
+        answer: "مربى"
+    },
+
+    {
+        question: "What is the English word for “مخلل”?",
+        options: [
+            "Olive",
+            "Pickles",
+            "Jam",
+            "Garlic"
+        ],
+        answer: "Pickles"
+    },
+
+    {
+        question: "Which word refers to a “فلفل رومي”?",
+        options: [
+            "Bell Pepper",
+            "Cucumber",
+            "Lettuce",
+            "Carrot"
+        ],
+        answer: "Bell Pepper"
+    },
+
+    {
+        question: "What does “Potato” mean?",
+        options: [
+            "طماطم",
+            "بطاطس",
+            "بصل",
+            "جزر"
+        ],
+        answer: "بطاطس"
+    },
+
+    {
+        question: "What is the English word for “خيار”?",
+        options: [
+            "Tomato",
+            "Cucumber",
+            "Lettuce",
+            "Parsley"
+        ],
+        answer: "Cucumber"
+    },
+
+    {
+        question: "What does “Garlic” mean?",
+        options: [
+            "ثوم",
+            "بصل",
+            "بقدونس",
+            "ليمون"
+        ],
+        answer: "ثوم"
+    },
+
+    {
+        question: "Which word means “بصل”?",
+        options: [
+            "Garlic",
+            "Onion",
+            "Carrot",
+            "Potato"
+        ],
+        answer: "Onion"
+    },
+
+    {
+        question: "What does “Mango” mean?",
+        options: [
+            "برتقال",
+            "مانجو",
+            "أناناس",
+            "موز"
+        ],
+        answer: "مانجو"
+    },
+
+    {
+        question: "What is the English word for “فراولة”?",
+        options: [
+            "Strawberry",
+            "Watermelon",
+            "Grapes",
+            "Pineapple"
+        ],
+        answer: "Strawberry"
+    },
+
+    {
+        question: "What does “Watermelon” mean?",
+        options: [
+            "تفاح",
+            "عنب",
+            "ليمون",
+            "بطيخ"
+        ],
+        answer: "بطيخ"
+    },
+
+    {
+        question: "Which word means “أناناس”?",
+        options: [
+            "Pineapple",
+            "Orange",
+            "Mango",
+            "Banana"
+        ],
+        answer: "Pineapple"
+    },
+
+    {
+        question: "What does “Cream Cheese” mean?",
+        options: [
+            "جبن",
+            "جبن سائل",
+            "زبدة",
+            "قشطة"
+        ],
+        answer: "جبن سائل"
+    },
+
+    {
+        question: "What is the English word for “زبدة”?",
+        options: [
+            "Butter",
+            "Cream",
+            "Yogurt",
+            "Cheese"
+        ],
+        answer: "Butter"
+    },
+
+    {
+        question: "What does “Yogurt” mean?",
+        options: [
+            "لبن",
+            "زبادي",
+            "جبن",
+            "قشطة"
+        ],
+        answer: "زبادي"
+    },
+
+    {
+        question: "Which word means “منتجات الألبان”?",
+        options: [
+            "Dairy",
+            "Frozen foods",
+            "Canned goods",
+            "Fresh"
+        ],
+        answer: "Dairy"
+    },
+
+    {
+        question: "Which item would you find in the dairy section?",
+        options: [
+            "Yogurt",
+            "Carrot",
+            "Bread",
+            "Mango"
+        ],
+        answer: "Yogurt"
+    },
+
+    {
+        question: "You want to buy vegetables that are not frozen or canned. Which word describes them?",
+        options: [
+            "Fresh",
+            "Dairy",
+            "Canned goods",
+            "Frozen foods"
+        ],
+        answer: "Fresh"
+    },
+
+    {
+        question: "You want to know the price of an item. What should you ask?",
+        options: [
+            "How much does this cost?",
+            "Can I return this item?",
+            "Where can I find the dairy products?",
+            "Make sure to check the expiration date"
+        ],
+        answer: "How much does this cost?"
+    },
+
+    {
+        question: "Before buying a food product, what should you check?",
+        options: [
+            "The expiration date",
+            "The cart",
+            "The vegetables",
+            "The cereal"
+        ],
+        answer: "The expiration date"
     }
 
 ];

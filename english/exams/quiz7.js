@@ -5,113 +5,333 @@
 const quiz7 = [
 
     {
-        question: "Hello",
+        question: "What does “T-shirt” mean?",
         options: [
-            "go",
-            "goes",
-            "going",
-            "gone"
+            "قميص",
+            "تيشيرت",
+            "سترة",
+            "كنزة"
         ],
-        answer: "goes"
+        answer: "تيشيرت"
     },
 
     {
-        question: "I have lived here ___ five years.",
+        question: "What is the English word for “محل”?",
         options: [
-            "since",
-            "for",
-            "at",
-            "on"
+            "Store",
+            "Brand",
+            "Sale",
+            "Store"
         ],
-        answer: "for"
+        answer: "Store"
     },
 
     {
-        question: "She ___ watching TV now.",
+        question: "What does “Pants” mean?",
         options: [
-            "is",
-            "are",
-            "do",
-            "has"
+            "معطف",
+            "فستان",
+            "بنطلون",
+            "قميص"
         ],
-        answer: "is"
+        answer: "بنطلون"
     },
 
     {
-        question: "I saw ___ interesting movie yesterday.",
+        question: "Which word means “سترة”?",
         options: [
-            "a",
-            "an",
-            "the",
-            "no article"
+            "Sweater",
+            "Jacket",
+            "Coat",
+            "Shirt"
         ],
-        answer: "an"
+        answer: "Jacket"
     },
 
     {
-        question: "Ali is my brother. ___ is older than me.",
+        question: "What does “Sweater” mean?",
         options: [
-            "He",
-            "She",
-            "It",
-            "They"
+            "كنزة",
+            "سترة",
+            "معطف",
+            "فستان"
         ],
-        answer: "He"
+        answer: "كنزة"
     },
 
     {
-        question: "___ you speak English?",
+        question: "What is the English word for “معطف”?",
         options: [
-            "Does",
-            "Do",
-            "Are",
-            "Has"
+            "Jacket",
+            "Coat",
+            "Sweater",
+            "Dress"
         ],
-        answer: "Do"
+        answer: "Coat"
     },
 
     {
-        question: "They ___ their homework yesterday.",
+        question: "What does “Dress” mean?",
         options: [
-            "finish",
-            "finishes",
-            "finished",
-            "finishing"
+            "بنطلون",
+            "قميص",
+            "فستان",
+            "تيشيرت"
         ],
-        answer: "finished"
+        answer: "فستان"
     },
 
     {
-        question: "The keys are ___ the table.",
+        question: "Which word means “ربطة عنق”?",
         options: [
-            "on",
-            "at",
-            "to",
-            "for"
+            "Belt",
+            "Tie",
+            "Scarf",
+            "Suit"
         ],
-        answer: "on"
+        answer: "Tie"
     },
 
     {
-        question: "She has ___ her work.",
+        question: "What does “Suit” mean?",
         options: [
-            "finish",
-            "finished",
-            "finishing",
-            "finishes"
+            "بدلة رسمية",
+            "ربطة عنق",
+            "سترة",
+            "قميص"
         ],
-        answer: "finished"
+        answer: "بدلة رسمية"
     },
 
     {
-        question: "This bag belongs to me. It is ___.",
+        question: "What is the English word for “حزام”?",
         options: [
-            "my",
-            "mine",
-            "me",
-            "I"
+            "Gloves",
+            "Belt",
+            "Scarf",
+            "Socks"
         ],
-        answer: "mine"
+        answer: "Belt"
+    },
+
+    {
+        question: "What does “Gloves” mean?",
+        options: [
+            "جوارب",
+            "قفازات",
+            "وشاح",
+            "قبعة"
+        ],
+        answer: "قفازات"
+    },
+
+    {
+        question: "Which word means “وشاح”?",
+        options: [
+            "Hat",
+            "Scarf",
+            "Gloves",
+            "Socks"
+        ],
+        answer: "Scarf"
+    },
+
+    {
+        question: "What does “Socks” mean?",
+        options: [
+            "أحذية",
+            "قفازات",
+            "جوارب",
+            "كعب"
+        ],
+        answer: "جوارب"
+    },
+
+    {
+        question: "What is the English word for “قبعة”?",
+        options: [
+            "Hat",
+            "Shoes",
+            "Heels",
+            "Scarf"
+        ],
+        answer: "Hat"
+    },
+
+    {
+        question: "What does “Heels” mean?",
+        options: [
+            "أحذية",
+            "كعب",
+            "جوارب",
+            "قبعة"
+        ],
+        answer: "كعب"
+    },
+
+    {
+        question: "Which word means “أحذية”?",
+        options: [
+            "Shoes",
+            "Heels",
+            "Socks",
+            "Gloves"
+        ],
+        answer: "Shoes"
+    },
+
+    {
+        question: "What does “Perfume” mean?",
+        options: [
+            "شنطة",
+            "عطر",
+            "مجوهرات",
+            "إكسسوارات"
+        ],
+        answer: "عطر"
+    },
+
+    {
+        question: "What is the English word for “مجوهرات”?",
+        options: [
+            "Accessories",
+            "Jewelry",
+            "Perfume",
+            "Bag"
+        ],
+        answer: "Jewelry"
+    },
+
+    {
+        question: "What does “Bag” mean?",
+        options: [
+            "شنطة",
+            "ساعة",
+            "عطر",
+            "مجوهرات"
+        ],
+        answer: "شنطة"
+    },
+
+    {
+        question: "Which word means “إكسسوارات”?",
+        options: [
+            "Watch",
+            "Jewelry",
+            "Accessories",
+            "Sunglasses"
+        ],
+        answer: "Accessories"
+    },
+
+    {
+        question: "What does “Sunglasses” mean?",
+        options: [
+            "ساعة",
+            "نظارات شمسية",
+            "إكسسوارات",
+            "قبعة"
+        ],
+        answer: "نظارات شمسية"
+    },
+
+    {
+        question: "What is the English word for “غالي”?",
+        options: [
+            "Cheap",
+            "Quality",
+            "Expensive",
+            "Limited edition"
+        ],
+        answer: "Expensive"
+    },
+
+    {
+        question: "What does “Cheap” mean?",
+        options: [
+            "جودة",
+            "غالي",
+            "رخيص",
+            "محدود"
+        ],
+        answer: "رخيص"
+    },
+
+    {
+        question: "Which word means “جودة”?",
+        options: [
+            "Brand",
+            "Quality",
+            "Sale",
+            "Refund"
+        ],
+        answer: "Quality"
+    },
+
+    {
+        question: "What does “Refund” mean?",
+        options: [
+            "إرجاع",
+            "إصدار محدود",
+            "إسترداد",
+            "تخفيضات"
+        ],
+        answer: "إسترداد"
+    },
+
+    {
+        question: "What is the English word for “ماركة”?",
+        options: [
+            "Brand",
+            "Quality",
+            "Store",
+            "Sale"
+        ],
+        answer: "Brand"
+    },
+
+    {
+        question: "What does “Out of stock” mean?",
+        options: [
+            "تخفيضات",
+            "نفذ المخزون",
+            "إرجاع",
+            "إصدار محدود"
+        ],
+        answer: "نفذ المخزون"
+    },
+
+    {
+        question: "Where would you go to try on clothes before buying them?",
+        options: [
+            "Elevator",
+            "Store",
+            "Fitting room",
+            "Escalator"
+        ],
+        answer: "Fitting room"
+    },
+
+    {
+        question: "You want to know if the same item is available in another size. What should you ask?",
+        options: [
+            "Can I try this on?",
+            "Where are the fitting rooms?",
+            "Do you have this in a different size?",
+            "What is the price of this item?"
+        ],
+        answer: "Do you have this in a different size?"
+    },
+
+    {
+        question: "You want to ask about the cost of an item. What should you ask?",
+        options: [
+            "I am looking for something casual",
+            "Can I try this on?",
+            "Where are the fitting rooms?",
+            "What is the price of this item?"
+        ],
+        answer: "What is the price of this item?"
     }
 
 ];

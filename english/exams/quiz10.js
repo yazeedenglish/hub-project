@@ -5,113 +5,333 @@
 const quiz10 = [
 
     {
-        question: "travel",
+        question: "What does “Destination” mean?",
         options: [
-            "go",
-            "goes",
-            "going",
-            "gone"
+            "وجهة",
+            "منتجع",
+            "شاطئ",
+            "متحف"
         ],
-        answer: "goes"
+        answer: "وجهة"
     },
 
     {
-        question: "I have lived here ___ five years.",
+        question: "What is the English word for “الأمتعة”?",
         options: [
-            "since",
-            "for",
-            "at",
-            "on"
+            "Passport",
+            "Luggage",
+            "Currency",
+            "Reservation"
         ],
-        answer: "for"
+        answer: "Luggage"
     },
 
     {
-        question: "She ___ watching TV now.",
+        question: "What does “Tourist” mean?",
         options: [
-            "is",
-            "are",
-            "do",
-            "has"
+            "سائح",
+            "مسافر",
+            "مرشد",
+            "موظف"
         ],
-        answer: "is"
+        answer: "سائح"
     },
 
     {
-        question: "I saw ___ interesting movie yesterday.",
+        question: "Which word means “عملة”?",
         options: [
-            "a",
-            "an",
-            "the",
-            "no article"
+            "Insurance",
+            "Currency",
+            "Luxury",
+            "Reservation"
         ],
-        answer: "an"
+        answer: "Currency"
     },
 
     {
-        question: "Ali is my brother. ___ is older than me.",
+        question: "What does “Cruise” mean?",
         options: [
-            "He",
-            "She",
-            "It",
-            "They"
+            "رحلة سفاري",
+            "رحلة بحرية",
+            "رحلة جوية",
+            "رحلة برية"
         ],
-        answer: "He"
+        answer: "رحلة بحرية"
     },
 
     {
-        question: "___ you speak English?",
+        question: "What is the English word for “منتجع”?",
         options: [
-            "Does",
-            "Do",
-            "Are",
-            "Has"
+            "Beach",
+            "Hotel",
+            "Resort",
+            "Museum"
         ],
-        answer: "Do"
+        answer: "Resort"
     },
 
     {
-        question: "They ___ their homework yesterday.",
+        question: "What does “Beach” mean?",
         options: [
-            "finish",
-            "finishes",
-            "finished",
-            "finishing"
+            "شاطئ",
+            "جزيرة",
+            "منتجع",
+            "متحف"
         ],
-        answer: "finished"
+        answer: "شاطئ"
     },
 
     {
-        question: "The keys are ___ the table.",
+        question: "Which word means “حجز”?",
         options: [
-            "on",
-            "at",
-            "to",
-            "for"
+            "Destination",
+            "Reservation",
+            "Insurance",
+            "Embassy"
         ],
-        answer: "on"
+        answer: "Reservation"
     },
 
     {
-        question: "She has ___ her work.",
+        question: "What does “Emergency” mean?",
         options: [
-            "finish",
-            "finished",
-            "finishing",
-            "finishes"
+            "تأمين",
+            "طوارئ",
+            "استكشاف",
+            "مغامرة"
         ],
-        answer: "finished"
+        answer: "طوارئ"
     },
 
     {
-        question: "This bag belongs to me. It is ___.",
+        question: "What is the English word for “تخييم”?",
         options: [
-            "my",
-            "mine",
-            "me",
-            "I"
+            "Adventure",
+            "Camping",
+            "Exploration",
+            "Safari"
         ],
-        answer: "mine"
+        answer: "Camping"
+    },
+
+    {
+        question: "What does “Skydiving” mean?",
+        options: [
+            "ركوب الأمواج",
+            "القفز المظلي",
+            "حبل الانزلاق",
+            "دراجة مائية"
+        ],
+        answer: "القفز المظلي"
+    },
+
+    {
+        question: "Which word means “مغامرة”?",
+        options: [
+            "Exploration",
+            "Camping",
+            "Adventure",
+            "Safari"
+        ],
+        answer: "Adventure"
+    },
+
+    {
+        question: "What does “Exploration” mean?",
+        options: [
+            "استكشاف",
+            "تخييم",
+            "مغامرة",
+            "رحلة سفاري"
+        ],
+        answer: "استكشاف"
+    },
+
+    {
+        question: "What is the English word for “حبل الانزلاق”?",
+        options: [
+            "Surfing",
+            "Jet ski",
+            "Zipline",
+            "Skydiving"
+        ],
+        answer: "Zipline"
+    },
+
+    {
+        question: "What does “Jet ski” mean?",
+        options: [
+            "دراجة مائية",
+            "حبل الانزلاق",
+            "ركوب الأمواج",
+            "رحلة بحرية"
+        ],
+        answer: "دراجة مائية"
+    },
+
+    {
+        question: "Which word means “ركوب الأمواج”?",
+        options: [
+            "Safari",
+            "Surfing",
+            "Skydiving",
+            "Camping"
+        ],
+        answer: "Surfing"
+    },
+
+    {
+        question: "What does “Tourist attraction” mean?",
+        options: [
+            "معلم سياحي",
+            "منتجع سياحي",
+            "متحف",
+            "وجهة"
+        ],
+        answer: "معلم سياحي"
+    },
+
+    {
+        question: "What is the English word for “رحلة سفاري”?",
+        options: [
+            "Adventure",
+            "Safari",
+            "Cruise",
+            "Exploration"
+        ],
+        answer: "Safari"
+    },
+
+    {
+        question: "What does “Luxury” mean?",
+        options: [
+            "تأمين",
+            "فخامة",
+            "عملة",
+            "مغامرة"
+        ],
+        answer: "فخامة"
+    },
+
+    {
+        question: "Which word means “سفارة”?",
+        options: [
+            "Museum",
+            "Embassy",
+            "Hotel",
+            "Resort"
+        ],
+        answer: "Embassy"
+    },
+
+    {
+        question: "What does “Museum” mean?",
+        options: [
+            "متحف",
+            "سفارة",
+            "فندق",
+            "معلم سياحي"
+        ],
+        answer: "متحف"
+    },
+
+    {
+        question: "What is the English word for “خريطة”?",
+        options: [
+            "Map",
+            "Passport",
+            "Insurance",
+            "Currency"
+        ],
+        answer: "Map"
+    },
+
+    {
+        question: "What does “Insurance” mean?",
+        options: [
+            "تأجير سيارات",
+            "تأمين",
+            "حجز",
+            "فخامة"
+        ],
+        answer: "تأمين"
+    },
+
+    {
+        question: "Which word means “تأجير سيارات”?",
+        options: [
+            "Hotel",
+            "Car rental",
+            "Reservation",
+            "Embassy"
+        ],
+        answer: "Car rental"
+    },
+
+    {
+        question: "What does “Jet lag” mean?",
+        options: [
+            "إرهاق السفر",
+            "تعب المشي",
+            "دوار البحر",
+            "إرهاق العمل"
+        ],
+        answer: "إرهاق السفر"
+    },
+
+    {
+        question: "What is the English word for “جواز سفر”?",
+        options: [
+            "Visa",
+            "Passport",
+            "Currency",
+            "Luggage"
+        ],
+        answer: "Passport"
+    },
+
+    {
+        question: "What does “Hotel” mean?",
+        options: [
+            "منتجع",
+            "فندق",
+            "متحف",
+            "سفارة"
+        ],
+        answer: "فندق"
+    },
+
+    {
+        question: "You want to know the price of something while traveling. What should you ask?",
+        options: [
+            "Do you speak English?",
+            "Is there Wi-Fi here?",
+            "How much does this cost?",
+            "I would like to book a room"
+        ],
+        answer: "How much does this cost?"
+    },
+
+    {
+        question: "You want to ask whether internet access is available. What should you ask?",
+        options: [
+            "Can you recommend a good restaurant?",
+            "Is there Wi-Fi here?",
+            "Do you speak English?",
+            "How much does this cost?"
+        ],
+        answer: "Is there Wi-Fi here?"
+    },
+
+    {
+        question: "You want to reserve a room at a hotel. What should you say?",
+        options: [
+            "I would like to book a room",
+            "Can you recommend a good restaurant?",
+            "Do you speak English?",
+            "Is there Wi-Fi here?"
+        ],
+        answer: "I would like to book a room"
     }
 
 ];

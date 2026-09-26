@@ -5,113 +5,333 @@
 const quiz4 = [
 
     {
-        question: "I saw ___ dog in the park.",
+        question: "What does “Lactose-Free Milk” mean?",
         options: [
-            "a",
-            "an",
-            "the",
-            "no article"
+            "حليب قليل الدسم",
+            "حليب ساخن",
+            "حليب خالي من اللاكتوز",
+            "حليب"
         ],
-        answer: "a"
+        answer: "حليب خالي من اللاكتوز"
     },
 
     {
-        question: "She ate ___ apple.",
+        question: "What is the English word for “قائمة”?",
         options: [
-            "a",
-            "an",
-            "the",
-            "no article"
+            "Coffee",
+            "Menu",
+            "Dessert",
+            "Cup"
         ],
-        answer: "an"
+        answer: "Menu"
     },
 
     {
-        question: "___ sun is very bright today.",
+        question: "What does “Barista” mean?",
         options: [
-            "A",
-            "An",
-            "The",
-            "No article"
+            "كوب حراري",
+            "حامل أكواب",
+            "عامل المطعم",
+            "صانع القهوة"
         ],
-        answer: "The"
+        answer: "صانع القهوة"
     },
 
     {
-        question: "He is ___ teacher.",
+        question: "Which word means “دافئ”?",
         options: [
-            "a",
-            "an",
-            "the",
-            "no article"
+            "Warm",
+            "Cold",
+            "Hot",
+            "Iced"
         ],
-        answer: "a"
+        answer: "Warm"
     },
 
     {
-        question: "She wants to buy ___ umbrella.",
+        question: "What does “Cold” mean?",
         options: [
-            "a",
-            "an",
-            "the",
-            "no article"
+            "حار",
+            "ساخن",
+            "بارد",
+            "دافئ"
         ],
-        answer: "an"
+        answer: "بارد"
     },
 
     {
-        question: "I visited ___ museum you recommended.",
+        question: "What is the English word for “حليب قليل الدسم”?",
         options: [
-            "a",
-            "an",
-            "the",
-            "no article"
+            "Milk",
+            "Warm Milk",
+            "Lactose-Free Milk",
+            "Low-Fat Milk"
         ],
-        answer: "the"
+        answer: "Low-Fat Milk"
     },
 
     {
-        question: "He bought ___ new phone.",
+        question: "Which word refers to a holder used to carry multiple cups?",
         options: [
-            "a",
-            "an",
-            "the",
-            "no article"
+            "Lid",
+            "Sleeve",
+            "Cups Holder",
+            "Cup"
         ],
-        answer: "a"
+        answer: "Cups Holder"
     },
 
     {
-        question: "She is ___ engineer.",
+        question: "What does “Napkin” mean?",
         options: [
-            "a",
-            "an",
-            "the",
-            "no article"
+            "قشّة",
+            "منديل",
+            "طبق",
+            "غطاء"
         ],
-        answer: "an"
+        answer: "منديل"
     },
 
     {
-        question: "___ Earth moves around the Sun.",
+        question: "What is the English word for “غطاء”?",
         options: [
-            "A",
-            "An",
-            "The",
-            "No article"
+            "Sleeve",
+            "Straw",
+            "Plate",
+            "Lid"
         ],
-        answer: "The"
+        answer: "Lid"
     },
 
     {
-        question: "I need ___ pen to write this.",
+        question: "What does “Straw” mean?",
         options: [
-            "a",
-            "an",
-            "the",
-            "no article"
+            "كوب",
+            "غطاء",
+            "قشّة",
+            "منديل"
         ],
-        answer: "a"
+        answer: "قشّة"
+    },
+
+    {
+        question: "Which word means “عصاء تحريك”?",
+        options: [
+            "Straw",
+            "Stirrer stick",
+            "Sleeve",
+            "Cups Holder"
+        ],
+        answer: "Stirrer stick"
+    },
+
+    {
+        question: "What does “Sleeve” mean?",
+        options: [
+            "غطاء",
+            "غلاف الكوب",
+            "كوب حراري",
+            "حامل أكواب"
+        ],
+        answer: "غلاف الكوب"
+    },
+
+    {
+        question: "What is the English word for “كوب حراري”?",
+        options: [
+            "Cup",
+            "Plate",
+            "Thermal mug",
+            "Cups Holder"
+        ],
+        answer: "Thermal mug"
+    },
+
+    {
+        question: "What does “Decaf” mean?",
+        options: [
+            "ماتشا",
+            "لاتيه",
+            "خالي من الكافيين",
+            "إسبريسو"
+        ],
+        answer: "خالي من الكافيين"
+    },
+
+    {
+        question: "Which word means “لاتيه”?",
+        options: [
+            "Cappucino",
+            "Latte",
+            "Matcha",
+            "Espresso"
+        ],
+        answer: "Latte"
+    },
+
+    {
+        question: "What does “Espresso” mean?",
+        options: [
+            "إسبريسو",
+            "قهوة",
+            "كابتشينو",
+            "لاتيه"
+        ],
+        answer: "إسبريسو"
+    },
+
+    {
+        question: "What is the English word for “كابتشينو”?",
+        options: [
+            "Decaf",
+            "Latte",
+            "Espresso",
+            "Cappucino"
+        ],
+        answer: "Cappucino"
+    },
+
+    {
+        question: "What does “Foam” mean?",
+        options: [
+            "ماتشا",
+            "رغوة",
+            "حلوى",
+            "كريمة"
+        ],
+        answer: "رغوة"
+    },
+
+    {
+        question: "What is the English word for “ظرف سكر”?",
+        options: [
+            "Dessert",
+            "Hot chocolate",
+            "Foam",
+            "Sugar packet"
+        ],
+        answer: "Sugar packet"
+    },
+
+    {
+        question: "What does “Hot chocolate” mean?",
+        options: [
+            "حلوى",
+            "شوكولاتة ساخنة",
+            "ماتشا",
+            "قهوة ساخنة"
+        ],
+        answer: "شوكولاتة ساخنة"
+    },
+
+    {
+        question: "What is the English word for “ماتشا”?",
+        options: [
+            "Matcha",
+            "Decaf",
+            "Dessert",
+            "Latte"
+        ],
+        answer: "Matcha"
+    },
+
+    {
+        question: "What does “Dessert” mean?",
+        options: [
+            "شوكولاتة ساخنة",
+            "قهوة",
+            "حلوى",
+            "رغوة"
+        ],
+        answer: "حلوى"
+    },
+
+    {
+        question: "Which item would you use to drink a beverage?",
+        options: [
+            "Plate",
+            "Sleeve",
+            "Cup",
+            "Napkin"
+        ],
+        answer: "Cup"
+    },
+
+    {
+        question: "Which item helps protect your hand from a hot cup?",
+        options: [
+            "Napkin",
+            "Straw",
+            "Lid",
+            "Sleeve"
+        ],
+        answer: "Sleeve"
+    },
+
+    {
+        question: "Which item can be used to stir your coffee?",
+        options: [
+            "Plate",
+            "Stirrer stick",
+            "Cups Holder",
+            "Lid"
+        ],
+        answer: "Stirrer stick"
+    },
+
+    {
+        question: "Which drink is made with espresso and is listed in the Coffee vocabulary?",
+        options: [
+            "Dessert",
+            "Foam",
+            "Latte",
+            "Matcha"
+        ],
+        answer: "Latte"
+    },
+
+    {
+        question: "You want coffee without caffeine. Which word should you look for?",
+        options: [
+            "Hot",
+            "Decaf",
+            "Warm",
+            "Foam"
+        ],
+        answer: "Decaf"
+    },
+
+    {
+        question: "You want to add sweetness to your coffee. Which item can you use?",
+        options: [
+            "Lid",
+            "Cups Holder",
+            "Sugar packet",
+            "Straw"
+        ],
+        answer: "Sugar packet"
+    },
+
+    {
+        question: "Which item would you use to cover the top of your cup?",
+        options: [
+            "Napkin",
+            "Sleeve",
+            "Lid",
+            "Straw"
+        ],
+        answer: "Lid"
+    },
+
+    {
+        question: "You want a coffee drink with a layer of foam. Which word from the section refers to this?",
+        options: [
+            "Dessert",
+            "Foam",
+            "Matcha",
+            "Decaf"
+        ],
+        answer: "Foam"
     }
 
 ];
