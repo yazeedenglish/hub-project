@@ -56,11 +56,60 @@ const tableWrapper =
 const orderNumberInput =
     document.getElementById("orderNumber");
 
-const productInput =
-    document.getElementById("product");
-
 const reasonInput =
     document.getElementById("reason");
+
+const productCheckboxes =
+    document.querySelectorAll(
+        ".product-checkbox"
+    );
+
+const selectAllButton =
+    document.getElementById(
+        "selectAllButton"
+    );
+
+const searchInput =
+    document.getElementById(
+        "searchInput"
+    );
+
+const clearSearchButton =
+    document.getElementById(
+        "clearSearchButton"
+    );
+
+const searchResultCount =
+    document.getElementById(
+        "searchResultCount"
+    );
+
+const blockedCustomersCount =
+    document.getElementById(
+        "blockedCustomersCount"
+    );
+
+const blockedRecordsCount =
+    document.getElementById(
+        "blockedRecordsCount"
+    );
+
+const stepCount =
+    document.getElementById(
+        "stepCount"
+    );
+
+const englishCount =
+    document.getElementById(
+        "englishCount"
+    );
+
+
+/* =========================================================
+   DATA
+========================================================= */
+
+let blacklistRecords = [];
 
 
 /* =========================================================
@@ -95,6 +144,7 @@ function showLogin() {
 
     adminScreen.style.display =
         "none";
+
 }
 
 
@@ -187,6 +237,7 @@ loginForm.addEventListener(
                 "البريد الإلكتروني أو كلمة المرور غير صحيحة.";
 
             return;
+
         }
 
 
@@ -217,6 +268,83 @@ logoutButton.addEventListener(
 
 
 /* =========================================================
+   SELECT ALL PRODUCTS
+========================================================= */
+
+function updateSelectAllButton() {
+
+    const allSelected =
+        Array.from(
+            productCheckboxes
+        ).every(
+            function (checkbox) {
+
+                return checkbox.checked;
+
+            }
+        );
+
+
+    if (allSelected) {
+
+        selectAllButton.textContent =
+            "إلغاء تحديد الكل";
+
+    } else {
+
+        selectAllButton.textContent =
+            "تحديد الكل";
+
+    }
+
+}
+
+
+selectAllButton.addEventListener(
+    "click",
+    function () {
+
+        const allSelected =
+            Array.from(
+                productCheckboxes
+            ).every(
+                function (checkbox) {
+
+                    return checkbox.checked;
+
+                }
+            );
+
+
+        productCheckboxes.forEach(
+            function (checkbox) {
+
+                checkbox.checked =
+                    !allSelected;
+
+            }
+        );
+
+
+        updateSelectAllButton();
+
+    }
+);
+
+
+productCheckboxes.forEach(
+    function (checkbox) {
+
+        checkbox.addEventListener(
+            "change",
+            updateSelectAllButton
+        );
+
+    }
+);
+
+
+/* =========================================================
    ADD BLACKLIST
 ========================================================= */
 
@@ -234,11 +362,28 @@ blacklistForm.addEventListener(
         const orderNumber =
             orderNumberInput.value.trim();
 
-        const product =
-            productInput.value;
-
         const reason =
             reasonInput.value.trim();
+
+
+        const selectedProducts =
+            Array.from(
+                productCheckboxes
+            )
+            .filter(
+                function (checkbox) {
+
+                    return checkbox.checked;
+
+                }
+            )
+            .map(
+                function (checkbox) {
+
+                    return checkbox.value;
+
+                }
+            );
 
 
         /* =================================================
@@ -251,20 +396,133 @@ blacklistForm.addEventListener(
                 "رقم الطلب يجب أن يتكون من 9 أرقام.";
 
             return;
+
         }
 
 
         /* =================================================
-           CHECK PRODUCT
+           CHECK PRODUCTS
         ================================================= */
 
-        if (!product) {
+        if (
+            selectedProducts.length ===
+            0
+        ) {
 
             blacklistMessage.textContent =
-                "يرجى اختيار المنتج.";
+                "يرجى اختيار منتج واحد على الأقل.";
 
             return;
+
         }
+
+
+        /* =================================================
+           CHECK EXISTING BLACKLIST
+        ================================================= */
+
+        const {
+            data: existingRecords,
+            error: existingError
+        } =
+            await supabaseClient
+                .from("blacklist")
+                .select("product")
+                .eq(
+                    "order_number",
+                    orderNumber
+                );
+
+
+        if (existingError) {
+
+            console.error(
+                existingError
+            );
+
+            blacklistMessage.textContent =
+                "حدث خطأ أثناء التحقق من البيانات.";
+
+            return;
+
+        }
+
+
+        const existingProducts =
+            (existingRecords || [])
+                .map(
+                    function (record) {
+
+                        return record.product;
+
+                    }
+                );
+
+
+        const productsToAdd =
+            selectedProducts.filter(
+                function (product) {
+
+                    return !existingProducts.includes(
+                        product
+                    );
+
+                }
+            );
+
+
+        const alreadyBlacklisted =
+            selectedProducts.filter(
+                function (product) {
+
+                    return existingProducts.includes(
+                        product
+                    );
+
+                }
+            );
+
+
+        /* =================================================
+           NOTHING NEW TO ADD
+        ================================================= */
+
+        if (
+            productsToAdd.length ===
+            0
+        ) {
+
+            blacklistMessage.textContent =
+                "المنتجات المحددة محظورة بالفعل لهذا الطلب.";
+
+            return;
+
+        }
+
+
+        /* =================================================
+           PREPARE INSERT
+        ================================================= */
+
+        const recordsToInsert =
+            productsToAdd.map(
+                function (product) {
+
+                    return {
+
+                        order_number:
+                            orderNumber,
+
+                        product:
+                            product,
+
+                        reason:
+                            reason || null
+
+                    };
+
+                }
+            );
 
 
         /* =================================================
@@ -276,53 +534,89 @@ blacklistForm.addEventListener(
         } =
             await supabaseClient
                 .from("blacklist")
-                .insert({
-
-                    order_number:
-                        orderNumber,
-
-                    product:
-                        product,
-
-                    reason:
-                        reason || null
-
-                });
+                .insert(
+                    recordsToInsert
+                );
 
 
         if (error) {
 
-            if (
-                error.code ===
-                "23505"
-            ) {
+            console.error(
+                error
+            );
 
-                blacklistMessage.textContent =
-                    "هذا المنتج محظور بالفعل لهذا الطلب.";
-
-            } else {
-
-                console.error(
-                    error
-                );
-
-                blacklistMessage.textContent =
-                    "حدث خطأ أثناء إضافة الإلغاء.";
-
-            }
+            blacklistMessage.textContent =
+                "حدث خطأ أثناء إضافة الإلغاء.";
 
             return;
+
         }
 
 
-        blacklistMessage.textContent =
-            "تم إلغاء الوصول بنجاح.";
+        /* =================================================
+           SUCCESS MESSAGE
+        ================================================= */
+
+        const addedNames =
+            productsToAdd
+                .map(
+                    function (product) {
+
+                        return PRODUCT_NAMES[product];
+
+                    }
+                )
+                .join("، ");
 
 
-        blacklistForm.reset();
+        if (
+            alreadyBlacklisted.length >
+            0
+        ) {
+
+            blacklistMessage.textContent =
+                "تم إلغاء الوصول إلى " +
+                addedNames +
+                ". بعض المنتجات كانت محظورة بالفعل.";
+
+        } else {
+
+            blacklistMessage.textContent =
+                "تم إلغاء الوصول بنجاح إلى " +
+                addedNames +
+                ".";
+
+        }
 
 
-        loadBlacklist();
+        /* =================================================
+           RESET FORM
+        ================================================= */
+
+        orderNumberInput.value =
+            "";
+
+        reasonInput.value =
+            "";
+
+        productCheckboxes.forEach(
+            function (checkbox) {
+
+                checkbox.checked =
+                    false;
+
+            }
+        );
+
+
+        updateSelectAllButton();
+
+
+        /* =================================================
+           RELOAD DATA
+        ================================================= */
+
+        await loadBlacklist();
 
     }
 );
@@ -363,6 +657,11 @@ async function loadBlacklist() {
             error
         );
 
+        blacklistRecords =
+            [];
+
+        updateStatistics();
+
         tableWrapper.innerHTML =
             `
             <div class="error-box">
@@ -371,23 +670,176 @@ async function loadBlacklist() {
             `;
 
         return;
+
     }
 
 
-    if (!data || data.length === 0) {
+    blacklistRecords =
+        data || [];
 
-        tableWrapper.innerHTML =
-            `
-            <div class="empty-box">
-                لا توجد حالات وصول ملغاة حاليًا.
-            </div>
-            `;
+
+    updateStatistics();
+
+    renderBlacklist(
+        getFilteredRecords()
+    );
+
+}
+
+
+/* =========================================================
+   GET FILTERED RECORDS
+========================================================= */
+
+function getFilteredRecords() {
+
+    const search =
+        searchInput.value.trim();
+
+
+    if (!search) {
+
+        return blacklistRecords;
+
+    }
+
+
+    return blacklistRecords.filter(
+        function (record) {
+
+            return record.order_number
+                .includes(search);
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+searchInput.addEventListener(
+    "input",
+    function () {
+
+        renderBlacklist(
+            getFilteredRecords()
+        );
+
+    }
+);
+
+
+/* =========================================================
+   CLEAR SEARCH
+========================================================= */
+
+clearSearchButton.addEventListener(
+    "click",
+    function () {
+
+        searchInput.value =
+            "";
+
+        renderBlacklist(
+            getFilteredRecords()
+        );
+
+        searchInput.focus();
+
+    }
+);
+
+
+/* =========================================================
+   UPDATE SEARCH RESULT COUNT
+========================================================= */
+
+function updateSearchResultCount(
+    records
+) {
+
+    const search =
+        searchInput.value.trim();
+
+
+    if (!search) {
+
+        searchResultCount.textContent =
+            "";
 
         return;
+
     }
 
 
-    renderBlacklist(data);
+    const uniqueOrders =
+        new Set(
+            records.map(
+                function (record) {
+
+                    return record.order_number;
+
+                }
+            )
+        );
+
+
+    searchResultCount.textContent =
+        uniqueOrders.size +
+        " طلب مطابق";
+
+}
+
+
+/* =========================================================
+   UPDATE STATISTICS
+========================================================= */
+
+function updateStatistics() {
+
+    const uniqueOrders =
+        new Set(
+            blacklistRecords.map(
+                function (record) {
+
+                    return record.order_number;
+
+                }
+            )
+        );
+
+
+    blockedCustomersCount.textContent =
+        uniqueOrders.size;
+
+
+    blockedRecordsCount.textContent =
+        blacklistRecords.length;
+
+
+    stepCount.textContent =
+        blacklistRecords.filter(
+            function (record) {
+
+                return record.product ===
+                    "step";
+
+            }
+        ).length;
+
+
+    englishCount.textContent =
+        blacklistRecords.filter(
+            function (record) {
+
+                return record.product ===
+                    "english";
+
+            }
+        ).length;
 
 }
 
@@ -397,6 +849,53 @@ async function loadBlacklist() {
 ========================================================= */
 
 function renderBlacklist(records) {
+
+    updateSearchResultCount(
+        records
+    );
+
+
+    if (
+        records.length ===
+        0
+    ) {
+
+        const hasSearch =
+            searchInput.value.trim()
+                .length > 0;
+
+
+        if (hasSearch) {
+
+            tableWrapper.innerHTML =
+                `
+                <div class="empty-box">
+
+                    لا توجد نتائج لرقم الطلب
+                    <strong>
+                        ${escapeHtml(
+                            searchInput.value.trim()
+                        )}
+                    </strong>
+
+                </div>
+                `;
+
+        } else {
+
+            tableWrapper.innerHTML =
+                `
+                <div class="empty-box">
+                    لا توجد حالات وصول ملغاة حاليًا.
+                </div>
+                `;
+
+        }
+
+        return;
+
+    }
+
 
     let html = `
 
@@ -435,78 +934,83 @@ function renderBlacklist(records) {
     `;
 
 
-    records.forEach(function (record) {
+    records.forEach(
+        function (record) {
 
 
-        const productName =
-            PRODUCT_NAMES[record.product] ||
-            record.product;
+            const productName =
+                PRODUCT_NAMES[
+                    record.product
+                ] ||
+                record.product;
 
 
-        const date =
-            new Date(
-                record.created_at
-            ).toLocaleString(
-                "ar-SA",
-                {
-                    dateStyle:
-                        "medium",
-                    timeStyle:
-                        "short"
-                }
-            );
+            const date =
+                new Date(
+                    record.created_at
+                ).toLocaleString(
+                    "ar-SA",
+                    {
+                        dateStyle:
+                            "medium",
+
+                        timeStyle:
+                            "short"
+                    }
+                );
 
 
-        html += `
+            html += `
 
-            <tr>
+                <tr>
 
-                <td class="order-number">
-                    ${escapeHtml(
-                        record.order_number
-                    )}
-                </td>
-
-                <td>
-
-                    <span class="product-badge">
+                    <td class="order-number">
                         ${escapeHtml(
-                            productName
+                            record.order_number
                         )}
-                    </span>
+                    </td>
 
-                </td>
+                    <td>
 
-                <td>
-                    ${escapeHtml(
-                        record.reason ||
-                        "—"
-                    )}
-                </td>
+                        <span class="product-badge">
+                            ${escapeHtml(
+                                productName
+                            )}
+                        </span>
 
-                <td>
-                    ${escapeHtml(
-                        date
-                    )}
-                </td>
+                    </td>
 
-                <td>
+                    <td>
+                        ${escapeHtml(
+                            record.reason ||
+                            "—"
+                        )}
+                    </td>
 
-                    <button
-                        type="button"
-                        class="remove-button"
-                        data-id="${record.id}"
-                    >
-                        إلغاء الحظر
-                    </button>
+                    <td>
+                        ${escapeHtml(
+                            date
+                        )}
+                    </td>
 
-                </td>
+                    <td>
 
-            </tr>
+                        <button
+                            type="button"
+                            class="remove-button"
+                            data-id="${record.id}"
+                        >
+                            إلغاء الحظر
+                        </button>
 
-        `;
+                    </td>
 
-    });
+                </tr>
+
+            `;
+
+        }
+    );
 
 
     html += `
@@ -559,7 +1063,9 @@ async function removeBlacklist(id) {
 
 
     if (!confirmed) {
+
         return;
+
     }
 
 
@@ -586,10 +1092,11 @@ async function removeBlacklist(id) {
         );
 
         return;
+
     }
 
 
-    loadBlacklist();
+    await loadBlacklist();
 
 }
 
@@ -601,22 +1108,27 @@ async function removeBlacklist(id) {
 function escapeHtml(value) {
 
     return String(value)
+
         .replace(
             /&/g,
             "&amp;"
         )
+
         .replace(
             /</g,
             "&lt;"
         )
+
         .replace(
             />/g,
             "&gt;"
         )
+
         .replace(
             /"/g,
             "&quot;"
         )
+
         .replace(
             /'/g,
             "&#039;"

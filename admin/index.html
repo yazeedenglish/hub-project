@@ -156,6 +156,80 @@
 
 
             <!-- =================================================
+                 STATISTICS
+            ================================================== -->
+
+            <section class="stats-grid">
+
+                <div class="stat-card">
+
+                    <div class="stat-label">
+                        العملاء المحظورون
+                    </div>
+
+                    <div
+                        class="stat-value"
+                        id="blockedCustomersCount"
+                    >
+                        0
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-label">
+                        إجمالي حالات الإلغاء
+                    </div>
+
+                    <div
+                        class="stat-value"
+                        id="blockedRecordsCount"
+                    >
+                        0
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-label">
+                        STEP
+                    </div>
+
+                    <div
+                        class="stat-value"
+                        id="stepCount"
+                    >
+                        0
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-label">
+                        English
+                    </div>
+
+                    <div
+                        class="stat-value"
+                        id="englishCount"
+                    >
+                        0
+                    </div>
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- =================================================
                  ADD BLACKLIST
             ================================================== -->
 
@@ -170,7 +244,7 @@
                         </h2>
 
                         <p>
-                            أضف منتجًا إلى قائمة الوصول الملغى
+                            اختر منتجًا واحدًا أو أكثر لإلغاء الوصول إليه
                         </p>
 
                     </div>
@@ -184,7 +258,7 @@
                     <div class="form-grid">
 
 
-                        <div class="field">
+                        <div class="field field-wide">
 
                             <label for="orderNumber">
                                 رقم الطلب
@@ -203,62 +277,171 @@
                         </div>
 
 
+                    </div>
 
-                        <div class="field">
 
-                            <label for="product">
-                                المنتج
+
+                    <!-- =================================================
+                         PRODUCTS
+                    ================================================== -->
+
+                    <div class="products-section">
+
+                        <div class="products-header">
+
+                            <label>
+                                المنتجات
                             </label>
 
-                            <select id="product" required>
-
-                                <option value="">
-                                    اختر المنتج
-                                </option>
-
-                                <option value="step">
-                                    STEP
-                                </option>
-
-                                <option value="english">
-                                    English
-                                </option>
-
-                                <option value="trab6">
-                                    Trab6
-                                </option>
-
-                                <option value="writing">
-                                    Writing
-                                </option>
-
-                            </select>
-
-                        </div>
-
-
-
-                        <div class="field field-wide">
-
-                            <label for="reason">
-                                السبب
-                                <span>
-                                    اختياري
-                                </span>
-                            </label>
-
-                            <input
-                                type="text"
-                                id="reason"
-                                placeholder="مثال: استرجاع"
-                                maxlength="100"
-                                autocomplete="off"
+                            <button
+                                type="button"
+                                class="select-all-button"
+                                id="selectAllButton"
                             >
+                                تحديد الكل
+                            </button>
 
                         </div>
 
+
+                        <div class="product-options">
+
+
+                            <label class="product-option">
+
+                                <input
+                                    type="checkbox"
+                                    class="product-checkbox"
+                                    value="step"
+                                >
+
+                                <span class="custom-checkbox"></span>
+
+                                <span class="product-option-content">
+
+                                    <strong>
+                                        STEP
+                                    </strong>
+
+                                    <small>
+                                        دورة STEP
+                                    </small>
+
+                                </span>
+
+                            </label>
+
+
+
+                            <label class="product-option">
+
+                                <input
+                                    type="checkbox"
+                                    class="product-checkbox"
+                                    value="english"
+                                >
+
+                                <span class="custom-checkbox"></span>
+
+                                <span class="product-option-content">
+
+                                    <strong>
+                                        English
+                                    </strong>
+
+                                    <small>
+                                        دورة اللغة الإنجليزية
+                                    </small>
+
+                                </span>
+
+                            </label>
+
+
+
+                            <label class="product-option">
+
+                                <input
+                                    type="checkbox"
+                                    class="product-checkbox"
+                                    value="trab6"
+                                >
+
+                                <span class="custom-checkbox"></span>
+
+                                <span class="product-option-content">
+
+                                    <strong>
+                                        Trab6
+                                    </strong>
+
+                                    <small>
+                                        دورة Trab6
+                                    </small>
+
+                                </span>
+
+                            </label>
+
+
+
+                            <label class="product-option">
+
+                                <input
+                                    type="checkbox"
+                                    class="product-checkbox"
+                                    value="writing"
+                                >
+
+                                <span class="custom-checkbox"></span>
+
+                                <span class="product-option-content">
+
+                                    <strong>
+                                        Writing
+                                    </strong>
+
+                                    <small>
+                                        دورة الكتابة
+                                    </small>
+
+                                </span>
+
+                            </label>
+
+
+                        </div>
 
                     </div>
+
+
+
+                    <!-- =================================================
+                         REASON
+                    ================================================== -->
+
+                    <div class="field reason-field">
+
+                        <label for="reason">
+
+                            السبب
+
+                            <span>
+                                اختياري
+                            </span>
+
+                        </label>
+
+                        <input
+                            type="text"
+                            id="reason"
+                            placeholder="مثال: استرجاع"
+                            maxlength="100"
+                            autocomplete="off"
+                        >
+
+                    </div>
+
 
 
                     <button
@@ -295,7 +478,7 @@
                         </h2>
 
                         <p>
-                            جميع المنتجات التي تم إلغاء الوصول إليها
+                            ابحث عن رقم الطلب لإدارة الوصول بسرعة
                         </p>
 
                     </div>
@@ -310,6 +493,48 @@
                     </button>
 
                 </div>
+
+
+
+                <!-- =================================================
+                     SEARCH
+                ================================================== -->
+
+                <div class="search-box">
+
+                    <div class="search-input-wrapper">
+
+                        <span class="search-icon">
+                            🔎
+                        </span>
+
+                        <input
+                            type="text"
+                            id="searchInput"
+                            placeholder="ابحث برقم الطلب..."
+                            inputmode="numeric"
+                            maxlength="9"
+                            autocomplete="off"
+                        >
+
+                        <button
+                            type="button"
+                            class="clear-search-button"
+                            id="clearSearchButton"
+                            aria-label="مسح البحث"
+                        >
+                            ×
+                        </button>
+
+                    </div>
+
+                    <div
+                        class="search-result-count"
+                        id="searchResultCount"
+                    ></div>
+
+                </div>
+
 
 
                 <div
