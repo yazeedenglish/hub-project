@@ -3,26 +3,6 @@
    FRONTEND ONLY
 ========================================================= */
 
-const ACCESS_CODES = {
-    step: "512731",
-    english: "705164",
-    trab6: "317826",
-    writing: "654209"
-};
-
-const COURSE_URLS = {
-    step: "/step/",
-    english: "/english/",
-    trab6: "/trab6/",
-    writing: "/writing/"
-};
-
-const ACCESS_STORAGE_KEY =
-    "yazeed_current_access";
-
-const ACCESS_DURATION =
-    90 * 24 * 60 * 60 * 1000;
-
 
 const form =
     document.getElementById("accessForm");
@@ -143,18 +123,23 @@ form.addEventListener(
             return;
         }
 
+
+        /* =================================================
+           CHECK BLACKLIST
+        ================================================= */
+
         if (
-    BLACKLISTED_ACCESS[orderNumber] &&
-    BLACKLISTED_ACCESS[orderNumber].includes(
-        selectedProduct
-    )
-) {
+            BLACKLISTED_ACCESS[orderNumber] &&
+            BLACKLISTED_ACCESS[orderNumber].includes(
+                selectedProduct
+            )
+        ) {
 
-    message.textContent =
-        "تم إلغاء صلاحية الوصول الى المنتج";
+            message.textContent =
+                "تم إلغاء صلاحية الوصول الى المنتج";
 
-    return;
-}
+            return;
+        }
 
 
         /* =================================================
@@ -179,7 +164,7 @@ form.addEventListener(
             } catch (error) {
 
                 console.error(
-                    "Invalid saved access:",
+                    "Invalid access data:",
                     error
                 );
 
