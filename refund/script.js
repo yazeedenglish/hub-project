@@ -1,86 +1,32 @@
-const FORMSPREE_ENDPOINT =
-    "https://formspree.io/f/meaoyybk";
-
-
 const form =
     document.getElementById("refundForm");
 
-const nameInput =
-    document.getElementById("name");
 
-const orderNumberInput =
+const orderNumber =
     document.getElementById("orderNumber");
 
-const reasonInput =
+
+const reason =
     document.getElementById("reason");
 
-const wordCount =
-    document.getElementById("wordCount");
 
-const agreement =
-    document.getElementById("agreement");
+const characterCount =
+    document.getElementById("characterCount");
+
 
 const submitButton =
     document.getElementById("submitButton");
 
-const successModal =
-    document.getElementById("successModal");
 
-const closeModal =
-    document.getElementById("closeModal");
-
-
-/* -------------------------------- */
-/* Word counter */
-/* -------------------------------- */
-
-function getWordCount(text) {
-
-    return text
-        .trim()
-        .split(/\s+/)
-        .filter(Boolean)
-        .length;
-
-}
-
-
-function updateWordCount() {
-
-    const count =
-        getWordCount(
-            reasonInput.value
-        );
-
-    wordCount.textContent =
-        count + " / 50";
-
-    if (count >= 50) {
-
-        wordCount.style.color =
-            "#00689b";
-
-    } else {
-
-        wordCount.style.color =
-            "#6b7280";
-
-    }
-
-}
-
-
-reasonInput.addEventListener(
-    "input",
-    updateWordCount
-);
+const productsError =
+    document.getElementById("productsError");
 
 
 /* -------------------------------- */
 /* Order number */
 /* -------------------------------- */
 
-orderNumberInput.addEventListener(
+orderNumber.addEventListener(
     "input",
     function () {
 
@@ -94,268 +40,325 @@ orderNumberInput.addEventListener(
 
 
 /* -------------------------------- */
-/* Products */
+/* Character counter */
+/* -------------------------------- */
+
+function getCharacterCount(text) {
+
+    return text.trim().length;
+
+}
+
+
+function updateCharacterCount() {
+
+    const count =
+        getCharacterCount(
+            reason.value
+        );
+
+
+    characterCount.textContent =
+        count + " / 50";
+
+
+    if (count >= 50) {
+
+        characterCount.classList.add(
+            "valid"
+        );
+
+    } else {
+
+        characterCount.classList.remove(
+            "valid"
+        );
+
+    }
+
+}
+
+
+reason.addEventListener(
+    "input",
+    updateCharacterCount
+);
+
+
+/* -------------------------------- */
+/* Product validation */
 /* -------------------------------- */
 
 function getSelectedProducts() {
 
-    return Array.from(
-        document.querySelectorAll(
-            'input[name="products"]:checked'
-        )
-    ).map(function (input) {
-
-        return input.value;
-
-    });
+    return document.querySelectorAll(
+        'input[name="المنتجات المراد إرجاعها"]:checked'
+    );
 
 }
 
 
-/* -------------------------------- */
-/* Validation */
-/* -------------------------------- */
+function validateProducts() {
 
-function showError(message) {
-
-    alert(message);
-
-}
-
-
-function validateForm() {
-
-    const name =
-        nameInput.value.trim();
-
-    const orderNumber =
-        orderNumberInput.value.trim();
-
-    const reason =
-        reasonInput.value.trim();
-
-    const products =
+    const selected =
         getSelectedProducts();
 
-    const usageStatus =
-        document.querySelector(
-            'input[name="usage_status"]:checked'
-        );
 
-    const words =
-        getWordCount(reason);
+    if (selected.length === 0) {
 
-
-    if (!name) {
-
-        showError(
-            "يرجى كتابة الاسم."
-        );
-
-        nameInput.focus();
+        productsError.textContent =
+            "يرجى اختيار منتج واحد على الأقل.";
 
         return false;
+
     }
 
 
-    if (!/^\d{9}$/.test(orderNumber)) {
-
-        showError(
-            "يرجى إدخال رقم طلب صحيح مكوّن من 9 أرقام."
-        );
-
-        orderNumberInput.focus();
-
-        return false;
-    }
-
-
-    if (products.length === 0) {
-
-        showError(
-            "يرجى اختيار منتج واحد على الأقل."
-        );
-
-        return false;
-    }
-
-
-    if (words < 50) {
-
-        showError(
-            "يرجى كتابة سبب الاسترجاع في 50 كلمة على الأقل."
-        );
-
-        reasonInput.focus();
-
-        return false;
-    }
-
-
-    if (!usageStatus) {
-
-        showError(
-            "يرجى تحديد ما إذا كنت قد بدأت باستخدام المنتج."
-        );
-
-        return false;
-    }
-
-
-    if (!agreement.checked) {
-
-        showError(
-            "يرجى الإقرار بأن المعلومات المقدمة صحيحة."
-        );
-
-        return false;
-    }
-
+    productsError.textContent =
+        "";
 
     return true;
 
 }
 
 
+document
+    .querySelectorAll(
+        'input[name="المنتجات المراد إرجاعها"]'
+    )
+    .forEach(function (checkbox) {
+
+        checkbox.addEventListener(
+            "change",
+            validateProducts
+        );
+
+    });
+
+
 /* -------------------------------- */
-/* Submit */
+/* Form validation */
 /* -------------------------------- */
 
 form.addEventListener(
     "submit",
-    async function (event) {
+    function (event) {
 
-        event.preventDefault();
+        const selectedProducts =
+            getSelectedProducts();
 
 
-        if (!validateForm()) {
+        const characters =
+            getCharacterCount(
+                reason.value
+            );
+
+
+        /*
+           Product validation
+        */
+
+        if (selectedProducts.length === 0) {
+
+            event.preventDefault();
+
+            productsError.textContent =
+                "يرجى اختيار منتج واحد على الأقل.";
+
+            document
+                .querySelector(".products-grid")
+                .scrollIntoView({
+                    behavior: "smooth",
+                    block: "center"
+                });
+
             return;
+
         }
 
+
+        /*
+           Character validation
+        */
+
+        if (characters < 50) {
+
+            event.preventDefault();
+
+            alert(
+                "يرجى كتابة سبب الاسترجاع في 50 حرفًا على الأقل."
+            );
+
+            reason.focus();
+
+            return;
+
+        }
+
+
+        /*
+           Order number validation
+        */
+
+        if (
+            !/^\d{9}$/.test(
+                orderNumber.value.trim()
+            )
+        ) {
+
+            event.preventDefault();
+
+            alert(
+                "يرجى إدخال رقم طلب صحيح مكوّن من 9 أرقام."
+            );
+
+            orderNumber.focus();
+
+            return;
+
+        }
+
+
+        /*
+           Let Formspree handle
+           the actual submission.
+        */
 
         submitButton.disabled = true;
 
         submitButton.textContent =
             "جارٍ إرسال الطلب...";
 
+    }
+);
 
-        const products =
-            getSelectedProducts();
+const refundForm = document.getElementById("refundForm");
 
-        const usageStatus =
-            document.querySelector(
-                'input[name="usage_status"]:checked'
-            );
+const validationPopup =
+    document.getElementById("validationPopup");
 
+const validationPopupMessage =
+    document.getElementById("validationPopupMessage");
 
-        const formData =
-            new FormData();
-
-
-        formData.append(
-            "name",
-            nameInput.value.trim()
-        );
+const validationPopupClose =
+    document.getElementById("validationPopupClose");
 
 
-        formData.append(
-            "order_number",
-            orderNumberInput.value.trim()
-        );
+function showValidationPopup(message) {
+
+    validationPopupMessage.textContent = message;
+
+    validationPopup.classList.add("show");
+
+    validationPopup.setAttribute(
+        "aria-hidden",
+        "false"
+    );
+
+}
 
 
-        formData.append(
-            "products",
-            products.join("، ")
-        );
+function closeValidationPopup() {
+
+    validationPopup.classList.remove("show");
+
+    validationPopup.setAttribute(
+        "aria-hidden",
+        "true"
+    );
+
+}
 
 
-        formData.append(
-            "reason",
-            reasonInput.value.trim()
-        );
+validationPopupClose.addEventListener(
+    "click",
+    closeValidationPopup
+);
 
 
-        formData.append(
-            "usage_status",
-            usageStatus.value
-        );
+validationPopup.addEventListener(
+    "click",
+    function (event) {
+
+        if (
+            event.target === validationPopup
+        ) {
+            closeValidationPopup();
+        }
+
+    }
+);
 
 
-        formData.append(
-            "agreement",
-            "أقر بأن المعلومات المقدمة صحيحة"
-        );
+refundForm.addEventListener(
+    "invalid",
+    function (event) {
+
+        event.preventDefault();
+
+    },
+    true
+);
 
 
-        formData.append(
-            "_subject",
-            "طلب استرجاع جديد - Yazeed English"
-        );
+refundForm.addEventListener(
+    "submit",
+    function (event) {
 
+        if (!refundForm.checkValidity()) {
 
-        try {
+            event.preventDefault();
 
-            const response =
-                await fetch(
-                    FORMSPREE_ENDPOINT,
-                    {
-                        method: "POST",
-
-                        body: formData,
-
-                        headers: {
-                            "Accept":
-                                "application/json"
-                        }
-                    }
+            const invalidField =
+                refundForm.querySelector(
+                    ":invalid"
                 );
 
+            let message =
+                "يرجى تعبئة جميع البيانات المطلوبة قبل الإرسال.";
 
-            if (!response.ok) {
+            if (invalidField) {
 
-                throw new Error(
-                    "Submission failed"
-                );
+                if (
+                    invalidField.id === "name"
+                ) {
+                    message =
+                        "يرجى كتابة اسمك.";
+                }
+
+                else if (
+                    invalidField.id === "orderNumber"
+                ) {
+                    message =
+                        "يرجى إدخال رقم الطلب المكوّن من 9 أرقام.";
+                }
+
+                else if (
+                    invalidField.id === "reason"
+                ) {
+                    message =
+                        "يرجى كتابة سبب الاسترجاع، بحد أدنى 50 حرفًا.";
+                }
+
+                else if (
+                    invalidField.id === "agreement"
+                ) {
+                    message =
+                        "يرجى الموافقة على الإقرار قبل إرسال الطلب.";
+                }
+
+                else if (
+                    invalidField.type === "radio"
+                ) {
+                    message =
+                        "يرجى تحديد ما إذا كنت قد بدأت باستخدام المنتج.";
+                }
 
             }
 
+            showValidationPopup(message);
 
-            form.reset();
-
-            updateWordCount();
-
-            successModal.classList.add(
-                "show"
-            );
-
-            successModal.setAttribute(
-                "aria-hidden",
-                "false"
-            );
-
-        }
-
-        catch (error) {
-
-            console.error(
-                "Refund submission error:",
-                error
-            );
-
-            showError(
-                "حدث خطأ أثناء إرسال الطلب. يرجى المحاولة مرة أخرى."
-            );
-
-        }
-
-        finally {
-
-            submitButton.disabled = false;
-
-            submitButton.textContent =
-                "إرسال طلب الاسترجاع";
-
+            return;
         }
 
     }
@@ -363,47 +366,7 @@ form.addEventListener(
 
 
 /* -------------------------------- */
-/* Success modal */
+/* Initial state */
 /* -------------------------------- */
 
-closeModal.addEventListener(
-    "click",
-    function () {
-
-        successModal.classList.remove(
-            "show"
-        );
-
-        successModal.setAttribute(
-            "aria-hidden",
-            "true"
-        );
-
-        window.location.href = "/";
-
-    }
-);
-
-
-/* Close by clicking backdrop */
-
-document
-    .querySelector(".modal-backdrop")
-    .addEventListener(
-        "click",
-        function () {
-
-            successModal.classList.remove(
-                "show"
-            );
-
-            successModal.setAttribute(
-                "aria-hidden",
-                "true"
-            );
-
-        }
-    );
-
-
-updateWordCount();
+updateCharacterCount();
