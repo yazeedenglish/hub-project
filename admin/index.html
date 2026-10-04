@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Yazeed English — الإدارة</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap"
+        rel="stylesheet"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         LOGIN
+    ====================================================== -->
+
+    <section
+        class="login-screen"
+        id="loginScreen"
+    >
+
+        <div class="login-box">
+
+            <div class="login-icon">
+                🔐
+            </div>
+
+            <div class="brand">
+                YAZEED ENGLISH
+            </div>
+
+            <h1>
+                لوحة الإدارة
+            </h1>
+
+            <p class="subtitle">
+                تسجيل الدخول لإدارة الوصول
+            </p>
+
+
+            <form id="loginForm">
+
+                <label for="email">
+                    البريد الإلكتروني
+                </label>
+
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="أدخل البريد الإلكتروني"
+                    autocomplete="email"
+                    required
+                >
+
+
+                <label for="password">
+                    كلمة المرور
+                </label>
+
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="أدخل كلمة المرور"
+                    autocomplete="current-password"
+                    required
+                >
+
+
+                <button
+                    type="submit"
+                    class="primary-button"
+                >
+                    تسجيل الدخول
+                </button>
+
+            </form>
+
+
+            <div
+                class="message"
+                id="loginMessage"
+            ></div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         ADMIN PANEL
+    ====================================================== -->
+
+    <section
+        class="admin-screen"
+        id="adminScreen"
+    >
+
+        <header class="admin-header">
+
+            <div>
+
+                <div class="brand">
+                    YAZEED ENGLISH
+                </div>
+
+                <h1>
+                    إدارة الوصول
+                </h1>
+
+            </div>
+
+
+            <div class="header-actions">
+
+                <a
+                    href="/"
+                    class="home-button"
+                >
+                    الرئيسية
+                </a>
+
+                <button
+                    type="button"
+                    class="logout-button"
+                    id="logoutButton"
+                >
+                    تسجيل الخروج
+                </button>
+
+            </div>
+
+        </header>
+
+
+
+        <main class="admin-container">
+
+
+            <!-- =================================================
+                 STATISTICS
+            ================================================== -->
+
+            <section class="stats-grid">
+
+                <div class="stat-card">
+
+                    <div class="stat-label">
+                        العملاء المحظورون
+                    </div>
+
+                    <div
+                        class="stat-value"
+                        id="blockedCustomersCount"
+                    >
+                        0
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-label">
+                        إجمالي حالات الإلغاء
+                    </div>
+
+                    <div
+                        class="stat-value"
+                        id="blockedRecordsCount"
+                    >
+                        0
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-label">
+                        STEP
+                    </div>
+
+                    <div
+                        class="stat-value"
+                        id="stepCount"
+                    >
+                        0
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-label">
+                        English
+                    </div>
+
+                    <div
+                        class="stat-value"
+                        id="englishCount"
+                    >
+                        0
+                    </div>
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- =================================================
+                 ADD BLACKLIST
+            ================================================== -->
+
+            <section class="panel">
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <h2>
+                            إلغاء الوصول
+                        </h2>
+
+                        <p>
+                            اختر منتجًا واحدًا أو أكثر لإلغاء الوصول إليه
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <form id="blacklistForm">
+
+
+                    <div class="form-grid">
+
+
+                        <div class="field field-wide">
+
+                            <label for="orderNumber">
+                                رقم الطلب
+                            </label>
+
+                            <input
+                                type="text"
+                                id="orderNumber"
+                                placeholder="مثال: 234567890"
+                                inputmode="numeric"
+                                maxlength="9"
+                                autocomplete="off"
+                                required
+                            >
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- =================================================
+                         PRODUCTS
+                    ================================================== -->
+
+                    <div class="products-section">
+
+                        <div class="products-header">
+
+                            <label>
+                                المنتجات
+                            </label>
+
+                            <button
+                                type="button"
+                                class="select-all-button"
+                                id="selectAllButton"
+                            >
+                                تحديد الكل
+                            </button>
+
+                        </div>
+
+
+                        <div class="product-options">
+
+
+                            <label class="product-option">
+
+                                <input
+                                    type="checkbox"
+                                    class="product-checkbox"
+                                    value="step"
+                                >
+
+                                <span class="custom-checkbox"></span>
+
+                                <span class="product-option-content">
+
+                                    <strong>
+                                        STEP
+                                    </strong>
+
+                                    <small>
+                                        دورة STEP
+                                    </small>
+
+                                </span>
+
+                            </label>
+
+
+
+                            <label class="product-option">
+
+                                <input
+                                    type="checkbox"
+                                    class="product-checkbox"
+                                    value="english"
+                                >
+
+                                <span class="custom-checkbox"></span>
+
+                                <span class="product-option-content">
+
+                                    <strong>
+                                        English
+                                    </strong>
+
+                                    <small>
+                                        دورة اللغة الإنجليزية
+                                    </small>
+
+                                </span>
+
+                            </label>
+
+
+
+                            <label class="product-option">
+
+                                <input
+                                    type="checkbox"
+                                    class="product-checkbox"
+                                    value="trab6"
+                                >
+
+                                <span class="custom-checkbox"></span>
+
+                                <span class="product-option-content">
+
+                                    <strong>
+                                        Trab6
+                                    </strong>
+
+                                    <small>
+                                        دورة Trab6
+                                    </small>
+
+                                </span>
+
+                            </label>
+
+
+
+                            <label class="product-option">
+
+                                <input
+                                    type="checkbox"
+                                    class="product-checkbox"
+                                    value="writing"
+                                >
+
+                                <span class="custom-checkbox"></span>
+
+                                <span class="product-option-content">
+
+                                    <strong>
+                                        Writing
+                                    </strong>
+
+                                    <small>
+                                        دورة الكتابة
+                                    </small>
+
+                                </span>
+
+                            </label>
+
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- =================================================
+                         REASON
+                    ================================================== -->
+
+                    <div class="field reason-field">
+
+                        <label for="reason">
+
+                            السبب
+
+                            <span>
+                                اختياري
+                            </span>
+
+                        </label>
+
+                        <input
+                            type="text"
+                            id="reason"
+                            placeholder="مثال: استرجاع"
+                            maxlength="100"
+                            autocomplete="off"
+                        >
+
+                    </div>
+
+
+
+                    <button
+                        type="submit"
+                        class="danger-button"
+                    >
+                        إلغاء الوصول
+                    </button>
+
+
+                    <div
+                        class="message"
+                        id="blacklistMessage"
+                    ></div>
+
+                </form>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 BLACKLIST
+            ================================================== -->
+
+            <section class="panel">
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <h2>
+                            الوصول الملغى
+                        </h2>
+
+                        <p>
+                            ابحث عن رقم الطلب لإدارة الوصول بسرعة
+                        </p>
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        class="refresh-button"
+                        id="refreshButton"
+                    >
+                        تحديث
+                    </button>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     SEARCH
+                ================================================== -->
+
+                <div class="search-box">
+
+                    <div class="search-input-wrapper">
+
+                        <span class="search-icon">
+                            🔎
+                        </span>
+
+                        <input
+                            type="text"
+                            id="searchInput"
+                            placeholder="ابحث برقم الطلب..."
+                            inputmode="numeric"
+                            maxlength="9"
+                            autocomplete="off"
+                        >
+
+                        <button
+                            type="button"
+                            class="clear-search-button"
+                            id="clearSearchButton"
+                            aria-label="مسح البحث"
+                        >
+                            ×
+                        </button>
+
+                    </div>
+
+                    <div
+                        class="search-result-count"
+                        id="searchResultCount"
+                    ></div>
+
+                </div>
+
+
+
+                <div
+                    class="table-wrapper"
+                    id="tableWrapper"
+                >
+
+                    <div class="loading">
+                        جاري تحميل البيانات...
+                    </div>
+
+                </div>
+
+            </section>
+
+
+        </main>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         SUPABASE
+    ====================================================== -->
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
+    ></script>
+
+    <script src="admin.js"></script>
+
+</body>
+
+</html>
