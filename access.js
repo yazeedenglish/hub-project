@@ -8,6 +8,7 @@ const SUPABASE_URL =
 const SUPABASE_KEY =
     "sb_publishable_K0fUOxqBNfZ8Eo1--6YJoQ_92xLfygr";
 
+
 /* =========================================================
    YAZEED ENGLISH — FRONTEND COURSE ACCESS
 ========================================================= */
@@ -34,13 +35,340 @@ const COURSE_URLS = {
 
 
 /* =========================================================
+   CUSTOMER ACCESS REMOVAL MODAL
+========================================================= */
+
+function showAccessRemovedModal() {
+
+    /*
+       Prevent creating the modal more than once.
+    */
+
+    if (document.getElementById("yazeedAccessModal")) {
+        return;
+    }
+
+
+    const modal =
+        document.createElement("div");
+
+    modal.id =
+        "yazeedAccessModal";
+
+    modal.innerHTML = `
+        <div class="yazeed-access-modal-backdrop">
+
+            <div
+                class="yazeed-access-modal-card"
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby="yazeedAccessModalTitle"
+            >
+
+                <div class="yazeed-access-modal-icon">
+                    <span>✓</span>
+                </div>
+
+                <h2 id="yazeedAccessModalTitle">
+                    تم إلغاء الوصول
+                </h2>
+
+                <p>
+                    تم إلغاء صلاحية الوصول إلى هذا المنتج بسبب استرجاع الطلب.
+                </p>
+
+                <button
+                    type="button"
+                    id="yazeedAccessModalButton"
+                >
+                    فهمت
+                </button>
+
+            </div>
+
+        </div>
+    `;
+
+
+    const style =
+        document.createElement("style");
+
+    style.id =
+        "yazeedAccessModalStyle";
+
+    style.textContent = `
+
+        #yazeedAccessModal {
+            position: fixed;
+            inset: 0;
+            z-index: 999999;
+            font-family: "Tajawal", sans-serif;
+        }
+
+
+        .yazeed-access-modal-backdrop {
+            position: absolute;
+            inset: 0;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 24px;
+
+            background:
+                rgba(0, 39, 58, 0.55);
+
+            backdrop-filter:
+                blur(6px);
+
+            -webkit-backdrop-filter:
+                blur(6px);
+
+            animation:
+                yazeedModalFadeIn
+                0.25s ease;
+        }
+
+
+        .yazeed-access-modal-card {
+            width: min(100%, 420px);
+
+            box-sizing: border-box;
+
+            padding: 34px 28px 28px;
+
+            text-align: center;
+
+            background: #ffffff;
+
+            border:
+                1px solid #DCDFD6;
+
+            border-radius: 24px;
+
+            box-shadow:
+                0 24px 70px rgba(0, 39, 58, 0.20);
+
+            animation:
+                yazeedModalCardIn
+                0.3s ease;
+
+            direction: rtl;
+        }
+
+
+        .yazeed-access-modal-icon {
+            width: 64px;
+            height: 64px;
+
+            margin: 0 auto 20px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 50%;
+
+            background: #eef7fb;
+
+            color: #00689b;
+
+            border:
+                1px solid #d8edf5;
+
+            font-size: 28px;
+            font-weight: 800;
+        }
+
+
+        .yazeed-access-modal-icon span {
+            line-height: 1;
+        }
+
+
+        .yazeed-access-modal-card h2 {
+            margin: 0 0 12px;
+
+            color: #00273a;
+
+            font-size: 24px;
+            font-weight: 800;
+
+            line-height: 1.4;
+        }
+
+
+        .yazeed-access-modal-card p {
+            margin: 0 auto 26px;
+
+            max-width: 330px;
+
+            color: #6b7280;
+
+            font-size: 15px;
+            font-weight: 500;
+
+            line-height: 1.9;
+        }
+
+
+        #yazeedAccessModalButton {
+            width: 100%;
+
+            border: none;
+
+            border-radius: 14px;
+
+            padding: 13px 20px;
+
+            background: #00689b;
+
+            color: #ffffff;
+
+            font-family: inherit;
+
+            font-size: 15px;
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition:
+                transform 0.2s ease,
+                background 0.2s ease,
+                box-shadow 0.2s ease;
+
+            box-shadow:
+                0 8px 20px rgba(0, 104, 155, 0.18);
+        }
+
+
+        #yazeedAccessModalButton:hover {
+            background: #00577f;
+
+            transform:
+                translateY(-1px);
+
+            box-shadow:
+                0 10px 24px rgba(0, 104, 155, 0.24);
+        }
+
+
+        #yazeedAccessModalButton:active {
+            transform:
+                translateY(0);
+        }
+
+
+        @keyframes yazeedModalFadeIn {
+
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+
+        }
+
+
+        @keyframes yazeedModalCardIn {
+
+            from {
+                opacity: 0;
+
+                transform:
+                    translateY(12px)
+                    scale(0.97);
+            }
+
+            to {
+                opacity: 1;
+
+                transform:
+                    translateY(0)
+                    scale(1);
+            }
+
+        }
+
+
+        @media (max-width: 480px) {
+
+            .yazeed-access-modal-backdrop {
+                padding: 18px;
+            }
+
+
+            .yazeed-access-modal-card {
+                padding:
+                    30px
+                    22px
+                    22px;
+
+                border-radius: 22px;
+            }
+
+
+            .yazeed-access-modal-card h2 {
+                font-size: 22px;
+            }
+
+
+            .yazeed-access-modal-card p {
+                font-size: 14px;
+            }
+
+        }
+
+    `;
+
+
+    document.head.appendChild(style);
+
+    document.body.appendChild(modal);
+
+
+    const button =
+        document.getElementById(
+            "yazeedAccessModalButton"
+        );
+
+
+    button.addEventListener(
+        "click",
+        function () {
+
+            window.location.href = "/";
+
+        }
+    );
+
+
+    /*
+       Focus the button so keyboard users
+       can immediately confirm.
+    */
+
+    setTimeout(function () {
+
+        button.focus();
+
+    }, 50);
+}
+
+
+/* =========================================================
    GET SAVED ACCESS
 ========================================================= */
 
 function getCurrentAccess() {
 
     const savedAccess =
-        localStorage.getItem(ACCESS_STORAGE_KEY);
+        localStorage.getItem(
+            ACCESS_STORAGE_KEY
+        );
 
     if (!savedAccess) {
         return null;
@@ -70,7 +398,8 @@ function getCurrentAccess() {
                 active: true,
                 expiresAt:
                     access.expiresAt ||
-                    Date.now() + ACCESS_DURATION
+                    Date.now() +
+                    ACCESS_DURATION
             };
 
             delete access.product;
@@ -82,9 +411,11 @@ function getCurrentAccess() {
             );
         }
 
+
         if (!access.products) {
             access.products = {};
         }
+
 
         return access;
 
@@ -103,7 +434,15 @@ function getCurrentAccess() {
     }
 }
 
-async function isBlacklisted(orderNumber, courseKey) {
+
+/* =========================================================
+   SUPABASE BLACKLIST CHECK
+========================================================= */
+
+async function isBlacklisted(
+    orderNumber,
+    courseKey
+) {
 
     try {
 
@@ -127,11 +466,13 @@ async function isBlacklisted(orderNumber, courseKey) {
                     },
 
                     body: JSON.stringify({
+
                         p_order_number:
                             orderNumber,
 
                         p_product:
                             courseKey
+
                     })
                 }
             );
@@ -169,10 +510,13 @@ async function isBlacklisted(orderNumber, courseKey) {
    CHECK COURSE ACCESS
 ========================================================= */
 
-async function checkCourseAccess(courseKey) {
+async function checkCourseAccess(
+    courseKey
+) {
 
     const access =
         getCurrentAccess();
+
 
     if (!access) {
 
@@ -182,32 +526,50 @@ async function checkCourseAccess(courseKey) {
         return false;
     }
 
+
+    /* =====================================================
+       BLACKLIST CHECK
+    ===================================================== */
+
     if (
-    await isBlacklisted(
-        access.orderNumber,
-        courseKey
-    )
-) {
+        await isBlacklisted(
+            access.orderNumber,
+            courseKey
+        )
+    ) {
 
-    delete access.products[courseKey];
+        /*
+           Remove only the blacklisted course.
+           Other purchased courses remain active.
+        */
 
-    localStorage.setItem(
-        ACCESS_STORAGE_KEY,
-        JSON.stringify(access)
-    );
+        delete access.products[courseKey];
 
-    alert(
-        "تم إلغاء الوصول إلى هذا المنتج"
-    );
 
-    window.location.href =
-        "/activate/";
+        localStorage.setItem(
+            ACCESS_STORAGE_KEY,
+            JSON.stringify(access)
+        );
 
-    return false;
-}
+
+        /*
+           Show the beautiful Yazeed English
+           customer-facing popup.
+
+           The customer will be sent to the
+           Hub only after clicking "فهمت".
+        */
+
+        showAccessRemovedModal();
+
+
+        return false;
+    }
+
 
     const product =
         access.products?.[courseKey];
+
 
     if (
         !product ||
@@ -219,6 +581,7 @@ async function checkCourseAccess(courseKey) {
 
         return false;
     }
+
 
     if (
         !product.expiresAt ||
@@ -232,14 +595,17 @@ async function checkCourseAccess(courseKey) {
 
         delete access.products[courseKey];
 
+
         localStorage.setItem(
             ACCESS_STORAGE_KEY,
             JSON.stringify(access)
         );
 
+
         alert(
             "انتهت صلاحية الوصول إلى هذه الدورة. يرجى التفعيل مرة أخرى."
         );
+
 
         window.location.href =
             "/activate/";
@@ -247,21 +613,29 @@ async function checkCourseAccess(courseKey) {
         return false;
     }
 
+
     return true;
 }
+
 
 /* =========================================================
    INITIALIZE COURSE ACCESS
 ========================================================= */
 
-async function initializeCourseAccess(courseKey) {
+async function initializeCourseAccess(
+    courseKey
+) {
 
     const hasAccess =
-    await checkCourseAccess(courseKey);
+        await checkCourseAccess(
+            courseKey
+        );
+
 
     if (!hasAccess) {
         return;
     }
+
 
     console.log(
         "Course access granted:",
@@ -277,10 +651,14 @@ async function initializeCourseAccess(courseKey) {
        the customer is already inside the course.
     ====================================================== */
 
-    setInterval(async function () {
+    setInterval(
+        async function () {
 
-    await checkCourseAccess(courseKey);
+            await checkCourseAccess(
+                courseKey
+            );
 
-}, 5000);
-
+        },
+        5000
+    );
 }
