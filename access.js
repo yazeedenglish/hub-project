@@ -1,4 +1,14 @@
 /* =========================================================
+   SUPABASE
+========================================================= */
+
+const SUPABASE_URL =
+    "https://ozhhgbbkdyuxtsffcsbb.supabase.co";
+
+const SUPABASE_KEY =
+    "sb_publishable_K0fUOxqBNfZ8Eo1--6YJoQ_92xLfygr";
+
+/* =========================================================
    YAZEED ENGLISH — FRONTEND COURSE ACCESS
 ========================================================= */
 
@@ -7,10 +17,6 @@ const ACCESS_CODES = {
     english: "705164",
     trab6: "317826",
     writing: "654209"
-};
-
-const BLACKLISTED_ACCESS = {
-    "123456788": ["step"]
 };
 
 const ACCESS_STORAGE_KEY =
@@ -97,16 +103,65 @@ function getCurrentAccess() {
     }
 }
 
-function isBlacklisted(orderNumber, courseKey) {
+async function isBlacklisted(orderNumber, courseKey) {
 
-    const blacklistedProducts =
-        BLACKLISTED_ACCESS[orderNumber];
+    try {
 
-    if (!blacklistedProducts) {
+        const response =
+            await fetch(
+                SUPABASE_URL +
+                "/rest/v1/rpc/is_blacklisted",
+                {
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json",
+
+                        "apikey":
+                            SUPABASE_KEY,
+
+                        "Authorization":
+                            "Bearer " +
+                            SUPABASE_KEY
+                    },
+
+                    body: JSON.stringify({
+                        p_order_number:
+                            orderNumber,
+
+                        p_product:
+                            courseKey
+                    })
+                }
+            );
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                "Supabase blacklist check failed"
+            );
+
+        }
+
+
+        return await response.json();
+
+    } catch (error) {
+
+        console.error(
+            "Blacklist check error:",
+            error
+        );
+
+        /*
+           If Supabase is temporarily unavailable,
+           keep the existing local access working.
+        */
+
         return false;
     }
-
-    return blacklistedProducts.includes(courseKey);
 }
 
 
@@ -114,7 +169,7 @@ function isBlacklisted(orderNumber, courseKey) {
    CHECK COURSE ACCESS
 ========================================================= */
 
-function checkCourseAccess(courseKey) {
+async function checkCourseAccess(courseKey) {
 
     const access =
         getCurrentAccess();
@@ -128,7 +183,7 @@ function checkCourseAccess(courseKey) {
     }
 
     if (
-    isBlacklisted(
+    await isBlacklisted(
         access.orderNumber,
         courseKey
     )
@@ -199,10 +254,10 @@ function checkCourseAccess(courseKey) {
    INITIALIZE COURSE ACCESS
 ========================================================= */
 
-function initializeCourseAccess(courseKey) {
+async function initializeCourseAccess(courseKey) {
 
     const hasAccess =
-        checkCourseAccess(courseKey);
+    await checkCourseAccess(courseKey);
 
     if (!hasAccess) {
         return;
@@ -222,10 +277,10 @@ function initializeCourseAccess(courseKey) {
        the customer is already inside the course.
     ====================================================== */
 
-    setInterval(function () {
+    setInterval(async function () {
 
-        checkCourseAccess(courseKey);
+    await checkCourseAccess(courseKey);
 
-    }, 5000);
+}, 5000);
 
 }

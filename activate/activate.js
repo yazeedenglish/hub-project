@@ -29,7 +29,7 @@ const consentError =
 
 form.addEventListener(
     "submit",
-    function (event) {
+    async function (event) {
 
         event.preventDefault();
 
@@ -125,21 +125,23 @@ form.addEventListener(
 
 
         /* =================================================
-           CHECK BLACKLIST
-        ================================================= */
+   CHECK BLACKLIST
+================================================= */
 
-        if (
-            BLACKLISTED_ACCESS[orderNumber] &&
-            BLACKLISTED_ACCESS[orderNumber].includes(
-                selectedProduct
-            )
-        ) {
+const blacklisted =
+    await isBlacklisted(
+        orderNumber,
+        selectedProduct
+    );
 
-            message.textContent =
-                "تم إلغاء صلاحية الوصول الى المنتج";
 
-            return;
-        }
+if (blacklisted) {
+
+    message.textContent =
+        "تم إلغاء صلاحية الوصول إلى هذا المنتج";
+
+    return;
+}
 
 
         /* =================================================
