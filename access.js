@@ -10,7 +10,7 @@ const ACCESS_CODES = {
 };
 
 const BLACKLISTED_ACCESS = {
-    "123456789": ["step"]
+    "123456788": ["step"]
 };
 
 const ACCESS_STORAGE_KEY =
@@ -212,4 +212,20 @@ function initializeCourseAccess(courseKey) {
         "Course access granted:",
         courseKey
     );
+
+
+    /* =====================================================
+       CONTINUOUS ACCESS MONITOR
+
+       Re-check access every 5 seconds.
+       This detects blacklist changes while
+       the customer is already inside the course.
+    ====================================================== */
+
+    setInterval(function () {
+
+        checkCourseAccess(courseKey);
+
+    }, 5000);
+
 }
