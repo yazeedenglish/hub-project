@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>طلب استرجاع المنتج | Yazeed English</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <main class="page">
+
+        <div class="container">
+
+            <header class="header">
+
+                <div class="brand">
+
+                    <div class="brand-mark">
+                        Y
+                    </div>
+
+                    <div class="brand-text">
+                        <strong>Yazeed English</strong>
+                        <span>طلب استرجاع المنتج</span>
+                    </div>
+
+                </div>
+
+            </header>
+
+
+            <section class="intro">
+
+                <span class="eyebrow">
+                    طلب استرجاع
+                </span>
+
+                <h1>
+                    طلب استرجاع
+                </h1>
+
+                <p>
+                    نرجو تعبئة النموذج التالي بالمعلومات المطلوبة حتى نتمكن من مراجعة طلبك.
+                </p>
+
+            </section>
+
+
+            <form id="refundForm" novalidate>
+
+                <!-- 01 -->
+
+                <section class="card">
+
+                    <div class="section-number">
+                        01
+                    </div>
+
+                    <div class="section-content">
+
+                        <h2>
+                            المعلومات الأساسية
+                        </h2>
+
+                        <p class="section-description">
+                            أدخل بياناتك كما هي مرتبطة بالطلب.
+                        </p>
+
+
+                        <div class="field">
+
+                            <label for="name">
+                                الاسم
+                            </label>
+
+                            <input
+                                type="text"
+                                id="name"
+                                name="name"
+                                placeholder="اكتب اسمك"
+                                autocomplete="name"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="field">
+
+                            <label for="orderNumber">
+                                رقم الطلب
+                            </label>
+
+                            <input
+                                type="text"
+                                id="orderNumber"
+                                name="order_number"
+                                placeholder="مثال: 123456789"
+                                inputmode="numeric"
+                                maxlength="9"
+                                autocomplete="off"
+                                required
+                            >
+
+                            <span class="field-hint">
+                                رقم الطلب مكوّن من 9 أرقام
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- 02 -->
+
+                <section class="card">
+
+                    <div class="section-number">
+                        02
+                    </div>
+
+                    <div class="section-content">
+
+                        <h2>
+                            المنتجات المراد إرجاعها
+                        </h2>
+
+                        <p class="section-description">
+                            اختر المنتجات التي ترغب في طلب استرجاعها.
+                        </p>
+
+
+                        <div class="products">
+
+                            <label class="product-option">
+
+                                <input
+                                    type="checkbox"
+                                    name="products"
+                                    value="STEP"
+                                >
+
+                                <span class="checkmark"></span>
+
+                                <span class="product-info">
+                                    <strong>STEP</strong>
+                                    <small>دورة STEP</small>
+                                </span>
+
+                            </label>
+
+
+                            <label class="product-option">
+
+                                <input
+                                    type="checkbox"
+                                    name="products"
+                                    value="English"
+                                >
+
+                                <span class="checkmark"></span>
+
+                                <span class="product-info">
+                                    <strong>English</strong>
+                                    <small>دورة اللغة الإنجليزية</small>
+                                </span>
+
+                            </label>
+
+
+                            <label class="product-option">
+
+                                <input
+                                    type="checkbox"
+                                    name="products"
+                                    value="Trab6"
+                                >
+
+                                <span class="checkmark"></span>
+
+                                <span class="product-info">
+                                    <strong>Trab6</strong>
+                                    <small>دورة Trab6</small>
+                                </span>
+
+                            </label>
+
+
+                            <label class="product-option">
+
+                                <input
+                                    type="checkbox"
+                                    name="products"
+                                    value="Writing"
+                                >
+
+                                <span class="checkmark"></span>
+
+                                <span class="product-info">
+                                    <strong>Writing</strong>
+                                    <small>دورة الكتابة</small>
+                                </span>
+
+                            </label>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- 03 -->
+
+                <section class="card">
+
+                    <div class="section-number">
+                        03
+                    </div>
+
+                    <div class="section-content">
+
+                        <h2>
+                            سبب طلب الاسترجاع
+                        </h2>
+
+                        <p class="section-description">
+                            اشرح لنا سبب طلبك بالتفصيل.
+                        </p>
+
+
+                        <div class="field">
+
+                            <label for="reason">
+                                سبب طلب الاسترجاع
+                            </label>
+
+                            <textarea
+                                id="reason"
+                                name="reason"
+                                rows="8"
+                                placeholder="اكتب سبب طلب الاسترجاع بالتفصيل..."
+                                required
+                            ></textarea>
+
+
+                            <div class="word-counter">
+
+                                <span>
+                                    الحد الأدنى 50 كلمة
+                                </span>
+
+                                <strong id="wordCount">
+                                    0 / 50
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="usage-question">
+
+                            <h3>
+                                هل بدأت باستخدام المنتج؟
+                            </h3>
+
+
+                            <label class="radio-option">
+
+                                <input
+                                    type="radio"
+                                    name="usage_status"
+                                    value="لم أستخدم المنتج"
+                                    required
+                                >
+
+                                <span class="radio-circle"></span>
+
+                                <span>
+                                    لم أستخدم المنتج
+                                </span>
+
+                            </label>
+
+
+                            <label class="radio-option">
+
+                                <input
+                                    type="radio"
+                                    name="usage_status"
+                                    value="استخدمت جزءًا منه"
+                                >
+
+                                <span class="radio-circle"></span>
+
+                                <span>
+                                    استخدمت جزءًا منه
+                                </span>
+
+                            </label>
+
+
+                            <label class="radio-option">
+
+                                <input
+                                    type="radio"
+                                    name="usage_status"
+                                    value="استخدمت المنتج بالكامل"
+                                >
+
+                                <span class="radio-circle"></span>
+
+                                <span>
+                                    استخدمت المنتج بالكامل
+                                </span>
+
+                            </label>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- 04 -->
+
+                <section class="card">
+
+                    <div class="section-number">
+                        04
+                    </div>
+
+                    <div class="section-content">
+
+                        <h2>
+                            الإقرار
+                        </h2>
+
+                        <p class="section-description">
+                            قبل إرسال الطلب، يرجى تأكيد صحة المعلومات.
+                        </p>
+
+
+                        <label class="agreement">
+
+                            <input
+                                type="checkbox"
+                                id="agreement"
+                                name="agreement"
+                                value="أقر بأن المعلومات المقدمة صحيحة"
+                                required
+                            >
+
+                            <span class="checkmark"></span>
+
+                            <span>
+                                أقر بأن المعلومات المقدمة صحيحة
+                            </span>
+
+                        </label>
+
+                    </div>
+
+                </section>
+
+
+                <div class="submit-area">
+
+                    <button
+                        type="submit"
+                        id="submitButton"
+                    >
+                        إرسال طلب الاسترجاع
+                    </button>
+
+                    <p>
+                        سيتم مراجعة طلبك بعد إرساله.
+                    </p>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </main>
+
+
+    <!-- Success Modal -->
+
+    <div
+        class="modal"
+        id="successModal"
+        aria-hidden="true"
+    >
+
+        <div class="modal-backdrop"></div>
+
+        <div class="modal-card">
+
+            <div class="success-icon">
+                ✓
+            </div>
+
+            <h2>
+                تم إرسال الطلب
+            </h2>
+
+            <p>
+                تم استلام طلب الاسترجاع بنجاح, ستتم مراجعة البيانات والرد عليك لاحقًا
+            </p>
+
+            <button
+                type="button"
+                id="closeModal"
+            >
+                حسنًا
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
