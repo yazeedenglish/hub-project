@@ -234,7 +234,7 @@ loginForm.addEventListener(
         if (error) {
 
             loginMessage.textContent =
-                "البريد الإلكتروني أو كلمة المرور غير صحيحة.";
+                "البريد الإلكتروني أو كلمة المرور غير صحيحة";
 
             return;
 
@@ -577,7 +577,7 @@ blacklistForm.addEventListener(
             blacklistMessage.textContent =
                 "تم إلغاء الوصول إلى " +
                 addedNames +
-                ". بعض المنتجات كانت محظورة بالفعل.";
+                "بعض المنتجات كانت محظورة بالفعل";
 
         } else {
 
@@ -665,7 +665,7 @@ async function loadBlacklist() {
         tableWrapper.innerHTML =
             `
             <div class="error-box">
-                تعذر تحميل البيانات.
+                تعذر تحميل البيانات
             </div>
             `;
 
