@@ -143,6 +143,19 @@ form.addEventListener(
             return;
         }
 
+        if (
+    BLACKLISTED_ACCESS[orderNumber] &&
+    BLACKLISTED_ACCESS[orderNumber].includes(
+        selectedProduct
+    )
+) {
+
+    message.textContent =
+        "تم إلغاء صلاحية الوصول الى المنتج";
+
+    return;
+}
+
 
         /* =================================================
            GET EXISTING ACCESS

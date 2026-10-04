@@ -9,6 +9,10 @@ const ACCESS_CODES = {
     writing: "654209"
 };
 
+const BLACKLISTED_ACCESS = {
+    "234567890": ["step"]
+};
+
 const ACCESS_STORAGE_KEY =
     "yazeed_current_access";
 
@@ -93,6 +97,18 @@ function getCurrentAccess() {
     }
 }
 
+function isBlacklisted(orderNumber, courseKey) {
+
+    const blacklistedProducts =
+        BLACKLISTED_ACCESS[orderNumber];
+
+    if (!blacklistedProducts) {
+        return false;
+    }
+
+    return blacklistedProducts.includes(courseKey);
+}
+
 
 /* =========================================================
    CHECK COURSE ACCESS
@@ -110,6 +126,30 @@ function checkCourseAccess(courseKey) {
 
         return false;
     }
+
+    if (
+    isBlacklisted(
+        access.orderNumber,
+        courseKey
+    )
+) {
+
+    delete access.products[courseKey];
+
+    localStorage.setItem(
+        ACCESS_STORAGE_KEY,
+        JSON.stringify(access)
+    );
+
+    alert(
+        "تم إلغاء الوصول إلى هذا المنتج"
+    );
+
+    window.location.href =
+        "/activate/";
+
+    return false;
+}
 
     const product =
         access.products?.[courseKey];
@@ -154,7 +194,6 @@ function checkCourseAccess(courseKey) {
 
     return true;
 }
-
 
 /* =========================================================
    INITIALIZE COURSE ACCESS
