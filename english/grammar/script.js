@@ -101,7 +101,7 @@ const COURSES = [
         description:
             "زمن المضارع البسيط",
         video:
-            "fd28ff08-ed29-41f6-ab23-de6fec1e4aff"
+            "cbea850a-6ec0-401a-8296-03ad7d42388e"
     },
 
     {
