@@ -10,7 +10,7 @@ const ACCESS_CODES = {
 };
 
 const BLACKLISTED_ACCESS = {
-    "234567890": ["step"]
+    "123456789": ["step"]
 };
 
 const ACCESS_STORAGE_KEY =
