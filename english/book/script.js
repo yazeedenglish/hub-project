@@ -39,7 +39,7 @@ pdfjsLib.GlobalWorkerOptions.workerSrc =
    غيّر هذا المسار فقط إذا أردت فتح ملف PDF آخر.
 ========================================================= */
 
-const PDF_FILE = "https://file.yazeedenglish.com/en/English.pdf";
+const PDF_FILE = "https://file.yazeedenglish.com/en/ebook.pdf";
 
 
 /* =========================================================

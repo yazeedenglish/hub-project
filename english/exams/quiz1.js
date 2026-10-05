@@ -1,117 +1,557 @@
 /* =========================================================
-   QUIZ: 1
+   QUIZ: Words
 ========================================================= */
 
 const quiz1 = [
 
     {
-        question: "She ___ to school every day.",
+        question: "What does “Bake” mean?",
         options: [
-            "go",
-            "goes",
-            "going",
-            "gone"
+            "يخبز",
+            "يقلي",
+            "يخلط",
+            "يقطع"
         ],
-        answer: "goes"
+        answer: "يخبز"
     },
 
     {
-        question: "They ___ football yesterday.",
+        question: "What is the English word for “يقشّر”?",
         options: [
-            "play",
-            "plays",
-            "played",
-            "playing"
+            "Stir",
+            "Peel",
+            "Spread",
+            "Boil"
         ],
-        answer: "played"
+        answer: "Peel"
     },
 
     {
-        question: "I ___ dinner right now.",
+        question: "What does “Cook” mean?",
         options: [
-            "cook",
-            "cooked",
-            "am cooking",
-            "have cooked"
+            "يمضغ",
+            "يصب",
+            "يطبخ",
+            "يتذوق"
         ],
-        answer: "am cooking"
+        answer: "يطبخ"
     },
 
     {
-        question: "He ___ here since 2020.",
+        question: "What is the English word for “يغلي”?",
         options: [
-            "lives",
-            "lived",
-            "has lived",
-            "is living"
+            "Fry",
+            "Mix",
+            "Boil",
+            "Pour"
         ],
-        answer: "has lived"
+        answer: "Boil"
     },
 
     {
-        question: "We ___ to London next week.",
+        question: "What does “Spread” mean?",
         options: [
-            "travel",
-            "traveled",
-            "will travel",
-            "traveling"
+            "يدهن",
+            "يقضم",
+            "يقطع",
+            "يغمس"
         ],
-        answer: "will travel"
+        answer: "يدهن"
     },
 
     {
-        question: "She ___ her homework before dinner yesterday.",
+        question: "What is the English word for “يقلي”?",
         options: [
-            "finishes",
-            "finished",
-            "had finished",
-            "has finished"
+            "Cook",
+            "Fry",
+            "Bake",
+            "Chew"
         ],
-        answer: "had finished"
+        answer: "Fry"
     },
 
     {
-        question: "Look! The children ___.",
+        question: "What does “Mix” mean?",
         options: [
-            "run",
-            "ran",
-            "are running",
-            "have run"
+            "يحرّك",
+            "يخلط",
+            "يصب",
+            "يسحب"
         ],
-        answer: "are running"
+        answer: "يخلط"
     },
 
     {
-        question: "I ___ this movie three times.",
+        question: "What is the English word for “يقطع”?",
         options: [
-            "see",
-            "saw",
-            "have seen",
-            "am seeing"
+            "Cut",
+            "Carry",
+            "Push",
+            "Pull"
         ],
-        answer: "have seen"
+        answer: "Cut"
     },
 
     {
-        question: "When I arrived, they ___.",
+        question: "What does “Stir” mean?",
         options: [
-            "sleep",
-            "slept",
-            "were sleeping",
-            "have slept"
+            "يأخذ",
+            "يلمس",
+            "يحرّك",
+            "ينظر"
         ],
-        answer: "were sleeping"
+        answer: "يحرّك"
     },
 
     {
-        question: "He usually ___ coffee in the morning.",
+        question: "What is the English word for “يلعب”?",
         options: [
-            "drink",
-            "drinks",
-            "drank",
-            "is drinking"
+            "Run",
+            "Play",
+            "Jump",
+            "Walk"
         ],
-        answer: "drinks"
+        answer: "Play"
+    },
+
+    {
+        question: "What does “Wear” mean?",
+        options: [
+            "يرتدي",
+            "يقود",
+            "يقف",
+            "يجلس"
+        ],
+        answer: "يرتدي"
+    },
+
+    {
+        question: "What is the English word for “يقود”?",
+        options: [
+            "Call",
+            "Drive",
+            "Take",
+            "Touch"
+        ],
+        answer: "Drive"
+    },
+
+    {
+        question: "What does “Call” mean?",
+        options: [
+            "يسمع",
+            "يشم",
+            "يتصل",
+            "ينظر"
+        ],
+        answer: "يتصل"
+    },
+
+    {
+        question: "What is the English word for “ينظر”?",
+        options: [
+            "Look",
+            "Hear",
+            "Smell",
+            "Touch"
+        ],
+        answer: "Look"
+    },
+
+    {
+        question: "What does “Take” mean?",
+        options: [
+            "يدفع",
+            "يأخذ",
+            "يرفع",
+            "يحمل"
+        ],
+        answer: "يأخذ"
+    },
+
+    {
+        question: "What is the English word for “يلمس”?",
+        options: [
+            "Taste",
+            "Smell",
+            "Touch",
+            "Hear"
+        ],
+        answer: "Touch"
+    },
+
+    {
+        question: "What does “Smell” mean?",
+        options: [
+            "يشم",
+            "يسمع",
+            "يتذوق",
+            "يأكل"
+        ],
+        answer: "يشم"
+    },
+
+    {
+        question: "What is the English word for “يسمع”?",
+        options: [
+            "Look",
+            "Hear",
+            "Listen",
+            "Smell"
+        ],
+        answer: "Hear"
+    },
+
+    {
+        question: "What does “Dip” mean?",
+        options: [
+            "يصب",
+            "يغمس",
+            "يبلع",
+            "يرتشف"
+        ],
+        answer: "يغمس"
+    },
+
+    {
+        question: "What is the English word for “يصُب”?",
+        options: [
+            "Pour",
+            "Sip",
+            "Drink",
+            "Swallow"
+        ],
+        answer: "Pour"
+    },
+
+    {
+        question: "What does “Bite” mean?",
+        options: [
+            "يمضغ",
+            "يقضم",
+            "يأكل",
+            "يشرب"
+        ],
+        answer: "يقضم"
+    },
+
+    {
+        question: "What is the English word for “يشرب”?",
+        options: [
+            "Eat",
+            "Chew",
+            "Drink",
+            "Sip"
+        ],
+        answer: "Drink"
+    },
+
+    {
+        question: "What does “Chew” mean?",
+        options: [
+            "يبتلع",
+            "يمضغ",
+            "يتذوق",
+            "يقضم"
+        ],
+        answer: "يمضغ"
+    },
+
+    {
+        question: "What is the English word for “يبتلع”?",
+        options: [
+            "Swallow",
+            "Taste",
+            "Drink",
+            "Bite"
+        ],
+        answer: "Swallow"
+    },
+
+    {
+        question: "What does “Taste” mean?",
+        options: [
+            "يشم",
+            "يرتشف",
+            "يتذوق",
+            "يلمس"
+        ],
+        answer: "يتذوق"
+    },
+
+    {
+        question: "What is the English word for “يرتشِف”?",
+        options: [
+            "Sip",
+            "Pour",
+            "Drink",
+            "Dip"
+        ],
+        answer: "Sip"
+    },
+
+    {
+        question: "What does “Carry” mean?",
+        options: [
+            "يدفع",
+            "يسحب",
+            "يحمل",
+            "يرفع"
+        ],
+        answer: "يحمل"
+    },
+
+    {
+        question: "What is the English word for “يدفع”?",
+        options: [
+            "Pull",
+            "Push",
+            "Lift",
+            "Carry"
+        ],
+        answer: "Push"
+    },
+
+    {
+        question: "What does “Pull” mean?",
+        options: [
+            "يسحب",
+            "يدفع",
+            "يرفع",
+            "يحمل"
+        ],
+        answer: "يسحب"
+    },
+
+    {
+        question: "What is the English word for “يمشي”?",
+        options: [
+            "Run",
+            "Jump",
+            "Walk",
+            "Stand"
+        ],
+        answer: "Walk"
+    },
+
+    {
+        question: "What does “Jump” mean?",
+        options: [
+            "يجلس",
+            "يقفز",
+            "يمشي",
+            "يركض"
+        ],
+        answer: "يقفز"
+    },
+
+    {
+        question: "What is the English word for “يركض”?",
+        options: [
+            "Walk",
+            "Run",
+            "Jump",
+            "Play"
+        ],
+        answer: "Run"
+    },
+
+    {
+        question: "What does “Stand” mean?",
+        options: [
+            "يجلس",
+            "يرفع",
+            "يقف",
+            "يمشي"
+        ],
+        answer: "يقف"
+    },
+
+    {
+        question: "What is the English word for “يجلس”?",
+        options: [
+            "Sit",
+            "Stand",
+            "Sleep",
+            "Jump"
+        ],
+        answer: "Sit"
+    },
+
+    {
+        question: "What does “Lift” mean?",
+        options: [
+            "يدفع",
+            "يسحب",
+            "يرفع",
+            "يحمل"
+        ],
+        answer: "يرفع"
+    },
+
+    {
+        question: "What is the English word for “بين”?",
+        options: [
+            "Around",
+            "Above",
+            "Between",
+            "Near"
+        ],
+        answer: "Between"
+    },
+
+    {
+        question: "What does “Above” mean?",
+        options: [
+            "خلف",
+            "فوق",
+            "أمام",
+            "بالقرب من"
+        ],
+        answer: "فوق"
+    },
+
+    {
+        question: "What is the English word for “حول”?",
+        options: [
+            "Around",
+            "Among",
+            "Opposite",
+            "Behind"
+        ],
+        answer: "Around"
+    },
+
+    {
+        question: "What does “Opposite” mean?",
+        options: [
+            "بعيد",
+            "مقابل",
+            "خلف",
+            "فوق"
+        ],
+        answer: "مقابل"
+    },
+
+    {
+        question: "What is the English word for “بين | وسط”?",
+        options: [
+            "Between",
+            "Among",
+            "Around",
+            "Opposite"
+        ],
+        answer: "Among"
+    },
+
+    {
+        question: "What does “Near” mean?",
+        options: [
+            "بعيد",
+            "خلف",
+            "بالقرب من",
+            "أمام"
+        ],
+        answer: "بالقرب من"
+    },
+
+    {
+        question: "What is the English word for “خلف”?",
+        options: [
+            "Above",
+            "Behind",
+            "Opposite",
+            "Around"
+        ],
+        answer: "Behind"
+    },
+
+    {
+        question: "What does “Far” mean?",
+        options: [
+            "بالقرب من",
+            "بين",
+            "بعيد",
+            "خلف"
+        ],
+        answer: "بعيد"
+    },
+
+    {
+        question: "What is the English word for “أمام”?",
+        options: [
+            "Behind",
+            "In front of",
+            "Above",
+            "Opposite"
+        ],
+        answer: "In front of"
+    },
+
+    {
+        question: "What does “Sunday” mean?",
+        options: [
+            "الإثنين",
+            "الأحد",
+            "الثلاثاء",
+            "الجمعة"
+        ],
+        answer: "الأحد"
+    },
+
+    {
+        question: "What is the English word for “الإثنين”?",
+        options: [
+            "Monday",
+            "Sunday",
+            "Tuesday",
+            "Wednesday"
+        ],
+        answer: "Monday"
+    },
+
+    {
+        question: "What does “Wednesday” mean?",
+        options: [
+            "الخميس",
+            "الثلاثاء",
+            "الأربعاء",
+            "الجمعة"
+        ],
+        answer: "الأربعاء"
+    },
+
+    {
+        question: "What is the English word for “الخميس”?",
+        options: [
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+        ],
+        answer: "Thursday"
+    },
+
+    {
+        question: "What does “Weekday” mean?",
+        options: [
+            "نهاية الأسبوع",
+            "يوم عمل",
+            "يوم العطلة",
+            "يوم الجمعة"
+        ],
+        answer: "يوم عمل"
+    },
+
+    {
+        question: "What is the English word for “نهاية الأسبوع”?",
+        options: [
+            "Weekday",
+            "Weekend",
+            "Holiday",
+            "Sunday"
+        ],
+        answer: "Weekend"
     }
 
 ];
