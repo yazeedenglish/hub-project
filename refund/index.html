@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        طلب استرجاع | Yazeed English
+    </title>
+
+    <meta
+        name="description"
+        content="نموذج طلب استرجاع منتجات Yazeed English"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+
+<body>
+
+    <div class="page">
+
+        <div class="container">
+
+
+            <!-- HEADER -->
+
+            <header class="header">
+
+                <a
+                    href="/"
+                    class="brand"
+                >
+
+
+                </a>
+
+            </header>
+
+
+            <!-- INTRO -->
+
+            <section class="intro">
+
+                <div class="intro-label">
+Yazeed English                </div>
+
+                <h1>
+                   نموذج الاسترجاع
+                </h1>
+
+                <p>
+                    نرجو تعبئة البيانات التالية لإرسال طلب الاسترجاع
+                </p>
+
+            </section>
+
+
+            <!-- FORM -->
+
+            <form
+                id="refundForm"
+                action="https://formspree.io/f/meaoyybk"
+                method="POST"
+            >
+
+
+                <!-- CUSTOMER INFORMATION -->
+
+                <section class="section-card">
+
+                    <div class="section-header">
+
+                        <span class="section-number">
+                            01
+                        </span>
+
+                        <div>
+
+                            <h2>
+                                المعلومات الأساسية
+                            </h2>
+
+                            <p>
+                                أدخل معلومات الطلب بشكل صحيح
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="fields">
+
+
+                        <div class="field">
+
+                            <label for="name">
+                                الاسم
+                            </label>
+
+                            <input
+                                id="name"
+                                name="الاسم"
+                                type="text"
+                                placeholder="اكتب اسمك"
+                                autocomplete="name"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="field">
+
+                            <label for="orderNumber">
+                                رقم الطلب
+                            </label>
+
+                            <input
+                                id="orderNumber"
+                                name="رقم الطلب"
+                                type="text"
+                                inputmode="numeric"
+                                maxlength="9"
+                                placeholder="اكتب رقم الطلب"
+                                autocomplete="off"
+                                required
+                            >
+
+                       
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- PRODUCTS -->
+
+                <section class="section-card">
+
+                    <div class="section-header">
+
+                        <span class="section-number">
+                            02
+                        </span>
+
+                        <div>
+
+                            <h2>
+                                المنتجات المراد إرجاعها
+                            </h2>
+
+                            <p>
+                                اختر المنتجات التي ترغب في استرجاعها.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="products-grid">
+
+
+                        <label class="product">
+
+                            <input
+                                type="checkbox"
+                                name="المنتجات المراد إرجاعها"
+                                value="STEP"
+                            >
+
+                            <span class="checkbox"></span>
+
+                            <span class="product-content">
+
+                                <strong>
+                                   STEP Course
+                                </strong>
+
+                                <span>
+                                   دورة ستيب
+                                </span>
+
+                            </span>
+
+                        </label>
+
+
+                        <label class="product">
+
+                            <input
+                                type="checkbox"
+                                name="المنتجات المراد إرجاعها"
+                                value="English"
+                            >
+
+                            <span class="checkbox"></span>
+
+                            <span class="product-content">
+
+                                <strong>
+                                    English Program
+                                </strong>
+
+                                <span>
+                                   برنامج الانجليزية الشامل
+                                </span>
+
+                            </span>
+
+                        </label>
+
+
+                        <label class="product">
+
+                            <input
+                                type="checkbox"
+                                name="المنتجات المراد إرجاعها"
+                                value="Trab6"
+                            >
+
+                            <span class="checkbox"></span>
+
+                            <span class="product-content">
+
+                                <strong>
+                                    Connected words
+                                </strong>
+
+                                <span>
+                                   كتاب ترابط الكلمات
+                                </span>
+
+                            </span>
+
+                        </label>
+
+
+                    </div>
+
+                    <p
+                        class="validation-message"
+                        id="productsError"
+                    ></p>
+
+                </section>
+
+
+                <!-- REASON -->
+
+                <section class="section-card">
+
+                    <div class="section-header">
+
+                        <span class="section-number">
+                            03
+                        </span>
+
+                        <div>
+
+                            <h2>
+                                سبب طلب الاسترجاع
+                            </h2>
+
+                            <p>
+                                اكتب سبب طلب الاسترجاع بالتفصيل
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label for="reason">
+                            سبب طلب الاسترجاع
+                        </label>
+
+                        <textarea
+                            id="reason"
+                            name="سبب طلب الاسترجاع"
+                            placeholder="اكتب سبب طلب الاسترجاع..."
+                            rows="7"
+                            required
+                        ></textarea>
+
+
+                        <div class="character-row">
+
+                            <span>
+                                الحد الأدنى 50 حرف
+                            </span>
+
+                            <strong id="characterCount">
+                                0 / 50
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="usage">
+
+                        <h3>
+                            هل بدأت باستخدام المنتج؟
+                        </h3>
+
+
+                        <label class="radio-option">
+
+                            <input
+                                type="radio"
+                                name="هل بدأت باستخدام المنتج؟"
+                                value="لم أستخدم المنتج"
+                                required
+                            >
+
+                            <span class="radio"></span>
+
+                            <span>
+                                لم أستخدم المنتج
+                            </span>
+
+                        </label>
+
+
+                        <label class="radio-option">
+
+                            <input
+                                type="radio"
+                                name="هل بدأت باستخدام المنتج؟"
+                                value="استخدمت جزءًا منه"
+                            >
+
+                            <span class="radio"></span>
+
+                            <span>
+                                استخدمت جزءًا منه
+                            </span>
+
+                        </label>
+
+
+                        <label class="radio-option">
+
+                            <input
+                                type="radio"
+                                name="هل بدأت باستخدام المنتج؟"
+                                value="استخدمت المنتج بالكامل"
+                            >
+
+                            <span class="radio"></span>
+
+                            <span>
+                                استخدمت المنتج بالكامل
+                            </span>
+
+                        </label>
+
+                    </div>
+
+                </section>
+
+
+               <!-- AGREEMENT -->
+
+<section class="section-card agreement-card">
+
+    <label class="agreement">
+
+        <input
+            type="checkbox"
+            id="agreement"
+            name="الإقرار"
+            value="أقر بأن المعلومات المقدمة صحيحة"
+            required
+        >
+
+        <span class="checkbox"></span>
+
+        <span class="agreement-content">
+
+            <strong>
+              إقرار
+            </strong>
+
+            <span>
+            أقر بصحة البيانات، وأن الشراء لم يكن بقصد الاستفادة من المنتج ثم استرجاعه
+            </span>
+
+        </span>
+
+    </label>
+
+</section>
+
+
+                <!-- FORMSPREE SUBJECT -->
+
+                <input
+                    type="hidden"
+                    name="_subject"
+                    value="طلب استرجاع جديد - Yazeed English"
+                >
+
+
+                <!-- SUBMIT -->
+
+                <div class="submit-area">
+
+                    <button
+                        type="submit"
+                        id="submitButton"
+                    >
+                        إرسال طلب الاسترجاع
+                    </button>
+
+                </div>
+
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <script src="script.js"></script>
+
+    <!-- VALIDATION POPUP -->
+
+<div
+    class="validation-popup"
+    id="validationPopup"
+    aria-hidden="true"
+>
+
+    <div class="validation-popup-box">
+
+        <div class="validation-popup-icon">
+            !
+        </div>
+
+        <h2>
+            أكمل البيانات
+        </h2>
+
+        <p id="validationPopupMessage">
+            يرجى تعبئة جميع البيانات المطلوبة قبل الإرسال.
+        </p>
+
+        <button
+            type="button"
+            id="validationPopupClose"
+        >
+            فهمت
+        </button>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

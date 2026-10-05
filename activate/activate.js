@@ -3,26 +3,6 @@
    FRONTEND ONLY
 ========================================================= */
 
-const ACCESS_CODES = {
-    step: "512731",
-    english: "705164",
-    trab6: "317826",
-    writing: "654209"
-};
-
-const COURSE_URLS = {
-    step: "/step/",
-    english: "/english/",
-    trab6: "/trab6/",
-    writing: "/writing/"
-};
-
-const ACCESS_STORAGE_KEY =
-    "yazeed_current_access";
-
-const ACCESS_DURATION =
-    90 * 24 * 60 * 60 * 1000;
-
 
 const form =
     document.getElementById("accessForm");
@@ -49,7 +29,7 @@ const consentError =
 
 form.addEventListener(
     "submit",
-    function (event) {
+    async function (event) {
 
         event.preventDefault();
 
@@ -145,6 +125,26 @@ form.addEventListener(
 
 
         /* =================================================
+   CHECK BLACKLIST
+================================================= */
+
+const blacklisted =
+    await isBlacklisted(
+        orderNumber,
+        selectedProduct
+    );
+
+
+if (blacklisted) {
+
+    message.textContent =
+        "تم إلغاء صلاحية الوصول إلى هذا المنتج";
+
+    return;
+}
+
+
+        /* =================================================
            GET EXISTING ACCESS
         ================================================= */
 
@@ -166,7 +166,7 @@ form.addEventListener(
             } catch (error) {
 
                 console.error(
-                    "Invalid saved access:",
+                    "Invalid access data:",
                     error
                 );
 
