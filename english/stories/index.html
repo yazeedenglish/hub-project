@@ -1,0 +1,289 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="theme-color" content="#F5F6F2">
+    <meta name="description" content="تعلّم اللغة الإنجليزية من خلال القصص القصيرة والقراءة والاستماع والاختبارات التفاعلية.">
+
+    <title>Yazeed English - القصص القصيرة</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- HEADER -->
+
+    <header class="top-header">
+        <div class="brand">
+            <img
+                src="https://file.yazeedenglish.com/logo.png"
+                class="brand-logo"
+                alt="Yazeed English"
+            >
+
+            <div class="brand-text">
+                <strong>Yazeed English</strong>
+                <span>القصص القصيرة</span>
+            </div>
+        </div>
+
+        <div class="header-actions">
+            <button
+                type="button"
+                class="theme-btn"
+                id="themeToggle"
+                aria-label="تغيير المظهر"
+            >🌙</button>
+        </div>
+    </header>
+
+
+    <!-- MAIN -->
+
+    <main class="main-website">
+
+        <section class="hero-section">
+            <span class="hero-small-title">📚 YAZEED ENGLISH</span>
+
+            <h1>القصص القصيرة</h1>
+
+            <p>
+                طوّر لغتك الإنجليزية من خلال قصص ممتعة تناسب مستواك
+              
+            </p>
+        </section>
+
+
+        <!-- LEVELS -->
+
+        <section class="content-section levels-section">
+
+            <div id="levelsContainer" class="levels-grid"></div>
+
+        </section>
+
+
+        <!-- STORY READER -->
+
+        <section id="storyReader" class="reader-section" hidden>
+
+            <div class="reader-topbar">
+                <button id="backToStories" class="back-btn" type="button">
+                    → العودة إلى القصص
+                </button>
+
+                <span id="readerLevel" class="reader-level"></span>
+            </div>
+
+            <div class="reader-card">
+
+                <div class="reader-heading">
+                    <div>
+                        <span id="readerBadge" class="reader-badge"></span>
+                        <h2 id="readerTitle"></h2>
+                        <p id="readerDescription"></p>
+                    </div>
+
+                    <div id="readerCover" class="reader-cover"></div>
+                </div>
+
+
+                <!-- MODE SELECTION -->
+
+                <div id="modeSelection" class="mode-selection">
+
+                    <button id="readModeBtn" class="mode-card" type="button">
+                        <span class="mode-icon">📖</span>
+                        <strong>اقرأ القصة</strong>
+                        <span>اقرأ النص وتعرّف على معاني الكلمات.</span>
+                    </button>
+
+                    <button id="listenModeBtn" class="mode-card" type="button">
+                        <span class="mode-icon">🎧</span>
+                        <strong>استمع إلى القصة</strong>
+                        <span>استمع إلى القصة بصوت احترافي.</span>
+                    </button>
+
+                </div>
+
+
+                <!-- AUDIO PLAYER -->
+
+                <section id="audioSection" class="audio-section" hidden>
+
+                    <div class="audio-title">
+                        <div>
+                            <span class="audio-eyebrow">LISTENING</span>
+                            <h3>استمع إلى القصة</h3>
+                        </div>
+
+                        <span class="audio-icon">🎧</span>
+                    </div>
+
+                    <audio id="storyAudio" preload="metadata"></audio>
+
+                    <div class="audio-controls">
+
+                        <button id="rewindBtn" type="button" class="audio-skip">
+                            ↺ 5
+                        </button>
+
+                        <button id="playPauseBtn" type="button" class="audio-play">
+                            ▶
+                        </button>
+
+                        <button id="forwardBtn" type="button" class="audio-skip">
+                            5 ↻
+                        </button>
+
+                    </div>
+
+                    <div class="audio-progress">
+                        <span id="currentTime">00:00</span>
+
+                        <input
+                            type="range"
+                            id="audioProgress"
+                            min="0"
+                            max="100"
+                            value="0"
+                            step="0.1"
+                            aria-label="تقدم الصوت"
+                        >
+
+                        <span id="duration">00:00</span>
+                    </div>
+
+                    <div class="audio-settings">
+                        <label for="playbackSpeed">سرعة التشغيل</label>
+
+                        <select id="playbackSpeed">
+                            <option value="0.75">0.75×</option>
+                            <option value="1" selected>1×</option>
+                            <option value="1.25">1.25×</option>
+                            <option value="1.5">1.5×</option>
+                            <option value="1.75">1.75×</option>
+                            <option value="2">2×</option>
+                        </select>
+                    </div>
+
+                    <p id="audioMessage" class="audio-message"></p>
+
+                </section>
+
+
+                <!-- READING -->
+
+                <section id="readingSection" class="reading-section" hidden>
+
+                    <div class="reading-toolbar">
+                        <div>
+                            <span class="reading-eyebrow">READING TIME</span>
+                            <h3>اقرأ وتعلّم</h3>
+                        </div>
+
+                        <button id="playReadingAudio" class="small-audio-btn" type="button">
+                            ▶ استمع أثناء القراءة
+                        </button>
+                    </div>
+
+                    <p class="word-hint">
+                        اضغط على أي كلمة إنجليزية لمعرفة معناها بالعربية.
+                    </p>
+
+                    <div id="storyText" class="story-text" lang="en" dir="ltr"></div>
+
+                    <div id="wordTranslation" class="word-translation" hidden>
+                        <button id="closeTranslation" type="button" aria-label="إغلاق الترجمة">×</button>
+                        <span class="translation-label">معنى الكلمة</span>
+                        <strong id="translatedWord"></strong>
+                        <p id="translatedMeaning"></p>
+                    </div>
+
+                </section>
+
+
+                <!-- STORY COMPLETION -->
+
+                <div id="completionSection" class="completion-section" hidden>
+                    <span class="completion-icon">🎉</span>
+                    <h3>أحسنت! أكملت القصة</h3>
+                    <p>حان الوقت لاختبار فهمك لما قرأت أو استمعت إليه.</p>
+                    <button id="startQuizBtn" class="primary-btn" type="button">
+                        ابدأ الاختبار
+                    </button>
+                </div>
+
+
+                <!-- QUIZ -->
+
+                <section id="quizSection" class="quiz-section" hidden>
+
+                    <div class="quiz-heading">
+                        <span class="reading-eyebrow">STORY QUIZ</span>
+                        <h3>اختبر فهمك للقصة</h3>
+                        <p id="quizProgress"></p>
+                    </div>
+
+                    <div class="quiz-progress-track">
+                        <div id="quizProgressBar"></div>
+                    </div>
+
+                    <h4 id="quizQuestion"></h4>
+
+                    <div id="quizOptions" class="quiz-options"></div>
+
+                    <div id="quizFeedback" class="quiz-feedback" hidden></div>
+
+                    <button id="nextQuestionBtn" class="primary-btn" type="button" hidden>
+                        السؤال التالي
+                    </button>
+
+                    <div id="quizResult" class="quiz-result" hidden>
+                        <span class="result-emoji">🏆</span>
+                        <h3>انتهيت من الاختبار!</h3>
+                        <p id="quizScore"></p>
+                        <button id="retryQuizBtn" class="secondary-btn" type="button">
+                            أعد الاختبار
+                        </button>
+                        <button id="finishStoryBtn" class="primary-btn" type="button">
+                            العودة إلى القصص
+                        </button>
+                    </div>
+
+                </section>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- COURSE ACCESS -->
+
+    <script src="../../access.js"></script>
+
+    <script>
+        initializeCourseAccess("english");
+    </script>
+
+    <!-- STORIES -->
+
+    <script src="script.js"></script>
+
+</body>
+</html>
