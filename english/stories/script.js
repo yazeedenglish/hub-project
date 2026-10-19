@@ -3,151 +3,58 @@
    YAZEED ENGLISH - STORIES
 ========================================================= */
 
-
-/* =========================================================
-   1. STORIES DATA
-
-   لإضافة قصة جديدة:
-   - أضف بياناتها هنا.
-   - أنشئ مجلدًا مستقلًا لها داخل assets/stories/.
-   - ضع الصورة والصوت داخل مجلدها.
-========================================================= */
-
 const stories = [
+    {
+        id: "the-race",
+        level: "beginner",
+        image: "https://file.yazeedenglish.com/english.png",
+        emoji: "🐶",
+        duration: "3 دقائق",
+        dataFile: "data/the-race.json",
+        subtitles: "data/the-race.vtt",
+
+        // Replace this with the correct recording for this story.
+        audio: "https://easyenglish.com/wp-content/uploads/2026/10/The-Winner___ElevenLabs_2026-10-14T15_21_12_Harry-Articulate-British-Storyteller_pvc_sp100_s50_sb75_v4.mp3"
+    },
+
+     {
+        id: "the-race",
+        level: "intermediate",
+        image: "https://file.yazeedenglish.com/english.png",
+        emoji: "🐶",
+        duration: "3 دقائق",
+        dataFile: "data/the-race.json",
+        subtitles: "data/the-race.vtt",
+
+        // Replace this with the correct recording for this story.
+        audio: "https://easyenglish.com/wp-content/uploads/2026/10/The-Winner___ElevenLabs_2026-10-14T15_21_12_Harry-Articulate-British-Storyteller_pvc_sp100_s50_sb75_v4.mp3"
+    },
 
     {
-        id: "the-lost-puppy",
-
-        level: "beginner",
-
-        title: "الجرو الضائع",
-        englishTitle: "The Lost Puppy",
-
-        description:
-            "قصة لطيفة عن طفل يجد جروًا ضائعًا ويحاول مساعدته في العودة إلى صاحبه.",
-
-        emoji: "",
-
-        // اترك image فارغًا لاستخدام الإيموجي.
-        // لاستبداله بصورة، اكتب مسار الصورة داخل مجلد القصة.
-        image: "https://file.yazeedenglish.com/english.png",
-
+        id: "the-race",
+        level: "intermediate",
+        image: "https://file.yazeedenglish.com/Stories-images/a783be86-03ed-4043-ab05-b401cab561c2.jfif",
+        emoji: "🐶",
         duration: "3 دقائق",
+        dataFile: "data/the-race.json",
+        subtitles: "data/the-race.vtt",
 
-        // ضع مسار ملف الصوت الخاص بالقصة
-        audio: "https://easyenglish.com/wp-content/uploads/2026/10/The-Winner___ElevenLabs_2026-10-14T15_21_12_Harry-Articulate-British-Storyteller_pvc_sp100_s50_sb75_v4.mp3",
+        // Replace this with the correct recording for this story.
+        audio: "https://easyenglish.com/wp-content/uploads/2026/10/The-Winner___ElevenLabs_2026-10-14T15_21_12_Harry-Articulate-British-Storyteller_pvc_sp100_s50_sb75_v4.mp3"
+    },
 
-        subtitles: "subtitles/the-winner.vtt",
+    {
+        id: "the-race",
+        level: "advanced",
+        image: "https://file.yazeedenglish.com/english.png",
+        emoji: "🐶",
+        duration: "3 دقائق",
+        dataFile: "data/the-race.json",
+        subtitles: "data/the-race.vtt",
 
-        paragraphs: [
-            "One sunny morning, a young boy named Adam walked to the park.",
-
-            "Near a big tree, he saw a small brown puppy. The puppy looked sad and hungry.",
-
-            '"Hello, little friend," Adam said gently. "Are you lost?"',
-
-            "The puppy wagged its tail and followed Adam. Adam gave it some water and looked for its owner.",
-
-            "Soon, a little girl ran toward them. Her name was Lily. She was looking for her puppy, Max.",
-
-            '"Max!" Lily shouted happily. The puppy ran to her and jumped into her arms.',
-
-            '"Thank you for helping my puppy," Lily said. Adam smiled. He was happy because he had helped a new friend.'
-        ],
-
-        translations: {
-            "sunny": "مشمس",
-            "morning": "الصباح",
-            "young": "صغير السن",
-            "boy": "ولد",
-            "walked": "مشى",
-            "park": "حديقة",
-            "near": "بالقرب من",
-            "tree": "شجرة",
-            "small": "صغير",
-            "brown": "بني",
-            "puppy": "جرو",
-            "looked": "بدا / نظر",
-            "sad": "حزين",
-            "hungry": "جائع",
-            "hello": "مرحبًا",
-            "little": "صغير",
-            "friend": "صديق",
-            "said": "قال",
-            "gently": "بلطف",
-            "lost": "ضائع",
-            "wagged": "حرّك (ذيله)",
-            "tail": "ذيل",
-            "followed": "تبع",
-            "gave": "أعطى",
-            "water": "ماء",
-            "look": "ابحث / انظر",
-            "owner": "المالك / صاحب الشيء",
-            "soon": "بعد قليل",
-            "girl": "فتاة",
-            "ran": "ركض",
-            "toward": "نحو",
-            "them": "هم / إياهم",
-            "name": "اسم",
-            "looking": "يبحث",
-            "max": "ماكس (اسم)",
-            "shouted": "صرخت",
-            "happily": "بسعادة",
-            "her": "لها / خاصتها",
-            "jumped": "قفز",
-            "arms": "ذراعان",
-            "thank": "أشكر",
-            "helping": "مساعدة",
-            "smiled": "ابتسم",
-            "happy": "سعيد",
-            "because": "لأن",
-            "helped": "ساعد"
-        },
-
-        questions: [
-            {
-                question: "Where did Adam go one sunny morning?",
-                options: [
-                    "To the park",
-                    "To school",
-                    "To the shop"
-                ],
-                answer: 0,
-                explanation: "ذهب آدم إلى الحديقة في صباح مشمس."
-            },
-            {
-                question: "What did Adam find near the tree?",
-                options: [
-                    "A small brown puppy",
-                    "A little bird",
-                    "A red ball"
-                ],
-                answer: 0,
-                explanation: "وجد آدم جروًا صغيرًا بني اللون بالقرب من الشجرة."
-            },
-            {
-                question: "What did Adam give the puppy?",
-                options: [
-                    "Some milk",
-                    "Some water",
-                    "A toy"
-                ],
-                answer: 1,
-                explanation: "أعطى آدم الجرو بعض الماء."
-            },
-            {
-                question: "How did Adam feel at the end?",
-                options: [
-                    "Angry",
-                    "Tired",
-                    "Happy"
-                ],
-                answer: 2,
-                explanation: "شعر آدم بالسعادة لأنه ساعد صديقه الجديد."
-            }
-        ]
+        // Replace this with the correct recording for this story.
+        audio: "https://easyenglish.com/wp-content/uploads/2026/10/The-Winner___ElevenLabs_2026-10-14T15_21_12_Harry-Articulate-British-Storyteller_pvc_sp100_s50_sb75_v4.mp3"
     }
-
 ];
 
 
@@ -243,6 +150,7 @@ const themeToggle = document.getElementById("themeToggle");
 ========================================================= */
 
 let currentStory = null;
+let currentStoryContent = null;
 let currentLevel = null;
 let currentQuestionIndex = 0;
 let correctAnswers = 0;
@@ -415,6 +323,21 @@ function escapeHTML(value) {
     })[character]);
 }
 
+async function loadStoryContent(story) {
+    if (story.content) return story.content;
+
+    const response = await fetch(story.dataFile);
+
+    if (!response.ok) {
+        throw new Error("تعذر تحميل ملف القصة: " + story.dataFile);
+    }
+
+    const content = await response.json();
+
+    story.content = content;
+    return content;
+}
+
 function getLevel(levelId) {
     return levels.find(level => level.id === levelId);
 }
@@ -475,32 +398,55 @@ function setCover(element, story) {
    7. RENDER LEVELS AND STORIES
 ========================================================= */
 
-function renderLevels() {
+
+async function renderLevels() {
     levelsContainer.replaceChildren();
 
-    const sortedStories = [...stories].sort((a, b) => {
-        const levelOrder = {
-            beginner: 1,
-            intermediate: 2,
-            advanced: 3
-        };
+    const loadingMessage = document.createElement("p");
+    loadingMessage.textContent = "جارٍ تحميل القصص...";
+    levelsContainer.appendChild(loadingMessage);
 
-        return levelOrder[a.level] - levelOrder[b.level];
-    });
+    const levelOrder = {
+        beginner: 1,
+        intermediate: 2,
+        advanced: 3
+    };
+
+    const sortedStories = [...stories].sort((a, b) =>
+        (levelOrder[a.level] || 99) - (levelOrder[b.level] || 99)
+    );
+
+    const results = await Promise.allSettled(
+        sortedStories.map(story => loadStoryContent(story))
+    );
+
+    levelsContainer.replaceChildren();
 
     const list = document.createElement("div");
     list.className = "stories-list";
 
-    sortedStories.forEach(story => {
-        list.appendChild(createStoryCard(story));
+    sortedStories.forEach((story, index) => {
+        if (results[index].status === "fulfilled") {
+            list.appendChild(createStoryCard(story));
+        } else {
+            console.error(results[index].reason);
+        }
     });
+
+    if (!list.children.length) {
+        levelsContainer.textContent =
+            "تعذر تحميل القصص. تحقق من ملفات JSON.";
+        return;
+    }
 
     levelsContainer.appendChild(list);
 }
 
 
+
 function createStoryCard(story) {
-    const level = getLevel(story.level);
+     const level = getLevel(story.level);
+    const content = story.content;
 
     const card = document.createElement("article");
     card.className = "story-card";
@@ -545,17 +491,17 @@ if (badgeColors) {
     meta.appendChild(tag);
 
     const title = document.createElement("h3");
-    title.textContent = story.title;
+    title.textContent = content.title;
 
     const englishTitle = document.createElement("span");
     englishTitle.className = "story-english-title";
     englishTitle.dir = "ltr";
-    englishTitle.textContent = story.englishTitle;
+    englishTitle.textContent = content.englishTitle;
 
     title.appendChild(englishTitle);
 
     const description = document.createElement("p");
-    description.textContent = story.description;
+    description.textContent = content.description || "";
 
     const footer = document.createElement("div");
     footer.className = "story-card-footer";
@@ -585,30 +531,71 @@ if (badgeColors) {
    8. OPEN STORY
 ========================================================= */
 
-function openStory(story) {
-    currentStory = story;
-    currentLevel = getLevel(story.level);
 
-    stopAudio();
-    resetReader();
+async function openStory(story) {
+    try {
+        currentStory = story;
+        currentStoryContent = await loadStoryContent(story);
+        currentLevel = getLevel(story.level);
 
-    readerTitle.textContent = story.title;
-    readerDescription.textContent = story.description;
-    readerLevel.textContent = currentLevel
-        ? currentLevel.name
-        : "";
+        resetReader();
 
-    readerBadge.textContent = story.englishTitle;
+        readerTitle.textContent = currentStoryContent.title || "";
+        readerDescription.textContent =
+            currentStoryContent.description || "";
 
-    setCover(readerCover, story);
+        readerLevel.textContent = currentLevel
+            ? currentLevel.name
+            : "";
 
-    storyReader.hidden = false;
+        readerBadge.textContent =
+            currentStoryContent.englishTitle || "";
 
-    storyReader.scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-    });
+        setCover(readerCover, story);
+
+        // إخفاء خيارات القراءة والاستماع
+        modeSelection.hidden = true;
+
+        // إظهار مشغل الصوت المخصص أعلى النص
+        audioSection.hidden = true;
+        readingSection.hidden = false;
+
+        // منع ظهور مشغل HTML الأصلي كواجهة ثانية
+        storyAudio.controls = false;
+        storyAudio.hidden = true;
+
+        // تحميل ملف الصوت للقصة الحالية دون تشغيله تلقائيًا
+loadStoryAudio();
+
+// تحميل التوقيتات الخاصة بالنص
+currentCues = [];
+activeCueIndex = -1;
+
+if (currentStory.subtitles) {
+    try {
+        currentCues = await loadSubtitleCues(currentStory.subtitles);
+    } catch (error) {
+        console.error("Subtitle loading failed:", error);
+    }
 }
+
+// عرض نص القصة
+storyText.hidden = false;
+await renderStoryText();
+
+        storyReader.hidden = false;
+
+        storyReader.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+
+    } catch (error) {
+        console.error("Story loading failed:", error);
+        alert("تعذر تحميل القصة. تحقق من ملف JSON ومساره.");
+    }
+}
+
 
 
 function resetReader() {
@@ -629,14 +616,22 @@ function resetReader() {
     nextQuestionBtn.hidden = true;
     quizResult.hidden = true;
 
-    playPauseBtn.textContent = "▶";
-    playReadingAudio.textContent = "▶ استمع أثناء القراءة";
+    updatePlayPauseIcon(false);
+    playReadingAudio.textContent = "استمع أثناء القراءة";
 
     selectedWordButton = null;
 
     currentQuestionIndex = 0;
     correctAnswers = 0;
     questionAnswered = false;
+
+    quizQuestion.hidden = false;
+quizOptions.hidden = false;
+
+if (storyAudio) {
+    storyAudio.controls = false;
+    storyAudio.hidden = true;
+}
 }
 
 
@@ -645,36 +640,59 @@ function resetReader() {
 ========================================================= */
 
 async function renderStoryText() {
+    if (!currentStoryContent) return;
+
     storyText.replaceChildren();
-    currentCues = [];
-    activeCueIndex = -1;
 
-    let paragraphs = currentStory.paragraphs || [];
+    // Use timestamped subtitle text when available
+    if (currentCues.length > 0) {
+        currentCues.forEach((cue, index) => {
+            const paragraphElement = document.createElement("p");
 
-    if (currentStory.subtitles) {
-        try {
-            currentCues = await loadSubtitleCues(
-                currentStory.subtitles
-            );
+            paragraphElement.className = "story-paragraph";
+            paragraphElement.dataset.cueIndex = index;
 
-            paragraphs = currentCues.map(cue => cue.text);
-        } catch (error) {
-            console.error("Subtitle loading failed:", error);
+            const tokens = cue.text.match(
+                /[A-Za-z]+(?:['’][A-Za-z]+)*|[^A-Za-z]+/g
+            ) || [];
 
-            audioMessage.textContent =
-                "تعذر تحميل ملف الترجمة. تحقق من مساره.";
+            tokens.forEach(token => {
+                if (/^[A-Za-z]+(?:['’][A-Za-z]+)*$/.test(token)) {
+                    const button = document.createElement("button");
 
-            return;
-        }
+                    button.type = "button";
+                    button.className = "story-word";
+                    button.textContent = token;
+                    button.lang = "en";
+                    button.setAttribute(
+                        "aria-label",
+                        `معنى كلمة ${token}`
+                    );
+
+                    button.addEventListener("click", () => {
+                        showWordTranslation(token, button);
+                    });
+
+                    paragraphElement.appendChild(button);
+                } else {
+                    paragraphElement.appendChild(
+                        document.createTextNode(token)
+                    );
+                }
+            });
+
+            storyText.appendChild(paragraphElement);
+        });
+
+        return;
     }
 
-    paragraphs.forEach((paragraph, index) => {
+    // Fall back to the original JSON paragraphs
+    const paragraphs = currentStoryContent.paragraphs || [];
+
+    paragraphs.forEach(paragraph => {
         const paragraphElement = document.createElement("p");
         paragraphElement.className = "story-paragraph";
-
-        if (currentStory.subtitles) {
-            paragraphElement.dataset.cueIndex = index;
-        }
 
         const tokens = paragraph.match(
             /[A-Za-z]+(?:['’][A-Za-z]+)*|[^A-Za-z]+/g
@@ -688,6 +706,10 @@ async function renderStoryText() {
                 button.className = "story-word";
                 button.textContent = token;
                 button.lang = "en";
+                button.setAttribute(
+                    "aria-label",
+                    `معنى كلمة ${token}`
+                );
 
                 button.addEventListener("click", () => {
                     showWordTranslation(token, button);
@@ -703,30 +725,25 @@ async function renderStoryText() {
 
         storyText.appendChild(paragraphElement);
     });
-
-    updateActiveSubtitle();
 }
 
 
-readModeBtn.addEventListener("click", async () => {
-    if (!currentStory) return;
-
-    modeSelection.hidden = true;
-    readingSection.hidden = false;
-    audioSection.hidden = true;
-
-    await renderStoryText();
-});
-
-
 function showWordTranslation(word, button) {
-    const normalizedWord = word
-        .toLowerCase()
-        .replace(/[’]/g, "'");
+    const normalize = value =>
+        String(value)
+            .toLowerCase()
+            .replace(/[’‘]/g, "'");
 
-    const translations = currentStory.translations || {};
+    const translations = currentStoryContent?.translations || {};
+    const normalizedWord = normalize(word);
 
-    const meaning = translations[normalizedWord];
+    const meaningKey = Object.keys(translations).find(
+        key => normalize(key) === normalizedWord
+    );
+
+    const meaning = meaningKey
+        ? translations[meaningKey]
+        : "لم تتم إضافة ترجمة لهذه الكلمة بعد.";
 
     if (selectedWordButton) {
         selectedWordButton.classList.remove("selected");
@@ -736,12 +753,179 @@ function showWordTranslation(word, button) {
     button.classList.add("selected");
 
     translatedWord.textContent = word;
+    translatedMeaning.textContent = meaning;
 
-    translatedMeaning.textContent = meaning
-        ? meaning
-        : "لم تتم إضافة ترجمة لهذه الكلمة بعد.";
+    addWordSpeaker();
 
-    wordTranslation.hidden = false;
+    wordSpeechMessage.hidden = true;
+    if (wordTranslation.parentElement !== document.body) {
+    document.body.appendChild(wordTranslation);
+}
+
+wordTranslation.hidden = false;
+
+requestAnimationFrame(positionWordTranslation);
+
+    // انتظر ظهور النافذة وحساب أبعادها الفعلية
+    requestAnimationFrame(positionWordTranslation);
+}
+
+function positionWordTranslation() {
+    if (
+        wordTranslation.hidden ||
+        !selectedWordButton ||
+        !selectedWordButton.isConnected
+    ) {
+        return;
+    }
+
+    const wordRect = selectedWordButton.getBoundingClientRect();
+    const popupRect = wordTranslation.getBoundingClientRect();
+
+    const margin = 12;
+    const gap = 8;
+
+    const popupWidth = Math.min(
+        230,
+        window.innerWidth - margin * 2
+    );
+
+    wordTranslation.style.width = `${popupWidth}px`;
+    wordTranslation.style.maxWidth =
+        `calc(100vw - ${margin * 2}px)`;
+
+    // أعد حساب الارتفاع بعد ضبط العرض
+    const popupHeight = wordTranslation.offsetHeight;
+    const availableAbove = wordRect.top - margin;
+    const availableBelow =
+        window.innerHeight - wordRect.bottom - margin;
+
+    let top;
+
+    if (
+        availableAbove >= popupHeight + gap ||
+        availableAbove >= availableBelow
+    ) {
+        top = wordRect.top - popupHeight - gap;
+    } else {
+        top = wordRect.bottom + gap;
+    }
+
+    // منع خروج النافذة من الشاشة
+    top = Math.max(
+        margin,
+        Math.min(top, window.innerHeight - popupHeight - margin)
+    );
+
+    let left = wordRect.left +
+        wordRect.width / 2 -
+        popupWidth / 2;
+
+    left = Math.max(
+        margin,
+        Math.min(left, window.innerWidth - popupWidth - margin)
+    );
+
+    wordTranslation.style.position = "fixed";
+    wordTranslation.style.left = `${left}px`;
+    wordTranslation.style.top = `${top}px`;
+    wordTranslation.style.right = "auto";
+    wordTranslation.style.bottom = "auto";
+    wordTranslation.style.margin = "0";
+    wordTranslation.style.transform = "none";
+    wordTranslation.style.zIndex = "9999";
+}
+
+
+
+const wordSpeakerButton = document.getElementById("wordSpeakerBtn");
+const wordSpeechMessage = document.getElementById("wordSpeechMessage");
+
+function isIOSDevice() {
+    return /iPhone|iPad|iPod/i.test(navigator.userAgent) ||
+        (navigator.platform === "MacIntel" &&
+         navigator.maxTouchPoints > 1);
+}
+
+function addWordSpeaker() {
+    if (!wordSpeakerButton || !wordSpeechMessage) return;
+
+    wordSpeakerButton.onclick = speakSelectedWord;
+
+    if (window.lucide) {
+        window.lucide.createIcons();
+    }
+}
+
+async function speakSelectedWord() {
+    if (!selectedWordButton) return;
+
+    if (
+        !("speechSynthesis" in window) ||
+        !("SpeechSynthesisUtterance" in window)
+    ) {
+        wordSpeechMessage.textContent =
+            "النطق غير مدعوم في هذا المتصفح.";
+        wordSpeechMessage.hidden = false;
+        return;
+    }
+
+    const word = selectedWordButton.textContent;
+
+    window.speechSynthesis.cancel();
+
+    const utterance = new SpeechSynthesisUtterance(word);
+    utterance.lang = "en-US";
+    utterance.rate = 0.85;
+    utterance.pitch = 1;
+
+    let voices = window.speechSynthesis.getVoices();
+
+    if (!voices.length) {
+        await new Promise(resolve => {
+            const timeout = setTimeout(resolve, 1000);
+
+            window.speechSynthesis.addEventListener(
+                "voiceschanged",
+                () => {
+                    clearTimeout(timeout);
+                    resolve();
+                },
+                { once: true }
+            );
+        });
+
+        voices = window.speechSynthesis.getVoices();
+    }
+
+    if (isIOSDevice()) {
+        const samantha = voices.find(voice =>
+            voice.name.toLowerCase().includes("samantha") &&
+            voice.lang.toLowerCase().startsWith("en")
+        );
+
+        if (!samantha) {
+            wordSpeechMessage.textContent =
+                "صوت Samantha غير متاح حاليًا. تحقق من أصوات الإنجليزية في إعدادات النطق بجهازك.";
+            wordSpeechMessage.hidden = false;
+            return;
+        }
+
+        utterance.voice = samantha;
+    } else {
+        const englishVoice = voices.find(voice =>
+            voice.lang.toLowerCase().startsWith("en-us")
+        ) || voices.find(voice =>
+            voice.lang.toLowerCase().startsWith("en")
+        );
+
+        if (englishVoice) {
+            utterance.voice = englishVoice;
+        }
+    }
+
+    wordSpeechMessage.hidden = true;
+    window.speechSynthesis.speak(utterance);
 }
 
 
@@ -752,7 +936,14 @@ closeTranslation.addEventListener("click", () => {
         selectedWordButton.classList.remove("selected");
         selectedWordButton = null;
     }
+
+    if ("speechSynthesis" in window) {
+        window.speechSynthesis.cancel();
+    }
 });
+
+window.addEventListener("scroll", positionWordTranslation, true);
+window.addEventListener("resize", positionWordTranslation);
 
 
 /* =========================================================
@@ -773,6 +964,17 @@ listenModeBtn.addEventListener("click", () => {
 });
 
 
+function updatePlayPauseIcon(isPlaying) {
+    playPauseBtn.innerHTML = isPlaying
+        ? '<i data-lucide="pause"></i>'
+        : '<i data-lucide="play"></i>';
+
+    if (window.lucide) {
+        window.lucide.createIcons();
+    }
+}
+
+
 function loadStoryAudio() {
     stopAudio();
 
@@ -785,10 +987,15 @@ function loadStoryAudio() {
     currentTimeDisplay.textContent = "00:00";
     durationDisplay.textContent = "00:00";
 
-    playPauseBtn.textContent = "▶";
+    updatePlayPauseIcon(false);
 
-    audioMessage.textContent =
-        "اضغط تشغيل لبدء الاستماع.";
+    audioMessage.textContent = "";
+
+    // Reset subtitle highlighting
+    activeCueIndex = -1;
+
+    storyText.querySelectorAll(".story-paragraph.is-speaking")
+        .forEach(element => element.classList.remove("is-speaking"));
 }
 
 
@@ -801,7 +1008,7 @@ async function playAudio() {
 
     try {
         await storyAudio.play();
-        playPauseBtn.textContent = "Ⅱ";
+        updatePlayPauseIcon(true);
     } catch (error) {
         audioMessage.textContent =
             "تعذّر تشغيل الصوت. تأكد من إضافة ملف audio.mp3 إلى مجلد القصة.";
@@ -811,7 +1018,7 @@ async function playAudio() {
 
 function pauseAudio() {
     storyAudio.pause();
-    playPauseBtn.textContent = "▶";
+    updatePlayPauseIcon(false);
 }
 
 
@@ -826,7 +1033,7 @@ function stopAudio() {
         // لا حاجة إلى إجراء إضافي.
     }
 
-    playPauseBtn.textContent = "▶";
+    updatePlayPauseIcon(false);
 }
 
 
@@ -841,19 +1048,18 @@ playPauseBtn.addEventListener("click", () => {
 
 rewindBtn.addEventListener("click", () => {
     if (Number.isFinite(storyAudio.duration)) {
-        storyAudio.currentTime = Math.max(
-            0,
-            storyAudio.currentTime - 5
+        storyAudio.currentTime = Math.min(
+            storyAudio.duration,
+            storyAudio.currentTime + 5
         );
     }
 });
 
-
 forwardBtn.addEventListener("click", () => {
     if (Number.isFinite(storyAudio.duration)) {
-        storyAudio.currentTime = Math.min(
-            storyAudio.duration,
-            storyAudio.currentTime + 5
+        storyAudio.currentTime = Math.max(
+            0,
+            storyAudio.currentTime - 5
         );
     }
 });
@@ -892,17 +1098,17 @@ audioProgress.addEventListener("input", () => {
 
 
 storyAudio.addEventListener("play", () => {
-    playPauseBtn.textContent = "Ⅱ";
+    updatePlayPauseIcon(true);
 });
 
 
 storyAudio.addEventListener("pause", () => {
-    playPauseBtn.textContent = "▶";
+    updatePlayPauseIcon(false);
 });
 
 
 storyAudio.addEventListener("ended", () => {
-    playPauseBtn.textContent = "▶";
+    updatePlayPauseIcon(false);
     showCompletion();
 });
 
@@ -913,18 +1119,25 @@ storyAudio.addEventListener("error", () => {
 });
 
 
-/* تشغيل الصوت أثناء القراءة */
+/* تشغيل وإخفاء الصوت أثناء القراءة */
 
 playReadingAudio.addEventListener("click", () => {
     if (!currentStory) return;
 
-    if (!storyAudio.getAttribute("src")) {
-        loadStoryAudio();
+    const isHidden = audioSection.hidden;
+
+    if (isHidden) {
+        audioSection.hidden = false;
+        playReadingAudio.textContent = "إخفاء الاستماع";
+
+        if (!storyAudio.getAttribute("src")) {
+            loadStoryAudio();
+        }
+    } else {
+        stopAudio();
+        audioSection.hidden = true;
+        playReadingAudio.textContent = "▶ استمع أثناء القراءة";
     }
-
-    audioSection.hidden = false;
-
-    playAudio();
 });
 
 
@@ -971,7 +1184,7 @@ function startQuiz() {
 
 
 function renderQuestion() {
-    const questions = currentStory.questions;
+    const questions = currentStoryContent.questions;
 
     questionAnswered = false;
 
@@ -1018,7 +1231,7 @@ function answerQuestion(selectedIndex) {
 
     questionAnswered = true;
 
-    const question = currentStory.questions[currentQuestionIndex];
+    const question = currentStoryContent.questions[currentQuestionIndex];
     const buttons = quizOptions.querySelectorAll(".quiz-option");
 
     buttons.forEach((button, index) => {
@@ -1046,7 +1259,7 @@ function answerQuestion(selectedIndex) {
     quizFeedback.hidden = false;
 
     nextQuestionBtn.textContent =
-        currentQuestionIndex === currentStory.questions.length - 1
+        currentQuestionIndex === currentStoryContent.questions.length - 1
             ? "عرض النتيجة"
             : "السؤال التالي";
 
@@ -1059,7 +1272,7 @@ nextQuestionBtn.addEventListener("click", () => {
 
     currentQuestionIndex++;
 
-    if (currentQuestionIndex < currentStory.questions.length) {
+    if (currentQuestionIndex < currentStoryContent.questions.length) {
         renderQuestion();
     } else {
         showQuizResult();
@@ -1076,7 +1289,7 @@ function showQuizResult() {
     quizProgress.textContent = "اكتمل الاختبار";
     quizProgressBar.style.width = "100%";
 
-    const total = currentStory.questions.length;
+    const total = currentStoryContent.questions.length;
     const percentage = Math.round((correctAnswers / total) * 100);
 
     quizScore.textContent =
@@ -1100,11 +1313,19 @@ retryQuizBtn.addEventListener("click", () => {
 
 function returnToStories() {
     stopAudio();
-
+    
     storyReader.hidden = true;
-
+    
     currentStory = null;
+    currentStoryContent = null;
     currentLevel = null;
+
+    wordTranslation.hidden = true;
+
+if (selectedWordButton) {
+    selectedWordButton.classList.remove("selected");
+    selectedWordButton = null;
+}
 
     renderLevels();
 
@@ -1125,3 +1346,7 @@ finishStoryBtn.addEventListener("click", returnToStories);
 ========================================================= */
 
 renderLevels();
+
+if (window.lucide) {
+    window.lucide.createIcons();
+}
