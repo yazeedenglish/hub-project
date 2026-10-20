@@ -26,7 +26,6 @@ const zoomOutButton         = document.getElementById("zoomOut");
 const zoomInButton          = document.getElementById("zoomIn");
 const zoomLevelElement      = document.getElementById("zoomLevel");
 const statusMessage         = document.getElementById("statusMessage");
-const pronunciationStatus   = document.getElementById("pronunciationStatus");
 const voiceSelect           = document.getElementById("voiceSelect");
 const testVoiceButton       = document.getElementById("testVoiceButton");
 const speedRange            = document.getElementById("speedRange");
@@ -663,7 +662,6 @@ function pickPreferredVoice(availableVoices) {
 
 function speak(text, onComplete = null) {
     if (!("speechSynthesis" in window)) {
-        pronunciationStatus.textContent = "النطق غير مدعوم في هذا المتصفح.";
         if (typeof onComplete === "function") onComplete();
         return;
     }
@@ -697,14 +695,9 @@ function speak(text, onComplete = null) {
 
     startSpeechKeepAlive();
 
-    utterance.onstart = () => {
-        pronunciationStatus.textContent = `🔊 ${text}`;
-    };
-
     utterance.onend = () => {
         stopSpeechKeepAlive();
         activeUtterance = null;
-        pronunciationStatus.textContent = "";
         if (typeof onComplete === "function") onComplete();
     };
 
@@ -712,7 +705,6 @@ function speak(text, onComplete = null) {
         stopSpeechKeepAlive();
         activeUtterance = null;
         console.error("Speech error:", error);
-        pronunciationStatus.textContent = "تعذر تشغيل النطق.";
         if (typeof onComplete === "function") onComplete();
     };
 

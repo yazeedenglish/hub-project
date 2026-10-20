@@ -1,3463 +1,1283 @@
 /* =========================================================
    YAZEED ENGLISH — القارئ التفاعلي
    PDF.js 4.10.38
-
-   الوظائف:
-   1. تحميل PDF مباشرة
-   2. PDF.js — صفحة واحدة
-   3. التنقل السابق / التالي
-   4. الانتقال المباشر لرقم الصفحة
-   5. التكبير والتصغير
-   6. النطق
-   7. Samantha كصوت مفضل
-   8. سرعة النطق
-   9. قلم أحمر 4px
-   10. ممحاة
-   11. حفظ الرسومات محليًا
-   12. إشعار أول استخدام
-   13. روابط PDF الداخلية والخارجية
-   14. دعم Safari / iOS
 ========================================================= */
-
 
 import * as pdfjsLib from
     "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.min.mjs";
 
-
-/* =========================================================
-   PDF.JS WORKER
-========================================================= */
-
 pdfjsLib.GlobalWorkerOptions.workerSrc =
     "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.worker.min.mjs";
 
-
-/* =========================================================
-   PDF FILE
-=========================================================
-
-   غيّر هذا المسار فقط إذا أردت فتح ملف PDF آخر.
-========================================================= */
-
 const PDF_FILE = "https://file.yazeedenglish.com/tr/trab6.pdf";
-
 
 /* =========================================================
    DOM ELEMENTS
 ========================================================= */
 
-const readerApp =
-    document.getElementById("readerApp");
-
-const viewerContainer =
-    document.getElementById("viewerContainer");
-
-const pdfViewer =
-    document.getElementById("pdfViewer");
-
-const pageInput =
-    document.getElementById("pageInput");
-
-const totalPagesElement =
-    document.getElementById("totalPages");
-
-const previousPageButton =
-    document.getElementById("previousPage");
-
-const nextPageButton =
-    document.getElementById("nextPage");
-
-const zoomOutButton =
-    document.getElementById("zoomOut");
-
-const zoomInButton =
-    document.getElementById("zoomIn");
-
-const zoomLevelElement =
-    document.getElementById("zoomLevel");
-
-const statusMessage =
-    document.getElementById("statusMessage");
-
-const pronunciationStatus =
-    document.getElementById("pronunciationStatus");
-
-const voiceSelect =
-    document.getElementById("voiceSelect");
-
-const testVoiceButton =
-    document.getElementById("testVoiceButton");
-
-const speedRange =
-    document.getElementById("speedRange");
-
-const speedValue =
-    document.getElementById("speedValue");
-
-const handTool =
-    document.getElementById("handTool");
-
-const penTool =
-    document.getElementById("penTool");
-
-const eraserTool =
-    document.getElementById("eraserTool");
-
-const pronunciationModal =
-    document.getElementById("pronunciationModal");
-
-const understoodButton =
-    document.getElementById("understoodButton");
-
-const contentLoadingOverlay =
-    document.getElementById(
-        "contentLoadingOverlay"
-    );
-
+const readerApp             = document.getElementById("readerApp");
+const viewerContainer       = document.getElementById("viewerContainer");
+const pdfViewer             = document.getElementById("pdfViewer");
+const pageInput             = document.getElementById("pageInput");
+const totalPagesElement     = document.getElementById("totalPages");
+const previousPageButton    = document.getElementById("previousPage");
+const nextPageButton        = document.getElementById("nextPage");
+const zoomOutButton         = document.getElementById("zoomOut");
+const zoomInButton          = document.getElementById("zoomIn");
+const zoomLevelElement      = document.getElementById("zoomLevel");
+const statusMessage         = document.getElementById("statusMessage");
+const voiceSelect           = document.getElementById("voiceSelect");
+const testVoiceButton       = document.getElementById("testVoiceButton");
+const speedRange            = document.getElementById("speedRange");
+const speedValue            = document.getElementById("speedValue");
+const handTool              = document.getElementById("handTool");
+const penTool               = document.getElementById("penTool");
+const eraserTool            = document.getElementById("eraserTool");
+const pronunciationModal    = document.getElementById("pronunciationModal");
+const understoodButton      = document.getElementById("understoodButton");
+const contentLoadingOverlay = document.getElementById("contentLoadingOverlay");
+const loadingProgressBar = document.getElementById("loadingProgressBar");
+const loadingProgressFill = document.getElementById("loadingProgressFill");
+const loadingProgressPercent = document.getElementById("loadingProgressPercent");
+const loadingProgressLabel = document.getElementById("loadingProgressLabel");
+const loadingTimeRemaining = document.getElementById("loadingTimeRemaining");
+const colorDrawer           = document.getElementById("colorDrawer");
 
 /* =========================================================
-   APPLICATION STATE
+   STATE
 ========================================================= */
 
 let pdfDocument = null;
-
 let currentPage = 1;
-
 let scale = 1;
-
+let manuallyZoomed = false;
 let voices = [];
-
 let selectedVoice = null;
-
 let speechRate = 0.85;
-
 let activeMode = "hand";
-
 let renderGeneration = 0;
-
 let activeUtterance = null;
-
 let activeDrawing = null;
-
 let annotationStore = {};
-
 let annotationStorageKey = "";
-
 let currentSpeechSentence = [];
+let currentDrawColor = "#C94C4C";
+let loadingStartedAt = 0;
+let loadingProgress = 0;
+let downloadProgressTimer = null;
+
+/* =========================================================
+   AUTOMATIC PDF FIT
+========================================================= */
+
+async function calculateFitScale() {
+    if (!pdfDocument || !viewerContainer) return 1;
+
+    const page = await pdfDocument.getPage(1);
+    const originalViewport = page.getViewport({ scale: 1 });
+
+    // Available width inside the PDF viewing area
+    const availableWidth = Math.max(
+        200,
+        viewerContainer.clientWidth - 24
+    );
+
+    // Fit the PDF to the available width
+    return Math.max(
+        0.25,
+        Math.min(1.5, availableWidth / originalViewport.width)
+    );
+}
 
 
 /* =========================================================
-   LOAD PDF
+   OPEN PDF
 ========================================================= */
 
 async function openPDF(pdfPath) {
-
     showContentLoading();
 
     try {
-
-        statusMessage.textContent =
-            "جارٍ تحميل المحتوى...";
-
-
+        statusMessage.textContent = "";
         stopSpeech();
-
-
-        /* ---------------------------------------------
-           LOAD SAVED ANNOTATIONS
-        --------------------------------------------- */
-
         loadAnnotations(pdfPath);
 
+        updateLoadingProgress(2, "");
 
-        /* ---------------------------------------------
-           DOWNLOAD PDF
-        --------------------------------------------- */
+const response = await fetch(pdfPath, { cache: "no-store" });
 
-        const response =
-            await fetch(
-                pdfPath,
-                {
-                    cache: "no-store"
-                }
+if (!response.ok) {
+    throw new Error(`HTTP ${response.status}`);
+}
+
+let data;
+
+if (response.body && response.body.getReader) {
+    const reader = response.body.getReader();
+    const contentLength = Number(response.headers.get("content-length"));
+    const chunks = [];
+    let receivedLength = 0;
+
+    // If the server doesn't provide the file size,
+    // show a gradual estimate while downloading.
+    if (!contentLength) {
+        downloadProgressTimer = setInterval(() => {
+            const next = Math.min(60, loadingProgress + 1);
+            updateLoadingProgress(next, "جاري تحميل الكتاب...");
+        }, 150);
+    }
+
+    while (true) {
+        const { done, value } = await reader.read();
+
+        if (done) break;
+
+        chunks.push(value);
+        receivedLength += value.length;
+
+        if (contentLength > 0) {
+            const downloadPercent = receivedLength / contentLength;
+
+            updateLoadingProgress(
+                5 + downloadPercent * 65,
+                ""
             );
-
-
-        if (!response.ok) {
-
-            throw new Error(
-                `HTTP ${response.status}`
-            );
-
         }
+    }
 
+    clearInterval(downloadProgressTimer);
+    downloadProgressTimer = null;
 
-        const arrayBuffer =
-            await response.arrayBuffer();
+    data = new Uint8Array(receivedLength);
+    let offset = 0;
 
+    for (const chunk of chunks) {
+        data.set(chunk, offset);
+        offset += chunk.length;
+    }
+} else {
+    const arrayBuffer = await response.arrayBuffer();
+    data = new Uint8Array(arrayBuffer);
+}
 
-        const data =
-            new Uint8Array(
-                arrayBuffer
-            );
+updateLoadingProgress(72, "");
 
+        updateLoadingProgress(75, "");
 
-        /* ---------------------------------------------
-           PDF.JS
-        --------------------------------------------- */
+const loadingTask = pdfjsLib.getDocument({ data });
+pdfDocument = await loadingTask.promise;
 
-        const loadingTask =
-            pdfjsLib.getDocument({
-                data
-            });
+updateLoadingProgress(82, "");
 
+       currentPage = 1;
+    manuallyZoomed = false;
+    scale = await calculateFitScale();
 
-        pdfDocument =
-            await loadingTask.promise;
-
-
-        /* ---------------------------------------------
-           INITIAL PAGE
-        --------------------------------------------- */
-
-        currentPage = 1;
-
-        scale = 1;
-
-        pageInput.value = "1";
-
-        totalPagesElement.textContent =
-            String(
-                pdfDocument.numPages
-            );
-
-        zoomLevelElement.textContent =
-            "100%";
-
+    pageInput.value = "1";
+    totalPagesElement.textContent = String(pdfDocument.numPages);
+    zoomLevelElement.textContent = `${Math.round(scale * 100)}%`;
 
         updateNavigation();
+        await renderPage(currentPage);
 
+        statusMessage.textContent = "";
 
-        /* ---------------------------------------------
-           RENDER FIRST PAGE
-        --------------------------------------------- */
+updateLoadingProgress(100, "");
 
-        await renderPage(
-            currentPage
-        );
+if (loadingTimeRemaining) {
+    loadingTimeRemaining.textContent = "الكتاب جاهز للقراءة";
+}
 
+setTimeout(() => {
+    hideContentLoading();
+}, 250);
 
-        statusMessage.textContent =
-            "تم تحميل الملف بنجاح";
-
-
-        hideContentLoading();
-
-
-        maybeShowPronunciationNotice();
-
+maybeShowPronunciationNotice();
 
     } catch (error) {
-
-        console.error(
-            "PDF loading error:",
-            error
-        );
-
-
-        statusMessage.textContent =
-            "تعذر تحميل الملف";
-
-
+        console.error("PDF loading error:", error);
+        statusMessage.textContent = "تعذر تحميل الملف";
         hideContentLoading();
-
-
         pdfViewer.innerHTML = `
             <div class="pdf-error">
                 تعذر فتح ملف PDF.
-                تأكد من أن الملف موجود داخل مجلد pdfs.
-            </div>
-        `;
-
+            </div>`;
     }
-
 }
-
 
 /* =========================================================
-   LOADING OVERLAY
+   LOADING OVERLAY + PROGRESS
 ========================================================= */
 
-function showContentLoading() {
+function updateLoadingProgress(percent, label) {
+    loadingProgress = Math.max(
+        loadingProgress,
+        Math.min(99, Math.max(0, percent))
+    );
 
-    if (!contentLoadingOverlay) {
-        return;
+    if (loadingProgressFill) {
+        loadingProgressFill.style.width = `${loadingProgress}%`;
     }
+
+    if (loadingProgressPercent) {
+        loadingProgressPercent.textContent =
+            `${Math.round(loadingProgress)}%`;
+    }
+
+    if (loadingProgressBar) {
+        loadingProgressBar.setAttribute(
+            "aria-valuenow",
+            String(Math.round(loadingProgress))
+        );
+    }
+
+    if (loadingProgressLabel && label) {
+        loadingProgressLabel.textContent = label;
+    }
+
+    if (loadingTimeRemaining && loadingStartedAt) {
+        if (loadingProgress < 5) {
+            loadingTimeRemaining.textContent =
+                "جارٍ تقدير الوقت المتبقي...";
+        } else {
+            const elapsed = (Date.now() - loadingStartedAt) / 1000;
+            const estimatedTotal =
+                elapsed / (loadingProgress / 100);
+            const remaining = Math.max(
+                1,
+                Math.ceil(estimatedTotal - elapsed)
+            );
+
+            loadingTimeRemaining.textContent =
+                `الوقت المتبقي: حوالي ${remaining} ${remaining === 1 ? "ثانية" : "ثوانٍ"}`;
+        }
+    }
+}
+
+function showContentLoading() {
+    if (!contentLoadingOverlay) return;
+
+    clearInterval(downloadProgressTimer);
+    downloadProgressTimer = null;
+
+    loadingStartedAt = Date.now();
+    loadingProgress = 0;
 
     contentLoadingOverlay.hidden = false;
+    contentLoadingOverlay.classList.add("show");
 
-}
-
-
-function hideContentLoading() {
-
-    if (!contentLoadingOverlay) {
-        return;
+    if (loadingProgressFill) {
+        loadingProgressFill.style.width = "0%";
     }
 
-    contentLoadingOverlay.hidden = true;
+    if (loadingProgressPercent) {
+        loadingProgressPercent.textContent = "0%";
+    }
 
+    if (loadingProgressBar) {
+        loadingProgressBar.setAttribute("aria-valuenow", "0");
+    }
+
+    if (loadingProgressLabel) {
+        loadingProgressLabel.textContent = "";
+    }
+
+    if (loadingTimeRemaining) {
+        loadingTimeRemaining.textContent =
+            "جارٍ تقدير الوقت المتبقي...";
+    }
 }
 
+function hideContentLoading() {
+    clearInterval(downloadProgressTimer);
+    downloadProgressTimer = null;
+
+    if (!contentLoadingOverlay) return;
+
+    contentLoadingOverlay.hidden = true;
+    contentLoadingOverlay.classList.remove("show");
+}
 
 /* =========================================================
    RENDER PAGE
 ========================================================= */
 
 async function renderPage(pageNumber) {
+    if (!pdfDocument) return;
 
-    if (!pdfDocument) {
-        return;
-    }
-
-
-    const target =
-        Math.max(
-            1,
-            Math.min(
-                Number(pageNumber) || 1,
-                pdfDocument.numPages
-            )
-        );
-
-
-    const generation =
-        ++renderGeneration;
-
+    const target = Math.max(1, Math.min(Number(pageNumber) || 1, pdfDocument.numPages));
+    const generation = ++renderGeneration;
 
     try {
+        const page = await pdfDocument.getPage(target);
+        if (generation !== renderGeneration) return;
 
-        const page =
-            await pdfDocument.getPage(
-                target
-            );
-
-
-        if (
-            generation !==
-            renderGeneration
-        ) {
-            return;
-        }
-
-
-        /* ---------------------------------------------
-           VIEWPORT
-        --------------------------------------------- */
-
-        const viewport =
-            page.getViewport({
-                scale
-            });
-
-
-        const outputScale =
-            window.devicePixelRatio || 1;
-
-
-        /* ---------------------------------------------
-           CLEAR PREVIOUS PAGE
-        --------------------------------------------- */
+        const viewport = page.getViewport({ scale });
+        const outputScale = window.devicePixelRatio || 1;
 
         pdfViewer.innerHTML = "";
 
+        const pageContainer = document.createElement("div");
+        pageContainer.className = "pdf-page";
+        pageContainer.dataset.pageNumber = String(target);
+        pageContainer.style.width = `${viewport.width}px`;
+        pageContainer.style.height = `${viewport.height}px`;
+        pageContainer.setAttribute("aria-label", `صفحة ${target}`);
 
-        /* ---------------------------------------------
-           PAGE CONTAINER
-        --------------------------------------------- */
-
-        const pageContainer =
-            document.createElement(
-                "div"
-            );
-
-
-        pageContainer.className =
-            "pdf-page";
-
-
-        pageContainer.dataset.pageNumber =
-            String(target);
-
-
-        pageContainer.style.width =
-            `${viewport.width}px`;
-
-
-        pageContainer.style.height =
-            `${viewport.height}px`;
-
-
-        pageContainer.setAttribute(
-            "aria-label",
-            `صفحة ${target}`
-        );
-
-
-        /* ---------------------------------------------
-           CANVAS
-        --------------------------------------------- */
-
-        const canvas =
-            document.createElement(
-                "canvas"
-            );
-
-
-        canvas.className =
-            "pdf-canvas";
-
-
-        const context =
-            canvas.getContext(
-                "2d",
-                {
-                    alpha: false
-                }
-            );
-
-
-        canvas.width =
-            Math.floor(
-                viewport.width *
-                outputScale
-            );
-
-
-        canvas.height =
-            Math.floor(
-                viewport.height *
-                outputScale
-            );
-
-
-        canvas.style.width =
-            `${viewport.width}px`;
-
-
-        canvas.style.height =
-            `${viewport.height}px`;
-
+        if (target === 1 && contentLoadingOverlay && !contentLoadingOverlay.hidden) {
+    updateLoadingProgress(85, "");
+}
+        /* CANVAS */
+        const canvas = document.createElement("canvas");
+        canvas.className = "pdf-canvas";
+        const context = canvas.getContext("2d", { alpha: false });
+        canvas.width = Math.floor(viewport.width * outputScale);
+        canvas.height = Math.floor(viewport.height * outputScale);
+        canvas.style.width = `${viewport.width}px`;
+        canvas.style.height = `${viewport.height}px`;
 
         await page.render({
-
-            canvasContext:
-                context,
-
-            viewport:
-                page.getViewport({
-                    scale:
-                        scale *
-                        outputScale
-                })
-
+            canvasContext: context,
+            viewport: page.getViewport({ scale: scale * outputScale })
         }).promise;
 
+        if (generation !== renderGeneration) return;
 
-        if (
-            generation !==
-            renderGeneration
-        ) {
-            return;
+        if (target === 1 && contentLoadingOverlay && !contentLoadingOverlay.hidden) {
+    updateLoadingProgress(92, "");
+}
+
+        /* TEXT LAYER */
+        const textLayerDiv = document.createElement("div");
+        textLayerDiv.className = "textLayer";
+        const textContent = await page.getTextContent();
+
+        if (typeof pdfjsLib.TextLayer !== "function") {
+            throw new Error("PDF.js TextLayer غير متوفر.");
         }
 
-
-        /* ---------------------------------------------
-           TEXT LAYER
-        --------------------------------------------- */
-
-        const textLayerDiv =
-            document.createElement(
-                "div"
-            );
-
-
-        textLayerDiv.className =
-            "textLayer";
-
-
-        const textContent =
-            await page.getTextContent();
-
-
-        if (
-            typeof pdfjsLib.TextLayer !==
-            "function"
-        ) {
-
-            throw new Error(
-                "PDF.js TextLayer غير متوفر."
-            );
-
-        }
-
-
-        const textLayer =
-            new pdfjsLib.TextLayer({
-
-                textContentSource:
-                    textContent,
-
-                container:
-                    textLayerDiv,
-
-                viewport
-
-            });
-
-
+        const textLayer = new pdfjsLib.TextLayer({
+            textContentSource: textContent,
+            container: textLayerDiv,
+            viewport
+        });
         await textLayer.render();
 
+        if (generation !== renderGeneration) return;
 
-        if (
-            generation !==
-            renderGeneration
-        ) {
-            return;
-        }
+        if (target === 1 && contentLoadingOverlay && !contentLoadingOverlay.hidden) {
+    updateLoadingProgress(96, "");
+}
 
+        /* ANNOTATION CANVAS */
+        const annotationCanvas = document.createElement("canvas");
+        annotationCanvas.className = "annotation-canvas";
+        annotationCanvas.width = Math.floor(viewport.width * outputScale);
+        annotationCanvas.height = Math.floor(viewport.height * outputScale);
+        annotationCanvas.style.width = `${viewport.width}px`;
+        annotationCanvas.style.height = `${viewport.height}px`;
+        annotationCanvas.dataset.pageNumber = String(target);
 
-        /* ---------------------------------------------
-           ANNOTATION CANVAS
-        --------------------------------------------- */
+        /* LINK LAYER */
+        const linkLayer = document.createElement("div");
+        linkLayer.className = "pdf-link-layer";
+        linkLayer.style.width = `${viewport.width}px`;
+        linkLayer.style.height = `${viewport.height}px`;
+        await renderPDFLinks(page, linkLayer, viewport);
 
-        const annotationCanvas =
-            document.createElement(
-                "canvas"
-            );
+        pageContainer.appendChild(canvas);
+        pageContainer.appendChild(textLayerDiv);
+        pageContainer.appendChild(linkLayer);
+        pageContainer.appendChild(annotationCanvas);
+        pdfViewer.appendChild(pageContainer);
 
+        setupTextInteraction(textLayerDiv, pageContainer, target);
+        setupAnnotationCanvas(annotationCanvas, pageContainer, target);
+        redrawAnnotations(pageContainer, target);
+        applyModeToPage(pageContainer);
 
-        annotationCanvas.className =
-            "annotation-canvas";
-
-
-        annotationCanvas.width =
-            Math.floor(
-                viewport.width *
-                outputScale
-            );
-
-
-        annotationCanvas.height =
-            Math.floor(
-                viewport.height *
-                outputScale
-            );
-
-
-        annotationCanvas.style.width =
-            `${viewport.width}px`;
-
-
-        annotationCanvas.style.height =
-            `${viewport.height}px`;
-
-
-        annotationCanvas.dataset.pageNumber =
-            String(target);
-
-
-        /* ---------------------------------------------
-           PDF LINK LAYER
-        --------------------------------------------- */
-
-        const linkLayer =
-            document.createElement(
-                "div"
-            );
-
-
-        linkLayer.className =
-            "pdf-link-layer";
-
-
-        linkLayer.style.width =
-            `${viewport.width}px`;
-
-
-        linkLayer.style.height =
-            `${viewport.height}px`;
-
-
-        await renderPDFLinks(
-            page,
-            linkLayer,
-            viewport
-        );
-
-
-        /* ---------------------------------------------
-           APPEND EVERYTHING
-        --------------------------------------------- */
-
-        pageContainer.appendChild(
-            canvas
-        );
-
-
-        pageContainer.appendChild(
-            textLayerDiv
-        );
-
-
-        pageContainer.appendChild(
-            linkLayer
-        );
-
-
-        pageContainer.appendChild(
-            annotationCanvas
-        );
-
-
-        pdfViewer.appendChild(
-            pageContainer
-        );
-
-
-        /* ---------------------------------------------
-           TEXT INTERACTION
-        --------------------------------------------- */
-
-        setupTextInteraction(
-            textLayerDiv,
-            pageContainer,
-            target
-        );
-
-
-        /* ---------------------------------------------
-           DRAWING
-        --------------------------------------------- */
-
-        setupAnnotationCanvas(
-            annotationCanvas,
-            pageContainer,
-            target
-        );
-
-
-        /* ---------------------------------------------
-           RESTORE DRAWINGS
-        --------------------------------------------- */
-
-        redrawAnnotations(
-            pageContainer,
-            target
-        );
-
-
-        /* ---------------------------------------------
-           MODE
-        --------------------------------------------- */
-
-        applyModeToPage(
-            pageContainer
-        );
-
-
-        /* ---------------------------------------------
-           PAGE STATE
-        --------------------------------------------- */
-
-        currentPage =
-            target;
-
-
-        pageInput.value =
-            String(target);
-
-
-        totalPagesElement.textContent =
-            String(
-                pdfDocument.numPages
-            );
-
-
-        zoomLevelElement.textContent =
-            `${Math.round(scale * 100)}%`;
-
+        currentPage = target;
+        pageInput.value = String(target);
+        totalPagesElement.textContent = String(pdfDocument.numPages);
+        zoomLevelElement.textContent = `${Math.round(scale * 100)}%`;
 
         updateNavigation();
 
-
     } catch (error) {
-
-        console.error(
-            `تعذر رسم الصفحة ${target}:`,
-            error
-        );
-
-
-        if (
-            generation !==
-            renderGeneration
-        ) {
-            return;
-        }
-
-
-        pdfViewer.innerHTML = `
-            <div class="page-error">
-                تعذر رسم الصفحة ${target}
-            </div>
-        `;
-
+        console.error(`تعذر رسم الصفحة ${target}:`, error);
+        if (generation !== renderGeneration) return;
+        pdfViewer.innerHTML = `<div class="page-error">تعذر رسم الصفحة ${target}</div>`;
     }
-
 }
-
 
 /* =========================================================
    PDF LINKS
-=========================================================
-
-   يدعم:
-   - الروابط الخارجية
-   - الروابط الداخلية داخل نفس PDF
-   - روابط تنقلك إلى صفحة أخرى
 ========================================================= */
 
-async function renderPDFLinks(
-    page,
-    linkLayer,
-    viewport
-) {
-
+async function renderPDFLinks(page, linkLayer, viewport) {
     try {
+        const annotations = await page.getAnnotations({ intent: "display" });
 
-        const annotations =
-            await page.getAnnotations({
-                intent: "display"
-            });
+        annotations.forEach(annotation => {
+            if (annotation.subtype !== "Link") return;
+            if (!annotation.rect) return;
 
+            const rect = viewport.convertToViewportRectangle(annotation.rect);
+            const left = Math.min(rect[0], rect[2]);
+            const top = Math.min(rect[1], rect[3]);
+            const width = Math.abs(rect[2] - rect[0]);
+            const height = Math.abs(rect[3] - rect[1]);
 
-        annotations.forEach(
-            annotation => {
+            const link = document.createElement("a");
+            link.className = "pdf-link";
+            link.style.position = "absolute";
+            link.style.left = `${left}px`;
+            link.style.top = `${top}px`;
+            link.style.width = `${width}px`;
+            link.style.height = `${height}px`;
+            link.style.cursor = "pointer";
 
-                if (
-                    annotation.subtype !==
-                    "Link"
-                ) {
-                    return;
-                }
-
-
-                if (
-                    !annotation.rect
-                ) {
-                    return;
-                }
-
-
-                const rect =
-                    viewport.convertToViewportRectangle(
-                        annotation.rect
-                    );
-
-
-                const left =
-                    Math.min(
-                        rect[0],
-                        rect[2]
-                    );
-
-
-                const top =
-                    Math.min(
-                        rect[1],
-                        rect[3]
-                    );
-
-
-                const width =
-                    Math.abs(
-                        rect[2] -
-                        rect[0]
-                    );
-
-
-                const height =
-                    Math.abs(
-                        rect[3] -
-                        rect[1]
-                    );
-
-
-                const link =
-                    document.createElement(
-                        "a"
-                    );
-
-
-                link.className =
-                    "pdf-link";
-
-
-                link.style.position =
-                    "absolute";
-
-
-                link.style.left =
-                    `${left}px`;
-
-
-                link.style.top =
-                    `${top}px`;
-
-
-                link.style.width =
-                    `${width}px`;
-
-
-                link.style.height =
-                    `${height}px`;
-
-
-                link.style.cursor =
-                    "pointer";
-
-
-                /* -----------------------------------------
-                   EXTERNAL LINK
-                ----------------------------------------- */
-
-                if (
-                    annotation.url
-                ) {
-
-                    link.href =
-                        annotation.url;
-
-
-                    link.target =
-                        "_blank";
-
-
-                    link.rel =
-                        "noopener noreferrer";
-
-                }
-
-
-                /* -----------------------------------------
-                   INTERNAL LINK
-                ----------------------------------------- */
-
-                else if (
-                    annotation.dest
-                ) {
-
-                    link.href =
-                        "#";
-
-
-                    link.addEventListener(
-                        "click",
-                        async function(event) {
-
-                            event.preventDefault();
-
-                            event.stopPropagation();
-
-                            await navigateToPDFDestination(
-                                annotation.dest
-                            );
-
-                        }
-                    );
-
-                }
-
-
-                linkLayer.appendChild(
-                    link
-                );
-
+            if (annotation.url) {
+                link.href = annotation.url;
+                link.target = "_blank";
+                link.rel = "noopener noreferrer";
+            } else if (annotation.dest) {
+                link.href = "#";
+                link.addEventListener("click", async event => {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    await navigateToPDFDestination(annotation.dest);
+                });
             }
-        );
 
+            linkLayer.appendChild(link);
+        });
     } catch (error) {
-
-        console.error(
-            "PDF link layer error:",
-            error
-        );
-
+        console.error("PDF link layer error:", error);
     }
-
 }
 
-
-/* =========================================================
-   INTERNAL PDF DESTINATION
-========================================================= */
-
-async function navigateToPDFDestination(
-    destination
-) {
-
+async function navigateToPDFDestination(destination) {
     try {
-
-        let resolvedDestination =
-            destination;
-
-
-        /* ---------------------------------------------
-           Named destination
-        --------------------------------------------- */
-
-        if (
-            typeof destination ===
-            "string"
-        ) {
-
-            resolvedDestination =
-                await pdfDocument.getDestination(
-                    destination
-                );
-
+        let resolved = destination;
+        if (typeof destination === "string") {
+            resolved = await pdfDocument.getDestination(destination);
         }
+        if (!Array.isArray(resolved)) return;
 
+        const pageRef = resolved[0];
+        const pageIndex = await pdfDocument.getPageIndex(pageRef);
+        const targetPage = pageIndex + 1;
 
-        if (
-            !Array.isArray(
-                resolvedDestination
-            )
-        ) {
-            return;
-        }
-
-
-        const pageReference =
-            resolvedDestination[0];
-
-
-        const pageIndex =
-            await pdfDocument.getPageIndex(
-                pageReference
-            );
-
-
-        const targetPage =
-            pageIndex + 1;
-
-
-        if (
-            targetPage < 1 ||
-            targetPage >
-            pdfDocument.numPages
-        ) {
-            return;
-        }
-
-
-        await goToPage(
-            targetPage
-        );
-
-
+        if (targetPage < 1 || targetPage > pdfDocument.numPages) return;
+        await goToPage(targetPage);
     } catch (error) {
-
-        console.error(
-            "تعذر الانتقال إلى رابط PDF الداخلي:",
-            error
-        );
-
+        console.error("تعذر الانتقال إلى رابط PDF الداخلي:", error);
     }
-
 }
 
-
 /* =========================================================
-   PAGE NAVIGATION
+   NAVIGATION
 ========================================================= */
 
 function updateNavigation() {
-
     if (!pdfDocument) {
-
-        previousPageButton.disabled =
-            true;
-
-        nextPageButton.disabled =
-            true;
-
+        previousPageButton.disabled = true;
+        nextPageButton.disabled = true;
         return;
-
     }
-
-
-    previousPageButton.disabled =
-        currentPage <= 1;
-
-
-    nextPageButton.disabled =
-        currentPage >=
-        pdfDocument.numPages;
-
+    previousPageButton.disabled = currentPage <= 1;
+    nextPageButton.disabled = currentPage >= pdfDocument.numPages;
 }
 
+async function goToPage(pageNumber) {
+    if (!pdfDocument) return;
 
-async function goToPage(
-    pageNumber
-) {
-
-    if (!pdfDocument) {
-        return;
-    }
-
-
-    const target =
-        Math.max(
-            1,
-            Math.min(
-                Number(pageNumber) || 1,
-                pdfDocument.numPages
-            )
-        );
-
+    const target = Math.max(1, Math.min(Number(pageNumber) || 1, pdfDocument.numPages));
 
     stopSpeech();
-
-
-    pageInput.value =
-        String(target);
-
-
-    currentPage =
-        target;
-
-
+    pageInput.value = String(target);
+    currentPage = target;
     updateNavigation();
+    viewerContainer.scrollTop = 0;
 
+    await renderPage(target);
 
-    viewerContainer.scrollTop =
-        0;
-
-
-    await renderPage(
-        target
-    );
-
-
-    requestAnimationFrame(
-        () => {
-
-            viewerContainer.scrollTop =
-                0;
-
-        }
-    );
-
+    requestAnimationFrame(() => { viewerContainer.scrollTop = 0; });
 }
-
-
-/* =========================================================
-   PAGE INPUT
-========================================================= */
 
 function navigateFromPageInput() {
+    if (!pdfDocument) return;
 
-    if (!pdfDocument) {
+    let requested = parseInt(pageInput.value, 10);
+    if (Number.isNaN(requested)) {
+        pageInput.value = String(currentPage);
         return;
     }
-
-
-    let requested =
-        parseInt(
-            pageInput.value,
-            10
-        );
-
-
-    if (
-        Number.isNaN(
-            requested
-        )
-    ) {
-
-        pageInput.value =
-            String(currentPage);
-
-        return;
-
-    }
-
-
-    requested =
-        Math.max(
-            1,
-            Math.min(
-                requested,
-                pdfDocument.numPages
-            )
-        );
-
-
-    pageInput.value =
-        String(requested);
-
-
-    goToPage(
-        requested
-    );
-
+    requested = Math.max(1, Math.min(requested, pdfDocument.numPages));
+    pageInput.value = String(requested);
+    goToPage(requested);
 }
 
-
-pageInput.addEventListener(
-    "change",
-    navigateFromPageInput
-);
-
-
-pageInput.addEventListener(
-    "blur",
-    navigateFromPageInput
-);
-
-
-pageInput.addEventListener(
-    "keydown",
-    event => {
-
-        if (
-            event.key ===
-            "Enter"
-        ) {
-
-            event.preventDefault();
-
-            navigateFromPageInput();
-
-            pageInput.blur();
-
-        }
-
+pageInput.addEventListener("change", navigateFromPageInput);
+pageInput.addEventListener("blur", navigateFromPageInput);
+pageInput.addEventListener("keydown", event => {
+    if (event.key === "Enter") {
+        event.preventDefault();
+        navigateFromPageInput();
+        pageInput.blur();
     }
-);
+});
 
+previousPageButton.addEventListener("click", () => {
+    if (currentPage > 1) goToPage(currentPage - 1);
+});
 
-/* =========================================================
-   PREVIOUS / NEXT
-========================================================= */
-
-previousPageButton.addEventListener(
-    "click",
-    () => {
-
-        if (
-            currentPage > 1
-        ) {
-
-            goToPage(
-                currentPage - 1
-            );
-
-        }
-
+nextPageButton.addEventListener("click", () => {
+    if (pdfDocument && currentPage < pdfDocument.numPages) {
+        goToPage(currentPage + 1);
     }
-);
-
-
-nextPageButton.addEventListener(
-    "click",
-    () => {
-
-        if (
-            pdfDocument &&
-            currentPage <
-            pdfDocument.numPages
-        ) {
-
-            goToPage(
-                currentPage + 1
-            );
-
-        }
-
-    }
-);
-
+});
 
 /* =========================================================
    ZOOM
 ========================================================= */
 
 async function rebuildAtCurrentZoom() {
-
-    await renderPage(
-        currentPage
-    );
-
-
-    zoomLevelElement.textContent =
-        `${Math.round(scale * 100)}%`;
-
+    await renderPage(currentPage);
+    zoomLevelElement.textContent = `${Math.round(scale * 100)}%`;
 }
 
+zoomInButton.addEventListener("click", async () => {
+    if (!pdfDocument) return;
 
-zoomInButton.addEventListener(
-    "click",
-    async () => {
+    manuallyZoomed = true;
+    scale = Math.min(3, Number((scale + 0.1).toFixed(2)));
 
-        if (!pdfDocument) {
-            return;
-        }
+    await rebuildAtCurrentZoom();
+});
 
+zoomOutButton.addEventListener("click", async () => {
+    if (!pdfDocument) return;
 
-        scale =
-            Math.min(
-                3,
-                Number(
-                    (
-                        scale +
-                        0.1
-                    ).toFixed(2)
-                )
-            );
+    manuallyZoomed = true;
+    scale = Math.max(0.25, Number((scale - 0.1).toFixed(2)));
 
-
-        await rebuildAtCurrentZoom();
-
-    }
-);
-
-
-zoomOutButton.addEventListener(
-    "click",
-    async () => {
-
-        if (!pdfDocument) {
-            return;
-        }
-
-
-        scale =
-            Math.max(
-                0.5,
-                Number(
-                    (
-                        scale -
-                        0.1
-                    ).toFixed(2)
-                )
-            );
-
-
-        await rebuildAtCurrentZoom();
-
-    }
-);
-
+    await rebuildAtCurrentZoom();
+});
 
 /* =========================================================
    TEXT HELPERS
 ========================================================= */
 
-function normalizeText(
-    text
-) {
-
-    return String(
-        text || ""
-    )
-        .replace(
-            /\s+/g,
-            " "
-        )
-        .trim();
-
+function normalizeText(text) {
+    return String(text || "").replace(/\s+/g, " ").trim();
 }
 
-
-function containsEnglish(
-    text
-) {
-
-    return /[A-Za-z]/.test(
-        text
-    );
-
+function containsEnglish(text) {
+    return /[A-Za-z]/.test(text);
 }
 
+function setupTextInteraction(textLayer, pageContainer, pageNumber) {
+    const spans = Array.from(textLayer.querySelectorAll("span"));
 
-/* =========================================================
-   TEXT INTERACTION
-========================================================= */
+    spans.forEach(span => {
+        const text = normalizeText(span.textContent);
+        if (!text) return;
+        if (!containsEnglish(text)) return;
 
-function setupTextInteraction(
-    textLayer,
-    pageContainer,
-    pageNumber
-) {
+        span.classList.add("clickable-text");
+        span.dataset.speechText = text;
+        span.title = "اضغط لسماع النطق";
 
-    const spans =
-        Array.from(
-            textLayer.querySelectorAll(
-                "span"
-            )
-        );
-
-
-    spans.forEach(
-        span => {
-
-            const text =
-                normalizeText(
-                    span.textContent
-                );
-
-
-            if (!text) {
-                return;
-            }
-
-
-            if (
-                !containsEnglish(
-                    text
-                )
-            ) {
-                return;
-            }
-
-
-            span.classList.add(
-                "clickable-text"
-            );
-
-
-            span.dataset.speechText =
-                text;
-
-
-            span.title =
-                "اضغط لسماع النطق";
-
-
-            span.addEventListener(
-                "click",
-                event => {
-
-                    event.preventDefault();
-
-                    event.stopPropagation();
-
-
-                    if (
-                        activeMode !==
-                        "hand"
-                    ) {
-                        return;
-                    }
-
-
-                    handlePronunciation(
-                        pageContainer,
-                        span,
-                        pageNumber
-                    );
-
-                }
-            );
-
-        }
-    );
-
+        span.addEventListener("click", event => {
+            event.preventDefault();
+            event.stopPropagation();
+            if (activeMode !== "hand") return;
+            handlePronunciation(pageContainer, span, pageNumber);
+        });
+    });
 }
-
 
 /* =========================================================
    PRONUNCIATION
 ========================================================= */
 
-function handlePronunciation(
-    pageContainer,
-    span,
-    pageNumber
-) {
-
+function handlePronunciation(pageContainer, span, pageNumber) {
     clearTemporarySpeechHighlight();
+    if (!span) return;
 
+    span.classList.add("speech-highlight");
+    currentSpeechSentence = [span];
 
-    if (!span) {
-        return;
-    }
-
-
-    span.classList.add(
-        "speech-highlight"
-    );
-
-
-    currentSpeechSentence =
-        [span];
-
-
-    const text =
-        normalizeText(
-            span.textContent
-        );
-
-
+    const text = normalizeText(span.textContent);
     if (!text) {
-
         clearTemporarySpeechHighlight();
-
         return;
-
     }
-
-
-    speak(
-        text,
-        clearTemporarySpeechHighlight,
-        pageNumber
-    );
-
+    speak(text, clearTemporarySpeechHighlight, pageNumber);
 }
-
 
 function clearTemporarySpeechHighlight() {
-
-    currentSpeechSentence.forEach(
-        span => {
-
-            span.classList.remove(
-                "speech-highlight"
-            );
-
-        }
-    );
-
-
-    currentSpeechSentence =
-        [];
-
+    currentSpeechSentence.forEach(span => span.classList.remove("speech-highlight"));
+    currentSpeechSentence = [];
 }
 
+/* =========================================================
+   VOICE PICKER
+   Priority: Google UK English Male → Google UK English Female
+             → any Google en-GB → Samantha → any en-GB → any en
+========================================================= */
+
+function pickPreferredVoice(availableVoices) {
+    if (!availableVoices || !availableVoices.length) return null;
+
+    const name = v => (v.name || "").toLowerCase();
+    const lang = v => (v.lang || "").toLowerCase();
+
+    let voice = availableVoices.find(v => name(v).includes("google uk english male"));
+    if (voice) return voice;
+
+    voice = availableVoices.find(v => name(v).includes("google uk english female"));
+    if (voice) return voice;
+
+    voice = availableVoices.find(v => name(v).includes("google") && lang(v).startsWith("en-gb"));
+    if (voice) return voice;
+
+    voice = availableVoices.find(v => name(v).includes("samantha"));
+    if (voice) return voice;
+
+    voice = availableVoices.find(v => lang(v).startsWith("en-gb"));
+    if (voice) return voice;
+
+    voice = availableVoices.find(v => lang(v).startsWith("en"));
+    if (voice) return voice;
+
+    return availableVoices[0] || null;
+}
 
 /* =========================================================
    SPEECH
 ========================================================= */
 
-function speak(
-    text,
-    onComplete = null
-) {
-
-    if (
-        !(
-            "speechSynthesis"
-            in window
-        )
-    ) {
-
-        pronunciationStatus.textContent =
-            "النطق غير مدعوم في هذا المتصفح.";
-
-
-        if (
-            typeof onComplete ===
-            "function"
-        ) {
-            onComplete();
-        }
-
-
+function speak(text, onComplete = null) {
+    if (!("speechSynthesis" in window)) {
+        if (typeof onComplete === "function") onComplete();
         return;
-
     }
 
-
-    text =
-        normalizeText(
-            text
-        );
-
-
+    text = normalizeText(text);
     if (!text) {
-
-        if (
-            typeof onComplete ===
-            "function"
-        ) {
-            onComplete();
-        }
-
+        if (typeof onComplete === "function") onComplete();
         return;
-
     }
-
 
     stopSpeech();
 
+    activeUtterance = new SpeechSynthesisUtterance(text);
+    const utterance = activeUtterance;
 
-    activeUtterance =
-        new SpeechSynthesisUtterance(
-            text
-        );
+    const availableVoices = speechSynthesis.getVoices();
+    const chosen = pickPreferredVoice(availableVoices);
 
-
-    const utterance =
-        activeUtterance;
-
-
-    /* ---------------------------------------------
-       SAMANTHA FIRST
-    --------------------------------------------- */
-
-    const availableVoices =
-        speechSynthesis.getVoices();
-
-
-    const samantha =
-        availableVoices.find(
-            voice =>
-                voice.name
-                    .toLowerCase()
-                    .includes(
-                        "samantha"
-                    )
-        );
-
-
-    if (samantha) {
-
-        utterance.voice =
-            samantha;
-
-        utterance.lang =
-            samantha.lang;
-
+    if (chosen) {
+        utterance.voice = chosen;
+        utterance.lang = chosen.lang;
+    } else if (selectedVoice) {
+        utterance.voice = selectedVoice;
+        utterance.lang = selectedVoice.lang;
+    } else {
+        utterance.lang = "en-GB";
     }
 
-    else if (
-        selectedVoice
-    ) {
-
-        utterance.voice =
-            selectedVoice;
-
-        utterance.lang =
-            selectedVoice.lang;
-
-    }
-
-    else {
-
-        utterance.lang =
-            "en-US";
-
-    }
-
-
-    /* ---------------------------------------------
-       SPEECH SETTINGS
-    --------------------------------------------- */
-
-    utterance.rate =
-        speechRate;
-
-    utterance.pitch =
-        1;
-
-
-    /* ---------------------------------------------
-       IOS SAFARI KEEP-ALIVE
-    --------------------------------------------- */
+    utterance.rate = speechRate;
+    utterance.pitch = 1;
 
     startSpeechKeepAlive();
 
+    utterance.onend = () => {
+        stopSpeechKeepAlive();
+        activeUtterance = null;
+        if (typeof onComplete === "function") onComplete();
+    };
 
-    /* ---------------------------------------------
-       START
-    --------------------------------------------- */
+    utterance.onerror = error => {
+        stopSpeechKeepAlive();
+        activeUtterance = null;
+        console.error("Speech error:", error);
+        if (typeof onComplete === "function") onComplete();
+    };
 
-    utterance.onstart =
-        () => {
-
-            pronunciationStatus.textContent =
-                `🔊 ${text}`;
-
-        };
-
-
-    /* ---------------------------------------------
-       END
-    --------------------------------------------- */
-
-    utterance.onend =
-        () => {
-
-            stopSpeechKeepAlive();
-
-            activeUtterance =
-                null;
-
-
-            pronunciationStatus.textContent =
-                "🔊 اضغط على النص الإنجليزي لسماع النطق";
-
-
-            if (
-                typeof onComplete ===
-                "function"
-            ) {
-
-                onComplete();
-
-            }
-
-        };
-
-
-    /* ---------------------------------------------
-       ERROR
-    --------------------------------------------- */
-
-    utterance.onerror =
-        error => {
-
-            stopSpeechKeepAlive();
-
-            activeUtterance =
-                null;
-
-
-            console.error(
-                "Speech error:",
-                error
-            );
-
-
-            pronunciationStatus.textContent =
-                "تعذر تشغيل النطق.";
-
-
-            if (
-                typeof onComplete ===
-                "function"
-            ) {
-
-                onComplete();
-
-            }
-
-        };
-
-
-    speechSynthesis.speak(
-        utterance
-    );
-
+    speechSynthesis.speak(utterance);
 }
-
-
-/* =========================================================
-   STOP SPEECH
-========================================================= */
 
 function stopSpeech() {
-
-    if (
-        "speechSynthesis"
-        in window
-    ) {
-
-        speechSynthesis.cancel();
-
-    }
-
-
+    if ("speechSynthesis" in window) speechSynthesis.cancel();
     stopSpeechKeepAlive();
-
-
-    activeUtterance =
-        null;
-
-
+    activeUtterance = null;
     clearTemporarySpeechHighlight();
-
 }
-
 
 /* =========================================================
-   IOS SPEECH KEEP ALIVE
+   SPEECH KEEP-ALIVE (iOS / Safari)
 ========================================================= */
 
-let speechResumeInterval =
-    null;
-
+let speechResumeInterval = null;
 
 function startSpeechKeepAlive() {
-
     stopSpeechKeepAlive();
-
-
-    speechResumeInterval =
-        setInterval(
-            () => {
-
-                if (
-                    speechSynthesis.speaking
-                ) {
-
-                    speechSynthesis.resume();
-
-                }
-                else {
-
-                    stopSpeechKeepAlive();
-
-                }
-
-            },
-            250
-        );
-
+    speechResumeInterval = setInterval(() => {
+        if (speechSynthesis.speaking) speechSynthesis.resume();
+        else stopSpeechKeepAlive();
+    }, 250);
 }
-
 
 function stopSpeechKeepAlive() {
-
-    if (
-        speechResumeInterval
-    ) {
-
-        clearInterval(
-            speechResumeInterval
-        );
-
-        speechResumeInterval =
-            null;
-
+    if (speechResumeInterval) {
+        clearInterval(speechResumeInterval);
+        speechResumeInterval = null;
     }
-
 }
-
 
 /* =========================================================
    VOICES
 ========================================================= */
 
 function loadVoices() {
+    if (!("speechSynthesis" in window)) return;
 
-    if (
-        !(
-            "speechSynthesis"
-            in window
-        )
-    ) {
-        return;
-    }
+    voices = speechSynthesis.getVoices();
 
+    const englishVoices = voices.filter(v => v.lang && v.lang.toLowerCase().startsWith("en"));
+    if (englishVoices.length === 0) return;
 
-    voices =
-        speechSynthesis.getVoices();
+    voiceSelect.innerHTML = "";
+    englishVoices.forEach(voice => {
+        const option = document.createElement("option");
+        option.value = `${voice.name}|${voice.lang}`;
+        option.textContent = `${voice.name} — ${voice.lang}`;
+        voiceSelect.appendChild(option);
+    });
 
-
-    const englishVoices =
-        voices.filter(
-            voice =>
-                voice.lang &&
-                voice.lang
-                    .toLowerCase()
-                    .startsWith(
-                        "en"
-                    )
-        );
-
-
-    if (
-        englishVoices.length ===
-        0
-    ) {
-        return;
-    }
-
-
-    voiceSelect.innerHTML =
-        "";
-
-
-    englishVoices.forEach(
-        voice => {
-
-            const option =
-                document.createElement(
-                    "option"
-                );
-
-
-            option.value =
-                `${voice.name}|${voice.lang}`;
-
-
-            option.textContent =
-                `${voice.name} — ${voice.lang}`;
-
-
-            voiceSelect.appendChild(
-                option
-            );
-
-        }
-    );
-
-
-    /* ---------------------------------------------
-       SAVED VOICE
-    --------------------------------------------- */
-
-    const savedVoice =
-        localStorage.getItem(
-            "pdfReaderVoice"
-        );
-
-
+    const savedVoice = localStorage.getItem("pdfReaderVoice");
     if (savedVoice) {
-
-        const saved =
-            englishVoices.find(
-                voice =>
-                    `${voice.name}|${voice.lang}` ===
-                    savedVoice
-            );
-
-
+        const saved = englishVoices.find(v => `${v.name}|${v.lang}` === savedVoice);
         if (saved) {
-
-            selectedVoice =
-                saved;
-
-            voiceSelect.value =
-                savedVoice;
-
+            selectedVoice = saved;
+            voiceSelect.value = savedVoice;
             return;
-
         }
-
     }
 
-
-    /* ---------------------------------------------
-       SAMANTHA DEFAULT
-    --------------------------------------------- */
-
-    const samantha =
-        englishVoices.find(
-            voice =>
-                voice.name
-                    .toLowerCase()
-                    .includes(
-                        "samantha"
-                    )
-        );
-
-
-    selectedVoice =
-        samantha ||
-        englishVoices[0];
-
-
-    voiceSelect.value =
-        `${selectedVoice.name}|${selectedVoice.lang}`;
-
+    selectedVoice = pickPreferredVoice(englishVoices) || englishVoices[0];
+    voiceSelect.value = `${selectedVoice.name}|${selectedVoice.lang}`;
 }
 
-
-/* =========================================================
-   VOICE CHANGE
-========================================================= */
-
-voiceSelect.addEventListener(
-    "change",
-    function () {
-
-        const value =
-            this.value;
-
-
-        selectedVoice =
-            voices.find(
-                voice =>
-                    `${voice.name}|${voice.lang}` ===
-                    value
-            );
-
-
-        if (selectedVoice) {
-
-            localStorage.setItem(
-                "pdfReaderVoice",
-                value
-            );
-
-        }
-
-    }
-);
-
+voiceSelect.addEventListener("change", function () {
+    const value = this.value;
+    selectedVoice = voices.find(v => `${v.name}|${v.lang}` === value);
+    if (selectedVoice) localStorage.setItem("pdfReaderVoice", value);
+});
 
 /* =========================================================
    SPEECH SPEED
 ========================================================= */
 
 function updateSpeed() {
-
-    speedValue.textContent =
-        `${speechRate.toFixed(2)}×`;
-
+    speedValue.textContent = `${speechRate.toFixed(2)}×`;
 }
 
-
-speedRange.addEventListener(
-    "input",
-    function () {
-
-        speechRate =
-            parseFloat(
-                this.value
-            );
-
-
-        updateSpeed();
-
-
-        localStorage.setItem(
-            "pdfReaderSpeechRate",
-            speechRate
-        );
-
-    }
-);
-
-
-/* =========================================================
-   LOAD SPEECH SETTINGS
-========================================================= */
+speedRange.addEventListener("input", function () {
+    speechRate = parseFloat(this.value);
+    updateSpeed();
+    localStorage.setItem("pdfReaderSpeechRate", speechRate);
+});
 
 function loadSpeechSettings() {
-
-    const savedRate =
-        localStorage.getItem(
-            "pdfReaderSpeechRate"
-        );
-
-
+    const savedRate = localStorage.getItem("pdfReaderSpeechRate");
     if (savedRate) {
-
-        const parsed =
-            parseFloat(
-                savedRate
-            );
-
-
-        if (
-            !Number.isNaN(
-                parsed
-            ) &&
-            parsed >= 0.5 &&
-            parsed <= 1.5
-        ) {
-
-            speechRate =
-                parsed;
-
+        const parsed = parseFloat(savedRate);
+        if (!Number.isNaN(parsed) && parsed >= 0.5 && parsed <= 1.5) {
+            speechRate = parsed;
         }
-
     }
-
-
-    speedRange.value =
-        speechRate;
-
-
+    speedRange.value = speechRate;
     updateSpeed();
-
 }
 
-
-/* =========================================================
-   TEST VOICE
-========================================================= */
-
-testVoiceButton.addEventListener(
-    "click",
-    () => {
-
-        speak(
-            "Hello! This is a pronunciation test."
-        );
-
-    }
-);
-
+testVoiceButton.addEventListener("click", () => {
+    speak("Hello! This is a pronunciation test.");
+});
 
 /* =========================================================
    MODES
 ========================================================= */
 
-function setActiveMode(
-    mode
-) {
+function setActiveMode(mode) {
+    activeMode = mode;
 
-    activeMode =
-        mode;
+    [handTool, penTool, eraserTool].forEach(btn => {
+        btn.classList.remove("active");
+        btn.setAttribute("aria-pressed", "false");
+    });
 
-
-    [
-        handTool,
-        penTool,
-        eraserTool
-    ].forEach(
-        button => {
-
-            button.classList.remove(
-                "active"
-            );
-
-        }
-    );
-
-
-    const buttonMap = {
-
-        hand:
-            handTool,
-
-        pen:
-            penTool,
-
-        eraser:
-            eraserTool
-
-    };
-
-
-    buttonMap[
-        mode
-    ]?.classList.add(
-        "active"
-    );
-
-
-    document.body.dataset.readerMode =
-        mode;
-
-
-    document
-        .querySelectorAll(
-            ".pdf-page"
-        )
-        .forEach(
-            applyModeToPage
-        );
-
-}
-
-
-function applyModeToPage(
-    pageContainer
-) {
-
-    const textLayer =
-        pageContainer.querySelector(
-            ".textLayer"
-        );
-
-
-    const annotationCanvas =
-        pageContainer.querySelector(
-            ".annotation-canvas"
-        );
-
-
-    if (
-        !textLayer ||
-        !annotationCanvas
-    ) {
-        return;
+    const map = { hand: handTool, pen: penTool, eraser: eraserTool };
+    const activeBtn = map[mode];
+    if (activeBtn) {
+        activeBtn.classList.add("active");
+        activeBtn.setAttribute("aria-pressed", "true");
     }
 
+    document.body.dataset.readerMode = mode;
+    document.querySelectorAll(".pdf-page").forEach(applyModeToPage);
+}
 
-    const isHand =
-        activeMode ===
-        "hand";
+function applyModeToPage(pageContainer) {
+    const textLayer = pageContainer.querySelector(".textLayer");
+    const annotationCanvas = pageContainer.querySelector(".annotation-canvas");
+    if (!textLayer || !annotationCanvas) return;
 
+    const isHand = activeMode === "hand";
 
-    textLayer.style.pointerEvents =
-        isHand
-            ? "auto"
-            : "none";
-
-
-    annotationCanvas.style.pointerEvents =
-        isHand
-            ? "none"
-            : "auto";
-
+    textLayer.style.pointerEvents = isHand ? "auto" : "none";
+    annotationCanvas.style.pointerEvents = isHand ? "none" : "auto";
 
     annotationCanvas.style.cursor =
-        activeMode === "pen"
-            ? "crosshair"
-            : activeMode === "eraser"
-                ? "cell"
-                : "default";
-
+        activeMode === "pen"    ? "crosshair" :
+        activeMode === "eraser" ? "cell"      :
+                                  "default";
 }
 
+handTool.addEventListener("click", () => {
+    setActiveMode("hand");
+    colorDrawer?.classList.add("hidden");
+});
 
-handTool.addEventListener(
-    "click",
-    () => {
+penTool.addEventListener("click", () => {
+    setActiveMode("pen");
+    colorDrawer?.classList.toggle("hidden");
+});
 
-        setActiveMode(
-            "hand"
-        );
-
-    }
-);
-
-
-penTool.addEventListener(
-    "click",
-    () => {
-
-        setActiveMode(
-            "pen"
-        );
-
-
-        colorDrawer.classList.toggle(
-            "hidden"
-        );
-
-    }
-);
-
-
-eraserTool.addEventListener(
-    "click",
-    () => {
-
-        setActiveMode(
-            "eraser"
-        );
-
-    }
-);
-
+eraserTool.addEventListener("click", () => {
+    setActiveMode("eraser");
+    colorDrawer?.classList.add("hidden");
+});
 
 /* =========================================================
    ANNOTATION STORAGE
 ========================================================= */
 
-function getAnnotationStorageKey(
-    pdfPath
-) {
-
-    const safePath =
-        String(
-            pdfPath
-        )
-            .replace(
-                /[^a-zA-Z0-9_-]/g,
-                "_"
-            )
-            .slice(
-                0,
-                180
-            );
-
-
-    return (
-        "yazeedInteractiveReaderAnnotations:" +
-        safePath
-    );
-
+function getAnnotationStorageKey(pdfPath) {
+    const safePath = String(pdfPath).replace(/[^a-zA-Z0-9_-]/g, "_").slice(0, 180);
+    return "yazeedInteractiveReaderAnnotations:" + safePath;
 }
 
-
-function loadAnnotations(
-    pdfPath
-) {
-
-    annotationStorageKey =
-        getAnnotationStorageKey(
-            pdfPath
-        );
-
-
+function loadAnnotations(pdfPath) {
+    annotationStorageKey = getAnnotationStorageKey(pdfPath);
     try {
-
-        const raw =
-            localStorage.getItem(
-                annotationStorageKey
-            );
-
-
-        annotationStore =
-            raw
-                ? JSON.parse(raw)
-                : {};
-
+        const raw = localStorage.getItem(annotationStorageKey);
+        annotationStore = raw ? JSON.parse(raw) : {};
     } catch (error) {
-
-        console.error(
-            "تعذر تحميل التحديدات:",
-            error
-        );
-
-
-        annotationStore =
-            {};
-
+        console.error("تعذر تحميل التحديدات:", error);
+        annotationStore = {};
     }
-
 }
-
 
 function saveAnnotations() {
-
     try {
-
-        localStorage.setItem(
-            annotationStorageKey,
-            JSON.stringify(
-                annotationStore
-            )
-        );
-
+        localStorage.setItem(annotationStorageKey, JSON.stringify(annotationStore));
     } catch (error) {
-
-        console.error(
-            "تعذر حفظ التحديدات:",
-            error
-        );
-
-
-        statusMessage.textContent =
-            "تعذر حفظ بعض الرسومات محليًا.";
-
+        console.error("تعذر حفظ التحديدات:", error);
+        statusMessage.textContent = "تعذر حفظ بعض الرسومات محليًا.";
     }
-
 }
 
-
-function getPageAnnotations(
-    pageNumber
-) {
-
-    const key =
-        String(
-            pageNumber
-        );
-
-
-    if (
-        !annotationStore[key]
-    ) {
-
-        annotationStore[key] = {
-
-            strokes: [],
-
-            highlights: []
-
-        };
-
+function getPageAnnotations(pageNumber) {
+    const key = String(pageNumber);
+    if (!annotationStore[key]) {
+        annotationStore[key] = { strokes: [], highlights: [] };
     }
-
-
-    if (
-        !Array.isArray(
-            annotationStore[key].strokes
-        )
-    ) {
-
-        annotationStore[key].strokes =
-            [];
-
-    }
-
-
-    if (
-        !Array.isArray(
-            annotationStore[key].highlights
-        )
-    ) {
-
-        annotationStore[key].highlights =
-            [];
-
-    }
-
-
+    if (!Array.isArray(annotationStore[key].strokes)) annotationStore[key].strokes = [];
+    if (!Array.isArray(annotationStore[key].highlights)) annotationStore[key].highlights = [];
     return annotationStore[key];
-
 }
 
+/* =========================================================
+   COLOR SWATCHES
+========================================================= */
+
+document.querySelectorAll(".color-swatch").forEach(button => {
+    button.addEventListener("click", () => {
+        currentDrawColor = button.dataset.color;
+        document.querySelectorAll(".color-swatch").forEach(b => b.classList.remove("active"));
+        button.classList.add("active");
+        colorDrawer?.classList.add("hidden");
+    });
+});
+
+const defaultSwatch = document.querySelector('.color-swatch[data-color="#C94C4C"]');
+if (defaultSwatch) defaultSwatch.classList.add("active");
 
 /* =========================================================
    ANNOTATION CANVAS
 ========================================================= */
 
-let currentDrawColor = "#dc2626";
-    
+function setupAnnotationCanvas(canvas, pageContainer, pageNumber) {
+    let drawing = false;
 
-const colorDrawer =
-    document.getElementById("colorDrawer");
-
-
-document
-    .querySelectorAll(".color-option")
-    .forEach(button => {
-
-        button.addEventListener(
-            "click",
-            () => {
-
-                currentDrawColor =
-                    button.dataset.color;
-
-
-                colorDrawer.classList.add(
-                    "hidden"
-                );
-
-            }
-        );
-
-    });
-
-function setupAnnotationCanvas(
-    canvas,
-    pageContainer,
-    pageNumber
-) {
-
-    let drawing =
-        false;
-
-
-    canvas.addEventListener(
-        "pointerdown",
-        event => {
-
-            if (
-                activeMode !== "pen" &&
-                activeMode !== "eraser"
-            ) {
-                return;
-            }
-
-
-            event.preventDefault();
-
-
-            canvas.setPointerCapture(
-                event.pointerId
-            );
-
-
-            /* -----------------------------------------
-               PEN
-            ----------------------------------------- */
-
-            if (
-                activeMode ===
-                "pen"
-            ) {
-
-                drawing =
-                    true;
-
-
-                const point =
-                    getNormalizedPoint(
-                        event,
-                        canvas
-                    );
-
-
-                activeDrawing = {
-
-    pageNumber,
-
-    points:
-        [point],
-
-    width:
-        4,
-
-    color:
-        currentDrawColor
-
-};
-
-
-                redrawAnnotations(
-                    pageContainer,
-                    pageNumber,
-                    activeDrawing
-                );
-
-
-                return;
-
-            }
-
-
-            /* -----------------------------------------
-               ERASER
-            ----------------------------------------- */
-
-            eraseAtPoint(
-                event,
-                canvas,
-                pageContainer,
-                pageNumber
-            );
-
-        }
-    );
-
-
-    canvas.addEventListener(
-        "pointermove",
-        event => {
-
-            if (
-                activeMode ===
-                    "pen" &&
-                drawing &&
-                activeDrawing
-            ) {
-
-                event.preventDefault();
-
-
-                activeDrawing.points.push(
-                    getNormalizedPoint(
-                        event,
-                        canvas
-                    )
-                );
-
-
-                redrawAnnotations(
-                    pageContainer,
-                    pageNumber,
-                    activeDrawing
-                );
-
-            }
-
-        }
-    );
-
-
-    function finishDrawing(
-        event
-    ) {
-
-        if (
-            activeMode !==
-                "pen" ||
-            !drawing ||
-            !activeDrawing
-        ) {
-            return;
-        }
-
+    canvas.addEventListener("pointerdown", event => {
+        if (activeMode !== "pen" && activeMode !== "eraser") return;
 
         event.preventDefault();
+        canvas.setPointerCapture(event.pointerId);
 
+        if (activeMode === "pen") {
+            drawing = true;
+            const point = getNormalizedPoint(event, canvas);
+            activeDrawing = {
+                pageNumber,
+                points: [point],
+                width: 4,
+                color: currentDrawColor
+            };
+            redrawAnnotations(pageContainer, pageNumber, activeDrawing);
+            return;
+        }
 
-        drawing =
-            false;
+        eraseAtPoint(event, canvas, pageContainer, pageNumber);
+    });
 
+    canvas.addEventListener("pointermove", event => {
+        if (activeMode === "pen" && drawing && activeDrawing) {
+            event.preventDefault();
+            activeDrawing.points.push(getNormalizedPoint(event, canvas));
+            redrawAnnotations(pageContainer, pageNumber, activeDrawing);
+        }
+    });
 
-        canvas.releasePointerCapture?.(
-            event.pointerId
-        );
+    function finishDrawing(event) {
+        if (activeMode !== "pen" || !drawing || !activeDrawing) return;
 
+        event.preventDefault();
+        drawing = false;
+        canvas.releasePointerCapture?.(event.pointerId);
 
-        if (
-            activeDrawing.points
-                .length >= 2
-        ) {
-
-            const annotations =
-                getPageAnnotations(
-                    pageNumber
-                );
-
-
-            annotations.strokes.push(
-                activeDrawing
-            );
-
-
+        if (activeDrawing.points.length >= 2) {
+            const annotations = getPageAnnotations(pageNumber);
+            annotations.strokes.push(activeDrawing);
             saveAnnotations();
-
         }
 
-
-        activeDrawing =
-            null;
-
-
-        redrawAnnotations(
-            pageContainer,
-            pageNumber
-        );
-
+        activeDrawing = null;
+        redrawAnnotations(pageContainer, pageNumber);
     }
 
+    canvas.addEventListener("pointerup", finishDrawing);
+    canvas.addEventListener("pointercancel", finishDrawing);
 
-    canvas.addEventListener(
-        "pointerup",
-        finishDrawing
-    );
-
-
-    canvas.addEventListener(
-        "pointercancel",
-        finishDrawing
-    );
-
-
-    canvas.addEventListener(
-        "click",
-        event => {
-
-            if (
-                activeMode !==
-                "eraser"
-            ) {
-                return;
-            }
-
-
-            eraseAtPoint(
-                event,
-                canvas,
-                pageContainer,
-                pageNumber
-            );
-
-        }
-    );
-
+    canvas.addEventListener("click", event => {
+        if (activeMode !== "eraser") return;
+        eraseAtPoint(event, canvas, pageContainer, pageNumber);
+    });
 }
 
-
-/* =========================================================
-   NORMALIZED POINT
-========================================================= */
-
-function getNormalizedPoint(
-    event,
-    canvas
-) {
-
-    const rect =
-        canvas.getBoundingClientRect();
-
-
+function getNormalizedPoint(event, canvas) {
+    const rect = canvas.getBoundingClientRect();
     return {
-
-        x:
-            Math.max(
-                0,
-                Math.min(
-                    1,
-                    (
-                        event.clientX -
-                        rect.left
-                    ) /
-                    rect.width
-                )
-            ),
-
-        y:
-            Math.max(
-                0,
-                Math.min(
-                    1,
-                    (
-                        event.clientY -
-                        rect.top
-                    ) /
-                    rect.height
-                )
-            )
-
+        x: Math.max(0, Math.min(1, (event.clientX - rect.left) / rect.width)),
+        y: Math.max(0, Math.min(1, (event.clientY - rect.top)  / rect.height))
     };
-
 }
 
+function redrawAnnotations(pageContainer, pageNumber, temporaryStroke = null) {
+    const canvas = pageContainer.querySelector(".annotation-canvas");
+    if (!canvas) return;
 
-/* =========================================================
-   REDRAW ANNOTATIONS
-========================================================= */
+    const ctx = canvas.getContext("2d");
+    const rect = canvas.getBoundingClientRect();
+    const width = rect.width;
+    const height = rect.height;
 
-function redrawAnnotations(
-    pageContainer,
-    pageNumber,
-    temporaryStroke = null
-) {
-
-    const canvas =
-        pageContainer.querySelector(
-            ".annotation-canvas"
-        );
-
-
-    if (!canvas) {
-        return;
-    }
-
-
-    const ctx =
-        canvas.getContext(
-            "2d"
-        );
-
-
-    const rect =
-        canvas.getBoundingClientRect();
-
-
-    const width =
-        rect.width;
-
-
-    const height =
-        rect.height;
-
-
-    ctx.clearRect(
-        0,
-        0,
-        canvas.width,
-        canvas.height
-    );
-
-
-    if (
-        width <= 0 ||
-        height <= 0
-    ) {
-        return;
-    }
-
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    if (width <= 0 || height <= 0) return;
 
     ctx.save();
+    ctx.scale(canvas.width / width, canvas.height / height);
 
+    const annotations = getPageAnnotations(pageNumber);
 
-    ctx.scale(
-        canvas.width /
-            width,
+    annotations.highlights.forEach(group => {
+        group.forEach(r => {
+            ctx.fillStyle = "rgba(250, 204, 21, 0.42)";
+            ctx.fillRect(r.x * width, r.y * height, r.width * width, r.height * height);
+        });
+    });
 
-        canvas.height /
-            height
-    );
+    annotations.strokes.forEach(stroke => {
+        drawStrokeOnContext(ctx, width, height, stroke);
+    });
 
-
-    const annotations =
-        getPageAnnotations(
-            pageNumber
-        );
-
-
-    /* ---------------------------------------------
-       HIGHLIGHTS
-    --------------------------------------------- */
-
-    annotations.highlights.forEach(
-        group => {
-
-            group.forEach(
-                rect => {
-
-                    ctx.fillStyle =
-                        "rgba(250, 204, 21, 0.42)";
-
-
-                    ctx.fillRect(
-
-                        rect.x *
-                            width,
-
-                        rect.y *
-                            height,
-
-                        rect.width *
-                            width,
-
-                        rect.height *
-                            height
-
-                    );
-
-                }
-            );
-
-        }
-    );
-
-
-    /* ---------------------------------------------
-       STROKES
-    --------------------------------------------- */
-
-    annotations.strokes.forEach(
-        stroke => {
-
-            drawStrokeOnContext(
-                ctx,
-                width,
-                height,
-                stroke
-            );
-
-        }
-    );
-
-
-    /* ---------------------------------------------
-       CURRENT STROKE
-    --------------------------------------------- */
-
-    if (
-        temporaryStroke
-    ) {
-
-        drawStrokeOnContext(
-            ctx,
-            width,
-            height,
-            temporaryStroke
-        );
-
+    if (temporaryStroke) {
+        drawStrokeOnContext(ctx, width, height, temporaryStroke);
     }
-
 
     ctx.restore();
-
 }
 
-
-/* =========================================================
-   DRAW STROKE
-========================================================= */
-
-function drawStrokeOnContext(
-    ctx,
-    width,
-    height,
-    stroke
-) {
-
-    if (
-        !stroke?.points?.length
-    ) {
-        return;
-    }
-
+function drawStrokeOnContext(ctx, width, height, stroke) {
+    if (!stroke?.points?.length) return;
 
     ctx.save();
-
-
-    ctx.lineCap =
-        "round";
-
-
-    ctx.lineJoin =
-        "round";
-
-
-    ctx.strokeStyle =
-    stroke.color || "#dc2626";
-
-
-    ctx.lineWidth =
-        Number(
-            stroke.width || 4
-        );
-
+    ctx.lineCap = "round";
+    ctx.lineJoin = "round";
+    ctx.strokeStyle = stroke.color || "#C94C4C";
+    ctx.lineWidth = Number(stroke.width || 4);
 
     ctx.beginPath();
-
-
-    stroke.points.forEach(
-        (point, index) => {
-
-            const x =
-                point.x *
-                width;
-
-
-            const y =
-                point.y *
-                height;
-
-
-            if (
-                index === 0
-            ) {
-
-                ctx.moveTo(
-                    x,
-                    y
-                );
-
-            }
-
-            else {
-
-                ctx.lineTo(
-                    x,
-                    y
-                );
-
-            }
-
-        }
-    );
-
-
+    stroke.points.forEach((point, index) => {
+        const x = point.x * width;
+        const y = point.y * height;
+        if (index === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+    });
     ctx.stroke();
-
-
     ctx.restore();
-
 }
 
+function eraseAtPoint(event, canvas, pageContainer, pageNumber) {
+    const point = getNormalizedPoint(event, canvas);
+    const annotations = getPageAnnotations(pageNumber);
 
-/* =========================================================
-   ERASER
-========================================================= */
+    const rect = canvas.getBoundingClientRect();
+    const width = rect.width;
+    const height = rect.height;
 
-function eraseAtPoint(
-    event,
-    canvas,
-    pageContainer,
-    pageNumber
-) {
+    const hitRadius = Math.max(8 / Math.max(width, height), 0.006);
 
-    const point =
-        getNormalizedPoint(
-            event,
-            canvas
-        );
+    for (let i = annotations.strokes.length - 1; i >= 0; i--) {
+        const stroke = annotations.strokes[i];
 
-
-    const annotations =
-        getPageAnnotations(
-            pageNumber
-        );
-
-
-    const width =
-        canvas.getBoundingClientRect()
-            .width;
-
-
-    const height =
-        canvas.getBoundingClientRect()
-            .height;
-
-
-    const hitRadius =
-        Math.max(
-            8 /
-                Math.max(
-                    width,
-                    height
-                ),
-
-            0.006
-        );
-
-
-    /* ---------------------------------------------
-       STROKES
-    --------------------------------------------- */
-
-    for (
-        let i =
-            annotations.strokes.length -
-            1;
-
-        i >= 0;
-
-        i--
-    ) {
-
-        const stroke =
-            annotations.strokes[i];
-
-
-        if (
-            stroke.points.some(
-                point =>
-                    distance(
-                        point,
-                        {
-                            x:
-                                point.x,
-                            y:
-                                point.y
-                        }
-                    ) <=
-                    hitRadius
-            )
-        ) {
-
-            annotations.strokes.splice(
-                i,
-                1
-            );
-
-
+        if (stroke.points.some(p => distance(p, point) <= hitRadius)) {
+            annotations.strokes.splice(i, 1);
             saveAnnotations();
-
-
-            redrawAnnotations(
-                pageContainer,
-                pageNumber
-            );
-
-
+            redrawAnnotations(pageContainer, pageNumber);
             return;
-
         }
 
-
-        for (
-            let p = 1;
-
-            p <
-            stroke.points.length;
-
-            p++
-        ) {
-
-            if (
-                distanceToSegment(
-                    point,
-                    stroke.points[p - 1],
-                    stroke.points[p]
-                ) <=
-                hitRadius
-            ) {
-
-                annotations.strokes.splice(
-                    i,
-                    1
-                );
-
-
+        for (let p = 1; p < stroke.points.length; p++) {
+            if (distanceToSegment(point, stroke.points[p - 1], stroke.points[p]) <= hitRadius) {
+                annotations.strokes.splice(i, 1);
                 saveAnnotations();
-
-
-                redrawAnnotations(
-                    pageContainer,
-                    pageNumber
-                );
-
-
+                redrawAnnotations(pageContainer, pageNumber);
                 return;
-
             }
-
         }
-
     }
 
-
-    /* ---------------------------------------------
-       HIGHLIGHTS
-    --------------------------------------------- */
-
-    for (
-        let i =
-            annotations.highlights.length -
-            1;
-
-        i >= 0;
-
-        i--
-    ) {
-
-        const group =
-            annotations.highlights[i];
-
-
-        const inside =
-            group.some(
-                rect =>
-                    point.x >= rect.x &&
-                    point.x <=
-                        rect.x +
-                        rect.width &&
-
-                    point.y >= rect.y &&
-                    point.y <=
-                        rect.y +
-                        rect.height
-            );
-
-
+    for (let i = annotations.highlights.length - 1; i >= 0; i--) {
+        const group = annotations.highlights[i];
+        const inside = group.some(r =>
+            point.x >= r.x && point.x <= r.x + r.width &&
+            point.y >= r.y && point.y <= r.y + r.height
+        );
         if (inside) {
-
-            annotations.highlights.splice(
-                i,
-                1
-            );
-
-
+            annotations.highlights.splice(i, 1);
             saveAnnotations();
-
-
-            redrawAnnotations(
-                pageContainer,
-                pageNumber
-            );
-
-
+            redrawAnnotations(pageContainer, pageNumber);
             return;
-
         }
-
     }
-
 }
 
+function distance(a, b) {
+    return Math.hypot(a.x - b.x, a.y - b.y);
+}
+
+function distanceToSegment(point, a, b) {
+    const dx = b.x - a.x;
+    const dy = b.y - a.y;
+    if (dx === 0 && dy === 0) return distance(point, a);
+
+    const t = Math.max(0, Math.min(1,
+        ((point.x - a.x) * dx + (point.y - a.y) * dy) / (dx * dx + dy * dy)
+    ));
+    return distance(point, { x: a.x + t * dx, y: a.y + t * dy });
+}
 
 /* =========================================================
-   DISTANCE
-========================================================= */
-
-function distance(
-    a,
-    b
-) {
-
-    return Math.hypot(
-        a.x - b.x,
-        a.y - b.y
-    );
-
-}
-
-
-function distanceToSegment(
-    point,
-    a,
-    b
-) {
-
-    const dx =
-        b.x -
-        a.x;
-
-
-    const dy =
-        b.y -
-        a.y;
-
-
-    if (
-        dx === 0 &&
-        dy === 0
-    ) {
-
-        return distance(
-            point,
-            a
-        );
-
-    }
-
-
-    const t =
-        Math.max(
-            0,
-            Math.min(
-                1,
-                (
-                    (
-                        point.x -
-                        a.x
-                    ) *
-                        dx +
-
-                    (
-                        point.y -
-                        a.y
-                    ) *
-                        dy
-                ) /
-                (
-                    dx * dx +
-                    dy * dy
-                )
-            )
-        );
-
-
-    return distance(
-        point,
-        {
-            x:
-                a.x +
-                t * dx,
-
-            y:
-                a.y +
-                t * dy
-        }
-    );
-
-}
-
-
-/* =========================================================
-   FIRST-USE PRONUNCIATION NOTICE
+   FIRST-USE MODAL
 ========================================================= */
 
 function maybeShowPronunciationNotice() {
+    const seen = localStorage.getItem("yazeedPronunciationNoticeSeen");
+    if (seen === "true") return;
+    if (!pronunciationModal) return;
 
-    const seen =
-        localStorage.getItem(
-            "yazeedPronunciationNoticeSeen"
-        );
+    pronunciationModal.hidden = false;
+    setActiveMode("hand");
 
-
-    if (
-        seen === "true"
-    ) {
-        return;
-    }
-
-
-    if (
-        !pronunciationModal
-    ) {
-        return;
-    }
-
-
-    pronunciationModal.hidden =
-        false;
-
-
-    setActiveMode(
-        "hand"
-    );
-
-
-    setTimeout(
-        () => {
-
-            understoodButton?.focus();
-
-        },
-        50
-    );
-
+    setTimeout(() => understoodButton?.focus(), 50);
 }
 
-
-understoodButton?.addEventListener(
-    "click",
-    () => {
-
-        localStorage.setItem(
-            "yazeedPronunciationNoticeSeen",
-            "true"
-        );
-
-
-        pronunciationModal.hidden =
-            true;
-
-    }
-);
-
+understoodButton?.addEventListener("click", () => {
+    localStorage.setItem("yazeedPronunciationNoticeSeen", "true");
+    pronunciationModal.hidden = true;
+});
 
 /* =========================================================
-   KEYBOARD SHORTCUTS
+   KEYBOARD
 ========================================================= */
 
-document.addEventListener(
-    "keydown",
-    event => {
+document.addEventListener("keydown", event => {
+    const active = document.activeElement;
+    if (active && (
+        active.tagName === "INPUT" ||
+        active.tagName === "TEXTAREA" ||
+        active.tagName === "SELECT"
+    )) return;
 
-        const active =
-            document.activeElement;
-
-
-        if (
-            active &&
-            (
-                active.tagName ===
-                    "INPUT" ||
-
-                active.tagName ===
-                    "TEXTAREA" ||
-
-                active.tagName ===
-                    "SELECT"
-            )
-        ) {
-            return;
-        }
-
-
-        /* ---------------------------------------------
-           LEFT
-        --------------------------------------------- */
-
-        if (
-            event.key ===
-            "ArrowLeft"
-        ) {
-
-            if (pdfDocument) {
-
-                goToPage(
-                    currentPage + 1
-                );
-
-            }
-
-        }
-
-
-        /* ---------------------------------------------
-           RIGHT
-        --------------------------------------------- */
-
-        if (
-            event.key ===
-            "ArrowRight"
-        ) {
-
-            if (pdfDocument) {
-
-                goToPage(
-                    currentPage - 1
-                );
-
-            }
-
-        }
-
-
-        /* ---------------------------------------------
-           ZOOM IN
-        --------------------------------------------- */
-
-        if (
-            event.key === "+" ||
-            event.key === "="
-        ) {
-
-            zoomInButton.click();
-
-        }
-
-
-        /* ---------------------------------------------
-           ZOOM OUT
-        --------------------------------------------- */
-
-        if (
-            event.key === "-"
-        ) {
-
-            zoomOutButton.click();
-
-        }
-
-    }
-);
-
+    if (event.key === "ArrowLeft" && pdfDocument) goToPage(currentPage + 1);
+    if (event.key === "ArrowRight" && pdfDocument) goToPage(currentPage - 1);
+    if (event.key === "+" || event.key === "=") zoomInButton.click();
+    if (event.key === "-") zoomOutButton.click();
+});
 
 /* =========================================================
    RESIZE
 ========================================================= */
 
-let resizeTimer =
-    null;
+let resizeTimer = null;
+let lastViewportWidth = window.innerWidth;
 
+window.addEventListener("resize", () => {
+    const currentWidth = window.innerWidth;
 
-let lastViewportWidth =
-    window.innerWidth;
+    if (currentWidth === lastViewportWidth) return;
+    lastViewportWidth = currentWidth;
 
+    clearTimeout(resizeTimer);
 
-window.addEventListener(
-    "resize",
-    () => {
+    resizeTimer = setTimeout(async () => {
+        if (pdfDocument && !readerApp.hidden) {
+            const savedScrollTop = viewerContainer.scrollTop;
+            const savedScrollLeft = viewerContainer.scrollLeft;
 
-        const currentWidth =
-            window.innerWidth;
+            // Refit automatically unless the user chose a zoom level
+            if (!manuallyZoomed) {
+                scale = await calculateFitScale();
+            }
 
+            await renderPage(currentPage);
 
-        if (
-            currentWidth ===
-            lastViewportWidth
-        ) {
-            return;
+            viewerContainer.scrollTop = savedScrollTop;
+            viewerContainer.scrollLeft = savedScrollLeft;
         }
+    }, 250);
+});
 
-
-        lastViewportWidth =
-            currentWidth;
-
-
-        clearTimeout(
-            resizeTimer
-        );
-
-
-        resizeTimer =
-            setTimeout(
-                async () => {
-
-                    if (
-                        pdfDocument &&
-                        !readerApp.hidden
-                    ) {
-
-                        const savedScrollTop =
-                            viewerContainer.scrollTop;
-
-
-                        const savedScrollLeft =
-                            viewerContainer.scrollLeft;
-
-
-                        await renderPage(
-                            currentPage
-                        );
-
-
-                        viewerContainer.scrollTop =
-                            savedScrollTop;
-
-
-                        viewerContainer.scrollLeft =
-                            savedScrollLeft;
-
-                    }
-
-                },
-                250
-            );
-
-    }
-);
-
+window.addEventListener("beforeunload", () => stopSpeech());
 
 /* =========================================================
-   BEFORE UNLOAD
+   UI ADAPTERS
 ========================================================= */
 
-window.addEventListener(
-    "beforeunload",
-    () => {
+/* Bottom toolbar nav buttons → original buttons */
+document.getElementById("prevVisual")?.addEventListener("click", () => {
+    document.getElementById("previousPage").click();
+});
+document.getElementById("nextVisual")?.addEventListener("click", () => {
+    document.getElementById("nextPage").click();
+});
 
-        stopSpeech();
+/* Speed chip mirrors speedValue */
+(function () {
+    const speedChip = document.getElementById("speedChip");
+    const sv = document.getElementById("speedValue");
+    if (!speedChip || !sv) return;
+    const sync = () => { speedChip.textContent = sv.textContent; };
+    new MutationObserver(sync).observe(sv, { childList: true, characterData: true, subtree: true });
+    sync();
+})();
 
-    }
-);
+/* Voice popover open/close */
+(function () {
+    const btn = document.getElementById("voiceBtn");
+    const panel = document.getElementById("voicePanel");
+    if (!btn || !panel) return;
 
+    btn.addEventListener("click", e => {
+        e.stopPropagation();
+        const open = panel.classList.toggle("open");
+        btn.setAttribute("aria-expanded", open ? "true" : "false");
+    });
+
+    document.addEventListener("click", e => {
+        if (!panel.contains(e.target) && e.target !== btn && !btn.contains(e.target)) {
+            panel.classList.remove("open");
+            btn.setAttribute("aria-expanded", "false");
+        }
+    });
+})();
+
+/* Theme toggle */
+(function () {
+    const btn = document.getElementById("themeBtn");
+    const icon = document.getElementById("themeIcon");
+    if (!btn || !icon) return;
+
+    const moon = "M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z";
+    const sun  = "M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8Z";
+
+    const sync = () => {
+        const dark = document.documentElement.classList.contains("dark");
+        icon.setAttribute("d", dark ? sun : moon);
+        btn.setAttribute("aria-label", dark ? "الوضع الفاتح" : "الوضع الداكن");
+    };
+
+    sync();
+    btn.addEventListener("click", () => {
+        const dark = document.documentElement.classList.toggle("dark");
+        try { localStorage.setItem("ye-theme", dark ? "dark" : "light"); } catch (e) {}
+        sync();
+    });
+})();
+
+/* Progress bar mirrors page position */
+(function () {
+    const bar = document.getElementById("progressBar");
+    const input = document.getElementById("pageInput");
+    const total = document.getElementById("totalPages");
+    if (!bar || !input || !total) return;
+
+    const sync = () => {
+        const cur = parseInt(input.value, 10) || 1;
+        const max = parseInt(total.textContent, 10) || 1;
+        const p = Math.max(0, Math.min(1, cur / max));
+        bar.style.transform = `scaleX(${p})`;
+    };
+
+    new MutationObserver(sync).observe(total, { childList: true, characterData: true, subtree: true });
+    input.addEventListener("input", sync);
+    input.addEventListener("change", sync);
+    sync();
+})();
 
 /* =========================================================
-   INITIALIZATION
+   INITIALIZE
 ========================================================= */
 
 async function initializeReader() {
-
-    /* ---------------------------------------------
-       APP IS VISIBLE DIRECTLY
-    --------------------------------------------- */
-
-    if (readerApp) {
-
-        readerApp.hidden =
-            false;
-
-    }
-
-
-    /* ---------------------------------------------
-       SPEECH SETTINGS
-    --------------------------------------------- */
+    if (readerApp) readerApp.hidden = false;
 
     loadSpeechSettings();
+    setActiveMode("hand");
 
-
-    /* ---------------------------------------------
-       DEFAULT MODE
-    --------------------------------------------- */
-
-    setActiveMode(
-        "hand"
-    );
-
-
-    /* ---------------------------------------------
-       VOICES
-    --------------------------------------------- */
-
-    if (
-        "speechSynthesis"
-        in window
-    ) {
-
+    if ("speechSynthesis" in window) {
         loadVoices();
-
-
-        speechSynthesis.onvoiceschanged =
-            loadVoices;
-
+        speechSynthesis.onvoiceschanged = loadVoices;
     }
 
-
-    /* ---------------------------------------------
-       OPEN PDF
-    --------------------------------------------- */
-
-    await openPDF(
-        PDF_FILE
-    );
-
+    await openPDF(PDF_FILE);
 }
-
-
-/* =========================================================
-   START
-========================================================= */
 
 initializeReader();
