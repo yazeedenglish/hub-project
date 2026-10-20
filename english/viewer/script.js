@@ -46,6 +46,7 @@ const colorDrawer           = document.getElementById("colorDrawer");
 let pdfDocument = null;
 let currentPage = 1;
 let scale = 1;
+let manuallyZoomed = false;
 let voices = [];
 let selectedVoice = null;
 let speechRate = 0.85;
@@ -59,6 +60,30 @@ let currentSpeechSentence = [];
 let currentDrawColor = "#C94C4C";
 
 /* =========================================================
+   AUTOMATIC PDF FIT
+========================================================= */
+
+async function calculateFitScale() {
+    if (!pdfDocument || !viewerContainer) return 1;
+
+    const page = await pdfDocument.getPage(1);
+    const originalViewport = page.getViewport({ scale: 1 });
+
+    // Available width inside the PDF viewing area
+    const availableWidth = Math.max(
+        200,
+        viewerContainer.clientWidth - 24
+    );
+
+    // Fit the PDF to the available width
+    return Math.max(
+        0.25,
+        Math.min(1.5, availableWidth / originalViewport.width)
+    );
+}
+
+
+/* =========================================================
    OPEN PDF
 ========================================================= */
 
@@ -66,7 +91,7 @@ async function openPDF(pdfPath) {
     showContentLoading();
 
     try {
-        statusMessage.textContent = "جارٍ تحميل المحتوى...";
+        statusMessage.textContent = "";
         stopSpeech();
         loadAnnotations(pdfPath);
 
@@ -79,16 +104,18 @@ async function openPDF(pdfPath) {
         const loadingTask = pdfjsLib.getDocument({ data });
         pdfDocument = await loadingTask.promise;
 
-        currentPage = 1;
-        scale = 1;
-        pageInput.value = "1";
-        totalPagesElement.textContent = String(pdfDocument.numPages);
-        zoomLevelElement.textContent = "100%";
+       currentPage = 1;
+    manuallyZoomed = false;
+    scale = await calculateFitScale();
+
+    pageInput.value = "1";
+    totalPagesElement.textContent = String(pdfDocument.numPages);
+    zoomLevelElement.textContent = `${Math.round(scale * 100)}%`;
 
         updateNavigation();
         await renderPage(currentPage);
 
-        statusMessage.textContent = "تم تحميل الملف بنجاح";
+        statusMessage.textContent = "";
         hideContentLoading();
         maybeShowPronunciationNotice();
 
@@ -360,13 +387,19 @@ async function rebuildAtCurrentZoom() {
 
 zoomInButton.addEventListener("click", async () => {
     if (!pdfDocument) return;
+
+    manuallyZoomed = true;
     scale = Math.min(3, Number((scale + 0.1).toFixed(2)));
+
     await rebuildAtCurrentZoom();
 });
 
 zoomOutButton.addEventListener("click", async () => {
     if (!pdfDocument) return;
-    scale = Math.max(0.5, Number((scale - 0.1).toFixed(2)));
+
+    manuallyZoomed = true;
+    scale = Math.max(0.25, Number((scale - 0.1).toFixed(2)));
+
     await rebuildAtCurrentZoom();
 });
 
@@ -507,7 +540,7 @@ function speak(text, onComplete = null) {
     utterance.onend = () => {
         stopSpeechKeepAlive();
         activeUtterance = null;
-        pronunciationStatus.textContent = "🔊 اضغط على النص الإنجليزي لسماع النطق";
+        pronunciationStatus.textContent = "";
         if (typeof onComplete === "function") onComplete();
     };
 
@@ -962,15 +995,24 @@ let lastViewportWidth = window.innerWidth;
 
 window.addEventListener("resize", () => {
     const currentWidth = window.innerWidth;
+
     if (currentWidth === lastViewportWidth) return;
     lastViewportWidth = currentWidth;
 
     clearTimeout(resizeTimer);
+
     resizeTimer = setTimeout(async () => {
         if (pdfDocument && !readerApp.hidden) {
             const savedScrollTop = viewerContainer.scrollTop;
             const savedScrollLeft = viewerContainer.scrollLeft;
+
+            // Refit automatically unless the user chose a zoom level
+            if (!manuallyZoomed) {
+                scale = await calculateFitScale();
+            }
+
             await renderPage(currentPage);
+
             viewerContainer.scrollTop = savedScrollTop;
             viewerContainer.scrollLeft = savedScrollLeft;
         }
