@@ -1,0 +1,27 @@
+{
+  "title": "The Race",
+  "arabicTitle": "السباق",
+  "level": "A1",
+  "paragraphs": [
+    {
+      "text": "Tom and Ben are good friends. They like to run in the park every day."
+    },
+    {
+      "text": "One morning, Ben says, “Let’s have a race!” Tom smiles and says, “Ready, set, go!”"
+    },
+    {
+      "text": "Ben runs very fast. Tom runs more slowly, but he does not stop. He keeps going until he reaches the tree."
+    },
+    {
+      "text": "Ben wins the race, but he waits for Tom. “You did not give up,” Ben says. Tom smiles. They walk home together, happy to be friends."
+    }
+  ],
+  "translations": {
+    "tom": "توم",
+    "and": "و",
+    "ben": "بن",
+    "are": "يكونان / هما",
+    "good": "جيد",
+    "be": "يكون"
+  }
+}

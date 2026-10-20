@@ -1,0 +1,1886 @@
+[
+    {
+      "text": " Tom",
+      "timestamp": [0, 0.24]
+    },
+    {
+      "text": " had",
+      "timestamp": [0.24, 0.56]
+    },
+    {
+      "text": " a",
+      "timestamp": [0.56, 0.74]
+    },
+    {
+      "text": " restaurant",
+      "timestamp": [0.74, 1.1]
+    },
+    {
+      "text": " in",
+      "timestamp": [1.1, 1.42]
+    },
+    {
+      "text": " the",
+      "timestamp": [1.42, 1.54]
+    },
+    {
+      "text": " centre",
+      "timestamp": [1.54, 1.88]
+    },
+    {
+      "text": " of",
+      "timestamp": [1.88, 2.06]
+    },
+    {
+      "text": " the",
+      "timestamp": [2.06, 2.2]
+    },
+    {
+      "text": " city.",
+      "timestamp": [2.2, 2.52]
+    },
+    {
+      "text": " He",
+      "timestamp": [3.2, 3.36]
+    },
+    {
+      "text": " also",
+      "timestamp": [3.36, 3.72]
+    },
+    {
+      "text": " had",
+      "timestamp": [3.72, 4.08]
+    },
+    {
+      "text": " a",
+      "timestamp": [4.08, 4.18]
+    },
+    {
+      "text": " big",
+      "timestamp": [4.18, 4.52]
+    },
+    {
+      "text": " problem.",
+      "timestamp": [4.52, 5.12]
+    },
+    {
+      "text": " Business",
+      "timestamp": [5.74, 6.18]
+    },
+    {
+      "text": " was",
+      "timestamp": [6.18, 6.56]
+    },
+    {
+      "text": " down",
+      "timestamp": [6.56, 6.92]
+    },
+    {
+      "text": " and",
+      "timestamp": [6.92, 7.44]
+    },
+    {
+      "text": " he",
+      "timestamp": [7.44, 7.58]
+    },
+    {
+      "text": " had",
+      "timestamp": [7.58, 7.7]
+    },
+    {
+      "text": " many",
+      "timestamp": [7.7, 8.14]
+    },
+    {
+      "text": " bills",
+      "timestamp": [8.14, 8.44]
+    },
+    {
+      "text": " to",
+      "timestamp": [8.44, 8.74]
+    },
+    {
+      "text": " pay.",
+      "timestamp": [8.74, 8.98]
+    },
+    {
+      "text": " Tom",
+      "timestamp": [9.86, 10.18]
+    },
+    {
+      "text": " was",
+      "timestamp": [10.18, 10.48]
+    },
+    {
+      "text": " worried.",
+      "timestamp": [10.48, 10.86]
+    },
+    {
+      "text": " He",
+      "timestamp": [11.5, 11.66]
+    },
+    {
+      "text": " didn't",
+      "timestamp": [11.66, 11.84]
+    },
+    {
+      "text": " want",
+      "timestamp": [11.84, 12.06]
+    },
+    {
+      "text": " to",
+      "timestamp": [12.06, 12.28]
+    },
+    {
+      "text": " lose",
+      "timestamp": [12.28, 12.62]
+    },
+    {
+      "text": " his",
+      "timestamp": [12.62, 12.84]
+    },
+    {
+      "text": " restaurant.",
+      "timestamp": [12.84, 13.32]
+    },
+    {
+      "text": " Tom",
+      "timestamp": [14.4, 14.8]
+    },
+    {
+      "text": " loved",
+      "timestamp": [14.8, 15.44]
+    },
+    {
+      "text": " running.",
+      "timestamp": [15.44, 15.82]
+    },
+    {
+      "text": " He",
+      "timestamp": [16.4, 16.52]
+    },
+    {
+      "text": " ran",
+      "timestamp": [16.52, 16.7]
+    },
+    {
+      "text": " every",
+      "timestamp": [16.7, 17.18]
+    },
+    {
+      "text": " morning",
+      "timestamp": [17.18, 17.54]
+    },
+    {
+      "text": " before",
+      "timestamp": [17.54, 17.92]
+    },
+    {
+      "text": " work.",
+      "timestamp": [17.92, 18.46]
+    },
+    {
+      "text": " He",
+      "timestamp": [18.98, 19.12]
+    },
+    {
+      "text": " was",
+      "timestamp": [19.12, 19.22]
+    },
+    {
+      "text": " one",
+      "timestamp": [19.22, 19.4]
+    },
+    {
+      "text": " of",
+      "timestamp": [19.4, 19.5]
+    },
+    {
+      "text": " the",
+      "timestamp": [19.5, 19.6]
+    },
+    {
+      "text": " fastest",
+      "timestamp": [19.6, 20.14]
+    },
+    {
+      "text": " runners",
+      "timestamp": [20.14, 20.52]
+    },
+    {
+      "text": " in",
+      "timestamp": [20.52, 20.82]
+    },
+    {
+      "text": " town.",
+      "timestamp": [20.82, 21.18]
+    },
+    {
+      "text": " One",
+      "timestamp": [22.12, 22.3]
+    },
+    {
+      "text": " evening,",
+      "timestamp": [22.3, 22.72]
+    },
+    {
+      "text": " his",
+      "timestamp": [22.98, 23.12]
+    },
+    {
+      "text": " friend",
+      "timestamp": [23.12, 23.44]
+    },
+    {
+      "text": " Paul",
+      "timestamp": [23.44, 23.76]
+    },
+    {
+      "text": " told",
+      "timestamp": [23.76, 24.2]
+    },
+    {
+      "text": " him",
+      "timestamp": [24.2, 24.48]
+    },
+    {
+      "text": " about",
+      "timestamp": [24.48, 24.7]
+    },
+    {
+      "text": " a",
+      "timestamp": [24.7, 24.88]
+    },
+    {
+      "text": " big",
+      "timestamp": [24.88, 25.18]
+    },
+    {
+      "text": " race.",
+      "timestamp": [25.18, 25.52]
+    },
+    {
+      "text": " \"The",
+      "timestamp": [26.22, 26.4]
+    },
+    {
+      "text": " winner",
+      "timestamp": [26.4, 26.68]
+    },
+    {
+      "text": " gets",
+      "timestamp": [26.68, 26.92]
+    },
+    {
+      "text": "thirty",
+      "timestamp": [26.92, 27.54]
+    },
+    {
+      "text": "thousand",
+      "timestamp": [27.54, 28.12]
+    },
+    {
+      "text": " euros,",
+      "timestamp": [28.12, 28.52]
+    },
+    {
+      "text": " Paul",
+      "timestamp": [28.94, 29.18]
+    },
+    {
+      "text": " said.",
+      "timestamp": [29.18, 29.54]
+    },
+    {
+      "text": " \"Why",
+      "timestamp": [29.96, 30.26]
+    },
+    {
+      "text": " don't",
+      "timestamp": [30.26, 30.42]
+    },
+    {
+      "text": " you",
+      "timestamp": [30.42, 30.64]
+    },
+    {
+      "text": " run?\"",
+      "timestamp": [30.64, 30.9]
+    },
+    {
+      "text": " Tom",
+      "timestamp": [31.64, 32.1]
+    },
+    {
+      "text": " thought",
+      "timestamp": [32.1, 32.6]
+    },
+    {
+      "text": " about",
+      "timestamp": [32.6, 32.86]
+    },
+    {
+      "text": " the",
+      "timestamp": [32.86, 33.04]
+    },
+    {
+      "text": " money.",
+      "timestamp": [33.04, 33.32]
+    },
+    {
+      "text": " He",
+      "timestamp": [33.96, 34.08]
+    },
+    {
+      "text": " could",
+      "timestamp": [34.08, 34.3]
+    },
+    {
+      "text": " pay",
+      "timestamp": [34.3, 34.5]
+    },
+    {
+      "text": " his",
+      "timestamp": [34.5, 34.72]
+    },
+    {
+      "text": " bills",
+      "timestamp": [34.72, 35.02]
+    },
+    {
+      "text": " and",
+      "timestamp": [35.02, 35.54]
+    },
+    {
+      "text": " save",
+      "timestamp": [35.54, 36.02]
+    },
+    {
+      "text": " his",
+      "timestamp": [36.02, 36.26]
+    },
+    {
+      "text": " restaurant.",
+      "timestamp": [36.26, 36.72]
+    },
+    {
+      "text": " The",
+      "timestamp": [37.46, 37.7]
+    },
+    {
+      "text": " next",
+      "timestamp": [37.7, 37.92]
+    },
+    {
+      "text": " day",
+      "timestamp": [37.92, 38.22]
+    },
+    {
+      "text": " he",
+      "timestamp": [38.22, 38.64]
+    },
+    {
+      "text": " entered",
+      "timestamp": [38.64, 39.02]
+    },
+    {
+      "text": " the",
+      "timestamp": [39.02, 39.26]
+    },
+    {
+      "text": " race.",
+      "timestamp": [39.26, 39.58]
+    },
+    {
+      "text": " But",
+      "timestamp": [40.2, 40.38]
+    },
+    {
+      "text": " there",
+      "timestamp": [40.38, 40.54]
+    },
+    {
+      "text": " was",
+      "timestamp": [40.54, 40.68]
+    },
+    {
+      "text": " a",
+      "timestamp": [40.68, 40.78]
+    },
+    {
+      "text": " problem.",
+      "timestamp": [40.78, 41.2]
+    },
+    {
+      "text": " His",
+      "timestamp": [41.84, 41.94]
+    },
+    {
+      "text": " friend",
+      "timestamp": [41.94, 42.32]
+    },
+    {
+      "text": " Martin",
+      "timestamp": [42.32, 42.72]
+    },
+    {
+      "text": " also",
+      "timestamp": [42.72, 43.3]
+    },
+    {
+      "text": " entered.",
+      "timestamp": [43.3, 43.78]
+    },
+    {
+      "text": " Martin",
+      "timestamp": [44.5, 44.86]
+    },
+    {
+      "text": " was",
+      "timestamp": [44.86, 45.12]
+    },
+    {
+      "text": " from",
+      "timestamp": [45.12, 45.32]
+    },
+    {
+      "text": " the",
+      "timestamp": [45.32, 45.44]
+    },
+    {
+      "text": " same",
+      "timestamp": [45.44, 45.76]
+    },
+    {
+      "text": " running",
+      "timestamp": [45.76, 46.08]
+    },
+    {
+      "text": " club.",
+      "timestamp": [46.08, 46.5]
+    },
+    {
+      "text": " He",
+      "timestamp": [46.94, 47.16]
+    },
+    {
+      "text": " was",
+      "timestamp": [47.16, 47.3]
+    },
+    {
+      "text": " the",
+      "timestamp": [47.3, 47.44]
+    },
+    {
+      "text": " only",
+      "timestamp": [47.44, 47.84]
+    },
+    {
+      "text": " runner",
+      "timestamp": [47.84, 48.18]
+    },
+    {
+      "text": " in",
+      "timestamp": [48.18, 48.34]
+    },
+    {
+      "text": " the",
+      "timestamp": [48.34, 48.44]
+    },
+    {
+      "text": " club",
+      "timestamp": [48.44, 48.78]
+    },
+    {
+      "text": " who",
+      "timestamp": [48.78, 49.04]
+    },
+    {
+      "text": " was",
+      "timestamp": [49.04, 49.22]
+    },
+    {
+      "text": " faster",
+      "timestamp": [49.22, 49.74]
+    },
+    {
+      "text": " than",
+      "timestamp": [49.74, 49.98]
+    },
+    {
+      "text": " Tom.",
+      "timestamp": [49.98, 50.26]
+    },
+    {
+      "text": " Tom",
+      "timestamp": [51.12, 51.3]
+    },
+    {
+      "text": " wanted",
+      "timestamp": [51.3, 51.82]
+    },
+    {
+      "text": " to",
+      "timestamp": [51.82, 52.04]
+    },
+    {
+      "text": " win,",
+      "timestamp": [52.04, 52.34]
+    },
+    {
+      "text": " but",
+      "timestamp": [52.76, 52.94]
+    },
+    {
+      "text": " he",
+      "timestamp": [52.94, 53.06]
+    },
+    {
+      "text": " was",
+      "timestamp": [53.06, 53.22]
+    },
+    {
+      "text": " worried",
+      "timestamp": [53.22, 53.58]
+    },
+    {
+      "text": " about",
+      "timestamp": [53.58, 53.84]
+    },
+    {
+      "text": " Martin.",
+      "timestamp": [53.84, 54.32]
+    },
+    {
+      "text": " On",
+      "timestamp": [55.34, 55.44]
+    },
+    {
+      "text": " Friday,",
+      "timestamp": [55.44, 55.86]
+    },
+    {
+      "text": " Tom",
+      "timestamp": [56.34, 56.5]
+    },
+    {
+      "text": " and",
+      "timestamp": [56.5, 56.78]
+    },
+    {
+      "text": " Martin",
+      "timestamp": [56.78, 57.16]
+    },
+    {
+      "text": " went",
+      "timestamp": [57.16, 57.5]
+    },
+    {
+      "text": " to",
+      "timestamp": [57.5, 57.7]
+    },
+    {
+      "text": " the",
+      "timestamp": [57.7, 57.82]
+    },
+    {
+      "text": " city.",
+      "timestamp": [57.82, 58.1]
+    },
+    {
+      "text": " They",
+      "timestamp": [58.6, 58.82]
+    },
+    {
+      "text": " stayed",
+      "timestamp": [58.82, 59.2]
+    },
+    {
+      "text": " at",
+      "timestamp": [59.2, 59.32]
+    },
+    {
+      "text": " the",
+      "timestamp": [59.32, 59.46]
+    },
+    {
+      "text": " same",
+      "timestamp": [59.46, 59.72]
+    },
+    {
+      "text": " hotel",
+      "timestamp": [59.72, 60.18]
+    },
+    {
+      "text": " in",
+      "timestamp": [60.18, 60.68]
+    },
+    {
+      "text": " one",
+      "timestamp": [60.68, 60.92]
+    },
+    {
+      "text": " room.",
+      "timestamp": [60.92, 61.46]
+    },
+    {
+      "text": " On",
+      "timestamp": [62.04, 62.16]
+    },
+    {
+      "text": " Saturday",
+      "timestamp": [62.16, 62.52]
+    },
+    {
+      "text": " evening,",
+      "timestamp": [62.52, 62.98]
+    },
+    {
+      "text": " they",
+      "timestamp": [63.32, 63.42]
+    },
+    {
+      "text": " had",
+      "timestamp": [63.42, 63.58]
+    },
+    {
+      "text": " dinner",
+      "timestamp": [63.58, 63.88]
+    },
+    {
+      "text": " together.",
+      "timestamp": [63.88, 64.32]
+    },
+    {
+      "text": " \"Are",
+      "timestamp": [64.88, 65.16]
+    },
+    {
+      "text": " you",
+      "timestamp": [65.16, 65.28]
+    },
+    {
+      "text": " ready",
+      "timestamp": [65.28, 65.48]
+    },
+    {
+      "text": " good",
+      "timestamp": [89.98, 89.98]
+    },
+    {
+      "text": " race,",
+      "timestamp": [89.98, 89.98]
+    },
+    {
+      "text": " Martin",
+      "timestamp": [89.98, 89.98]
+    },
+    {
+      "text": " said.",
+      "timestamp": [89.98, 89.98]
+    },
+    {
+      "text": " the",
+      "timestamp": [109.98, 109.98]
+    },
+    {
+      "text": " Martin",
+      "timestamp": [100, 100.38]
+    },
+    {
+      "text": " to",
+      "timestamp": [100.38, 100.64]
+    },
+    {
+      "text": " have",
+      "timestamp": [100.64, 100.78]
+    },
+    {
+      "text": " problems",
+      "timestamp": [100.78, 101.26]
+    },
+    {
+      "text": " with",
+      "timestamp": [149.98, 149.98]
+    },
+    {
+      "text": " my",
+      "timestamp": [149.98, 149.98]
+    },
+    {
+      "text": " shoe.",
+      "timestamp": [149.98, 149.98]
+    },
+    {
+      "text": " Tom",
+      "timestamp": [169.98, 169.98]
+    },
+    {
+      "text": " At",
+      "timestamp": [160, 160.1]
+    },
+    {
+      "text": " 35",
+      "timestamp": [160.1, 160.72]
+    },
+    {
+      "text": " kilometers,",
+      "timestamp": [160.72, 161.34]
+    },
+    {
+      "text": " Tom",
+      "timestamp": [161.8, 161.9]
+    },
+    {
+      "text": " was",
+      "timestamp": [161.9, 162.22]
+    },
+    {
+      "text": " second.",
+      "timestamp": [162.22, 162.62]
+    },
+    {
+      "text": " He",
+      "timestamp": [163.16, 163.3]
+    },
+    {
+      "text": " was",
+      "timestamp": [163.3, 163.46]
+    },
+    {
+      "text": " tired,",
+      "timestamp": [163.46, 163.92]
+    },
+    {
+      "text": " but",
+      "timestamp": [164.18, 164.28]
+    },
+    {
+      "text": " he",
+      "timestamp": [164.28, 164.42]
+    },
+    {
+      "text": " ran",
+      "timestamp": [164.42, 164.68]
+    },
+    {
+      "text": " faster.",
+      "timestamp": [164.68, 165.28]
+    },
+    {
+      "text": " At",
+      "timestamp": [165.94, 166.06]
+    },
+    {
+      "text": " 40",
+      "timestamp": [166.06, 166.44]
+    },
+    {
+      "text": " kilometers,",
+      "timestamp": [166.44, 166.98]
+    },
+    {
+      "text": " he",
+      "timestamp": [167.34, 167.42]
+    },
+    {
+      "text": " passed",
+      "timestamp": [167.42, 167.8]
+    },
+    {
+      "text": " the",
+      "timestamp": [167.8, 168.02]
+    },
+    {
+      "text": " first",
+      "timestamp": [168.02, 168.38]
+    },
+    {
+      "text": " runner.",
+      "timestamp": [168.38, 168.74]
+    },
+    {
+      "text": " Now",
+      "timestamp": [169.34, 169.58]
+    },
+    {
+      "text": " he",
+      "timestamp": [169.58, 169.98]
+    },
+    {
+      "text": " was",
+      "timestamp": [169.98, 170.22]
+    },
+    {
+      "text": " first.",
+      "timestamp": [170.22, 170.6]
+    },
+    {
+      "text": " A",
+      "timestamp": [171.34, 171.44]
+    },
+    {
+      "text": " few",
+      "timestamp": [171.44, 171.66]
+    },
+    {
+      "text": " minutes",
+      "timestamp": [171.66, 171.84]
+    },
+    {
+      "text": " later,",
+      "timestamp": [171.84, 172.28]
+    },
+    {
+      "text": " he",
+      "timestamp": [172.52, 172.64]
+    },
+    {
+      "text": " finished",
+      "timestamp": [172.64, 173.08]
+    },
+    {
+      "text": " the",
+      "timestamp": [173.08, 173.3]
+    },
+    {
+      "text": " race.",
+      "timestamp": [173.3, 173.56]
+    },
+    {
+      "text": " He",
+      "timestamp": [174.12, 174.24]
+    },
+    {
+      "text": " won",
+      "timestamp": [174.24, 174.46]
+    },
+    {
+      "text": " 30",
+      "timestamp": [174.46, 175.08]
+    },
+    {
+      "text": ",000",
+      "timestamp": [175.08, 175.72]
+    },
+    {
+      "text": " euros.",
+      "timestamp": [175.72, 176.18]
+    },
+    {
+      "text": " People",
+      "timestamp": [176.86, 177.16]
+    },
+    {
+      "text": " took",
+      "timestamp": [177.16, 177.46]
+    },
+    {
+      "text": " photos.",
+      "timestamp": [177.46, 177.9]
+    },
+    {
+      "text": " A",
+      "timestamp": [178.46, 178.6]
+    },
+    {
+      "text": " woman",
+      "timestamp": [178.6, 178.86]
+    },
+    {
+      "text": " gave",
+      "timestamp": [178.86, 179.16]
+    },
+    {
+      "text": " him",
+      "timestamp": [179.16, 179.38]
+    },
+    {
+      "text": " a",
+      "timestamp": [179.38, 179.5]
+    },
+    {
+      "text": " medal.",
+      "timestamp": [179.5, 179.74]
+    },
+    {
+      "text": " Tom",
+      "timestamp": [180.4, 180.64]
+    },
+    {
+      "text": " was",
+      "timestamp": [180.64, 180.92]
+    },
+    {
+      "text": " very",
+      "timestamp": [180.92, 181.34]
+    },
+    {
+      "text": " happy.",
+      "timestamp": [181.34, 181.78]
+    },
+    {
+      "text": " Later,",
+      "timestamp": [182.44, 182.76]
+    },
+    {
+      "text": " he",
+      "timestamp": [182.94, 183.18]
+    },
+    {
+      "text": " went",
+      "timestamp": [183.18, 183.34]
+    },
+    {
+      "text": " back",
+      "timestamp": [183.34, 183.58]
+    },
+    {
+      "text": " to",
+      "timestamp": [183.58, 183.78]
+    },
+    {
+      "text": " the",
+      "timestamp": [183.78, 183.92]
+    },
+    {
+      "text": " hotel.",
+      "timestamp": [183.92, 184.2]
+    },
+    {
+      "text": " Martin",
+      "timestamp": [184.96, 185.28]
+    },
+    {
+      "text": " was",
+      "timestamp": [185.28, 185.7]
+    },
+    {
+      "text": " not",
+      "timestamp": [185.7, 185.98]
+    },
+    {
+      "text": " there.",
+      "timestamp": [185.98, 186.38]
+    },
+    {
+      "text": " Tom",
+      "timestamp": [186.82, 187]
+    },
+    {
+      "text": " called",
+      "timestamp": [187, 187.36]
+    },
+    {
+      "text": " him,",
+      "timestamp": [187.36, 187.72]
+    },
+    {
+      "text": " but",
+      "timestamp": [188.06, 188.16]
+    },
+    {
+      "text": " there",
+      "timestamp": [188.16, 188.3]
+    },
+    {
+      "text": " was",
+      "timestamp": [188.3, 188.44]
+    },
+    {
+      "text": " no",
+      "timestamp": [188.44, 188.64]
+    },
+    {
+      "text": " answer.",
+      "timestamp": [188.64, 189.08]
+    },
+    {
+      "text": " At",
+      "timestamp": [189.96, 190.08]
+    },
+    {
+      "text": " 6",
+      "timestamp": [190.08, 190.32]
+    },
+    {
+      "text": " o",
+      "timestamp": [190.32, 190.44]
+    },
+    {
+      "text": "'clock",
+      "timestamp": [190.44, 190.76]
+    },
+    {
+      "text": " he",
+      "timestamp": [190.76, 191.12]
+    },
+    {
+      "text": " got",
+      "timestamp": [191.12, 191.26]
+    },
+    {
+      "text": " a",
+      "timestamp": [191.26, 191.42]
+    },
+    {
+      "text": " message.",
+      "timestamp": [191.42, 191.78]
+    },
+    {
+      "text": " I'm",
+      "timestamp": [192.64, 192.9]
+    },
+    {
+      "text": " in",
+      "timestamp": [192.9, 192.94]
+    },
+    {
+      "text": " hospital.",
+      "timestamp": [192.94, 193.44]
+    },
+    {
+      "text": " My",
+      "timestamp": [194, 194.1]
+    },
+    {
+      "text": " foot",
+      "timestamp": [194.1, 194.4]
+    },
+    {
+      "text": " is",
+      "timestamp": [194.4, 194.58]
+    },
+    {
+      "text": " broken.",
+      "timestamp": [194.58, 195]
+    },
+    {
+      "text": " I",
+      "timestamp": [195.56, 195.68]
+    },
+    {
+      "text": " can't",
+      "timestamp": [195.68, 195.98]
+    },
+    {
+      "text": " run",
+      "timestamp": [195.98, 196.2]
+    },
+    {
+      "text": " for",
+      "timestamp": [196.2, 196.48]
+    },
+    {
+      "text": " six",
+      "timestamp": [196.48, 196.82]
+    },
+    {
+      "text": " months.",
+      "timestamp": [196.82, 197.28]
+    },
+    {
+      "text": " Tom",
+      "timestamp": [198.42, 198.58]
+    },
+    {
+      "text": " read",
+      "timestamp": [198.58, 198.86]
+    },
+    {
+      "text": " the",
+      "timestamp": [198.86, 199.02]
+    },
+    {
+      "text": " message",
+      "timestamp": [199.02, 199.34]
+    },
+    {
+      "text": " again.",
+      "timestamp": [199.34, 199.78]
+    },
+    {
+      "text": " He",
+      "timestamp": [200.56, 200.74]
+    },
+    {
+      "text": " sat",
+      "timestamp": [200.74, 201]
+    },
+    {
+      "text": " on",
+      "timestamp": [201, 201.16]
+    },
+    {
+      "text": " his",
+      "timestamp": [201.16, 201.3]
+    },
+    {
+      "text": " bed.",
+      "timestamp": [201.3, 201.56]
+    },
+    {
+      "text": " He",
+      "timestamp": [202.32, 202.56]
+    },
+    {
+      "text": " didn't",
+      "timestamp": [202.56, 202.98]
+    },
+    {
+      "text": " want",
+      "timestamp": [202.98, 203.18]
+    },
+    {
+      "text": " this",
+      "timestamp": [203.18, 203.48]
+    },
+    {
+      "text": " to",
+      "timestamp": [203.44, 203.64]
+    },
+    {
+      "text": " happen.",
+      "timestamp": [203.64, 204.02]
+    },
+    {
+      "text": " He",
+      "timestamp": [204.68, 204.8]
+    },
+    {
+      "text": " only",
+      "timestamp": [204.8, 205.1]
+    },
+    {
+      "text": " wanted",
+      "timestamp": [205.1, 205.5]
+    },
+    {
+      "text": " Martin",
+      "timestamp": [205.5, 205.8]
+    },
+    {
+      "text": " to",
+      "timestamp": [205.8, 206.04]
+    },
+    {
+      "text": " run",
+      "timestamp": [206.04, 206.26]
+    },
+    {
+      "text": " more",
+      "timestamp": [206.26, 206.52]
+    },
+    {
+      "text": " slowly.",
+      "timestamp": [206.52, 207.08]
+    },
+    {
+      "text": " The",
+      "timestamp": [208.06, 208.24]
+    },
+    {
+      "text": " next",
+      "timestamp": [208.24, 208.46]
+    },
+    {
+      "text": " morning",
+      "timestamp": [208.46, 208.86]
+    },
+    {
+      "text": " Tom",
+      "timestamp": [208.86, 209.36]
+    },
+    {
+      "text": " went",
+      "timestamp": [209.36, 209.64]
+    },
+    {
+      "text": " to",
+      "timestamp": [209.64, 209.84]
+    },
+    {
+      "text": " the",
+      "timestamp": [209.84, 209.94]
+    },
+    {
+      "text": " hospital.",
+      "timestamp": [209.94, 210.42]
+    },
+    {
+      "text": " Martin",
+      "timestamp": [211.16, 211.46]
+    },
+    {
+      "text": " was",
+      "timestamp": [211.46, 211.8]
+    },
+    {
+      "text": " in",
+      "timestamp": [211.8, 211.94]
+    },
+    {
+      "text": " bed.",
+      "timestamp": [211.94, 212.28]
+    },
+    {
+      "text": " \"Congratulations!\"",
+      "timestamp": [212.92, 213.56]
+    },
+    {
+      "text": " Martin",
+      "timestamp": [214.38, 214.74]
+    },
+    {
+      "text": " said.",
+      "timestamp": [214.74, 215.1]
+    },
+    {
+      "text": " \"Thanks.",
+      "timestamp": [215.84, 216.24]
+    },
+    {
+      "text": " How",
+      "timestamp": [216.68, 216.86]
+    },
+    {
+      "text": " are",
+      "timestamp": [216.86, 217.04]
+    },
+    {
+      "text": " you?\"",
+      "timestamp": [217.04, 217.24]
+    },
+    {
+      "text": " \"Not",
+      "timestamp": [217.8, 218.1]
+    },
+    {
+      "text": " good.",
+      "timestamp": [218.1, 218.4]
+    },
+    {
+      "text": " My",
+      "timestamp": [218.94, 219.14]
+    },
+    {
+      "text": " shoe",
+      "timestamp": [219.14, 219.48]
+    },
+    {
+      "text": " broke.",
+      "timestamp": [219.48, 219.84]
+    },
+    {
+      "text": " I",
+      "timestamp": [220.22, 220.46]
+    },
+    {
+      "text": " fell",
+      "timestamp": [220.46, 220.82]
+    },
+    {
+      "text": " and",
+      "timestamp": [220.82, 221.16]
+    },
+    {
+      "text": " now",
+      "timestamp": [221.16, 221.38]
+    },
+    {
+      "text": " my",
+      "timestamp": [221.38, 221.54]
+    },
+    {
+      "text": " foot",
+      "timestamp": [221.54, 221.86]
+    },
+    {
+      "text": " is",
+      "timestamp": [221.86, 222.02]
+    },
+    {
+      "text": " broken.\"",
+      "timestamp": [222.02, 222.44]
+    },
+    {
+      "text": " Tom",
+      "timestamp": [223.14, 223.52]
+    },
+    {
+      "text": " looked",
+      "timestamp": [223.52, 223.84]
+    },
+    {
+      "text": " at",
+      "timestamp": [223.84, 224]
+    },
+    {
+      "text": " the",
+      "timestamp": [224, 224.1]
+    },
+    {
+      "text": " floor.",
+      "timestamp": [224.1, 224.42]
+    },
+    {
+      "text": " Martin",
+      "timestamp": [225.22, 225.58]
+    },
+    {
+      "text": " looked",
+      "timestamp": [225.58, 225.96]
+    },
+    {
+      "text": " at",
+      "timestamp": [225.96, 226.14]
+    },
+    {
+      "text": " him.",
+      "timestamp": [226.14, 226.36]
+    },
+    {
+      "text": " \"It's",
+      "timestamp": [226.94, 227.48]
+    },
+    {
+      "text": " strange.",
+      "timestamp": [227.48, 227.84]
+    },
+    {
+      "text": " My",
+      "timestamp": [228.5, 228.6]
+    },
+    {
+      "text": " shoe",
+      "timestamp": [228.6, 228.84]
+    },
+    {
+      "text": " was",
+      "timestamp": [228.84, 229.04]
+    },
+    {
+      "text": " fine",
+      "timestamp": [229.04, 229.38]
+    },
+    {
+      "text": " on",
+      "timestamp": [229.38, 229.58]
+    },
+    {
+      "text": " Saturday.\"",
+      "timestamp": [229.58, 229.98]
+    },
+    {
+      "text": " Tom",
+      "timestamp": [230.88, 231.2]
+    },
+    {
+      "text": " said",
+      "timestamp": [231.2, 231.56]
+    },
+    {
+      "text": " nothing.",
+      "timestamp": [231.56, 232]
+    },
+    {
+      "text": " \"You",
+      "timestamp": [232.76, 233.08]
+    },
+    {
+      "text": " were",
+      "timestamp": [233.08, 233.24]
+    },
+    {
+      "text": " in",
+      "timestamp": [233.24, 233.36]
+    },
+    {
+      "text": " our",
+      "timestamp": [233.36, 233.48]
+    },
+    {
+      "text": " room",
+      "timestamp": [233.48, 233.74]
+    },
+    {
+      "text": " that",
+      "timestamp": [233.74, 234]
+    },
+    {
+      "text": " night.",
+      "timestamp": [234, 234.34]
+    },
+    {
+      "text": " Did",
+      "timestamp": [234.92, 235.04]
+    },
+    {
+      "text": " you",
+      "timestamp": [235.04, 235.16]
+    },
+    {
+      "text": " see",
+      "timestamp": [235.16, 235.4]
+    },
+    {
+      "text": " anything?\"",
+      "timestamp": [235.4, 235.8]
+    },
+    {
+      "text": " Tom",
+      "timestamp": [236.62, 236.96]
+    },
+    {
+      "text": " looked",
+      "timestamp": [236.96, 237.32]
+    },
+    {
+      "text": " at",
+      "timestamp": [237.32, 237.44]
+    },
+    {
+      "text": " Martin.",
+      "timestamp": [237.44, 237.82]
+    },
+    {
+      "text": " \"For",
+      "timestamp": [238.44, 238.74]
+    },
+    {
+      "text": " a",
+      "timestamp": [238.74, 238.84]
+    },
+    {
+      "text": " minute,",
+      "timestamp": [238.84, 239.12]
+    },
+    {
+      "text": " he",
+      "timestamp": [239.46, 239.56]
+    },
+    {
+      "text": " didn't",
+      "timestamp": [239.56, 239.78]
+    },
+    {
+      "text": " speak.",
+      "timestamp": [239.78, 240.12]
+    },
+    {
+      "text": " Then",
+      "timestamp": [240.76, 241.08]
+    },
+    {
+      "text": " he",
+      "timestamp": [241.08, 241.3]
+    },
+    {
+      "text": " said,",
+      "timestamp": [241.3, 241.56]
+    },
+    {
+      "text": " \"Yes,",
+      "timestamp": [242.16, 242.7]
+    },
+    {
+      "text": " I",
+      "timestamp": [243.42, 243.56]
+    },
+    {
+      "text": " cut",
+      "timestamp": [243.56, 243.8]
+    },
+    {
+      "text": " your",
+      "timestamp": [243.8, 244.02]
+    },
+    {
+      "text": " shoe.\"",
+      "timestamp": [244.02, 244.36]
+    },
+    {
+      "text": " Martin",
+      "timestamp": [245.32, 245.6]
+    },
+    {
+      "text": " looked",
+      "timestamp": [245.6, 245.88]
+    },
+    {
+      "text": " at",
+      "timestamp": [245.88, 246.04]
+    },
+    {
+      "text": " him",
+      "timestamp": [246.04, 246.22]
+    },
+    {
+      "text": " in",
+      "timestamp": [246.22, 246.32]
+    },
+    {
+      "text": " surprise.",
+      "timestamp": [246.32, 246.78]
+    },
+    {
+      "text": " \"You?",
+      "timestamp": [247.64, 247.98]
+    },
+    {
+      "text": " Why?\"",
+      "timestamp": [248.4, 248.86]
+    },
+    {
+      "text": " \"I",
+      "timestamp": [249.66, 249.9]
+    },
+    {
+      "text": " needed",
+      "timestamp": [249.9, 250.14]
+    },
+    {
+      "text": " the",
+      "timestamp": [250.14, 250.32]
+    },
+    {
+      "text": " money.",
+      "timestamp": [250.32, 250.6]
+    },
+    {
+      "text": " I",
+      "timestamp": [251.14, 251.28]
+    },
+    {
+      "text": " wanted",
+      "timestamp": [251.28, 251.54]
+    },
+    {
+      "text": " you",
+      "timestamp": [251.54, 251.72]
+    },
+    {
+      "text": " to",
+      "timestamp": [251.72, 251.84]
+    },
+    {
+      "text": " run",
+      "timestamp": [251.84, 252.06]
+    },
+    {
+      "text": " more",
+      "timestamp": [252.06, 252.32]
+    },
+    {
+      "text": " slowly.\"",
+      "timestamp": [252.32, 252.84]
+    },
+    {
+      "text": " \"I'm",
+      "timestamp": [253.5, 253.7]
+    },
+    {
+      "text": " sorry.\"",
+      "timestamp": [253.7, 254.02]
+    },
+    {
+      "text": " Martin",
+      "timestamp": [254.96, 255.3]
+    },
+    {
+      "text": " was",
+      "timestamp": [255.3, 255.62]
+    },
+    {
+      "text": " quiet.",
+      "timestamp": [255.62, 256.04]
+    },
+    {
+      "text": " Then",
+      "timestamp": [256.72, 256.92]
+    },
+    {
+      "text": " he",
+      "timestamp": [256.92, 257.08]
+    },
+    {
+      "text": " said,",
+      "timestamp": [257.08, 257.34]
+    },
+    {
+      "text": " \"Please",
+      "timestamp": [257.94, 258.32]
+    },
+    {
+      "text": " go,",
+      "timestamp": [258.32, 258.64]
+    },
+    {
+      "text": " Tom.\"",
+      "timestamp": [258.82, 258.96]
+    },
+    {
+      "text": " Tom",
+      "timestamp": [259.94, 260.26]
+    },
+    {
+      "text": " left",
+      "timestamp": [260.26, 260.64]
+    },
+    {
+      "text": " the",
+      "timestamp": [260.64, 260.86]
+    },
+    {
+      "text": " hospital.",
+      "timestamp": [260.86, 261.28]
+    },
+    {
+      "text": " A",
+      "timestamp": [262.2, 262.4]
+    },
+    {
+      "text": " few",
+      "timestamp": [262.4, 262.56]
+    },
+    {
+      "text": " months",
+      "timestamp": [262.56, 262.74]
+    },
+    {
+      "text": " later,",
+      "timestamp": [262.74, 263.28]
+    },
+    {
+      "text": " business",
+      "timestamp": [263.56, 263.84]
+    },
+    {
+      "text": " was",
+      "timestamp": [263.84, 264.16]
+    },
+    {
+      "text": " good",
+      "timestamp": [264.16, 264.42]
+    },
+    {
+      "text": " again.",
+      "timestamp": [264.42, 264.72]
+    },
+    {
+      "text": " Tom",
+      "timestamp": [265.38, 265.66]
+    },
+    {
+      "text": " paid",
+      "timestamp": [265.66, 265.94]
+    },
+    {
+      "text": " his",
+      "timestamp": [265.94, 266.16]
+    },
+    {
+      "text": " bills",
+      "timestamp": [266.16, 266.38]
+    },
+    {
+      "text": " and",
+      "timestamp": [266.38, 266.86]
+    },
+    {
+      "text": " bought",
+      "timestamp": [266.86, 267.04]
+    },
+    {
+      "text": " new",
+      "timestamp": [267.04, 267.34]
+    },
+    {
+      "text": " tables",
+      "timestamp": [267.34, 267.76]
+    },
+    {
+      "text": " for",
+      "timestamp": [267.76, 268.08]
+    },
+    {
+      "text": " his",
+      "timestamp": [268.08, 268.22]
+    },
+    {
+      "text": " restaurant.",
+      "timestamp": [268.22, 268.62]
+    },
+    {
+      "text": " He",
+      "timestamp": [269.24, 269.42]
+    },
+    {
+      "text": " had",
+      "timestamp": [269.42, 269.6]
+    },
+    {
+      "text": " no",
+      "timestamp": [269.6, 269.88]
+    },
+    {
+      "text": " more",
+      "timestamp": [269.88, 270.14]
+    },
+    {
+      "text": " money",
+      "timestamp": [270.14, 270.48]
+    },
+    {
+      "text": " problems.",
+      "timestamp": [270.48, 270.9]
+    },
+    {
+      "text": " But",
+      "timestamp": [271.8, 272.02]
+    },
+    {
+      "text": " Martin",
+      "timestamp": [272.02, 272.42]
+    },
+    {
+      "text": " never",
+      "timestamp": [272.42, 273.04]
+    },
+    {
+      "text": " spoke",
+      "timestamp": [273.04, 273.38]
+    },
+    {
+      "text": " to",
+      "timestamp": [273.38, 273.56]
+    },
+    {
+      "text": " him",
+      "timestamp": [273.56, 273.7]
+    },
+    {
+      "text": " again.",
+      "timestamp": [273.7, 274.04]
+    },
+    {
+      "text": " He",
+      "timestamp": [274.74, 274.9]
+    },
+    {
+      "text": " didn't",
+      "timestamp": [274.9, 275.12]
+    },
+    {
+      "text": " answer",
+      "timestamp": [275.12, 275.52]
+    },
+    {
+      "text": " Tom's",
+      "timestamp": [275.52, 276]
+    },
+    {
+      "text": " calls.",
+      "timestamp": [276, 276.34]
+    },
+    {
+      "text": " They",
+      "timestamp": [277.02, 277.22]
+    },
+    {
+      "text": " were",
+      "timestamp": [277.22, 277.34]
+    },
+    {
+      "text": " no",
+      "timestamp": [277.34, 277.54]
+    },
+    {
+      "text": " longer",
+      "timestamp": [277.54, 277.86]
+    },
+    {
+      "text": " friends.",
+      "timestamp": [277.86, 278.28]
+    },
+    {
+      "text": " Tom",
+      "timestamp": [279.24, 279.6]
+    },
+    {
+      "text": " was",
+      "timestamp": [279.6, 279.86]
+    },
+    {
+      "text": " no",
+      "timestamp": [279.86, 280.1]
+    },
+    {
+      "text": " longer",
+      "timestamp": [280.1, 280.4]
+    },
+    {
+      "text": " afraid",
+      "timestamp": [280.4, 280.84]
+    },
+    {
+      "text": " of",
+      "timestamp": [280.84, 281.08]
+    },
+    {
+      "text": " losing",
+      "timestamp": [281.08, 281.34]
+    },
+    {
+      "text": " his",
+      "timestamp": [281.34, 281.7]
+    },
+    {
+      "text": " restaurant.",
+      "timestamp": [281.7, 282.2]
+    },
+    {
+      "text": " But",
+      "timestamp": [282.8, 283.04]
+    },
+    {
+      "text": " to",
+      "timestamp": [283.04, 283.18]
+    },
+    {
+      "text": " save",
+      "timestamp": [283.18, 283.46]
+    },
+    {
+      "text": " his",
+      "timestamp": [283.46, 283.68]
+    },
+    {
+      "text": " business,",
+      "timestamp": [283.68, 284.1]
+    },
+    {
+      "text": " he",
+      "timestamp": [284.62, 284.72]
+    },
+    {
+      "text": " lost",
+      "timestamp": [284.72, 284.92]
+    },
+    {
+      "text": " something",
+      "timestamp": [284.92, 285.46]
+    },
+    {
+      "text": " much",
+      "timestamp": [285.46, 285.98]
+    },
+    {
+      "text": " more",
+      "timestamp": [285.98, 286.3]
+    },
+    {
+      "text": " important.",
+      "timestamp": [286.3, 286.94]
+    }
+  ]
