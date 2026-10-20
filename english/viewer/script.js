@@ -37,6 +37,11 @@ const eraserTool            = document.getElementById("eraserTool");
 const pronunciationModal    = document.getElementById("pronunciationModal");
 const understoodButton      = document.getElementById("understoodButton");
 const contentLoadingOverlay = document.getElementById("contentLoadingOverlay");
+const loadingProgressBar = document.getElementById("loadingProgressBar");
+const loadingProgressFill = document.getElementById("loadingProgressFill");
+const loadingProgressPercent = document.getElementById("loadingProgressPercent");
+const loadingProgressLabel = document.getElementById("loadingProgressLabel");
+const loadingTimeRemaining = document.getElementById("loadingTimeRemaining");
 const colorDrawer           = document.getElementById("colorDrawer");
 
 /* =========================================================
@@ -58,6 +63,9 @@ let annotationStore = {};
 let annotationStorageKey = "";
 let currentSpeechSentence = [];
 let currentDrawColor = "#C94C4C";
+let loadingStartedAt = 0;
+let loadingProgress = 0;
+let downloadProgressTimer = null;
 
 /* =========================================================
    AUTOMATIC PDF FIT
@@ -95,14 +103,72 @@ async function openPDF(pdfPath) {
         stopSpeech();
         loadAnnotations(pdfPath);
 
-        const response = await fetch(pdfPath, { cache: "no-store" });
-        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        updateLoadingProgress(2, "");
 
-        const arrayBuffer = await response.arrayBuffer();
-        const data = new Uint8Array(arrayBuffer);
+const response = await fetch(pdfPath, { cache: "no-store" });
 
-        const loadingTask = pdfjsLib.getDocument({ data });
-        pdfDocument = await loadingTask.promise;
+if (!response.ok) {
+    throw new Error(`HTTP ${response.status}`);
+}
+
+let data;
+
+if (response.body && response.body.getReader) {
+    const reader = response.body.getReader();
+    const contentLength = Number(response.headers.get("content-length"));
+    const chunks = [];
+    let receivedLength = 0;
+
+    // If the server doesn't provide the file size,
+    // show a gradual estimate while downloading.
+    if (!contentLength) {
+        downloadProgressTimer = setInterval(() => {
+            const next = Math.min(60, loadingProgress + 1);
+            updateLoadingProgress(next, "جاري تحميل الكتاب...");
+        }, 150);
+    }
+
+    while (true) {
+        const { done, value } = await reader.read();
+
+        if (done) break;
+
+        chunks.push(value);
+        receivedLength += value.length;
+
+        if (contentLength > 0) {
+            const downloadPercent = receivedLength / contentLength;
+
+            updateLoadingProgress(
+                5 + downloadPercent * 65,
+                ""
+            );
+        }
+    }
+
+    clearInterval(downloadProgressTimer);
+    downloadProgressTimer = null;
+
+    data = new Uint8Array(receivedLength);
+    let offset = 0;
+
+    for (const chunk of chunks) {
+        data.set(chunk, offset);
+        offset += chunk.length;
+    }
+} else {
+    const arrayBuffer = await response.arrayBuffer();
+    data = new Uint8Array(arrayBuffer);
+}
+
+updateLoadingProgress(72, "");
+
+        updateLoadingProgress(75, "");
+
+const loadingTask = pdfjsLib.getDocument({ data });
+pdfDocument = await loadingTask.promise;
+
+updateLoadingProgress(82, "");
 
        currentPage = 1;
     manuallyZoomed = false;
@@ -116,8 +182,18 @@ async function openPDF(pdfPath) {
         await renderPage(currentPage);
 
         statusMessage.textContent = "";
-        hideContentLoading();
-        maybeShowPronunciationNotice();
+
+updateLoadingProgress(100, "");
+
+if (loadingTimeRemaining) {
+    loadingTimeRemaining.textContent = "الكتاب جاهز للقراءة";
+}
+
+setTimeout(() => {
+    hideContentLoading();
+}, 250);
+
+maybeShowPronunciationNotice();
 
     } catch (error) {
         console.error("PDF loading error:", error);
@@ -131,17 +207,94 @@ async function openPDF(pdfPath) {
 }
 
 /* =========================================================
-   LOADING OVERLAY
+   LOADING OVERLAY + PROGRESS
 ========================================================= */
+
+function updateLoadingProgress(percent, label) {
+    loadingProgress = Math.max(
+        loadingProgress,
+        Math.min(99, Math.max(0, percent))
+    );
+
+    if (loadingProgressFill) {
+        loadingProgressFill.style.width = `${loadingProgress}%`;
+    }
+
+    if (loadingProgressPercent) {
+        loadingProgressPercent.textContent =
+            `${Math.round(loadingProgress)}%`;
+    }
+
+    if (loadingProgressBar) {
+        loadingProgressBar.setAttribute(
+            "aria-valuenow",
+            String(Math.round(loadingProgress))
+        );
+    }
+
+    if (loadingProgressLabel && label) {
+        loadingProgressLabel.textContent = label;
+    }
+
+    if (loadingTimeRemaining && loadingStartedAt) {
+        if (loadingProgress < 5) {
+            loadingTimeRemaining.textContent =
+                "جارٍ تقدير الوقت المتبقي...";
+        } else {
+            const elapsed = (Date.now() - loadingStartedAt) / 1000;
+            const estimatedTotal =
+                elapsed / (loadingProgress / 100);
+            const remaining = Math.max(
+                1,
+                Math.ceil(estimatedTotal - elapsed)
+            );
+
+            loadingTimeRemaining.textContent =
+                `الوقت المتبقي: حوالي ${remaining} ${remaining === 1 ? "ثانية" : "ثوانٍ"}`;
+        }
+    }
+}
 
 function showContentLoading() {
     if (!contentLoadingOverlay) return;
+
+    clearInterval(downloadProgressTimer);
+    downloadProgressTimer = null;
+
+    loadingStartedAt = Date.now();
+    loadingProgress = 0;
+
     contentLoadingOverlay.hidden = false;
     contentLoadingOverlay.classList.add("show");
+
+    if (loadingProgressFill) {
+        loadingProgressFill.style.width = "0%";
+    }
+
+    if (loadingProgressPercent) {
+        loadingProgressPercent.textContent = "0%";
+    }
+
+    if (loadingProgressBar) {
+        loadingProgressBar.setAttribute("aria-valuenow", "0");
+    }
+
+    if (loadingProgressLabel) {
+        loadingProgressLabel.textContent = "";
+    }
+
+    if (loadingTimeRemaining) {
+        loadingTimeRemaining.textContent =
+            "جارٍ تقدير الوقت المتبقي...";
+    }
 }
 
 function hideContentLoading() {
+    clearInterval(downloadProgressTimer);
+    downloadProgressTimer = null;
+
     if (!contentLoadingOverlay) return;
+
     contentLoadingOverlay.hidden = true;
     contentLoadingOverlay.classList.remove("show");
 }
@@ -172,6 +325,9 @@ async function renderPage(pageNumber) {
         pageContainer.style.height = `${viewport.height}px`;
         pageContainer.setAttribute("aria-label", `صفحة ${target}`);
 
+        if (target === 1 && contentLoadingOverlay && !contentLoadingOverlay.hidden) {
+    updateLoadingProgress(85, "");
+}
         /* CANVAS */
         const canvas = document.createElement("canvas");
         canvas.className = "pdf-canvas";
@@ -187,6 +343,10 @@ async function renderPage(pageNumber) {
         }).promise;
 
         if (generation !== renderGeneration) return;
+
+        if (target === 1 && contentLoadingOverlay && !contentLoadingOverlay.hidden) {
+    updateLoadingProgress(92, "");
+}
 
         /* TEXT LAYER */
         const textLayerDiv = document.createElement("div");
@@ -205,6 +365,10 @@ async function renderPage(pageNumber) {
         await textLayer.render();
 
         if (generation !== renderGeneration) return;
+
+        if (target === 1 && contentLoadingOverlay && !contentLoadingOverlay.hidden) {
+    updateLoadingProgress(96, "");
+}
 
         /* ANNOTATION CANVAS */
         const annotationCanvas = document.createElement("canvas");
