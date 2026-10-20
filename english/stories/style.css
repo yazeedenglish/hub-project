@@ -151,7 +151,7 @@ button:focus-visible, input:focus-visible, select:focus-visible {
   color: white; font: 800 12px "Quicksand", sans-serif; letter-spacing: .4px;
   box-shadow: 0 5px 16px rgba(0,0,0,.13);
 }
-.level-A1 { background: #199fd4; }
+.level-A1 { background: #2ab8fa93; }
 
 .level-A2 { background: #0891B2; }
 
