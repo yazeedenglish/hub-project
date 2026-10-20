@@ -754,3 +754,212 @@ body[data-reader-mode="hand"] .textLayer { pointer-events: auto; }
     line-height: 1.8;
     margin-bottom: 8px;
 }
+
+/* =========================================================
+   RESPONSIVE — tablets & phones
+========================================================= */
+
+/* ---- Tablets and small laptops ---- */
+@media (max-width: 900px) {
+
+    .top-header {
+        padding: 10px 18px;
+    }
+
+    .stage {
+        padding: 16px;
+    }
+
+    .toolbar {
+        gap: 8px 10px;
+        padding: 10px 14px calc(10px + var(--safe-b));
+    }
+
+    .statusbar {
+        grid-template-columns: 1fr;
+        gap: 6px;
+        text-align: center;
+        padding: 10px 14px;
+    }
+
+    .footer-links {
+        justify-content: center;
+    }
+}
+
+
+/* ---- Phones ---- */
+@media (max-width: 640px) {
+
+    /* --- HEADER --- */
+    .top-header {
+        padding: 10px 14px;
+    }
+
+    .brand-mark {
+        width: 36px;
+        height: 36px;
+        font-size: 13px;
+        border-radius: 10px;
+    }
+
+    .brand-text strong { font-size: 14px; }
+    .brand-text span   { font-size: 10px; }
+
+    /* --- STAGE --- */
+    .stage {
+        padding: 10px;
+    }
+
+    .pages {
+        gap: 14px;
+    }
+
+    /* hide side arrows on phones — they'd cover the page */
+    .side-arrow {
+        display: none !important;
+    }
+
+    /* --- TOOLBAR --- 
+       Desktop grid (3 columns) doesn't fit. Reflow to 2 rows:
+         row 1: page nav (centered)
+         row 2: zoom (left) + tools/voice (right) */
+    .toolbar {
+        grid-template-columns: auto 1fr;
+        grid-template-areas:
+            "nav   nav"
+            "left  right";
+        gap: 8px;
+        padding: 8px 10px calc(8px + var(--safe-b));
+    }
+
+    .tb-left  { grid-area: left;  justify-self: start; gap: 6px; }
+    .tb-nav   { grid-area: nav;   justify-self: center; gap: 10px; }
+    .tb-right { grid-area: right; justify-self: end;   gap: 6px; }
+
+    .icon-btn {
+        width: 40px;
+        height: 40px;
+        border-radius: 11px;
+    }
+
+    .chip {
+        height: 40px;
+        min-width: 40px;
+        padding: 0 8px;
+        font-size: 13px;
+    }
+
+    /* Hide the zoom label chip on phones — too crowded */
+    .tb-left .chip {
+        display: none;
+    }
+
+    /* Page box tighter */
+    .page-box {
+        font-size: 14px;
+        gap: 6px;
+    }
+
+    .page-box input {
+        width: 50px;
+        height: 40px;
+        font-size: 14px;
+    }
+
+    /* Hide the speed chip on phones — accessible from panel */
+    #speedChip {
+        display: none;
+    }
+
+    /* Voice panel: full-width popover */
+    .panel {
+        width: calc(100vw - 16px);
+        right: 0;
+        border-radius: 18px;
+        padding: 16px;
+    }
+
+    /* Color drawer: same treatment */
+    .color-drawer {
+        width: calc(100vw - 16px);
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 10px;
+        border-radius: 14px;
+    }
+
+    .color-swatch {
+        width: 28px;
+        height: 28px;
+    }
+
+    /* --- STATUS BAR --- */
+    .statusbar {
+        padding: 8px 12px;
+        font-size: 11px;
+    }
+
+    .status-message {
+        display: none; /* the pronunciation hint is more important */
+    }
+
+    /* --- LOADING CARD --- */
+    .state-card {
+        width: calc(100% - 30px);
+        padding: 24px;
+    }
+
+    .state-card h2 { font-size: 18px; }
+    .state-card p  { font-size: 13px; }
+
+    /* --- MODAL --- */
+    .modal-card {
+        padding: 28px 20px 22px;
+        border-radius: 18px;
+    }
+
+    .modal-icon {
+        width: 62px;
+        height: 62px;
+        font-size: 28px;
+        border-radius: 16px;
+    }
+
+    .modal-card h2 { font-size: 19px; }
+    .modal-card p  { font-size: 14px; }
+}
+
+
+/* ---- Very narrow phones (≤ 400px) ---- */
+@media (max-width: 400px) {
+
+    /* Hide extra zoom buttons — user can still pinch */
+    #zoomOut,
+    #zoomIn {
+        display: none;
+    }
+
+    /* Keep only essential tool buttons visible */
+    .draw-tools .tool-btn {
+        width: 38px;
+        height: 38px;
+    }
+}
+
+
+/* ---- Landscape phones: keep toolbar compact ---- */
+@media (max-height: 500px) and (orientation: landscape) {
+
+    .toolbar {
+        padding: 6px 14px calc(6px + var(--safe-b));
+    }
+
+    .icon-btn,
+    .chip,
+    .page-box input {
+        height: 36px;
+    }
+
+    .icon-btn { width: 36px; }
+}
