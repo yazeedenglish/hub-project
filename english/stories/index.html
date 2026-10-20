@@ -27,19 +27,15 @@
 
   <main class="main-website">
     <section class="hero-section">
-      <span class="hero-small-title">READ • LEARN • GROW</span>
+      <span class="hero-small-title">SHORT STORIES</span>
       <h1>القصص القصيرة</h1>
-      <p>طوّر لغتك الإنجليزية من خلال قصص قصيرة، تعلّم كلمات جديدة، واستمع إلى النطق الصحيح أثناء القراءة.</p>
+      <p>طوّر لغتك الإنجليزية من خلال قصص قصيرة، تعلّم كلمات جديدة، واستمع إلى النطق الصحيح أثناء القراءة</p>
     </section>
 
     <section class="content-section" aria-labelledby="storiesHeading">
-      <div class="section-heading">
-        <span class="section-label">YOUR NEXT STORY</span>
-        <h2 id="storiesHeading">اختر قصتك التالية</h2>
-        <p>قصص تناسب مستويات مختلفة من تعلّم الإنجليزية.</p>
-      </div>
+      
       <div class="stories-grid" id="storiesGrid" aria-live="polite"></div>
-      <p class="empty-state" id="emptyState" hidden>لا توجد قصص مضافة حاليًا.</p>
+      <p class="empty-state" id="emptyState" hidden>لا توجد قصص مضافة حاليًا</p>
     </section>
 
     <section class="reader-section" id="readerSection" aria-labelledby="readerTitle" hidden>
@@ -49,7 +45,7 @@
           <h2 id="readerTitle">The Race</h2>
           <p class="reader-arabic-title" id="readerArabicTitle"></p>
         </div>
-        <button class="secondary-btn" type="button" id="closeReader">العودة إلى القصص</button>
+        <button class="secondary-btn" type="button" id="closeReader"><i data-lucide="x"></i></button>
       </div>
       <div class="reader-tools">
         <span class="reader-level" id="readerLevel">A1</span>
@@ -60,13 +56,13 @@
         </button>
       </div>
       <article class="story-content" id="storyContent" lang="en" dir="ltr" aria-label="Story text"></article>
-      <p class="reader-note">اضغط على أي كلمة لعرض ترجمتها وسماع نطقها.</p>
+      <p class="reader-note">اضغط على أي كلمة لعرض ترجمتها وسماع نطقها</p>
     </section>
   </main>
 
   <div class="word-popover" id="wordPopover" role="dialog" aria-live="polite" hidden>
     <button class="popover-close" type="button" id="closeWordPopover" aria-label="إغلاق">×</button>
-    <span class="popover-label">ENGLISH WORD</span>
+    <span class="popover-label"></span>
     <strong class="popover-word" id="popoverWord">hello</strong>
     <span class="popover-translation" id="popoverTranslation">مرحبًا</span>
     <button type="button" class="word-speak-btn" id="wordSpeakBtn">
@@ -92,12 +88,12 @@
     <label class="speed-control">
       <i data-lucide="gauge"></i>
       <select id="speedSelect" aria-label="سرعة التشغيل">
+        <option value="0.50">0.50×</option>
         <option value="0.75">0.75×</option>
         <option value="1" selected>1×</option>
         <option value="1.25">1.25×</option>
         <option value="1.5">1.5×</option>
-        <option value="1.75">1.75×</option>
-        <option value="2">2×</option>
+
       </select>
     </label>
     <button type="button" class="player-close" id="hidePlayerBtn" aria-label="إخفاء مشغل الصوت" title="إخفاء المشغل"><i data-lucide="x"></i></button>
