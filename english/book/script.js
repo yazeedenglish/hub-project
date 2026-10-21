@@ -9,7 +9,7 @@ import * as pdfjsLib from
 pdfjsLib.GlobalWorkerOptions.workerSrc =
     "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.worker.min.mjs";
 
-const PDF_FILE = "https://file.yazeedenglish.com/en/ebook.pdf";
+const PDF_FILE = "https://file.yazeedenglish.com/en/ebook1.pdf";
 
 /* =========================================================
    DOM ELEMENTS
