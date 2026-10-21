@@ -327,7 +327,7 @@ function renderCourses() {
             else {
 
                 status.innerHTML =
-                    "🔒 <span>غير مفعّلة</span>";
+                    "🔒 <span>غير مفعّل</span>";
 
                 const activate =
                     document.createElement("a");
