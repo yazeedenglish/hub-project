@@ -48,14 +48,16 @@
 
        <div class="header-actions">
 
+    <!-- This button switches between light and dark mode. -->
     <button
-        id="themeBtn"
-        class="theme-btn"
-        type="button"
-        aria-label="تغيير المظهر"
-    >
-        🌙
-    </button>
+    type="button"
+    class="theme-btn"
+    id="themeToggle"
+    aria-label="تغيير المظهر"
+    title="تغيير المظهر"
+>
+    <i data-lucide="moon"></i>
+</button>
 
     <a
         href="https://hub.yazeedenglish.com/step"
@@ -548,6 +550,11 @@ Yazeed English - STEP Exam Simulator
 
 <script>
     initializeCourseAccess("step");
+</script>
+
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>
+    lucide.createIcons();
 </script>
 
 <script src="script.js"></script>

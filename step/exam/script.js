@@ -1095,8 +1095,8 @@ const progressPercent =
 const progressBar =
     document.getElementById("progressBar");
 
-const themeBtn =
-    document.getElementById("themeBtn");
+const themeToggle =
+    document.getElementById("themeToggle");
 
 const clapAudio =
     document.getElementById("clapAudio");
@@ -3069,57 +3069,78 @@ function restartExam() {
 }
 
 
-/* =========================================================
-   THEME
-   ========================================================= */
+// ============================================================
+ // THEME TOGGLE
+ // ============================================================
 
-themeBtn.addEventListener(
-    "click",
-    () => {
+function updateThemeIcon(isDark) {
 
-        document.body.classList.toggle(
-            "dark"
-        );
+    if (!themeToggle) return;
 
+    themeToggle.innerHTML = isDark
+        ? '<i data-lucide="sun-medium"></i>'
+        : '<i data-lucide="moon"></i>';
 
-        const dark =
-            document.body.classList.contains(
+    if (window.lucide) {
+        window.lucide.createIcons();
+    }
+
+}
+
+if (themeToggle) {
+
+    themeToggle.addEventListener(
+        "click",
+        () => {
+
+            document.body.classList.toggle(
                 "dark"
             );
 
+            const isDark =
+                document.body.classList.contains(
+                    "dark"
+                );
 
-        themeBtn.textContent =
-            dark
-                ? "☀️"
-                : "🌙";
+            updateThemeIcon(isDark);
+
+            localStorage.setItem(
+                "theme",
+                isDark
+                    ? "dark"
+                    : "light"
+            );
+
+        }
+    );
+
+}
 
 
-        localStorage.setItem(
-            "step-theme",
-            dark
-                ? "dark"
-                : "light"
-        );
+// ============================================================
+// RESTORE SAVED THEME
+// ============================================================
 
-    }
-);
+const savedTheme =
+    localStorage.getItem("theme");
 
-
-/* Restore theme */
-
-if (
-    localStorage.getItem(
-        "step-theme"
-    ) === "dark"
-) {
+if (savedTheme === "dark") {
 
     document.body.classList.add(
         "dark"
     );
 
-    themeBtn.textContent =
-        "☀️";
+} else {
+
+    document.body.classList.remove(
+        "dark"
+    );
+
 }
+
+updateThemeIcon(
+    document.body.classList.contains("dark")
+);
 
 
 /* =========================================================

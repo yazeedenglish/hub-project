@@ -43,32 +43,102 @@ let lastClickedWord = null;
 
 const levelLabels = { A1: "مبتدئ", A2: "مبتدئ متقدم", B1: "متوسط", B2: "فوق المتوسط" };
 
+
+/* ============================================================
+   THEME — LUCIDE ICONS
+============================================================ */
+
+const YAZEED_ENGLISH_THEME =
+  "yazeed_english_theme";
+
+
 function renderIcons() {
-  if (window.lucide) window.lucide.createIcons();
+  if (window.lucide) {
+    window.lucide.createIcons();
+  }
 }
+
+
+// ============================================================
+// LOAD THEME
+// ============================================================
 
 function loadTheme() {
   try {
-    const savedTheme = localStorage.getItem("ye_stories_theme");
-    if (savedTheme === "dark") document.body.classList.add("dark");
-    if (savedTheme === "light") document.body.classList.remove("dark");
+    const savedTheme =
+      localStorage.getItem(YAZEED_ENGLISH_THEME);
+
+    if (savedTheme === "dark") {
+      document.body.classList.add("dark");
+    } else if (savedTheme === "light") {
+      document.body.classList.remove("dark");
+    }
   } catch (_) {}
+
   updateThemeButton();
 }
+
+
+// ============================================================
+// UPDATE THEME BUTTON
+// ============================================================
 
 function updateThemeButton() {
-  const isDark = document.body.classList.contains("dark");
-  themeToggle.textContent = isDark ? "☀️" : "🌙";
-  themeToggle.setAttribute("aria-label", isDark ? "تفعيل الوضع الفاتح" : "تفعيل الوضع الداكن");
+  if (!themeToggle) return;
+
+  const isDark =
+    document.body.classList.contains("dark");
+
+  themeToggle.innerHTML = isDark
+    ? '<i data-lucide="sun"></i>'
+    : '<i data-lucide="moon"></i>';
+
+  themeToggle.setAttribute(
+    "aria-label",
+    isDark
+      ? "تفعيل الوضع الفاتح"
+      : "تفعيل الوضع الداكن"
+  );
+
+  themeToggle.setAttribute(
+    "title",
+    isDark
+      ? "تفعيل الوضع الفاتح"
+      : "تفعيل الوضع الداكن"
+  );
+
+  renderIcons();
 }
 
-themeToggle.addEventListener("click", () => {
-  document.body.classList.toggle("dark");
-  try {
-    localStorage.setItem("ye_stories_theme", document.body.classList.contains("dark") ? "dark" : "light");
-  } catch (_) {}
-  updateThemeButton();
-});
+
+// ============================================================
+// THEME TOGGLE
+// ============================================================
+
+if (themeToggle) {
+  themeToggle.addEventListener("click", () => {
+    const isDark =
+      document.body.classList.contains("dark");
+
+    const newTheme =
+      isDark ? "light" : "dark";
+
+    document.body.classList.toggle(
+      "dark",
+      newTheme === "dark"
+    );
+
+    try {
+      localStorage.setItem(
+        YAZEED_ENGLISH_THEME,
+        newTheme
+      );
+    } catch (_) {}
+
+    updateThemeButton();
+  });
+}
+
 
 function renderStories() {
   storiesGrid.innerHTML = "";

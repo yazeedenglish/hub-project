@@ -256,6 +256,14 @@ a {
         translateY(-2px);
 }
 
+.theme-btn [data-lucide] {
+    width: 20px;
+    height: 20px;
+    stroke-width: 2;
+    display: block;
+    flex-shrink: 0;
+}
+
 
 /* =========================================================
    PAGE

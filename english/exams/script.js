@@ -539,11 +539,14 @@ function applyTheme(theme) {
         theme === "dark"
     );
 
-
-    themeToggle.textContent =
+    themeToggle.innerHTML =
         theme === "dark"
-            ? "☀️"
-            : "🌙";
+            ? '<i data-lucide="sun-medium"></i>'
+            : '<i data-lucide="moon"></i>';
+
+    if (window.lucide) {
+        window.lucide.createIcons();
+    }
 
 }
 

@@ -21,7 +21,15 @@
       </div>
     </div>
     <div class="header-actions">
-      <button type="button" class="theme-btn" id="themeToggle" aria-label="تغيير المظهر">🌙</button>
+      <button
+    type="button"
+    class="theme-btn"
+    id="themeToggle"
+    aria-label="تغيير المظهر"
+    title="تغيير المظهر"
+>
+    <i data-lucide="moon"></i>
+</button>
     </div>
   </header>
 
@@ -101,6 +109,9 @@
 
   <audio id="storyAudio" preload="metadata"></audio>
   <script src="https://unpkg.com/lucide@latest"></script>
+<script>
+    lucide.createIcons();
+</script>
   <script src="stories.js"></script>
 </body>
 </html>

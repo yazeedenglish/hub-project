@@ -394,75 +394,49 @@ function renderCourses() {
 ========================================================= */
 
 const themeToggle =
-    document.getElementById(
-        "themeToggle"
-    );
+    document.getElementById("themeToggle");
 
+const THEME_KEY =
+    "yazeed_english_theme";
 
-function applyTheme() {
+function updateThemeIcon(isDark) {
+    if (!themeToggle) return;
 
-    const theme =
-        localStorage.getItem(
-            "theme"
-        );
+    themeToggle.innerHTML = isDark
+        ? '<i data-lucide="sun-medium"></i>'
+        : '<i data-lucide="moon"></i>';
 
-
-    if (
-        theme ===
-        "dark"
-    ) {
-
-        document.body.classList.add(
-            "dark"
-        );
-
-        themeToggle.textContent =
-            "☀️";
-
-    } else {
-
-        document.body.classList.remove(
-            "dark"
-        );
-
-        themeToggle.textContent =
-            "🌙";
-
+    if (window.lucide) {
+        window.lucide.createIcons();
     }
-
 }
 
+function applyTheme() {
+    const theme = localStorage.getItem(THEME_KEY);
+    const isDark = theme === "dark";
 
-themeToggle.addEventListener(
-    "click",
-    () => {
+    document.body.classList.toggle("dark", isDark);
+    updateThemeIcon(isDark);
+}
 
-        document.body.classList.toggle(
-            "dark"
-        );
-
+if (themeToggle) {
+    themeToggle.addEventListener("click", () => {
+        document.body.classList.toggle("dark");
 
         const isDark =
-            document.body.classList.contains(
-                "dark"
-            );
-
+            document.body.classList.contains("dark");
 
         localStorage.setItem(
-            "theme",
-            isDark
-                ? "dark"
-                : "light"
+            THEME_KEY,
+            isDark ? "dark" : "light"
         );
 
+        updateThemeIcon(isDark);
+    });
+}
 
-        themeToggle.textContent =
-            isDark
-                ? "☀️"
-                : "🌙";
-
-    }
-);
+// Restore saved theme on page load
+applyTheme();
 
 /* =========================================================
    LOGOUT

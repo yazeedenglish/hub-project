@@ -2369,39 +2369,72 @@ function formatTime(seconds) {
 }
 
 
+
+/* ============================================================
+   THEME TOGGLE — LUCIDE ICONS
+============================================================ */
+
+const YAZEED_ENGLISH_THEME =
+    "yazeed_english_theme";
+
+
+function updateThemeIcon() {
+
+    if (!themeToggle) return;
+
+    const isDark =
+        document.body.classList.contains("dark");
+
+    themeToggle.innerHTML = isDark
+        ? '<i data-lucide="sun"></i>'
+        : '<i data-lucide="moon"></i>';
+
+    // Render the Lucide icon
+    if (typeof lucide !== "undefined") {
+        lucide.createIcons();
+    }
+
+}
+
+
+// ============================================================
+// APPLY THEME
+// ============================================================
+
+function applyTheme(theme) {
+
+    document.body.classList.toggle(
+        "dark",
+        theme === "dark"
+    );
+
+    updateThemeIcon();
+
+}
+
+
 // ============================================================
 // THEME TOGGLE
 // ============================================================
 
 if (themeToggle) {
 
-    themeToggle.addEventListener(
-        "click",
-        () => {
+    themeToggle.addEventListener("click", () => {
 
-            document.body.classList.toggle(
-                "dark"
-            );
+        const isDark =
+            document.body.classList.contains("dark");
 
-            const isDark =
-                document.body.classList.contains(
-                    "dark"
-                );
+        const newTheme =
+            isDark ? "light" : "dark";
 
-            themeToggle.textContent =
-                isDark
-                    ? "☀️"
-                    : "🌙";
+        localStorage.setItem(
+            YAZEED_ENGLISH_THEME,
+            newTheme
+        );
 
-            localStorage.setItem(
-                "theme",
-                isDark
-                    ? "dark"
-                    : "light"
-            );
+        applyTheme(newTheme);
 
-        }
-    );
+    });
 
 }
 
@@ -2411,25 +2444,24 @@ if (themeToggle) {
 // ============================================================
 
 const savedTheme =
-    localStorage.getItem("theme");
+    localStorage.getItem(YAZEED_ENGLISH_THEME);
 
-if (savedTheme === "dark") {
+if (savedTheme === "dark" || savedTheme === "light") {
 
-    document.body.classList.add(
-        "dark"
-    );
-
-    if (themeToggle) {
-        themeToggle.textContent =
-            "☀️";
-    }
+    applyTheme(savedTheme);
 
 } else {
 
-    if (themeToggle) {
-        themeToggle.textContent =
-            "🌙";
-    }
+    // Follow the device preference by default
+    const prefersDark =
+        window.matchMedia &&
+        window.matchMedia(
+            "(prefers-color-scheme: dark)"
+        ).matches;
+
+    applyTheme(
+        prefersDark ? "dark" : "light"
+    );
 
 }
 

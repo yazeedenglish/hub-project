@@ -181,7 +181,7 @@
                 <strong>Yazeed English</strong>
 
                 <!-- Small description. -->
-                <span>STEP Course</span>
+                <span>يزيد للانجليزية</span>
 
             </div>
 
@@ -194,12 +194,15 @@
 
 
     <!-- This button switches between light and dark mode. -->
-    <button id="themeToggle" class="theme-btn" aria-label="تغيير الوضع">
-
-        <!-- Moon is shown initially. -->
-        🌙
-
-    </button>
+    <button
+    type="button"
+    class="theme-btn"
+    id="themeToggle"
+    aria-label="تغيير المظهر"
+    title="تغيير المظهر"
+>
+    <i data-lucide="moon"></i>
+</button>
 
     <a
         href="https://hub.yazeedenglish.com/step/file"
@@ -408,7 +411,7 @@
 
             <!-- Description. -->
             <p>
-               اختبر مستواك من خلال المحاكي الخاص بمنصة يزيد للانجليزية
+               اختبر مستواك وجاهزيتك بطريقة عملية قبل اختبارك الحقيقي
             </p>
 
 
@@ -676,8 +679,13 @@
     initializeCourseAccess("step");
 </script>
 
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>
+    lucide.createIcons();
+</script>
+
 <script type="module" src="script.js"></script>
 
 </body>
 
-</html>>>
+</html>

@@ -41,13 +41,14 @@
         <div class="theme-buttons">
 
     <button
-        id="themeToggle"
-        class="theme-btn"
-        type="button"
-        aria-label="تغيير الوضع"
-    >
-        🌙
-    </button>
+    type="button"
+    class="theme-btn"
+    id="themeToggle"
+    aria-label="تغيير المظهر"
+    title="تغيير المظهر"
+>
+    <i data-lucide="moon"></i>
+</button>
 
     <button
         id="logoutButton"
@@ -148,6 +149,10 @@
 
     </footer>
 
+    <script src="https://unpkg.com/lucide@latest"></script>
+<script>
+    lucide.createIcons();
+</script>
 
     <script src="script.js"></script>
 

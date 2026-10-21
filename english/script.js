@@ -48,116 +48,46 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
+
+
 /* =========================================================
    THEME
 ========================================================= */
 
-const THEME_STORAGE_KEY =
-    "yazeed_english_theme";
+const THEME_STORAGE_KEY = "yazeed_english_theme";
 
-
-const themeToggle =
-    document.getElementById(
-        "themeToggle"
-    );
-
-
-const themeIcon =
-    document.getElementById(
-        "themeIcon"
-    );
-
+const themeToggle = document.getElementById("themeToggle");
 
 function applyTheme(theme) {
+    document.body.classList.toggle("dark", theme === "dark");
 
-    if (theme === "dark") {
+    themeToggle.innerHTML = theme === "dark"
+        ? '<i data-lucide="sun"></i>'
+        : '<i data-lucide="moon"></i>';
 
-        document.body.classList.add(
-            "dark"
-        );
-
-        themeIcon.textContent = "☀️";
-
-    } else {
-
-        document.body.classList.remove(
-            "dark"
-        );
-
-        themeIcon.textContent = "🌙";
-
-    }
-
+    lucide.createIcons();
 }
 
+// Get saved theme
+let currentTheme = localStorage.getItem(THEME_STORAGE_KEY);
 
-function getInitialTheme() {
-
-    const savedTheme =
-        localStorage.getItem(
-            THEME_STORAGE_KEY
-        );
-
-
-    if (savedTheme) {
-
-        return savedTheme;
-
-    }
-
-
-    /*
-        If the student has never selected
-        a theme, follow their device setting.
-    */
-
-    if (
-        window.matchMedia &&
-        window.matchMedia(
-            "(prefers-color-scheme: dark)"
-        ).matches
-    ) {
-
-        return "dark";
-
-    }
-
-
-    return "light";
-
+// Use device preference if no valid theme is saved
+if (currentTheme !== "dark" && currentTheme !== "light") {
+    currentTheme = window.matchMedia("(prefers-color-scheme: dark)").matches
+        ? "dark"
+        : "light";
 }
 
+// Apply initial theme
+applyTheme(currentTheme);
 
-applyTheme(
-    getInitialTheme()
-);
+// Toggle theme
+themeToggle.addEventListener("click", function () {
+    currentTheme = document.body.classList.contains("dark")
+        ? "light"
+        : "dark";
 
+    localStorage.setItem(THEME_STORAGE_KEY, currentTheme);
 
-themeToggle.addEventListener(
-    "click",
-    () => {
-
-        const isDark =
-            document.body.classList.contains(
-                "dark"
-            );
-
-
-        const newTheme =
-            isDark
-                ? "light"
-                : "dark";
-
-
-        applyTheme(
-            newTheme
-        );
-
-
-        localStorage.setItem(
-            THEME_STORAGE_KEY,
-            newTheme
-        );
-
-    }
-);
+    applyTheme(currentTheme);
+});

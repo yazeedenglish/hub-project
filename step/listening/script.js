@@ -505,50 +505,102 @@ let totalIncorrect = 0;
 let answeredQuestions = [];
 
 
-/* =========================================================
-   THEME
-   ========================================================= */
+/* ============================================================
+   THEME TOGGLE — LUCIDE
+============================================================ */
 
-function updateThemeIcon() {
+const YAZEED_ENGLISH_THEME =
+    "yazeed_english_theme";
 
-    const isDark =
-        document.body.classList.contains("dark");
 
-    themeToggle.textContent =
-        isDark ? "☀️" : "🌙";
+function updateThemeIcon(isDark) {
+
+    if (!themeToggle) return;
+
+    themeToggle.innerHTML = isDark
+        ? '<i data-lucide="sun-medium"></i>'
+        : '<i data-lucide="moon"></i>';
+
+    if (window.lucide) {
+        window.lucide.createIcons();
+    }
+
 }
 
 
-themeToggle.addEventListener(
-    "click",
-    () => {
+// ============================================================
+// RESTORE SAVED THEME
+// ============================================================
 
-        document.body.classList.toggle("dark");
+let savedTheme = null;
 
-        const isDark =
-            document.body.classList.contains("dark");
-
-        localStorage.setItem(
-            "theme",
-            isDark ? "dark" : "light"
-        );
-
-        updateThemeIcon();
-    }
-);
-
-
-const savedTheme =
-    localStorage.getItem("theme");
+try {
+    savedTheme = localStorage.getItem(
+        YAZEED_ENGLISH_THEME
+    );
+} catch (_) {}
 
 
 if (savedTheme === "dark") {
 
     document.body.classList.add("dark");
+
+} else if (savedTheme === "light") {
+
+    document.body.classList.remove("dark");
+
+} else {
+
+    // Follow the device preference if no theme is saved
+    const prefersDark =
+        window.matchMedia &&
+        window.matchMedia(
+            "(prefers-color-scheme: dark)"
+        ).matches;
+
+    document.body.classList.toggle(
+        "dark",
+        prefersDark
+    );
+
 }
 
+updateThemeIcon(
+    document.body.classList.contains("dark")
+);
 
-updateThemeIcon();
+
+// ============================================================
+// THEME TOGGLE
+// ============================================================
+
+if (themeToggle) {
+
+    themeToggle.addEventListener("click", () => {
+
+        const isDark =
+            document.body.classList.contains("dark");
+
+        const newTheme =
+            isDark ? "light" : "dark";
+
+        document.body.classList.toggle(
+            "dark",
+            newTheme === "dark"
+        );
+
+        try {
+            localStorage.setItem(
+                YAZEED_ENGLISH_THEME,
+                newTheme
+            );
+        } catch (_) {}
+
+        updateThemeIcon(newTheme === "dark");
+
+    });
+
+}
 
 
 /* =========================================================

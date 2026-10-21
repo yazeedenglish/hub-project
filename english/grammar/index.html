@@ -194,12 +194,15 @@
 
 
     <!-- This button switches between light and dark mode. -->
-    <button id="themeToggle" class="theme-btn" aria-label="تغيير الوضع">
-
-        <!-- Moon is shown initially. -->
-        🌙
-
-    </button>
+    <button
+    type="button"
+    class="theme-btn"
+    id="themeToggle"
+    aria-label="تغيير المظهر"
+    title="تغيير المظهر"
+>
+    <i data-lucide="moon"></i>
+</button>
 
 </div>
 
@@ -496,6 +499,11 @@
 
 <script>
     initializeCourseAccess("english");
+</script>
+
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>
+    lucide.createIcons();
 </script>
 
 <script type="module" src="script.js"></script>

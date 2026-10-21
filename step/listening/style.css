@@ -144,20 +144,54 @@ button {
 }
 
 .theme-btn {
+
     width: 38px;
+
     height: 38px;
-    border: 1px solid var(--line);
+
+    display: grid;
+
+    place-items: center;
+
+    border:
+        1px solid
+        var(--line);
+
     border-radius: 10px;
-    background: var(--card);
-    color: var(--ink);
+
+    background:
+        var(--card);
+
+    color:
+        var(--ink);
+
     cursor: pointer;
-    transition: 0.2s;
-    font-size: 16px;
+
+    font-family:
+        inherit;
+
+    font-size: 17px;
+
+    transition:
+        0.2s ease;
 }
 
+
 .theme-btn:hover {
-    border-color: var(--indigo);
-    transform: translateY(-2px);
+
+    border-color:
+        var(--indigo);
+
+    transform:
+        translateY(-2px);
+}
+
+.theme-btn [data-lucide] {
+    width: 20px;
+    height: 20px;
+    stroke-width: 2;
+    display: block;
+    flex-shrink: 0;
 }
 
 /* =========================================================

@@ -83,13 +83,14 @@
         <div class="header-actions">
 
             <button
-                class="theme-btn"
-                id="themeToggle"
-                type="button"
-                aria-label="تغيير المظهر"
-            >
-                <span id="themeIcon">☾</span>
-            </button>
+    type="button"
+    class="theme-btn"
+    id="themeToggle"
+    aria-label="تغيير المظهر"
+    title="تغيير المظهر"
+>
+    <i data-lucide="moon" id="themeIcon"></i>
+</button>
 
         </div>
 
@@ -499,6 +500,11 @@
 
 <script>
     initializeCourseAccess("english");
+</script>
+
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>
+    lucide.createIcons();
 </script>
 
 <script type="module" src="script.js"></script>

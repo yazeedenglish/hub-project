@@ -2446,39 +2446,26 @@ function formatTime(seconds) {
 }
 
 
-// ============================================================
-// THEME TOGGLE
-// ============================================================
 
-if (themeToggle) {
+ /* ============================================================
+   THEME TOGGLE — LUCIDE
+============================================================ */
 
-    themeToggle.addEventListener(
-        "click",
-        () => {
+const YAZEED_ENGLISH_THEME =
+    "yazeed_english_theme";
 
-            document.body.classList.toggle(
-                "dark"
-            );
 
-            const isDark =
-                document.body.classList.contains(
-                    "dark"
-                );
+function updateThemeIcon(isDark) {
 
-            themeToggle.textContent =
-                isDark
-                    ? "☀️"
-                    : "🌙";
+    if (!themeToggle) return;
 
-            localStorage.setItem(
-                "theme",
-                isDark
-                    ? "dark"
-                    : "light"
-            );
+    themeToggle.innerHTML = isDark
+        ? '<i data-lucide="sun-medium"></i>'
+        : '<i data-lucide="moon"></i>';
 
-        }
-    );
+    if (window.lucide) {
+        window.lucide.createIcons();
+    }
 
 }
 
@@ -2487,28 +2474,76 @@ if (themeToggle) {
 // RESTORE SAVED THEME
 // ============================================================
 
-const savedTheme =
-    localStorage.getItem("theme");
+let savedTheme = null;
+
+try {
+    savedTheme = localStorage.getItem(
+        YAZEED_ENGLISH_THEME
+    );
+} catch (_) {}
+
 
 if (savedTheme === "dark") {
 
-    document.body.classList.add(
-        "dark"
-    );
+    document.body.classList.add("dark");
 
-    if (themeToggle) {
-        themeToggle.textContent =
-            "☀️";
-    }
+} else if (savedTheme === "light") {
+
+    document.body.classList.remove("dark");
 
 } else {
 
-    if (themeToggle) {
-        themeToggle.textContent =
-            "🌙";
-    }
+    // Follow the device preference if no theme is saved
+    const prefersDark =
+        window.matchMedia &&
+        window.matchMedia(
+            "(prefers-color-scheme: dark)"
+        ).matches;
+
+    document.body.classList.toggle(
+        "dark",
+        prefersDark
+    );
 
 }
+
+updateThemeIcon(
+    document.body.classList.contains("dark")
+);
+
+
+// ============================================================
+// THEME TOGGLE
+// ============================================================
+
+if (themeToggle) {
+
+    themeToggle.addEventListener("click", () => {
+
+        const isDark =
+            document.body.classList.contains("dark");
+
+        const newTheme =
+            isDark ? "light" : "dark";
+
+        document.body.classList.toggle(
+            "dark",
+            newTheme === "dark"
+        );
+
+        try {
+            localStorage.setItem(
+                YAZEED_ENGLISH_THEME,
+                newTheme
+            );
+        } catch (_) {}
+
+        updateThemeIcon(newTheme === "dark");
+
+    });
+
+}
+
 
 
 // ============================================================
