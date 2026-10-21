@@ -176,27 +176,19 @@ if (blacklisted) {
 
 
         /* =================================================
-           CREATE NEW ACCESS IF NEEDED
-        ================================================= */
+   CREATE NEW ACCESS IF NEEDED
+================================================= */
 
-        if (
-            !accessData ||
-            accessData.orderNumber !== orderNumber
-        ) {
-
-            accessData = {
-
-                orderNumber:
-                    orderNumber,
-
-                products: {},
-
-                consentAccepted:
-                    true
-
-            };
-
-        }
+if (
+    !accessData ||
+    typeof accessData !== "object" ||
+    Array.isArray(accessData)
+) {
+    accessData = {
+        products: {},
+        consentAccepted: true
+    };
+}
 
 
         /* =================================================
@@ -215,16 +207,18 @@ if (blacklisted) {
 
         accessData.products[selectedProduct] = {
 
-            active: true,
+    active: true,
 
-            activatedAt:
-                Date.now(),
+    orderNumber: orderNumber,
 
-            expiresAt:
-                Date.now() +
-                ACCESS_DURATION
+    activatedAt:
+        Date.now(),
 
-        };
+    expiresAt:
+        Date.now() +
+        ACCESS_DURATION
+
+};
 
 
         accessData.consentAccepted =

@@ -303,11 +303,14 @@ function getCurrentAccess() {
             access.products = {};
 
             access.products[oldProduct] = {
-                active: true,
-                expiresAt:
-                    access.expiresAt ||
-                    Date.now() + ACCESS_DURATION
-            };
+    active: true,
+
+    orderNumber: access.orderNumber,
+
+    expiresAt:
+        access.expiresAt ||
+        Date.now() + ACCESS_DURATION
+};
 
             delete access.product;
             delete access.expiresAt;
@@ -319,10 +322,42 @@ function getCurrentAccess() {
         }
 
         if (!access.products) {
-            access.products = {};
-        }
+    access.products = {};
+}
 
-        return access;
+/*
+   Migrate existing multi-product records.
+   Assign the old shared order number to
+   products that do not have their own.
+*/
+
+let migrated = false;
+
+for (const productKey in access.products) {
+
+    const product =
+        access.products[productKey];
+
+    if (
+        product &&
+        !product.orderNumber &&
+        access.orderNumber
+    ) {
+        product.orderNumber =
+            access.orderNumber;
+
+        migrated = true;
+    }
+}
+
+if (migrated) {
+    localStorage.setItem(
+        ACCESS_STORAGE_KEY,
+        JSON.stringify(access)
+    );
+}
+
+return access;
 
     } catch (error) {
 
@@ -407,35 +442,12 @@ async function isBlacklisted(orderNumber, courseKey) {
 
 async function checkCourseAccess(courseKey) {
 
-    const access =
-        getCurrentAccess();
+    const access = getCurrentAccess();
 
     if (!access) {
-
-        window.location.href =
-            "/activate/";
-
+        window.location.href = "/activate/";
         return false;
     }
-
-    if (
-    await isBlacklisted(
-        access.orderNumber,
-        courseKey
-    )
-) {
-
-    delete access.products[courseKey];
-
-    localStorage.setItem(
-        ACCESS_STORAGE_KEY,
-        JSON.stringify(access)
-    );
-
-    showAccessRemovedModal();
-
-return false;
-}
 
     const product =
         access.products?.[courseKey];
@@ -444,22 +456,48 @@ return false;
         !product ||
         product.active !== true
     ) {
+        window.location.href = "/activate/";
+        return false;
+    }
 
-        window.location.href =
-            "/activate/";
+    /*
+       Check the blacklist using this product's
+       own order number.
+    */
+
+    const orderNumber =
+        product.orderNumber ||
+        access.orderNumber;
+
+    if (
+        await isBlacklisted(
+            orderNumber,
+            courseKey
+        )
+    ) {
+
+        delete access.products[courseKey];
+
+        localStorage.setItem(
+            ACCESS_STORAGE_KEY,
+            JSON.stringify(access)
+        );
+
+        showAccessRemovedModal();
 
         return false;
     }
+
+    /*
+       Expire only the selected product.
+       Keep all other product activations.
+    */
 
     if (
         !product.expiresAt ||
         Date.now() > product.expiresAt
     ) {
 
-        /*
-           Remove only the expired course.
-           Other active courses remain untouched.
-        */
 
         delete access.products[courseKey];
 
@@ -469,11 +507,10 @@ return false;
         );
 
         alert(
-            "انتهت صلاحية الوصول إلى هذه الدورة. يرجى التفعيل مرة أخرى."
+            "انتهت صلاحية الوصول الى هذا المنتج. يرجى التفعيل مرة أخرى"
         );
 
-        window.location.href =
-            "/activate/";
+        window.location.href = "/activate/";
 
         return false;
     }
