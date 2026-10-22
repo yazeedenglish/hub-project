@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#00689b">
+    <title>Yazeed English - Interactive Reader</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf_viewer.min.css"
+    >
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- apply saved theme before first paint (no flash) -->
+    <script>
+        try {
+            var t = localStorage.getItem('ye-theme');
+            if (t ? t === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                document.documentElement.classList.add('dark');
+            }
+        } catch (e) {}
+    </script>
+</head>
+
+<body>
+
+    <!-- =====================================================
+         التطبيق الرئيسي
+    ====================================================== -->
+
+    <div id="readerApp" class="app" hidden>
+
+        <!-- =================================================
+             HEADER
+        ================================================== -->
+        <header class="top-header">
+
+    <div class="brand">
+        <img
+            src="https://file.yazeedenglish.com/logo.png"
+            alt="Yazeed English"
+            class="brand-logo"
+        >
+
+        <div class="brand-text">
+            <strong>Yazeed English</strong>
+            <span>يزيد للانجليزية</span>
+        </div>
+    </div>
+
+    <button
+        class="icon-btn"
+        id="themeBtn"
+        type="button"
+        aria-label="تبديل الوضع الداكن"
+        title="الوضع الداكن"
+    >
+        <svg class="i" viewBox="0 0 24 24" aria-hidden="true">
+            <path id="themeIcon" d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>
+        </svg>
+    </button>
+
+</header>
+
+
+        <!-- شريط تقدم الصفحة -->
+        <div class="progress" aria-hidden="true">
+            <span id="progressBar"></span>
+        </div>
+
+
+        <!-- =================================================
+             STAGE / VIEWER
+        ================================================== -->
+        <main class="stage" id="viewerContainer">
+
+            <div id="pdfViewer" class="pages"></div>
+
+            <button
+                class="side-arrow prev"
+                id="previousPage"
+                type="button"
+                aria-label="الصفحة السابقة"
+                title="السابق"
+            >
+                <svg class="i" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg>
+            </button>
+
+            <button
+                class="side-arrow next"
+                id="nextPage"
+                type="button"
+                aria-label="الصفحة التالية"
+                title="التالي"
+            >
+                <svg class="i" viewBox="0 0 24 24">
+    <path d="m9 18 6-6-6-6"/>
+</svg>
+            </button>
+
+            <!-- شاشة تحميل المحتوى -->
+<div
+    id="contentLoadingOverlay"
+    class="state show"
+    hidden
+    role="status"
+    aria-live="polite"
+    aria-label="جارٍ تحميل المحتوى"
+>
+    <div class="state-card">
+        <div class="spinner"></div>
+
+        <h2>جارٍ تحميل المحتوى…</h2>
+        <p></p>
+
+        <div class="loading-progress">
+            <div class="loading-progress-info">
+                <span id="loadingProgressLabel"></span>
+                <span id="loadingProgressPercent">0%</span>
+            </div>
+
+        </main>
+
+
+        <!-- =================================================
+             TOOLBAR
+        ================================================== -->
+        <footer class="toolbar" dir="ltr">
+
+            <!-- left group: zoom -->
+            <div class="tb-group tb-left">
+
+                <button
+                    class="icon-btn"
+                    id="zoomOut"
+                    type="button"
+                    title="تصغير"
+                    aria-label="تصغير"
+                >
+                    <svg class="i" viewBox="0 0 24 24">
+                        <circle cx="11" cy="11" r="8"/>
+                        <path d="m21 21-4.3-4.3"/>
+                        <path d="M8 11h6"/>
+                    </svg>
+                </button>
+
+                <button class="chip" type="button" title="نسبة التكبير" disabled>
+                    <span id="zoomLevel">100%</span>
+                </button>
+
+                <button
+                    class="icon-btn"
+                    id="zoomIn"
+                    type="button"
+                    title="تكبير"
+                    aria-label="تكبير"
+                >
+                    <svg class="i" viewBox="0 0 24 24">
+                        <circle cx="11" cy="11" r="8"/>
+                        <path d="m21 21-4.3-4.3"/>
+                        <path d="M11 8v6"/>
+                        <path d="M8 11h6"/>
+                    </svg>
+                </button>
+
+            </div>
+
+
+            <!-- center group: page navigation -->
+            <div class="tb-group tb-nav">
+
+                <button
+                    class="icon-btn"
+                    id="prevVisual"
+                    type="button"
+                    title="السابق"
+                    aria-label="السابق"
+                >
+                     <svg class="i" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg>
+                </button>
+
+                <label class="page-box">
+                    <input
+                        id="pageInput"
+                        type="number"
+                        inputmode="numeric"
+                        min="1"
+                        value="1"
+                        aria-label="رقم الصفحة"
+                    >
+                    <span>/ <b id="totalPages">0</b></span>
+                </label>
+
+                <button
+                    class="icon-btn"
+                    id="nextVisual"
+                    type="button"
+                    title="التالي"
+                    aria-label="التالي"
+                >
+                    <svg class="i" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>
+                </button>
+
+            </div>
+
+            
+            <!-- right group: tools + voice -->
+            <div class="tb-group tb-right">
+
+                <div class="draw-tools">
+
+                    <button
+                        class="icon-btn tool-btn active"
+                        id="handTool"
+                        type="button"
+                        title="النطق"
+                        aria-label="النطق"
+                        aria-pressed="true"
+                    >
+                        <svg class="i" viewBox="0 0 24 24">
+                            <path d="M18 11V6a2 2 0 0 0-4 0v5"/>
+                            <path d="M14 10V4a2 2 0 0 0-4 0v6"/>
+                            <path d="M10 10.5V6a2 2 0 0 0-4 0v8"/>
+                            <path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"/>
+                        </svg>
+                    </button>
+
+                    <button
+                        class="icon-btn tool-btn"
+                        id="penTool"
+                        type="button"
+                        title="القلم"
+                        aria-label="القلم"
+                        aria-pressed="false"
+                    >
+                        <svg class="i" viewBox="0 0 24 24">
+                            <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/>
+                            <path d="m15 5 4 4"/>
+                        </svg>
+                    </button>
+
+                    <button
+                        class="icon-btn tool-btn"
+                        id="eraserTool"
+                        type="button"
+                        title="الممحاة"
+                        aria-label="الممحاة"
+                        aria-pressed="false"
+                    >
+                        <svg class="i" viewBox="0 0 24 24">
+                            <path d="m7 21-4.3-4.3a1 1 0 0 1 0-1.4l9.6-9.6a1 1 0 0 1 1.4 0l5.6 5.6a1 1 0 0 1 0 1.4L13 21"/>
+                            <path d="M22 21H7"/>
+                            <path d="m5 11 9 9"/>
+                        </svg>
+                    </button>
+
+                </div>
+
+                <!-- درج الألوان -->
+                <div id="colorDrawer" class="color-drawer hidden">
+                    <button class="color-swatch" data-color="#C94C4C" style="--c:#C94C4C" aria-label="أحمر"></button>
+                    <button class="color-swatch" data-color="#E88024" style="--c:#E88024" aria-label="برتقالي"></button>
+                    <button class="color-swatch" data-color="#E8A200" style="--c:#E8A200" aria-label="أصفر"></button>
+                    <button class="color-swatch" data-color="#15803d" style="--c:#15803d" aria-label="أخضر"></button>
+                    <button class="color-swatch" data-color="#00689b" style="--c:#00689b" aria-label="أزرق"></button>
+                    <button class="color-swatch" data-color="#7c3aed" style="--c:#7c3aed" aria-label="بنفسجي"></button>
+                    <button class="color-swatch" data-color="#db2777" style="--c:#db2777" aria-label="وردي"></button>
+                    <button class="color-swatch" data-color="#000000" style="--c:#000000" aria-label="أسود"></button>
+                    <button class="color-swatch" data-color="#ffffff" style="--c:#ffffff" aria-label="أبيض"></button>
+                </div>
+
+                <!-- شريحة سرعة القراءة -->
+                <button
+                    class="chip"
+                    id="speedChip"
+                    type="button"
+                    title="سرعة القراءة"
+                >
+                    0.85×
+                </button>
+
+                <!-- زر فتح لوحة الصوت -->
+                <button
+                    class="icon-btn"
+                    id="voiceBtn"
+                    type="button"
+                    title="الصوت والسرعة"
+                    aria-label="الصوت والسرعة"
+                    aria-haspopup="dialog"
+                    aria-expanded="false"
+                >
+                    <svg class="i" viewBox="0 0 24 24">
+                        <path d="M4 21v-7"/>
+                        <path d="M4 10V3"/>
+                        <path d="M12 21v-9"/>
+                        <path d="M12 8V3"/>
+                        <path d="M20 21v-5"/>
+                        <path d="M20 12V3"/>
+                        <path d="M2 14h4"/>
+                        <path d="M10 8h4"/>
+                        <path d="M18 16h4"/>
+                    </svg>
+                </button>
+
+                <!-- لوحة الصوت والسرعة -->
+                <div
+                    class="panel"
+                    id="voicePanel"
+                    role="dialog"
+                    aria-label="إعدادات الصوت"
+                    dir="rtl"
+                >
+                    <div class="panel-head">
+                        <strong>الصوت والسرعة</strong>
+                    </div>
+
+                    <label class="field-label" for="voiceSelect">الصوت</label>
+                    <select id="voiceSelect" class="field"></select>
+
+                    <div class="field-label row">
+                        <label for="speedRange">سرعة القراءة</label>
+                        <output id="speedValue" class="rate-out">0.85×</output>
+                    </div>
+
+                    <input
+                        type="range"
+                        id="speedRange"
+                        min="0.5"
+                        max="1.5"
+                        step="0.05"
+                        value="0.85"
+                    >
+
+                    <button
+                        class="course-btn secondary"
+                        id="testVoiceButton"
+                        type="button"
+                    >
+                        جرّب الصوت
+                    </button>
+                </div>
+
+            </div>
+
+        </footer>
+
+
+        <!-- =================================================
+             STATUS BAR
+        ================================================== -->
+        <div class="statusbar">
+
+            <div id="statusMessage" class="status-message">
+                
+
+            </div>
+
+            <div class="footer-links">
+                <a
+                    href="https://yazeedenglish.com/orders"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                  
+                </a>
+                <a
+                    href="https://wa.me/966552087385?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%A3%D8%AD%D8%AA%D8%A7%D8%AC%20%D9%85%D8%B3%D8%A7%D8%B9%D8%AF%D8%A9%20%D8%A8%D8%AE%D8%B5%D9%88%D8%B5%20%D8%A7%D9%84%D9%82%D8%A7%D8%B1%D8%A6%20%D8%A7%D9%84%D8%AA%D9%81%D8%A7%D8%B9%D9%84%D9%8A."
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    id="supportLink"
+                >
+                  
+                </a>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         إشعار أول استخدام
+    ====================================================== -->
+
+    <div
+        id="pronunciationModal"
+        class="modal-backdrop"
+        hidden
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="pronunciationModalTitle"
+    >
+        <div class="modal-card">
+            <div class="modal-icon">🎧</div>
+            <h2 id="pronunciationModalTitle">طريقة استخدام النطق</h2>
+            <p>اضغط على اي كلمة انجليزية لسماع النطق</p>
+            <button
+                id="understoodButton"
+                class="course-btn secondary modal-button"
+                type="button"
+            >
+                فهمت
+            </button>
+        </div>
+    </div>
+
+
+    <script src="../../access.js"></script>
+
+    <script>
+        initializeCourseAccess("english");
+    </script>
+    <script type="module" src="script.js"></script>
+</body>
+</html>
