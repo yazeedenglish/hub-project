@@ -222,6 +222,7 @@ svg.i {
     line-height: 1.5;
     white-space: nowrap;
     text-overflow: ellipsis;
+    transform: translate(-13px, -2px);
 }
 
 /* ===================== PROGRESS ===================== */
@@ -598,12 +599,7 @@ svg.i {
     cursor: pointer;
 }
 
-@media (hover: hover) {
-    .textLayer .clickable-text:hover {
-        background: var(--hl);
-        box-shadow: 0 0 0 2px var(--hl);
-    }
-}
+
 
 .textLayer .speech-highlight {
     background: var(--hl-on);
@@ -1241,6 +1237,7 @@ body[data-reader-mode="hand"] .textLayer {
 
     .brand-text span {
         font-size: 10px;
+        
     }
 
     .stage {

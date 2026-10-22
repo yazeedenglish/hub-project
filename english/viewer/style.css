@@ -222,6 +222,7 @@ svg.i {
     line-height: 1.5;
     white-space: nowrap;
     text-overflow: ellipsis;
+    transform: translate(-13px, -2px);
 }
 
 /* ===================== PROGRESS ===================== */
@@ -1234,6 +1235,7 @@ body[data-reader-mode="hand"] .textLayer {
 
     .brand-text span {
         font-size: 10px;
+        
     }
 
     .stage {

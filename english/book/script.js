@@ -9,7 +9,7 @@ import * as pdfjsLib from
 pdfjsLib.GlobalWorkerOptions.workerSrc =
     "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.worker.min.mjs";
 
-const PDF_FILE = "https://file.yazeedenglish.com/en/ebook1.pdf";
+const PDF_FILE = "https://file.yazeedenglish.com/en/Interactive-book.pdf";
 
 /* =========================================================
    DOM ELEMENTS
@@ -104,95 +104,94 @@ async function openPDF(pdfPath) {
 
         updateLoadingProgress(2, "");
 
-const response = await fetch(pdfPath, { cache: "no-store" });
+        const response = await fetch(pdfPath, { cache: "no-store" });
 
-if (!response.ok) {
-    throw new Error(`HTTP ${response.status}`);
-}
-
-let data;
-
-if (response.body && response.body.getReader) {
-    const reader = response.body.getReader();
-    const contentLength = Number(response.headers.get("content-length"));
-    const chunks = [];
-    let receivedLength = 0;
-
-    // If the server doesn't provide the file size,
-    // show a gradual estimate while downloading.
-    if (!contentLength) {
-        downloadProgressTimer = setInterval(() => {
-            const next = Math.min(60, loadingProgress + 1);
-            updateLoadingProgress(next, "جاري تحميل الكتاب...");
-        }, 150);
-    }
-
-    while (true) {
-        const { done, value } = await reader.read();
-
-        if (done) break;
-
-        chunks.push(value);
-        receivedLength += value.length;
-
-        if (contentLength > 0) {
-            const downloadPercent = receivedLength / contentLength;
-
-            updateLoadingProgress(
-                5 + downloadPercent * 65,
-                ""
-            );
+        if (!response.ok) {
+            throw new Error(`HTTP ${response.status}`);
         }
-    }
 
-    clearInterval(downloadProgressTimer);
-    downloadProgressTimer = null;
+        let data;
 
-    data = new Uint8Array(receivedLength);
-    let offset = 0;
+        if (response.body && response.body.getReader) {
+            const reader = response.body.getReader();
+            const contentLength = Number(response.headers.get("content-length"));
+            const chunks = [];
+            let receivedLength = 0;
 
-    for (const chunk of chunks) {
-        data.set(chunk, offset);
-        offset += chunk.length;
-    }
-} else {
-    const arrayBuffer = await response.arrayBuffer();
-    data = new Uint8Array(arrayBuffer);
-}
+            // If the server doesn't provide the file size,
+            // show a gradual estimate while downloading.
+            if (!contentLength) {
+                downloadProgressTimer = setInterval(() => {
+                    const next = Math.min(60, loadingProgress + 1);
+                    updateLoadingProgress(next, "جاري تحميل الكتاب...");
+                }, 150);
+            }
 
-updateLoadingProgress(72, "");
+            while (true) {
+                const { done, value } = await reader.read();
 
+                if (done) break;
+
+                chunks.push(value);
+                receivedLength += value.length;
+
+                if (contentLength > 0) {
+                    const downloadPercent = receivedLength / contentLength;
+
+                    updateLoadingProgress(
+                        5 + downloadPercent * 65,
+                        ""
+                    );
+                }
+            }
+
+            clearInterval(downloadProgressTimer);
+            downloadProgressTimer = null;
+
+            data = new Uint8Array(receivedLength);
+            let offset = 0;
+
+            for (const chunk of chunks) {
+                data.set(chunk, offset);
+                offset += chunk.length;
+            }
+        } else {
+            const arrayBuffer = await response.arrayBuffer();
+            data = new Uint8Array(arrayBuffer);
+        }
+
+        updateLoadingProgress(72, "");
         updateLoadingProgress(75, "");
 
-const loadingTask = pdfjsLib.getDocument({ data });
-pdfDocument = await loadingTask.promise;
+        const loadingTask = pdfjsLib.getDocument({ data });
+        pdfDocument = await loadingTask.promise;
 
-updateLoadingProgress(82, "");
+        updateLoadingProgress(82, "");
 
-       currentPage = 1;
-    manuallyZoomed = false;
-    scale = await calculateFitScale();
+        currentPage = 1;
+        manuallyZoomed = false;
+        scale = await calculateFitScale();
 
-    pageInput.value = "1";
-    totalPagesElement.textContent = String(pdfDocument.numPages);
-    zoomLevelElement.textContent = `${Math.round(scale * 100)}%`;
+        pageInput.value = "1";
+        totalPagesElement.textContent = String(pdfDocument.numPages);
+        zoomLevelElement.textContent = `${Math.round(scale * 100)}%`;
 
         updateNavigation();
         await renderPage(currentPage);
 
         statusMessage.textContent = "";
 
-updateLoadingProgress(100, "");
+        updateLoadingProgress(100, "");
 
-if (loadingTimeRemaining) {
-    loadingTimeRemaining.textContent = "الكتاب جاهز للقراءة";
-}
+        if (loadingTimeRemaining) {
+            loadingTimeRemaining.textContent = "الكتاب جاهز للقراءة";
+        }
 
-setTimeout(() => {
-    hideContentLoading();
-}, 250);
+        setTimeout(() => {
+            hideContentLoading();
+        }, 250);
 
-maybeShowPronunciationNotice();
+        maybeShowPronunciationNotice();
 
     } catch (error) {
         console.error("PDF loading error:", error);
@@ -325,8 +324,9 @@ async function renderPage(pageNumber) {
         pageContainer.setAttribute("aria-label", `صفحة ${target}`);
 
         if (target === 1 && contentLoadingOverlay && !contentLoadingOverlay.hidden) {
-    updateLoadingProgress(85, "");
-}
+            updateLoadingProgress(85, "");
+        }
+
         /* CANVAS */
         const canvas = document.createElement("canvas");
         canvas.className = "pdf-canvas";
@@ -344,8 +344,8 @@ async function renderPage(pageNumber) {
         if (generation !== renderGeneration) return;
 
         if (target === 1 && contentLoadingOverlay && !contentLoadingOverlay.hidden) {
-    updateLoadingProgress(92, "");
-}
+            updateLoadingProgress(92, "");
+        }
 
         /* TEXT LAYER */
         const textLayerDiv = document.createElement("div");
@@ -366,8 +366,8 @@ async function renderPage(pageNumber) {
         if (generation !== renderGeneration) return;
 
         if (target === 1 && contentLoadingOverlay && !contentLoadingOverlay.hidden) {
-    updateLoadingProgress(96, "");
-}
+            updateLoadingProgress(96, "");
+        }
 
         /* ANNOTATION CANVAS */
         const annotationCanvas = document.createElement("canvas");
@@ -678,14 +678,30 @@ function speak(text, onComplete = null) {
     const utterance = activeUtterance;
 
     const availableVoices = speechSynthesis.getVoices();
-    const chosen = pickPreferredVoice(availableVoices);
+    const isIOS = isIOSDevice();
+    const samanthaVoice = availableVoices.find(v =>
+        (v.name || "").toLowerCase().includes("samantha")
+    );
 
-    if (chosen) {
-        utterance.voice = chosen;
-        utterance.lang = chosen.lang;
+    let chosenVoice = null;
+
+    if (isIOS && samanthaVoice) {
+        // iOS: Samantha is the fixed speaker whenever available.
+        chosenVoice = samanthaVoice;
     } else if (selectedVoice) {
-        utterance.voice = selectedVoice;
-        utterance.lang = selectedVoice.lang;
+        // Respect the user's selected voice on all other cases,
+        // including iOS when Samantha is unavailable.
+        chosenVoice = availableVoices.find(v =>
+            v.name === selectedVoice.name && v.lang === selectedVoice.lang
+        ) || selectedVoice;
+    } else {
+        // No user selection yet: use the existing priority order.
+        chosenVoice = pickPreferredVoice(availableVoices);
+    }
+
+    if (chosenVoice) {
+        utterance.voice = chosenVoice;
+        utterance.lang = chosenVoice.lang || "en-GB";
     } else {
         utterance.lang = "en-GB";
     }
@@ -743,13 +759,22 @@ function stopSpeechKeepAlive() {
    VOICES
 ========================================================= */
 
+function isIOSDevice() {
+    return /iPad|iPhone|iPod/i.test(navigator.userAgent) ||
+        (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+}
+
 function loadVoices() {
     if (!("speechSynthesis" in window)) return;
 
     voices = speechSynthesis.getVoices();
 
-    const englishVoices = voices.filter(v => v.lang && v.lang.toLowerCase().startsWith("en"));
+    const englishVoices = voices.filter(v =>
+        v.lang && v.lang.toLowerCase().startsWith("en")
+    );
     if (englishVoices.length === 0) return;
+
+    const currentValue = voiceSelect.value;
 
     voiceSelect.innerHTML = "";
     englishVoices.forEach(voice => {
@@ -759,24 +784,41 @@ function loadVoices() {
         voiceSelect.appendChild(option);
     });
 
+    const voiceValue = voice => `${voice.name}|${voice.lang}`;
     const savedVoice = localStorage.getItem("pdfReaderVoice");
-    if (savedVoice) {
-        const saved = englishVoices.find(v => `${v.name}|${v.lang}` === savedVoice);
-        if (saved) {
-            selectedVoice = saved;
-            voiceSelect.value = savedVoice;
-            return;
-        }
+
+    // Preserve the current selection when the browser refreshes its voice list.
+    let voiceToSelect = englishVoices.find(v => voiceValue(v) === currentValue);
+
+    // Otherwise restore the user's previously saved selection.
+    if (!voiceToSelect && savedVoice) {
+        voiceToSelect = englishVoices.find(v => voiceValue(v) === savedVoice);
     }
 
-    selectedVoice = pickPreferredVoice(englishVoices) || englishVoices[0];
-    voiceSelect.value = `${selectedVoice.name}|${selectedVoice.lang}`;
+    // On iOS, default to Samantha when available. Playback will use Samantha
+    // even if the user chooses another item from the dropdown.
+    if (!voiceToSelect && isIOSDevice()) {
+        voiceToSelect = englishVoices.find(v =>
+            (v.name || "").toLowerCase().includes("samantha")
+        );
+    }
+
+    // If there is no existing selection, use the original priority order.
+    if (!voiceToSelect) {
+        voiceToSelect = pickPreferredVoice(englishVoices) || englishVoices[0];
+    }
+
+    selectedVoice = voiceToSelect;
+    voiceSelect.value = voiceValue(voiceToSelect);
 }
 
 voiceSelect.addEventListener("change", function () {
     const value = this.value;
-    selectedVoice = voices.find(v => `${v.name}|${v.lang}` === value);
-    if (selectedVoice) localStorage.setItem("pdfReaderVoice", value);
+    selectedVoice = voices.find(v => `${v.name}|${v.lang}` === value) || null;
+
+    if (selectedVoice) {
+        localStorage.setItem("pdfReaderVoice", value);
+    }
 });
 
 /* =========================================================
@@ -985,7 +1027,7 @@ function getNormalizedPoint(event, canvas) {
     const rect = canvas.getBoundingClientRect();
     return {
         x: Math.max(0, Math.min(1, (event.clientX - rect.left) / rect.width)),
-        y: Math.max(0, Math.min(1, (event.clientY - rect.top)  / rect.height))
+        y: Math.max(0, Math.min(1, (event.clientY - rect.top) / rect.height))
     };
 }
 
