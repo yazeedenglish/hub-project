@@ -9,14 +9,42 @@ const stories = [
     id: "the-race",
     title: "The Race",
     arabicTitle: "السباق",
-    description: "A short story about friendship, effort, and learning that doing your best matters most.",
+    description: "Tom will do anything to save his restaurant. But his choice changes everything",
     level: "A1",
-    duration: "3 دقائق",
+    duration: "4 دقائق",
     coverEmoji: "🏃",
-    image: "https://file.yazeedenglish.com/Stories-images/a783be86-03ed-4043-ab05-b401cab561c2.jfif", // Optional cover image URL. Leave empty to use the emoji.
+    image: "tom.jpg", // Optional cover image URL. Leave empty to use the emoji.
     dataFile: "data/the-race.json",
     subtitles: "data/the-race-timestamps.json",
     audio: "https://easyenglish.com/wp-content/uploads/2026/10/The-Winner___ElevenLabs_2026-10-14T15_21_12_Harry-Articulate-British-Storyteller_pvc_sp100_s50_sb75_v4.mp3"
+  },
+
+  {
+    id: "the-heatwave",
+    title: "The Heatwave",
+    arabicTitle: "موجة الحرارة",
+    description: "During a heatwave, rumours spread fear and anger, leading to a terrible mistake with serious consequences",
+    level: "A2",
+    duration: "4 دقائق",
+    coverEmoji: "🏃",
+    image: "data/heatwave.jpg", // Optional cover image URL. Leave empty to use the emoji.
+    dataFile: "data/the-heatwave.json",
+    subtitles: "data/the-heatwave-timestamps.json",
+    audio: "https://easyenglish.com/wp-content/uploads/2026/08/The-Heatwave_ElevenLabs_2026-08-16T07_57_22_Roger-Laid-Back-Casual-Resonant_pre_sp100_s50_sb75_se0_b_m2.mp3"
+  },
+
+  {
+    id: "the-daredevil",
+    title: "The Daredevil",
+    arabicTitle: "المتهور",
+    description: "Kevin fears nothing, until one dangerous adventure teaches him the true meaning of bravery",
+    level: "B1",
+    duration: "4 دقائق",
+    coverEmoji: "🏃",
+    image: "data/daredevil.jpg", // Optional cover image URL. Leave empty to use the emoji.
+    dataFile: "data/the-daredevil.json",
+    subtitles: "data/the-daredevil-timestamps.json",
+    audio: "https://easyenglish.com/wp-content/uploads/2026/03/The-Daredevil_ElevenLabs_2026-03-17T10_24_46_Emma-Young-American-Female_pvc_sp100_s50_sb75_se0_b_m2.mp3"
   }
 
 ];
@@ -300,7 +328,7 @@ function findTranslation(word) {
   const direct = wordTranslations[clean] ?? wordTranslations[word] ?? wordTranslations[clean.replace(/'s$/, "")];
   if (typeof direct === "string") return direct;
   if (direct && typeof direct === "object") return direct.ar || direct.translation || "لا تتوفر ترجمة لهذه الكلمة.";
-  return "لم تُضف ترجمة هذه الكلمة بعد.";
+  return "...";
 }
 
 function showWordPopover(wordElement, event) {

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yazeed english | يزيد للانجليزية</title>
+    <!-- Google Fonts: Tajawal (Exact Link Requested) + English Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@600;700;800&family=JetBrains+Mono:wght@500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&family=Quicksand:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+</head>
+<body class="dark">
+
+    <!-- Hidden Input for Seamless Typing on All Devices -->
+    <input type="text" id="hidden-typing-input" style="position:fixed; opacity:0; pointer-events:none; top:-999px;" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" aria-label="حقل الكتابة">
+
+    <!-- Top Thin Progress Bar -->
+    <div class="top-progress-line">
+        <div id="sentence-progress-bar" class="top-progress-fill"></div>
+    </div>
+
+    <!-- MINIMAL HEADER -->
+    <header class="top-header">
+        <div class="brand">
+            <div class="brand-logo">
+                <i data-lucide="sparkles"></i>
+            </div>
+            <div class="brand-text">
+                <strong>Yazeed English</strong>
+                <span>يزيد للانجليزية</span>
+            </div>
+        </div>
+
+        <div class="header-actions">
+            <!-- Topic Picker Trigger -->
+            <button id="open-stories-btn" type="button" class="pill-btn" title="تغيير الموضوع">
+                <i data-lucide="book-open"></i>
+                <span id="header-story-title">روتين الصباح</span>
+            </button>
+
+            <!-- PRO MODE (الوضع الاحترافي) -->
+            <button id="pro-mode-btn" type="button" class="pill-btn" aria-pressed="false" title="إخفاء الجملة والكتابة من خلال الاستماع فقط">
+                <i data-lucide="ear"></i>
+                <span>الوضع الاحترافي</span>
+            </button>
+
+            <!-- Toggle Virtual Keyboard (Hidden by Default) -->
+            <button id="toggle-kb-btn" type="button" class="pill-btn" aria-pressed="false" title="إظهار أو إخفاء لوحة المفاتيح">
+                <i data-lucide="keyboard"></i>
+                <span id="toggle-kb-label">لوحة المفاتيح</span>
+            </button>
+
+            <!-- Sound Effects Toggle -->
+            <button id="toggle-sfx-btn" type="button" class="theme-btn" title="تشغيل/إيقاف صوت الأزرار">
+                <i data-lucide="volume-2" id="sfx-icon"></i>
+            </button>
+
+            <!-- Dark / Light Theme Toggle -->
+            <button id="theme-toggle-btn" type="button" class="theme-btn" title="تبديل المظهر الداكن / الفاتح">
+                <i data-lucide="sun" id="theme-icon"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- MAIN GIANT ZEN STAGE -->
+    <main id="zen-stage" class="zen-stage">
+
+        <!-- Subtle Topic & Step Pill (1 / 10) -->
+        <button id="story-step-pill" type="button" class="zen-top-meta" title="اضغط لتغيير الموضوع (10 مواضيع متدرجة)">
+            <span id="current-level-badge" class="level-dot level-A1">A1</span>
+            <span id="current-story-ar-title">روتين الصباح</span>
+            <span>•</span>
+            <span id="sentence-step-indicator">1 / 10</span>
+        </button>
+
+        <!-- Giant English Sentence + Smooth Gliding Underline Caret -->
+        <div id="typing-box-wrapper" class="zen-sentence-wrapper">
+            <div id="english-sentence-container" class="giant-english-sentence"></div>
+            <div id="gliding-caret" class="gliding-caret"></div>
+        </div>
+
+        <!-- Subtle Horizontal Line Divider -->
+        <div class="zen-divider"></div>
+
+        <!-- Arabic Translation Centered Below -->
+        <p id="arabic-sentence" class="zen-arabic-translation">أستيقظ مبكراً كل صباح</p>
+
+        <!-- Subtle Floating Quick Controls -->
+        <div class="zen-quick-actions">
+            <button id="listen-sentence-btn" type="button" class="ghost-action-btn" title="استمع لنطق الجملة (Tab)">
+                <i data-lucide="volume-2"></i>
+                <span>استمع للجملة</span>
+            </button>
+
+            <button id="speed-toggle-btn" type="button" class="ghost-action-btn" title="تغيير سرعة النطق">
+                <i data-lucide="gauge"></i>
+                <span>السرعة: <strong id="tts-speed-label">1.0x</strong></span>
+            </button>
+
+            <button id="hint-letter-btn" type="button" class="ghost-action-btn" hidden title="كشف الحرف التالي">
+                <i data-lucide="eye"></i>
+                <span>تلميح حرف</span>
+            </button>
+
+            <button id="restart-sentence-btn" type="button" class="ghost-action-btn" title="إعادة الجملة الحالية">
+                <i data-lucide="rotate-ccw"></i>
+                <span>إعادة الجملة</span>
+            </button>
+        </div>
+
+        <!-- Virtual Keyboard (Hidden by Default) -->
+        <div id="virtual-keyboard-section" class="keyboard-wrapper" hidden>
+            <div id="keyboard-rows" class="kb-rows"></div>
+        </div>
+
+    </main>
+
+    <!-- MINIMAL BOTTOM TELEMETRY BAR -->
+    <footer class="bottom-bar">
+        <div class="telemetry-group">
+            <div class="telemetry-item">
+                <span>السرعة:</span>
+                <strong id="stat-wpm">0</strong>
+                <span>ك/د</span>
+            </div>
+            <div class="telemetry-item">
+                <span>الدقة:</span>
+                <strong id="stat-acc">100%</strong>
+            </div>
+            <div class="telemetry-item">
+                <span>السلسلة:</span>
+                <strong id="stat-combo">0</strong>
+            </div>
+            <div class="telemetry-item">
+                <span>النقاط:</span>
+                <strong id="total-score-display">0</strong>
+            </div>
+            <span id="caps-lock-warning" hidden style="color: var(--error); font-weight: 800;">⚠️ زر الحروف الكبيرة (Caps Lock) مفعّل</span>
+        </div>
+
+        <div class="hint-shortcuts">
+            <span>اضغط على أي كلمة إنجليزية لسماع نطقها ومعناها</span>
+            <span><kbd class="kbd-tag">Tab</kbd> لإعادة الاستماع</span>
+        </div>
+    </footer>
+
+    <!-- SIMPLIFIED CLICKABLE WORD POPOVER: ONLY ARABIC WORD + X BUTTON -->
+    <div id="word-popover" class="word-popover" hidden>
+        <span id="popover-ar-word" class="popover-translation">صباح</span>
+        <button id="popover-close-btn" type="button" class="popover-close" aria-label="إغلاق">×</button>
+    </div>
+
+    <!-- TOPIC SELECTION MODAL (10 TOPICS: 3 A1, 2 A2, 3 B1, 2 B2) -->
+    <div id="stories-modal" class="modal-backdrop" hidden>
+        <div class="stories-modal-card">
+            <div class="stories-modal-header">
+                <div>
+                    <span style="color: var(--indigo); font-size: 12px; font-weight: 900;">مكتبة مواضيع Yazeed english</span>
+                    <h2 style="margin: 4px 0 0; font-size: 24px; font-weight: 900;">اختر الموضوع المتسلسل للتدرب عليه (10 جمل لكل موضوع)</h2>
+                </div>
+                <button id="close-stories-btn" type="button" class="theme-btn" aria-label="إغلاق">
+                    <i data-lucide="x"></i>
+                </button>
+            </div>
+            <div id="stories-grid" class="stories-grid"></div>
+        </div>
+    </div>
+
+    <!-- 5-STAR TOPIC COMPLETION MODAL (SHOWN ONLY AFTER ALL 10 SENTENCES OF A TOPIC) -->
+    <div id="summary-modal" class="modal-backdrop" hidden>
+        <div class="rating-modal-card">
+            <span id="modal-kicker" style="color: var(--indigo); font-size: 13px; font-weight: 900;">أكملت جميع جمل الموضوع (10 / 10)</span>
+            <h3 id="modal-title" style="margin: 8px 0 4px; font-size: 26px; font-weight: 900;">إتقان رائع!</h3>
+            <p id="modal-subtitle" style="margin: 0; color: var(--ink-soft); font-size: 14px;">أنهيت الموضوع بالكامل، إليك حصيلة أدائك</p>
+
+            <!-- 5 Stars -->
+            <div id="modal-stars" class="stars-row"></div>
+
+            <!-- Completed Topic Summary Box -->
+            <div style="padding: 13px 16px; border-radius: 14px; background: var(--paper); border: 1px solid var(--line); margin: 12px 0;">
+                <p id="modal-topic-en" style="margin: 0 0 4px; font: 700 17px 'Quicksand', sans-serif; direction: ltr; color: var(--ink);"></p>
+                <p id="modal-topic-ar" style="margin: 0; font-size: 15px; color: var(--indigo); font-weight: 800;"></p>
+            </div>
+
+            <!-- Cumulative Topic Metrics -->
+            <div class="modal-metrics-grid">
+                <div class="modal-metric-box">
+                    <span>السرعة (WPM / CPM)</span>
+                    <strong id="modal-wpm">0 ك/د</strong>
+                </div>
+                <div class="modal-metric-box">
+                    <span>الدقة الإجمالية</span>
+                    <strong id="modal-acc">100%</strong>
+                </div>
+                <div class="modal-metric-box">
+                    <span>الوقت المستغرق</span>
+                    <strong id="modal-time">0 ثانية</strong>
+                </div>
+                <div class="modal-metric-box">
+                    <span>نقاط الموضوع</span>
+                    <strong id="modal-score">+0</strong>
+                </div>
+            </div>
+
+            <!-- Actions: Retry Topic or Next Topic -->
+            <div style="display: flex; gap: 10px;">
+                <button id="modal-replay-btn" type="button" class="pill-btn" style="flex: 1; height: 44px; justify-content: center;">
+                    <i data-lucide="rotate-ccw"></i>
+                    <span>إعادة الموضوع</span>
+                </button>
+                <button id="modal-next-btn" type="button" class="primary-btn" style="flex: 1.5;">
+                    <span id="modal-next-label">الموضوع التالي</span>
+                    <i data-lucide="arrow-left"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
