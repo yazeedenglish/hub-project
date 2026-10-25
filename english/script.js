@@ -13,7 +13,7 @@ const ENGLISH_CARDS = {
 
     writing: false,
 
-    stories: false,
+    stories: true,
 
     games: true
 

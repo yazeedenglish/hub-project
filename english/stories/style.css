@@ -450,3 +450,62 @@ button:focus-visible, input:focus-visible, select:focus-visible {
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
 }
+
+/* STORIES FOOTER NOTE */
+.stories-footer-note {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 40px auto 20px;
+  padding: 16px 20px;
+  max-width: 620px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+  text-align: center;
+  animation: cardIn 0.45s ease both;
+}
+
+.stories-footer-note p {
+  margin: 0;
+  color: var(--ink-soft);
+  font-family: "Tajawal", sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.8;
+}
+
+.stories-footer-note .sparkle-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--course-button, #00689b);
+  font-size: 17px;
+  opacity: 0.9;
+}
+
+@media (max-width: 480px) {
+  .stories-footer-note {
+    gap: 8px;
+    margin-top: 30px;
+    padding: 13px 15px;
+    border-radius: 12px;
+  }
+
+  .stories-footer-note p {
+    font-size: 14px;
+  }
+
+  .stories-footer-note .sparkle-icon {
+    font-size: 15px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stories-footer-note {
+    animation: none;
+  }
+}
