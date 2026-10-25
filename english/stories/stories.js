@@ -19,6 +19,34 @@ const stories = [
     audio: "https://file.yazeedenglish.com/Stories-MP3s/The%20Race.mp3"
   },
 
+    {
+    id: "Ordering-at-the-cafe",
+    title: "Ordering at the Café",
+    arabicTitle: "الطلب في المقهى",
+    description: "Ben stops at a busy café for lunch and orders a sandwich and coffee.",
+    level: "A1",
+    duration: "1 دقائق",
+    coverEmoji: "🏃",
+    image: "https://file.yazeedenglish.com/Stories-MP3s/cafe.jpg",  
+    dataFile: "data/cafe.json",
+    subtitles: "data/cafe-timestamps.json",
+    audio: "https://file.yazeedenglish.com/Stories-MP3s/cafe.mp3"
+  },
+
+    {
+    id: "Following the Dolphins",
+    title: "Following the Dolphins",
+    arabicTitle: "تتبع الدلافين",
+    description: "After three empty days at sea, a young deckhand notices a pattern in the water and leads his crew to the fish.",
+    level: "A2",
+    duration: "3 دقائق",
+    coverEmoji: "🏃",
+    image: "https://file.yazeedenglish.com/Stories-MP3s/dolphins.jpg",  
+    dataFile: "data/dolphins.json",
+    subtitles: "data/dolphins-timestamps.json",
+    audio: "https://file.yazeedenglish.com/Stories-MP3s/dolphins.mp3"
+  },
+
   {
     id: "the-heatwave",
     title: "The Heatwave",
@@ -31,6 +59,20 @@ const stories = [
     dataFile: "data/the-heatwave.json",
     subtitles: "data/the-heatwave-timestamps.json",
     audio: "https://file.yazeedenglish.com/Stories-MP3s/The-Heatwave.mp3"
+  },
+
+  {
+    id: "The Babysitter",
+    title: "The Babysitter",
+    arabicTitle: "جليسة الأطفال",
+    description: "On her first paid babysitting job, Thalia has to find a clever way to get an energetic five-year-old to finally fall asleep.",
+    level: "B1",
+    duration: "2 دقائق",
+    coverEmoji: "🏃",
+    image: "https://file.yazeedenglish.com/Stories-MP3s/thebabysitter.jpg",  
+    dataFile: "data/thebabysitter.json",
+    subtitles: "data/thebabysitter-timestamps.json",
+    audio: "https://file.yazeedenglish.com/Stories-MP3s/the-babysitter.mp3"
   },
 
   {
@@ -59,48 +101,6 @@ const stories = [
     dataFile: "data/amnesia.json",
     subtitles: "data/amnesia-timestamps.json",
     audio: "https://file.yazeedenglish.com/Stories-MP3s/amnesia.mp3"
-  },
-
-  {
-    id: "Ordering-at-the-cafe",
-    title: "Ordering at the Café",
-    arabicTitle: "الطلب في المقهى",
-    description: "Ben stops at a busy café for lunch and orders a sandwich and coffee.",
-    level: "A1",
-    duration: "1 دقائق",
-    coverEmoji: "🏃",
-    image: "https://file.yazeedenglish.com/Stories-MP3s/cafe.jpg",  
-    dataFile: "data/cafe.json",
-    subtitles: "data/cafe-timestamps.json",
-    audio: "https://file.yazeedenglish.com/Stories-MP3s/cafe.mp3"
-  },
-
-  {
-    id: "Following the Dolphins",
-    title: "Following the Dolphins",
-    arabicTitle: "تتبع الدلافين",
-    description: "After three empty days at sea, a young deckhand notices a pattern in the water and leads his crew to the fish.",
-    level: "A2",
-    duration: "3 دقائق",
-    coverEmoji: "🏃",
-    image: "https://file.yazeedenglish.com/Stories-MP3s/dolphins.jpg",  
-    dataFile: "data/dolphins.json",
-    subtitles: "data/dolphins-timestamps.json",
-    audio: "https://file.yazeedenglish.com/Stories-MP3s/dolphins.mp3"
-  },
-
-  {
-    id: "The Babysitter",
-    title: "The Babysitter",
-    arabicTitle: "جليسة الأطفال",
-    description: "On her first paid babysitting job, Thalia has to find a clever way to get an energetic five-year-old to finally fall asleep.",
-    level: "B1",
-    duration: "2 دقائق",
-    coverEmoji: "🏃",
-    image: "https://file.yazeedenglish.com/Stories-MP3s/thebabysitter.jpg",  
-    dataFile: "data/thebabysitter.json",
-    subtitles: "data/thebabysitter-timestamps.json",
-    audio: "https://file.yazeedenglish.com/Stories-MP3s/the-babysitter.mp3"
   },
 
   {
