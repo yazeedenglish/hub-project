@@ -655,7 +655,7 @@
                         <p class="story-arabic-title">${story.arTitle}</p>
                         <p class="story-description">${story.desc}</p>
                         <div style="margin-top:auto; display:flex; justify-content:space-between; align-items:center;">
-                            <span style="font-size:12px; color:var(--ink-soft); font-weight:700;">${story.sentences.length} جمل مترابطة</span>
+                            <span style="font-size:12px; color:var(--ink-soft); font-weight:700;">${story.sentences.length} عبارات</span>
                             <span style="color:var(--indigo); font-weight:800; font-size:13px;">ابدأ الموضوع ←</span>
                         </div>
                     </div>

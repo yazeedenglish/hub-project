@@ -1,0 +1,418 @@
+[
+    {
+      "text": " Ben",
+      "timestamp": [0, 0.24]
+    },
+    {
+      "text": " walks",
+      "timestamp": [0.24, 0.52]
+    },
+    {
+      "text": " into",
+      "timestamp": [0.52, 0.86]
+    },
+    {
+      "text": " a",
+      "timestamp": [0.86, 1.02]
+    },
+    {
+      "text": " small",
+      "timestamp": [1.02, 1.32]
+    },
+    {
+      "text": " cafe",
+      "timestamp": [1.32, 1.84]
+    },
+    {
+      "text": " near",
+      "timestamp": [1.84, 2.16]
+    },
+    {
+      "text": " his",
+      "timestamp": [2.16, 2.38]
+    },
+    {
+      "text": " office.",
+      "timestamp": [2.38, 2.78]
+    },
+    {
+      "text": " It",
+      "timestamp": [3.24, 3.32]
+    },
+    {
+      "text": " is",
+      "timestamp": [3.32, 3.46]
+    },
+    {
+      "text": " lunchtime,",
+      "timestamp": [3.46, 4]
+    },
+    {
+      "text": " and",
+      "timestamp": [4.3, 4.36]
+    },
+    {
+      "text": " the",
+      "timestamp": [4.36, 4.48]
+    },
+    {
+      "text": " cafe",
+      "timestamp": [4.48, 4.84]
+    },
+    {
+      "text": " is",
+      "timestamp": [4.84, 5.24]
+    },
+    {
+      "text": " busy.",
+      "timestamp": [5.24, 5.64]
+    },
+    {
+      "text": " He",
+      "timestamp": [6.06, 6.2]
+    },
+    {
+      "text": " looks",
+      "timestamp": [6.2, 6.4]
+    },
+    {
+      "text": " at",
+      "timestamp": [6.4, 6.56]
+    },
+    {
+      "text": " the",
+      "timestamp": [6.56, 6.68]
+    },
+    {
+      "text": " menu",
+      "timestamp": [6.68, 6.98]
+    },
+    {
+      "text": " on",
+      "timestamp": [6.98, 7.2]
+    },
+    {
+      "text": " the",
+      "timestamp": [7.2, 7.32]
+    },
+    {
+      "text": " wall.",
+      "timestamp": [7.32, 7.62]
+    },
+    {
+      "text": " \"Hello!",
+      "timestamp": [8.08, 8.32]
+    },
+    {
+      "text": " What",
+      "timestamp": [8.82, 9]
+    },
+    {
+      "text": " would",
+      "timestamp": [9, 9.12]
+    },
+    {
+      "text": " you",
+      "timestamp": [9.12, 9.22]
+    },
+    {
+      "text": " like",
+      "timestamp": [9.22, 9.36]
+    },
+    {
+      "text": " today?\"",
+      "timestamp": [9.36, 9.66]
+    },
+    {
+      "text": " says",
+      "timestamp": [10.04, 10.22]
+    },
+    {
+      "text": " the",
+      "timestamp": [10.22, 10.42]
+    },
+    {
+      "text": " man",
+      "timestamp": [10.42, 10.6]
+    },
+    {
+      "text": " behind",
+      "timestamp": [10.6, 10.9]
+    },
+    {
+      "text": " the",
+      "timestamp": [10.9, 11.06]
+    },
+    {
+      "text": " counter.",
+      "timestamp": [11.06, 11.36]
+    },
+    {
+      "text": " \"Hi.",
+      "timestamp": [11.86, 12.08]
+    },
+    {
+      "text": " Can",
+      "timestamp": [12.5, 12.6]
+    },
+    {
+      "text": " I",
+      "timestamp": [12.6, 12.7]
+    },
+    {
+      "text": " have",
+      "timestamp": [12.7, 12.88]
+    },
+    {
+      "text": " a",
+      "timestamp": [12.88, 13]
+    },
+    {
+      "text": " sandwich",
+      "timestamp": [13, 13.34]
+    },
+    {
+      "text": " please?\"",
+      "timestamp": [13.34, 13.72]
+    },
+    {
+      "text": " Ben",
+      "timestamp": [14.18, 14.32]
+    },
+    {
+      "text": " says.",
+      "timestamp": [14.32, 14.64]
+    },
+    {
+      "text": " \"Sure.",
+      "timestamp": [15.2, 15.46]
+    },
+    {
+      "text": " We",
+      "timestamp": [15.82, 15.96]
+    },
+    {
+      "text": " have",
+      "timestamp": [15.96, 16.16]
+    },
+    {
+      "text": " chicken,",
+      "timestamp": [16.16, 16.54]
+    },
+    {
+      "text": " cheese,",
+      "timestamp": [16.92, 17.1]
+    },
+    {
+      "text": " and",
+      "timestamp": [17.44, 17.56]
+    },
+    {
+      "text": " egg.",
+      "timestamp": [17.56, 17.8]
+    },
+    {
+      "text": " Which",
+      "timestamp": [18.12, 18.36]
+    },
+    {
+      "text": " one",
+      "timestamp": [18.36, 18.52]
+    },
+    {
+      "text": " do",
+      "timestamp": [18.52, 18.62]
+    },
+    {
+      "text": " you",
+      "timestamp": [18.62, 18.7]
+    },
+    {
+      "text": " want?\"",
+      "timestamp": [18.7, 18.9]
+    },
+    {
+      "text": " Ben",
+      "timestamp": [19.42, 19.64]
+    },
+    {
+      "text": " thinks",
+      "timestamp": [19.64, 19.92]
+    },
+    {
+      "text": " for",
+      "timestamp": [19.92, 20.18]
+    },
+    {
+      "text": " a",
+      "timestamp": [20.18, 20.26]
+    },
+    {
+      "text": " moment.",
+      "timestamp": [49.98, 49.98]
+    },
+    {
+      "text": " A",
+      "timestamp": [40, 40.66]
+    },
+    {
+      "text": " few",
+      "timestamp": [40.66, 40.84]
+    },
+    {
+      "text": " minutes",
+      "timestamp": [40.84, 41.02]
+    },
+    {
+      "text": " later,",
+      "timestamp": [41.02, 41.44]
+    },
+    {
+      "text": " the",
+      "timestamp": [41.72, 41.82]
+    },
+    {
+      "text": " man",
+      "timestamp": [41.82, 42.06]
+    },
+    {
+      "text": " brings",
+      "timestamp": [42.06, 42.34]
+    },
+    {
+      "text": " his",
+      "timestamp": [42.34, 42.6]
+    },
+    {
+      "text": " food.",
+      "timestamp": [42.6, 42.92]
+    },
+    {
+      "text": " \"Here",
+      "timestamp": [43.34, 43.48]
+    },
+    {
+      "text": " you",
+      "timestamp": [43.48, 43.6]
+    },
+    {
+      "text": " are.",
+      "timestamp": [43.6, 43.84]
+    },
+    {
+      "text": " Enjoy",
+      "timestamp": [44.2, 44.52]
+    },
+    {
+      "text": " your",
+      "timestamp": [44.52, 44.74]
+    },
+    {
+      "text": " lunch.",
+      "timestamp": [44.74, 44.98]
+    },
+    {
+      "text": " Thank",
+      "timestamp": [45.44, 45.76]
+    },
+    {
+      "text": " you",
+      "timestamp": [45.76, 45.88]
+    },
+    {
+      "text": " very",
+      "timestamp": [45.88, 46.12]
+    },
+    {
+      "text": " much.\"",
+      "timestamp": [46.12, 46.68]
+    },
+    {
+      "text": " Ben",
+      "timestamp": [46.9, 47.02]
+    },
+    {
+      "text": " says",
+      "timestamp": [47.02, 47.28]
+    },
+    {
+      "text": " with",
+      "timestamp": [47.28, 47.52]
+    },
+    {
+      "text": " a",
+      "timestamp": [47.52, 47.66]
+    },
+    {
+      "text": " smile.",
+      "timestamp": [47.66, 47.96]
+    },
+    {
+      "text": " He",
+      "timestamp": [48.44, 48.56]
+    },
+    {
+      "text": " eats",
+      "timestamp": [48.56, 48.84]
+    },
+    {
+      "text": " his",
+      "timestamp": [48.84, 49]
+    },
+    {
+      "text": " sandwich",
+      "timestamp": [49, 49.36]
+    },
+    {
+      "text": " slowly.",
+      "timestamp": [49.36, 49.96]
+    },
+    {
+      "text": " He",
+      "timestamp": [50.38, 50.48]
+    },
+    {
+      "text": " watches",
+      "timestamp": [50.48, 50.78]
+    },
+    {
+      "text": " people",
+      "timestamp": [50.78, 51.16]
+    },
+    {
+      "text": " walk",
+      "timestamp": [51.16, 51.4]
+    },
+    {
+      "text": " outside.",
+      "timestamp": [51.4, 51.94]
+    },
+    {
+      "text": " It",
+      "timestamp": [52.48, 52.62]
+    },
+    {
+      "text": " is",
+      "timestamp": [52.62, 52.72]
+    },
+    {
+      "text": " a",
+      "timestamp": [52.72, 52.84]
+    },
+    {
+      "text": " nice",
+      "timestamp": [52.84, 53.16]
+    },
+    {
+      "text": " quiet",
+      "timestamp": [53.16, 53.9]
+    },
+    {
+      "text": " lunch",
+      "timestamp": [53.9, 54.16]
+    },
+    {
+      "text": " break.",
+      "timestamp": [54.16, 54.5]
+    }
+  ]

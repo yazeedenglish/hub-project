@@ -192,13 +192,13 @@ button:focus-visible, input:focus-visible, select:focus-visible {
   color: white; font: 800 12px "Quicksand", sans-serif; letter-spacing: .4px;
   box-shadow: 0 5px 16px rgba(0,0,0,.13);
 }
-.level-A1 { background: #2ab8fa93; }
+.level-A1 { background: #218ce4; }
 
-.level-A2 { background: #0891B2; }
+.level-A2 { background: #dd7819; }
 
-.level-B1 { background: #7C3AED; }
+.level-B1 { background: #7d38f5; }
 
-.level-B2 { background: #DB2777; }
+.level-B2 { background: #cf1e1e; }
 
 .story-card-body { display: flex; flex: 1; flex-direction: column; padding: 21px 22px 22px; }
 

@@ -9,42 +9,112 @@ const stories = [
     id: "the-race",
     title: "The Race",
     arabicTitle: "السباق",
-    description: "Tom will do anything to save his restaurant. But his choice changes everything",
+    description: "Tom will do anything to save his restaurant. But his choice changes everything.",
     level: "A1",
     duration: "4 دقائق",
     coverEmoji: "🏃",
-    image: "tom.jpg", // Optional cover image URL. Leave empty to use the emoji.
+    image: "https://file.yazeedenglish.com/Stories-MP3s/tom.jpg",
     dataFile: "data/the-race.json",
     subtitles: "data/the-race-timestamps.json",
-    audio: "https://easyenglish.com/wp-content/uploads/2026/10/The-Winner___ElevenLabs_2026-10-14T15_21_12_Harry-Articulate-British-Storyteller_pvc_sp100_s50_sb75_v4.mp3"
+    audio: "https://file.yazeedenglish.com/Stories-MP3s/The%20Race.mp3"
   },
 
   {
     id: "the-heatwave",
     title: "The Heatwave",
     arabicTitle: "موجة الحرارة",
-    description: "During a heatwave, rumours spread fear and anger, leading to a terrible mistake with serious consequences",
+    description: "During a heatwave, rumours spread fear and anger, leading to a terrible mistake with serious consequences.",
     level: "A2",
     duration: "4 دقائق",
     coverEmoji: "🏃",
-    image: "data/heatwave.jpg", // Optional cover image URL. Leave empty to use the emoji.
+    image: "https://file.yazeedenglish.com/Stories-MP3s/heatwave.jpg",
     dataFile: "data/the-heatwave.json",
     subtitles: "data/the-heatwave-timestamps.json",
-    audio: "https://easyenglish.com/wp-content/uploads/2026/08/The-Heatwave_ElevenLabs_2026-08-16T07_57_22_Roger-Laid-Back-Casual-Resonant_pre_sp100_s50_sb75_se0_b_m2.mp3"
+    audio: "https://file.yazeedenglish.com/Stories-MP3s/The-Heatwave.mp3"
   },
 
   {
     id: "the-daredevil",
     title: "The Daredevil",
     arabicTitle: "المتهور",
-    description: "Kevin fears nothing, until one dangerous adventure teaches him the true meaning of bravery",
+    description: "Kevin fears nothing, until one dangerous adventure teaches him the true meaning of bravery.",
     level: "B1",
     duration: "4 دقائق",
     coverEmoji: "🏃",
-    image: "data/daredevil.jpg", // Optional cover image URL. Leave empty to use the emoji.
+    image: "https://file.yazeedenglish.com/Stories-MP3s/daredevil.jpg",
     dataFile: "data/the-daredevil.json",
     subtitles: "data/the-daredevil-timestamps.json",
-    audio: "https://easyenglish.com/wp-content/uploads/2026/03/The-Daredevil_ElevenLabs_2026-03-17T10_24_46_Emma-Young-American-Female_pvc_sp100_s50_sb75_se0_b_m2.mp3"
+    audio: "https://file.yazeedenglish.com/Stories-MP3s/The-Daredevil.mp3"
+  },
+
+  {
+    id: "amnesia",
+    title: "Amnesia",
+    arabicTitle: "فقدان الذاكرة",
+    description: "Daniel wakes up with total amnesia, until he discovers someone out there is terrified of what he might remember.",
+    level: "B2",
+    duration: "5 دقائق",
+    coverEmoji: "🏃",
+    image: "https://file.yazeedenglish.com/Stories-MP3s/amnesia.jpg",  
+    dataFile: "data/amnesia.json",
+    subtitles: "data/amnesia-timestamps.json",
+    audio: "https://file.yazeedenglish.com/Stories-MP3s/amnesia.mp3"
+  },
+
+  {
+    id: "Ordering-at-the-cafe",
+    title: "Ordering at the Café",
+    arabicTitle: "الطلب في المقهى",
+    description: "Ben stops at a busy café for lunch and orders a sandwich and coffee.",
+    level: "A1",
+    duration: "1 دقائق",
+    coverEmoji: "🏃",
+    image: "https://file.yazeedenglish.com/Stories-MP3s/cafe.jpg",  
+    dataFile: "data/cafe.json",
+    subtitles: "data/cafe-timestamps.json",
+    audio: "https://file.yazeedenglish.com/Stories-MP3s/cafe.mp3"
+  },
+
+  {
+    id: "Following the Dolphins",
+    title: "Following the Dolphins",
+    arabicTitle: "تتبع الدلافين",
+    description: "After three empty days at sea, a young deckhand notices a pattern in the water and leads his crew to the fish.",
+    level: "A2",
+    duration: "3 دقائق",
+    coverEmoji: "🏃",
+    image: "https://file.yazeedenglish.com/Stories-MP3s/dolphins.jpg",  
+    dataFile: "data/dolphins.json",
+    subtitles: "data/dolphins-timestamps.json",
+    audio: "https://file.yazeedenglish.com/Stories-MP3s/dolphins.mp3"
+  },
+
+  {
+    id: "The Babysitter",
+    title: "The Babysitter",
+    arabicTitle: "جليسة الأطفال",
+    description: "On her first paid babysitting job, Thalia has to find a clever way to get an energetic five-year-old to finally fall asleep.",
+    level: "B1",
+    duration: "2 دقائق",
+    coverEmoji: "🏃",
+    image: "https://file.yazeedenglish.com/Stories-MP3s/thebabysitter.jpg",  
+    dataFile: "data/thebabysitter.json",
+    subtitles: "data/thebabysitter-timestamps.json",
+    audio: "https://file.yazeedenglish.com/Stories-MP3s/the-babysitter.mp3"
+  },
+
+  {
+    id: "The Referee",
+    title: "The Referee's Call",
+    arabicTitle: "قرار الحكم",
+    description: "In the last minute of a youth match, a teenage referee must decide whether to give a penalty against a team coached by his own uncle.",
+    level: "B2",
+    duration: "3 دقائق",
+    coverEmoji: "🏃",
+    image: "https://file.yazeedenglish.com/Stories-MP3s/the-referee.jpg",  
+    dataFile: "data/the-referee.json",
+    subtitles: "data/the-referee-timestamps.json",
+    audio: "https://file.yazeedenglish.com/Stories-MP3s/the-referee.mp3"
   }
 
 ];

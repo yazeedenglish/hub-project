@@ -1,0 +1,1058 @@
+[
+    {
+      "text": " Sara",
+      "timestamp": [0, 0.4]
+    },
+    {
+      "text": " has",
+      "timestamp": [0.4, 0.66]
+    },
+    {
+      "text": " babysat",
+      "timestamp": [0.66, 1.22]
+    },
+    {
+      "text": " her",
+      "timestamp": [1.22, 1.44]
+    },
+    {
+      "text": " younger",
+      "timestamp": [1.44, 1.76]
+    },
+    {
+      "text": " cousins",
+      "timestamp": [1.76, 2.1]
+    },
+    {
+      "text": " before,",
+      "timestamp": [2.1, 2.62]
+    },
+    {
+      "text": " but",
+      "timestamp": [3.12, 3.24]
+    },
+    {
+      "text": " tonight",
+      "timestamp": [3.24, 3.66]
+    },
+    {
+      "text": " is",
+      "timestamp": [3.66, 4.06]
+    },
+    {
+      "text": " her",
+      "timestamp": [4.06, 4.2]
+    },
+    {
+      "text": " first",
+      "timestamp": [4.2, 4.74]
+    },
+    {
+      "text": " real",
+      "timestamp": [4.74, 5.18]
+    },
+    {
+      "text": " paid",
+      "timestamp": [5.18, 5.58]
+    },
+    {
+      "text": " job.",
+      "timestamp": [5.58, 6.12]
+    },
+    {
+      "text": " The",
+      "timestamp": [6.82, 7]
+    },
+    {
+      "text": " Alvarez",
+      "timestamp": [7, 7.42]
+    },
+    {
+      "text": " family",
+      "timestamp": [7.42, 7.88]
+    },
+    {
+      "text": " lives",
+      "timestamp": [7.88, 8.22]
+    },
+    {
+      "text": " just",
+      "timestamp": [8.22, 8.5]
+    },
+    {
+      "text": " two",
+      "timestamp": [8.5, 8.82]
+    },
+    {
+      "text": " houses",
+      "timestamp": [8.82, 9.18]
+    },
+    {
+      "text": " down,",
+      "timestamp": [9.18, 9.56]
+    },
+    {
+      "text": " and",
+      "timestamp": [10, 10.1]
+    },
+    {
+      "text": " their",
+      "timestamp": [10.1, 10.28]
+    },
+    {
+      "text": " son",
+      "timestamp": [10.28, 10.58]
+    },
+    {
+      "text": " David",
+      "timestamp": [10.58, 10.94]
+    },
+    {
+      "text": " is",
+      "timestamp": [10.94, 11.26]
+    },
+    {
+      "text": " five",
+      "timestamp": [11.26, 11.58]
+    },
+    {
+      "text": " years",
+      "timestamp": [11.58, 11.82]
+    },
+    {
+      "text": " old.",
+      "timestamp": [11.82, 12.22]
+    },
+    {
+      "text": " Sarah",
+      "timestamp": [12.84, 13.26]
+    },
+    {
+      "text": " has",
+      "timestamp": [13.26, 13.46]
+    },
+    {
+      "text": " promised",
+      "timestamp": [13.46, 13.92]
+    },
+    {
+      "text": " herself",
+      "timestamp": [13.92, 14.38]
+    },
+    {
+      "text": " she",
+      "timestamp": [14.38, 14.66]
+    },
+    {
+      "text": " won't",
+      "timestamp": [14.66, 15.1]
+    },
+    {
+      "text": " panic",
+      "timestamp": [15.1, 15.36]
+    },
+    {
+      "text": " no",
+      "timestamp": [15.36, 15.86]
+    },
+    {
+      "text": " matter",
+      "timestamp": [15.86, 16.06]
+    },
+    {
+      "text": " what",
+      "timestamp": [16.06, 16.48]
+    },
+    {
+      "text": " happens.",
+      "timestamp": [16.48, 17.08]
+    },
+    {
+      "text": " Mrs",
+      "timestamp": [17.9, 18.2]
+    },
+    {
+      "text": " Alvarez",
+      "timestamp": [18.2, 18.74]
+    },
+    {
+      "text": " leaves",
+      "timestamp": [18.74, 19.12]
+    },
+    {
+      "text": " a",
+      "timestamp": [19.12, 19.34]
+    },
+    {
+      "text": " long",
+      "timestamp": [19.34, 19.64]
+    },
+    {
+      "text": " list",
+      "timestamp": [19.64, 19.94]
+    },
+    {
+      "text": " of",
+      "timestamp": [19.94, 20.12]
+    },
+    {
+      "text": " instructions",
+      "timestamp": [20.12, 20.68]
+    },
+    {
+      "text": " taped",
+      "timestamp": [20.68, 21.08]
+    },
+    {
+      "text": " to",
+      "timestamp": [21.08, 21.32]
+    },
+    {
+      "text": " the",
+      "timestamp": [21.32, 21.42]
+    },
+    {
+      "text": " fridge",
+      "timestamp": [21.42, 21.66]
+    },
+    {
+      "text": " before",
+      "timestamp": [21.66, 22.12]
+    },
+    {
+      "text": " rushing",
+      "timestamp": [22.12, 22.52]
+    },
+    {
+      "text": " out",
+      "timestamp": [22.52, 22.74]
+    },
+    {
+      "text": " the",
+      "timestamp": [22.74, 22.88]
+    },
+    {
+      "text": " door.",
+      "timestamp": [22.88, 23.1]
+    },
+    {
+      "text": " Everything",
+      "timestamp": [24, 24.4]
+    },
+    {
+      "text": " goes",
+      "timestamp": [24.38, 24.7]
+    },
+    {
+      "text": " smoothly",
+      "timestamp": [24.7, 25.32]
+    },
+    {
+      "text": " until",
+      "timestamp": [25.32, 25.78]
+    },
+    {
+      "text": " bedtime",
+      "timestamp": [25.78, 26.16]
+    },
+    {
+      "text": " arrives",
+      "timestamp": [26.16, 26.82]
+    },
+    {
+      "text": " and",
+      "timestamp": [26.82, 27.3]
+    },
+    {
+      "text": " David",
+      "timestamp": [27.3, 27.56]
+    },
+    {
+      "text": " flatly",
+      "timestamp": [27.56, 28.2]
+    },
+    {
+      "text": " refuses",
+      "timestamp": [28.2, 28.74]
+    },
+    {
+      "text": " to",
+      "timestamp": [28.74, 29.1]
+    },
+    {
+      "text": " sleep.",
+      "timestamp": [29.1, 29.42]
+    },
+    {
+      "text": " He",
+      "timestamp": [30.06, 30.3]
+    },
+    {
+      "text": " wants",
+      "timestamp": [30.3, 30.48]
+    },
+    {
+      "text": " three",
+      "timestamp": [30.48, 30.88]
+    },
+    {
+      "text": " more",
+      "timestamp": [30.88, 31.08]
+    },
+    {
+      "text": " stories,",
+      "timestamp": [31.08, 31.58]
+    },
+    {
+      "text": " then",
+      "timestamp": [32.06, 32.2]
+    },
+    {
+      "text": " a",
+      "timestamp": [32.2, 32.3]
+    },
+    {
+      "text": " glass",
+      "timestamp": [32.3, 32.46]
+    },
+    {
+      "text": " of",
+      "timestamp": [32.46, 32.7]
+    },
+    {
+      "text": " water,",
+      "timestamp": [32.7, 33.04]
+    },
+    {
+      "text": " then",
+      "timestamp": [33.58, 33.9]
+    },
+    {
+      "text": " he",
+      "timestamp": [33.9, 34.1]
+    },
+    {
+      "text": " wants",
+      "timestamp": [34.1, 34.3]
+    },
+    {
+      "text": " the",
+      "timestamp": [34.3, 34.52]
+    },
+    {
+      "text": " hallway",
+      "timestamp": [34.52, 34.78]
+    },
+    {
+      "text": " light",
+      "timestamp": [34.78, 35.14]
+    },
+    {
+      "text": " left",
+      "timestamp": [35.14, 35.34]
+    },
+    {
+      "text": " on",
+      "timestamp": [35.34, 35.58]
+    },
+    {
+      "text": " a",
+      "timestamp": [35.58, 35.76]
+    },
+    {
+      "text": " specific",
+      "timestamp": [35.76, 36.28]
+    },
+    {
+      "text": " way.",
+      "timestamp": [36.28, 36.82]
+    },
+    {
+      "text": " Sarah",
+      "timestamp": [37.52, 37.9]
+    },
+    {
+      "text": " has",
+      "timestamp": [37.9, 38.12]
+    },
+    {
+      "text": " read",
+      "timestamp": [38.12, 38.3]
+    },
+    {
+      "text": " the",
+      "timestamp": [38.3, 38.48]
+    },
+    {
+      "text": " same",
+      "timestamp": [38.48, 38.82]
+    },
+    {
+      "text": " book",
+      "timestamp": [38.82, 39.12]
+    },
+    {
+      "text": " twice",
+      "timestamp": [39.12, 39.64]
+    },
+    {
+      "text": " already",
+      "timestamp": [39.64, 40.28]
+    },
+    {
+      "text": " and",
+      "timestamp": [40.28, 40.74]
+    },
+    {
+      "text": " her",
+      "timestamp": [40.74, 40.88]
+    },
+    {
+      "text": " voice",
+      "timestamp": [40.88, 41.18]
+    },
+    {
+      "text": " is",
+      "timestamp": [41.18, 41.42]
+    },
+    {
+      "text": " getting",
+      "timestamp": [41.42, 41.68]
+    },
+    {
+      "text": " horse.",
+      "timestamp": [41.68, 42.08]
+    },
+    {
+      "text": " She",
+      "timestamp": [42.98, 43.18]
+    },
+    {
+      "text": " remembers",
+      "timestamp": [43.18, 43.58]
+    },
+    {
+      "text": " something",
+      "timestamp": [43.58, 44.02]
+    },
+    {
+      "text": " her",
+      "timestamp": [44.02, 44.26]
+    },
+    {
+      "text": " own",
+      "timestamp": [44.26, 44.6]
+    },
+    {
+      "text": " babysitter",
+      "timestamp": [44.6, 45.12]
+    },
+    {
+      "text": " used",
+      "timestamp": [45.12, 45.38]
+    },
+    {
+      "text": " to",
+      "timestamp": [45.38, 45.58]
+    },
+    {
+      "text": " do",
+      "timestamp": [45.58, 45.7]
+    },
+    {
+      "text": " years",
+      "timestamp": [45.7, 46.08]
+    },
+    {
+      "text": " ago.",
+      "timestamp": [46.08, 46.44]
+    },
+    {
+      "text": " If",
+      "timestamp": [47.24, 47.4]
+    },
+    {
+      "text": " David",
+      "timestamp": [47.4, 47.62]
+    },
+    {
+      "text": " helps",
+      "timestamp": [47.62, 48.12]
+    },
+    {
+      "text": " her",
+      "timestamp": [48.12, 48.26]
+    },
+    {
+      "text": " build",
+      "timestamp": [48.26, 48.48]
+    },
+    {
+      "text": " a",
+      "timestamp": [48.48, 48.64]
+    },
+    {
+      "text": " blanket",
+      "timestamp": [48.64, 49]
+    },
+    {
+      "text": " fort",
+      "timestamp": [49, 49.32]
+    },
+    {
+      "text": " first,",
+      "timestamp": [49.32, 49.96]
+    },
+    {
+      "text": " he",
+      "timestamp": [50.24, 50.4]
+    },
+    {
+      "text": " might",
+      "timestamp": [50.4, 50.7]
+    },
+    {
+      "text": " finally",
+      "timestamp": [50.7, 51.26]
+    },
+    {
+      "text": " feel",
+      "timestamp": [51.26, 51.6]
+    },
+    {
+      "text": " tired",
+      "timestamp": [51.6, 52]
+    },
+    {
+      "text": " enough",
+      "timestamp": [52, 52.26]
+    },
+    {
+      "text": " to",
+      "timestamp": [52.26, 52.46]
+    },
+    {
+      "text": " sleep.",
+      "timestamp": [52.46, 52.8]
+    },
+    {
+      "text": " It's",
+      "timestamp": [53.56, 53.78]
+    },
+    {
+      "text": " a",
+      "timestamp": [53.78, 53.84]
+    },
+    {
+      "text": " small",
+      "timestamp": [53.84, 54.12]
+    },
+    {
+      "text": " risk",
+      "timestamp": [54.12, 54.58]
+    },
+    {
+      "text": " since",
+      "timestamp": [54.58, 55.08]
+    },
+    {
+      "text": " fort-building",
+      "timestamp": [55.08, 55.38]
+    },
+    {
+      "text": " usually",
+      "timestamp": [55.76, 56.22]
+    },
+    {
+      "text": " makes",
+      "timestamp": [56.22, 56.5]
+    },
+    {
+      "text": " kids",
+      "timestamp": [56.5, 56.82]
+    },
+    {
+      "text": " more",
+      "timestamp": [56.82, 57.2]
+    },
+    {
+      "text": " awake,",
+      "timestamp": [57.2, 57.58]
+    },
+    {
+      "text": " not",
+      "timestamp": [57.9, 58.02]
+    },
+    {
+      "text": " less.",
+      "timestamp": [58.02, 58.36]
+    },
+    {
+      "text": " Surprisingly,",
+      "timestamp": [59.1, 59.76]
+    },
+    {
+      "text": " it",
+      "timestamp": [60.28, 60.38]
+    },
+    {
+      "text": " works.",
+      "timestamp": [60.38, 60.74]
+    },
+    {
+      "text": " David",
+      "timestamp": [61.62, 61.94]
+    },
+    {
+      "text": " arranges",
+      "timestamp": [61.94, 62.46]
+    },
+    {
+      "text": " the",
+      "timestamp": [62.46, 62.68]
+    },
+    {
+      "text": " pillows",
+      "timestamp": [62.68, 62.9]
+    },
+    {
+      "text": " with",
+      "timestamp": [62.9, 63.28]
+    },
+    {
+      "text": " total",
+      "timestamp": [63.28, 63.78]
+    },
+    {
+      "text": " concentration,",
+      "timestamp": [63.78, 64.6]
+    },
+    {
+      "text": " discussing",
+      "timestamp": [65.14, 65.46]
+    },
+    {
+      "text": " exactly",
+      "timestamp": [65.46, 66.1]
+    },
+    {
+      "text": " where",
+      "timestamp": [66.1, 66.56]
+    },
+    {
+      "text": " each",
+      "timestamp": [66.56, 66.92]
+    },
+    {
+      "text": " cushion",
+      "timestamp": [66.92, 67.22]
+    },
+    {
+      "text": " should",
+      "timestamp": [67.22, 67.52]
+    },
+    {
+      "text": " go.",
+      "timestamp": [67.52, 67.76]
+    },
+    {
+      "text": " He",
+      "timestamp": [68.36, 68.66]
+    },
+    {
+      "text": " insists",
+      "timestamp": [68.66, 69.1]
+    },
+    {
+      "text": " the",
+      "timestamp": [69.1, 69.5]
+    },
+    {
+      "text": " biggest",
+      "timestamp": [69.5, 69.86]
+    },
+    {
+      "text": " pillow",
+      "timestamp": [69.86, 70.28]
+    },
+    {
+      "text": " must",
+      "timestamp": [70.28, 70.68]
+    },
+    {
+      "text": " go",
+      "timestamp": [70.68, 71]
+    },
+    {
+      "text": " at",
+      "timestamp": [71, 71.18]
+    },
+    {
+      "text": " the",
+      "timestamp": [71.18, 71.3]
+    },
+    {
+      "text": " very",
+      "timestamp": [71.3, 71.62]
+    },
+    {
+      "text": " top,",
+      "timestamp": [71.62, 71.96]
+    },
+    {
+      "text": " like",
+      "timestamp": [72.26, 72.4]
+    },
+    {
+      "text": " a",
+      "timestamp": [72.4, 72.54]
+    },
+    {
+      "text": " roof.",
+      "timestamp": [72.54, 72.8]
+    },
+    {
+      "text": " By",
+      "timestamp": [73.66, 73.84]
+    },
+    {
+      "text": " the",
+      "timestamp": [73.84, 73.96]
+    },
+    {
+      "text": " time",
+      "timestamp": [73.96, 74.24]
+    },
+    {
+      "text": " the",
+      "timestamp": [74.24, 74.4]
+    },
+    {
+      "text": " fort",
+      "timestamp": [74.4, 74.54]
+    },
+    {
+      "text": " is",
+      "timestamp": [74.54, 74.76]
+    },
+    {
+      "text": " finished,",
+      "timestamp": [74.76, 75.28]
+    },
+    {
+      "text": " he's",
+      "timestamp": [75.62, 75.86]
+    },
+    {
+      "text": " yawning",
+      "timestamp": [75.86, 76.2]
+    },
+    {
+      "text": " between",
+      "timestamp": [76.2, 76.58]
+    },
+    {
+      "text": " sentences",
+      "timestamp": [76.58, 77.2]
+    },
+    {
+      "text": " without",
+      "timestamp": [77.2, 77.68]
+    },
+    {
+      "text": " even",
+      "timestamp": [77.68, 78.08]
+    },
+    {
+      "text": " noticing.",
+      "timestamp": [78.08, 78.64]
+    },
+    {
+      "text": " Sarah",
+      "timestamp": [79.42, 79.76]
+    },
+    {
+      "text": " tucks",
+      "timestamp": [79.76, 80.12]
+    },
+    {
+      "text": " him",
+      "timestamp": [80.12, 80.3]
+    },
+    {
+      "text": " inside",
+      "timestamp": [80.3, 80.66]
+    },
+    {
+      "text": " the",
+      "timestamp": [80.66, 80.88]
+    },
+    {
+      "text": " small",
+      "timestamp": [80.88, 81.16]
+    },
+    {
+      "text": " fort",
+      "timestamp": [81.16, 81.52]
+    },
+    {
+      "text": " instead",
+      "timestamp": [81.52, 82]
+    },
+    {
+      "text": " of",
+      "timestamp": [82, 82.2]
+    },
+    {
+      "text": " his",
+      "timestamp": [82.2, 82.36]
+    },
+    {
+      "text": " usual",
+      "timestamp": [82.36, 82.7]
+    },
+    {
+      "text": " bed,",
+      "timestamp": [82.7, 83.08]
+    },
+    {
+      "text": " and",
+      "timestamp": [83.52, 83.58]
+    },
+    {
+      "text": " he's",
+      "timestamp": [83.58, 83.8]
+    },
+    {
+      "text": " asleep",
+      "timestamp": [83.8, 84.14]
+    },
+    {
+      "text": " within",
+      "timestamp": [84.14, 84.56]
+    },
+    {
+      "text": " minutes.",
+      "timestamp": [84.56, 85.04]
+    },
+    {
+      "text": " She",
+      "timestamp": [85.74, 85.98]
+    },
+    {
+      "text": " checks",
+      "timestamp": [85.98, 86.26]
+    },
+    {
+      "text": " on",
+      "timestamp": [86.26, 86.4]
+    },
+    {
+      "text": " him",
+      "timestamp": [86.4, 86.54]
+    },
+    {
+      "text": " twice",
+      "timestamp": [86.54, 86.96]
+    },
+    {
+      "text": " before",
+      "timestamp": [86.96, 87.36]
+    },
+    {
+      "text": " his",
+      "timestamp": [87.36, 87.58]
+    },
+    {
+      "text": " parents",
+      "timestamp": [87.58, 87.88]
+    },
+    {
+      "text": " return,",
+      "timestamp": [87.88, 88.32]
+    },
+    {
+      "text": " just",
+      "timestamp": [88.76, 88.9]
+    },
+    {
+      "text": " to",
+      "timestamp": [88.9, 89.12]
+    },
+    {
+      "text": " be",
+      "timestamp": [89.12, 89.24]
+    },
+    {
+      "text": " sure.",
+      "timestamp": [89.24, 89.54]
+    },
+    {
+      "text": " When",
+      "timestamp": [90.46, 90.56]
+    },
+    {
+      "text": " Mrs.",
+      "timestamp": [90.56, 90.88]
+    },
+    {
+      "text": " Alvarez",
+      "timestamp": [91, 91.3]
+    },
+    {
+      "text": " gets",
+      "timestamp": [91.3, 91.56]
+    },
+    {
+      "text": " home,",
+      "timestamp": [91.56, 92.04]
+    },
+    {
+      "text": " she",
+      "timestamp": [92.32, 92.48]
+    },
+    {
+      "text": " finds",
+      "timestamp": [92.48, 92.88]
+    },
+    {
+      "text": " Sarah",
+      "timestamp": [92.88, 93.2]
+    },
+    {
+      "text": " quietly",
+      "timestamp": [93.2, 93.72]
+    },
+    {
+      "text": " reading",
+      "timestamp": [93.72, 94.16]
+    },
+    {
+      "text": " on",
+      "timestamp": [94.16, 94.34]
+    },
+    {
+      "text": " the",
+      "timestamp": [94.34, 94.48]
+    },
+    {
+      "text": " couch.",
+      "timestamp": [94.48, 94.78]
+    },
+    {
+      "text": " The",
+      "timestamp": [95.44, 95.62]
+    },
+    {
+      "text": " house",
+      "timestamp": [95.62, 95.92]
+    },
+    {
+      "text": " is",
+      "timestamp": [95.92, 96.22]
+    },
+    {
+      "text": " completely,",
+      "timestamp": [96.22, 97.02]
+    },
+    {
+      "text": " wonderfully",
+      "timestamp": [97.22, 97.76]
+    },
+    {
+      "text": " quiet.",
+      "timestamp": [97.76, 98.4]
+    },
+    {
+      "text": " \"How",
+      "timestamp": [98.9, 99.42]
+    },
+    {
+      "text": " did",
+      "timestamp": [99.42, 99.56]
+    },
+    {
+      "text": " you",
+      "timestamp": [99.56, 99.72]
+    },
+    {
+      "text": " manage",
+      "timestamp": [99.72, 99.98]
+    },
+    {
+      "text": " that?\"",
+      "timestamp": [99.98, 100.42]
+    },
+    {
+      "text": " Mrs.",
+      "timestamp": [100.92, 101.2]
+    },
+    {
+      "text": " Alvarez",
+      "timestamp": [101.34, 101.68]
+    },
+    {
+      "text": " whispers,",
+      "timestamp": [101.68, 102.12]
+    },
+    {
+      "text": " peaking",
+      "timestamp": [102.62, 102.86]
+    },
+    {
+      "text": " into",
+      "timestamp": [102.86, 103.14]
+    },
+    {
+      "text": " David's",
+      "timestamp": [103.14, 103.64]
+    },
+    {
+      "text": " room.",
+      "timestamp": [103.64, 103.88]
+    },
+    {
+      "text": " Sarah",
+      "timestamp": [104.54, 104.88]
+    },
+    {
+      "text": " just",
+      "timestamp": [104.88, 105.1]
+    },
+    {
+      "text": " smiles",
+      "timestamp": [105.1, 105.48]
+    },
+    {
+      "text": " and",
+      "timestamp": [105.48, 105.96]
+    },
+    {
+      "text": " says",
+      "timestamp": [105.96, 106.24]
+    },
+    {
+      "text": " some",
+      "timestamp": [106.24, 106.64]
+    },
+    {
+      "text": " things",
+      "timestamp": [106.64, 107.1]
+    },
+    {
+      "text": " are",
+      "timestamp": [107.1, 107.3]
+    },
+    {
+      "text": " better",
+      "timestamp": [107.3, 107.56]
+    },
+    {
+      "text": " explained",
+      "timestamp": [107.56, 108.06]
+    },
+    {
+      "text": " tomorrow.",
+      "timestamp": [108.06, 108.62]
+    }
+  ]

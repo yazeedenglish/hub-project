@@ -1,0 +1,1714 @@
+[
+    {
+      "text": " Thomas",
+      "timestamp": [0, 0.32]
+    },
+    {
+      "text": " is",
+      "timestamp": [0.32, 0.7]
+    },
+    {
+      "text": " fifteen",
+      "timestamp": [0.7, 1.18]
+    },
+    {
+      "text": " It",
+      "timestamp": [1.94, 2.06]
+    },
+    {
+      "text": " is",
+      "timestamp": [2.06, 2.18]
+    },
+    {
+      "text": " summer.",
+      "timestamp": [2.18, 2.5]
+    },
+    {
+      "text": " He",
+      "timestamp": [3.08, 3.34]
+    },
+    {
+      "text": " works",
+      "timestamp": [3.34, 3.58]
+    },
+    {
+      "text": " on",
+      "timestamp": [3.58, 3.8]
+    },
+    {
+      "text": " his",
+      "timestamp": [3.8, 3.94]
+    },
+    {
+      "text": " uncle's",
+      "timestamp": [3.94, 4.42]
+    },
+    {
+      "text": " fishing",
+      "timestamp": [4.42, 4.66]
+    },
+    {
+      "text": " boat.",
+      "timestamp": [4.66, 4.96]
+    },
+    {
+      "text": " The",
+      "timestamp": [5.68, 5.74]
+    },
+    {
+      "text": " boat",
+      "timestamp": [5.74, 6.04]
+    },
+    {
+      "text": " is",
+      "timestamp": [6.04, 6.3]
+    },
+    {
+      "text": " called",
+      "timestamp": [6.3, 6.56]
+    },
+    {
+      "text": " the",
+      "timestamp": [6.56, 6.82]
+    },
+    {
+      "text": " Blue",
+      "timestamp": [6.82, 7.08]
+    },
+    {
+      "text": " Gull",
+      "timestamp": [7.08, 7.3]
+    },
+    {
+      "text": " It",
+      "timestamp": [7.92, 8.12]
+    },
+    {
+      "text": " is",
+      "timestamp": [8.12, 8.26]
+    },
+    {
+      "text": " old",
+      "timestamp": [8.26, 8.6]
+    },
+    {
+      "text": " and",
+      "timestamp": [8.6, 9.04]
+    },
+    {
+      "text": " small.",
+      "timestamp": [9.04, 9.42]
+    },
+    {
+      "text": " The",
+      "timestamp": [10.18, 10.36]
+    },
+    {
+      "text": " crew",
+      "timestamp": [10.36, 10.68]
+    },
+    {
+      "text": " has",
+      "timestamp": [10.68, 10.92]
+    },
+    {
+      "text": " four",
+      "timestamp": [10.92, 11.3]
+    },
+    {
+      "text": " people.",
+      "timestamp": [11.3, 11.7]
+    },
+    {
+      "text": " Thomas",
+      "timestamp": [12.36, 12.62]
+    },
+    {
+      "text": " is",
+      "timestamp": [12.62, 13.08]
+    },
+    {
+      "text": " the",
+      "timestamp": [13.08, 13.24]
+    },
+    {
+      "text": " youngest.",
+      "timestamp": [13.24, 13.54]
+    },
+    {
+      "text": " His",
+      "timestamp": [14.52, 14.66]
+    },
+    {
+      "text": " job",
+      "timestamp": [14.66, 14.96]
+    },
+    {
+      "text": " is",
+      "timestamp": [14.96, 15.28]
+    },
+    {
+      "text": " easy.",
+      "timestamp": [15.28, 15.72]
+    },
+    {
+      "text": " He",
+      "timestamp": [16.26, 16.36]
+    },
+    {
+      "text": " cleans",
+      "timestamp": [16.36, 16.66]
+    },
+    {
+      "text": " the",
+      "timestamp": [16.66, 16.86]
+    },
+    {
+      "text": " deck.",
+      "timestamp": [16.86, 17.08]
+    },
+    {
+      "text": " He",
+      "timestamp": [17.62, 17.7]
+    },
+    {
+      "text": " coils",
+      "timestamp": [17.7, 18.08]
+    },
+    {
+      "text": " the",
+      "timestamp": [18.08, 18.32]
+    },
+    {
+      "text": " ropes.",
+      "timestamp": [18.32, 18.52]
+    },
+    {
+      "text": " He",
+      "timestamp": [19.18, 19.28]
+    },
+    {
+      "text": " makes",
+      "timestamp": [19.28, 19.5]
+    },
+    {
+      "text": " the",
+      "timestamp": [19.5, 19.7]
+    },
+    {
+      "text": " tea.",
+      "timestamp": [19.7, 19.92]
+    },
+    {
+      "text": " He",
+      "timestamp": [20.66, 20.8]
+    },
+    {
+      "text": " does",
+      "timestamp": [20.8, 20.96]
+    },
+    {
+      "text": " not",
+      "timestamp": [20.96, 21.22]
+    },
+    {
+      "text": " touch",
+      "timestamp": [21.22, 21.6]
+    },
+    {
+      "text": " the",
+      "timestamp": [21.6, 21.8]
+    },
+    {
+      "text": " nets.",
+      "timestamp": [21.8, 22]
+    },
+    {
+      "text": " Only",
+      "timestamp": [22.66, 22.88]
+    },
+    {
+      "text": " the",
+      "timestamp": [22.88, 23.08]
+    },
+    {
+      "text": " older",
+      "timestamp": [23.08, 23.38]
+    },
+    {
+      "text": " men",
+      "timestamp": [23.38, 23.6]
+    },
+    {
+      "text": " do",
+      "timestamp": [23.6, 23.82]
+    },
+    {
+      "text": " that.",
+      "timestamp": [23.82, 24.08]
+    },
+    {
+      "text": " This",
+      "timestamp": [25.04, 25.36]
+    },
+    {
+      "text": " week",
+      "timestamp": [25.36, 25.7]
+    },
+    {
+      "text": " the",
+      "timestamp": [25.7, 26.02]
+    },
+    {
+      "text": " sea",
+      "timestamp": [26.02, 26.32]
+    },
+    {
+      "text": " gives",
+      "timestamp": [26.32, 26.72]
+    },
+    {
+      "text": " nothing.",
+      "timestamp": [26.72, 27.24]
+    },
+    {
+      "text": " For",
+      "timestamp": [27.98, 28.1]
+    },
+    {
+      "text": " three",
+      "timestamp": [28.1, 28.48]
+    },
+    {
+      "text": " days",
+      "timestamp": [28.48, 28.78]
+    },
+    {
+      "text": " the",
+      "timestamp": [28.78, 29.12]
+    },
+    {
+      "text": " nets",
+      "timestamp": [29.12, 29.34]
+    },
+    {
+      "text": " come",
+      "timestamp": [29.34, 29.58]
+    },
+    {
+      "text": " up",
+      "timestamp": [29.58, 29.76]
+    },
+    {
+      "text": " almost",
+      "timestamp": [29.76, 30.18]
+    },
+    {
+      "text": " empty.",
+      "timestamp": [30.18, 30.7]
+    },
+    {
+      "text": " The",
+      "timestamp": [31.38, 31.6]
+    },
+    {
+      "text": " men",
+      "timestamp": [31.6, 31.86]
+    },
+    {
+      "text": " are",
+      "timestamp": [31.86, 32.1]
+    },
+    {
+      "text": " tired",
+      "timestamp": [32.1, 32.58]
+    },
+    {
+      "text": " and",
+      "timestamp": [32.58, 33.04]
+    },
+    {
+      "text": " quiet.",
+      "timestamp": [33.04, 33.44]
+    },
+    {
+      "text": " The",
+      "timestamp": [34.2, 34.32]
+    },
+    {
+      "text": " captain",
+      "timestamp": [34.32, 34.68]
+    },
+    {
+      "text": " looks",
+      "timestamp": [34.68, 34.94]
+    },
+    {
+      "text": " at",
+      "timestamp": [34.94, 35.1]
+    },
+    {
+      "text": " the",
+      "timestamp": [35.1, 35.24]
+    },
+    {
+      "text": " sky",
+      "timestamp": [35.24, 35.52]
+    },
+    {
+      "text": " each",
+      "timestamp": [35.52, 35.96]
+    },
+    {
+      "text": " hour.",
+      "timestamp": [35.96, 36.34]
+    },
+    {
+      "text": " She",
+      "timestamp": [36.94, 37.14]
+    },
+    {
+      "text": " says",
+      "timestamp": [37.14, 37.4]
+    },
+    {
+      "text": " little.",
+      "timestamp": [37.4, 37.78]
+    },
+    {
+      "text": " On",
+      "timestamp": [38.68, 38.92]
+    },
+    {
+      "text": " the",
+      "timestamp": [38.92, 39.02]
+    },
+    {
+      "text": " fourth",
+      "timestamp": [39.02, 39.34]
+    },
+    {
+      "text": " morning",
+      "timestamp": [39.34, 39.7]
+    },
+    {
+      "text": " the",
+      "timestamp": [39.7, 40.04]
+    },
+    {
+      "text": " boat",
+      "timestamp": [40.04, 40.26]
+    },
+    {
+      "text": " leaves",
+      "timestamp": [40.26, 40.56]
+    },
+    {
+      "text": " the",
+      "timestamp": [40.56, 40.76]
+    },
+    {
+      "text": " harbor",
+      "timestamp": [40.76, 41.02]
+    },
+    {
+      "text": " early.",
+      "timestamp": [41.02, 41.54]
+    },
+    {
+      "text": " The",
+      "timestamp": [42.16, 42.28]
+    },
+    {
+      "text": " water",
+      "timestamp": [42.28, 42.56]
+    },
+    {
+      "text": " is",
+      "timestamp": [42.56, 42.84]
+    },
+    {
+      "text": " flat",
+      "timestamp": [42.84, 43.2]
+    },
+    {
+      "text": " and",
+      "timestamp": [43.2, 43.7]
+    },
+    {
+      "text": " gray.",
+      "timestamp": [43.7, 44.02]
+    },
+    {
+      "text": " Thomas",
+      "timestamp": [44.92, 45.2]
+    },
+    {
+      "text": " sits",
+      "timestamp": [45.18, 45.5]
+    },
+    {
+      "text": " on",
+      "timestamp": [45.5, 45.7]
+    },
+    {
+      "text": " a",
+      "timestamp": [45.7, 45.84]
+    },
+    {
+      "text": " box",
+      "timestamp": [45.84, 46.02]
+    },
+    {
+      "text": " near",
+      "timestamp": [46.02, 46.3]
+    },
+    {
+      "text": " the",
+      "timestamp": [46.3, 46.44]
+    },
+    {
+      "text": " front.",
+      "timestamp": [46.44, 46.72]
+    },
+    {
+      "text": " He",
+      "timestamp": [47.28, 47.46]
+    },
+    {
+      "text": " drinks",
+      "timestamp": [47.46, 47.74]
+    },
+    {
+      "text": " tea",
+      "timestamp": [47.74, 48.04]
+    },
+    {
+      "text": " and",
+      "timestamp": [48.04, 48.52]
+    },
+    {
+      "text": " watches",
+      "timestamp": [48.52, 48.84]
+    },
+    {
+      "text": " the",
+      "timestamp": [48.84, 49.08]
+    },
+    {
+      "text": " waves.",
+      "timestamp": [49.08, 49.32]
+    },
+    {
+      "text": " After",
+      "timestamp": [50.26, 50.62]
+    },
+    {
+      "text": " two",
+      "timestamp": [50.62, 50.9]
+    },
+    {
+      "text": " hours,",
+      "timestamp": [50.9, 51.26]
+    },
+    {
+      "text": " the",
+      "timestamp": [51.52, 51.6]
+    },
+    {
+      "text": " captain",
+      "timestamp": [51.6, 51.88]
+    },
+    {
+      "text": " stops",
+      "timestamp": [51.88, 52.3]
+    },
+    {
+      "text": " the",
+      "timestamp": [52.3, 52.62]
+    },
+    {
+      "text": " engine.",
+      "timestamp": [52.62, 52.88]
+    },
+    {
+      "text": " The",
+      "timestamp": [53.56, 53.64]
+    },
+    {
+      "text": " men",
+      "timestamp": [53.64, 53.86]
+    },
+    {
+      "text": " drop",
+      "timestamp": [53.86, 54.18]
+    },
+    {
+      "text": " the",
+      "timestamp": [54.18, 54.42]
+    },
+    {
+      "text": " nets.",
+      "timestamp": [54.42, 54.62]
+    },
+    {
+      "text": " They",
+      "timestamp": [55.34, 55.56]
+    },
+    {
+      "text": " wait.",
+      "timestamp": [55.56, 55.8]
+    },
+    {
+      "text": " The",
+      "timestamp": [56.52, 56.72]
+    },
+    {
+      "text": " net",
+      "timestamp": [56.72, 56.9]
+    },
+    {
+      "text": " comes",
+      "timestamp": [56.9, 57.16]
+    },
+    {
+      "text": " up.",
+      "timestamp": [57.16, 57.44]
+    },
+    {
+      "text": " It",
+      "timestamp": [58.08, 58.16]
+    },
+    {
+      "text": " holds",
+      "timestamp": [58.16, 58.36]
+    },
+    {
+      "text": " a",
+      "timestamp": [58.36, 58.52]
+    },
+    {
+      "text": " few",
+      "timestamp": [58.52, 58.72]
+    },
+    {
+      "text": " small",
+      "timestamp": [58.72, 59.12]
+    },
+    {
+      "text": " fish",
+      "timestamp": [59.12, 59.44]
+    },
+    {
+      "text": " and",
+      "timestamp": [59.44, 59.84]
+    },
+    {
+      "text": " some",
+      "timestamp": [59.84, 60.06]
+    },
+    {
+      "text": " seaweed.",
+      "timestamp": [60.06, 60.4]
+    },
+    {
+      "text": " \"Again",
+      "timestamp": [61.06, 61.62]
+    },
+    {
+      "text": " nothing,\"",
+      "timestamp": [61.62, 62.26]
+    },
+    {
+      "text": " says",
+      "timestamp": [62.66, 62.92]
+    },
+    {
+      "text": " one",
+      "timestamp": [62.92, 63.18]
+    },
+    {
+      "text": " man.",
+      "timestamp": [63.18, 63.44]
+    },
+    {
+      "text": " He",
+      "timestamp": [64.06, 64.2]
+    },
+    {
+      "text": " throws",
+      "timestamp": [64.2, 64.48]
+    },
+    {
+      "text": " the",
+      "timestamp": [64.48, 64.72]
+    },
+    {
+      "text": " seaweed",
+      "timestamp": [64.72, 65.02]
+    },
+    {
+      "text": " back.",
+      "timestamp": [65.02, 65.56]
+    },
+    {
+      "text": " Thomas",
+      "timestamp": [66.34, 66.58]
+    },
+    {
+      "text": " looks",
+      "timestamp": [66.58, 66.9]
+    },
+    {
+      "text": " away.",
+      "timestamp": [66.9, 67.28]
+    },
+    {
+      "text": " He",
+      "timestamp": [67.82, 68.04]
+    },
+    {
+      "text": " does",
+      "timestamp": [68.04, 68.14]
+    },
+    {
+      "text": " not",
+      "timestamp": [68.14, 68.34]
+    },
+    {
+      "text": " want",
+      "timestamp": [68.34, 68.58]
+    },
+    {
+      "text": " to",
+      "timestamp": [68.58, 68.76]
+    },
+    {
+      "text": " see",
+      "timestamp": [68.76, 69]
+    },
+    {
+      "text": " their",
+      "timestamp": [69, 69.22]
+    },
+    {
+      "text": " faces.",
+      "timestamp": [69.22, 69.62]
+    },
+    {
+      "text": " Far",
+      "timestamp": [70.66, 70.94]
+    },
+    {
+      "text": " out",
+      "timestamp": [70.94, 71.22]
+    },
+    {
+      "text": " on",
+      "timestamp": [71.22, 71.36]
+    },
+    {
+      "text": " the",
+      "timestamp": [71.36, 71.46]
+    },
+    {
+      "text": " water,",
+      "timestamp": [71.46, 71.78]
+    },
+    {
+      "text": " something",
+      "timestamp": [72.04, 72.4]
+    },
+    {
+      "text": " moves.",
+      "timestamp": [72.4, 72.86]
+    },
+    {
+      "text": " A",
+      "timestamp": [73.5, 73.58]
+    },
+    {
+      "text": " bird",
+      "timestamp": [73.58, 73.86]
+    },
+    {
+      "text": " dives.",
+      "timestamp": [73.86, 74.4]
+    },
+    {
+      "text": " Then",
+      "timestamp": [74.9, 75.04]
+    },
+    {
+      "text": " another.",
+      "timestamp": [75.04, 75.5]
+    },
+    {
+      "text": " Then",
+      "timestamp": [76.02, 76.22]
+    },
+    {
+      "text": " ten",
+      "timestamp": [76.22, 76.62]
+    },
+    {
+      "text": " birds",
+      "timestamp": [76.62, 77]
+    },
+    {
+      "text": " dive",
+      "timestamp": [77, 77.3]
+    },
+    {
+      "text": " at",
+      "timestamp": [77.3, 77.48]
+    },
+    {
+      "text": " once.",
+      "timestamp": [77.48, 77.76]
+    },
+    {
+      "text": " Look,",
+      "timestamp": [78.42, 78.72]
+    },
+    {
+      "text": " he",
+      "timestamp": [79.06, 79.22]
+    },
+    {
+      "text": " says.",
+      "timestamp": [79.22, 79.48]
+    },
+    {
+      "text": " Nobody",
+      "timestamp": [80.18, 80.52]
+    },
+    {
+      "text": " hears",
+      "timestamp": [80.52, 80.86]
+    },
+    {
+      "text": " him.",
+      "timestamp": [80.86, 81.16]
+    },
+    {
+      "text": " The",
+      "timestamp": [81.56, 81.62]
+    },
+    {
+      "text": " men",
+      "timestamp": [81.62, 81.88]
+    },
+    {
+      "text": " are",
+      "timestamp": [81.88, 82.12]
+    },
+    {
+      "text": " busy",
+      "timestamp": [82.12, 82.42]
+    },
+    {
+      "text": " with",
+      "timestamp": [82.42, 82.64]
+    },
+    {
+      "text": " the",
+      "timestamp": [82.64, 82.76]
+    },
+    {
+      "text": " net.",
+      "timestamp": [82.76, 82.96]
+    },
+    {
+      "text": " Look,",
+      "timestamp": [83.58, 83.92]
+    },
+    {
+      "text": " he",
+      "timestamp": [84.32, 84.48]
+    },
+    {
+      "text": " says",
+      "timestamp": [84.5, 84.68]
+    },
+    {
+      "text": " again.",
+      "timestamp": [84.68, 85.04]
+    },
+    {
+      "text": " louder.",
+      "timestamp": [85.42, 85.8]
+    },
+    {
+      "text": " The",
+      "timestamp": [86.38, 86.52]
+    },
+    {
+      "text": " captain",
+      "timestamp": [86.52, 86.84]
+    },
+    {
+      "text": " turns",
+      "timestamp": [86.84, 87.24]
+    },
+    {
+      "text": " her",
+      "timestamp": [87.24, 87.48]
+    },
+    {
+      "text": " head.",
+      "timestamp": [87.48, 87.74]
+    },
+    {
+      "text": " \"What",
+      "timestamp": [88.28, 88.44]
+    },
+    {
+      "text": " is",
+      "timestamp": [88.44, 88.56]
+    },
+    {
+      "text": " it?\"",
+      "timestamp": [88.56, 88.76]
+    },
+    {
+      "text": " \"Birds,\"",
+      "timestamp": [89.2, 89.88]
+    },
+    {
+      "text": " says",
+      "timestamp": [89.96, 90.24]
+    },
+    {
+      "text": " Thomas.",
+      "timestamp": [90.24, 90.58]
+    },
+    {
+      "text": " \"He",
+      "timestamp": [91.1, 91.18]
+    },
+    {
+      "text": " points.",
+      "timestamp": [91.18, 91.5]
+    },
+    {
+      "text": " Many",
+      "timestamp": [91.96, 92.28]
+    },
+    {
+      "text": " birds.",
+      "timestamp": [92.28, 92.66]
+    },
+    {
+      "text": " They",
+      "timestamp": [93.02, 93.24]
+    },
+    {
+      "text": " go",
+      "timestamp": [93.24, 93.38]
+    },
+    {
+      "text": " down",
+      "timestamp": [93.38, 93.66]
+    },
+    {
+      "text": " and",
+      "timestamp": [93.66, 94.12]
+    },
+    {
+      "text": " they",
+      "timestamp": [94.12, 94.24]
+    },
+    {
+      "text": " come",
+      "timestamp": [94.24, 94.4]
+    },
+    {
+      "text": " up",
+      "timestamp": [94.4, 94.58]
+    },
+    {
+      "text": " with",
+      "timestamp": [94.58, 94.72]
+    },
+    {
+      "text": " fish.\"",
+      "timestamp": [94.72, 95]
+    },
+    {
+      "text": " The",
+      "timestamp": [95.8, 96]
+    },
+    {
+      "text": " captain",
+      "timestamp": [96, 96.38]
+    },
+    {
+      "text": " shades",
+      "timestamp": [96.38, 96.76]
+    },
+    {
+      "text": " her",
+      "timestamp": [96.76, 97.04]
+    },
+    {
+      "text": " eyes.",
+      "timestamp": [97.04, 97.36]
+    },
+    {
+      "text": " A",
+      "timestamp": [97.96, 98.08]
+    },
+    {
+      "text": " dark",
+      "timestamp": [98.08, 98.4]
+    },
+    {
+      "text": " line",
+      "timestamp": [98.4, 98.8]
+    },
+    {
+      "text": " moves",
+      "timestamp": [98.8, 99.08]
+    },
+    {
+      "text": " on",
+      "timestamp": [99.08, 99.34]
+    },
+    {
+      "text": " the",
+      "timestamp": [99.34, 99.48]
+    },
+    {
+      "text": " water",
+      "timestamp": [99.48, 99.74]
+    },
+    {
+      "text": " beside",
+      "timestamp": [99.74, 100.14]
+    },
+    {
+      "text": " the",
+      "timestamp": [100.14, 100.38]
+    },
+    {
+      "text": " birds.",
+      "timestamp": [100.38, 100.64]
+    },
+    {
+      "text": " Grey",
+      "timestamp": [101.42, 101.64]
+    },
+    {
+      "text": " backs,",
+      "timestamp": [101.64, 102.14]
+    },
+    {
+      "text": " rise",
+      "timestamp": [102.32, 102.52]
+    },
+    {
+      "text": " and",
+      "timestamp": [102.52, 102.92]
+    },
+    {
+      "text": " fall.\"",
+      "timestamp": [102.92, 103.28]
+    },
+    {
+      "text": " \"Dolphins.\"",
+      "timestamp": [104.12, 104.74]
+    },
+    {
+      "text": " \"Dolphins",
+      "timestamp": [105.32, 105.96]
+    },
+    {
+      "text": " eat",
+      "timestamp": [105.96, 106.18]
+    },
+    {
+      "text": " fish,\"",
+      "timestamp": [106.18, 106.54]
+    },
+    {
+      "text": " says",
+      "timestamp": [106.86, 107.1]
+    },
+    {
+      "text": " Thomas.",
+      "timestamp": [107.12, 107.46]
+    },
+    {
+      "text": " So",
+      "timestamp": [108.02, 108.1]
+    },
+    {
+      "text": " the",
+      "timestamp": [108.1, 108.22]
+    },
+    {
+      "text": " fish",
+      "timestamp": [108.22, 108.56]
+    },
+    {
+      "text": " must",
+      "timestamp": [108.56, 108.84]
+    },
+    {
+      "text": " be",
+      "timestamp": [108.84, 109.14]
+    },
+    {
+      "text": " there.",
+      "timestamp": [109.14, 109.42]
+    },
+    {
+      "text": " The",
+      "timestamp": [110.2, 110.26]
+    },
+    {
+      "text": " older",
+      "timestamp": [110.26, 110.54]
+    },
+    {
+      "text": " men",
+      "timestamp": [110.54, 110.78]
+    },
+    {
+      "text": " look",
+      "timestamp": [110.78, 111.08]
+    },
+    {
+      "text": " at",
+      "timestamp": [111.08, 111.2]
+    },
+    {
+      "text": " each",
+      "timestamp": [111.2, 111.42]
+    },
+    {
+      "text": " other.",
+      "timestamp": [111.42, 111.66]
+    },
+    {
+      "text": " One",
+      "timestamp": [112.24, 112.34]
+    },
+    {
+      "text": " of",
+      "timestamp": [112.34, 112.46]
+    },
+    {
+      "text": " them",
+      "timestamp": [112.46, 112.6]
+    },
+    {
+      "text": " shrugs.",
+      "timestamp": [112.6, 113.1]
+    },
+    {
+      "text": " A",
+      "timestamp": [113.74, 113.84]
+    },
+    {
+      "text": " \"boy's'",
+      "timestamp": [113.84, 114.18]
+    },
+    {
+      "text": " idea.\"",
+      "timestamp": [114.18, 114.68]
+    },
+    {
+      "text": " A",
+      "timestamp": [115.32, 115.48]
+    },
+    {
+      "text": " \"good",
+      "timestamp": [115.48, 115.7]
+    },
+    {
+      "text": " idea,\"",
+      "timestamp": [115.7, 116.14]
+    },
+    {
+      "text": " says",
+      "timestamp": [116.38, 116.6]
+    },
+    {
+      "text": " the",
+      "timestamp": [116.6, 116.78]
+    },
+    {
+      "text": " captain.",
+      "timestamp": [116.78, 117.1]
+    },
+    {
+      "text": " She",
+      "timestamp": [117.7, 117.8]
+    },
+    {
+      "text": " starts",
+      "timestamp": [117.8, 118.08]
+    },
+    {
+      "text": " the",
+      "timestamp": [118.08, 118.34]
+    },
+    {
+      "text": " engine.",
+      "timestamp": [118.34, 118.62]
+    },
+    {
+      "text": " Everyone,",
+      "timestamp": [119.22, 119.58]
+    },
+    {
+      "text": " hold",
+      "timestamp": [119.9, 120.16]
+    },
+    {
+      "text": " on.",
+      "timestamp": [120.16, 120.52]
+    },
+    {
+      "text": " The",
+      "timestamp": [121.28, 121.38]
+    },
+    {
+      "text": " blue",
+      "timestamp": [121.38, 121.64]
+    },
+    {
+      "text": " gull",
+      "timestamp": [121.64, 121.84]
+    },
+    {
+      "text": " turns",
+      "timestamp": [121.84, 122.3]
+    },
+    {
+      "text": " and",
+      "timestamp": [122.3, 122.68]
+    },
+    {
+      "text": " moves",
+      "timestamp": [122.68, 123]
+    },
+    {
+      "text": " toward",
+      "timestamp": [123, 123.42]
+    },
+    {
+      "text": " the",
+      "timestamp": [123.42, 123.68]
+    },
+    {
+      "text": " birds.",
+      "timestamp": [123.68, 123.96]
+    },
+    {
+      "text": " The",
+      "timestamp": [124.66, 124.8]
+    },
+    {
+      "text": " wind",
+      "timestamp": [124.8, 125.16]
+    },
+    {
+      "text": " is",
+      "timestamp": [125.16, 125.32]
+    },
+    {
+      "text": " cold",
+      "timestamp": [125.32, 125.7]
+    },
+    {
+      "text": " on",
+      "timestamp": [125.7, 126.06]
+    },
+    {
+      "text": " Thomas'",
+      "timestamp": [126.06, 126.32]
+    },
+    {
+      "text": " face.",
+      "timestamp": [126.48, 126.78]
+    },
+    {
+      "text": " The",
+      "timestamp": [127.46, 127.56]
+    },
+    {
+      "text": " boat",
+      "timestamp": [127.56, 127.78]
+    },
+    {
+      "text": " jumps",
+      "timestamp": [127.78, 128.2]
+    },
+    {
+      "text": " on",
+      "timestamp": [128.2, 128.5]
+    },
+    {
+      "text": " small",
+      "timestamp": [128.5, 128.9]
+    },
+    {
+      "text": " waves.",
+      "timestamp": [128.9, 129.26]
+    },
+    {
+      "text": " Water",
+      "timestamp": [129.92, 130.16]
+    },
+    {
+      "text": " sprays",
+      "timestamp": [130.16, 130.86]
+    },
+    {
+      "text": " over",
+      "timestamp": [130.86, 131]
+    },
+    {
+      "text": " the",
+      "timestamp": [131, 131.14]
+    },
+    {
+      "text": " front.",
+      "timestamp": [131.14, 131.44]
+    },
+    {
+      "text": " Thomas",
+      "timestamp": [132.2, 132.42]
+    },
+    {
+      "text": " laughs.",
+      "timestamp": [132.42, 132.9]
+    },
+    {
+      "text": " They",
+      "timestamp": [133.84, 133.98]
+    },
+    {
+      "text": " stop",
+      "timestamp": [133.98, 134.28]
+    },
+    {
+      "text": " near",
+      "timestamp": [134.28, 134.56]
+    },
+    {
+      "text": " the",
+      "timestamp": [134.56, 134.76]
+    },
+    {
+      "text": " dolphins.",
+      "timestamp": [134.76, 135.06]
+    },
+    {
+      "text": " The",
+      "timestamp": [135.74, 135.86]
+    },
+    {
+      "text": " sea",
+      "timestamp": [135.86, 136.24]
+    },
+    {
+      "text": " is",
+      "timestamp": [136.24, 136.56]
+    },
+    {
+      "text": " alive.",
+      "timestamp": [136.56, 137.08]
+    },
+    {
+      "text": " Silver",
+      "timestamp": [137.66, 138.04]
+    },
+    {
+      "text": " flashes",
+      "timestamp": [138.04, 138.5]
+    },
+    {
+      "text": " shine",
+      "timestamp": [138.5, 138.92]
+    },
+    {
+      "text": " under",
+      "timestamp": [138.92, 139.28]
+    },
+    {
+      "text": " the",
+      "timestamp": [139.28, 139.42]
+    },
+    {
+      "text": " surface.",
+      "timestamp": [139.42, 139.8]
+    },
+    {
+      "text": " The",
+      "timestamp": [140.56, 140.66]
+    },
+    {
+      "text": " captain",
+      "timestamp": [140.66, 140.98]
+    },
+    {
+      "text": " looks",
+      "timestamp": [140.98, 141.28]
+    },
+    {
+      "text": " at",
+      "timestamp": [141.28, 141.48]
+    },
+    {
+      "text": " the",
+      "timestamp": [141.48, 141.64]
+    },
+    {
+      "text": " men.",
+      "timestamp": [141.64, 141.82]
+    },
+    {
+      "text": " Nets!",
+      "timestamp": [142.46, 142.82]
+    },
+    {
+      "text": " Now!",
+      "timestamp": [143.26, 143.48]
+    },
+    {
+      "text": " The",
+      "timestamp": [144.1, 144.32]
+    },
+    {
+      "text": " men",
+      "timestamp": [144.32, 144.56]
+    },
+    {
+      "text": " work",
+      "timestamp": [144.56, 144.9]
+    },
+    {
+      "text": " fast.",
+      "timestamp": [144.9, 145.28]
+    },
+    {
+      "text": " The",
+      "timestamp": [145.84, 145.92]
+    },
+    {
+      "text": " nets",
+      "timestamp": [145.92, 146.12]
+    },
+    {
+      "text": " go",
+      "timestamp": [146.12, 146.42]
+    },
+    {
+      "text": " down.",
+      "timestamp": [146.42, 146.68]
+    },
+    {
+      "text": " Thomas",
+      "timestamp": [147.34, 147.62]
+    },
+    {
+      "text": " hands",
+      "timestamp": [147.62, 147.96]
+    },
+    {
+      "text": " them",
+      "timestamp": [147.96, 148.2]
+    },
+    {
+      "text": " rope",
+      "timestamp": [148.2, 148.4]
+    },
+    {
+      "text": " and",
+      "timestamp": [148.4, 148.72]
+    },
+    {
+      "text": " holds",
+      "timestamp": [169.98, 169.98]
+    },
+    {
+      "text": " the",
+      "timestamp": [169.98, 169.98]
+    },
+    {
+      "text": " boxes",
+      "timestamp": [169.98, 169.98]
+    },
+    {
+      "text": " Pull!",
+      "timestamp": [189.98, 189.98]
+    },
+    {
+      "text": " Fish",
+      "timestamp": [180, 180.56]
+    },
+    {
+      "text": " pour",
+      "timestamp": [180.56, 181]
+    },
+    {
+      "text": " into",
+      "timestamp": [181, 181.32]
+    },
+    {
+      "text": " the",
+      "timestamp": [181.32, 181.48]
+    },
+    {
+      "text": " boxes.",
+      "timestamp": [181.48, 181.82]
+    },
+    {
+      "text": " In",
+      "timestamp": [182.48, 182.58]
+    },
+    {
+      "text": " an",
+      "timestamp": [182.58, 182.78]
+    },
+    {
+      "text": " hour,",
+      "timestamp": [182.78, 183.08]
+    },
+    {
+      "text": " the",
+      "timestamp": [183.4, 183.5]
+    },
+    {
+      "text": " deck",
+      "timestamp": [183.5, 183.8]
+    },
+    {
+      "text": " is",
+      "timestamp": [183.8, 184.08]
+    },
+    {
+      "text": " full.",
+      "timestamp": [184.08, 184.54]
+    },
+    {
+      "text": " On",
+      "timestamp": [185.2, 185.32]
+    },
+    {
+      "text": " the",
+      "timestamp": [185.32, 185.42]
+    },
+    {
+      "text": " way",
+      "timestamp": [185.42, 185.58]
+    },
+    {
+      "text": " home,",
+      "timestamp": [185.58, 185.94]
+    },
+    {
+      "text": " the",
+      "timestamp": [186.12, 186.32]
+    },
+    {
+      "text": " men",
+      "timestamp": [186.32, 186.54]
+    },
+    {
+      "text": " are",
+      "timestamp": [186.54, 186.78]
+    },
+    {
+      "text": " loud",
+      "timestamp": [186.78, 187.24]
+    },
+    {
+      "text": " and",
+      "timestamp": [187.24, 187.52]
+    },
+    {
+      "text": " happy.",
+      "timestamp": [187.52, 187.96]
+    },
+    {
+      "text": " They",
+      "timestamp": [188.4, 188.5]
+    },
+    {
+      "text": " sing.",
+      "timestamp": [188.5, 188.84]
+    },
+    {
+      "text": " One",
+      "timestamp": [189.52, 189.64]
+    },
+    {
+      "text": " of",
+      "timestamp": [189.64, 189.76]
+    },
+    {
+      "text": " them",
+      "timestamp": [189.76, 189.9]
+    },
+    {
+      "text": " gives",
+      "timestamp": [189.9, 190.16]
+    },
+    {
+      "text": " Thomas",
+      "timestamp": [190.16, 190.46]
+    },
+    {
+      "text": " a",
+      "timestamp": [190.46, 190.78]
+    },
+    {
+      "text": " big",
+      "timestamp": [190.78, 191.08]
+    },
+    {
+      "text": " piece",
+      "timestamp": [191.08, 191.36]
+    },
+    {
+      "text": " of",
+      "timestamp": [191.36, 191.6]
+    },
+    {
+      "text": " bread.",
+      "timestamp": [191.6, 191.86]
+    },
+    {
+      "text": " \"Tomorrow,\"",
+      "timestamp": [192.28, 192.66]
+    },
+    {
+      "text": " the",
+      "timestamp": [192.88, 193.14]
+    },
+    {
+      "text": " captain",
+      "timestamp": [193.14, 193.36]
+    },
+    {
+      "text": " says,",
+      "timestamp": [193.36, 193.7]
+    },
+    {
+      "text": " \"you",
+      "timestamp": [194.2, 194.4]
+    },
+    {
+      "text": " do",
+      "timestamp": [194.4, 194.54]
+    },
+    {
+      "text": " not",
+      "timestamp": [194.54, 194.82]
+    },
+    {
+      "text": " make",
+      "timestamp": [194.82, 195.08]
+    },
+    {
+      "text": " the",
+      "timestamp": [195.08, 195.28]
+    },
+    {
+      "text": " tea.",
+      "timestamp": [195.28, 195.52]
+    },
+    {
+      "text": " Tomorrow",
+      "timestamp": [196.14, 196.52]
+    },
+    {
+      "text": " you",
+      "timestamp": [196.52, 196.94]
+    },
+    {
+      "text": " stand",
+      "timestamp": [196.94, 197.32]
+    },
+    {
+      "text": " at",
+      "timestamp": [197.32, 197.5]
+    },
+    {
+      "text": " the",
+      "timestamp": [197.5, 197.66]
+    },
+    {
+      "text": " net.\"",
+      "timestamp": [197.66, 197.84]
+    },
+    {
+      "text": " Thomas",
+      "timestamp": [198.58, 198.9]
+    },
+    {
+      "text": " picks",
+      "timestamp": [198.9, 199.22]
+    },
+    {
+      "text": " up",
+      "timestamp": [199.22, 199.42]
+    },
+    {
+      "text": " the",
+      "timestamp": [199.42, 199.6]
+    },
+    {
+      "text": " rope",
+      "timestamp": [199.6, 199.74]
+    },
+    {
+      "text": " again.",
+      "timestamp": [199.74, 200.1]
+    },
+    {
+      "text": " He",
+      "timestamp": [200.66, 200.76]
+    },
+    {
+      "text": " ties",
+      "timestamp": [200.76, 201.04]
+    },
+    {
+      "text": " a",
+      "timestamp": [201.04, 201.16]
+    },
+    {
+      "text": " knot,",
+      "timestamp": [201.16, 201.36]
+    },
+    {
+      "text": " and",
+      "timestamp": [201.8, 201.96]
+    },
+    {
+      "text": " it",
+      "timestamp": [201.96, 202.16]
+    },
+    {
+      "text": " is",
+      "timestamp": [202.16, 202.42]
+    },
+    {
+      "text": " a",
+      "timestamp": [202.42, 202.54]
+    },
+    {
+      "text": " good",
+      "timestamp": [202.54, 202.8]
+    },
+    {
+      "text": " one.",
+      "timestamp": [202.8, 203.1]
+    }
+  ]

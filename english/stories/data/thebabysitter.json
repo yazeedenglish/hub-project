@@ -1,0 +1,253 @@
+{
+  "paragraphs": [
+    {
+      "text": "Sara has babysat her younger cousins before, but tonight is her first real paid job."
+    },
+    {
+      "text": "The Alvarez family lives just two houses down, and their son David is five years old."
+    },
+    {
+      "text": "Sara has promised herself she won't panic, no matter what happens."
+    },
+    {
+      "text": "Mrs. Alvarez leaves a long list of instructions taped to the fridge before rushing out the door."
+    },
+    {
+      "text": "Everything goes smoothly until bedtime arrives and David flatly refuses to sleep."
+    },
+    {
+      "text": "He wants three more stories, then a glass of water."
+    },
+    {
+      "text": "Then he wants the hallway light left on a specific way."
+    },
+    {
+      "text": "Sara has read the same book twice already, and her voice is getting hoarse."
+    },
+    {
+      "text": "She remembers something her own babysitter used to do years ago."
+    },
+    {
+      "text": "If David helps her build a blanket fort first, he might finally feel tired enough to sleep."
+    },
+    {
+      "text": "It's a small risk, since fort-building usually makes kids more awake, not less."
+    },
+    {
+      "text": "Surprisingly, it works."
+    },
+    {
+      "text": "David arranges the pillows with total concentration, discussing exactly where each cushion should go."
+    },
+    {
+      "text": "He insists the biggest pillow must go at the very top, like a roof."
+    },
+    {
+      "text": "By the time the fort is finished, he's yawning between sentences without even noticing."
+    },
+    {
+      "text": "Sara tucks him inside the small fort instead of his usual bed, and he's asleep within minutes."
+    },
+    {
+      "text": "She checks on him twice before his parents return, just to be sure."
+    },
+    {
+      "text": "When Mrs. Alvarez gets home, she finds Sara quietly reading on the couch."
+    },
+    {
+      "text": "The house is completely, wonderfully quiet."
+    },
+    {
+      "text": "\"How did you manage that?\" Mrs. Alvarez whispers, peeking into David's room."
+    },
+    {
+      "text": "Sara just smiles and says some things are better explained tomorrow."
+    }
+  ],
+"translations": {
+    "a": "أداة تعريف (للمفرد)",
+    "ago": "مضت / منذ",
+    "already": "بالفعل / من قبل",
+    "alvarez": "الفاريز (اسم عائلة)",
+    "and": "و",
+    "arranges": "يرتب / ينظم",
+    "arrives": "يأتي / يصل",
+    "asleep": "نائم",
+    "at": "في / على",
+    "awake": "مستيقظ",
+    "babysat": "جالست الأطفال",
+    "babysitter": "جليسة أطفال",
+    "bed": "سرير",
+    "bedtime": "وقت النوم",
+    "before": "قبل",
+    "between": "بين",
+    "biggest": "الأكبر",
+    "blanket": "بطانية",
+    "book": "كتاب",
+    "build": "بناء / تشييد",
+    "but": "لكن",
+    "by": "بحلول / بواسطة",
+    "checks": "تفقد / تفحص",
+    "completely": "تماماً / بالكامل",
+    "concentration": "تركيز",
+    "couch": "أريكة / كنب",
+    "cousins": "أبناء العم / أبناء الخال",
+    "cushion": "وسادة صغيرة / مخدة",
+    "david": "ديفيد (اسم)",
+    "david's": "خاص بـ ديفيد (الملكية)",
+    "did": "فعلت (فعل مساعد للماضي)",
+    "discussing": "يناقش / يتحاور",
+    "do": "تفعل",
+    "door": "باب",
+    "down": "أسفل / باتجاه الطريق",
+    "each": "كل / كل واحد",
+    "enough": "كافٍ",
+    "even": "حتى",
+    "everything": "كل شيء",
+    "exactly": "بالضبط / بالتحديد",
+    "explained": "موضحة / مشروحة",
+    "family": "عائلة / أسرة",
+    "feel": "يشعر",
+    "finally": "أخيراً",
+    "finds": "تجد",
+    "finished": "منتهي / مكتمل",
+    "first": "الأول / لأول مرة",
+    "five": "خمسة",
+    "flatly": "بصراحة / قاطعاً",
+    "fort": "حصن / ملجأ",
+    "fridge": "ثلاجة",
+    "gets": "تصل / تعود",
+    "getting": "يصبح",
+    "glass": "كأس / زجاجة",
+    "go": "يذهب / يوضع",
+    "goes": "تسير / تذهب",
+    "hallway": "ممر / صالة",
+    "happens": "يحدث",
+    "has": "قد / تملك",
+    "he": "هو",
+    "he's": "هو يكون / هو قد",
+    "helps": "يساعد",
+    "her": "خاصتها / لها",
+    "herself": "نفسها",
+    "him": "ـه (ضمير غائب متصل)",
+    "his": "خاصته / له",
+    "hoarse": "مبحوح (الصوت)",
+    "home": "المنزل",
+    "house": "بيت / منزل",
+    "houses": "منازل / بيوت",
+    "how": "كيف",
+    "if": "إذا / لو",
+    "in": "في",
+    "inside": "داخل / في الداخل",
+    "insists": "يصر / يصر على",
+    "instead": "بدلاً من",
+    "instructions": "تعليمات / إرشادات",
+    "into": "إلى داخل",
+    "is": "يكون",
+    "it": "هو / هي (لغير العاقل)",
+    "it's": "إنه / هو يكون",
+    "job": "وظيفة / عمل",
+    "just": "فقط / مجرد",
+    "kids": "أطفال",
+    "leaves": "تترك",
+    "left": "متروك / متبقي",
+    "less": "أقل",
+    "light": "ضوء / إنارة",
+    "like": "مثل / كـ",
+    "list": "قائمة",
+    "lives": "تعيش / تسكن",
+    "long": "طويلة",
+    "makes": "يجعل",
+    "manage": "تمكنتِ / تدبرتِ",
+    "matter": "يهم / أمر",
+    "might": "قد / ربما",
+    "minutes": "دقائق",
+    "more": "أكثر",
+    "mrs": "السيدة",
+    "must": "يجب أن",
+    "no": "لا",
+    "not": "ليس / لا",
+    "noticing": "ملاحظة / انتباه",
+    "of": "من",
+    "on": "على",
+    "one": "واحد",
+    "out": "خارج",
+    "own": "خاصتها",
+    "paid": "مدفوع الأجر",
+    "panic": "تذعر / تخاف",
+    "parents": "والدان",
+    "peeking": "تتلصص / تنظر بخلسة",
+    "pillow": "وسادة / مخدة",
+    "pillows": "وسائد / مخدات",
+    "promised": "وعدت",
+    "quiet": "هادئ",
+    "quietly": "بهدوء",
+    "read": "قرأت",
+    "reading": "تقرأ",
+    "real": "حقيقي",
+    "refuses": "يرفض",
+    "remembers": "تتذكر",
+    "return": "يعودون / يرجعون",
+    "risk": "مخاطرة",
+    "roof": "سقف / سطح",
+    "room": "غرفة",
+    "rushing": "تسرع / تندفع",
+    "same": "نفس",
+    "sara": "سارة (اسم علم)",
+    "says": "تقول",
+    "sentences": "جمل",
+    "she": "هي",
+    "since": "نظراً لأن / حيث إن",
+    "sleep": "النوم / ينام",
+    "small": "صغير",
+    "smiles": "تبتسم",
+    "smoothly": "بسلاسة / بنعومة",
+    "some": "بعض",
+    "something": "شيئاً ما",
+    "son": "ابن",
+    "specific": "محدد / معين",
+    "stories": "قصص",
+    "surprisingly": "من المدهش / بشكل مفاجئ",
+    "taped": "مثبتة بالشريط اللاصق",
+    "than": "من",
+    "that": "ذلك",
+    "the": "الـ (أداة تعريف)",
+    "their": "خاصتهم / لهم",
+    "then": "ثم / بعدها",
+    "things": "أشياء",
+    "three": "ثلاثة",
+    "time": "وقت",
+    "tired": "متعب / مرهق",
+    "to": "إلى / أن",
+    "tomorrow": "غداً",
+    "tonight": "الليلة",
+    "top": "قمة / أعلى",
+    "total": "كامل / تام",
+    "tucks": "تدثره / تلفه",
+    "twice": "مرتين",
+    "two": "اثنان",
+    "until": "حتى",
+    "used": "اعتاد",
+    "usual": "معتاد",
+    "usually": "عادةً",
+    "very": "جداً",
+    "voice": "صوت",
+    "wants": "يريد",
+    "water": "ماء",
+    "way": "طريقة / أسلوب",
+    "what": "ماذا / مهما",
+    "when": "عندما",
+    "where": "أين / حيث",
+    "whispers": "تهمس",
+    "with": "مع / بـ",
+    "within": "خلال / في غضون",
+    "without": "دون / بدون",
+    "won't": "لن (اختصار will not)",
+    "wonderfully": "بشكل رائع",
+    "works": "ينجح / يعمل",
+    "years": "سنوات",
+    "yawning": "يتثاءب",
+    "you": "أنتِ",
+    "younger": "أصغر سناً"
+  }
+}

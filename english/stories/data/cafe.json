@@ -1,0 +1,140 @@
+{
+  "title": "Cafe",
+  "arabicTitle": "المقهى",
+  "level": "A1",
+  "paragraphs": [
+    {
+      "text": "Ben walks into a small café near his office. It is lunchtime, and the café is busy. He looks at the menu on the wall."
+    },
+    {
+      "text": "\"Hello! What would you like today?\" says the man behind the counter."
+    },
+    {
+      "text": "\"Hi. Can I have a sandwich, please?\" Ben says."
+    },
+    {
+      "text": "\"Sure. We have chicken, cheese, and egg. Which one do you want?\""
+    },
+    {
+      "text": "Ben thinks for a moment. \"I'll have the chicken sandwich, please.\""
+    },
+    {
+      "text": "\"Good choice. Anything to drink?\""
+    },
+    {
+      "text": "\"Yes, please. A coffee. Small, with milk.\""
+    },
+    {
+      "text": "\"That's one chicken sandwich and one small coffee with milk. Anything else?\""
+    },
+    {
+      "text": "\"No, that's all. How much is it?\""
+    },
+    {
+      "text": "\"That's six dollars,\" says the man."
+    },
+    {
+      "text": "Ben pays and takes a seat by the window. A few minutes later, the man brings his food."
+    },
+    {
+      "text": "\"Here you are. Enjoy your lunch!\""
+    },
+    {
+      "text": "\"Thank you very much,\" Ben says with a smile."
+    },
+    {
+      "text": "He eats his sandwich slowly. He watches people walk outside. It is a nice, quiet lunch break."
+    }
+  ],
+  "translations": {
+    "a": "أدات تعريف (للمفرد)",
+    "all": "كل / كل شيء",
+    "and": "و",
+    "anything": "أي شيء",
+    "are": "تكون / تكونون",
+    "at": "في / على",
+    "behind": "خلف / وراء",
+    "ben": "بِن",
+    "brings": "يجلب / يحضر",
+    "busy": "مزدحم / مشغول",
+    "by": "بجانب / بالقرب من",
+    "café": "مقهى",
+    "can": "يمكن / يستطيع",
+    "cheese": "جبن",
+    "choice": "خيار",
+    "coffee": "قهوة",
+    "counter": "منضدة الخدمة / الكاونتر",
+    "do": "تفعل (فعل مساعد)",
+    "dollars": "دولارات",
+    "drink": "يشرب / مشروب",
+    "eats": "يأكل",
+    "egg": "بيض",
+    "else": "آخر / غير ذلك",
+    "enjoy": "استمتع بـ",
+    "few": "قليل",
+    "food": "طعام",
+    "for": "لـ / من أجل",
+    "good": "جيد",
+    "have": "يتناول / يملك",
+    "he": "هو",
+    "hello": "مرحبا",
+    "here": "هنا",
+    "hi": "أهلا",
+    "his": "خاصته / له",
+    "how": "كم / كيف",
+    "i": "أنا",
+    "i'll": "سوف آخذ / سأتناول",
+    "into": "إلى داخل",
+    "is": "يكون",
+    "it": "هو / هي (لغير العاقل)",
+    "later": "لاحقا / في وقت لاحق",
+    "like": "ترغب / تحب",
+    "looks": "ينظر",
+    "lunch": "غداء",
+    "lunchtime": "وقت الغداء",
+    "man": "رجل",
+    "menu": "قائمة الطعام",
+    "minutes": "دقائق",
+    "moment": "لحظة",
+    "much": "كثير / قدر",
+    "near": "بالقرب من",
+    "nice": "جميل / لطيف",
+    "no": "لا",
+    "office": "مكتب",
+    "on": "على",
+    "one": "واحد",
+    "outside": "في الخارج / بالخارج",
+    "pays": "يدفع",
+    "people": "ناس / أشخاص",
+    "please": "من فضلك",
+    "quiet": "هادئ",
+    "sandwich": "شطيرة / ساندويتش",
+    "says": "يقول",
+    "seat": "مقعد",
+    "six": "ستة",
+    "slowly": "ببطء",
+    "small": "صغير",
+    "smile": "ابتسامة",
+    "sure": "بالتأكيد",
+    "takes": "يأخذ / يجلس على",
+    "thank": "أشكر",
+    "that's": "ذلك يكون / الحساب",
+    "the": "الـ (أداة تعريف)",
+    "thinks": "يفكر",
+    "today": "اليوم",
+    "very": "جدا",
+    "walk": "يمشون / يسيرون",
+    "walks": "يمشي / يدخل",
+    "wall": "جدار / حائط",
+    "watches": "يشاهد / يراقب",
+    "we": "نحن",
+    "what": "ماذا / ما",
+    "which": "أي",
+    "window": "نافذة / شباك",
+    "with": "مع / بـ",
+    "would": "ترغب (فعل مساعد للطلب الأديب)",
+    "yes": "نعم",
+    "you": "أنت / أنتم",
+    "your": "خاصتك / كَ (كاف الخطاب)"
+  }
+}
