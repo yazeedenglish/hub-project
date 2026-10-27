@@ -25,16 +25,17 @@
     </div>
 
     <!-- MINIMAL HEADER -->
-    <header class="top-header">
-        <div class="brand">
-            <div class="brand-logo">
-                <i data-lucide="sparkles"></i>
-            </div>
-            <div class="brand-text">
-                <strong>Yazeed English</strong>
-                <span>يزيد للانجليزية</span>
-            </div>
+<header class="top-header">
+    <div class="brand">
+        <img src="https://file.yazeedenglish.com/logo.png"
+             alt="Yazeed English"
+             class="brand-logo">
+
+        <div class="brand-text">
+            <strong>Yazeed English</strong>
+            <span>منصة يزيد للانجليزية</span>
         </div>
+    </div>
 
         <div class="header-actions">
             <!-- Topic Picker Trigger -->
@@ -126,7 +127,7 @@
             <div class="telemetry-item">
                 <span>السرعة:</span>
                 <strong id="stat-wpm">0</strong>
-                <span>ك/د</span>
+                <span>WPM</span>
             </div>
             <div class="telemetry-item">
                 <span>الدقة:</span>
@@ -160,7 +161,7 @@
         <div class="stories-modal-card">
             <div class="stories-modal-header">
                 <div>
-                    <span style="color: var(--indigo); font-size: 12px; font-weight: 900;">مكتبة مواضيع Yazeed english</span>
+                    <span style="color: var(--indigo); font-size: 12px; font-weight: 900;">قائمة المواضيع</span>
                     <h2 style="margin: 4px 0 0; font-size: 24px; font-weight: 900;">اختر موضوع للتدرب عليه</h2>
                 </div>
                 <button id="close-stories-btn" type="button" class="theme-btn" aria-label="إغلاق">
@@ -174,7 +175,7 @@
     <!-- 5-STAR TOPIC COMPLETION MODAL (SHOWN ONLY AFTER ALL 10 SENTENCES OF A TOPIC) -->
     <div id="summary-modal" class="modal-backdrop" hidden>
         <div class="rating-modal-card">
-            <span id="modal-kicker" style="color: var(--indigo); font-size: 13px; font-weight: 900;">أكملت جميع جمل الموضوع (10 / 10)</span>
+            <span id="modal-kicker" style="color: var(--indigo); font-size: 13px; font-weight: 900;">أكملت جميع عباراتس الموضوع (10 / 10)</span>
             <h3 id="modal-title" style="margin: 8px 0 4px; font-size: 26px; font-weight: 900;">إتقان رائع!</h3>
             <p id="modal-subtitle" style="margin: 0; color: var(--ink-soft); font-size: 14px;">أنهيت الموضوع بالكامل، إليك حصيلة أدائك</p>
 
@@ -190,11 +191,11 @@
             <!-- Cumulative Topic Metrics -->
             <div class="modal-metrics-grid">
                 <div class="modal-metric-box">
-                    <span>السرعة (WPM / CPM)</span>
-                    <strong id="modal-wpm">0 ك/د</strong>
+                    <span>السرعة</span>
+                    <strong id="modal-wpm">0</strong>
                 </div>
                 <div class="modal-metric-box">
-                    <span>الدقة الإجمالية</span>
+                    <span>الدقة</span>
                     <strong id="modal-acc">100%</strong>
                 </div>
                 <div class="modal-metric-box">
@@ -202,7 +203,7 @@
                     <strong id="modal-time">0 ثانية</strong>
                 </div>
                 <div class="modal-metric-box">
-                    <span>نقاط الموضوع</span>
+                    <span>النقاط</span>
                     <strong id="modal-score">+0</strong>
                 </div>
             </div>
