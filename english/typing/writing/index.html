@@ -1,0 +1,1611 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f5f6f2">
+  <title>Yazeed English | تحسين الخط الإنجليزي</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Andika:wght@400;700&family=Caveat:wght@500;700&family=Comic+Neue:wght@400;700&family=Kalam:wght@400;700&family=Patrick+Hand&family=Playwrite+US+Trad:wght@300;400&family=Sacramento&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+:root {
+  --paper: #F5F6F2;
+  --ink: #00273a;
+  --ink-soft: #5B645F;
+  --indigo: #00689b;
+  --course-button: #00689b;
+  --line: #DCDFD6;
+  --card: #FFFFFF;
+  --white: #FFFFFF;
+  --shadow: 0 14px 36px rgba(0, 39, 58, .08);
+}
+
+    html.dark {
+      color-scheme: dark;
+      --page: #15181c;
+      --card: #1e2227;
+      --ink: #e8eae4;
+      --muted: #a7b0b4;
+      --line: #343b41;
+      --blue: #0088c7;
+      --header: rgba(21,24,28,.94);
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--page);
+      color: var(--ink);
+      font-family: Tajawal, sans-serif;
+      -webkit-tap-highlight-color: transparent;
+      transition: background .18s, color .18s;
+    }
+
+    button, input { font: inherit; }
+    button { cursor: pointer; touch-action: manipulation; }
+
+    button:focus-visible, input:focus-visible {
+      outline: 3px solid #38bdf8;
+      outline-offset: 2px;
+    }
+
+    /* HEADER */
+.top-header {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 35px;
+  border-bottom: 1px solid var(--line);
+  background: var(--card);
+  transition: background .25s ease, border-color .25s ease;
+}
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: inherit;
+      text-decoration: none;
+      min-width: 0;
+    }
+
+    .brand-logo { width: 42px; height: 42px; object-fit: contain; flex-shrink: 0; }
+
+    .brand-text { display: flex; flex-direction: column; gap: 1px; }
+    .brand-text strong { font-size: 15px; font-weight: 900; }
+
+    .brand-text span { font-size: 11px; color: var(--ink-soft); }
+
+    .theme-btn {
+
+    width: 38px;
+
+    height: 38px;
+
+    display: grid;
+
+    place-items: center;
+
+    border:
+        1px solid
+        var(--line);
+
+    border-radius: 10px;
+
+    background:
+        var(--card);
+
+    color:
+        var(--ink);
+
+    cursor: pointer;
+
+    font-family:
+        inherit;
+
+    font-size: 17px;
+
+    transition:
+        0.2s ease;
+}
+
+.theme-btn:hover {
+
+    border-color:
+        var(--indigo);
+
+    transform:
+        translateY(-2px);
+}
+
+    .theme-btn svg { width: 20px; height: 20px; }
+
+    .app {
+      width: min(100% - 28px, 1000px);
+      margin: 0 auto;
+      padding: 18px 0 32px;
+    }
+
+    .surface {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .section { padding: 18px; margin-bottom: 14px; }
+    .muted { color: var(--muted); }
+    .hidden { display: none !important; }
+
+    .section-title {
+      font-weight: 800;
+      font-size: 15px;
+      margin-bottom: 12px;
+    }
+
+    .row {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 9px;
+    }
+
+    .row + .row { margin-top: 14px; }
+
+    .divider {
+      border: 0;
+      border-top: 1px solid var(--line);
+      margin: 16px 0;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      min-height: 40px;
+      padding: 9px 13px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      color: var(--ink);
+      background: var(--page);
+      font-weight: 700;
+      font-size: 13px;
+    }
+
+    .btn.primary {
+      color: white;
+      background: #0369a1;
+      border-color: #0369a1;
+    }
+
+    .btn.success {
+      color: white;
+      background: #059669;
+      border-color: #059669;
+    }
+
+    .btn.danger {
+      color: #be123c;
+      background: #fff1f2;
+      border-color: #fecdd3;
+    }
+
+    .btn.active {
+      color: white;
+      background: #0369a1;
+      border-color: #0369a1;
+    }
+
+    .btn svg { width: 17px; height: 17px; }
+
+    .input {
+      width: 100%;
+      min-width: 0;
+      padding: 11px 13px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--page);
+      color: var(--ink);
+    }
+
+    .english-input { direction: ltr; text-align: left; }
+
+    .font-buttons { display: flex; flex-wrap: wrap; gap: 8px; }
+
+    .font-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 10px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--card);
+      color: var(--ink);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .font-button.active {
+      border-color: #0ea5e9;
+      background: rgba(14,165,233,.1);
+    }
+
+    .font-sample { font-size: 23px; line-height: 1; }
+
+    .font-andika { font-family: Andika, sans-serif; }
+    .font-comic { font-family: "Comic Neue", cursive; }
+    .font-patrick { font-family: "Patrick Hand", cursive; }
+    .font-kalam { font-family: Kalam, cursive; }
+    .font-playwrite { font-family: "Playwrite US Trad", cursive; }
+    .font-caveat { font-family: Caveat, cursive; }
+    .font-sacramento { font-family: Sacramento, cursive; }
+
+    .prompt {
+      padding: 22px 16px;
+      text-align: center;
+    }
+
+    #prompt-english {
+      direction: ltr;
+      font-size: clamp(25px, 5vw, 40px);
+      font-weight: 700;
+      line-height: 1.5;
+      overflow-wrap: anywhere;
+    }
+
+    #prompt-arabic {
+      margin-top: 6px;
+      color: #0284c7;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .counter {
+      min-width: 70px;
+      text-align: center;
+      padding: 8px 10px;
+      border-radius: 10px;
+      background: var(--page);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .canvas-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 12px 15px;
+      background: var(--page);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .canvas-heading p { margin: 0; font-size: 12px; font-weight: 700; }
+
+    #canvas-container {
+      position: relative;
+      width: 100%;
+      height: clamp(340px, 48vw, 460px);
+      overflow: hidden;
+      background: white;
+      touch-action: none;
+      overscroll-behavior: contain;
+    }
+
+    #guide-canvas, #draw-canvas {
+      position: absolute;
+      inset: 0;
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    #guide-canvas { pointer-events: none; }
+    #draw-canvas {
+      touch-action: none;
+      cursor: crosshair;
+      -webkit-user-select: none;
+      user-select: none;
+    }
+
+    .canvas-tag {
+      position: absolute;
+      z-index: 2;
+      right: 10px;
+      padding: 5px 9px;
+      border-radius: 8px;
+      background: rgba(240,249,255,.94);
+      color: #075985;
+      font-size: 11px;
+      font-weight: 800;
+      pointer-events: none;
+    }
+
+    .tag-one { top: 10px; }
+    .tag-two { top: 53%; }
+
+    .color-picker { display: flex; align-items: center; flex-wrap: wrap; gap: 9px; }
+
+    .color-dot {
+      width: 31px;
+      height: 31px;
+      padding: 0;
+      border: 2px solid rgba(100,116,139,.4);
+      border-radius: 50%;
+    }
+
+    .color-dot[aria-pressed="true"] {
+      outline: 3px solid #7dd3fc;
+      outline-offset: 2px;
+    }
+
+    .toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .toolbar-group { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
+
+    .status {
+      min-height: 20px;
+      padding: 2px 3px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      max-width: 100%;
+      padding: 7px 9px;
+      border: 1px solid var(--line);
+      border-radius: 11px;
+      background: var(--card);
+      color: var(--ink);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .chip-text {
+      max-width: min(60vw, 400px);
+      overflow-wrap: anywhere;
+      text-align: left;
+      direction: ltr;
+      border: 0;
+      background: transparent;
+      color: inherit;
+      padding: 0;
+    }
+
+    .chip-delete {
+      display: grid;
+      place-items: center;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: #ffe4e6;
+      color: #be123c;
+      border: 0;
+      flex-shrink: 0;
+    }
+
+    /* Worksheet layout */
+    #printable-area {
+      padding: 24px;
+      color: #0f172a;
+      background: white;
+      border-radius: 14px;
+    }
+
+    .print-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      border-bottom: 2px solid #0f172a;
+      padding-bottom: 12px;
+      margin-bottom: 20px;
+    }
+
+    .print-brand { display: flex; align-items: center; gap: 10px; }
+    .print-brand img { width: 40px; height: 40px; object-fit: contain; }
+    .print-brand h2 { margin: 0; font-size: 17px; }
+    .print-brand p { margin: 4px 0 0; color: #64748b; font-size: 10px; }
+
+    .print-name {
+      direction: ltr;
+      text-align: left;
+      font-size: 11px;
+      line-height: 2;
+    }
+
+    .print-row-4line {
+      position: relative;
+      height: 76px;
+      width: 100%;
+      margin-bottom: 7px;
+      direction: ltr;
+      break-inside: avoid;
+      page-break-inside: avoid;
+      background-image:
+        linear-gradient(to bottom,
+          #38bdf8 0, #38bdf8 1.5px,
+          transparent 1.5px, transparent 25px,
+          #0284c7 25px, #0284c7 27px,
+          transparent 27px, transparent 74px,
+          #fda4af 74px, #fda4af 75.5px);
+    }
+
+    .print-row-4line::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 25px;
+      border-top: 1.5px dashed #94a3b8;
+    }
+
+    .print-row-text {
+      position: absolute;
+      left: 12px;
+      top: 5px;
+      max-width: calc(100% - 24px);
+      white-space: nowrap;
+      overflow: hidden;
+      color: rgba(15,23,42,.38);
+      line-height: 1.5;
+    }
+
+    .print-row-blank::before {
+      content: "";
+      position: absolute;
+      left: 13px;
+      top: 48px;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #10b981;
+    }
+
+    @media (max-width: 650px) {
+      .app { width: calc(100% - 20px); padding-top: 12px; }
+      .section { padding: 14px; }
+      #canvas-container { height: 370px; }
+      .toolbar { align-items: stretch; }
+      .toolbar-group { width: 100%; }
+      .toolbar-group .btn { flex: 1; }
+      .toolbar-actions { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); width: 100%; }
+      .toolbar-actions .btn:last-child { grid-column: 1 / -1; }
+      .font-button { flex: 1 1 42%; justify-content: center; }
+      .canvas-heading { align-items: flex-start; }
+      #printable-area { padding: 12px; }
+    }
+
+    @media print {
+      @page { size: A4 portrait; margin: 10mm; }
+      html, body {
+        margin: 0 !important;
+        padding: 0 !important;
+        background: white !important;
+        color: #0f172a !important;
+      }
+      .top-header, .no-print, #practice-view { display: none !important; }
+      #worksheet-view {
+        display: block !important;
+        width: 100% !important;
+        max-width: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+      #printable-area {
+        padding: 0 !important;
+        margin: 0 !important;
+        border: 0 !important;
+        box-shadow: none !important;
+      }
+      .print-page {
+        break-after: page;
+        page-break-after: always;
+      }
+      .print-page:last-child {
+        break-after: auto;
+        page-break-after: auto;
+      }
+      .print-row-4line { margin-bottom: 5px; }
+      * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+    }
+
+    .size-dot-btn {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--card);
+  color: var(--ink);
+}
+
+.size-dot-btn.active {
+  border: 2px solid #0284c7;
+  background: rgba(2,132,199,.10);
+}
+
+.size-dot {
+  display: block;
+  border-radius: 50%;
+  background: var(--ink);
+}
+
+.size-dot.small {
+  width: 4px;
+  height: 4px;
+}
+
+.size-dot.medium {
+  width: 8px;
+  height: 8px;
+}
+
+.size-dot.large {
+  width: 13px;
+  height: 13px;
+}
+
+.size-dot-btn:focus-visible {
+  outline: 3px solid #38bdf8;
+  outline-offset: 2px;
+}
+  </style>
+</head>
+
+<body>
+  <header class="top-header">
+    <a href="/english/" class="brand" aria-label="Yazeed English">
+      <img src="https://file.yazeedenglish.com/logo.png" alt="Yazeed English" class="brand-logo" onerror="this.style.display='none'">
+      <span class="brand-text">
+        <strong>Yazeed English</strong>
+        <span>منصة يزيد للانجليزية</span>
+      </span>
+    </a>
+    <button type="button" class="theme-btn" id="themeToggle" aria-label="تغيير المظهر" title="تغيير المظهر">
+      <i data-lucide="moon"></i>
+    </button>
+  </header>
+
+  <main id="practice-view" class="app">
+    <section class="surface section">
+      <div class="section-title">١. اختر المحتوى</div>
+      <div class="row" id="level-buttons">
+        <button class="btn active" id="lvl-letters" onclick="setLevel('letters')">الحروف A–Z</button>
+        <button class="btn" id="lvl-words" onclick="setLevel('words')">كلمات</button>
+        <button class="btn" id="lvl-simple" onclick="setLevel('simple')">جمل بسيطة</button>
+        <button class="btn" id="lvl-medium" onclick="setLevel('medium')">جمل متوسطة</button>
+        <button class="btn" id="lvl-advanced" onclick="setLevel('advanced')">جمل متقدمة</button>
+        <button class="btn" id="lvl-custom" onclick="setLevel('custom')">جُملي الخاصة</button>
+      </div>
+
+      <hr class="divider">
+
+      <div class="section-title">٢. اختر نمط الخط</div>
+      <div class="row">
+        <button class="btn active" id="cat-print" onclick="setStyleCategory('print')">منفصل (Print)</button>
+        <button class="btn" id="cat-cursive" onclick="setStyleCategory('cursive')">متصل (Cursive)</button>
+      </div>
+      <div id="font-buttons-container" class="font-buttons" style="margin-top:12px"></div>
+    </section>
+
+    <section id="custom-builder-card" class="surface section hidden">
+      <div class="section-title">جُملي الخاصة</div>
+      <p class="muted" style="font-size:13px;margin-top:-5px">أضف جُملاً للتدرب عليها. قائمة التدريب منفصلة عن قائمة الطباعة.</p>
+      <div class="row">
+        <input id="new-sentence-input" class="input english-input" maxlength="240" placeholder="Write an English word or sentence...">
+        <button class="btn success" onclick="addCustomSentenceFromInput()">＋ إضافة للتدريب</button>
+      </div>
+      <div id="custom-sentences-chips" class="chips" style="margin-top:12px"></div>
+      <div id="custom-status" class="status" aria-live="polite"></div>
+    </section>
+
+    <section class="surface prompt">
+      <div class="row" style="justify-content:center">
+        <button class="btn" onclick="changeItem(-1)" aria-label="السابق">→ السابق</button>
+        <span id="item-counter" class="counter">1 / 7</span>
+        <button class="btn" onclick="changeItem(1)" aria-label="التالي">التالي ←</button>
+      </div>
+      <div id="prompt-english" class="font-andika" style="margin-top:12px" dir="ltr">Aa Bb Cc</div>
+      <div id="prompt-arabic">الحروف الأساسية</div>
+      <div class="row" style="justify-content:center;margin-top:15px">
+       <button class="btn" onclick="speakPrompt()">
+  <i data-lucide="volume-2"></i>
+
+</button>
+        <button class="btn success" onclick="addCurrentPromptToWorksheet()">＋ أضف للطباعة</button>
+      </div>
+    </section>
+
+    <section class="surface">
+      <div class="canvas-heading">
+        <p>السطر الأول للتتبع، والثاني للتدريب المستقل.</p>
+        <div class="row" style="margin:0">
+          <button class="btn" id="btn-row2-guide" onclick="toggleRow2Guide()">مساعدة السطر الثاني: <span id="row2-guide-status">مخفية</span></button>
+          <button class="btn" id="btn-pen-lock" onclick="togglePenOnly()">
+  <i data-lucide="pen-line"></i>
+  القلم فقط: <span id="pen-lock-label">إيقاف</span>
+</button>
+        </div>
+      </div>
+
+      <div id="canvas-container">
+        <span class="canvas-tag tag-one">١. تتبّع</span>
+        <span class="canvas-tag tag-two">٢. اكتب بنفسك</span>
+        <canvas id="guide-canvas" aria-hidden="true"></canvas>
+        <canvas id="draw-canvas" aria-label="مساحة الكتابة. استخدم إصبعك أو قلم الشاشة."></canvas>
+      </div>
+    </section>
+
+    <section class="surface section" style="margin-top:14px">
+      <div class="toolbar">
+        <div class="toolbar-group">
+          <span class="muted" style="font-size:12px;font-weight:800">لون القلم:</span>
+          <div class="color-picker" id="color-picker">
+            <button class="color-dot" onclick="selectColor('#111827',this)" style="background:#111827" aria-label="أسود" aria-pressed="false"></button>
+            <button class="color-dot" onclick="selectColor('#2563eb',this)" style="background:#2563eb" aria-label="أزرق" aria-pressed="true"></button>
+            <button class="color-dot" onclick="selectColor('#ef4444',this)" style="background:#ef4444" aria-label="أحمر" aria-pressed="false"></button>
+            <button class="color-dot" onclick="selectColor('#16a34a',this)" style="background:#16a34a" aria-label="أخضر" aria-pressed="false"></button>
+            <button class="color-dot" onclick="selectColor('#f97316',this)" style="background:#f97316" aria-label="برتقالي" aria-pressed="false"></button>
+            <button class="color-dot" onclick="selectColor('#9333ea',this)" style="background:#9333ea" aria-label="بنفسجي" aria-pressed="false"></button>
+          </div>
+          <button class="btn" id="btn-eraser" onclick="selectEraser()">
+  <i data-lucide="eraser"></i>
+
+</button>
+        </div>
+
+        <div class="toolbar-group">
+  <span class="muted" style="font-size:12px;font-weight:800">حجم القلم:</span>
+
+  <button class="size-dot-btn" id="size-thin"
+    onclick="selectSize(2.5,'thin')" aria-label="صغير" title="صغير">
+    <span class="size-dot small"></span>
+  </button>
+
+  <button class="size-dot-btn active" id="size-med"
+    onclick="selectSize(4.5,'med')" aria-label="متوسط" title="متوسط">
+    <span class="size-dot medium"></span>
+  </button>
+
+  <button class="size-dot-btn" id="size-thick"
+    onclick="selectSize(7,'thick')" aria-label="كبير" title="كبير">
+    <span class="size-dot large"></span>
+  </button>
+</div>
+
+        <div class="toolbar-group toolbar-actions">
+          <button class="btn" onclick="undoLastStroke()">
+  <i data-lucide="undo-2"></i>
+
+</button>
+          <button class="btn danger" onclick="clearCanvas()">مسح الكتابة</button>
+          <button class="btn success" onclick="nextWithCelebration()">أحسنت! التالي ←</button>
+        </div>
+      </div>
+      <div id="app-status" class="status" role="status" aria-live="polite"></div>
+    </section>
+
+    <section class="surface section">
+      <div class="row" style="justify-content:space-between">
+        <div>
+          <div class="section-title" style="margin:0">ورقة العمل</div>
+          <p class="muted" style="font-size:12px;margin:5px 0 0">جهّز جُملاً للطباعة أو احفظ الورقة بصيغة PDF.</p>
+        </div>
+        <button class="btn primary" onclick="toggleWorksheetView(true)">▤ معاينة ورقة العمل <span id="worksheet-count-badge">0</span></button>
+      </div>
+    </section>
+  </main>
+
+  <section id="worksheet-view" class="app hidden">
+    <div class="surface section no-print">
+      <div class="row" style="justify-content:space-between">
+        <div>
+          <div class="section-title" style="margin:0">ورقة العمل — A4</div>
+          <p class="muted" style="font-size:12px;margin:5px 0 0">أضف العناصر ورتّبها ثم اطبع أو احفظها بصيغة PDF.</p>
+        </div>
+        <button class="btn" onclick="toggleWorksheetView(false)">→ العودة للتدريب</button>
+        <button class="btn primary" onclick="window.print()">طباعة / حفظ PDF</button>
+      </div>
+
+      <hr class="divider">
+
+      <div class="row">
+        <input id="worksheet-add-input" class="input english-input" maxlength="240" placeholder="Add a word or sentence...">
+        <button class="btn success" onclick="addSentenceFromWorksheetPanel()">＋ إضافة للورقة</button>
+        <button class="btn" onclick="loadCurrentLevelIntoWorksheet()">إضافة المستوى الحالي</button>
+        <button class="btn danger" onclick="clearWorksheetSentences()">إفراغ قائمة الطباعة</button>
+      </div>
+
+      <div class="row">
+        <span class="muted" style="font-size:12px;font-weight:800">تنسيق الورقة:</span>
+        <button class="btn active" id="pmode-both" onclick="setPrintRowMode('trace_and_blank')">تتبع + سطر فارغ</button>
+        <button class="btn" id="pmode-trace" onclick="setPrintRowMode('trace_only')">تتبع فقط</button>
+        <button class="btn" id="pmode-double" onclick="setPrintRowMode('trace_and_two_blank')">تتبع + سطرين فارغين</button>
+      </div>
+
+      <div id="worksheet-sentences-manager" class="chips" style="margin-top:12px"></div>
+      <div id="worksheet-status" class="status" aria-live="polite"></div>
+    </div>
+
+    <div id="printable-area"></div>
+  </section>
+
+<script>
+'use strict';
+
+const FONTS = {
+  print: [
+    {id:'andika', label:'Andika · واضح', css:'"Andika", sans-serif', cls:'font-andika', scale:1},
+    {id:'comic', label:'Comic Neue · مدرسي', css:'"Comic Neue", cursive', cls:'font-comic', scale:1},
+    {id:'patrick', label:'Patrick Hand · بسيط', css:'"Patrick Hand", cursive', cls:'font-patrick', scale:1.08},
+    {id:'kalam', label:'Kalam · طبيعي', css:'"Kalam", cursive', cls:'font-kalam', scale:1}
+  ],
+  cursive: [
+    {id:'playwrite', label:'Playwrite · مدرسي', css:'"Playwrite US Trad", cursive', cls:'font-playwrite', scale:.8},
+    {id:'caveat', label:'Caveat · سلس', css:'Caveat, cursive', cls:'font-caveat', scale:1.1},
+    {id:'sacramento', label:'Sacramento · كلاسيكي', css:'Sacramento, cursive', cls:'font-sacramento', scale:1.1}
+  ]
+};
+
+const CONTENT = {
+  letters: [
+    {en:'Aa Bb Cc Dd', ar:'الحروف من A إلى D'},
+    {en:'Ee Ff Gg Hh', ar:'الحروف من E إلى H'},
+    {en:'Ii Jj Kk Ll', ar:'الحروف من I إلى L'},
+    {en:'Mm Nn Oo Pp', ar:'الحروف من M إلى P'},
+    {en:'Qq Rr Ss Tt', ar:'الحروف من Q إلى T'},
+    {en:'Uu Vv Ww Xx', ar:'الحروف من U إلى X'},
+    {en:'Yy Zz', ar:'الحرفان Y و Z'}
+  ],
+  words: [
+    {en:'Apple   Book   Cat', ar:'تفاحة • كتاب • قطة'},
+    {en:'Water   Bread   Milk', ar:'ماء • خبز • حليب'},
+    {en:'School   Teacher   Pen', ar:'مدرسة • معلم • قلم'},
+    {en:'Happy   Smile   Friend', ar:'سعيد • ابتسامة • صديق'},
+    {en:'Sun   Moon   Star', ar:'شمس • قمر • نجمة'}
+  ],
+  simple: [
+    {en:'Hello, my name is Yazeed', ar:'مرحباً، اسمي يزيد'},
+    {en:'I love learning English', ar:'أنا أحب تعلم اللغة الإنجليزية'},
+    {en:'This is a very good book', ar:'هذا كتاب جيد جداً'},
+    {en:'The weather is nice today', ar:'الطقس جميل اليوم'},
+    {en:'She goes to school every day', ar:'هي تذهب إلى المدرسة كل يوم'}
+  ],
+  medium: [
+    {en:'Practice makes your handwriting much better', ar:'التدريب يجعل خط يدك أفضل بكثير'},
+    {en:'Reading English stories helps you learn new words', ar:'قراءة القصص الإنجليزية تساعدك على تعلم كلمات جديدة'},
+    {en:'We always help each other in the classroom', ar:'نحن دائماً نساعد بعضنا البعض في الفصل'},
+    {en:'My favorite subject at school is English', ar:'مادتي المفضلة في المدرسة هي اللغة الإنجليزية'},
+    {en:'Please write your full name clearly on the line', ar:'يرجى كتابة اسمك الكامل بوضوح على السطر'}
+  ],
+  advanced: [
+    {en:'The quick brown fox jumps over the lazy dog', ar:'جملة تحتوي على جميع حروف اللغة الإنجليزية'},
+    {en:'Knowledge is a treasure that follows its owner everywhere', ar:'المعرفة كنز يتبع صاحبه في كل مكان'},
+    {en:'Success comes to those who work hard and never give up', ar:'النجاح يأتي لمن يعمل بجد ولا يستسلم أبداً'},
+    {en:'Clear handwriting makes communication easier for everyone', ar:'الخط الواضح يجعل التواصل أسهل للجميع'}
+  ],
+  custom: []
+};
+
+/* The print list is intentionally separate from practice sentences. */
+const worksheetItems = [];
+
+const state = {
+  level: 'letters',
+  itemIndex: 0,
+  styleCategory: 'print',
+  selectedFont: FONTS.print[0],
+  showRow2Guide: false,
+  penOnly: false,
+  inkColor: '#2563eb',
+  strokeSize: 4.5,
+  selectedSize: 'med',
+  isEraser: false,
+  strokes: [],
+  currentStroke: null,
+  isDrawing: false,
+  activePointerId: null,
+  printRowMode: 'trace_and_blank',
+  darkMode: false,
+  lastCanvasWidth: 0,
+  lastCanvasHeight: 0
+};
+
+let guideCanvas, guideCtx, drawCanvas, drawCtx;
+
+window.addEventListener('DOMContentLoaded', init);
+
+function init() {
+  guideCanvas = document.getElementById('guide-canvas');
+  drawCanvas = document.getElementById('draw-canvas');
+  guideCtx = guideCanvas.getContext('2d');
+  drawCtx = drawCanvas.getContext('2d');
+
+  try {
+    state.darkMode = localStorage.getItem('YAZEED_ENGLISH_THEME') === 'dark';
+  } catch (_) {}
+
+  document.documentElement.classList.toggle('dark', state.darkMode);
+  document.documentElement.classList.toggle('light', !state.darkMode);
+
+  document.getElementById('themeToggle').addEventListener('click', toggleDarkMode);
+  document.getElementById('new-sentence-input').addEventListener('keydown', e => {
+    if (e.key === 'Enter') { e.preventDefault(); addCustomSentenceFromInput(); }
+  });
+  document.getElementById('worksheet-add-input').addEventListener('keydown', e => {
+    if (e.key === 'Enter') { e.preventDefault(); addSentenceFromWorksheetPanel(); }
+  });
+
+  initPointerEvents();
+  renderFontButtons();
+  updateAll();
+  updateThemeButton();
+
+  if ('ResizeObserver' in window) {
+    new ResizeObserver(resizeNotebook).observe(document.getElementById('canvas-container'));
+  } else {
+    window.addEventListener('resize', resizeNotebook, {passive:true});
+  }
+
+  window.addEventListener('orientationchange', () => setTimeout(resizeNotebook, 150), {passive:true});
+  window.addEventListener('beforeprint', () => {
+    if (!document.getElementById('worksheet-view').classList.contains('hidden')) buildPrintableWorksheet();
+  });
+
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(() => {
+      drawNotebookBackground();
+      if (!document.getElementById('worksheet-view').classList.contains('hidden')) buildPrintableWorksheet();
+    });
+  }
+  resizeNotebook();
+}
+
+function currentList() { return CONTENT[state.level] || CONTENT.letters; }
+
+function getCurrentItem() {
+  const list = currentList();
+  return list[state.itemIndex] || list[0] || {en:'', ar:'لا توجد جمل بعد'};
+}
+
+function announce(message, target='app-status') {
+  const el = document.getElementById(target);
+  if (el) el.textContent = message;
+}
+
+function updateAll() {
+  updateLevelButtons();
+  updatePromptUI();
+  renderCustomSentenceChips();
+  updateWorksheetBadge();
+  updateToolStates();
+  drawNotebookBackground();
+}
+
+function updateLevelButtons() {
+  ['letters','words','simple','medium','advanced','custom'].forEach(key => {
+    const btn = document.getElementById('lvl-' + key);
+    const active = state.level === key;
+    btn.classList.toggle('active', active);
+    btn.setAttribute('aria-pressed', String(active));
+  });
+  document.getElementById('custom-builder-card').classList.toggle('hidden', state.level !== 'custom');
+}
+
+function setLevel(level) {
+  if (!CONTENT[level]) return;
+  state.level = level;
+  state.itemIndex = 0;
+  clearCanvas(false);
+  updateAll();
+}
+
+function setStyleCategory(category) {
+  if (!FONTS[category]) return;
+  state.styleCategory = category;
+  state.selectedFont = FONTS[category][0];
+  document.getElementById('cat-print').classList.toggle('active', category === 'print');
+  document.getElementById('cat-cursive').classList.toggle('active', category === 'cursive');
+  renderFontButtons();
+  updatePromptUI();
+  drawNotebookBackground();
+  buildPrintableWorksheet();
+}
+
+function renderFontButtons() {
+  const container = document.getElementById('font-buttons-container');
+  container.innerHTML = FONTS[state.styleCategory].map(font => {
+    const active = font.id === state.selectedFont.id;
+    return `<button type="button" class="font-button ${active ? 'active' : ''}" aria-pressed="${active}" onclick="selectFont('${font.id}')">
+      <span class="font-sample ${font.cls}" dir="ltr">Aa</span>
+      <span>${escapeHtml(font.label)}</span>
+    </button>`;
+  }).join('');
+}
+
+function selectFont(id) {
+  const font = FONTS[state.styleCategory].find(item => item.id === id);
+  if (!font) return;
+  state.selectedFont = font;
+  renderFontButtons();
+  updatePromptUI();
+  drawNotebookBackground();
+  buildPrintableWorksheet();
+}
+
+function updatePromptUI() {
+  const item = getCurrentItem();
+  const list = currentList();
+  const prompt = document.getElementById('prompt-english');
+  prompt.className = state.selectedFont.cls;
+  prompt.textContent = item.en;
+  document.getElementById('prompt-arabic').textContent = item.ar;
+  document.getElementById('item-counter').textContent = `${list.length ? state.itemIndex + 1 : 0} / ${list.length}`;
+  document.getElementById('row2-guide-status').textContent = state.showRow2Guide ? 'مفعّلة' : 'مخفية';
+  document.getElementById('pen-lock-label').textContent = state.penOnly ? 'مفعّل' : 'إيقاف';
+  updateLevelButtons();
+}
+
+function changeItem(delta) {
+  const list = currentList();
+  if (!list.length) {
+    announce('أضف جملة في قائمة الجمل الخاصة أولاً.');
+    return;
+  }
+  state.itemIndex = (state.itemIndex + delta + list.length) % list.length;
+  clearCanvas(false);
+  updatePromptUI();
+  renderCustomSentenceChips();
+  drawNotebookBackground();
+}
+
+function nextWithCelebration() {
+  changeItem(1);
+  announce('أحسنت! استمر في التدريب.');
+}
+
+function speakPrompt() {
+  if (!('speechSynthesis' in window)) {
+    announce('ميزة النطق غير مدعومة في هذا المتصفح.');
+    return;
+  }
+  window.speechSynthesis.cancel();
+  const item = getCurrentItem();
+  const text = state.level === 'letters'
+    ? item.en.replace(/\s+/g, ' ').split(' ').map(pair => pair[0]).join(', ')
+    : item.en;
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = 'en-GB';
+  utterance.rate = 0.82;
+  window.speechSynthesis.speak(utterance);
+}
+
+function toggleDarkMode() {
+  state.darkMode = !state.darkMode;
+  document.documentElement.classList.toggle('dark', state.darkMode);
+  document.documentElement.classList.toggle('light', !state.darkMode);
+  try { localStorage.setItem('YAZEED_ENGLISH_THEME', state.darkMode ? 'dark' : 'light'); } catch (_) {}
+  updateThemeButton();
+  drawNotebookBackground();
+}
+
+function updateThemeButton() {
+  const btn = document.getElementById('themeToggle');
+  btn.innerHTML = state.darkMode ? '<i data-lucide="sun"></i>' : '<i data-lucide="moon"></i>';
+  btn.setAttribute('aria-label', state.darkMode ? 'تفعيل الوضع الفاتح' : 'تفعيل الوضع الداكن');
+  if (window.lucide) window.lucide.createIcons();
+}
+
+function toggleRow2Guide() {
+  state.showRow2Guide = !state.showRow2Guide;
+  document.getElementById('row2-guide-status').textContent = state.showRow2Guide ? 'مفعّلة' : 'مخفية';
+  drawNotebookBackground();
+}
+
+function togglePenOnly() {
+  state.penOnly = !state.penOnly;
+  document.getElementById('pen-lock-label').textContent = state.penOnly ? 'مفعّل' : 'إيقاف';
+  document.getElementById('btn-pen-lock').classList.toggle('active', state.penOnly);
+  announce(state.penOnly
+    ? 'وضع القلم فقط مفعّل. يعتمد على نوع القلم الذي يعرّفه الجهاز للمتصفح.'
+    : 'وضع القلم فقط متوقف.');
+}
+
+/* Preserve handwriting when the canvas changes size or device orientation. */
+function resizeNotebook() {
+  if (!drawCanvas || !drawCanvas.isConnected) return;
+
+  const rect = document.getElementById('canvas-container').getBoundingClientRect();
+  const width = rect.width;
+  const height = rect.height;
+  if (width < 1 || height < 1) return;
+
+  const oldW = state.lastCanvasWidth;
+  const oldH = state.lastCanvasHeight;
+
+  if (oldW > 0 && oldH > 0 && (oldW !== width || oldH !== height)) {
+    const sx = width / oldW;
+    const sy = height / oldH;
+    const scalePoints = stroke => {
+      if (!stroke) return;
+      stroke.points.forEach(point => { point.x *= sx; point.y *= sy; });
+    };
+    state.strokes.forEach(scalePoints);
+    scalePoints(state.currentStroke);
+  }
+
+  state.lastCanvasWidth = width;
+  state.lastCanvasHeight = height;
+
+  const dpr = Math.min(window.devicePixelRatio || 1, 3);
+  const pixelW = Math.round(width * dpr);
+  const pixelH = Math.round(height * dpr);
+
+  if (drawCanvas.width !== pixelW || drawCanvas.height !== pixelH) {
+    drawCanvas.width = pixelW;
+    drawCanvas.height = pixelH;
+    guideCanvas.width = pixelW;
+    guideCanvas.height = pixelH;
+  }
+
+  drawCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  guideCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+  drawNotebookBackground();
+  redrawStrokes();
+}
+
+function drawNotebookBackground() {
+  if (!guideCtx) return;
+
+  const box = document.getElementById('canvas-container');
+  const width = box.clientWidth;
+  const height = box.clientHeight;
+  if (!width || !height) return;
+
+  const dark = state.darkMode;
+  const rowHeight = height / 2;
+  const item = getCurrentItem();
+  const font = state.selectedFont;
+
+  guideCtx.clearRect(0, 0, width, height);
+  guideCtx.fillStyle = dark ? '#171c22' : '#ffffff';
+  guideCtx.fillRect(0, 0, width, height);
+
+  for (let row = 0; row < 2; row++) {
+    const top = row * rowHeight;
+    const bandHeight = Math.min(rowHeight * 0.62, 120);
+    const bandTop = top + (rowHeight - bandHeight) / 2 + 5;
+    const sky = bandTop;
+    const middle = bandTop + bandHeight * 0.36;
+    const baseline = bandTop + bandHeight * 0.76;
+    const descender = bandTop + bandHeight;
+
+    if (row === 1) {
+      guideCtx.strokeStyle = dark ? '#35414a' : '#e2e8f0';
+      guideCtx.lineWidth = 1.5;
+      drawLine(guideCtx, 0, top, width, top);
+    }
+
+    guideCtx.setLineDash([]);
+    guideCtx.strokeStyle = dark ? '#0284c7' : '#38bdf8';
+    guideCtx.lineWidth = 1.5;
+    drawLine(guideCtx, 22, sky, width - 22, sky);
+
+    guideCtx.strokeStyle = dark ? '#657481' : '#94a3b8';
+    guideCtx.setLineDash([6, 6]);
+    drawLine(guideCtx, 22, middle, width - 22, middle);
+
+    guideCtx.setLineDash([]);
+    guideCtx.strokeStyle = dark ? '#38bdf8' : '#0284c7';
+    guideCtx.lineWidth = 2;
+    drawLine(guideCtx, 22, baseline, width - 22, baseline);
+
+    guideCtx.strokeStyle = dark ? '#9f4960' : '#fda4af';
+    guideCtx.lineWidth = 1.5;
+    drawLine(guideCtx, 22, descender, width - 22, descender);
+
+    let fontSize = Math.max(16, Math.min((baseline - sky) * 1.05 * font.scale, 58));
+    guideCtx.font = `400 ${fontSize}px ${font.css}`;
+    const maxWidth = width - 60;
+    const measured = guideCtx.measureText(item.en).width;
+
+    if (measured > maxWidth && measured > 0) {
+      fontSize = Math.max(13, fontSize * maxWidth / measured);
+      guideCtx.font = `400 ${fontSize}px ${font.css}`;
+    }
+
+    guideCtx.textBaseline = 'alphabetic';
+    guideCtx.direction = 'ltr';
+    guideCtx.textAlign = 'left';
+
+    if (row === 0 || (row === 1 && state.showRow2Guide)) {
+      guideCtx.fillStyle = dark
+        ? (row === 0 ? 'rgba(248,250,252,.38)' : 'rgba(248,250,252,.22)')
+        : (row === 0 ? 'rgba(15,23,42,.34)' : 'rgba(15,23,42,.20)');
+      guideCtx.fillText(item.en, 30, baseline, maxWidth);
+    } else {
+      guideCtx.fillStyle = '#10b981';
+      guideCtx.beginPath();
+      guideCtx.arc(31, baseline - 2, 4, 0, Math.PI * 2);
+      guideCtx.fill();
+    }
+  }
+}
+
+function drawLine(ctx, x1, y1, x2, y2) {
+  ctx.beginPath();
+  ctx.moveTo(x1, y1);
+  ctx.lineTo(x2, y2);
+  ctx.stroke();
+}
+
+function initPointerEvents() {
+  drawCanvas.addEventListener('contextmenu', event => event.preventDefault());
+  drawCanvas.addEventListener('pointerdown', onPointerDown, {passive:false});
+  drawCanvas.addEventListener('pointermove', onPointerMove, {passive:false});
+  drawCanvas.addEventListener('pointerup', finishPointer, {passive:false});
+  drawCanvas.addEventListener('pointercancel', finishPointer, {passive:false});
+  drawCanvas.addEventListener('lostpointercapture', finishPointer);
+}
+
+function getPoint(event) {
+  const rect = drawCanvas.getBoundingClientRect();
+  return {
+    x: event.clientX - rect.left,
+    y: event.clientY - rect.top,
+    pressure: event.pressure > 0 ? event.pressure : 0.5
+  };
+}
+
+function onPointerDown(event) {
+  if (state.isDrawing) return;
+  if (state.penOnly && event.pointerType !== 'pen') return;
+  if (event.pointerType === 'mouse' && event.button !== 0) return;
+
+  event.preventDefault();
+  try { drawCanvas.setPointerCapture(event.pointerId); } catch (_) {}
+
+  state.isDrawing = true;
+  state.activePointerId = event.pointerId;
+  state.currentStroke = {
+    color: state.inkColor,
+    size: state.strokeSize,
+    isEraser: state.isEraser,
+    pointerType: event.pointerType,
+    points: [getPoint(event)]
+  };
+
+  renderStroke(state.currentStroke);
+}
+
+function onPointerMove(event) {
+  if (!state.isDrawing || !state.currentStroke || event.pointerId !== state.activePointerId) return;
+  event.preventDefault();
+
+  const events = typeof event.getCoalescedEvents === 'function'
+    ? event.getCoalescedEvents()
+    : [event];
+
+  for (const item of events) {
+    const point = getPoint(item);
+    const points = state.currentStroke.points;
+    const last = points[points.length - 1];
+
+    if (Math.hypot(point.x - last.x, point.y - last.y) > 0.35) {
+      points.push(point);
+    }
+  }
+
+  redrawStrokes();
+  renderStroke(state.currentStroke);
+}
+
+function finishPointer(event) {
+  if (!state.isDrawing || !state.currentStroke) return;
+  if (event.pointerId !== undefined &&
+      state.activePointerId !== null &&
+      event.pointerId !== state.activePointerId) return;
+
+  const stroke = state.currentStroke;
+  if (stroke.points.length) state.strokes.push(stroke);
+
+  const pointerId = state.activePointerId;
+  state.currentStroke = null;
+  state.isDrawing = false;
+  state.activePointerId = null;
+
+  try {
+    if (pointerId !== null && drawCanvas.hasPointerCapture(pointerId)) {
+      drawCanvas.releasePointerCapture(pointerId);
+    }
+  } catch (_) {}
+
+  redrawStrokes();
+}
+
+function renderStroke(stroke) {
+  const points = stroke.points;
+  if (!points || !points.length) return;
+
+  drawCtx.save();
+  drawCtx.lineCap = 'round';
+  drawCtx.lineJoin = 'round';
+
+  if (stroke.isEraser) {
+    drawCtx.globalCompositeOperation = 'destination-out';
+    drawCtx.strokeStyle = 'rgba(0,0,0,1)';
+    drawCtx.fillStyle = 'rgba(0,0,0,1)';
+    drawCtx.lineWidth = stroke.size * 4;
+  } else {
+    drawCtx.globalCompositeOperation = 'source-over';
+    drawCtx.strokeStyle = stroke.color;
+    drawCtx.fillStyle = stroke.color;
+    drawCtx.lineWidth = stroke.size;
+  }
+
+  if (points.length === 1) {
+    drawCtx.beginPath();
+    drawCtx.arc(
+      points[0].x, points[0].y,
+      stroke.isEraser ? stroke.size * 2 : stroke.size / 2,
+      0, Math.PI * 2
+    );
+    drawCtx.fill();
+    drawCtx.restore();
+    return;
+  }
+
+  drawCtx.beginPath();
+  drawCtx.moveTo(points[0].x, points[0].y);
+
+  for (let i = 1; i < points.length - 1; i++) {
+    const middleX = (points[i].x + points[i + 1].x) / 2;
+    const middleY = (points[i].y + points[i + 1].y) / 2;
+    drawCtx.quadraticCurveTo(points[i].x, points[i].y, middleX, middleY);
+  }
+
+  const last = points[points.length - 1];
+  drawCtx.lineTo(last.x, last.y);
+  drawCtx.stroke();
+  drawCtx.restore();
+}
+
+function redrawStrokes() {
+  if (!drawCtx) return;
+  const box = document.getElementById('canvas-container');
+  drawCtx.clearRect(0, 0, box.clientWidth, box.clientHeight);
+  state.strokes.forEach(renderStroke);
+  if (state.currentStroke) renderStroke(state.currentStroke);
+}
+
+function selectColor(color, button) {
+  state.inkColor = color;
+  state.isEraser = false;
+  document.querySelectorAll('.color-dot').forEach(dot => {
+    dot.setAttribute('aria-pressed', String(dot === button));
+  });
+  updateToolStates();
+}
+
+function selectEraser() {
+  state.isEraser = true;
+  updateToolStates();
+}
+
+function selectSize(size, key) {
+  state.strokeSize = size;
+  state.selectedSize = key;
+  state.isEraser = false;
+  updateToolStates();
+}
+
+function updateToolStates() {
+  document.querySelectorAll('.color-dot').forEach(dot => {
+    dot.style.outline = dot.getAttribute('aria-pressed') === 'true' && !state.isEraser
+      ? '3px solid #7dd3fc'
+      : 'none';
+  });
+
+  document.getElementById('btn-eraser').classList.toggle('active', state.isEraser);
+
+  ['thin','med','thick'].forEach(key => {
+    document.getElementById('size-' + key).classList.toggle('active', state.selectedSize === key);
+  });
+}
+
+function undoLastStroke() {
+  if (state.isDrawing) return;
+  state.strokes.pop();
+  redrawStrokes();
+}
+
+function clearCanvas(announceUser=true) {
+  state.strokes = [];
+  state.currentStroke = null;
+  state.isDrawing = false;
+  state.activePointerId = null;
+  if (drawCtx) redrawStrokes();
+  if (announceUser) announce('تم مسح مساحة الكتابة.');
+}
+
+/* Practice list and print list remain separate. */
+function addCustomSentenceFromInput() {
+  const input = document.getElementById('new-sentence-input');
+  const value = input.value.trim();
+
+  if (!value) {
+    announce('اكتب كلمة أو جملة أولاً.', 'custom-status');
+    input.focus();
+    return;
+  }
+
+  CONTENT.custom.push({en:value, ar:'جملة مخصصة للتدريب'});
+  input.value = '';
+  state.level = 'custom';
+  state.itemIndex = CONTENT.custom.length - 1;
+  updateAll();
+  announce('تمت إضافة الجملة إلى قائمة التدريب.', 'custom-status');
+}
+
+function addSentenceFromWorksheetPanel() {
+  const input = document.getElementById('worksheet-add-input');
+  const value = input.value.trim();
+
+  if (!value) {
+    announce('اكتب كلمة أو جملة أولاً.', 'worksheet-status');
+    input.focus();
+    return;
+  }
+
+  addWorksheetItem({en:value, ar:'جملة مخصصة'});
+  input.value = '';
+  renderCustomSentenceChips();
+  updateWorksheetBadge();
+  buildPrintableWorksheet();
+  announce('تمت إضافة الجملة إلى ورقة العمل.', 'worksheet-status');
+}
+
+function addWorksheetItem(item) {
+  const key = item.en.trim().toLowerCase();
+  if (worksheetItems.some(existing => existing.en.trim().toLowerCase() === key)) {
+    announce('هذا العنصر موجود بالفعل في ورقة العمل.', 'worksheet-status');
+    return false;
+  }
+  worksheetItems.push({...item});
+  return true;
+}
+
+function addCurrentPromptToWorksheet() {
+  const item = getCurrentItem();
+  if (!item.en) return;
+
+  const added = addWorksheetItem(item);
+  renderCustomSentenceChips();
+  updateWorksheetBadge();
+  buildPrintableWorksheet();
+  if (added) announce('تمت إضافة العنصر الحالي إلى ورقة العمل.');
+}
+
+function loadCurrentLevelIntoWorksheet() {
+  const list = currentList();
+  let added = 0;
+
+  list.forEach(item => {
+    if (addWorksheetItem(item)) added++;
+  });
+
+  renderCustomSentenceChips();
+  updateWorksheetBadge();
+  buildPrintableWorksheet();
+  announce(
+    added ? `تمت إضافة ${added} عناصر إلى ورقة العمل.` : 'كل عناصر هذا المستوى موجودة بالفعل.',
+    'worksheet-status'
+  );
+}
+
+function clearWorksheetSentences() {
+  worksheetItems.length = 0;
+  renderCustomSentenceChips();
+  updateWorksheetBadge();
+  buildPrintableWorksheet();
+  announce('تم إفراغ قائمة الطباعة. لم تتأثر قائمة التدريب.', 'worksheet-status');
+}
+
+function removeCustomSentence(index) {
+  if (index < 0 || index >= CONTENT.custom.length) return;
+
+  CONTENT.custom.splice(index, 1);
+  if (state.level === 'custom') {
+    state.itemIndex = Math.min(state.itemIndex, Math.max(0, CONTENT.custom.length - 1));
+  }
+  updateAll();
+}
+
+function removeWorksheetSentence(index) {
+  if (index < 0 || index >= worksheetItems.length) return;
+  worksheetItems.splice(index, 1);
+  renderCustomSentenceChips();
+  updateWorksheetBadge();
+  buildPrintableWorksheet();
+}
+
+function selectCustomSentenceForPractice(index) {
+  if (!CONTENT.custom[index]) return;
+  state.level = 'custom';
+  state.itemIndex = index;
+  clearCanvas(false);
+  updateAll();
+}
+
+function renderCustomSentenceChips() {
+  const practiceContainer = document.getElementById('custom-sentences-chips');
+  const worksheetContainer = document.getElementById('worksheet-sentences-manager');
+
+  practiceContainer.innerHTML = CONTENT.custom.map((item, index) => `
+    <div class="chip">
+      <button type="button" class="chip-text" onclick="selectCustomSentenceForPractice(${index})">
+        ${index + 1}. ${escapeHtml(item.en)}
+      </button>
+      <button type="button" class="chip-delete" aria-label="حذف الجملة" onclick="removeCustomSentence(${index})">×</button>
+    </div>
+  `).join('') || '<span class="muted" style="font-size:12px">لم تضف جُملاً للتدريب بعد.</span>';
+
+  worksheetContainer.innerHTML = worksheetItems.map((item, index) => `
+    <div class="chip">
+      <span class="chip-text">${index + 1}. ${escapeHtml(item.en)}</span>
+      <button type="button" class="chip-delete" aria-label="حذف العنصر من الطباعة" onclick="removeWorksheetSentence(${index})">×</button>
+    </div>
+  `).join('') || '<span class="muted" style="font-size:12px">قائمة الطباعة فارغة. أضف جملة أو المستوى الحالي.</span>';
+}
+
+function updateWorksheetBadge() {
+  document.getElementById('worksheet-count-badge').textContent = worksheetItems.length;
+}
+
+function toggleWorksheetView(show) {
+  const practice = document.getElementById('practice-view');
+  const worksheet = document.getElementById('worksheet-view');
+
+  if (show) {
+    renderCustomSentenceChips();
+    buildPrintableWorksheet();
+    practice.classList.add('hidden');
+    worksheet.classList.remove('hidden');
+    window.scrollTo({top:0, behavior:'auto'});
+  } else {
+    worksheet.classList.add('hidden');
+    practice.classList.remove('hidden');
+    requestAnimationFrame(resizeNotebook);
+  }
+}
+
+function setPrintRowMode(mode) {
+  if (!['trace_and_blank','trace_only','trace_and_two_blank'].includes(mode)) return;
+
+  state.printRowMode = mode;
+  const ids = {
+    trace_and_blank:'pmode-both',
+    trace_only:'pmode-trace',
+    trace_and_two_blank:'pmode-double'
+  };
+
+  Object.entries(ids).forEach(([key, id]) => {
+    document.getElementById(id).classList.toggle('active', key === mode);
+  });
+
+  buildPrintableWorksheet();
+}
+
+function buildPrintableWorksheet() {
+  const container = document.getElementById('printable-area');
+  if (!container) return;
+
+  const list = worksheetItems;
+  const font = state.selectedFont;
+  const fontSize = Math.round(30 * font.scale);
+
+  if (!list.length) {
+    container.innerHTML = `
+      <div style="text-align:center;padding:55px 12px">
+        <h2 style="font-size:20px;font-weight:800">ورقة العمل فارغة</h2>
+        <p style="font-size:13px;margin-top:8px">أضف كلمات أو جملاً من لوحة التحكم أعلاه.</p>
+      </div>`;
+    return;
+  }
+
+  const header = `
+    <div class="print-header">
+      <div class="print-brand">
+        <img src="https://file.yazeedenglish.com/logo.png" alt="Yazeed English" onerror="this.style.display='none'">
+        <div>
+          <h2>Yazeed English</h2>
+          <p>ورقة تدريب الخط الإنجليزي · ${escapeHtml(font.label)} · ${list.length} عنصر</p>
+        </div>
+      </div>
+      <div class="print-name">Name: ____________________<br>Date: _____________________</div>
+    </div>`;
+
+  function makeRow(item, blank=false) {
+    let text = '';
+    if (!blank) {
+      text = `<span class="print-row-text ${font.cls}" data-print-text style="font-size:${fontSize}px">${escapeHtml(item.en)}</span>`;
+    }
+    return `<div class="print-row-4line ${blank ? 'print-row-blank' : ''}">${text}</div>`;
+  }
+
+  const itemsPerPage = state.printRowMode === 'trace_and_two_blank' ? 4
+    : state.printRowMode === 'trace_and_blank' ? 6 : 9;
+
+  const pages = [];
+
+  for (let start = 0; start < list.length; start += itemsPerPage) {
+    const subset = list.slice(start, start + itemsPerPage);
+    let rows = '';
+
+    subset.forEach(item => {
+      rows += makeRow(item, false);
+      if (state.printRowMode !== 'trace_only') rows += makeRow(item, true);
+      if (state.printRowMode === 'trace_and_two_blank') rows += makeRow(item, true);
+    });
+
+    pages.push(`<div class="print-page">${header}<div>${rows}</div></div>`);
+  }
+
+  container.innerHTML = pages.join('');
+
+  /* Shrink each trace sentence to fit its own line instead of clipping it. */
+  container.querySelectorAll('[data-print-text]').forEach(element => {
+    const row = element.parentElement;
+    const available = row.clientWidth - 28;
+    let size = fontSize;
+    element.style.fontSize = size + 'px';
+
+    while (element.scrollWidth > available && size > 12) {
+      size -= 1;
+      element.style.fontSize = size + 'px';
+    }
+  });
+}
+
+function escapeHtml(value) {
+  return String(value)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+</script>
+</body>
+</html>
