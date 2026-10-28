@@ -1153,7 +1153,16 @@ const STORIES_DATA = [
         arTitle: "روتين الصباح",
         desc: "خطوات الصباح من الاستيقاظ حتى الخروج.",
         sentences: [
-            { en: "Smile", ar: "يملأ ضوء الشمس غرفتي الهادئة" }
+            { en: "Sunlight fills my quiet room", ar: "يملأ ضوء الشمس غرفتي الهادئة" },
+            { en: "I wake up and open the window", ar: "أستيقظ وأفتح النافذة" },
+            { en: "I splash cold water on my face", ar: "أغسل وجهي برذاذ الماء البارد" },
+            { en: "I brush my teeth and wash my face", ar: "أفرش أسناني وأغسل وجهي" },
+            { en: "Then, I make my bed", ar: "بعد ذلك، أرتب سريري" },
+            { en: "I make a cup of hot tea", ar: "أعد كوبًا من الشاي الساخن" },
+            { en: "I eat eggs and fresh bread for breakfast", ar: "أتناول البيض والخبز الطازج على الإفطار" },
+            { en: "I get dressed in clean clothes", ar: "أرتدي ملابس نظيفة" },
+            { en: "I put my keys in my bag", ar: "أضع مفاتيحي في حقيبتي" },
+            { en: "Finally, I leave the house with a smile", ar: "أخيرًا، أغادر المنزل بابتسامة" }
         ]
     },
     {
@@ -1985,7 +1994,7 @@ const STORIES_DATA = [
             state.sentenceKeystrokes++;
             state.topicTotalKeystrokes++;
 
-            if (typedChar === expectedChar) {
+            if (typedChar.toLowerCase() === expectedChar.toLowerCase()) {
                 state.sentenceCorrect++;
                 state.topicCorrectKeystrokes++;
                 state.combo++;
