@@ -530,17 +530,34 @@ function playTopicCompletionFanfare() {
     });
 }
 
-// ==================== TTS ====================
+// ==================== TTS & SAMANTHA VOICE SETUP ====================
 function initVoices() {
     if (!("speechSynthesis" in window)) return;
+
     const pickVoice = () => {
         const voices = window.speechSynthesis.getVoices();
         if (!voices.length) return;
-        state.preferredVoice =
-            voices.find(v => v.lang === "en-GB" && /natural|google|libby|sonia|ryan/i.test(v.name)) ||
-            voices.find(v => v.lang === "en-GB") ||
-            voices.find(v => v.lang.startsWith("en-"));
+
+        // Detect if the user is on an iOS device (iPhone, iPad, iPod)
+        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || 
+                      (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+
+        if (isIOS) {
+            // Prioritize Samantha on iOS devices
+            state.preferredVoice = 
+                voices.find(v => v.name.toLowerCase().includes('samantha') && v.lang.startsWith('en')) ||
+                voices.find(v => v.lang === 'en-US' && v.name.toLowerCase().includes('samantha')) ||
+                voices.find(v => v.lang === 'en-GB' && /natural|google|libby|sonia|ryan/i.test(v.name)) ||
+                voices.find(v => v.lang.startsWith('en-'));
+        } else {
+            // Default preference for non-iOS devices (e.g., British English natural voice)
+            state.preferredVoice =
+                voices.find(v => v.lang === 'en-GB' && /natural|google|libby|sonia|ryan/i.test(v.name)) ||
+                voices.find(v => v.lang === 'en-GB') ||
+                voices.find(v => v.lang.startsWith('en-'));
+        }
     };
+
     pickVoice();
     window.speechSynthesis.onvoiceschanged = pickVoice;
 }
