@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>منصة يزيد — تدرب على التحدث بالإنجليزية</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@600;700;800&family=JetBrains+Mono:wght@600;700&family=Plus+Jakarta+Sans:wght@600;700;800&family=Quicksand:wght@700;800&family=Tajawal:wght@500;700;800;900&display=swap" rel="stylesheet" />
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <!-- Top Progress Line -->
+    <div class="top-progress-line" aria-hidden="true">
+        <div id="topProgressFill" class="top-progress-fill"></div>
+    </div>
+
+    <!-- Top Header -->
+    <header class="top-header">
+        <div class="brand">
+            <div class="brand-logo-badge" aria-hidden="true">
+                <i data-lucide="audio-waveform"></i>
+            </div>
+            <div class="brand-text">
+                <strong>يزيد — التحدث بالإنجليزية</strong>
+                <span>تدريب النطق التفاعلي والمحادثة</span>
+            </div>
+        </div>
+
+        <div class="header-actions">
+            <!-- Current Topic Selector Button -->
+            <button id="openTopicsBtn" class="pill-btn topic-trigger-btn" type="button" title="اختر موضوع المحادثة">
+                <span id="headerTopicLevel" class="level-dot level-A1">A1</span>
+                <span id="headerTopicTitle">في المقهى</span>
+                <i data-lucide="chevron-down"></i>
+            </button>
+
+            <!-- Mute / Unmute TTS Button -->
+            <button id="muteTtsBtn" class="theme-btn" type="button" title="كتم / تشغيل القراءة الصوتية" aria-label="كتم أو تشغيل الصوت">
+                <i data-lucide="volume-2"></i>
+            </button>
+
+            <!-- Dark Mode Toggle Button (Moon <-> Sun) -->
+            <button id="themeToggleBtn" class="theme-btn" type="button" title="تبديل المظهر الليلي / النهاري" aria-label="تبديل المظهر">
+                <i data-lucide="moon"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Zen Stage -->
+    <main class="zen-stage">
+        <!-- Top Meta Pill: Click to listen to sentence -->
+        <button id="listenMetaBtn" class="zen-top-meta" type="button" title="اضغط للاستماع إلى الجملة">
+            <span id="stageLevelBadge" class="level-dot level-A1">A1</span>
+            <span id="stageTopicName">في المقهى</span>
+            <span class="meta-sep">•</span>
+            <span id="sentenceCounter">الجملة 1 من 10</span>
+            <span class="meta-sep">•</span>
+            <span class="listen-inline-hint">
+                <i data-lucide="volume-2"></i>
+                استمع للجملة
+            </span>
+        </button>
+
+        <!-- Giant English Sentence -->
+        <div id="sentenceWrapper" class="zen-sentence-wrapper">
+            <div id="giantSentence" class="giant-english-sentence" dir="ltr" lang="en"></div>
+        </div>
+
+        <!-- Divider & Arabic Translation -->
+        <div class="zen-divider"></div>
+        <p id="arabicTranslation" class="zen-arabic-translation"></p>
+
+        <!-- Center Circular Microphone Button (Icon Only) -->
+        <div class="mic-center-container">
+            <button id="micCircleBtn" class="mic-circle-btn" type="button" aria-label="اضغط للتحدث" title="اضغط للتحدث أو الإيقاف">
+                <i data-lucide="mic"></i>
+            </button>
+            <div id="micStatusText" class="mic-status-label">اضغط على المايكروفون وتحدث</div>
+        </div>
+
+        <!-- Spoken Transcript & Word Feedback Pill -->
+        <div id="feedbackPanel" class="feedback-panel" hidden>
+            <div class="spoken-preview-row">
+                <span class="spoken-label">ما التقطه المايكروفون:</span>
+                <span id="spokenTranscriptText" class="spoken-transcript" dir="ltr"></span>
+            </div>
+            <div id="attemptStatsRow" class="attempt-stats-row"></div>
+        </div>
+
+        <!-- Secondary Quick Controls -->
+        <div class="zen-quick-actions">
+            <button id="replayAudioBtn" class="ghost-action-btn" type="button">
+                <i data-lucide="volume-2"></i>
+                <span>استماع مرة أخرى</span>
+            </button>
+
+            <button id="tryAgainBtn" class="ghost-action-btn" type="button">
+                <i data-lucide="rotate-ccw"></i>
+                <span>إعادة المحاولة</span>
+            </button>
+
+            <button id="nextSentenceBtn" class="pill-btn" type="button">
+                <span id="nextBtnLabel">الجملة التالية</span>
+                <i data-lucide="arrow-left"></i>
+            </button>
+        </div>
+
+        <!-- Status / Error Banner -->
+        <div id="statusAlert" class="status-alert" role="alert" hidden></div>
+    </main>
+
+    <!-- Topics Modal (Without Level Filter Buttons) -->
+    <div id="topicsModal" class="modal-backdrop" hidden>
+        <div class="modal-card topics-modal-card" role="dialog" aria-modal="true" aria-labelledby="topicsModalTitle">
+            <div class="modal-header">
+                <div>
+                    <span class="modal-subtitle-top">قائمة المواضيع</span>
+                    <h2 id="topicsModalTitle">اختر موضوع للتدرب عليه</h2>
+                </div>
+                <button id="closeTopicsModalBtn" class="theme-btn" type="button" aria-label="إغلاق">
+                    <i data-lucide="x"></i>
+                </button>
+            </div>
+
+            <div id="topicsGrid" class="topics-grid"></div>
+        </div>
+    </div>
+
+    <!-- End-of-Topic Performance Analysis Modal -->
+    <div id="summaryModal" class="modal-backdrop" hidden>
+        <div class="modal-card summary-modal-card" role="dialog" aria-modal="true" aria-labelledby="summaryModalTitle">
+            <div class="summary-badge-top">
+                <span id="summaryLevelDot" class="level-dot level-A1">A1</span>
+                <span id="summaryTopicTitle">في المقهى</span>
+            </div>
+
+            <h2 id="summaryModalTitle" class="summary-heading">تحليل الأداء في الموضوع</h2>
+            <p id="summaryFeedbackMessage" class="summary-subtext"></p>
+
+            <!-- 1 to 5 Stars Rating -->
+            <div id="starsContainer" class="stars-container" aria-label="تقييم النجوم"></div>
+            <div id="starsScoreText" class="stars-score-label">5 / 5 نجوم</div>
+
+            <!-- Analytics Metrics Grid -->
+            <div class="summary-metrics-grid">
+                <div class="summary-metric-box">
+                    <span class="metric-label">متوسط الدقة الإجمالية</span>
+                    <strong id="summaryAccuracyValue">0%</strong>
+                </div>
+                <div class="summary-metric-box">
+                    <span class="metric-label">الكلمات الصحيحة</span>
+                    <strong id="summaryWordsValue">0 / 0</strong>
+                </div>
+                <div class="summary-metric-box">
+                    <span class="metric-label">جُمل متقنة (100%)</span>
+                    <strong id="summaryPerfectValue">0 / 10</strong>
+                </div>
+            </div>
+
+            <div class="summary-actions">
+                <button id="restartTopicBtn" class="pill-btn" type="button">
+                    <i data-lucide="rotate-ccw"></i>
+                    <span>إعادة هذا الموضوع</span>
+                </button>
+                <button id="chooseAnotherTopicBtn" class="primary-btn" type="button">
+                    <i data-lucide="layout-grid"></i>
+                    <span>اختيار موضوع آخر</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Telemetry & Shortcuts Footer -->
+    <footer class="bottom-bar">
+        <div class="telemetry-group">
+            <div class="telemetry-item">
+                <span>دقة الجملة الحالية:</span>
+                <strong id="statCurrentAccuracy">—</strong>
+            </div>
+            <div class="telemetry-item">
+                <span>الكلمات المطابقة:</span>
+                <strong id="statMatchedWords">0 / 0</strong>
+            </div>
+            <div class="telemetry-item">
+                <span>تقدم الموضوع:</span>
+                <strong id="statTopicProgress">1 / 10</strong>
+            </div>
+        </div>
+
+        <div class="hint-shortcuts">
+            <span><kbd class="kbd-tag">Space</kbd> تحدث / إيقاف</span>
+            <span><kbd class="kbd-tag">R</kbd> استماع</span>
+            <span><kbd class="kbd-tag">Enter</kbd> الجملة التالية</span>
+            <span>اضغط على أي كلمة إنجليزية لسماع نطقها منفردة</span>
+        </div>
+    </footer>
+
+    <!-- Application Script -->
+    <script src="script.js"></script>
+</body>
+</html>
