@@ -118,14 +118,10 @@ button i {
     min-width: 0;
 }
 
-.brand-logo-badge {
+.brand-logo {
     width: 40px;
     height: 40px;
-    border-radius: 11px;
-    background: rgba(0, 104, 155, .1);
-    color: var(--indigo);
-    display: grid;
-    place-items: center;
+    object-fit: contain;
     flex-shrink: 0;
 }
 
@@ -281,7 +277,7 @@ button i {
 }
 
 .level-dot {
-    padding: 3px 9px;
+    padding: 3px 10px;
     border-radius: 999px;
     color: #FFFFFF;
     font: 800 11px "Quicksand", sans-serif;
@@ -338,6 +334,11 @@ button i {
     background: rgba(128, 128, 128, .12);
 }
 
+.story-word.active-word-popup {
+    background: rgba(0, 104, 155, .14);
+    outline: 1.5px solid var(--indigo);
+}
+
 .story-word.word-correct {
     color: var(--success) !important;
     background: var(--success-bg);
@@ -348,6 +349,69 @@ button i {
     background: var(--error-bg);
     text-decoration: underline wavy var(--error) 2px;
     text-underline-offset: 6px;
+}
+
+/* Clickable Word Translation Popup */
+
+.word-translation-popup {
+    position: fixed;
+    z-index: 300;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    min-width: 120px;
+    max-width: 240px;
+    padding: 8px 14px;
+    border-radius: 12px;
+    border: 1px solid var(--indigo);
+    background: var(--card);
+    color: var(--ink);
+    box-shadow: var(--shadow);
+    pointer-events: none;
+    transform: translate(-50%, -100%);
+    transition: opacity .15s ease, transform .15s ease;
+}
+
+.word-translation-popup::after {
+    content: "";
+    position: absolute;
+    bottom: -6px;
+    left: 50%;
+    width: 10px;
+    height: 10px;
+    background: var(--card);
+    border-right: 1px solid var(--indigo);
+    border-bottom: 1px solid var(--indigo);
+    transform: translateX(-50%) rotate(45deg);
+}
+
+.word-translation-popup.popup-below {
+    transform: translate(-50%, 0);
+}
+
+.word-translation-popup.popup-below::after {
+    bottom: auto;
+    top: -6px;
+    border-right: none;
+    border-bottom: none;
+    border-left: 1px solid var(--indigo);
+    border-top: 1px solid var(--indigo);
+}
+
+.popup-word-en {
+    font-family: "Inter", sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--ink-soft);
+}
+
+.popup-word-ar {
+    font-family: "Tajawal", sans-serif;
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--indigo);
+    text-align: center;
 }
 
 /* Translation and Divider */
@@ -539,44 +603,45 @@ button i {
     align-items: flex-start;
     justify-content: space-between;
     gap: 16px;
+    padding-bottom: 18px;
     margin-bottom: 22px;
+    border-bottom: 1px solid var(--line);
 }
 
 .modal-subtitle-top {
-    font-size: 12px;
-    font-weight: 700;
-    color: var(--ink-soft);
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--indigo);
     display: block;
-    margin-bottom: 2px;
+    margin-bottom: 4px;
 }
 
 .modal-header h2 {
     margin: 0;
-    font-size: 22px;
+    font-size: 24px;
     font-weight: 900;
     color: var(--ink);
 }
 
-/* ==================== STYLING TOPIC CARDS EXACTLY LIKE THE REFERENCE ==================== */
+/* ==================== TOPIC CARDS ==================== */
 .topics-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 16px;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 18px;
 }
 
 .topic-card {
     position: relative;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding: 22px 18px;
+    padding: 0;
     border: 1px solid var(--line);
     border-radius: 18px;
     background: var(--card);
     color: var(--ink);
     cursor: pointer;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, .04);
+    overflow: hidden;
+    text-align: right;
     transition: border-color .2s, transform .2s, box-shadow .2s;
 }
 
@@ -587,49 +652,63 @@ button i {
 }
 
 .topic-card.active-topic {
-    border-color: var(--indigo);
-    box-shadow: 0 0 0 2px var(--indigo);
+    border: 2px solid var(--indigo);
+}
+
+.topic-card-banner {
+    position: relative;
+    width: 100%;
+    height: 112px;
+    background: rgba(0, 104, 155, .05);
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+body.dark .topic-card-banner {
+    background: rgba(255, 255, 255, .025);
 }
 
 .topic-card-badge {
     position: absolute;
-    top: 14px;
-    left: 14px;
+    top: 12px;
+    left: 12px;
 }
 
 .topic-card-emoji {
-    font-size: 42px;
+    font-size: 46px;
     line-height: 1;
-    margin-top: 8px;
-    margin-bottom: 14px;
+}
+
+.topic-card-body {
+    width: 100%;
+    padding: 16px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
 }
 
 .topic-card-en {
     font-family: "Inter", "Plus Jakarta Sans", sans-serif;
-    font-size: 17px;
+    font-size: 18px;
     font-weight: 800;
-    margin-bottom: 4px;
     color: var(--ink);
 }
 
 .topic-card-ar {
-    font-size: 14px;
-    font-weight: 700;
+    font-size: 15px;
+    font-weight: 800;
     color: var(--indigo);
-    margin-bottom: 8px;
+    margin-bottom: 4px;
 }
 
 .topic-card-desc {
-    font-size: 12px;
+    font-size: 13px;
     color: var(--ink-soft);
     font-weight: 500;
-    line-height: 1.5;
-    margin-bottom: 18px;
-    padding: 0 6px;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+    line-height: 1.6;
+    margin-bottom: 14px;
 }
 
 .topic-card-footer {
@@ -637,10 +716,10 @@ button i {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-top: 12px;
+    padding-top: 10px;
     border-top: 1px solid var(--line);
-    font-size: 12px;
-    font-weight: 700;
+    font-size: 13px;
+    font-weight: 800;
     color: var(--ink-soft);
 }
 
@@ -648,7 +727,7 @@ button i {
     color: var(--indigo);
     display: inline-flex;
     align-items: center;
-    gap: 4px;
+    gap: 5px;
 }
 
 /* Summary Modal */
@@ -810,3 +889,4 @@ button i {
         display: none;
     }
 }
+

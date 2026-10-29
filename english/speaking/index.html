@@ -25,21 +25,22 @@
     <!-- Top Header -->
     <header class="top-header">
         <div class="brand">
-            <div class="brand-logo-badge" aria-hidden="true">
-                <i data-lucide="audio-waveform"></i>
-            </div>
-            <div class="brand-text">
-                <strong>يزيد — التحدث بالإنجليزية</strong>
-                <span>تدريب النطق التفاعلي والمحادثة</span>
-            </div>
+        <img src="https://file.yazeedenglish.com/logo.png"
+             alt="Yazeed English"
+             class="brand-logo">
+
+        <div class="brand-text">
+            <strong>Yazeed English</strong>
+            <span>منصة يزيد للانجليزية</span>
         </div>
+    </div>
 
         <div class="header-actions">
             <!-- Current Topic Selector Button -->
             <button id="openTopicsBtn" class="pill-btn topic-trigger-btn" type="button" title="اختر موضوع المحادثة">
-                <span id="headerTopicLevel" class="level-dot level-A1">A1</span>
+                <i data-lucide="book-open"></i>
                 <span id="headerTopicTitle">في المقهى</span>
-                <i data-lucide="chevron-down"></i>
+    
             </button>
 
             <!-- Mute / Unmute TTS Button -->
@@ -62,11 +63,7 @@
             <span id="stageTopicName">في المقهى</span>
             <span class="meta-sep">•</span>
             <span id="sentenceCounter">الجملة 1 من 10</span>
-            <span class="meta-sep">•</span>
-            <span class="listen-inline-hint">
-                <i data-lucide="volume-2"></i>
-                استمع للجملة
-            </span>
+            
         </button>
 
         <!-- Giant English Sentence -->
@@ -83,7 +80,7 @@
             <button id="micCircleBtn" class="mic-circle-btn" type="button" aria-label="اضغط للتحدث" title="اضغط للتحدث أو الإيقاف">
                 <i data-lucide="mic"></i>
             </button>
-            <div id="micStatusText" class="mic-status-label">اضغط على المايكروفون وتحدث</div>
+            <div id="micStatusText" class="mic-status-label"></div>
         </div>
 
         <!-- Spoken Transcript & Word Feedback Pill -->
@@ -117,7 +114,13 @@
         <div id="statusAlert" class="status-alert" role="alert" hidden></div>
     </main>
 
-    <!-- Topics Modal (Without Level Filter Buttons) -->
+    <!-- Clickable Word Translation Popup -->
+    <div id="wordTranslationPopup" class="word-translation-popup" role="tooltip" hidden>
+        <span id="popupWordEn" class="popup-word-en" dir="ltr"></span>
+        <span id="popupWordAr" class="popup-word-ar" dir="rtl"></span>
+    </div>
+
+    <!-- Topics Modal (No Level Filter Buttons, Direct 20 Emoji Topic Cards) -->
     <div id="topicsModal" class="modal-backdrop" hidden>
         <div class="modal-card topics-modal-card" role="dialog" aria-modal="true" aria-labelledby="topicsModalTitle">
             <div class="modal-header">
@@ -186,12 +189,11 @@
                 <strong id="statCurrentAccuracy">—</strong>
             </div>
             <div class="telemetry-item">
-                <span>الكلمات المطابقة:</span>
+                <span>الكلمات الصحيحة:</span>
                 <strong id="statMatchedWords">0 / 0</strong>
             </div>
             <div class="telemetry-item">
-                <span>تقدم الموضوع:</span>
-                <strong id="statTopicProgress">1 / 10</strong>
+
             </div>
         </div>
 
@@ -199,7 +201,7 @@
             <span><kbd class="kbd-tag">Space</kbd> تحدث / إيقاف</span>
             <span><kbd class="kbd-tag">R</kbd> استماع</span>
             <span><kbd class="kbd-tag">Enter</kbd> الجملة التالية</span>
-            <span>اضغط على أي كلمة إنجليزية لسماع نطقها منفردة</span>
+            <span>اضغط على أي كلمة إنجليزية لسماع نطقها ومعناها</span>
         </div>
     </footer>
 

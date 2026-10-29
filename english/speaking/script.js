@@ -1,6 +1,10 @@
 /**
  * Yazeed Speaking English Practice App
- * 20 Topics (4 per CEFR Level A1-C1), 10 sentences each with Emojis & Descriptions
+ * - 20 Topics (4 per CEFR Level A1-C1), 10 sentences each (No trailing periods, 25-35 chars avg)
+ * - Separate WORD_TRANSLATIONS dictionary organized by topic directly below TOPICS_DATA
+ * - Interactive word translation popup + pronunciation on click
+ * - Number normalization (e.g., "2" <-> "two", "7:15" <-> "seven fifteen")
+ * - Samantha voice prioritized on iOS devices (iPhone / iPad)
  */
 
 const TOPICS_DATA = [
@@ -11,18 +15,18 @@ const TOPICS_DATA = [
         emoji: "☕",
         titleAr: "في المقهى",
         titleEn: "At the Café",
-        desc: "زيارة هادئة للمقهى لطلب القهوة والقراءة.",
+        desc: "زيارة هادئة للمقهى لطلب القهوة والقراءة",
         sentences: [
-            { en: "We are sitting at a table near the window.", ar: "نحن نجلس على طاولة بالقرب من النافذة." },
+            { en: "We sit near the bright window", ar: "نحن نجلس بالقرب من النافذة المشرقة" },
             { en: "Can I see the coffee menu please?", ar: "هل يمكنني رؤية قائمة القهوة من فضلك؟" },
-            { en: "I would like a cup of hot cappuccino.", ar: "أود كوباً من الكابتشينو الساخن." },
-            { en: "My friend wants black tea with fresh mint.", ar: "صديقي يريد شائاً أسود مع النعناع الطازج." },
-            { en: "Please bring us two glasses of cold water.", ar: "من فضلك أحضر لنا كوبين من الماء البارد." },
-            { en: "The coffee here is always fresh and delicious.", ar: "القهوة هنا دائماً طازجة ولذيذة." },
-            { en: "Would you like some sweet cake with your drink?", ar: "هل ترغب في بعض الكعكة الحلوة مع مشروبك؟" },
-            { en: "We also want a small chocolate biscuit.", ar: "نريد أيضاً بسكويت بالشوكولاتة الصغيرة." },
-            { en: "Excuse me, can we have the bill now?", ar: "عفواً، هل يمكننا الحصول على الفاتورة الآن؟" },
-            { en: "Thank you very much for the wonderful service.", ar: "شكراً جزيلاً لك على الخدمة الرائعة." }
+            { en: "I would like a hot cup of coffee", ar: "أود كوباً ساخناً من القهوة" },
+            { en: "My friend wants tea with fresh mint", ar: "صديقي يريد شاياً مع النعناع الطازج" },
+            { en: "Please bring us two cold glasses", ar: "من فضلك أحضر لنا كوبين باردين" },
+            { en: "The coffee here is always fresh", ar: "القهوة هنا طازجة دائماً" },
+            { en: "Would you like some sweet cake?", ar: "هل ترغب في بعض الكعك الحلو؟" },
+            { en: "We also want three small cookies", ar: "نريد أيضاً ثلاث قطع بسكويت صغيرة" },
+            { en: "Excuse me, can we have the bill?", ar: "عفواً، هل يمكننا الحصول على الفاتورة؟" },
+            { en: "Thank you for the great service", ar: "شكراً لك على الخدمة الرائعة" }
         ]
     },
     {
@@ -31,18 +35,18 @@ const TOPICS_DATA = [
         emoji: "☀️",
         titleAr: "روتين الصباح",
         titleEn: "Morning Routine",
-        desc: "خطوات الصباح من الاستيقاظ حتى الخروج.",
+        desc: "خطوات الصباح من الاستيقاظ حتى الخروج",
         sentences: [
-            { en: "I wake up at six thirty every morning.", ar: "أستيقظ في الساعة السادسة والنصف كل صباح." },
-            { en: "First, I wash my face with cold water.", ar: "أولاً، أغسل وجهي بالماء البارد." },
-            { en: "I brush my teeth for two minutes.", ar: "أنظف أسناني بالفرشاة لمدة دقيقتين." },
-            { en: "Then I wear my clean blue shirt.", ar: "ثم أرتدي قميصي الأزرق النظيف." },
-            { en: "I eat boiled eggs and toast for breakfast.", ar: "أتناول البيض المسلوق والخبز المحمص على الفطور." },
-            { en: "My mother drinks a cup of hot coffee.", ar: "تشرب أمي كوباً من القهوة الساخنة." },
-            { en: "I put my notebook inside my black bag.", ar: "أضع دفتري داخل حقيبتي السوداء." },
-            { en: "The school bus arrives at seven fifteen.", ar: "تصل حافلة المدرسة في السابعة والربع." },
-            { en: "I say goodbye to my family at the door.", ar: "أودع عائلتي عند الباب." },
-            { en: "I am ready for a happy new day.", ar: "أنا مستعد ليوم جديد سعيد." }
+            { en: "I wake up at six every morning", ar: "أستيقظ في السادسة كل صباح" },
+            { en: "First, I wash my face with water", ar: "أولاً، أغسل وجهي بالماء" },
+            { en: "I brush my teeth for two minutes", ar: "أنظف أسناني لمدة دقيقتين" },
+            { en: "Then I wear my clean blue shirt", ar: "ثم أرتدي قميصي الأزرق النظيف" },
+            { en: "I eat warm eggs for breakfast", ar: "أتناول بيضاً دافئاً على الفطور" },
+            { en: "My mother drinks a cup of coffee", ar: "تشرب أمي كوباً من القهوة" },
+            { en: "I put my book in my black bag", ar: "أضع كتابي في حقيبتي السوداء" },
+            { en: "The yellow bus arrives at seven", ar: "تصل الحافلة الصفراء في السابعة" },
+            { en: "I say goodbye to my kind family", ar: "أودع عائلتي اللطيفة" },
+            { en: "I am ready for a happy new day", ar: "أنا مستعد ليوم جديد سعيد" }
         ]
     },
     {
@@ -51,18 +55,18 @@ const TOPICS_DATA = [
         emoji: "🍲",
         titleAr: "عشاء العائلة",
         titleEn: "Family Dinner",
-        desc: "تحضير العشاء واجتماع العائلة حول المائدة.",
+        desc: "تحضير العشاء واجتماع العائلة حول المائدة",
         sentences: [
-            { en: "The sun sets and the family gathers around the table.", ar: "تغرب الشمس وتجتمع العائلة حول المائدة." },
-            { en: "Mother cooks a delicious bowl of hot soup.", ar: "تطهو الأم وعاءً لذيذاً من الحساء الساخن." },
-            { en: "The children wash their hands before eating.", ar: "يغسل الأطفال أيديهم قبل الأكل." },
-            { en: "Father cuts the roasted chicken into small pieces.", ar: "يققطع الأب الدجاج المشوي إلى قطع صغيرة." },
-            { en: "We pass the basket of fresh bread around.", ar: "نمرر سلة الخبز الطازج حول المائدة." },
-            { en: "Everyone talks about their day at school and work.", ar: "يتحدث الجميع عن يومهم في المدرسة والعمل." },
-            { en: "Please pass me the plate of green salad.", ar: "من فضلك مرر لي طبق السلطة الخضراء." },
-            { en: "We drink sweet juice after finishing the food.", ar: "نشرب عصيرًا حلوًا بعد الانتهاء من الطعام." },
-            { en: "The little sister helps clear the table.", ar: "تساعد الأخت الصغرى في ترتيب المائدة." },
-            { en: "We spend a warm and peaceful evening together.", ar: "نقضى مسياً دافئاً وهادئاً معاً." }
+            { en: "The family sits around the table", ar: "تجلس العائلة حول المائدة" },
+            { en: "Mother cooks a bowl of hot soup", ar: "تطهو الأم وعاءً من الحساء الساخن" },
+            { en: "The children wash their hands now", ar: "يغسل الأطفال أيديهم الآن" },
+            { en: "Father cuts the roasted chicken", ar: "يقطع الأب الدجاج المشوي" },
+            { en: "We pass the basket of warm bread", ar: "نمرر سلة الخبز الدافئ" },
+            { en: "Everyone talks about their day", ar: "يتحدث الجميع عن يومهم" },
+            { en: "Please pass me the green salad", ar: "من فضلك مرر لي السلطة الخضراء" },
+            { en: "We drink sweet juice after dinner", ar: "نشرب عصيراً حلواً بعد العشاء" },
+            { en: "My sister helps clear the table", ar: "تساعد أختي في تنظيف المائدة" },
+            { en: "We spend a quiet night together", ar: "نقضي ليلة هادئة معاً" }
         ]
     },
     {
@@ -71,18 +75,18 @@ const TOPICS_DATA = [
         emoji: "🛒",
         titleAr: "التسوق لشراء الاحتياجات",
         titleEn: "Grocery Shopping",
-        desc: "جولة لشراء الفواكه والخضراوات والخبز.",
+        desc: "جولة لشراء الفواكه والخضراوات والخبز",
         sentences: [
-            { en: "Good morning, welcome to our local grocery store.", ar: "صباح الخير، أهلاً بك في متجر البقالة المحلي." },
-            { en: "These red apples are very sweet today.", ar: "هذا التفاح الأحمر حلو جداً اليوم." },
-            { en: "How much is one kilo of fresh tomatoes?", ar: "بكم كيلو الطماطم الطازجة؟" },
-            { en: "I need five yellow bananas for my children.", ar: "أحتاج إلى خمس موزات صفراء لأطفالي." },
-            { en: "Do you have fresh milk in the fridge?", ar: "هل لديكم حليب طازج في الثلاجة؟" },
-            { en: "Yes, it arrived from the dairy farm today.", ar: "نعم، لقد وصل من مزرعة الألبان اليوم." },
-            { en: "Please put the potatoes in a paper bag.", ar: "من فضلك ضع البطاطس في كيس ورقي." },
-            { en: "I will pay with cash at the front counter.", ar: "سأدفع نقداً عند الصندوق الأمامي." },
-            { en: "Here is your change and your receipt.", ar: "تفضل الباقي والإيصال الخاص بك." },
-            { en: "Have a nice day and see you next week.", ar: "أتمنى لك يوماً سعيداً وأراك الأسبوع القادم." }
+            { en: "Welcome to our local food store", ar: "أهلاً بك في متجر الطعام المحلي" },
+            { en: "These red apples are very sweet", ar: "هذا التفاح الأحمر حلو جداً" },
+            { en: "How much is one kilo of oranges?", ar: "بكم كيلو البرتقال الواحد؟" },
+            { en: "I need five yellow bananas today", ar: "أحتاج خمس موزات صفراء اليوم" },
+            { en: "Do you have fresh cold milk here?", ar: "هل لديكم حليب بارد طازج هنا؟" },
+            { en: "Yes, it came from the farm today", ar: "نعم، لقد وصل من المزرعة اليوم" },
+            { en: "Please put the bread in a bag", ar: "من فضلك ضع الخبز في كيس" },
+            { en: "I will pay with cash right now", ar: "سأدفع نقداً الآن" },
+            { en: "Here is your change and receipt", ar: "تفضل الباقي والإيصال الخاص بك" },
+            { en: "Have a nice day and see you soon", ar: "أتمنى لك يوماً سعيداً وأراك قريباً" }
         ]
     },
 
@@ -93,18 +97,18 @@ const TOPICS_DATA = [
         emoji: "🏞️",
         titleAr: "رحلة نهاية الأسبوع",
         titleEn: "Weekend Trip",
-        desc: "رحلة بالسيارة لاستكشاف التلال والبلدة القديمة.",
+        desc: "رحلة بالسيارة لاستكشاف التلال والحديقة",
         sentences: [
-            { en: "The weather is sunny and pleasant this Saturday morning.", ar: "الطقس مشمس ولطيف صباح هذا السبت." },
-            { en: "We packed sandwiches and fresh juice in a cooler.", ar: "وضعنا الشطائر والعصير الطازج في حافظة التبريد." },
-            { en: "The boy is playing in the garden with his cousins.", ar: "يلعب الولد في الحديقة مع أبناء عمومته." },
-            { en: "We spread a large blanket under the palm trees.", ar: "فرشنا بطانية كبيرة تحت أشجار النخيل." },
-            { en: "Many families are walking around the small lake.", ar: "تتجول العديد من العائلات حول البحيرة الصغيرة." },
-            { en: "My sister brought her camera to take family photos.", ar: "أحضرت أختي كاميرتها لالتقاط صور عائلية." },
-            { en: "We fed the ducks some small pieces of bread.", ar: "أطعمنا البط بعض قطع الخبز الصغيرة." },
-            { en: "In the afternoon, a cool breeze started to blow.", ar: "في فترة ما بعد الظهر، بدأ نسيم بارد يهب." },
-            { en: "We cleaned our place before leaving the green park.", ar: "نظفنا مكاننا قبل مغادرة الحديقة الخضراء." },
-            { en: "It was one of the best weekends this month.", ar: "كانت واحدة من أفضل عطلات نهاية الأسبوع هذا الشهر." }
+            { en: "The weather is sunny this morning", ar: "الطقس مشمس هذا الصباح" },
+            { en: "We packed fresh juice and snacks", ar: "جهزنا عصيراً طازجاً ووجبات خفيفة" },
+            { en: "The boy is playing in the garden", ar: "يلعب الولد في الحديقة" },
+            { en: "We sat under the tall palm trees", ar: "جلسنا تحت أشجار النخيل الطويلة" },
+            { en: "Many families walk near the lake", ar: "تتجول عائلات كثيرة قرب البحيرة" },
+            { en: "My sister tookfour family photos", ar: "التقطت أختي أربع صور عائلية" },
+            { en: "We fed the ducks pieces of bread", ar: "أطعمنا البط قطعاً من الخبز" },
+            { en: "A cool breeze blew at four oclock", ar: "هب نسيم بارد في الساعة الرابعة" },
+            { en: "We cleaned our place before leaving", ar: "نظفنا مكاننا قبل المغادرة" },
+            { en: "It was a wonderful weekend trip", ar: "كانت رحلة نهاية أسبوع رائعة" }
         ]
     },
     {
@@ -113,18 +117,18 @@ const TOPICS_DATA = [
         emoji: "🎓",
         titleAr: "يوم في الجامعة",
         titleEn: "A Day at University",
-        desc: "يوم طالب جامعي بين المحاضرات والمكتبة.",
+        desc: "يوم طالب جامعي بين المحاضرات والمكتبة",
         sentences: [
-            { en: "I arrive at the university campus before nine o'clock.", ar: "أصل إلى الحرم الجامعي قبل الساعة التاسعة." },
-            { en: "My first lecture is about modern computer science.", ar: "محاضرتي الأولى تدور حول علوم الحاسب الحديثة." },
-            { en: "The professor explains difficult concepts with clear examples.", ar: "يشرح الأستاذ المفاهيم الصعبة بأمثلة واضحة." },
-            { en: "During the break, I meet my friends at the cafeteria.", ar: "أثناء الاستراحة، أقابل أصدقائي في الكافيتريا." },
-            { en: "We borrow reference books from the quiet library.", ar: "نستعير كتباً مرجعية من المكتبة الهادئة." },
-            { en: "I take detailed notes during every afternoon seminar.", ar: "أدون ملاحظات مفصلة خلال كل ندوات ما بعد الظهر." },
-            { en: "Working on group assignments improves our teamwork skills.", ar: "العمل على الواجبات الجماعية يطور مهارات العمل الجماعي لدين." },
-            { en: "The campus garden is a peaceful place to study.", ar: "حديقة الحرم الجامعي مكان هادئ للدراسة." },
-            { en: "I submit my weekly report online before midnight.", ar: "أقدم تقريري الأسبوعي عبر الإنترنت قبل منتصف الليل." },
-            { en: "University life teaches you independence and time management.", ar: "الحياة الجامعية تعلّمك الاستقلالية وإدارة الوقت." }
+            { en: "I arrive at campus before nine", ar: "أصل إلى الحرم الجامعي قبل التاسعة" },
+            { en: "My first class is computer science", ar: "محاضرتي الأولى هي علوم الحاسب" },
+            { en: "The teacher gives clear examples", ar: "يقدم المعلم أمثلة واضحة" },
+            { en: "I meet my friends during the break", ar: "أقابل أصدقائي أثناء الاستراحة" },
+            { en: "We borrow books from the library", ar: "نستعير كتباً من المكتبة" },
+            { en: "I write notes in every lecture", ar: "أكتب ملاحظات في كل محاضرة" },
+            { en: "Group projects build our teamwork", ar: "المشاريع الجماعية تبني عملنا الجماعي" },
+            { en: "The campus garden is very quiet", ar: "حديقة الجامعة هادئة جداً" },
+            { en: "I send my weekly report at eight", ar: "أرسل تقريري الأسبوعي في الثامنة" },
+            { en: "College life teaches time skills", ar: "الحياة الجامعية تعلم مهارات الوقت" }
         ]
     },
     {
@@ -133,18 +137,18 @@ const TOPICS_DATA = [
         emoji: "✈️",
         titleAr: "في المطار قبل السفر",
         titleEn: "At the Airport Before Flying",
-        desc: "إجراءات السفر وحقائب الطائرة.",
+        desc: "إجراءات السفر وحقائب الطائرة",
         sentences: [
-            { en: "We arrived at the airport three hours before our flight.", ar: "وصلنا إلى المطار قبل رحلتنا بثلاث ساعات." },
-            { en: "Please show me your passport and boarding pass.", ar: "يرجى إظهار جواز السفر وبطاقة صعود الطائرة." },
-            { en: "I only have one suitcase and a small backpack.", ar: "لدي حقيبة سفر واحدة فقط وحقيبة ظهر صغيرة." },
-            { en: "Would you prefer a window seat or an aisle seat?", ar: "هل تفضل مقعداً بجانب النافذة أم بجانب الممر؟" },
-            { en: "Our flight leaves from gate number twenty four.", ar: "تغادر رحلتنا من البوابة رقم أربعة وعشرين." },
-            { en: "We need to go through security check right now.", ar: "نحتاج إلى المرور عبر التفتيش الأمني الآن." },
-            { en: "Let us buy a bottle of water from the duty free shop.", ar: "دعنا نشتري زجاجة ماء من السوق الحرة." },
-            { en: "The screen says that boarding will start in ten minutes.", ar: "تقول الشاشة إن صعود الطائرة سيبدأ خلال عشر دقائق." },
-            { en: "Please fasten your seatbelt and turn off your phone.", ar: "يرجى ربط حزام الأمان وإغلاق هاتفك." },
-            { en: "I hope we have a smooth and comfortable flight.", ar: "آمل أن نحظى رحلة سلسة ومريحة." }
+            { en: "We reached the airport at ten", ar: "وصلنا إلى المطار في العاشرة" },
+            { en: "Please show me your passport now", ar: "يرجى إظهار جواز سفرك الآن" },
+            { en: "I have one bag and a small pack", ar: "لدي حقيبة واحدة وحقيبة ظهر صغيرة" },
+            { en: "Do you want a window seat today?", ar: "هل تريد مقعداً بجانب النافذة اليوم؟" },
+            { en: "Our flight leaves from gate six", ar: "تغادر رحلتنا من البوابة السادسة" },
+            { en: "We must go through security now", ar: "يجب أن نمر عبر التفتيش الأمني الآن" },
+            { en: "Let us buy water from the shop", ar: "دعنا نشتري ماءً من المتجر" },
+            { en: "Boarding starts in ten minutes", ar: "يبدأ صعود الطائرة خلال عشر دقائق" },
+            { en: "Please fasten your seat belt now", ar: "يرجى ربط حزام الأمان الآن" },
+            { en: "I hope we have a smooth flight", ar: "آمل أن نحظى برحلة سلسة" }
         ]
     },
     {
@@ -153,18 +157,18 @@ const TOPICS_DATA = [
         emoji: "🩺",
         titleAr: "زيارة عيادة الطبيب",
         titleEn: "Visiting the Doctor's Clinic",
-        desc: "الكشف ووصف الأدوية المناسبة.",
+        desc: "الكشف الطبي ووصف الأدوية المناسبة",
         sentences: [
-            { en: "I have an appointment with Doctor Tariq at ten o'clock.", ar: "لدي موعد مع الدكتور طارق في الساعة العاشرة." },
-            { en: "I have had a strong headache since yesterday evening.", ar: "أعاني من صداع قوي منذ مساء أمس." },
-            { en: "My throat hurts when I drink cold water.", ar: "حلقي يؤلمني عندما أشرب الماء البارد." },
-            { en: "Let me check your temperature and blood pressure.", ar: "دعني أفحص درجة حرارتك وضغط دمك." },
-            { en: "Take a deep breath and open your mouth wide.", ar: "خذ نفساً عميقاً وافتح فمك جيداً." },
-            { en: "You just have a mild seasonal cold.", ar: "لديك فقط نزلة برد موسمية خفيفة." },
-            { en: "You should take this medicine twice a day after meals.", ar: "يجب أن تتناول هذا الدواء مرتين يومياً بعد الوجبات." },
-            { en: "Make sure you drink plenty of warm fluids.", ar: "تأكد من شرب الكثير من السوائل الدافئة." },
-            { en: "Stay at home and rest for the next two days.", ar: "ابق في المنزل واسترح خلال اليومين القادمين." },
-            { en: "I feel much better after talking to the doctor.", ar: "أشعر بتحسن كبير بعد التحدث إلى الطبيب." }
+            { en: "I have a doctor visit at nine", ar: "لدي زيارة للطبيب في التاسعة" },
+            { en: "I felt a strong headache today", ar: "شعرت بصداع قوي اليوم" },
+            { en: "My throat hurts when I drink", ar: "حلقي يؤلمني عندما أشرب" },
+            { en: "Let me check your fever right now", ar: "دعني أفحص حرارتك الآن" },
+            { en: "Take a deep breath and relax now", ar: "خذ نفساً عميقاً واسترخ الآن" },
+            { en: "You only have a mild winter cold", ar: "لديك فقط نزلة برد شتوية خفيفة" },
+            { en: "Take this medicine twice a day", ar: "تناول هذا الدواء مرتين يومياً" },
+            { en: "Make sure you drink warm water", ar: "تأكد من شرب الماء الدافئ" },
+            { en: "Stay at home for two full days", ar: "ابق في المنزل لمدة يومين كاملين" },
+            { en: "I feel much better after resting", ar: "أشعر بتحسن كبير بعد الراحة" }
         ]
     },
 
@@ -175,18 +179,18 @@ const TOPICS_DATA = [
         emoji: "💼",
         titleAr: "مقابلة عمل ناجحة",
         titleEn: "A Successful Job Interview",
-        desc: "مهارات تقديم الذات والخبرات المهنية.",
+        desc: "مهارات تقديم الذات والخبرات المهنية",
         sentences: [
-            { en: "Thank you for inviting me to interview for this position.", ar: "شكراً لدعوتي لإجراء المقابلة لهذه الوظيفة." },
-            { en: "I graduated from university with a degree in computer science.", ar: "تخرجت من الجامعة بشهادة في علوم الحاسب." },
-            { en: "Over the past three years, I have worked on several team projects.", ar: "خلال السنوات الثلاث الماضية، عملت على عدة مشاريع جماعية." },
-            { en: "I enjoy solving complex problems and learning new technologies.", ar: "أستمتع بحل المشكلات المعقدة وتعلم التقنيات الجديدة." },
-            { en: "Can you tell me more about the daily responsibilities here?", ar: "هل يمكنك إخباري المزيد عن المسؤوليات اليومية هنا؟" },
-            { en: "I always try to organize my tasks before starting the day.", ar: "أحاول دائماً تنظيم مهامي قبل بدء اليوم." },
-            { en: "Working under pressure helps me stay focused and productive.", ar: "العمل تحت الضغط يساعدني على البقاء مركزاً ومنتجاً." },
-            { en: "I am looking for an opportunity to grow with your company.", ar: "أبحث عن فرصة للتطور والنمو مع شركتكم." },
-            { en: "We will contact you by email before the end of next week.", ar: "سنتواصل معك عبر البريد الإلكتروني قبل نهاية الأسبوع القادم." },
-            { en: "It was a pleasure meeting you and learning about your team.", ar: "كان من دواعي سروري لقاؤك والتعرف على فريقكم." }
+            { en: "Thank you for inviting me today", ar: "شكراً لدعوتي إلى المقابلة اليوم" },
+            { en: "I studied software at university", ar: "درست البرمجيات في الجامعة" },
+            { en: "I worked on three team projects", ar: "عملت على ثلاثة مشاريع جماعية" },
+            { en: "I enjoy solving complex problems", ar: "أستمتع بحل المشكلات المعقدة" },
+            { en: "What are the daily duties here?", ar: "ما هي المهام اليومية هنا؟" },
+            { en: "I plan my tasks every morning", ar: "أخطط لمهامي كل صباح" },
+            { en: "Calm focus helps me under stress", ar: "التركيز الهادئ يساعدني تحت الضغط" },
+            { en: "I want to grow with your company", ar: "أريد أن أتطور مع شركتكم" },
+            { en: "We will email you next Tuesday", ar: "سنراسلك عبر البريد الثلاثاء القادم" },
+            { en: "It was great meeting your team", ar: "كان من الرائع مقابلة فريقكم" }
         ]
     },
     {
@@ -195,18 +199,18 @@ const TOPICS_DATA = [
         emoji: "🏃",
         titleAr: "حياة صحية ولياقة بدنية",
         titleEn: "Healthy Lifestyle and Fitness",
-        desc: "عادات النوم والتغذية والرياضة اليومية.",
+        desc: "عادات النوم والتغذية والرياضة اليومية",
         sentences: [
-            { en: "Staying active every day has completely changed my energy levels.", ar: "البقاء نشيطاً كل يوم غيّر مستويات طاقتي بالكامل." },
-            { en: "I decided to replace sugary drinks with water and green tea.", ar: "قررت استبدال المشروبات السكرية بالماء والشاي الأخضر." },
-            { en: "Walking for thirty minutes after dinner improves digestion significantly.", ar: "المشي لمدة ثلاثين دقيقة بعد العشاء يحسن الهضم بشكل ملحوظ." },
-            { en: "Getting enough sleep at night is just as important as exercise.", ar: "الحصول على قسط كافٍ من النوم ليلاً لا يقل أهمية عن التمارين." },
-            { en: "My trainer advised me to warm up properly before lifting weights.", ar: "نصحني مدربي بالإحماء بشكل صحيح قبل رفع الأثقال." },
-            { en: "Preparing meals at home helps me control the ingredients easily.", ar: "تحضير الوجبات في المنزل يساعدني على التحكم في المكونات بسهولة." },
-            { en: "Consistency is much more effective than following strict short diets.", ar: "الاستمرارية أكثر فعالية بكثير من اتباع حميات قاسية قصيرة." },
-            { en: "Whenever I feel stressed, a quick run clears my mind.", ar: "كلما شعرت بالتوتر، فإن جولة جري سريعة تصفي ذهني." },
-            { en: "Setting realistic weekly goals keeps me motivated all year round.", ar: "وضع أهداف أسبوعية واقعية يبقيني متحفزاً طوال العام." },
-            { en: "Good health is the greatest investment you can make for yourself.", ar: "الصحة الجيدة هي أعظم استثمار يمكنك القيام به لنفسك." }
+            { en: "Daily exercise boosts my energy", ar: "التمارين اليومية تزيد من طاقتي" },
+            { en: "I replaced soda with green tea", ar: "استبدلت المشروبات الغازية بالشاي الأخضر" },
+            { en: "Walking after dinner aids health", ar: "المشي بعد العشاء يساعد الصحة" },
+            { en: "Eight hours of sleep is vital", ar: "ثماني ساعات من النوم أمر حيوي" },
+            { en: "Always warm up before training", ar: "قم بالإحماء دائماً قبل التدريب" },
+            { en: "Home cooking keeps meals healthy", ar: "الطبخ المنزلي يحفظ صحة الوجبات" },
+            { en: "Steady habits beat strict diets", ar: "العادات المستمرة تتفوق على الحميات القاسية" },
+            { en: "A quick run clears my busy mind", ar: "جولة جري سريعة تصفي ذهني المشغول" },
+            { en: "Weekly goals keep me motivated", ar: "الأهداف الأسبوعية تبقيني متحفزاً" },
+            { en: "Good health is a great treasure", ar: "الصحة الجيدة هي كنز عظيم" }
         ]
     },
     {
@@ -215,18 +219,18 @@ const TOPICS_DATA = [
         emoji: "🗣️",
         titleAr: "رحلة تعلم لغة جديدة",
         titleEn: "The Journey of Learning a Language",
-        desc: "استراتيجيات اكتساب الطلاقة وبناء الثقة.",
+        desc: "استراتيجيات اكتساب الطلاقة وبناء الثقة",
         sentences: [
-            { en: "Practicing out loud every day builds confidence when speaking English.", ar: "التدرب بصوت عالٍ كل يوم يبني الثقة عند التحدث بالإنجليزية." },
-            { en: "Do not be afraid of making mistakes during real conversations.", ar: "لا تخف من ارتكاب الأخطاء أثناء المحادثات الحقيقية." },
-            { en: "Listening to native speakers helps you learn natural expressions.", ar: "الاستماع إلى المتحدثين الأصليين يساعدك على تعلم التعبيرات الطبيعية." },
-            { en: "I usually write down new sentences instead of single words.", ar: "عادةً ما أدوّن جملاً جديدة بدلاً من كلمات مفردة." },
-            { en: "Watching documentaries with English subtitles improved my listening skills.", ar: "مشاهدة الأفلام الوثائقية مع ترجمة إنجليزية طورت مهارات الاستماع لدي." },
-            { en: "Repeating a sentence several times makes your pronunciation smoother.", ar: "تكرار الجملة عدة مرات يجعل نطقك أكثر سلاسة." },
-            { en: "It takes patience and daily effort to reach fluency.", ar: "يتطلب الأمر صبراً وجهداً يومياً للوصول إلى الطلاقة." },
-            { en: "Reading short stories before sleep expands your vocabulary naturally.", ar: "قراءة القصص القصيرة قبل النوم توسع مفرداتك بشكل طبيعي." },
-            { en: "Speaking with a study partner makes the learning process enjoyable.", ar: "التحدث مع شريك دراسة يجعل عملية التعلم ممتعة." },
-            { en: "Every small step forward brings you closer to your goal.", ar: "كل خطوة صغيرة إلى الأمام تقربك من هدفك." }
+            { en: "Speaking out loud builds confidence", ar: "التحدث بصوت عالٍ يبني الثقة" },
+            { en: "Never fear making small mistakes", ar: "لا تخف أبداً من ارتكاب أخطاء صغيرة" },
+            { en: "Native audio teaches natural phrases", ar: "الصوت الأصلي يعلم عبارات طبيعية" },
+            { en: "Write full sentences every day", ar: "اكتب جملاً كاملة كل يوم" },
+            { en: "English videos improve listening", ar: "المقاطع الإنجليزية تطور الاستماع" },
+            { en: "Repeating phrases makes speech smooth", ar: "تكرار العبارات يجعل الكلام سلساً" },
+            { en: "Fluency takes patience and effort", ar: "الطلاقة تتطلب صبراً وجهداً" },
+            { en: "Short stories expand your words", ar: "القصص القصيرة توسع حصيلة كلماتك" },
+            { en: "Study partners make learning fun", ar: "شركاء الدراسة يجعلون التعلم ممتعاً" },
+            { en: "Small daily steps lead to success", ar: "الخطوات اليومية الصغيرة تقود للنجاح" }
         ]
     },
     {
@@ -235,18 +239,18 @@ const TOPICS_DATA = [
         emoji: "🚗",
         titleAr: "عطل مفاجئ في السيارة",
         titleEn: "Unexpected Car Trouble",
-        desc: "التعامل مع الأعطال وخدمات الإنقاذ على الطريق.",
+        desc: "التعامل مع الأعطال وخدمات الإنقاذ على الطريق",
         sentences: [
-            { en: "While driving to work, I heard a strange noise from the engine.", ar: "أثناء القيادة إلى العمل، سمعت صوتاً غريباً من المحرك." },
-            { en: "I safely pulled over to the side of the highway.", ar: "توقفت بأمان على جانب الطريق السريع." },
-            { en: "The battery warning light suddenly appeared on the dashboard.", ar: "ظهر ضوء تحذير البطارية فجأة على لوحة القيادة." },
-            { en: "I turned on the hazard lights so other drivers could see me.", ar: "شغّلت أضواء الطوارئ حتى يتمكن السائقون الآخرون من رؤيتي." },
-            { en: "I called the roadside assistance service and shared my location.", ar: "اتصلت بخدمة المساعدة على الطريق وشاركت موقعي." },
-            { en: "The mechanic arrived within twenty minutes with a tow truck.", ar: "وصل الميكانيكي خلال عشرين دقيقة مع شاحنة سحب." },
-            { en: "He explained that the cooling fan belt needed replacement.", ar: "أوضح أن حزام مروحة التبريد يحتاج إلى استبدال." },
-            { en: "Fortunately, the repair did not take more than two hours.", ar: "لحسن الحظ، لم يستغرق الإصلاح أكثر من ساعتين." },
-            { en: "Regular maintenance prevents most unexpected breakdowns during long trips.", ar: "الصيانة الدورية تمنع معظم الأعطال المفاجئة أثناء الرحلات الطويلة." },
-            { en: "I was relieved to get back on the road safely.", ar: "شعرت بالارتياح للعودة إلى الطريق بأمان." }
+            { en: "I heard a strange engine noise", ar: "سمعت صوتاً غريباً من المحرك" },
+            { en: "I pulled over near the highway", ar: "توقفت بجانب الطريق السريع" },
+            { en: "The battery light turned on fast", ar: "أضاء تحذير البطارية بسرعة" },
+            { en: "I switched on the hazard lights", ar: "شغلت أضواء التحذير الرباعية" },
+            { en: "I called road service for help", ar: "اتصلت بخدمة الطريق للمساعدة" },
+            { en: "The mechanic arrived in ten minutes", ar: "وصل الميكانيكي خلال عشر دقائق" },
+            { en: "The cooling belt needed repair", ar: "حزام التبريد كان يحتاج لإصلاح" },
+            { en: "The fix took less than two hours", ar: "استغرق الإصلاح أقل من ساعتين" },
+            { en: "Regular checks prevent car faults", ar: "الفحص الدوري يمنع أعطال السيارة" },
+            { en: "I returned to the road safely", ar: "عدت إلى الطريق بكل أمان" }
         ]
     },
 
@@ -257,18 +261,18 @@ const TOPICS_DATA = [
         emoji: "💻",
         titleAr: "العمل عن بُعد",
         titleEn: "Remote Work & Balance",
-        desc: "توازن الحياة المهنية وإدارة الفرق العالمية.",
+        desc: "توازن الحياة المهنية وإدارة الفرق العالمية",
         sentences: [
-            { en: "Remote work has transformed how modern companies manage their global teams.", ar: "غيّر العمل عن بُعد طريقة إدارة الشركات الحديثة لفرقها العالمية." },
-            { en: "Eliminating the daily commute saves employees valuable time and money.", ar: "إلغاء التنقل اليومي يوفر للموظفين وقتاً ومالاً ثمينين." },
-            { en: "However, separating personal life from professional duties requires strong discipline.", ar: "ومع ذلك، فإن فصل الحياة الشخصية عن الواجبات المهنية يتطلب انضباطاً قوياً." },
-            { en: "Setting up a dedicated workspace at home boosts concentration significantly.", ar: "تخصيص مساحة عمل مستقلة في المنزل يعزز التركيز بشكل كبير." },
-            { en: "Clear communication prevents misunderstandings when collaborating across different time zones.", ar: "التواصل الواضح يمنع سوء الفهم عند التعاون عبر مناطق زمنية مختلفة." },
-            { en: "Many organizations now prefer a hybrid model combining flexibility and office teamwork.", ar: "تفضل العديد من المؤسسات الآن نموذجاً هجيناً يجمع بين المرونة والعمل المكتبي." },
-            { en: "Taking scheduled breaks away from screens protects both physical and mental health.", ar: "أخذ فترات راحة مجدولة بعيداً عن الشاشات يحمي الصحة الجسدية والنفسية." },
-            { en: "Managers should evaluate employees based on results rather than hours spent online.", ar: "يجب على المديرين تقييم الموظفين بناءً على النتائج وليس ساعات التواجد المتصل." },
-            { en: "Digital tools allow teams to brainstorm ideas effectively from anywhere.", ar: "تتيح الأدوات الرقمية للفرق تبادل الأفكار بفعالية من أي مكان." },
-            { en: "Finding a sustainable balance ultimately increases long-term creativity and satisfaction.", ar: "إيجاد توازن مستدام يزيد في النهاية من الإبداع والرضا على المدى الطويل." }
+            { en: "Remote work changed modern teams", ar: "العمل عن بعد غير الفرق الحديثة" },
+            { en: "Working from home saves travel time", ar: "العمل من المنزل يوفر وقت التنقل" },
+            { en: "Work life balance needs discipline", ar: "توازن العمل والحياة يتطلب انضباطاً" },
+            { en: "A quiet desk boosts daily focus", ar: "المكتب الهادئ يعزز التركيز اليومي" },
+            { en: "Clear chat prevents team errors", ar: "التواصل الواضح يمنع أخطاء الفريق" },
+            { en: "Many firms prefer hybrid models", ar: "تفضل شركات عديدة النظام الهجين" },
+            { en: "Regular screen breaks protect health", ar: "فترات الراحة من الشاشة تحمي الصحة" },
+            { en: "Managers value results over hours", ar: "المديرون يقدرون النتائج أكثر من الساعات" },
+            { en: "Cloud tools connect global staff", ar: "الأدوات السحابية تربط الموظفين عالمياً" },
+            { en: "Flexible schedules improve morale", ar: "الجداول المرنة تحسن الروح المعنوية" }
         ]
     },
     {
@@ -277,18 +281,18 @@ const TOPICS_DATA = [
         emoji: "🌱",
         titleAr: "حماية البيئة والاستدامة",
         titleEn: "Environmental Sustainability",
-        desc: "الطاقة المتجددة وتقليل الانبعاثات الكربونية.",
+        desc: "الطاقة المتجددة وتقليل الانبعاثات الكربونية",
         sentences: [
-            { en: "Transitioning to renewable energy sources is essential for reducing carbon emissions.", ar: "الانتقال إلى مصادر الطاقة المتجددة أمر ضروري لتقليل انبعاثات الكربون." },
-            { en: "Single-use plastics continue to pose a severe threat to marine ecosystems.", ar: "لا تزال المواد البلاستيكية ذات الاستخدام الواحد تشكل تهديداً خطيراً للنظم البيئية البحرية." },
-            { en: "Planting native trees in urban areas helps lower summer temperatures naturally.", ar: "زراعة الأشجار المحلية في المناطق الحضرية تساعد على خفض درجات حرارة الصيف طبيعياً." },
-            { en: "Consumers are increasingly choosing brands that demonstrate genuine environmental responsibility.", ar: "يختار المستهلكون بشكل متزايد العلامات التجارية التي تظهر مسؤولية بيئية حقيقية." },
-            { en: "Conserving water resources requires modern irrigation techniques in agriculture.", ar: "الحفاظ على موارد المياه يتطلب تقنيات ري حديثة في الزراعة." },
-            { en: "Recycling electronic waste prevents toxic materials from contaminating the soil.", ar: "إعادة تدوير النفايات الإلكترونية تمنع المواد السامة من تلويث التربة." },
-            { en: "Public transportation networks reduce traffic congestion and improve air quality.", ar: "تقلل شبكات النقل العام من الازدحام المروري وتحسن جودة الهواء." },
-            { en: "Educational campaigns encourage communities to adopt sustainable daily habits.", ar: "تشجع الحملات التوعوية المجتمعات على تبني عادات يومية مستدامة." },
-            { en: "Governments and private industries must collaborate on green innovation.", ar: "يجب أن تتعاون الحكومات والقطاعات الخاصة في مجال الابتكار الأخضر." },
-            { en: "Protecting our planet today ensures a healthier future for coming generations.", ar: "حماية كوكبنا اليوم تضمن مستقبلاً أكثر صحة للأجيال القادمة." }
+            { en: "Clean energy reduces carbon gas", ar: "الطاقة النظيفة تقلل غازات الكربون" },
+            { en: "Plastic waste harms ocean life", ar: "النفايات البلاستيكية تضر الحياة البحرية" },
+            { en: "Urban trees cool down hot cities", ar: "أشجار المدن تلطف حرارة المدن" },
+            { en: "Buyers support eco friendly brands", ar: "المشترون يدعمون العلامات الصديقة للبيئة" },
+            { en: "Smart farming saves fresh water", ar: "الزراعة الذكية توفر المياه العذبة" },
+            { en: "Recycling protects soil from waste", ar: "إعادة التدوير تحمي التربة من النفايات" },
+            { en: "Public trains reduce city traffic", ar: "القطارات العامة تقلل ازدحام المدينة" },
+            { en: "Green habits start at home today", ar: "العادات الخضراء تبدأ من المنزل اليوم" },
+            { en: "Industry must invest in clean tech", ar: "يجب أن تستثمر الصناعة بالتقنية النظيفة" },
+            { en: "Protecting nature secures our future", ar: "حماية الطبيعة تؤمن مستقبلنا" }
         ]
     },
     {
@@ -297,18 +301,18 @@ const TOPICS_DATA = [
         emoji: "📊",
         titleAr: "تقديم مشروع تقني",
         titleEn: "Technical Project Pitch",
-        desc: "عرض الأفكار وتحليل النتائج للمستثمرين.",
+        desc: "عرض الأفكار وتحليل النتائج للمستثمرين",
         sentences: [
-            { en: "Today I would like to present our proposal for the new mobile platform.", ar: "أود اليوم تقديم مقترحنا الخاص بالمنصة الجديدة للهواتف المحمولة." },
-            { en: "Our primary objective is to simplify the user experience for beginners.", ar: "هدفنا الأساسي هو تبسيط تجربة المستخدم للمبتدئين." },
-            { en: "Recent customer feedback revealed several bottlenecks in the registration process.", ar: "كشفت آراء العملاء الأخيرة عن عدة عوائق في عملية التسجيل." },
-            { en: "By redesigning the interface, we reduced loading times by forty percent.", ar: "من خلال إعادة تصميم الواجهة، قللنا أوقات التحميل بنسبة أربعين بالمائة." },
-            { en: "Security remains our highest priority throughout every stage of development.", ar: "يظل الأمان أولويتنا القصوى خلال كل مرحلة من مراحل التطوير." },
-            { en: "This chart illustrates the projected growth over the next two quarters.", ar: "يوضح هذا الرسم البياني النمو المتوقع خلال الربعين القادمين." },
-            { en: "We have allocated sufficient resources to test the system thoroughly before launch.", ar: "لقد خصصنا موارد كافية لاختبار النظام بدقة قبل الإطلاق." },
-            { en: "Collaborating closely with the design team allowed us to meet all deadlines.", ar: "التعاون الوثيق مع فريق التصميم أتاح لنا الالتزام بجميع المواعيد النهائية." },
-            { en: "I would be happy to answer any questions regarding the technical architecture.", ar: "سأكون سعيداً بالإجابة عن أي أسئلة تتعلق بالبنية التقنية." },
-            { en: "Thank you for your attention and your continued support of this initiative.", ar: "شكراً لاهتمامكم ودعمكم المستمر لهذه المبادرة." }
+            { en: "Today I will present our new app", ar: "اليوم سأعرض تطبيقنا الجديد" },
+            { en: "Our goal is a simple user design", ar: "هدفنا هو تصميم بسيط للمستخدم" },
+            { en: "User feedback showed login delays", ar: "ملاحظات المستخدمين أظهرت تأخراً بالدخول" },
+            { en: "We cut loading time by ten percent", ar: "قللنا وقت التحميل بنسبة عشرة بالمائة" },
+            { en: "Data security is our top priority", ar: "أمن البيانات هو أولويتنا القصوى" },
+            { en: "This chart shows strong growth", ar: "هذا الرسم يظهر نمواً قوياً" },
+            { en: "We tested every feature carefully", ar: "اختبرنا كل ميزة بعناية فائقة" },
+            { en: "Close teamwork met all deadlines", ar: "التعاون الوثيق حقق كل المواعيد" },
+            { en: "I welcome your technical questions", ar: "أرحب بأسئلتكم التقنية" },
+            { en: "Thank you for backing this project", ar: "شكراً لكم على دعم هذا المشروع" }
         ]
     },
     {
@@ -317,18 +321,18 @@ const TOPICS_DATA = [
         emoji: "💰",
         titleAr: "التخطيط المالي الذكي",
         titleEn: "Smart Financial Planning",
-        desc: "إدارة المدخرات والاستثمار لبناء مستقبل آمن.",
+        desc: "إدارة المدخرات والاستثمار لبناء مستقبل آمن",
         sentences: [
-            { en: "Building an emergency fund provides peace of mind during uncertain economic times.", ar: "بناء صندوق للطوارئ يوفر راحة البال خلال الأوقات الاقتصادية غير المستقرة." },
-            { en: "Tracking monthly expenses reveals how small purchases add up over time.", ar: "تتبع النفقات الشهرية يكشف كيف تتراكم المشتريات الصغيرة بمرور الوقت." },
-            { en: "Financial experts recommend saving at least twenty percent of your monthly income.", ar: "يوصي الخبراء الماليون بادخار عشرين بالمائة على الأقل من دخلك الشهري." },
-            { en: "Avoiding unnecessary high-interest debt is crucial for achieving financial independence.", ar: "تجنب الديون غير الضرورية ذات الفوائد المرتفعة أمر حاسم لتحقيق الاستقلال المالي." },
-            { en: "Diversifying your investments helps minimize risk across different market conditions.", ar: "تنويع استثماراتك يساعد على تقليل المخاطر عبر ظروف السوق المختلفة." },
-            { en: "Distinguishing between essential needs and temporary desires requires honest self-reflection.", ar: "التمييز بين الاحتياجات الأساسية والرغبات المؤقتة يتطلب مراجعة صادقة للنفس." },
-            { en: "Setting clear long-term financial milestones makes budgeting much more purposeful.", ar: "وضع أهداف مالية طويلة المدى يجعل إعداد الميزانية أكثر جدوى." },
-            { en: "Continuous learning about economic trends empowers individuals to make informed decisions.", ar: "التعلم المستمر حول الاتجاهات الاقتصادية يمكّن الأفراد من اتخاذ قرارات مدروسة." },
-            { en: "Automating your savings ensures consistency without relying on willpower alone.", ar: "أتمتة مدخراتك تضمن الاستمرارية دون الاعتماد على قوة الإرادة وحدها." },
-            { en: "True wealth is measured by financial security rather than material possessions.", ar: "تُقاس الثروة الحقيقية بالأمان المالي وليس بالممتلكات المادية." }
+            { en: "Emergency savings bring peace of mind", ar: "مدخرات الطوارئ تجلب راحة البال" },
+            { en: "Track your spending every month", ar: "تتبع نفقاتك في كل شهر" },
+            { en: "Save twenty percent of your income", ar: "ادخر عشرين بالمائة من دخلك" },
+            { en: "Avoid high interest credit debt", ar: "تجنب ديون الائتمان عالية الفائدة" },
+            { en: "Diverse assets lower market risk", ar: "تنوع الأصول يقلل مخاطر السوق" },
+            { en: "Separate basic needs from desires", ar: "افصل الاحتياجات الأساسية عن الرغبات" },
+            { en: "Clear money goals guide your budget", ar: "الأهداف المالية الواضحة توجه ميزانيتك" },
+            { en: "Economic knowledge aids decision making", ar: "المعرفة الاقتصادية تساعد في اتخاذ القرار" },
+            { en: "Automated transfers build wealth", ar: "التحويلات التلقائية تبني الثروة" },
+            { en: "Financial freedom beats luxury items", ar: "الحرية المالية أفضل من المقتنيات الفاخرة" }
         ]
     },
 
@@ -339,18 +343,18 @@ const TOPICS_DATA = [
         emoji: "🤖",
         titleAr: "الذكاء الاصطناعي والتعليم",
         titleEn: "AI in Modern Education",
-        desc: "مستقبل التكنولوجيا الحديثة في المناهج الأكاديمية.",
+        desc: "مستقبل التكنولوجيا الحديثة في المناهج الأكاديمية",
         sentences: [
-            { en: "Artificial intelligence is fundamentally reshaping traditional pedagogical methodologies worldwide.", ar: "يعيد الذكاء الاصطناعي تشكيل منهجيات التدريس التقليدية بشكل جذري حول العالم." },
-            { en: "Adaptive learning systems tailor educational content to each student's individual pace.", ar: "تصمم أنظمة التعلم التكيفي المحتوى التعليمي وفقاً لسرعة كل طالب على حدة." },
-            { en: "Nevertheless, technology cannot replace the empathy and mentorship of human educators.", ar: "ومع ذلك، لا يمكن للتكنولوجيا أن تحل محل التعاطف والتوجيه الذي يقدمه المعلمون البشر." },
-            { en: "Cultivating critical thinking skills is paramount in an era of automated information.", ar: "تنمية مهارات التفكير النقدي أمر بالغ الأهمية في عصر المعلومات الآلية." },
-            { en: "Academic institutions must establish transparent ethical frameworks for digital tools.", ar: "يجب على المؤسسات الأكاديمية وضع أطر أخلاقية شفافة للأدوات الرقمية." },
-            { en: "Instantaneous feedback enables learners to identify and rectify misconceptions immediately.", ar: "تتيح التغذية الراجعة الفورية للمتعلمين تحديد المفاهيم الخاطئة وتصحيحها فوراً." },
-            { en: "Bridging the digital divide ensures equitable access to advanced educational resources.", ar: "سد الفجوة الرقمية يضمن وصولاً عادلاً إلى الموارد التعليمية المتقدمة." },
-            { en: "Lifelong adaptability has become more valuable than memorizing static facts.", ar: "أصبحت القدرة على التكيف مدى الحياة أكثر قيمة من حفظ الحقائق الثابتة." },
-            { en: "Interdisciplinary collaboration fosters innovative solutions to complex global challenges.", ar: "يعزز التعاون بين التخصصات المختلفة حلولاً مبتكرة للتحديات العالمية المعقدة." },
-            { en: "Ultimately, education should empower individuals to navigate an evolving world responsibly.", ar: "في النهاية، يجب أن يمكّن التعليم الأفراد من التعامل مع عالم متغير بمسؤولية." }
+            { en: "Smart systems reshape modern learning", ar: "الأنظمة الذكية تعيد تشكيل التعلم الحديث" },
+            { en: "Adaptive tools match student pace", ar: "الأدوات التكيفية تناسب سرعة الطالب" },
+            { en: "Machines cannot replace human empathy", ar: "الآلات لا تعوض التعاطف البشري" },
+            { en: "Critical thinking remains essential", ar: "التفكير النقدي يظل أمراً جوهرياً" },
+            { en: "Schools need clear ethical rules", ar: "تحتاج المدارس لقواعد أخلاقية واضحة" },
+            { en: "Instant feedback corrects errors fast", ar: "التغذية الراجعة الفورية تصحح الأخطاء سريعاً" },
+            { en: "Equal digital access empowers youth", ar: "الوصول الرقمي العادل يمكّن الشباب" },
+            { en: "Lifelong learning beats static facts", ar: "التعلم المستمر يتفوق على الحفظ الجامد" },
+            { en: "Shared research solves global issues", ar: "البحث المشترك يحل القضايا العالمية" },
+            { en: "Education prepares responsible minds", ar: "التعليم يعد عقولاً مسؤولة" }
         ]
     },
     {
@@ -359,18 +363,18 @@ const TOPICS_DATA = [
         emoji: "🧠",
         titleAr: "علم نفس العادات والتركيز",
         titleEn: "Psychology of Deep Focus",
-        desc: "التحكم في الانتباه وبناء العادات المستدامة.",
+        desc: "التحكم في الانتباه وبناء العادات المستدامة",
         sentences: [
-            { en: "Sustained cognitive focus has become increasingly rare in our hyper-connected society.", ar: "أصبح التركيز الذهني المستمر نادراً بشكل متزايد في مجتمعنا فائق الاتصال." },
-            { en: "Constant digital notifications fragment our attention and diminish creative capacity.", ar: "تؤدي الإشعارات الرقمية المستمرة إلى تشتيت انتباهنا وإضعاف القدرة الإبداعية." },
-            { en: "Neuroscience demonstrates that habitual behaviors are reinforced through consistent environmental cues.", ar: "يثبت علم الأعصاب أن السلوكيات الاعتيادية تتعزز من خلال إشارات بيئية متسقة." },
-            { en: "Incremental daily improvements compound into remarkable achievements over extended periods.", ar: "تتراكم التحسينات اليومية الطفيفة لتتحول إلى إنجازات مذهلة على مدى فترات طويلة." },
-            { en: "Designing frictionless environments makes beneficial habits significantly easier to maintain.", ar: "تصميم بيئات خالية من العوائق يجعل الحفاظ على العادات المفيدة أسهل بكثير." },
-            { en: "Deliberate practice requires stepping outside one's comfort zone with immediate reflection.", ar: "يتطلب التدريب المتعمد الخروج من منطقة الراحة مع التأمل والمراجعة الفورية." },
-            { en: "Mental fatigue often stems from decision overload rather than physical exhaustion.", ar: "غالباً ما ينبع الإرهاق الذهني من كثرة القرارات وليس من التعب الجسدي." },
-            { en: "Scheduling uninterrupted blocks of time protects deep intellectual work.", ar: "جدولة فترات زمنية غير متقطعة تحمي العمل الفكري العميق." },
-            { en: "Self-compassion during setbacks prevents temporary slips from becoming permanent failures.", ar: "الرفق بالنفس أثناء الانتكاسات يمنع الهفوات المؤقتة من التحول إلى فشل دائم." },
-            { en: "Mastering one's attention is arguably the most decisive skill of the modern age.", ar: "إتقان التحكم في الانتباه هو بلا شك المهارة الأكثر حسماً في العصر الحديث." }
+            { en: "Deep focus is rare in digital life", ar: "التركيز العميق نادر في الحياة الرقمية" },
+            { en: "Constant alerts fragment our minds", ar: "التنبيهات المستمرة تشتت أذهاننا" },
+            { en: "Daily cues shape lasting habits", ar: "الإشارات اليومية تشكل عادات دائمة" },
+            { en: "Small gains compound over five years", ar: "المكاسب الصغيرة تتراكم خلال خمس سنوات" },
+            { en: "Simple spaces support good routines", ar: "المساحات البسيطة تدعم العادات الجيدة" },
+            { en: "Deliberate practice builds mastery", ar: "التدريب المتعمد يبني الإتقان" },
+            { en: "Too many choices cause mental fatigue", ar: "كثرة الخيارات تسبب الإرهاق الذهني" },
+            { en: "Quiet blocks protect creative work", ar: "الفترات الهادئة تحمي العمل الإبداعي" },
+            { en: "Self kindness prevents total burnout", ar: "الرفق بالنفس يمنع الاحتراق الكامل" },
+            { en: "Attention control defines success", ar: "التحكم في الانتباه يصنع النجاح" }
         ]
     },
     {
@@ -379,18 +383,18 @@ const TOPICS_DATA = [
         emoji: "⚡",
         titleAr: "القيادة وإدارة الأزمات",
         titleEn: "Strategic Leadership",
-        desc: "اتخاذ القرارات الحاسمة في الظروف المعقدة.",
+        desc: "اتخاذ القرارات الحاسمة في الظروف المعقدة",
         sentences: [
-            { en: "Effective leadership is tested most rigorously during periods of unprecedented uncertainty.", ar: "تُختبر القيادة الفعالة بأشد الطرق صرامة خلال فترات عدم اليقين غير المسبوقة." },
-            { en: "Transparent communication cultivates institutional trust when navigating complex crises.", ar: "يبني التواصل الشفاف الثقة المؤسسية عند التعامل مع الأزمات المعقدة." },
-            { en: "Decisive leaders balance analytical data with empathetic understanding of human dynamics.", ar: "يوازن القادة الحاسمون بين البيانات التحليلية والفهم المتعاطف للديناميكيات البشرية." },
-            { en: "Delegating authority empowers teams to respond swiftly to emerging operational challenges.", ar: "تفويض الصلاحيات يمكّن الفرق من الاستجابة بسرعة للتحديات التشغيلية الناشئة." },
-            { en: "Constructive dissent within executive meetings prevents short-sighted groupthink.", ar: "الاختلاف البنّاء داخل الاجتماعات التنفيذية يمنع التفكير الجماعي قصير النظر." },
-            { en: "Resilient organizations view unexpected disruptions as catalysts for strategic renewal.", ar: "تنظر المؤسسات المرنة إلى الاضطرابات غير المتوقعة كمحفزات للتجديد الاستراتيجي." },
-            { en: "Long-term vision must never be sacrificed for superficial short-term gains.", ar: "لا ينبغي أبداً التضحية بالرؤية طويلة المدى من أجل مكاسب سطحية قصيرة الأجل." },
-            { en: "Fostering psychological safety encourages employees to voice innovative ideas fearlessly.", ar: "تعزيز الأمان النفسي يشجع الموظفين على طرح أفكار مبتكرة دون خوف." },
-            { en: "Post-crisis evaluation transforms difficult experiences into valuable organizational wisdom.", ar: "يحول التقييم بعد الأزمات التجارب الصعبة إلى حكمة مؤسسية قيّمة." },
-            { en: "Authentic leadership inspires collective commitment toward a shared noble purpose.", ar: "تلهم القيادة الأصيلة الالتزام الجماعي نحو هدف نبيل مشترك." }
+            { en: "True leaders shine during crises", ar: "القادة الحقيقيون يبرزون وقت الأزمات" },
+            { en: "Honest dialogue builds lasting trust", ar: "الحوار الصادق يبني ثقة دائمة" },
+            { en: "Wise decision making blends data and care", ar: "اتخاذ القرار الحكيم يمزج البيانات والاهتمام" },
+            { en: "Shared authority speeds up action", ar: "تفويض الصلاحيات يسرع الإنجاز" },
+            { en: "Open debate prevents group errors", ar: "النقاش المفتوح يمنع أخطاء الجماعة" },
+            { en: "Resilient teams turn setbacks into growth", ar: "الفرق المرنة تحول العثرات إلى نمو" },
+            { en: "Long term vision guides strategy", ar: "الرؤية بعيدة المدى توجه الاستراتيجية" },
+            { en: "Safe cultures welcome bold ideas", ar: "البيئات الآمنة ترحب بالأفكار الجريئة" },
+            { en: "Reviewing past errors builds wisdom", ar: "مراجعة أخطاء الماضي تبني الحكمة" },
+            { en: "Authentic purpose unites great teams", ar: "الهدف الأصيل يوحد الفرق العظيمة" }
         ]
     },
     {
@@ -399,21 +403,375 @@ const TOPICS_DATA = [
         emoji: "🏛️",
         titleAr: "العمارة والهوية الثقافية",
         titleEn: "Architecture & Culture",
-        desc: "التصميم الحضري المعاصر والحفاظ على التراث.",
+        desc: "التصميم الحضري المعاصر والحفاظ على التراث",
         sentences: [
-            { en: "Contemporary urban architecture seeks to harmonize technological innovation with cultural heritage.", ar: "تسعى العمارة الحضرية المعاصرة إلى تحقيق التناغم بين الابتكار التقني والتراث الثقافي." },
-            { en: "Traditional architectural elements often provide ingenious solutions for harsh climatic conditions.", ar: "تقدم العناصر المعمارية التقليدية غالباً حلولاً بارعة للظروف المناخية القاسية." },
-            { en: "Preserving historical neighborhoods maintains a city's authentic collective memory.", ar: "الحفاظ على الأحياء التاريخية يصون الذاكرة الجمعية الأصيلة للمدينة." },
-            { en: "Sustainable urban planning prioritizes pedestrian-friendly spaces over automobile dominance.", ar: "يمنح التخطيط الحضري المستدام الأولوية للمساحات الصديقة للمشاة على حساب هيمنة السيارات." },
-            { en: "Natural lighting within public buildings enhances psychological well-being and reduces energy consumption.", ar: "تعزز الإضاءة الطبيعية داخل المباني العامة الرفاهية النفسية وتقلل استهلاك الطاقة." },
-            { en: "Iconic landmarks frequently serve as powerful symbols of national ambition and creativity.", ar: "تعمل المعالم البارزة في كثير من الأحيان كرموز قوية للطموح والإبداع الوطني." },
-            { en: "Integrating green courtyards into high-density housing fosters community interaction.", ar: "إن دمج الأفنية الخضراء في المجمعات السكنية عالية الكثافة يعزز التفاعل المجتمعي." },
-            { en: "Architects bear a profound responsibility for shaping how people experience daily life.", ar: "يتحمل المعماريون مسؤولية عميقة في تشكيل كيفية معايشة الناس لحياتهم اليومية." },
-            { en: "Thoughtful design bridges the gap between aesthetic elegance and practical functionality.", ar: "يجسر التصميم المدروس الفجوة بين الأناقة الجمالية والوظيفة العملية." },
-            { en: "Cities flourish when modern infrastructure respects the timeless spirit of local identity.", ar: "تزدهر المدن عندما تحترم البنية التحتية الحديثة الروح الخالدة للهوية المحلية." }
+            { en: "Modern design blends tech and heritage", ar: "التصميم الحديث يدمج التقنية والتراث" },
+            { en: "Ancient Courtyards cool desert homes", ar: "الأفنية القديمة تبرد منازل الصحراء" },
+            { en: "Historic streets preserve city memory", ar: "الشوارع التاريخية تحفظ ذاكرة المدينة" },
+            { en: "Walkable plazas enrich urban life", ar: "الساحات المهيأة للمشي تثري حياة المدن" },
+            { en: "Natural light improves indoor health", ar: "الضوء الطبيعي يحسن الصحة الداخلية" },
+            { en: "Cultural landmarks inspire pride", ar: "المعالم الثقافية تلهم الفخر" },
+            { en: "Green roofs reduce urban heat", ar: "الأسطح الخضراء تقلل حرارة المدن" },
+            { en: "Buildings shape how communities meet", ar: "المباني تشكل طريقة تلاقي المجتمعات" },
+            { en: "Great spaces balance beauty and use", ar: "المساحات الرائعة توازن الجمال والمنفعة" },
+            { en: "Cities thrive when honoring identity", ar: "تزدهر المدن عندما تحترم هويتها" }
         ]
     }
 ];
+
+// ==================== ARABIC WORD TRANSLATIONS ORGANIZED BY TOPIC ====================
+const WORD_TRANSLATIONS = {
+    // Topic: a1-cafe (At the Café — في المقهى)
+    "a1-cafe": {
+        we: "نحن", sit: "نجلس", near: "بالقرب من", the: "الـ", bright: "المشرقة", window: "النافذة",
+        can: "هل يمكن", i: "أنا", see: "أرى", coffee: "القهوة", menu: "قائمة", please: "من فضلك",
+        would: "أود / هل", like: "أحب / ترغب", a: "واحد", hot: "ساخن", cup: "كوب", of: "من",
+        my: "خاصتي", friend: "صديق", wants: "يريد", tea: "شاي", with: "مع", fresh: "طازج", mint: "نعناع",
+        bring: "أحضر", us: "لنا", two: "اثنين", cold: "بارد", glasses: "أكواب",
+        here: "هنا", is: "يكون", always: "دائماً", you: "أنت", some: "بعض", sweet: "حلو", cake: "كعك",
+        also: "أيضاً", want: "نريد", three: "ثلاثة", small: "صغيرة", cookies: "قطع بسكويت",
+        excuse: "اعذر", me: "ني", have: "نحصل على", bill: "الفاتورة",
+        thank: "شكراً", for: "على", great: "الرائعة", service: "الخدمة"
+    },
+
+    // Topic: a1-morning (Morning Routine — روتين الصباح)
+    "a1-morning": {
+        wake: "أستيقظ", up: "فوق / استيقاظ", at: "في", six: "السادسة", every: "كل", morning: "صباح",
+        first: "أولاً", wash: "أغسل", face: "وجه", water: "ماء",
+        brush: "أنظف بالفرشاة", teeth: "أسنان", minutes: "دقائق",
+        then: "ثم", wear: "أرتدي", clean: "نظيف", blue: "أزرق", shirt: "قميص",
+        eat: "أتناول", warm: "دافئ", eggs: "بيض", breakfast: "الفطور",
+        mother: "أم", drinks: "تشرب", put: "أضع", book: "كتاب", in: "في", black: "أسود", bag: "حقيبة",
+        yellow: "أصفر", bus: "حافلة", arrives: "تصل", seven: "السابعة",
+        say: "أقول", goodbye: "وداعاً", to: "إلى", kind: "لطيفة", family: "عائلة",
+        am: "أكون", ready: "مستعد", happy: "سعيد", new: "جديد", day: "يوم"
+    },
+
+    // Topic: a1-family-dinner (Family Dinner — عشاء العائلة)
+    "a1-family-dinner": {
+        sits: "تجلس", around: "حول", table: "المائدة",
+        cooks: "تطهو", bowl: "وعاء", soup: "حساء",
+        children: "الأطفال", their: "الخاص بهم", hands: "أيدي", now: "الآن",
+        father: "الأب", cuts: "يقطع", roasted: "المشوي", chicken: "الدجاج",
+        pass: "نمرر / مرر", basket: "سلة", bread: "خبز",
+        everyone: "الجميع", talks: "يتحدث", about: "عن",
+        green: "خضراء", salad: "سلطة", drink: "نشرب", juice: "عصير", after: "بعد", dinner: "العشاء",
+        sister: "أخت", helps: "تساعد", clear: "تنظيف / ترتيب",
+        spend: "نقضي", quiet: "هادئة", night: "ليلة", together: "معاً"
+    },
+
+    // Topic: a1-grocery (Grocery Shopping — التسوق لشراء الاحتياجات)
+    "a1-grocery": {
+        welcome: "أهلاً بك", our: "الخاص بنا", local: "المحلي", food: "طعام", store: "متجر",
+        these: "هذه", red: "أحمر", apples: "تفاح", are: "تكون", very: "جداً",
+        how: "كم / كيف", much: "سعر / كثير", one: "واحد", kilo: "كيلو", oranges: "برتقال",
+        need: "أحتاج", five: "خمسة", bananas: "موز", today: "اليوم",
+        do: "هل", milk: "حليب", yes: "نعم", it: "هو", came: "جاء / وصل", from: "من", farm: "المزرعة",
+        will: "سوف", pay: "أدفع", cash: "نقداً", right: "تماماً / الآن",
+        your: "الخاص بك", change: "الباقي", and: "و", receipt: "الإيصال",
+        nice: "لطيف / سعيد", soon: "قريباً"
+    },
+
+    // Topic: a2-weekend (Weekend Trip — رحلة نهاية الأسبوع)
+    "a2-weekend": {
+        weather: "الطقس", sunny: "مشمس", this: "هذا",
+        packed: "جهزنا", snacks: "وجبات خفيفة",
+        boy: "الولد", playing: "يلعب", garden: "الحديقة",
+        sat: "جلسنا", under: "تحت", tall: "طويلة", palm: "نخيل", trees: "أشجار",
+        many: "كثير", families: "عائلات", walk: "تتجول", lake: "البحيرة",
+        took: "التقطت", four: "أربعة", photos: "صور",
+        fed: "أطعمنا", ducks: "البط", pieces: "قطع",
+        cool: "بارد / لطيف", breeze: "نسيم", blew: "هب", oclock: "تماماً (الساعة)",
+        cleaned: "نظفنا", place: "مكان", before: "قبل", leaving: "المغادرة",
+        was: "كانت", wonderful: "رائعة", weekend: "نهاية الأسبوع", trip: "رحلة"
+    },
+
+    // Topic: a2-university (A Day at University — يوم في الجامعة)
+    "a2-university": {
+        arrive: "أصل", campus: "الحرم الجامعي", nine: "التاسعة",
+        class: "محاضرة / حصة", computer: "حاسوب", science: "علوم",
+        teacher: "المعلم", gives: "يعطي", clear: "واضحة", examples: "أمثلة",
+        meet: "أقابل", friends: "أصدقاء", during: "أثناء", break: "الاستراحة",
+        borrow: "نستعير", books: "كتب", library: "المكتبة",
+        write: "أكتب", notes: "ملاحظات", lecture: "محاضرة",
+        group: "جماعية", projects: "مشاريع", build: "تبني", teamwork: "العمل الجماعي",
+        send: "أرسل", weekly: "الأسبوعي", report: "تقرير", eight: "الثامنة",
+        college: "الكلية / الجامعة", life: "حياة", teaches: "تعلّم", time: "الوقت", skills: "مهارات"
+    },
+
+    // Topic: a2-airport (At the Airport Before Flying — في المطار قبل السفر)
+    "a2-airport": {
+        reached: "وصلنا", airport: "المطار", ten: "العاشرة / عشرة",
+        show: "أظهر", passport: "جواز السفر",
+        pack: "حقيبة ظهر", seat: "مقعد",
+        flight: "رحلة طيران", leaves: "تغادر", gate: "بوابة",
+        must: "يجب", go: "نذهب / نمر", through: "عبر", security: "الأمن",
+        let: "دع", buy: "نشتري", shop: "متجر",
+        boarding: "صعود الطائرة", starts: "يبدأ",
+        fasten: "اربط", belt: "حزام", hope: "آمل", smooth: "سلسة"
+    },
+
+    // Topic: a2-doctor (Visiting the Doctor's Clinic — زيارة عيادة الطبيب)
+    "a2-doctor": {
+        doctor: "طبيب", visit: "زيارة / موعد",
+        felt: "شعرت", strong: "قوي", headache: "صداع",
+        throat: "حلق", hurts: "يؤلم", when: "عندما",
+        check: "أفحص", fever: "حرارة / حمى",
+        take: "خذ / تناول", deep: "عميق", breath: "نَفَس", relax: "استرخ",
+        only: "فقط", mild: "خفيفة", winter: "شتوية",
+        medicine: "دواء", twice: "مرتين",
+        make: "تأكد / اصنع", sure: "متأكد",
+        stay: "ابق", home: "المنزل", full: "كاملين", days: "أيام",
+        feel: "أشعر", better: "أفضل", resting: "الراحة"
+    },
+
+    // Topic: b1-interview (A Successful Job Interview — مقابلة عمل ناجحة)
+    "b1-interview": {
+        inviting: "دعوة", studied: "درست", software: "البرمجيات", university: "الجامعة",
+        worked: "عملت", on: "على", team: "فريق",
+        enjoy: "أستمتع", solving: "حل", complex: "معقدة", problems: "مشكلات",
+        what: "ما هي", daily: "اليومية", duties: "المهام / الواجبات",
+        plan: "أخطط", tasks: "مهام",
+        calm: "هادئ", focus: "تركيز", under: "تحت", stress: "ضغط",
+        grow: "أتطور / أنمو", company: "شركة",
+        email: "نراسل بالبريد", next: "القادم", tuesday: "الثلاثاء",
+        meeting: "مقابلة / لقاء"
+    },
+
+    // Topic: b1-fitness (Healthy Lifestyle and Fitness — حياة صحية ولياقة بدنية)
+    "b1-fitness": {
+        exercise: "التمرين", boosts: "يعزز / يزيد", energy: "طاقة",
+        replaced: "استبدلت", soda: "المشروبات الغازية",
+        walking: "المشي", aids: "يساعد", health: "الصحة",
+        hours: "ساعات", sleep: "النوم", vital: "حيوي / ضروري",
+        training: "التدريب", cooking: "الطبخ", keeps: "يحفظ", meals: "الوجبات", healthy: "صحية",
+        steady: "المستمرة", habits: "العادات", beat: "تتفوق على", strict: "القاسية", diets: "الحميات",
+        quick: "سريعة", run: "جري", clears: "يصفي", busy: "مشغول", mind: "ذهن",
+        goals: "أهداف", keep: "تبقي", motivated: "متحفزاً",
+        good: "جيدة", treasure: "كنز"
+    },
+
+    // Topic: b1-language (The Journey of Learning a Language — رحلة تعلم لغة جديدة)
+    "b1-language": {
+        speaking: "التحدث", out: "بصوت", loud: "عالٍ", builds: "يبني", confidence: "الثقة",
+        never: "أبداً", fear: "تخف", making: "ارتكاب / صنع", mistakes: "أخطاء",
+        native: "أصلي", audio: "صوت", phrases: "عبارات",
+        sentences: "جُمل", english: "إنجليزية", videos: "مقاطع فيديو", improve: "تطور", listening: "الاستماع",
+        repeating: "تكرار", makes: "يجعل", speech: "الكلام",
+        fluency: "الطلاقة", takes: "تتطلب", patience: "صبر", effort: "جهد",
+        short: "قصيرة", stories: "قصص", expand: "توسع", words: "كلمات",
+        study: "دراسة", partners: "شركاء", learning: "التعلم", fun: "ممتع",
+        steps: "خطوات", lead: "تقود", success: "النجاح"
+    },
+
+    // Topic: b1-car-trouble (Unexpected Car Trouble — عطل مفاجئ في السيارة)
+    "b1-car-trouble": {
+        heard: "سمعت", strange: "غريب", engine: "محرك", noise: "صوت / ضجيج",
+        pulled: "توقفت جانباً", over: "إلى الجانب", highway: "الطريق السريع",
+        battery: "البطارية", light: "ضوء", turned: "أضاء / تحول", fast: "بسرعة",
+        switched: "شغلت", hazard: "طوارئ / تحذير", lights: "أضواء",
+        called: "اتصلت", road: "الطريق", help: "مساعدة",
+        mechanic: "الميكانيكي", arrived: "وصل",
+        cooling: "التبريد", needed: "احتاج", repair: "إصلاح",
+        fix: "الإصلاح", less: "أقل", than: "من",
+        regular: "دوري / منتظم", checks: "فحوصات", prevent: "تمنع", car: "سيارة", faults: "أعطال",
+        returned: "عدت", safely: "بأمان"
+    },
+
+    // Topic: b2-remote-work (Remote Work & Balance — العمل عن بُعد)
+    "b2-remote-work": {
+        remote: "عن بُعد", work: "العمل", changed: "غيّر", modern: "الحديثة", teams: "الفرق",
+        working: "العمل", saves: "يوفر", travel: "التنقل / السفر",
+        balance: "توازن", needs: "يتطلب / احتياجات", discipline: "انضباط",
+        desk: "مكتب", chat: "تواصل / محادثة", prevents: "يمنع", errors: "أخطاء",
+        firms: "شركات", prefer: "تفضل", hybrid: "هجين", models: "نماذج",
+        screen: "شاشة", breaks: "فترات راحة", protect: "تحمي",
+        managers: "المديرون", value: "يقدرون", results: "النتائج",
+        cloud: "سحابية", tools: "أدوات", connect: "تربط", global: "عالمي", staff: "الموظفين",
+        flexible: "مرنة", schedules: "جداول", morale: "الروح المعنوية"
+    },
+
+    // Topic: b2-environment (Environmental Sustainability — حماية البيئة والاستدامة)
+    "b2-environment": {
+        reduces: "تقلل", carbon: "الكربون", gas: "غاز",
+        plastic: "بلاستيكي", waste: "نفايات", harms: "تضر", ocean: "المحيط",
+        urban: "الحضرية / المدن", down: "تخفض", cities: "المدن",
+        buyers: "المشترون", support: "يدعمون", eco: "بيئي", friendly: "صديق", brands: "علامات تجارية",
+        smart: "ذكية", farming: "الزراعة",
+        recycling: "إعادة التدوير", protects: "تحمي", soil: "التربة",
+        public: "العامة", trains: "القطارات", reduce: "تقلل", city: "المدينة", traffic: "الازدحام المروري",
+        start: "تبدأ", industry: "الصناعة", invest: "تستثمر", tech: "التقنية",
+        protecting: "حماية", nature: "الطبيعة", secures: "تؤمن", future: "المستقبل"
+    },
+
+    // Topic: b2-presentation (Technical Project Pitch — تقديم مشروع تقني)
+    "b2-presentation": {
+        present: "أعرض", app: "تطبيق",
+        goal: "هدف", simple: "بسيط", user: "مستخدم", design: "تصميم",
+        feedback: "ملاحظات / آراء", showed: "أظهرت", login: "تسجيل الدخول", delays: "تأخيرات",
+        cut: "قللنا", loading: "التحميل", by: "بنسبة", percent: "بالمائة",
+        data: "البيانات", top: "القصوى", priority: "أولوية",
+        chart: "رسم بياني", shows: "يظهر", growth: "نمو",
+        tested: "اختبرنا", feature: "ميزة", carefully: "بعناية",
+        close: "وثيق", met: "حقق", all: "كل", deadlines: "المواعيد النهائية",
+        technical: "تقنية", questions: "أسئلة",
+        backing: "دعم", project: "مشروع"
+    },
+
+    // Topic: b2-finance (Smart Financial Planning — التخطيط المالي الذكي)
+    "b2-finance": {
+        emergency: "طوارئ", savings: "مدخرات", peace: "سلام / راحة",
+        track: "تتبع", spending: "الإنفاق", month: "شهر",
+        save: "ادخر", twenty: "عشرين", income: "الدخل",
+        avoid: "تجنب", high: "عالية", interest: "فائدة", credit: "ائتمان", debt: "دَين",
+        diverse: "متنوعة", assets: "أصول", lower: "تقلل", market: "السوق", risk: "مخاطر",
+        separate: "افصل", basic: "أساسية", desires: "رغبات",
+        money: "مال", guide: "توجه", budget: "ميزانية",
+        economic: "اقتصادية", knowledge: "معرفة", decision: "قرار",
+        automated: "تلقائية", transfers: "تحويلات", wealth: "ثروة",
+        financial: "مالية", freedom: "حرية", beats: "تتفوق على", luxury: "فاخرة", items: "مقتنيات"
+    },
+
+    // Topic: c1-ai-education (AI in Modern Education — الذكاء الاصطناعي والتعليم)
+    "c1-ai-education": {
+        systems: "أنظمة", reshape: "تعيد تشكيل",
+        adaptive: "تكيفية", match: "تناسب", student: "طالب", pace: "سرعة / وتيرة",
+        machines: "الآلات", cannot: "لا تستطيع", replace: "تستبدل", human: "بشري", empathy: "تعاطف",
+        critical: "نقدي", thinking: "تفكير", remains: "يظل", essential: "أساسي / جوهري",
+        schools: "المدارس", ethical: "أخلاقية", rules: "قواعد",
+        instant: "فورية", corrects: "تصحح",
+        equal: "عادل / متساوٍ", digital: "رقمي", access: "وصول", empowers: "يمكّن", youth: "الشباب",
+        lifelong: "مدى الحياة", static: "جامدة / ثابتة", facts: "حقائق",
+        shared: "مشترك", research: "بحث", solves: "يحل", issues: "قضايا",
+        education: "التعليم", prepares: "يُعدّ", responsible: "مسؤولة", minds: "عقول"
+    },
+
+    // Topic: c1-psychology (Psychology of Deep Focus — علم نفس العادات والتركيز)
+    "c1-psychology": {
+        rare: "نادر", constant: "مستمرة", alerts: "تنبيهات", fragment: "تشتت",
+        cues: "إشارات", shape: "تشكل", lasting: "دائمة",
+        gains: "مكاسب", compound: "تتراكم", years: "سنوات",
+        spaces: "مساحات", routines: "روتين / عادات",
+        deliberate: "متعمد", practice: "تدريب / ممارسة", mastery: "إتقان",
+        too: "كثير جداً", choices: "خيارات", cause: "تسبب", mental: "ذهني", fatigue: "إرهاق",
+        blocks: "فترات", creative: "إبداعي",
+        self: "الذات / النفس", kindness: "لطف / رفق", total: "كامل", burnout: "احتراق نفسي",
+        attention: "انتباه", control: "تحكم", defines: "يحدد / يصنع"
+    },
+
+    // Topic: c1-leadership (Strategic Leadership — القيادة وإدارة الأزمات)
+    "c1-leadership": {
+        true: "حقيقيون", leaders: "قادة", shine: "يبرزون / يتألقون", crises: "أزمات",
+        honest: "صادق", dialogue: "حوار", trust: "ثقة",
+        wise: "حكيم", blends: "يمزج", care: "اهتمام / رعاية",
+        authority: "سلطة / صلاحية", speeds: "يسرع", action: "العمل / الإنجاز",
+        open: "مفتوح", debate: "نقاش",
+        resilient: "مرنة", turn: "تحول", setbacks: "عثرات", into: "إلى",
+        long: "طويل", term: "المدى", vision: "رؤية", guides: "توجه", strategy: "استراتيجية",
+        safe: "آمنة", cultures: "بيئات / ثقافات", bold: "جريئة", ideas: "أفكار",
+        reviewing: "مراجعة", past: "الماضي", wisdom: "حكمة",
+        authentic: "أصيل", purpose: "هدف / غاية", unites: "يوحد"
+    },
+
+    // Topic: c1-architecture (Architecture & Culture — العمارة والهوية الثقافية)
+    "c1-architecture": {
+        heritage: "تراث", ancient: "قديمة", courtyards: "أفنية", desert: "صحراء", homes: "منازل",
+        historic: "تاريخية", streets: "شوارع", preserve: "تحفظ", memory: "ذاكرة",
+        walkable: "مهيأة للمشي", plazas: "ساحات", enrich: "تثري",
+        natural: "طبيعي", improves: "يحسن", indoor: "داخلي",
+        cultural: "ثقافية", landmarks: "معالم", inspire: "تلهم", pride: "فخر",
+        roofs: "أسطح", heat: "حرارة",
+        buildings: "المباني", communities: "المجتمعات",
+        beauty: "جمال", use: "منفعة / استخدام",
+        thrive: "تزدهر", honoring: "احترام / تكريم", identity: "هوية"
+    }
+};
+
+// ==================== NUMBER NORMALIZATION FOR SPEECH RECOGNITION ====================
+const DIGIT_TO_WORD_MAP = {
+    "0": "zero",
+    "1": "one",
+    "2": "two",
+    "3": "three",
+    "4": "four",
+    "5": "five",
+    "6": "six",
+    "7": "seven",
+    "8": "eight",
+    "9": "nine",
+    "10": "ten",
+    "11": "eleven",
+    "12": "twelve",
+    "13": "thirteen",
+    "14": "fourteen",
+    "15": "fifteen",
+    "16": "sixteen",
+    "17": "seventeen",
+    "18": "eighteen",
+    "19": "nineteen",
+    "20": "twenty",
+    "24": "twenty four",
+    "30": "thirty",
+    "40": "forty",
+    "50": "fifty",
+    "60": "sixty",
+    "70": "seventy",
+    "80": "eighty",
+    "90": "ninety",
+    "100": "one hundred"
+};
+
+/**
+ * Converts numeric digits (e.g., "2", "20", "10%") in recognized speech or target text
+ * into their spoken English word equivalents before word-by-word comparison.
+ */
+function expandNumericTokenToWords(rawWord) {
+    let cleaned = rawWord.toLowerCase().trim();
+
+    // Handle percentage sign attached to digits (e.g. "10%" -> "ten percent")
+    if (/^\d+%$/.test(cleaned)) {
+        const numPart = cleaned.replace("%", "");
+        const wordPart = DIGIT_TO_WORD_MAP[numPart] || numPart;
+        return `${wordPart} percent`;
+    }
+
+    // Handle time format like "6:30" or "7:15"
+    if (/^\d{1,2}:\d{2}$/.test(cleaned)) {
+        const [h, m] = cleaned.split(":");
+        const hWord = DIGIT_TO_WORD_MAP[String(Number(h))] || h;
+        if (m === "00") return hWord;
+        const mWord = DIGIT_TO_WORD_MAP[String(Number(m))] || m;
+        return `${hWord} ${mWord}`;
+    }
+
+    // Strip punctuation around token before checking digit map
+    const bare = cleaned
+        .replace(/^[^a-z0-9']+|[^a-z0-9']+$/gi, "")
+        .replace(/'/g, "");
+
+    if (DIGIT_TO_WORD_MAP[bare]) {
+        return DIGIT_TO_WORD_MAP[bare];
+    }
+
+    // Handle 2-digit numbers between 21 and 99 not explicitly in map (e.g. "25" -> "twenty five")
+    if (/^\d{2}$/.test(bare)) {
+        const num = parseInt(bare, 10);
+        if (num > 20 && num < 100) {
+            const tens = String(Math.floor(num / 10) * 10);
+            const ones = String(num % 10);
+            const tensWord = DIGIT_TO_WORD_MAP[tens];
+            const onesWord = ones !== "0" ? DIGIT_TO_WORD_MAP[ones] : "";
+            if (tensWord) {
+                return onesWord ? `${tensWord} ${onesWord}` : tensWord;
+            }
+        }
+    }
+
+    // Handle common speech-to-text equivalents ("o'clock" -> "oclock")
+    if (bare === "oclock") return "oclock";
+
+    return bare;
+}
 
 // ==================== APPLICATION STATE ====================
 const state = {
@@ -424,14 +782,15 @@ const state = {
     isListening: false,
     preferredVoice: null,
     recognition: null,
-    topicResults: []
+    topicResults: [],
+    activePopupEl: null,
+    activeWordSpan: null
 };
 
 // ==================== DOM ELEMENTS ====================
 const dom = {
     topProgressFill: document.getElementById("topProgressFill"),
     openTopicsBtn: document.getElementById("openTopicsBtn"),
-    headerTopicLevel: document.getElementById("headerTopicLevel"),
     headerTopicTitle: document.getElementById("headerTopicTitle"),
     muteTtsBtn: document.getElementById("muteTtsBtn"),
     themeToggleBtn: document.getElementById("themeToggleBtn"),
@@ -476,7 +835,6 @@ const dom = {
 
     statCurrentAccuracy: document.getElementById("statCurrentAccuracy"),
     statMatchedWords: document.getElementById("statMatchedWords"),
-    statTopicProgress: document.getElementById("statTopicProgress")
 };
 
 // ==================== WEB AUDIO API ====================
@@ -530,7 +888,14 @@ function playTopicCompletionFanfare() {
     });
 }
 
-// ==================== TTS & SAMANTHA VOICE SETUP ====================
+// ==================== TTS WITH SAMANTHA PREFERENCE ON iOS ====================
+function isIOSDevice() {
+    return (
+        /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+        (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1)
+    );
+}
+
 function initVoices() {
     if (!("speechSynthesis" in window)) return;
 
@@ -538,23 +903,19 @@ function initVoices() {
         const voices = window.speechSynthesis.getVoices();
         if (!voices.length) return;
 
-        // Detect if the user is on an iOS device (iPhone, iPad, iPod)
-        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || 
-                      (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-
-        if (isIOS) {
-            // Prioritize Samantha on iOS devices
-            state.preferredVoice = 
-                voices.find(v => v.name.toLowerCase().includes('samantha') && v.lang.startsWith('en')) ||
-                voices.find(v => v.lang === 'en-US' && v.name.toLowerCase().includes('samantha')) ||
-                voices.find(v => v.lang === 'en-GB' && /natural|google|libby|sonia|ryan/i.test(v.name)) ||
-                voices.find(v => v.lang.startsWith('en-'));
-        } else {
-            // Default preference for non-iOS devices (e.g., British English natural voice)
+        if (isIOSDevice()) {
             state.preferredVoice =
-                voices.find(v => v.lang === 'en-GB' && /natural|google|libby|sonia|ryan/i.test(v.name)) ||
-                voices.find(v => v.lang === 'en-GB') ||
-                voices.find(v => v.lang.startsWith('en-'));
+                voices.find(v => v.name.toLowerCase().includes("samantha") && v.lang.startsWith("en")) ||
+                voices.find(v => v.name.toLowerCase().includes("samantha")) ||
+                voices.find(v => v.lang === "en-GB" && /daniel|martha|arthur/i.test(v.name)) ||
+                voices.find(v => v.lang.startsWith("en-"));
+        } else {
+
+            state.preferredVoice =
+                voices.find(v => v.lang === "en-GB" && /natural|google|libby|sonia|ryan/i.test(v.name)) ||
+                voices.find(v => v.lang === "en-GB") ||
+                voices.find(v => v.name.toLowerCase().includes("samantha")) ||
+                voices.find(v => v.lang.startsWith("en-"));
         }
     };
 
@@ -565,11 +926,24 @@ function initVoices() {
 function speakText(text, forceEvenIfMuted = false) {
     if (!("speechSynthesis" in window)) return;
     if (state.isMuted && !forceEvenIfMuted) return;
+
     window.speechSynthesis.cancel();
     const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = "en-GB";
-    utterance.rate = 0.94;
-    if (state.preferredVoice) utterance.voice = state.preferredVoice;
+
+    if (!state.preferredVoice) {
+        initVoices();
+    }
+
+    if (state.preferredVoice) {
+        utterance.voice = state.preferredVoice;
+        utterance.lang = state.preferredVoice.lang || "en-US";
+    } else {
+        utterance.lang = isIOSDevice() ? "en-US" : "en-GB";
+    }
+
+   // Slower, clearer speech for English learners
+    utterance.rate = isIOSDevice() ? 0.50 : 0.94;
+
     window.speechSynthesis.speak(utterance);
 }
 
@@ -588,46 +962,323 @@ function toggleDarkMode() {
     lucide.createIcons();
 }
 
-// ==================== ALIGNMENT ====================
-function normalizeWord(word) {
-    return word.toLowerCase().replace(/^[^a-z0-9']+|[^a-z0-9']+$/gi, "").replace(/'/g, "");
+// ==================== CLICKABLE WORD TRANSLATION POPUP ====================
+function lookupWordTranslation(rawWord) {
+    const cleanKey = normalizeWord(rawWord);
+    if (!cleanKey) return "";
+
+    const currentTopicId = getCurrentTopic().id;
+    // 1. Check current topic dictionary first
+    if (WORD_TRANSLATIONS[currentTopicId] && WORD_TRANSLATIONS[currentTopicId][cleanKey]) {
+        return WORD_TRANSLATIONS[currentTopicId][cleanKey];
+    }
+
+    // 2. Fallback: search across all topic dictionaries so shared words don't need duplicate entries
+    for (const topicKey of Object.keys(WORD_TRANSLATIONS)) {
+        if (WORD_TRANSLATIONS[topicKey][cleanKey]) {
+            return WORD_TRANSLATIONS[topicKey][cleanKey];
+        }
+    }
+
+    return "ترجمة غير متوفرة";
 }
 
+function closeWordTranslationPopup() {
+    if (state.activePopupEl) {
+        state.activePopupEl.remove();
+        state.activePopupEl = null;
+    }
+    if (state.activeWordSpan) {
+        state.activeWordSpan.classList.remove("active-word-popup");
+        state.activeWordSpan = null;
+    }
+}
+
+function showWordTranslationPopup(wordSpan, rawWord) {
+    // If clicking the same word again, close the popup
+    if (state.activeWordSpan === wordSpan && state.activePopupEl) {
+        closeWordTranslationPopup();
+        return;
+    }
+
+    closeWordTranslationPopup();
+
+    const translation = lookupWordTranslation(rawWord);
+    const cleanDisplayWord = rawWord.replace(/^[^a-zA-Z0-9']+|[^a-zA-Z0-9']+$/g, "") || rawWord;
+
+    const popup = document.createElement("div");
+    popup.className = "word-translation-popup";
+    popup.setAttribute("role", "tooltip");
+    popup.innerHTML = `
+        <span class="popup-word-en">${cleanDisplayWord}</span>
+        <span class="popup-word-ar">${translation}</span>
+    `;
+
+    document.body.appendChild(popup);
+    state.activePopupEl = popup;
+    state.activeWordSpan = wordSpan;
+    wordSpan.classList.add("active-word-popup");
+
+    positionPopupNearWord(wordSpan, popup);
+}
+
+function positionPopupNearWord(wordSpan, popup) {
+    const rect = wordSpan.getBoundingClientRect();
+    const popupRect = popup.getBoundingClientRect();
+    const viewportWidth = window.innerWidth;
+
+    let left = rect.left + rect.width / 2;
+    const halfWidth = popupRect.width / 2;
+
+    // Prevent horizontal overflow on small screens
+    if (left - halfWidth < 12) {
+        left = halfWidth + 12;
+    } else if (left + halfWidth > viewportWidth - 12) {
+        left = viewportWidth - halfWidth - 12;
+    }
+
+    // Place above word by default; flip below if too close to top of viewport
+    if (rect.top - popupRect.height - 16 < 10) {
+        popup.classList.add("popup-below");
+        popup.style.top = `${rect.bottom}px`;
+    } else {
+        popup.classList.remove("popup-below");
+        popup.style.top = `${rect.top}px`;
+    }
+
+    popup.style.left = `${left}px`;
+}
+
+// ==================== WORD & NUMBER NORMALIZATION & ALIGNMENT ====================
+function normalizeWord(word) {
+    return expandNumericTokenToWords(word);
+}
+
+/**
+ * Tokenizes a sentence for display (one span per visual word)
+ * while expanding numbers (e.g. "2" -> "two") for accurate speech matching.
+ */
 function tokenizeSentence(sentence) {
-    return sentence.trim().split(/\s+/).filter(Boolean).map((raw, index) => ({
-        index,
-        raw,
-        clean: normalizeWord(raw)
-    }));
+    return sentence
+        .trim()
+        .split(/\s+/)
+        .filter(Boolean)
+        .map((raw, index) => ({
+            index,
+            raw,
+            clean: normalizeWord(raw)
+        }));
+}
+
+/**
+ * Tokenizes spoken recognition transcript and splits multi-word number expansions
+ * (e.g., "24" -> ["twenty", "four"]) so it aligns seamlessly with target words.
+ */
+function tokenizeSpokenTranscript(transcript) {
+    const rawParts = transcript.trim().split(/\s+/).filter(Boolean);
+    const expandedTokens = [];
+
+    rawParts.forEach(part => {
+        const expanded = expandNumericTokenToWords(part);
+        expanded.split(/\s+/).filter(Boolean).forEach(subWord => {
+            expandedTokens.push({
+                raw: part,
+                clean: subWord
+            });
+        });
+    });
+
+    return expandedTokens;
+}
+
+
+/**
+ * ENGLISH PRONUNCIATION MATCHING
+ * Supports common English homophones, number words,
+ * contractions, and minor speech-recognition differences.
+ */
+
+// Words that are pronounced identically or very similarly.
+// Add more groups here whenever needed.
+const HOMOPHONE_GROUPS = [
+    ["to", "two", "too"],
+    ["there", "their", "they're"],
+    ["here", "hear"],
+    ["right", "write", "rite"],
+    ["see", "sea"],
+    ["be", "bee"],
+    ["one", "won"],
+    ["four", "for", "fore"],
+    ["eight", "ate"],
+    ["buy", "by", "bye"],
+    ["our", "hour"],
+    ["know", "no"],
+    ["new", "knew"],
+    ["blue", "blew"],
+    ["sun", "son"],
+    ["pair", "pear", "pare"],
+    ["week", "weak"],
+    ["meet", "meat"],
+    ["flower", "flour"],
+    ["peace", "piece"],
+    ["whole", "hole"],
+    ["wait", "weight"],
+    ["way", "weigh"],
+    ["wear", "where"],
+    ["dear", "deer"],
+    ["tail", "tale"],
+    ["sale", "sail"],
+    ["plain", "plane"],
+    ["break", "brake"],
+    ["road", "rode"],
+    ["night", "knight"],
+    ["allowed", "aloud"],
+    ["weather", "whether"],
+    ["which", "witch"],
+    ["cell", "sell"],
+    ["cent", "sent", "scent"],
+    ["hear", "here"],
+    ["their", "there", "they're"],
+    ["than", "then"], // Often confused by speech recognition
+    ["a", "uh"],      // Common spoken filler variation
+    ["and", "an"],    // Sometimes reduced in natural speech
+    ["because", "cause"],
+    ["going", "gonna"],
+    ["want to", "wanna"],
+    ["got to", "gotta"],
+    ["back", "bag"],
+    ["sit", "set"],
+    ["bill", "pill"]
+];
+
+// Build a lookup table for fast equivalence checks.
+const HOMOPHONE_LOOKUP = new Map();
+
+HOMOPHONE_GROUPS.forEach(group => {
+    const normalizedGroup = group.map(word =>
+        word.toLowerCase().replace(/[^a-z']/g, "")
+    );
+
+    normalizedGroup.forEach(word => {
+        const existing = HOMOPHONE_LOOKUP.get(word) || new Set();
+        normalizedGroup.forEach(other => existing.add(other));
+        HOMOPHONE_LOOKUP.set(word, existing);
+    });
+});
+
+// Normalize individual tokens without changing their meaning.
+function normalizeSpeechWord(word) {
+    return String(word ?? "")
+        .toLowerCase()
+        .replace(/[’‘]/g, "'")
+        .replace(/^[^a-z0-9']+|[^a-z0-9']+$/g, "")
+        .replace(/'/g, "");
+}
+
+// Convert commonly spoken number words into comparable forms.
+const NUMBER_WORDS = {
+    zero: "0",
+    oh: "0",
+    one: "1",
+    won: "1",
+    two: "2",
+    too: "2",
+    to: "2",
+    three: "3",
+    four: "4",
+    for: "4",
+    fore: "4",
+    five: "5",
+    six: "6",
+    seven: "7",
+    eight: "8",
+    ate: "8",
+    nine: "9",
+    ten: "10"
+};
+
+function wordsEquivalent(targetWord, spokenWord) {
+    const target = normalizeSpeechWord(targetWord);
+    const spoken = normalizeSpeechWord(spokenWord);
+
+    if (!target || !spoken) return false;
+
+    // Exact match.
+    if (target === spoken) return true;
+
+    // Spoken number and its written digit.
+    if (
+        NUMBER_WORDS[target] !== undefined &&
+        NUMBER_WORDS[target] === spoken
+    ) return true;
+
+    if (
+        NUMBER_WORDS[spoken] !== undefined &&
+        NUMBER_WORDS[spoken] === target
+    ) return true;
+
+    // Common English homophones.
+    const targetGroup = HOMOPHONE_LOOKUP.get(target);
+    if (targetGroup && targetGroup.has(spoken)) return true;
+
+    return false;
 }
 
 function alignWords(targetTokens, spokenTokens) {
     const n = targetTokens.length;
     const m = spokenTokens.length;
-    const dp = Array.from({ length: n + 1 }, () => Array(m + 1).fill(0));
+
+    // Longest common subsequence using pronunciation-aware matching.
+    const dp = Array.from(
+        { length: n + 1 },
+        () => Array(m + 1).fill(0)
+    );
+
     for (let i = 1; i <= n; i++) {
         for (let j = 1; j <= m; j++) {
-            if (targetTokens[i - 1].clean === spokenTokens[j - 1].clean && targetTokens[i - 1].clean !== "") {
+            const target = targetTokens[i - 1].clean;
+            const spoken = spokenTokens[j - 1].clean;
+
+            if (wordsEquivalent(target, spoken)) {
                 dp[i][j] = dp[i - 1][j - 1] + 1;
             } else {
-                dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]);
+                dp[i][j] = Math.max(
+                    dp[i - 1][j],
+                    dp[i][j - 1]
+                );
             }
         }
     }
+
+    // Trace back to identify which target words were matched.
     const matchedTargetIndices = new Set();
-    let i = n, j = m;
+    let i = n;
+    let j = m;
+
     while (i > 0 && j > 0) {
-        if (targetTokens[i - 1].clean === spokenTokens[j - 1].clean && targetTokens[i - 1].clean !== "" && dp[i][j] === dp[i - 1][j - 1] + 1) {
+        const target = targetTokens[i - 1].clean;
+        const spoken = spokenTokens[j - 1].clean;
+
+        if (
+            wordsEquivalent(target, spoken) &&
+            dp[i][j] === dp[i - 1][j - 1] + 1
+        ) {
             matchedTargetIndices.add(i - 1);
-            i--; j--;
+            i--;
+            j--;
         } else if (dp[i - 1][j] >= dp[i][j - 1]) {
             i--;
         } else {
             j--;
         }
     }
-    return targetTokens.map((token, idx) => ({ ...token, matched: matchedTargetIndices.has(idx) }));
+
+    return targetTokens.map((token, idx) => ({
+        ...token,
+        matched: matchedTargetIndices.has(idx)
+    }));
 }
+
 
 // ==================== RENDER ====================
 function getCurrentTopic() { return TOPICS_DATA[state.currentTopicIndex]; }
@@ -646,29 +1297,37 @@ function setLevelBadgeClass(el, level) {
 
 function renderCurrentSentence(autoSpeak = true) {
     stopListeningIfActive();
+    closeWordTranslationPopup();
+
     const topic = getCurrentTopic();
     const sentenceObj = getCurrentSentenceObj();
     const totalSentences = topic.sentences.length;
     const currentNum = state.currentSentenceIndex + 1;
 
-    setLevelBadgeClass(dom.headerTopicLevel, topic.level);
+
     dom.headerTopicTitle.textContent = topic.titleAr;
     setLevelBadgeClass(dom.stageLevelBadge, topic.level);
     dom.stageTopicName.textContent = topic.titleAr;
-    dom.sentenceCounter.textContent = `الجملة ${currentNum} من ${totalSentences}`;
+    dom.sentenceCounter.textContent = ` ${currentNum} / ${totalSentences}`;
 
     const progressPercent = Math.round((currentNum / totalSentences) * 100);
     dom.topProgressFill.style.width = `${progressPercent}%`;
     dom.nextBtnLabel.textContent = (currentNum === totalSentences) ? "إنهاء الموضوع وعرض التحليل" : "الجملة التالية";
 
     dom.giantSentence.innerHTML = "";
-    tokenizeSentence(sentenceObj.en).forEach(token => {
+    const tokens = tokenizeSentence(sentenceObj.en);
+
+    tokens.forEach(token => {
         const span = document.createElement("span");
         span.className = "story-word";
         span.textContent = token.raw;
         span.dataset.index = token.index;
-        span.title = "اضغط لسماع نطق هذه الكلمة";
-        span.addEventListener("click", e => { e.stopPropagation(); speakText(token.raw, true); });
+        span.title = "اضغط لعرض الترجمة وسماع النطق";
+        span.addEventListener("click", e => {
+            e.stopPropagation();
+            showWordTranslationPopup(span, token.raw);
+            speakText(token.raw, true);
+        });
         dom.giantSentence.appendChild(span);
         dom.giantSentence.appendChild(document.createTextNode(" "));
     });
@@ -678,8 +1337,7 @@ function renderCurrentSentence(autoSpeak = true) {
     dom.spokenTranscriptText.textContent = "";
     dom.attemptStatsRow.innerHTML = "";
     dom.statCurrentAccuracy.textContent = "—";
-    dom.statMatchedWords.textContent = `0 / ${tokenizeSentence(sentenceObj.en).length}`;
-    dom.statTopicProgress.textContent = `${currentNum} / ${totalSentences}`;
+    dom.statMatchedWords.textContent = `0 / ${tokens.length}`;
 
     if (autoSpeak) speakText(sentenceObj.en, false);
 }
@@ -687,7 +1345,7 @@ function renderCurrentSentence(autoSpeak = true) {
 function evaluateSpokenSentence(transcript) {
     const sentenceObj = getCurrentSentenceObj();
     const targetTokens = tokenizeSentence(sentenceObj.en);
-    const spokenTokens = tokenizeSentence(transcript);
+    const spokenTokens = tokenizeSpokenTranscript(transcript);
     const alignment = alignWords(targetTokens, spokenTokens);
     const wordSpans = dom.giantSentence.querySelectorAll(".story-word");
 
@@ -696,8 +1354,12 @@ function evaluateSpokenSentence(transcript) {
         const span = wordSpans[idx];
         if (!span) return;
         span.classList.remove("word-correct", "word-incorrect");
-        if (item.matched) { span.classList.add("word-correct"); matchedCount++; }
-        else { span.classList.add("word-incorrect"); }
+        if (item.matched) {
+            span.classList.add("word-correct");
+            matchedCount++;
+        } else {
+            span.classList.add("word-incorrect");
+        }
     });
 
     const totalCount = targetTokens.length;
@@ -718,16 +1380,16 @@ function evaluateSpokenSentence(transcript) {
         <span>•</span>
         <span>صحيحة: <strong style="color: var(--success)">${matchedCount}</strong></span>
         <span>•</span>
-        <span>غير مطابقة: <strong style="color: var(--error)">${totalCount - matchedCount}</strong></span>
+        <span>غير صحيحة: <strong style="color: var(--error)">${totalCount - matchedCount}</strong></span>
     `;
     dom.statCurrentAccuracy.textContent = `${accuracy}%`;
     dom.statMatchedWords.textContent = `${matchedCount} / ${totalCount}`;
 
     if (matchedCount === totalCount && totalCount > 0) {
         playMotivationalSuccessSound();
-        dom.micStatusText.textContent = "ممتاز! نطقت جميع الكلمات بشكل صحيح 🌟";
+        dom.micStatusText.textContent = "";
     } else {
-        dom.micStatusText.textContent = "حاول مرة أخرى أو اضغط على الكلمات الحمراء لسماع نطقها";
+        dom.micStatusText.textContent = "";
     }
 }
 
@@ -735,45 +1397,89 @@ function evaluateSpokenSentence(transcript) {
 function initSpeechRecognition() {
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
     if (!SpeechRecognition) {
-        showStatusAlert("متصفحك الحالي لا يدعم ميزة التعرف على الكلام (Web Speech API).");
+        showStatusAlert("متصفحك الحالي لا يدعم ميزة التعرف على الكلام (Web Speech API)");
         return;
     }
     const recognition = new SpeechRecognition();
     recognition.lang = "en-US";
     recognition.continuous = false;
     recognition.interimResults = false;
-    recognition.maxAlternatives = 1;
+    recognition.maxAlternatives = 5;
 
     recognition.onstart = () => {
         state.isListening = true;
         dom.micCircleBtn.classList.add("is-listening");
         dom.micCircleBtn.innerHTML = `<i data-lucide="mic"></i>`;
-        dom.micStatusText.textContent = "جاري الاستماع... تحدث الآن بالإنجليزية";
+        dom.micStatusText.textContent = "تحدث الآن بالانجليزية";
         dom.micStatusText.classList.add("listening-text");
         hideStatusAlert();
         lucide.createIcons();
     };
 
     recognition.onresult = event => {
-        let finalTranscript = "";
-        for (let i = event.resultIndex; i < event.results.length; i++) {
-            if (event.results[i].isFinal) finalTranscript += event.results[i][0].transcript + " ";
+    const candidates = [];
+
+    for (let i = event.resultIndex; i < event.results.length; i++) {
+        const result = event.results[i];
+
+        if (!result.isFinal) continue;
+
+        // Collect the browser's possible interpretations.
+        for (let j = 0; j < result.length; j++) {
+            const transcript = result[j].transcript.trim();
+
+            if (transcript) {
+                candidates.push({
+                    transcript,
+                    confidence: result[j].confidence || 0
+                });
+            }
         }
-        finalTranscript = finalTranscript.trim();
-        if (finalTranscript) evaluateSpokenSentence(finalTranscript);
-    };
+    }
+
+    if (!candidates.length) return;
+
+    const targetTokens = tokenizeSentence(
+        getCurrentSentenceObj().en
+    );
+
+    // Prefer the interpretation that best matches the target sentence.
+    const rankedCandidates = candidates.map(candidate => {
+        const spokenTokens = tokenizeSpokenTranscript(
+            candidate.transcript
+        );
+
+        const alignment = alignWords(targetTokens, spokenTokens);
+
+        const matchedCount = alignment.filter(
+            token => token.matched
+        ).length;
+
+        return {
+            ...candidate,
+            matchedCount
+        };
+    });
+
+    rankedCandidates.sort((a, b) =>
+        b.matchedCount - a.matchedCount ||
+        b.confidence - a.confidence
+    );
+
+    evaluateSpokenSentence(rankedCandidates[0].transcript);
+};
 
     recognition.onerror = event => {
         state.isListening = false;
         dom.micCircleBtn.classList.remove("is-listening");
         dom.micStatusText.classList.remove("listening-text");
         if (event.error === "not-allowed" || event.error === "service-not-allowed") {
-            showStatusAlert("تم رفض الوصول إلى المايكروفون. تأكد من إذن المتصفح وفتح الصفحة عبر HTTPS أو localhost.");
+            showStatusAlert("تم رفض الوصول إلى المايكروفون، تأكد من إذن المتصفح وفتح الصفحة عبر HTTPS أو localhost");
             dom.micStatusText.textContent = "صلاحية المايكروفون غير مفعلة";
         } else if (event.error === "no-speech") {
-            dom.micStatusText.textContent = "لم يتم التقاط أي صوت.";
+            dom.micStatusText.textContent = "لم يتم التقاط أي صوت";
         } else if (event.error !== "aborted") {
-            dom.micStatusText.textContent = "حدث خطأ أثناء التعرف على الصوت.";
+            dom.micStatusText.textContent = "حدث خطأ أثناء التعرف على الصوت";
         }
     };
 
@@ -790,8 +1496,9 @@ function initSpeechRecognition() {
 
 function toggleMicrophone() {
     ensureAudioContext();
+    closeWordTranslationPopup();
     if (!state.recognition) {
-        showStatusAlert("ميزة التعرف على الكلام غير مدعومة في هذا المتصفح.");
+        showStatusAlert("ميزة التعرف على الكلام غير مدعومة في هذا المتصفح");
         return;
     }
     if (state.isListening) { state.recognition.stop(); return; }
@@ -818,7 +1525,7 @@ function showStatusAlert(msg) {
 }
 function hideStatusAlert() { dom.statusAlert.hidden = true; }
 
-// ==================== TOPICS MODAL (ALL 20 TOPICS) ====================
+// ==================== TOPICS MODAL (ALL 20 EMOJI CARDS, NO FILTER BUTTONS) ====================
 function renderTopicsModalGrid() {
     dom.topicsGrid.innerHTML = "";
     TOPICS_DATA.forEach((topic, index) => {
@@ -826,16 +1533,20 @@ function renderTopicsModalGrid() {
         card.type = "button";
         card.className = `topic-card ${index === state.currentTopicIndex ? "active-topic" : ""}`;
         card.innerHTML = `
-            <div class="topic-card-badge">
-                <span class="level-dot level-${topic.level}">${topic.level}</span>
+            <div class="topic-card-banner">
+                <div class="topic-card-badge">
+                    <span class="level-dot level-${topic.level}">${topic.level}</span>
+                </div>
+                <div class="topic-card-emoji">${topic.emoji}</div>
             </div>
-            <div class="topic-card-emoji">${topic.emoji}</div>
-            <div class="topic-card-en">${topic.titleEn}</div>
-            <div class="topic-card-ar">${topic.titleAr}</div>
-            <div class="topic-card-desc">${topic.desc}</div>
-            <div class="topic-card-footer">
-                <span>10 عبارات</span>
-                <span class="topic-card-action">ابدأ الموضوع ⟵</span>
+            <div class="topic-card-body">
+                <div class="topic-card-en">${topic.titleEn}</div>
+                <div class="topic-card-ar">${topic.titleAr}</div>
+                <div class="topic-card-desc">${topic.desc}</div>
+                <div class="topic-card-footer">
+                    <span>10 عبارات</span>
+                    <span class="topic-card-action">ابدأ الموضوع ⟵</span>
+                </div>
             </div>
         `;
         card.addEventListener("click", () => {
@@ -854,6 +1565,7 @@ function selectTopic(topicIndex) {
 }
 
 function openTopicsModal() {
+    closeWordTranslationPopup();
     renderTopicsModalGrid();
     dom.topicsModal.hidden = false;
 }
@@ -861,6 +1573,7 @@ function closeTopicsModal() { dom.topicsModal.hidden = true; }
 
 // ==================== SUMMARY MODAL ====================
 function showTopicSummaryModal() {
+    closeWordTranslationPopup();
     const topic = getCurrentTopic();
     let totalTopicWords = 0, totalMatchedWords = 0, perfectSentences = 0;
 
@@ -878,11 +1591,11 @@ function showTopicSummaryModal() {
     let stars = overallAccuracy >= 90 ? 5 : overallAccuracy >= 75 ? 4 : overallAccuracy >= 60 ? 3 : overallAccuracy >= 40 ? 2 : 1;
 
     const feedbackMessages = {
-        5: "أداء استثنائي! نطقك واضح جداً وطلاقتك ممتازة في هذا الموضوع.",
-        4: "أداء رائع جداً! أتقنت معظم الجمل بوضوح وثقة عالية.",
-        3: "أداء جيد! استمر في التدرب على الكلمات لرفع دقتك.",
-        2: "بداية طيبة! استمع للجمل مرة أخرى وحاول تكرارها بهدوء.",
-        1: "لقد أنهيت استعراض الموضوع! جرب نطق الجمل بالمايكروفون لتحصل على تقييم أعلى."
+        5: "أداء استثنائي! نطقك واضح جداً وطلاقتك ممتازة في هذا الموضوع",
+        4: "أداء رائع جداً! أتقنت معظم الجمل بوضوح وثقة عالية",
+        3: "أداء جيد! استمر في التدرب على الكلمات لرفع دقتك",
+        2: "بداية طيبة! استمع للجمل مرة أخرى وحاول تكرارها بهدوء",
+        1: "لقد أنهيت استعراض الموضوع! جرب نطق الجمل بالمايكروفون لتحصل على تقييم أعلى"
     };
 
     setLevelBadgeClass(dom.summaryLevelDot, topic.level);
@@ -907,6 +1620,7 @@ function closeSummaryModal() { dom.summaryModal.hidden = true; }
 
 // ==================== NAVIGATION ====================
 function handleNextSentence() {
+    closeWordTranslationPopup();
     const topic = getCurrentTopic();
     if (state.currentSentenceIndex < topic.sentences.length - 1) {
         state.currentSentenceIndex++;
@@ -922,6 +1636,7 @@ function handleNextSentence() {
 
 function handleTryAgain() {
     stopListeningIfActive();
+    closeWordTranslationPopup();
     dom.giantSentence.querySelectorAll(".story-word").forEach(span => {
         span.classList.remove("word-correct", "word-incorrect");
     });
@@ -954,9 +1669,28 @@ function bindEvents() {
         openTopicsModal();
     });
 
+    // Close word translation popup when clicking outside or resizing/scrolling
+    document.addEventListener("click", e => {
+        if (state.activePopupEl && !e.target.closest(".word-translation-popup") && !e.target.closest(".story-word")) {
+            closeWordTranslationPopup();
+        }
+    });
+
+    window.addEventListener("resize", () => {
+        if (state.activePopupEl && state.activeWordSpan) {
+            positionPopupNearWord(state.activeWordSpan, state.activePopupEl);
+        }
+    });
+
+    window.addEventListener("scroll", closeWordTranslationPopup, { passive: true });
+
     window.addEventListener("keydown", e => {
         if (!dom.topicsModal.hidden || !dom.summaryModal.hidden) {
             if (e.key === "Escape") { closeTopicsModal(); closeSummaryModal(); }
+            return;
+        }
+        if (e.key === "Escape") {
+            closeWordTranslationPopup();
             return;
         }
         if (e.code === "Space") { e.preventDefault(); toggleMicrophone(); }
