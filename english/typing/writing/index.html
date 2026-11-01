@@ -136,11 +136,17 @@
     }
 
     .brand-logo {
-    width: 40px;
-    height: 40px;
-    object-fit: contain;
-    flex-shrink: 0;
-}
+        width: 40px;
+        height: 40px;
+        border-radius: 11px;
+        background: linear-gradient(135deg, #00689B, #0088C7);
+        color: #FFFFFF;
+        display: grid;
+        place-items: center;
+        flex-shrink: 0;
+        font-weight: 900;
+        font-size: 20px;
+    }
 
     .brand-text {
         display: flex;
@@ -868,14 +874,11 @@
   <!-- الشريط العلوي (Header) -->
   <header class="top-header">
     <div class="brand">
-        <img src="https://file.yazeedenglish.com/logo.png"
-             alt="Yazeed English"
-             class="brand-logo">
-
-        <div class="brand-text">
-            <strong>Yazeed English</strong>
-            <span>منصة يزيد للانجليزية</span>
-        </div>
+      <div class="brand-logo">Y</div>
+      <div class="brand-text">
+        <strong>يزيد للإنجليزية</strong>
+        <span>دفتر تحسين الخط الإنجليزي</span>
+      </div>
     </div>
 
     <div class="header-actions">
@@ -1419,35 +1422,11 @@
     }
 
     function playSuccessChord() {
-  if (!state.sound) return;
-
-  const frequencies = [523.25, 659.25, 783.99, 1046.5];
-
-  frequencies.forEach((freq, i) => {
-    setTimeout(() => {
-      try {
-        const ctx = getAudioCtx();
-        if (!ctx) return;
-
-        const now = ctx.currentTime;
-        const osc = ctx.createOscillator();
-        const gain = ctx.createGain();
-
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(freq, now);
-
-        gain.gain.setValueAtTime(0.1, now);
-        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
-
-        osc.connect(gain);
-        gain.connect(ctx.destination);
-
-        osc.start(now);
-        osc.stop(now + 0.27);
-      } catch (e) {}
-    }, i * 70);
-  });
-}
+      if (!state.sound) return;
+      [523.25, 659.25, 783.99, 1046.5].forEach((f, i) => {
+        setTimeout(() => playTone(f, 0.45, 'triangle', 0.1), i * 85);
+      });
+    }
 
     function playRetrySound() {
       if (!state.sound) return;
