@@ -1,1611 +1,2421 @@
-
 <!DOCTYPE html>
-<html lang="ar" dir="rtl" class="light">
+<html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#f5f6f2">
-  <title>Yazeed English | تحسين الخط الإنجليزي</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>يزيد للإنجليزية — دفتر تحسين الخط الإنجليزي</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Andika:wght@400;700&family=Caveat:wght@500;700&family=Comic+Neue:wght@400;700&family=Kalam:wght@400;700&family=Patrick+Hand&family=Playwrite+US+Trad:wght@300;400&family=Sacramento&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
 
-  <style>
-:root {
-  --paper: #F5F6F2;
-  --ink: #00273a;
-  --ink-soft: #5B645F;
-  --indigo: #00689b;
-  --course-button: #00689b;
-  --line: #DCDFD6;
-  --card: #FFFFFF;
-  --white: #FFFFFF;
-  --shadow: 0 14px 36px rgba(0, 39, 58, .08);
-}
+  <!-- Google Fonts: Tajawal, Quicksand, Inter, JetBrains Mono + Print & Cursive Handwriting Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Andika:wght@400;700&family=Caveat:wght@500;700&family=Comic+Neue:wght@400;700&family=Dancing+Script:wght@500;700&family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@700&family=Lexend:wght@400;500;600&family=Pacifico&family=Patrick+Hand&family=Quicksand:wght@700;800&family=Sacramento&family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
 
-    html.dark {
-      color-scheme: dark;
-      --page: #15181c;
-      --card: #1e2227;
-      --ink: #e8eae4;
-      --muted: #a7b0b4;
-      --line: #343b41;
-      --blue: #0088c7;
-      --header: rgba(21,24,28,.94);
+  <style>
+    /* =====================================================================
+       EXACT THEME & DESIGN SYSTEM FROM UPLOADED style.css
+       ===================================================================== */
+    :root {
+        --paper: #F5F6F2;
+        --ink: #00273A;
+        --ink-untyped: rgba(0, 39, 58, .32);
+        --ink-typed: #00273A;
+        --ink-soft: #5B645F;
+        --indigo: #00689B;
+        --course-button: #00689B;
+        --line: #DCDFD6;
+        --card: #FFFFFF;
+        --error: #E11D48;
+        --error-bg: rgba(225, 29, 72, .13);
+        --gold: #F59E0B;
+        --success: #16A34A;
+        --success-bg: rgba(22, 163, 74, .12);
+        --shadow: 0 12px 32px rgba(0, 39, 58, .08);
+        --active-ref-font: 'Lexend', sans-serif;
     }
 
-    * { box-sizing: border-box; }
+    body.dark {
+        --paper: #0c0d0f;
+        --ink: #E8EAE4;
+        --ink-untyped: #777F88;
+        --ink-typed: #FFFFFF;
+        --ink-soft: #A2AAA5;
+        --indigo: #0088C7;
+        --course-button: #0088C7;
+        --line: #2B3036;
+        --card: #131518;
+        --error: #FB7185;
+        --error-bg: rgba(251, 113, 133, .17);
+        --shadow: 0 12px 32px rgba(0, 0, 0, .25);
+    }
 
-    html { scroll-behavior: smooth; }
+    /* Base */
+    * {
+        box-sizing: border-box;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    [hidden] {
+        display: none !important;
+    }
+
+    html {
+        min-height: 100%;
+        -webkit-text-size-adjust: 100%;
+        scroll-behavior: smooth;
+    }
 
     body {
-      margin: 0;
-      min-height: 100vh;
-      background: var(--page);
-      color: var(--ink);
-      font-family: Tajawal, sans-serif;
-      -webkit-tap-highlight-color: transparent;
-      transition: background .18s, color .18s;
+        margin: 0;
+        min-height: 100vh;
+        min-height: 100dvh;
+        display: flex;
+        flex-direction: column;
+        background: var(--paper);
+        color: var(--ink);
+        font-family: "Tajawal", sans-serif;
+        transition: background .2s, color .2s;
+        overflow-x: hidden;
+        user-select: none;
     }
 
-    button, input { font: inherit; }
-    button { cursor: pointer; touch-action: manipulation; }
-
-    button:focus-visible, input:focus-visible {
-      outline: 3px solid #38bdf8;
-      outline-offset: 2px;
+    button {
+        font-family: inherit;
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
     }
 
-    /* HEADER */
-.top-header {
-  position: relative;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 18px 35px;
-  border-bottom: 1px solid var(--line);
-  background: var(--card);
-  transition: background .25s ease, border-color .25s ease;
-}
+    button:focus-visible {
+        outline: 2px solid var(--indigo);
+        outline-offset: 3px;
+    }
+
+    button svg,
+    button i {
+        width: 17px;
+        height: 17px;
+        flex-shrink: 0;
+    }
+
+    /* Progress */
+    .top-progress-line {
+        position: fixed;
+        inset: 0 0 auto;
+        height: 3px;
+        z-index: 100;
+        background: transparent;
+    }
+
+    .top-progress-fill {
+        width: 0%;
+        height: 100%;
+        background: linear-gradient(90deg, var(--indigo), #38BDF8);
+        transition: width .2s ease;
+    }
+
+    /* Header */
+    .top-header {
+        position: relative;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        padding: 14px clamp(16px, 3vw, 40px);
+        background: var(--card);
+        border-bottom: 1px solid var(--line);
+    }
 
     .brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      color: inherit;
-      text-decoration: none;
-      min-width: 0;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        min-width: 0;
     }
 
-    .brand-logo { width: 42px; height: 42px; object-fit: contain; flex-shrink: 0; }
+    .brand-logo {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
 
-    .brand-text { display: flex; flex-direction: column; gap: 1px; }
-    .brand-text strong { font-size: 15px; font-weight: 900; }
+    .brand-text {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+    }
 
-    .brand-text span { font-size: 11px; color: var(--ink-soft); }
+    .brand-text strong {
+        font-size: 15px;
+        font-weight: 900;
+        line-height: 1.4;
+    }
+
+    .brand-text span {
+        color: var(--ink-soft);
+        font-size: 11px;
+    }
+
+    .header-actions {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 8px;
+        flex-wrap: wrap;
+    }
+
+    /* Buttons */
+    .pill-btn,
+    .theme-btn,
+    .primary-btn,
+    .ghost-action-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        min-height: 42px;
+        padding: 0 13px;
+        border: 1px solid var(--line);
+        border-radius: 11px;
+        background: var(--card);
+        color: var(--ink);
+        font-size: 13px;
+        font-weight: 800;
+        cursor: pointer;
+        transition: background .18s, border-color .18s, color .18s, transform .18s;
+    }
+
+    .pill-btn:hover,
+    .theme-btn:hover {
+        border-color: var(--indigo);
+        color: var(--indigo);
+    }
+
+    .pill-btn.active-btn {
+        background: rgba(0, 104, 155, .09);
+        color: var(--indigo);
+        border-color: var(--indigo);
+    }
+
+    .pill-btn.active-pro {
+        background: linear-gradient(135deg, #00689B, #0088C7);
+        color: #FFFFFF;
+        border-color: transparent;
+    }
 
     .theme-btn {
-
-    width: 38px;
-
-    height: 38px;
-
-    display: grid;
-
-    place-items: center;
-
-    border:
-        1px solid
-        var(--line);
-
-    border-radius: 10px;
-
-    background:
-        var(--card);
-
-    color:
-        var(--ink);
-
-    cursor: pointer;
-
-    font-family:
-        inherit;
-
-    font-size: 17px;
-
-    transition:
-        0.2s ease;
-}
-
-.theme-btn:hover {
-
-    border-color:
-        var(--indigo);
-
-    transform:
-        translateY(-2px);
-}
-
-    .theme-btn svg { width: 20px; height: 20px; }
-
-    .app {
-      width: min(100% - 28px, 1000px);
-      margin: 0 auto;
-      padding: 18px 0 32px;
+        width: 42px;
+        padding: 0;
+        flex-shrink: 0;
     }
 
-    .surface {
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: 20px;
-      overflow: hidden;
+    .primary-btn {
+        min-height: 44px;
+        padding: 10px 20px;
+        border-color: transparent;
+        background: var(--course-button);
+        color: #FFFFFF;
+        box-shadow: 0 4px 12px rgba(0, 104, 155, .15);
     }
 
-    .section { padding: 18px; margin-bottom: 14px; }
-    .muted { color: var(--muted); }
-    .hidden { display: none !important; }
-
-    .section-title {
-      font-weight: 800;
-      font-size: 15px;
-      margin-bottom: 12px;
+    .primary-btn:hover {
+        filter: brightness(1.08);
+        transform: translateY(-1px);
     }
 
-    .row {
-      display: flex;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 9px;
+    .ghost-action-btn {
+        min-height: 40px;
+        background: transparent;
+        color: var(--ink-soft);
+        font-size: 13px;
     }
 
-    .row + .row { margin-top: 14px; }
-
-    .divider {
-      border: 0;
-      border-top: 1px solid var(--line);
-      margin: 16px 0;
+    .ghost-action-btn:hover {
+        border-color: var(--indigo);
+        color: var(--indigo);
+        background: rgba(0, 104, 155, .06);
     }
 
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 7px;
-      min-height: 40px;
-      padding: 9px 13px;
-      border: 1px solid var(--line);
-      border-radius: 12px;
-      color: var(--ink);
-      background: var(--page);
-      font-weight: 700;
-      font-size: 13px;
+    /* Main Zen Stage */
+    .zen-stage {
+        flex: 1;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 24px 20px 32px;
+        min-height: max(540px, calc(100dvh - 140px));
     }
 
-    .btn.primary {
-      color: white;
-      background: #0369a1;
-      border-color: #0369a1;
+    .zen-top-meta {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+        max-width: 100%;
+        margin-bottom: 18px;
+        padding: 8px 16px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: var(--card);
+        color: var(--ink-soft);
+        font-size: 13px;
+        font-weight: 800;
+        box-shadow: var(--shadow);
     }
 
-    .btn.success {
-      color: white;
-      background: #059669;
-      border-color: #059669;
+    .filter-chip {
+        padding: 4px 10px;
+        border-radius: 999px;
+        border: 1px solid var(--line);
+        background: var(--paper);
+        color: var(--ink-soft);
+        font-size: 11px;
+        font-weight: 800;
+        cursor: pointer;
+        transition: all .15s ease;
     }
 
-    .btn.danger {
-      color: #be123c;
-      background: #fff1f2;
-      border-color: #fecdd3;
+    .filter-chip.active {
+        background: var(--course-button);
+        color: #FFFFFF;
+        border-color: var(--course-button);
     }
 
-    .btn.active {
-      color: white;
-      background: #0369a1;
-      border-color: #0369a1;
+    .zen-sentence-wrapper {
+        position: relative;
+        width: 100%;
+        max-width: 960px;
+        margin: 0 auto;
+        text-align: center;
+        transition: opacity .2s, transform .2s;
     }
 
-    .btn svg { width: 17px; height: 17px; }
-
-    .input {
-      width: 100%;
-      min-width: 0;
-      padding: 11px 13px;
-      border: 1px solid var(--line);
-      border-radius: 12px;
-      background: var(--page);
-      color: var(--ink);
+    .zen-sentence-wrapper.shake {
+        animation: gentleShake .25s ease;
     }
 
-    .english-input { direction: ltr; text-align: left; }
-
-    .font-buttons { display: flex; flex-wrap: wrap; gap: 8px; }
-
-    .font-button {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 7px 10px;
-      border: 1px solid var(--line);
-      border-radius: 12px;
-      background: var(--card);
-      color: var(--ink);
-      font-size: 12px;
-      font-weight: 700;
+    /* Target Reference Showcase */
+    .reference-header-bar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 12px;
+        padding: 0 4px;
     }
 
-    .font-button.active {
-      border-color: #0ea5e9;
-      background: rgba(14,165,233,.1);
+    .target-showcase-box {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+        padding: 12px 20px;
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        margin-bottom: 12px;
+        box-shadow: var(--shadow);
     }
 
-    .font-sample { font-size: 23px; line-height: 1; }
-
-    .font-andika { font-family: Andika, sans-serif; }
-    .font-comic { font-family: "Comic Neue", cursive; }
-    .font-patrick { font-family: "Patrick Hand", cursive; }
-    .font-kalam { font-family: Kalam, cursive; }
-    .font-playwrite { font-family: "Playwrite US Trad", cursive; }
-    .font-caveat { font-family: Caveat, cursive; }
-    .font-sacramento { font-family: Sacramento, cursive; }
-
-    .prompt {
-      padding: 22px 16px;
-      text-align: center;
+    .giant-english-sentence {
+        position: relative;
+        display: inline-block;
+        max-width: 100%;
+        direction: ltr;
+        text-align: center;
+        font-family: var(--active-ref-font);
+        font-size: clamp(28px, 4vw, 48px);
+        font-weight: 500;
+        line-height: 1.35;
+        color: var(--ink);
+        overflow-wrap: anywhere;
+        user-select: none;
     }
 
-    #prompt-english {
-      direction: ltr;
-      font-size: clamp(25px, 5vw, 40px);
-      font-weight: 700;
-      line-height: 1.5;
-      overflow-wrap: anywhere;
+    /* Ruled Notebook Canvas Card */
+    .notebook-canvas-card {
+        position: relative;
+        width: 100%;
+        border: 2px solid var(--line);
+        border-radius: 20px;
+        background: var(--card);
+        box-shadow: var(--shadow);
+        overflow: hidden;
+        direction: ltr;
+        transition: background .2s, border-color .2s, box-shadow .2s;
     }
 
-    #prompt-arabic {
-      margin-top: 6px;
-      color: #0284c7;
-      font-size: 14px;
-      font-weight: 700;
+    body.dark .notebook-canvas-card {
+        background: #0c0d0f;
+        border-color: #2B3036;
+        box-shadow: 0 14px 36px rgba(0, 0, 0, .45);
     }
 
-    .counter {
-      min-width: 70px;
-      text-align: center;
-      padding: 8px 10px;
-      border-radius: 10px;
-      background: var(--page);
-      font-size: 12px;
-      font-weight: 800;
+    .canvas-layers-wrap {
+        position: relative;
+        width: 100%;
+        height: 290px;
+        background: #FFFFFF;
+        touch-action: none;
+        -ms-touch-action: none;
+        transition: background .2s;
     }
 
-    .canvas-heading {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 10px;
-      padding: 12px 15px;
-      background: var(--page);
-      border-bottom: 1px solid var(--line);
+    body.dark .canvas-layers-wrap {
+        background: #0c0d0f;
     }
 
-    .canvas-heading p { margin: 0; font-size: 12px; font-weight: 700; }
-
-    #canvas-container {
-      position: relative;
-      width: 100%;
-      height: clamp(340px, 48vw, 460px);
-      overflow: hidden;
-      background: white;
-      touch-action: none;
-      overscroll-behavior: contain;
+    .canvas-layers-wrap canvas {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        display: block;
+        touch-action: none;
     }
 
-    #guide-canvas, #draw-canvas {
-      position: absolute;
-      inset: 0;
-      display: block;
-      width: 100%;
-      height: 100%;
+    #drawing-canvas {
+        cursor: crosshair;
+        z-index: 2;
     }
 
-    #guide-canvas { pointer-events: none; }
-    #draw-canvas {
-      touch-action: none;
-      cursor: crosshair;
-      -webkit-user-select: none;
-      user-select: none;
+    /* Simple Pen Toolbar directly under Ruled Canvas */
+    .simple-pen-toolbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 10px;
+        padding: 10px 16px;
+        background: var(--card);
+        border-top: 1px solid var(--line);
+        direction: rtl;
     }
 
-    .canvas-tag {
-      position: absolute;
-      z-index: 2;
-      right: 10px;
-      padding: 5px 9px;
-      border-radius: 8px;
-      background: rgba(240,249,255,.94);
-      color: #075985;
-      font-size: 11px;
-      font-weight: 800;
-      pointer-events: none;
+    .pen-group {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        flex-wrap: wrap;
     }
 
-    .tag-one { top: 10px; }
-    .tag-two { top: 53%; }
-
-    .color-picker { display: flex; align-items: center; flex-wrap: wrap; gap: 9px; }
-
-    .color-dot {
-      width: 31px;
-      height: 31px;
-      padding: 0;
-      border: 2px solid rgba(100,116,139,.4);
-      border-radius: 50%;
+    .color-swatch {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        border: 2px solid rgba(0, 0, 0, 0.15);
+        cursor: pointer;
+        padding: 0;
+        transition: transform .15s ease, box-shadow .15s ease;
     }
 
-    .color-dot[aria-pressed="true"] {
-      outline: 3px solid #7dd3fc;
-      outline-offset: 2px;
+    .color-swatch.white-swatch {
+        border: 2px solid #94A3B8;
     }
 
-    .toolbar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 14px;
-    }
-
-    .toolbar-group { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
-
-    .status {
-      min-height: 20px;
-      padding: 2px 3px;
-      color: var(--muted);
-      font-size: 12px;
-    }
-
-    .chips { display: flex; flex-wrap: wrap; gap: 8px; }
-
-    .chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      max-width: 100%;
-      padding: 7px 9px;
-      border: 1px solid var(--line);
-      border-radius: 11px;
-      background: var(--card);
-      color: var(--ink);
-      font-size: 12px;
-      font-weight: 700;
-    }
-
-    .chip-text {
-      max-width: min(60vw, 400px);
-      overflow-wrap: anywhere;
-      text-align: left;
-      direction: ltr;
-      border: 0;
-      background: transparent;
-      color: inherit;
-      padding: 0;
-    }
-
-    .chip-delete {
-      display: grid;
-      place-items: center;
-      width: 24px;
-      height: 24px;
-      border-radius: 50%;
-      background: #ffe4e6;
-      color: #be123c;
-      border: 0;
-      flex-shrink: 0;
-    }
-
-    /* Worksheet layout */
-    #printable-area {
-      padding: 24px;
-      color: #0f172a;
-      background: white;
-      border-radius: 14px;
-    }
-
-    .print-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 12px;
-      flex-wrap: wrap;
-      border-bottom: 2px solid #0f172a;
-      padding-bottom: 12px;
-      margin-bottom: 20px;
-    }
-
-    .print-brand { display: flex; align-items: center; gap: 10px; }
-    .print-brand img { width: 40px; height: 40px; object-fit: contain; }
-    .print-brand h2 { margin: 0; font-size: 17px; }
-    .print-brand p { margin: 4px 0 0; color: #64748b; font-size: 10px; }
-
-    .print-name {
-      direction: ltr;
-      text-align: left;
-      font-size: 11px;
-      line-height: 2;
-    }
-
-    .print-row-4line {
-      position: relative;
-      height: 76px;
-      width: 100%;
-      margin-bottom: 7px;
-      direction: ltr;
-      break-inside: avoid;
-      page-break-inside: avoid;
-      background-image:
-        linear-gradient(to bottom,
-          #38bdf8 0, #38bdf8 1.5px,
-          transparent 1.5px, transparent 25px,
-          #0284c7 25px, #0284c7 27px,
-          transparent 27px, transparent 74px,
-          #fda4af 74px, #fda4af 75.5px);
-    }
-
-    .print-row-4line::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      right: 0;
-      top: 25px;
-      border-top: 1.5px dashed #94a3b8;
-    }
-
-    .print-row-text {
-      position: absolute;
-      left: 12px;
-      top: 5px;
-      max-width: calc(100% - 24px);
-      white-space: nowrap;
-      overflow: hidden;
-      color: rgba(15,23,42,.38);
-      line-height: 1.5;
-    }
-
-    .print-row-blank::before {
-      content: "";
-      position: absolute;
-      left: 13px;
-      top: 48px;
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: #10b981;
-    }
-
-    @media (max-width: 650px) {
-      .app { width: calc(100% - 20px); padding-top: 12px; }
-      .section { padding: 14px; }
-      #canvas-container { height: 370px; }
-      .toolbar { align-items: stretch; }
-      .toolbar-group { width: 100%; }
-      .toolbar-group .btn { flex: 1; }
-      .toolbar-actions { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); width: 100%; }
-      .toolbar-actions .btn:last-child { grid-column: 1 / -1; }
-      .font-button { flex: 1 1 42%; justify-content: center; }
-      .canvas-heading { align-items: flex-start; }
-      #printable-area { padding: 12px; }
-    }
-
-    @media print {
-      @page { size: A4 portrait; margin: 10mm; }
-      html, body {
-        margin: 0 !important;
-        padding: 0 !important;
-        background: white !important;
-        color: #0f172a !important;
-      }
-      .top-header, .no-print, #practice-view { display: none !important; }
-      #worksheet-view {
-        display: block !important;
-        width: 100% !important;
-        max-width: none !important;
-        padding: 0 !important;
-        margin: 0 !important;
-      }
-      #printable-area {
-        padding: 0 !important;
-        margin: 0 !important;
-        border: 0 !important;
-        box-shadow: none !important;
-      }
-      .print-page {
-        break-after: page;
-        page-break-after: always;
-      }
-      .print-page:last-child {
-        break-after: auto;
-        page-break-after: auto;
-      }
-      .print-row-4line { margin-bottom: 5px; }
-      * {
-        -webkit-print-color-adjust: exact !important;
-        print-color-adjust: exact !important;
-      }
+    .color-swatch.active {
+        transform: scale(1.2);
+        box-shadow: 0 0 0 2px var(--card), 0 0 0 4px var(--indigo);
     }
 
     .size-dot-btn {
-  display: grid;
-  place-items: center;
-  width: 40px;
-  height: 40px;
-  padding: 0;
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  background: var(--card);
-  color: var(--ink);
-}
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        height: 34px;
+        padding: 0 10px;
+        border-radius: 9px;
+        border: 1px solid var(--line);
+        background: var(--paper);
+        color: var(--ink);
+        font-size: 12px;
+        font-weight: 700;
+        cursor: pointer;
+    }
 
-.size-dot-btn.active {
-  border: 2px solid #0284c7;
-  background: rgba(2,132,199,.10);
-}
+    .size-dot-btn.active {
+        border-color: var(--indigo);
+        background: rgba(0, 104, 155, .1);
+        color: var(--indigo);
+    }
 
-.size-dot {
-  display: block;
-  border-radius: 50%;
-  background: var(--ink);
-}
+    .dot-indicator {
+        border-radius: 50%;
+        background: currentColor;
+        display: inline-block;
+    }
 
-.size-dot.small {
-  width: 4px;
-  height: 4px;
-}
+    /* Translation and controls */
+    .zen-divider {
+        width: 76px;
+        height: 2px;
+        margin: 20px auto 14px;
+        border-radius: 5px;
+        background: var(--line);
+    }
 
-.size-dot.medium {
-  width: 8px;
-  height: 8px;
-}
+    .zen-arabic-translation {
+        width: 100%;
+        max-width: 740px;
+        margin: 0 auto;
+        color: var(--ink-soft);
+        text-align: center;
+        font-size: clamp(18px, 2.1vw, 23px);
+        font-weight: 700;
+        line-height: 1.7;
+        overflow-wrap: anywhere;
+    }
 
-.size-dot.large {
-  width: 13px;
-  height: 13px;
-}
+    .zen-quick-actions {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 22px;
+    }
 
-.size-dot-btn:focus-visible {
-  outline: 3px solid #38bdf8;
-  outline-offset: 2px;
-}
+    /* Footer and statistics */
+    .bottom-bar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 14px 24px;
+        padding: 15px clamp(16px, 3vw, 40px);
+        border-top: 1px solid var(--line);
+        background: var(--card);
+        color: var(--ink-soft);
+        font-size: 13px;
+        font-weight: 700;
+    }
+
+    .telemetry-group {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 12px 22px;
+    }
+
+    .telemetry-item {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        white-space: nowrap;
+    }
+
+    .telemetry-item strong {
+        color: var(--ink);
+        font-size: 15px;
+        font-weight: 900;
+        font-variant-numeric: tabular-nums;
+    }
+
+    .hint-shortcuts {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 12px;
+        font-size: 12px;
+    }
+
+    /* Modals */
+    .modal-backdrop {
+        position: fixed;
+        inset: 0;
+        z-index: 50;
+        display: grid;
+        place-items: center;
+        padding: 16px;
+        background: rgba(0, 12, 20, .7);
+        -webkit-backdrop-filter: blur(5px);
+        backdrop-filter: blur(5px);
+        overflow-y: auto;
+    }
+
+    .stories-modal-card,
+    .rating-modal-card {
+        width: 100%;
+        max-height: 88vh;
+        max-height: 88dvh;
+        overflow-y: auto;
+        overscroll-behavior: contain;
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        background: var(--card);
+        box-shadow: var(--shadow);
+    }
+
+    .stories-modal-card {
+        max-width: 900px;
+        padding: clamp(16px, 3vw, 28px);
+    }
+
+    .stories-modal-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 18px;
+        padding-bottom: 14px;
+        border-bottom: 1px solid var(--line);
+    }
+
+    .stories-modal-header h2 {
+        margin: 0;
+        font-size: clamp(19px, 3vw, 24px) !important;
+        line-height: 1.5;
+    }
+
+    .stories-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+    }
+
+    .story-card {
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        background: var(--paper);
+        cursor: pointer;
+        transition: border-color .2s, transform .2s;
+    }
+
+    .story-card:hover {
+        border-color: var(--indigo);
+        transform: translateY(-2px);
+    }
+
+    .story-card.selected-story {
+        border: 2px solid var(--course-button);
+        background: rgba(0, 104, 155, .05);
+    }
+
+    .story-card-body {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        padding: 14px 16px;
+    }
+
+    .story-title {
+        margin: 0;
+        color: var(--ink);
+        font: 700 18px/1.4 "Quicksand", sans-serif;
+        direction: ltr;
+        text-align: left;
+        overflow-wrap: anywhere;
+    }
+
+    .story-arabic-title {
+        margin: 6px 0 4px;
+        color: var(--indigo);
+        font-size: 15px;
+        font-weight: 800;
+    }
+
+    /* Completion & Accuracy Evaluation Modal */
+    .rating-modal-card {
+        max-width: 500px;
+        padding: clamp(18px, 4vw, 28px);
+        text-align: center;
+    }
+
+    .rating-modal-card h3 {
+        margin: 8px 0 4px;
+        font-size: clamp(22px, 5vw, 26px) !important;
+    }
+
+    .stars-row {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        margin: 14px 0;
+        direction: ltr;
+    }
+
+    .star-item {
+        color: var(--line);
+        font-size: clamp(30px, 7vw, 40px);
+        line-height: 1;
+    }
+
+    .star-item.earned {
+        color: var(--gold);
+        filter: drop-shadow(0 3px 7px rgba(245, 158, 11, .3));
+        animation: starPop .4s ease both;
+    }
+
+    .modal-metrics-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+        margin: 14px 0 18px;
+    }
+
+    .modal-metric-box {
+        min-width: 0;
+        padding: 12px 8px;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        background: var(--paper);
+        overflow-wrap: anywhere;
+    }
+
+    .modal-metric-box span {
+        display: block;
+        color: var(--ink-soft);
+        font-size: 12px;
+        font-weight: 700;
+    }
+
+    .modal-metric-box strong {
+        display: block;
+        margin-top: 5px;
+        color: var(--indigo);
+        font-size: 18px;
+        font-weight: 900;
+    }
+
+    .comparison-box {
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        background: var(--paper);
+        padding: 8px;
+        margin-bottom: 16px;
+    }
+
+    /* Animations */
+    @keyframes starPop {
+        0% { transform: scale(.5); }
+        70% { transform: scale(1.15); }
+        100% { transform: scale(1); }
+    }
+
+    @keyframes gentleShake {
+        0%, 100% { transform: translateX(0); }
+        25% { transform: translateX(-4px); }
+        75% { transform: translateX(4px); }
+    }
+
+    /* Printable Worksheet Container */
+    #print-worksheet-container {
+        display: none;
+    }
+
+    @media print {
+        @page {
+            size: A4 portrait;
+            margin: 12mm;
+        }
+        body * {
+            visibility: hidden;
+        }
+        .top-progress-line,
+        .top-header,
+        .zen-stage,
+        .bottom-bar,
+        .modal-backdrop {
+            display: none !important;
+        }
+        #print-worksheet-container,
+        #print-worksheet-container * {
+            visibility: visible !important;
+        }
+        #print-worksheet-container {
+            display: block !important;
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            background: #FFFFFF !important;
+            color: #00273A !important;
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+    }
+
+    /* Tablet */
+    @media (max-width: 900px) {
+        .top-header {
+            gap: 12px;
+            padding-inline: 18px;
+        }
+        .header-actions {
+            gap: 6px;
+        }
+        .pill-btn {
+            padding-inline: 10px;
+            font-size: 12px;
+        }
+        .brand-logo {
+            width: 35px;
+            height: 35px;
+        }
+        .zen-stage {
+            padding-inline: 16px;
+        }
+        .giant-english-sentence {
+            font-size: clamp(26px, 5vw, 42px);
+        }
+        .bottom-bar {
+            justify-content: center;
+        }
+    }
+
+    /* Phones */
+    @media (max-width: 600px) {
+        .top-header {
+            flex-wrap: wrap;
+            padding: 12px 14px;
+            gap: 12px;
+        }
+        .brand {
+            flex: 1;
+            padding-left: 82px;
+        }
+        .brand-logo {
+            width: 34px;
+            height: 34px;
+        }
+        .header-actions {
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 7px;
+        }
+        .header-actions .pill-btn {
+            min-width: 0;
+            min-height: 40px;
+            padding: 6px 6px;
+            gap: 5px;
+            font-size: 11px;
+            white-space: normal;
+            line-height: 1.3;
+        }
+        .header-actions .theme-btn {
+            position: absolute;
+            top: 12px;
+            width: 36px;
+            height: 36px;
+            min-height: 36px;
+        }
+        #toggle-sfx-btn {
+            left: 54px;
+        }
+        #theme-toggle-btn {
+            left: 12px;
+        }
+        .zen-stage {
+            min-height: auto;
+            padding: 20px 12px 26px;
+        }
+        .canvas-layers-wrap {
+            height: 240px;
+        }
+        .stories-grid {
+            grid-template-columns: 1fr;
+            gap: 10px;
+        }
+        .hint-shortcuts {
+            display: none;
+        }
+    }
+
+    /* Small phones */
+    @media (max-width: 360px) {
+        .top-header {
+            padding-inline: 10px;
+        }
+        .brand {
+            padding-left: 76px;
+        }
+        .header-actions {
+            gap: 5px;
+        }
+        .header-actions .pill-btn {
+            font-size: 10px;
+        }
+        #toggle-sfx-btn {
+            left: 48px;
+        }
+        #theme-toggle-btn {
+            left: 10px;
+        }
+        .giant-english-sentence {
+            font-size: 24px;
+        }
+    }
   </style>
 </head>
-
 <body>
+
+  <!-- خط التقدم العلوي -->
+  <div class="top-progress-line">
+    <div id="top-progress-fill" class="top-progress-fill" style="width: 5%"></div>
+  </div>
+
+  <!-- الشريط العلوي (Header) -->
   <header class="top-header">
-    <a href="/english/" class="brand" aria-label="Yazeed English">
-      <img src="https://file.yazeedenglish.com/logo.png" alt="Yazeed English" class="brand-logo" onerror="this.style.display='none'">
-      <span class="brand-text">
-        <strong>Yazeed English</strong>
-        <span>منصة يزيد للانجليزية</span>
-      </span>
-    </a>
-    <button type="button" class="theme-btn" id="themeToggle" aria-label="تغيير المظهر" title="تغيير المظهر">
-      <i data-lucide="moon"></i>
-    </button>
+    <div class="brand">
+        <img src="https://file.yazeedenglish.com/logo.png"
+             alt="Yazeed English"
+             class="brand-logo">
+
+        <div class="brand-text">
+            <strong>Yazeed English</strong>
+            <span>منصة يزيد للانجليزية</span>
+        </div>
+    </div>
+
+    <div class="header-actions">
+      <!-- زر الكتابة الحرة -->
+      <button id="free-write-btn" class="pill-btn" onclick="toggleFreeWriteMode()" title="مساحة حرة للتدريب بدون نص إرشادي">
+        <i data-lucide="edit-3"></i>
+        <span id="free-write-label">الكتابة الحرة</span>
+      </button>
+
+      <!-- زر عشوائي فوري -->
+      <button id="random-ex-btn" class="pill-btn" onclick="pickRandomExercise()" title="اختيار تمرين عشوائي جديد">
+        <i data-lucide="shuffle"></i>
+        <span>تمرين عشوائي</span>
+      </button>
+
+      <!-- زر طباعة ورقة عمل PDF -->
+      <button class="pill-btn" onclick="printWorksheetNow()">
+        <i data-lucide="printer"></i>
+        <span>طباعة ورقة عمل PDF</span>
+      </button>
+
+      <!-- زر الصوت -->
+      <button id="toggle-sfx-btn" class="theme-btn" onclick="toggleSound()" title="تشغيل / كتم الصوت">
+        <i id="sound-icon" data-lucide="volume-2"></i>
+      </button>
+
+      <!-- زر الوضع الليلي -->
+      <button id="theme-toggle-btn" class="theme-btn" onclick="toggleDarkMode()" title="الوضع الليلي / النهاري">
+        <i id="theme-icon" data-lucide="moon"></i>
+      </button>
+    </div>
   </header>
 
-  <main id="practice-view" class="app">
-    <section class="surface section">
-      <div class="section-title">١. اختر المحتوى</div>
-      <div class="row" id="level-buttons">
-        <button class="btn active" id="lvl-letters" onclick="setLevel('letters')">الحروف A–Z</button>
-        <button class="btn" id="lvl-words" onclick="setLevel('words')">كلمات</button>
-        <button class="btn" id="lvl-simple" onclick="setLevel('simple')">جمل بسيطة</button>
-        <button class="btn" id="lvl-medium" onclick="setLevel('medium')">جمل متوسطة</button>
-        <button class="btn" id="lvl-advanced" onclick="setLevel('advanced')">جمل متقدمة</button>
-        <button class="btn" id="lvl-custom" onclick="setLevel('custom')">جُملي الخاصة</button>
-      </div>
+  <!-- مساحة التدريب الرئيسية البسيطة (Zen Stage) -->
+  <main class="zen-stage">
 
-      <hr class="divider">
+    <!-- الكبسولة العلوية لتحديد نوع التدريب (حروف A-Z أو كلمات عشوائية أو جمل عشوائية) -->
+    <div id="top-category-capsule" class="zen-top-meta">
+      <span style="font-weight: 800; color: var(--ink);">نوع المحتوى:</span>
+      <button class="filter-chip active" id="chip-letters" onclick="setModeFilter('letters')">حروف</button>
+      <button class="filter-chip" id="chip-words" onclick="setModeFilter('words')">كلمات عشوائية</button>
+      <button class="filter-chip" id="chip-sentences" onclick="setModeFilter('sentences')">جمل عشوائية</button>
+      <span style="color: var(--line);">|</span>
+      <span id="meta-counter-label" style="font-size: 12px; font-weight: 800;">تمرين 1 من 26</span>
+    </div>
 
-      <div class="section-title">٢. اختر نمط الخط</div>
-      <div class="row">
-        <button class="btn active" id="cat-print" onclick="setStyleCategory('print')">منفصل (Print)</button>
-        <button class="btn" id="cat-cursive" onclick="setStyleCategory('cursive')">متصل (Cursive)</button>
-      </div>
-      <div id="font-buttons-container" class="font-buttons" style="margin-top:12px"></div>
-    </section>
+    <!-- لافتة وضع الكتابة الحرة -->
+    <div id="free-mode-banner" class="zen-top-meta" hidden style="border-color: var(--indigo); color: var(--indigo);">
+      <i data-lucide="feather" style="width:16px;height:16px;"></i>
+      <span>وضع الكتابة الحرة مفعّل — تدرب بحرية على السطور المسطرة بدون قيود</span>
+    </div>
 
-    <section id="custom-builder-card" class="surface section hidden">
-      <div class="section-title">جُملي الخاصة</div>
-      <p class="muted" style="font-size:13px;margin-top:-5px">أضف جُملاً للتدرب عليها. قائمة التدريب منفصلة عن قائمة الطباعة.</p>
-      <div class="row">
-        <input id="new-sentence-input" class="input english-input" maxlength="240" placeholder="Write an English word or sentence...">
-        <button class="btn success" onclick="addCustomSentenceFromInput()">＋ إضافة للتدريب</button>
-      </div>
-      <div id="custom-sentences-chips" class="chips" style="margin-top:12px"></div>
-      <div id="custom-status" class="status" aria-live="polite"></div>
-    </section>
+    <!-- حاوية الجملة والدفتر المسطر -->
+    <div id="main-exercise-wrapper" class="zen-sentence-wrapper">
 
-    <section class="surface prompt">
-      <div class="row" style="justify-content:center">
-        <button class="btn" onclick="changeItem(-1)" aria-label="السابق">→ السابق</button>
-        <span id="item-counter" class="counter">1 / 7</span>
-        <button class="btn" onclick="changeItem(1)" aria-label="التالي">التالي ←</button>
-      </div>
-      <div id="prompt-english" class="font-andika" style="margin-top:12px" dir="ltr">Aa Bb Cc</div>
-      <div id="prompt-arabic">الحروف الأساسية</div>
-      <div class="row" style="justify-content:center;margin-top:15px">
-       <button class="btn" onclick="speakPrompt()">
-  <i data-lucide="volume-2"></i>
+      <!-- شريط أدوات الخط فوق الكلمة -->
+      <div id="reference-header-bar" class="reference-header-bar">
+        <div style="display:flex; gap:8px; align-items:center;">
+          <!-- زر تبديل نوع الخط: عادي أو متصل -->
+          <button id="style-toggle-btn" class="pill-btn" onclick="toggleHandwritingStyle()">
+            <i data-lucide="pen-tool"></i>
+            <span id="style-toggle-label">الخط: عادي (Print)</span>
+          </button>
 
-</button>
-        <button class="btn success" onclick="addCurrentPromptToWorksheet()">＋ أضف للطباعة</button>
-      </div>
-    </section>
+          <!-- زر تغيير شكل الخط لإعطاء حرية للمستخدم -->
+          <button id="font-cycle-btn" class="pill-btn" onclick="cycleFontChoice()" title="تغيير شكل الخط الإنجليزي">
+            <i data-lucide="type"></i>
+            <span id="font-cycle-label">خط: Lexend</span>
+          </button>
+        </div>
 
-    <section class="surface">
-      <div class="canvas-heading">
-        <p>السطر الأول للتتبع، والثاني للتدريب المستقل.</p>
-        <div class="row" style="margin:0">
-          <button class="btn" id="btn-row2-guide" onclick="toggleRow2Guide()">مساعدة السطر الثاني: <span id="row2-guide-status">مخفية</span></button>
-          <button class="btn" id="btn-pen-lock" onclick="togglePenOnly()">
-  <i data-lucide="pen-line"></i>
-  القلم فقط: <span id="pen-lock-label">إيقاف</span>
-</button>
+        <div id="auto-check-hint" style="font-size: 12px; font-weight: 700; color: var(--ink-soft);">
+          التحقق التلقائي عند 100% مفعّل تلقائياً
         </div>
       </div>
 
-      <div id="canvas-container">
-        <span class="canvas-tag tag-one">١. تتبّع</span>
-        <span class="canvas-tag tag-two">٢. اكتب بنفسك</span>
-        <canvas id="guide-canvas" aria-hidden="true"></canvas>
-        <canvas id="draw-canvas" aria-label="مساحة الكتابة. استخدم إصبعك أو قلم الشاشة."></canvas>
+      <!-- عرض الكلمة أو الحرف المطلوب بخط واضح -->
+      <div id="target-showcase-box" class="target-showcase-box">
+        <div id="target-english-display" class="giant-english-sentence">Aa</div>
       </div>
-    </section>
 
-    <section class="surface section" style="margin-top:14px">
-      <div class="toolbar">
-        <div class="toolbar-group">
-          <span class="muted" style="font-size:12px;font-weight:800">لون القلم:</span>
-          <div class="color-picker" id="color-picker">
-            <button class="color-dot" onclick="selectColor('#111827',this)" style="background:#111827" aria-label="أسود" aria-pressed="false"></button>
-            <button class="color-dot" onclick="selectColor('#2563eb',this)" style="background:#2563eb" aria-label="أزرق" aria-pressed="true"></button>
-            <button class="color-dot" onclick="selectColor('#ef4444',this)" style="background:#ef4444" aria-label="أحمر" aria-pressed="false"></button>
-            <button class="color-dot" onclick="selectColor('#16a34a',this)" style="background:#16a34a" aria-label="أخضر" aria-pressed="false"></button>
-            <button class="color-dot" onclick="selectColor('#f97316',this)" style="background:#f97316" aria-label="برتقالي" aria-pressed="false"></button>
-            <button class="color-dot" onclick="selectColor('#9333ea',this)" style="background:#9333ea" aria-label="بنفسجي" aria-pressed="false"></button>
+      <!-- الدفتر المسطر التفاعلي (Ruled Lines Only) -->
+      <div class="notebook-canvas-card">
+        <div id="canvas-stage" class="canvas-layers-wrap">
+          <canvas id="guide-canvas"></canvas>
+          <canvas id="drawing-canvas"></canvas>
+        </div>
+
+        <!-- شريط القلم والألوان المبسط (مناسب للصغار والكبار) -->
+        <div class="simple-pen-toolbar">
+          <!-- الألوان السبعة -->
+          <div class="pen-group" aria-label="ألوان القلم">
+            <span style="font-size:12px; font-weight:800; color:var(--ink-soft); margin-left:4px;">لون القلم:</span>
+            <button class="color-swatch active" style="background:#00273A" data-color="#00273A" onclick="selectPenColor('#00273A')" title="أسود"></button>
+            <button class="color-swatch" style="background:#00689B" data-color="#00689B" onclick="selectPenColor('#00689B')" title="أزرق"></button>
+            <button class="color-swatch" style="background:#E11D48" data-color="#E11D48" onclick="selectPenColor('#E11D48')" title="أحمر"></button>
+            <button class="color-swatch" style="background:#EA580C" data-color="#EA580C" onclick="selectPenColor('#EA580C')" title="برتقالي"></button>
+            <button class="color-swatch" style="background:#EAB308" data-color="#EAB308" onclick="selectPenColor('#EAB308')" title="أصفر"></button>
+            <button class="color-swatch" style="background:#7C3AED" data-color="#7C3AED" onclick="selectPenColor('#7C3AED')" title="بنفسجي"></button>
+            <button class="color-swatch white-swatch" style="background:#FFFFFF" data-color="#FFFFFF" onclick="selectPenColor('#FFFFFF')" title="أبيض"></button>
           </div>
-          <button class="btn" id="btn-eraser" onclick="selectEraser()">
-  <i data-lucide="eraser"></i>
 
-</button>
-        </div>
+          <!-- سُمك القلم (3 خيارات) -->
+          <div class="pen-group" aria-label="سُمك القلم">
+            <button class="size-dot-btn" data-size="thin" onclick="selectPenSize('thin')">
+              <span class="dot-indicator" style="width:5px; height:5px;"></span>
+              <span>رفيع</span>
+            </button>
+            <button class="size-dot-btn active" data-size="medium" onclick="selectPenSize('medium')">
+              <span class="dot-indicator" style="width:9px; height:9px;"></span>
+              <span>متوسط</span>
+            </button>
+            <button class="size-dot-btn" data-size="thick" onclick="selectPenSize('thick')">
+              <span class="dot-indicator" style="width:13px; height:13px;"></span>
+              <span>عريض</span>
+            </button>
+          </div>
 
-        <div class="toolbar-group">
-  <span class="muted" style="font-size:12px;font-weight:800">حجم القلم:</span>
-
-  <button class="size-dot-btn" id="size-thin"
-    onclick="selectSize(2.5,'thin')" aria-label="صغير" title="صغير">
-    <span class="size-dot small"></span>
-  </button>
-
-  <button class="size-dot-btn active" id="size-med"
-    onclick="selectSize(4.5,'med')" aria-label="متوسط" title="متوسط">
-    <span class="size-dot medium"></span>
-  </button>
-
-  <button class="size-dot-btn" id="size-thick"
-    onclick="selectSize(7,'thick')" aria-label="كبير" title="كبير">
-    <span class="size-dot large"></span>
-  </button>
-</div>
-
-        <div class="toolbar-group toolbar-actions">
-          <button class="btn" onclick="undoLastStroke()">
-  <i data-lucide="undo-2"></i>
-
-</button>
-          <button class="btn danger" onclick="clearCanvas()">مسح الكتابة</button>
-          <button class="btn success" onclick="nextWithCelebration()">أحسنت! التالي ←</button>
+          <!-- أدوات المسح والتراجع -->
+          <div class="pen-group">
+            <button id="eraser-btn" class="size-dot-btn" onclick="toggleEraserMode()">
+              <i data-lucide="eraser" style="width:15px;height:15px;"></i>
+              <span>ممحاة</span>
+            </button>
+            <button class="size-dot-btn" onclick="undoLastStroke()" title="تراجع عن آخر خطوة">
+              <i data-lucide="undo-2" style="width:15px;height:15px;"></i>
+              <span>تراجع</span>
+            </button>
+            <button class="size-dot-btn" onclick="clearCanvas(false)" title="مسح الدفتر بالكامل">
+              <i data-lucide="rotate-ccw" style="width:15px;height:15px;"></i>
+              <span>مسح الكل</span>
+            </button>
+          </div>
         </div>
       </div>
-      <div id="app-status" class="status" role="status" aria-live="polite"></div>
-    </section>
 
-    <section class="surface section">
-      <div class="row" style="justify-content:space-between">
-        <div>
-          <div class="section-title" style="margin:0">ورقة العمل</div>
-          <p class="muted" style="font-size:12px;margin:5px 0 0">جهّز جُملاً للطباعة أو احفظ الورقة بصيغة PDF.</p>
-        </div>
-        <button class="btn primary" onclick="toggleWorksheetView(true)">▤ معاينة ورقة العمل <span id="worksheet-count-badge">0</span></button>
+      <!-- فاصل وترجمة عربية واضحة بدون حركات تشكيلية -->
+      <div id="translation-divider" class="zen-divider"></div>
+      <div id="arabic-meaning-display" class="zen-arabic-translation">
+        حرف A
       </div>
-    </section>
+
+      <!-- أزرار التحكم الرئيسية الحصرية: التالي (يمين) - تحقق من خطي (وسط) - السابق (يسار) -->
+      <div id="exercise-nav-controls" class="zen-quick-actions">
+        <button class="pill-btn" onclick="nextExercise()">
+          <i data-lucide="arrow-right"></i>
+          <span>التالي</span>
+        </button>
+
+        <button class="primary-btn" onclick="manualCheckHandwriting()" style="min-width: 190px; font-size: 15px;">
+          <i data-lucide="check-circle-2"></i>
+          <span>تحقق من خطي</span>
+        </button>
+
+        <button class="pill-btn" onclick="prevExercise()">
+          <span>السابق</span>
+          <i data-lucide="arrow-left"></i>
+        </button>
+      </div>
+
+    </div>
   </main>
 
-  <section id="worksheet-view" class="app hidden">
-    <div class="surface section no-print">
-      <div class="row" style="justify-content:space-between">
-        <div>
-          <div class="section-title" style="margin:0">ورقة العمل — A4</div>
-          <p class="muted" style="font-size:12px;margin:5px 0 0">أضف العناصر ورتّبها ثم اطبع أو احفظها بصيغة PDF.</p>
-        </div>
-        <button class="btn" onclick="toggleWorksheetView(false)">→ العودة للتدريب</button>
-        <button class="btn primary" onclick="window.print()">طباعة / حفظ PDF</button>
+  <!-- الشريط السفلي للإحصائيات (Bottom Bar) -->
+  <footer class="bottom-bar">
+    <div class="telemetry-group">
+      <div class="telemetry-item">
+        <span>التمارين المتقنة (≥80%):</span>
+        <strong id="footer-completed-count">0</strong>
       </div>
-
-      <hr class="divider">
-
-      <div class="row">
-        <input id="worksheet-add-input" class="input english-input" maxlength="240" placeholder="Add a word or sentence...">
-        <button class="btn success" onclick="addSentenceFromWorksheetPanel()">＋ إضافة للورقة</button>
-        <button class="btn" onclick="loadCurrentLevelIntoWorksheet()">إضافة المستوى الحالي</button>
-        <button class="btn danger" onclick="clearWorksheetSentences()">إفراغ قائمة الطباعة</button>
+      <div class="telemetry-item">
+        <span>أفضل نتيجة لهذا التمرين:</span>
+        <strong id="footer-best-score">—</strong>
       </div>
-
-      <div class="row">
-        <span class="muted" style="font-size:12px;font-weight:800">تنسيق الورقة:</span>
-        <button class="btn active" id="pmode-both" onclick="setPrintRowMode('trace_and_blank')">تتبع + سطر فارغ</button>
-        <button class="btn" id="pmode-trace" onclick="setPrintRowMode('trace_only')">تتبع فقط</button>
-        <button class="btn" id="pmode-double" onclick="setPrintRowMode('trace_and_two_blank')">تتبع + سطرين فارغين</button>
+      <div class="telemetry-item">
+        <span>نوع الخط الحالي:</span>
+        <strong id="footer-font-name">Lexend</strong>
       </div>
-
-      <div id="worksheet-sentences-manager" class="chips" style="margin-top:12px"></div>
-      <div id="worksheet-status" class="status" aria-live="polite"></div>
     </div>
 
-    <div id="printable-area"></div>
-  </section>
+    <div class="hint-shortcuts">
+      <span>اكتب مباشرة على الأسطر بالقلم أو الإصبع، وسيتم التحقق تلقائياً عند الإتقان الكامل 100%</span>
+    </div>
+  </footer>
 
-<script>
-'use strict';
+  <!-- نافذة تقييم دقة الخط اليدوي -->
+  <div id="rating-modal" class="modal-backdrop" hidden>
+    <div class="rating-modal-card">
+      <div id="rating-badge-pill" style="display:inline-block; padding:4px 14px; border-radius:999px; font-size:13px; font-weight:800; margin-bottom:4px;">
+        النتيجة
+      </div>
+      <h3 id="rating-title">ممتاز! خطك رائع وواضح</h3>
+      <p id="rating-feedback-text" style="color:var(--ink-soft); font-size:14px; font-weight:700; margin:4px 0 10px;">
+        لقد التزمت بالسطر وشكل الحروف بدقة عالية.
+      </p>
 
-const FONTS = {
-  print: [
-    {id:'andika', label:'Andika · واضح', css:'"Andika", sans-serif', cls:'font-andika', scale:1},
-    {id:'comic', label:'Comic Neue · مدرسي', css:'"Comic Neue", cursive', cls:'font-comic', scale:1},
-    {id:'patrick', label:'Patrick Hand · بسيط', css:'"Patrick Hand", cursive', cls:'font-patrick', scale:1.08},
-    {id:'kalam', label:'Kalam · طبيعي', css:'"Kalam", cursive', cls:'font-kalam', scale:1}
-  ],
-  cursive: [
-    {id:'playwrite', label:'Playwrite · مدرسي', css:'"Playwrite US Trad", cursive', cls:'font-playwrite', scale:.8},
-    {id:'caveat', label:'Caveat · سلس', css:'Caveat, cursive', cls:'font-caveat', scale:1.1},
-    {id:'sacramento', label:'Sacramento · كلاسيكي', css:'Sacramento, cursive', cls:'font-sacramento', scale:1.1}
-  ]
-};
+      <!-- النجوم الخمس -->
+      <div class="stars-row">
+        <span id="star-1" class="star-item">★</span>
+        <span id="star-2" class="star-item">★</span>
+        <span id="star-3" class="star-item">★</span>
+        <span id="star-4" class="star-item">★</span>
+        <span id="star-5" class="star-item">★</span>
+      </div>
 
-const CONTENT = {
-  letters: [
-    {en:'Aa Bb Cc Dd', ar:'الحروف من A إلى D'},
-    {en:'Ee Ff Gg Hh', ar:'الحروف من E إلى H'},
-    {en:'Ii Jj Kk Ll', ar:'الحروف من I إلى L'},
-    {en:'Mm Nn Oo Pp', ar:'الحروف من M إلى P'},
-    {en:'Qq Rr Ss Tt', ar:'الحروف من Q إلى T'},
-    {en:'Uu Vv Ww Xx', ar:'الحروف من U إلى X'},
-    {en:'Yy Zz', ar:'الحرفان Y و Z'}
-  ],
-  words: [
-    {en:'Apple   Book   Cat', ar:'تفاحة • كتاب • قطة'},
-    {en:'Water   Bread   Milk', ar:'ماء • خبز • حليب'},
-    {en:'School   Teacher   Pen', ar:'مدرسة • معلم • قلم'},
-    {en:'Happy   Smile   Friend', ar:'سعيد • ابتسامة • صديق'},
-    {en:'Sun   Moon   Star', ar:'شمس • قمر • نجمة'}
-  ],
-  simple: [
-    {en:'Hello, my name is Yazeed', ar:'مرحباً، اسمي يزيد'},
-    {en:'I love learning English', ar:'أنا أحب تعلم اللغة الإنجليزية'},
-    {en:'This is a very good book', ar:'هذا كتاب جيد جداً'},
-    {en:'The weather is nice today', ar:'الطقس جميل اليوم'},
-    {en:'She goes to school every day', ar:'هي تذهب إلى المدرسة كل يوم'}
-  ],
-  medium: [
-    {en:'Practice makes your handwriting much better', ar:'التدريب يجعل خط يدك أفضل بكثير'},
-    {en:'Reading English stories helps you learn new words', ar:'قراءة القصص الإنجليزية تساعدك على تعلم كلمات جديدة'},
-    {en:'We always help each other in the classroom', ar:'نحن دائماً نساعد بعضنا البعض في الفصل'},
-    {en:'My favorite subject at school is English', ar:'مادتي المفضلة في المدرسة هي اللغة الإنجليزية'},
-    {en:'Please write your full name clearly on the line', ar:'يرجى كتابة اسمك الكامل بوضوح على السطر'}
-  ],
-  advanced: [
-    {en:'The quick brown fox jumps over the lazy dog', ar:'جملة تحتوي على جميع حروف اللغة الإنجليزية'},
-    {en:'Knowledge is a treasure that follows its owner everywhere', ar:'المعرفة كنز يتبع صاحبه في كل مكان'},
-    {en:'Success comes to those who work hard and never give up', ar:'النجاح يأتي لمن يعمل بجد ولا يستسلم أبداً'},
-    {en:'Clear handwriting makes communication easier for everyone', ar:'الخط الواضح يجعل التواصل أسهل للجميع'}
-  ],
-  custom: []
-};
+      <!-- تفاصيل التقييم الصارم -->
+      <div class="modal-metrics-grid">
+        <div class="modal-metric-box">
+          <span>نسبة الدقة الإجمالية</span>
+          <strong id="score-overall-val">0%</strong>
+        </div>
+        <div class="modal-metric-box">
+          <span>تطابق شكل الحروف والمسار</span>
+          <strong id="score-precision-val">0%</strong>
+        </div>
+        <div class="modal-metric-box">
+          <span>اكتمال كتابة النص</span>
+          <strong id="score-recall-val">0%</strong>
+        </div>
+        <div class="modal-metric-box">
+          <span>الالتزام بالسطر والحجم</span>
+          <strong id="score-scale-val">0%</strong>
+        </div>
+      </div>
 
-/* The print list is intentionally separate from practice sentences. */
-const worksheetItems = [];
+      <!-- معاينة بصرية لمطابقة الخط مع المرجع -->
+      <div class="comparison-box">
+        <div style="font-size:11px; font-weight:800; color:var(--ink-soft); margin-bottom:6px;">
+          مقارنة خطك مع النموذج (الأخضر: متطابق مع الحرف • الأحمر: خارج المسار)
+        </div>
+        <canvas id="eval-comparison-canvas" width="400" height="110" style="max-width:100%; height:auto;"></canvas>
+      </div>
 
-const state = {
-  level: 'letters',
-  itemIndex: 0,
-  styleCategory: 'print',
-  selectedFont: FONTS.print[0],
-  showRow2Guide: false,
-  penOnly: false,
-  inkColor: '#2563eb',
-  strokeSize: 4.5,
-  selectedSize: 'med',
-  isEraser: false,
-  strokes: [],
-  currentStroke: null,
-  isDrawing: false,
-  activePointerId: null,
-  printRowMode: 'trace_and_blank',
-  darkMode: false,
-  lastCanvasWidth: 0,
-  lastCanvasHeight: 0
-};
+      <div style="display:flex; justify-content:center; gap:10px; flex-wrap:wrap;">
+        <button class="pill-btn" onclick="retryExerciseFromModal()">
+          <i data-lucide="rotate-ccw"></i>
+          <span>إعادة المحاولة</span>
+        </button>
+        <button class="primary-btn" onclick="nextExerciseFromModal()">
+          <span>التمرين التالي</span>
+          <i data-lucide="arrow-left"></i>
+        </button>
+      </div>
+    </div>
+  </div>
 
-let guideCanvas, guideCtx, drawCanvas, drawCtx;
+  <!-- حاوية ورقة العمل المخصصة للطباعة -->
+  <div id="print-worksheet-container"></div>
 
-window.addEventListener('DOMContentLoaded', init);
-
-function init() {
-  guideCanvas = document.getElementById('guide-canvas');
-  drawCanvas = document.getElementById('draw-canvas');
-  guideCtx = guideCanvas.getContext('2d');
-  drawCtx = drawCanvas.getContext('2d');
-
-  try {
-    state.darkMode = localStorage.getItem('YAZEED_ENGLISH_THEME') === 'dark';
-  } catch (_) {}
-
-  document.documentElement.classList.toggle('dark', state.darkMode);
-  document.documentElement.classList.toggle('light', !state.darkMode);
-
-  document.getElementById('themeToggle').addEventListener('click', toggleDarkMode);
-  document.getElementById('new-sentence-input').addEventListener('keydown', e => {
-    if (e.key === 'Enter') { e.preventDefault(); addCustomSentenceFromInput(); }
-  });
-  document.getElementById('worksheet-add-input').addEventListener('keydown', e => {
-    if (e.key === 'Enter') { e.preventDefault(); addSentenceFromWorksheetPanel(); }
-  });
-
-  initPointerEvents();
-  renderFontButtons();
-  updateAll();
-  updateThemeButton();
-
-  if ('ResizeObserver' in window) {
-    new ResizeObserver(resizeNotebook).observe(document.getElementById('canvas-container'));
-  } else {
-    window.addEventListener('resize', resizeNotebook, {passive:true});
-  }
-
-  window.addEventListener('orientationchange', () => setTimeout(resizeNotebook, 150), {passive:true});
-  window.addEventListener('beforeprint', () => {
-    if (!document.getElementById('worksheet-view').classList.contains('hidden')) buildPrintableWorksheet();
-  });
-
-  if (document.fonts && document.fonts.ready) {
-    document.fonts.ready.then(() => {
-      drawNotebookBackground();
-      if (!document.getElementById('worksheet-view').classList.contains('hidden')) buildPrintableWorksheet();
-    });
-  }
-  resizeNotebook();
-}
-
-function currentList() { return CONTENT[state.level] || CONTENT.letters; }
-
-function getCurrentItem() {
-  const list = currentList();
-  return list[state.itemIndex] || list[0] || {en:'', ar:'لا توجد جمل بعد'};
-}
-
-function announce(message, target='app-status') {
-  const el = document.getElementById(target);
-  if (el) el.textContent = message;
-}
-
-function updateAll() {
-  updateLevelButtons();
-  updatePromptUI();
-  renderCustomSentenceChips();
-  updateWorksheetBadge();
-  updateToolStates();
-  drawNotebookBackground();
-}
-
-function updateLevelButtons() {
-  ['letters','words','simple','medium','advanced','custom'].forEach(key => {
-    const btn = document.getElementById('lvl-' + key);
-    const active = state.level === key;
-    btn.classList.toggle('active', active);
-    btn.setAttribute('aria-pressed', String(active));
-  });
-  document.getElementById('custom-builder-card').classList.toggle('hidden', state.level !== 'custom');
-}
-
-function setLevel(level) {
-  if (!CONTENT[level]) return;
-  state.level = level;
-  state.itemIndex = 0;
-  clearCanvas(false);
-  updateAll();
-}
-
-function setStyleCategory(category) {
-  if (!FONTS[category]) return;
-  state.styleCategory = category;
-  state.selectedFont = FONTS[category][0];
-  document.getElementById('cat-print').classList.toggle('active', category === 'print');
-  document.getElementById('cat-cursive').classList.toggle('active', category === 'cursive');
-  renderFontButtons();
-  updatePromptUI();
-  drawNotebookBackground();
-  buildPrintableWorksheet();
-}
-
-function renderFontButtons() {
-  const container = document.getElementById('font-buttons-container');
-  container.innerHTML = FONTS[state.styleCategory].map(font => {
-    const active = font.id === state.selectedFont.id;
-    return `<button type="button" class="font-button ${active ? 'active' : ''}" aria-pressed="${active}" onclick="selectFont('${font.id}')">
-      <span class="font-sample ${font.cls}" dir="ltr">Aa</span>
-      <span>${escapeHtml(font.label)}</span>
-    </button>`;
-  }).join('');
-}
-
-function selectFont(id) {
-  const font = FONTS[state.styleCategory].find(item => item.id === id);
-  if (!font) return;
-  state.selectedFont = font;
-  renderFontButtons();
-  updatePromptUI();
-  drawNotebookBackground();
-  buildPrintableWorksheet();
-}
-
-function updatePromptUI() {
-  const item = getCurrentItem();
-  const list = currentList();
-  const prompt = document.getElementById('prompt-english');
-  prompt.className = state.selectedFont.cls;
-  prompt.textContent = item.en;
-  document.getElementById('prompt-arabic').textContent = item.ar;
-  document.getElementById('item-counter').textContent = `${list.length ? state.itemIndex + 1 : 0} / ${list.length}`;
-  document.getElementById('row2-guide-status').textContent = state.showRow2Guide ? 'مفعّلة' : 'مخفية';
-  document.getElementById('pen-lock-label').textContent = state.penOnly ? 'مفعّل' : 'إيقاف';
-  updateLevelButtons();
-}
-
-function changeItem(delta) {
-  const list = currentList();
-  if (!list.length) {
-    announce('أضف جملة في قائمة الجمل الخاصة أولاً.');
-    return;
-  }
-  state.itemIndex = (state.itemIndex + delta + list.length) % list.length;
-  clearCanvas(false);
-  updatePromptUI();
-  renderCustomSentenceChips();
-  drawNotebookBackground();
-}
-
-function nextWithCelebration() {
-  changeItem(1);
-  announce('أحسنت! استمر في التدريب.');
-}
-
-function speakPrompt() {
-  if (!('speechSynthesis' in window)) {
-    announce('ميزة النطق غير مدعومة في هذا المتصفح.');
-    return;
-  }
-  window.speechSynthesis.cancel();
-  const item = getCurrentItem();
-  const text = state.level === 'letters'
-    ? item.en.replace(/\s+/g, ' ').split(' ').map(pair => pair[0]).join(', ')
-    : item.en;
-  const utterance = new SpeechSynthesisUtterance(text);
-  utterance.lang = 'en-GB';
-  utterance.rate = 0.82;
-  window.speechSynthesis.speak(utterance);
-}
-
-function toggleDarkMode() {
-  state.darkMode = !state.darkMode;
-  document.documentElement.classList.toggle('dark', state.darkMode);
-  document.documentElement.classList.toggle('light', !state.darkMode);
-  try { localStorage.setItem('YAZEED_ENGLISH_THEME', state.darkMode ? 'dark' : 'light'); } catch (_) {}
-  updateThemeButton();
-  drawNotebookBackground();
-}
-
-function updateThemeButton() {
-  const btn = document.getElementById('themeToggle');
-  btn.innerHTML = state.darkMode ? '<i data-lucide="sun"></i>' : '<i data-lucide="moon"></i>';
-  btn.setAttribute('aria-label', state.darkMode ? 'تفعيل الوضع الفاتح' : 'تفعيل الوضع الداكن');
-  if (window.lucide) window.lucide.createIcons();
-}
-
-function toggleRow2Guide() {
-  state.showRow2Guide = !state.showRow2Guide;
-  document.getElementById('row2-guide-status').textContent = state.showRow2Guide ? 'مفعّلة' : 'مخفية';
-  drawNotebookBackground();
-}
-
-function togglePenOnly() {
-  state.penOnly = !state.penOnly;
-  document.getElementById('pen-lock-label').textContent = state.penOnly ? 'مفعّل' : 'إيقاف';
-  document.getElementById('btn-pen-lock').classList.toggle('active', state.penOnly);
-  announce(state.penOnly
-    ? 'وضع القلم فقط مفعّل. يعتمد على نوع القلم الذي يعرّفه الجهاز للمتصفح.'
-    : 'وضع القلم فقط متوقف.');
-}
-
-/* Preserve handwriting when the canvas changes size or device orientation. */
-function resizeNotebook() {
-  if (!drawCanvas || !drawCanvas.isConnected) return;
-
-  const rect = document.getElementById('canvas-container').getBoundingClientRect();
-  const width = rect.width;
-  const height = rect.height;
-  if (width < 1 || height < 1) return;
-
-  const oldW = state.lastCanvasWidth;
-  const oldH = state.lastCanvasHeight;
-
-  if (oldW > 0 && oldH > 0 && (oldW !== width || oldH !== height)) {
-    const sx = width / oldW;
-    const sy = height / oldH;
-    const scalePoints = stroke => {
-      if (!stroke) return;
-      stroke.points.forEach(point => { point.x *= sx; point.y *= sy; });
+  <script>
+    /*************************************************************************
+     * 1. قائمة الخطوط المبسطة (عادي Print + متصل Cursive)
+     *************************************************************************/
+    const FONTS_LIST = {
+      print: [
+        { id: 'Lexend', label: 'Lexend (واضح)', css: "'Lexend', sans-serif" },
+        { id: 'Comic Neue', label: 'Comic Neue (مدرسي)', css: "'Comic Neue', cursive" },
+        { id: 'Patrick Hand', label: 'Patrick Hand (يدوي)', css: "'Patrick Hand', cursive" }
+      ],
+      cursive: [
+        { id: 'Dancing Script', label: 'Dancing Script (متصل انسيابي)', css: "'Dancing Script', cursive" },
+        { id: 'Caveat', label: 'Caveat (متصل حديث)', css: "'Caveat', cursive" },
+        { id: 'Great Vibes', label: 'Great Vibes (متصل كلاسيكي)', css: "'Great Vibes', cursive" }
+      ]
     };
-    state.strokes.forEach(scalePoints);
-    scalePoints(state.currentStroke);
-  }
 
-  state.lastCanvasWidth = width;
-  state.lastCanvasHeight = height;
+    /*************************************************************************
+     * 2. بنك الحروف (A-Z) والكلمات والجمل الإنجليزية العشوائية (بدون مستويات وبدون حركات)
+     *************************************************************************/
+    const RANDOM_EXERCISES_POOL = [
+      // الحروف الإنجليزية من A إلى Z
+      { id: 'l_1', type: 'letters', text: 'Aa', arabic: 'حرف A' },
+      { id: 'l_2', type: 'letters', text: 'Bb', arabic: 'حرف B' },
+      { id: 'l_3', type: 'letters', text: 'Cc', arabic: 'حرف C' },
+      { id: 'l_4', type: 'letters', text: 'Dd', arabic: 'حرف D' },
+      { id: 'l_5', type: 'letters', text: 'Ee', arabic: 'حرف E' },
+      { id: 'l_6', type: 'letters', text: 'Ff', arabic: 'حرف F' },
+      { id: 'l_7', type: 'letters', text: 'Gg', arabic: 'حرف G' },
+      { id: 'l_8', type: 'letters', text: 'Hh', arabic: 'حرف H' },
+      { id: 'l_9', type: 'letters', text: 'Ii', arabic: 'حرف I' },
+      { id: 'l_10', type: 'letters', text: 'Jj', arabic: 'حرف J' },
+      { id: 'l_11', type: 'letters', text: 'Kk', arabic: 'حرف K' },
+      { id: 'l_12', type: 'letters', text: 'Ll', arabic: 'حرف L' },
+      { id: 'l_13', type: 'letters', text: 'Mm', arabic: 'حرف M' },
+      { id: 'l_14', type: 'letters', text: 'Nn', arabic: 'حرف N' },
+      { id: 'l_15', type: 'letters', text: 'Oo', arabic: 'حرف O' },
+      { id: 'l_16', type: 'letters', text: 'Pp', arabic: 'حرف P' },
+      { id: 'l_17', type: 'letters', text: 'Qq', arabic: 'حرف Q' },
+      { id: 'l_18', type: 'letters', text: 'Rr', arabic: 'حرف R' },
+      { id: 'l_19', type: 'letters', text: 'Ss', arabic: 'حرف S' },
+      { id: 'l_20', type: 'letters', text: 'Tt', arabic: 'حرف T' },
+      { id: 'l_21', type: 'letters', text: 'Uu', arabic: 'حرف U' },
+      { id: 'l_22', type: 'letters', text: 'Vv', arabic: 'حرف V' },
+      { id: 'l_23', type: 'letters', text: 'Ww', arabic: 'حرف W' },
+      { id: 'l_24', type: 'letters', text: 'Xx', arabic: 'حرف X' },
+      { id: 'l_25', type: 'letters', text: 'Yy', arabic: 'حرف Y' },
+      { id: 'l_26', type: 'letters', text: 'Zz', arabic: 'حرف Z' },
 
-  const dpr = Math.min(window.devicePixelRatio || 1, 3);
-  const pixelW = Math.round(width * dpr);
-  const pixelH = Math.round(height * dpr);
+      // كلمات عشوائية
+      { id: 'w_1', type: 'words', text: 'Cat', arabic: 'قطة' },
+      { id: 'w_2', type: 'words', text: 'Book', arabic: 'كتاب' },
+      { id: 'w_3', type: 'words', text: 'Water', arabic: 'ماء' },
+      { id: 'w_4', type: 'words', text: 'Apple', arabic: 'تفاحة' },
+      { id: 'w_5', type: 'words', text: 'School', arabic: 'مدرسة' },
+      { id: 'w_6', type: 'words', text: 'Friend', arabic: 'صديق' },
+      { id: 'w_7', type: 'words', text: 'Morning', arabic: 'صباح' },
+      { id: 'w_8', type: 'words', text: 'Weather', arabic: 'الطقس' },
+      { id: 'w_9', type: 'words', text: 'Journey', arabic: 'رحلة' },
+      { id: 'w_10', type: 'words', text: 'Healthy', arabic: 'صحي' },
+      { id: 'w_11', type: 'words', text: 'Library', arabic: 'مكتبة' },
+      { id: 'w_12', type: 'words', text: 'Knowledge', arabic: 'معرفة' },
+      { id: 'w_13', type: 'words', text: 'Confidence', arabic: 'ثقة بالنفس' },
+      { id: 'w_14', type: 'words', text: 'Experience', arabic: 'خبرة أو تجربة' },
+      { id: 'w_15', type: 'words', text: 'Opportunity', arabic: 'فرصة' },
+      { id: 'w_16', type: 'words', text: 'Achievement', arabic: 'إنجاز' },
+      { id: 'w_17', type: 'words', text: 'Perspective', arabic: 'وجهة نظر' },
+      { id: 'w_18', type: 'words', text: 'Sustainable', arabic: 'مستدام' },
+      { id: 'w_19', type: 'words', text: 'Collaboration', arabic: 'تعاون' },
+      { id: 'w_20', type: 'words', text: 'Perseverance', arabic: 'مثابرة وإصرار' },
 
-  if (drawCanvas.width !== pixelW || drawCanvas.height !== pixelH) {
-    drawCanvas.width = pixelW;
-    drawCanvas.height = pixelH;
-    guideCanvas.width = pixelW;
-    guideCanvas.height = pixelH;
-  }
+      // جمل عشوائية
+      { id: 's_1', type: 'sentences', text: 'Good morning', arabic: 'صباح الخير' },
+      { id: 's_2', type: 'sentences', text: 'How are you?', arabic: 'كيف حالك؟' },
+      { id: 's_3', type: 'sentences', text: 'Thank you', arabic: 'شكرا لك' },
+      { id: 's_4', type: 'sentences', text: 'Have a nice day', arabic: 'أتمنى لك يوما جميلا' },
+      { id: 's_5', type: 'sentences', text: 'Nice to meet you', arabic: 'سررت بلقائك' },
+      { id: 's_6', type: 'sentences', text: 'Practice makes progress', arabic: 'الممارسة تصنع التقدم' },
+      { id: 's_7', type: 'sentences', text: 'Step by step every day', arabic: 'خطوة بخطوة كل يوم' },
+      { id: 's_8', type: 'sentences', text: 'I like reading books.', arabic: 'أنا أحب قراءة الكتب.' },
+      { id: 's_9', type: 'sentences', text: 'We learn English together.', arabic: 'نحن نتعلم الإنجليزية معا.' },
+      { id: 's_10', type: 'sentences', text: 'She goes to school early.', arabic: 'هي تذهب إلى المدرسة مبكرا.' },
+      { id: 's_11', type: 'sentences', text: 'Clear handwriting is easy to read.', arabic: 'الخط الواضح سهل القراءة.' },
+      { id: 's_12', type: 'sentences', text: 'Learning a language takes patience.', arabic: 'تعلم لغة يتطلب الصبر.' },
+      { id: 's_13', type: 'sentences', text: 'Regular practice builds confidence.', arabic: 'التدريب المنتظم يبني الثقة.' },
+      { id: 's_14', type: 'sentences', text: 'Good habits improve productivity.', arabic: 'العادات الجيدة تحسن الإنتاجية.' },
+      { id: 's_15', type: 'sentences', text: 'Consistent practice brings mastery.', arabic: 'الممارسة المستمرة تجلب الإتقان.' },
+      { id: 's_16', type: 'sentences', text: 'Stay calm and write neatly.', arabic: 'ابق هادئا واكتب بترتيب.' },
+      { id: 's_17', type: 'sentences', text: 'Every word written improves your skill.', arabic: 'كل كلمة تكتبها تطور مهارتك.' },
+      { id: 's_18', type: 'sentences', text: 'Focus on clean lines and gentle spacing.', arabic: 'ركز على نظافة الخطوط والمسافات الهادئة.' },
+      { id: 's_19', type: 'sentences', text: 'Confidence grows with every line.', arabic: 'الثقة تنمو مع كل سطر.' },
+      { id: 's_20', type: 'sentences', text: 'Patience and practice create success.', arabic: 'الصبر والممارسة يصنعان النجاح.' }
+    ];
 
-  drawCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
-  guideCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    /*************************************************************************
+     * 3. حالة التطبيق والتخزين المحلي
+     *************************************************************************/
+    const STORAGE_KEY = 'yazeed_handwriting_random_v4';
 
-  drawNotebookBackground();
-  redrawStrokes();
-}
+    const state = {
+      filterMode: 'letters',  // 'letters' | 'words' | 'sentences'
+      freeMode: false,        // وضع الكتابة الحرة المستقل
+      index: 0,
+      style: 'print',         // 'print' | 'cursive'
+      fontIndex: 0,
+      sound: true,
+      darkMode: false,
+      penColor: '#00273A',
+      penSize: 'medium',      // 'thin' | 'medium' | 'thick'
+      isEraser: false,
+      strokes: [],
+      isDrawing: false,
+      currentStroke: null,
+      progress: {}            // { [id]: { best: number, passed: boolean } }
+    };
 
-function drawNotebookBackground() {
-  if (!guideCtx) return;
-
-  const box = document.getElementById('canvas-container');
-  const width = box.clientWidth;
-  const height = box.clientHeight;
-  if (!width || !height) return;
-
-  const dark = state.darkMode;
-  const rowHeight = height / 2;
-  const item = getCurrentItem();
-  const font = state.selectedFont;
-
-  guideCtx.clearRect(0, 0, width, height);
-  guideCtx.fillStyle = dark ? '#171c22' : '#ffffff';
-  guideCtx.fillRect(0, 0, width, height);
-
-  for (let row = 0; row < 2; row++) {
-    const top = row * rowHeight;
-    const bandHeight = Math.min(rowHeight * 0.62, 120);
-    const bandTop = top + (rowHeight - bandHeight) / 2 + 5;
-    const sky = bandTop;
-    const middle = bandTop + bandHeight * 0.36;
-    const baseline = bandTop + bandHeight * 0.76;
-    const descender = bandTop + bandHeight;
-
-    if (row === 1) {
-      guideCtx.strokeStyle = dark ? '#35414a' : '#e2e8f0';
-      guideCtx.lineWidth = 1.5;
-      drawLine(guideCtx, 0, top, width, top);
+    function loadSavedState() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) return;
+        const parsed = JSON.parse(raw);
+        if (['letters', 'words', 'sentences'].includes(parsed.filterMode)) {
+          state.filterMode = parsed.filterMode;
+        }
+        if (typeof parsed.index === 'number') state.index = parsed.index;
+        if (parsed.style) state.style = parsed.style;
+        if (typeof parsed.fontIndex === 'number') state.fontIndex = parsed.fontIndex;
+        if (typeof parsed.darkMode === 'boolean') state.darkMode = parsed.darkMode;
+        if (typeof parsed.sound === 'boolean') state.sound = parsed.sound;
+        if (parsed.progress) state.progress = parsed.progress;
+      } catch (e) {}
     }
 
-    guideCtx.setLineDash([]);
-    guideCtx.strokeStyle = dark ? '#0284c7' : '#38bdf8';
-    guideCtx.lineWidth = 1.5;
-    drawLine(guideCtx, 22, sky, width - 22, sky);
-
-    guideCtx.strokeStyle = dark ? '#657481' : '#94a3b8';
-    guideCtx.setLineDash([6, 6]);
-    drawLine(guideCtx, 22, middle, width - 22, middle);
-
-    guideCtx.setLineDash([]);
-    guideCtx.strokeStyle = dark ? '#38bdf8' : '#0284c7';
-    guideCtx.lineWidth = 2;
-    drawLine(guideCtx, 22, baseline, width - 22, baseline);
-
-    guideCtx.strokeStyle = dark ? '#9f4960' : '#fda4af';
-    guideCtx.lineWidth = 1.5;
-    drawLine(guideCtx, 22, descender, width - 22, descender);
-
-    let fontSize = Math.max(16, Math.min((baseline - sky) * 1.05 * font.scale, 58));
-    guideCtx.font = `400 ${fontSize}px ${font.css}`;
-    const maxWidth = width - 60;
-    const measured = guideCtx.measureText(item.en).width;
-
-    if (measured > maxWidth && measured > 0) {
-      fontSize = Math.max(13, fontSize * maxWidth / measured);
-      guideCtx.font = `400 ${fontSize}px ${font.css}`;
+    function saveState() {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify({
+          filterMode: state.filterMode,
+          index: state.index,
+          style: state.style,
+          fontIndex: state.fontIndex,
+          darkMode: state.darkMode,
+          sound: state.sound,
+          progress: state.progress
+        }));
+      } catch (e) {}
     }
 
-    guideCtx.textBaseline = 'alphabetic';
-    guideCtx.direction = 'ltr';
-    guideCtx.textAlign = 'left';
-
-    if (row === 0 || (row === 1 && state.showRow2Guide)) {
-      guideCtx.fillStyle = dark
-        ? (row === 0 ? 'rgba(248,250,252,.38)' : 'rgba(248,250,252,.22)')
-        : (row === 0 ? 'rgba(15,23,42,.34)' : 'rgba(15,23,42,.20)');
-      guideCtx.fillText(item.en, 30, baseline, maxWidth);
-    } else {
-      guideCtx.fillStyle = '#10b981';
-      guideCtx.beginPath();
-      guideCtx.arc(31, baseline - 2, 4, 0, Math.PI * 2);
-      guideCtx.fill();
+    function getActiveList() {
+      return RANDOM_EXERCISES_POOL.filter(it => it.type === state.filterMode);
     }
-  }
-}
 
-function drawLine(ctx, x1, y1, x2, y2) {
-  ctx.beginPath();
-  ctx.moveTo(x1, y1);
-  ctx.lineTo(x2, y2);
-  ctx.stroke();
-}
-
-function initPointerEvents() {
-  drawCanvas.addEventListener('contextmenu', event => event.preventDefault());
-  drawCanvas.addEventListener('pointerdown', onPointerDown, {passive:false});
-  drawCanvas.addEventListener('pointermove', onPointerMove, {passive:false});
-  drawCanvas.addEventListener('pointerup', finishPointer, {passive:false});
-  drawCanvas.addEventListener('pointercancel', finishPointer, {passive:false});
-  drawCanvas.addEventListener('lostpointercapture', finishPointer);
-}
-
-function getPoint(event) {
-  const rect = drawCanvas.getBoundingClientRect();
-  return {
-    x: event.clientX - rect.left,
-    y: event.clientY - rect.top,
-    pressure: event.pressure > 0 ? event.pressure : 0.5
-  };
-}
-
-function onPointerDown(event) {
-  if (state.isDrawing) return;
-  if (state.penOnly && event.pointerType !== 'pen') return;
-  if (event.pointerType === 'mouse' && event.button !== 0) return;
-
-  event.preventDefault();
-  try { drawCanvas.setPointerCapture(event.pointerId); } catch (_) {}
-
-  state.isDrawing = true;
-  state.activePointerId = event.pointerId;
-  state.currentStroke = {
-    color: state.inkColor,
-    size: state.strokeSize,
-    isEraser: state.isEraser,
-    pointerType: event.pointerType,
-    points: [getPoint(event)]
-  };
-
-  renderStroke(state.currentStroke);
-}
-
-function onPointerMove(event) {
-  if (!state.isDrawing || !state.currentStroke || event.pointerId !== state.activePointerId) return;
-  event.preventDefault();
-
-  const events = typeof event.getCoalescedEvents === 'function'
-    ? event.getCoalescedEvents()
-    : [event];
-
-  for (const item of events) {
-    const point = getPoint(item);
-    const points = state.currentStroke.points;
-    const last = points[points.length - 1];
-
-    if (Math.hypot(point.x - last.x, point.y - last.y) > 0.35) {
-      points.push(point);
+    function getCurrentItem() {
+      const list = getActiveList();
+      if (state.index >= list.length) state.index = 0;
+      if (state.index < 0) state.index = list.length - 1;
+      return list[state.index];
     }
-  }
 
-  redrawStrokes();
-  renderStroke(state.currentStroke);
-}
-
-function finishPointer(event) {
-  if (!state.isDrawing || !state.currentStroke) return;
-  if (event.pointerId !== undefined &&
-      state.activePointerId !== null &&
-      event.pointerId !== state.activePointerId) return;
-
-  const stroke = state.currentStroke;
-  if (stroke.points.length) state.strokes.push(stroke);
-
-  const pointerId = state.activePointerId;
-  state.currentStroke = null;
-  state.isDrawing = false;
-  state.activePointerId = null;
-
-  try {
-    if (pointerId !== null && drawCanvas.hasPointerCapture(pointerId)) {
-      drawCanvas.releasePointerCapture(pointerId);
+    function getActiveFont() {
+      const arr = FONTS_LIST[state.style] || FONTS_LIST.print;
+      return arr[state.fontIndex % arr.length];
     }
-  } catch (_) {}
 
-  redrawStrokes();
-}
+    /*************************************************************************
+     * 4. محرك صوت القلم الواقعي عبر Web Audio API (بدون ملفات خارجية وبدون أصوات للأزرار)
+     *************************************************************************/
+    let audioCtx = null;
+    let writingNoiseSource = null;
+    let writingGainNode = null;
+    let writingFilterNode = null;
+    let pencilSilenceTimer = null;
 
-function renderStroke(stroke) {
-  const points = stroke.points;
-  if (!points || !points.length) return;
+    function getAudioCtx() {
+      if (!audioCtx) {
+        const Ctx = window.AudioContext || window.webkitAudioContext;
+        if (Ctx) audioCtx = new Ctx();
+      }
+      if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
+      return audioCtx;
+    }
 
-  drawCtx.save();
-  drawCtx.lineCap = 'round';
-  drawCtx.lineJoin = 'round';
+    function startWritingSound() {
+      if (!state.sound) return;
+      try {
+        const ctx = getAudioCtx();
+        if (!ctx) return;
+        stopWritingSound();
 
-  if (stroke.isEraser) {
-    drawCtx.globalCompositeOperation = 'destination-out';
-    drawCtx.strokeStyle = 'rgba(0,0,0,1)';
-    drawCtx.fillStyle = 'rgba(0,0,0,1)';
-    drawCtx.lineWidth = stroke.size * 4;
-  } else {
-    drawCtx.globalCompositeOperation = 'source-over';
-    drawCtx.strokeStyle = stroke.color;
-    drawCtx.fillStyle = stroke.color;
-    drawCtx.lineWidth = stroke.size;
-  }
+        // توليد ضجيج ناعم يحاكي ملمس ألياف الورق تحت سن القلم الرصاص
+        const bufferSize = ctx.sampleRate * 1.5;
+        const noiseBuffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+        const output = noiseBuffer.getChannelData(0);
+        let lastOut = 0.0;
+        for (let i = 0; i < bufferSize; i++) {
+          const white = Math.random() * 2 - 1;
+          output[i] = (lastOut + (0.035 * white)) / 1.035;
+          lastOut = output[i];
+          output[i] *= 2.2;
+        }
 
-  if (points.length === 1) {
-    drawCtx.beginPath();
-    drawCtx.arc(
-      points[0].x, points[0].y,
-      stroke.isEraser ? stroke.size * 2 : stroke.size / 2,
-      0, Math.PI * 2
-    );
-    drawCtx.fill();
-    drawCtx.restore();
-    return;
-  }
+        writingNoiseSource = ctx.createBufferSource();
+        writingNoiseSource.buffer = noiseBuffer;
+        writingNoiseSource.loop = true;
 
-  drawCtx.beginPath();
-  drawCtx.moveTo(points[0].x, points[0].y);
+        // فلتر تمرير النطاق لتقريب الترددات من صوت احتكاك الجرافيت بالورق
+        writingFilterNode = ctx.createBiquadFilter();
+        writingFilterNode.type = 'bandpass';
+        writingFilterNode.frequency.setValueAtTime(1550, ctx.currentTime);
+        writingFilterNode.Q.setValueAtTime(1.4, ctx.currentTime);
 
-  for (let i = 1; i < points.length - 1; i++) {
-    const middleX = (points[i].x + points[i + 1].x) / 2;
-    const middleY = (points[i].y + points[i + 1].y) / 2;
-    drawCtx.quadraticCurveTo(points[i].x, points[i].y, middleX, middleY);
-  }
+        // فلتر تنعيم إضافي لإزالة الحدة المزعجة
+        const lowpassNode = ctx.createBiquadFilter();
+        lowpassNode.type = 'lowpass';
+        lowpassNode.frequency.setValueAtTime(2800, ctx.currentTime);
 
-  const last = points[points.length - 1];
-  drawCtx.lineTo(last.x, last.y);
-  drawCtx.stroke();
-  drawCtx.restore();
-}
+        writingGainNode = ctx.createGain();
+        writingGainNode.gain.setValueAtTime(0.001, ctx.currentTime);
 
-function redrawStrokes() {
-  if (!drawCtx) return;
-  const box = document.getElementById('canvas-container');
-  drawCtx.clearRect(0, 0, box.clientWidth, box.clientHeight);
-  state.strokes.forEach(renderStroke);
-  if (state.currentStroke) renderStroke(state.currentStroke);
-}
+        writingNoiseSource.connect(writingFilterNode);
+        writingFilterNode.connect(lowpassNode);
+        lowpassNode.connect(writingGainNode);
+        writingGainNode.connect(ctx.destination);
 
-function selectColor(color, button) {
-  state.inkColor = color;
-  state.isEraser = false;
-  document.querySelectorAll('.color-dot').forEach(dot => {
-    dot.setAttribute('aria-pressed', String(dot === button));
+        writingNoiseSource.start();
+      } catch (e) {}
+    }
+
+    function modulateWritingSound(dist = 4) {
+      if (!state.sound) return;
+      try {
+        const ctx = getAudioCtx();
+        if (!ctx) return;
+        if (!writingNoiseSource || !writingGainNode) {
+          startWritingSound();
+        }
+        if (!writingGainNode || !writingFilterNode) return;
+
+        // تعديل شدة وتردد صوت القلم حسب سرعة تحريك اليد على الورقة
+        const speedFactor = Math.min(1, Math.max(0.15, dist / 14));
+        const targetGain = 0.035 + speedFactor * 0.065;
+        const targetFreq = 1350 + speedFactor * 750;
+
+        writingGainNode.gain.setTargetAtTime(targetGain, ctx.currentTime, 0.015);
+        writingFilterNode.frequency.setTargetAtTime(targetFreq, ctx.currentTime, 0.02);
+
+        clearTimeout(pencilSilenceTimer);
+        pencilSilenceTimer = setTimeout(() => {
+          if (writingGainNode && audioCtx) {
+            writingGainNode.gain.setTargetAtTime(0.0001, audioCtx.currentTime, 0.02);
+          }
+        }, 70);
+      } catch (e) {}
+    }
+
+    function stopWritingSound() {
+      clearTimeout(pencilSilenceTimer);
+      try {
+        if (writingGainNode && audioCtx) {
+          writingGainNode.gain.setTargetAtTime(0.0001, audioCtx.currentTime, 0.015);
+        }
+        if (writingNoiseSource) {
+          const src = writingNoiseSource;
+          writingNoiseSource = null;
+          writingGainNode = null;
+          writingFilterNode = null;
+          setTimeout(() => {
+            try {
+              src.stop();
+              src.disconnect();
+            } catch (e) {}
+          }, 35);
+        }
+      } catch (e) {}
+    }
+
+    function playTone(freq, duration = 0.06, type = 'sine', gainVal = 0.06) {
+      if (!state.sound) return;
+      try {
+        const ctx = getAudioCtx();
+        if (!ctx) return;
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, ctx.currentTime);
+        gain.gain.setValueAtTime(gainVal, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + duration);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start();
+        osc.stop(ctx.currentTime + duration);
+      } catch (e) {}
+    }
+
+    function playSuccessChord() {
+  if (!state.sound) return;
+
+  const frequencies = [523.25, 659.25, 783.99, 1046.5];
+
+  frequencies.forEach((freq, i) => {
+    setTimeout(() => {
+      try {
+        const ctx = getAudioCtx();
+        if (!ctx) return;
+
+        const now = ctx.currentTime;
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(freq, now);
+
+        gain.gain.setValueAtTime(0.1, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
+
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+
+        osc.start(now);
+        osc.stop(now + 0.27);
+      } catch (e) {}
+    }, i * 70);
   });
-  updateToolStates();
 }
 
-function selectEraser() {
-  state.isEraser = true;
-  updateToolStates();
-}
+    function playRetrySound() {
+      if (!state.sound) return;
+      playTone(330, 0.18, 'sine', 0.08);
+      setTimeout(() => playTone(293.66, 0.25, 'sine', 0.08), 120);
+    }
 
-function selectSize(size, key) {
-  state.strokeSize = size;
-  state.selectedSize = key;
-  state.isEraser = false;
-  updateToolStates();
-}
+    /*************************************************************************
+     * 5. الدفتر المسطر والرسم السلس
+     *************************************************************************/
+    const guideCanvas = document.getElementById('guide-canvas');
+    const guideCtx = guideCanvas.getContext('2d');
+    const drawCanvas = document.getElementById('drawing-canvas');
+    const drawCtx = drawCanvas.getContext('2d');
 
-function updateToolStates() {
-  document.querySelectorAll('.color-dot').forEach(dot => {
-    dot.style.outline = dot.getAttribute('aria-pressed') === 'true' && !state.isEraser
-      ? '3px solid #7dd3fc'
-      : 'none';
-  });
+    let stageW = 800;
+    let stageH = 290;
 
-  document.getElementById('btn-eraser').classList.toggle('active', state.isEraser);
+    const PEN_WIDTHS = {
+      thin: 3,
+      medium: 6,
+      thick: 10
+    };
 
-  ['thin','med','thick'].forEach(key => {
-    document.getElementById('size-' + key).classList.toggle('active', state.selectedSize === key);
-  });
-}
+    function resizeStageCanvases() {
+      const wrap = document.getElementById('canvas-stage');
+      const rect = wrap.getBoundingClientRect();
+      const dpr = window.devicePixelRatio || 1;
 
-function undoLastStroke() {
-  if (state.isDrawing) return;
-  state.strokes.pop();
-  redrawStrokes();
-}
+      stageW = Math.max(280, Math.floor(rect.width));
+      stageH = Math.max(220, Math.floor(rect.height));
 
-function clearCanvas(announceUser=true) {
-  state.strokes = [];
-  state.currentStroke = null;
-  state.isDrawing = false;
-  state.activePointerId = null;
-  if (drawCtx) redrawStrokes();
-  if (announceUser) announce('تم مسح مساحة الكتابة.');
-}
+      [guideCanvas, drawCanvas].forEach(c => {
+        c.width = stageW * dpr;
+        c.height = stageH * dpr;
+        const ctx = c.getContext('2d');
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      });
 
-/* Practice list and print list remain separate. */
-function addCustomSentenceFromInput() {
-  const input = document.getElementById('new-sentence-input');
-  const value = input.value.trim();
+      renderRuledPaperAndGhost();
+      redrawUserStrokes();
+    }
 
-  if (!value) {
-    announce('اكتب كلمة أو جملة أولاً.', 'custom-status');
-    input.focus();
-    return;
-  }
+    function getRuledLinesLayout() {
+      if (state.freeMode) {
+        const rows = [];
+        const bandH = Math.min(58, stageH * 0.22);
+        const startY = 30;
+        const gap = bandH * 1.65;
+        for (let i = 0; i < 2; i++) {
+          const topLine = startY + i * gap;
+          const midLine = topLine + bandH * 0.5;
+          const baseLine = topLine + bandH;
+          const descLine = baseLine + bandH * 0.3;
+          rows.push({ topLine, midLine, baseLine, descLine, bandH });
+        }
+        return rows;
+      }
 
-  CONTENT.custom.push({en:value, ar:'جملة مخصصة للتدريب'});
-  input.value = '';
-  state.level = 'custom';
-  state.itemIndex = CONTENT.custom.length - 1;
-  updateAll();
-  announce('تمت إضافة الجملة إلى قائمة التدريب.', 'custom-status');
-}
+      const item = getCurrentItem();
+      const isLong = item.text.length > 34;
+      if (!isLong) {
+        const centerY = stageH * 0.52;
+        const bandH = Math.min(110, stageH * 0.40);
+        const topLine = centerY - bandH * 0.5;
+        const midLine = centerY;
+        const baseLine = centerY + bandH * 0.5;
+        const descLine = baseLine + bandH * 0.32;
+        return [{ topLine, midLine, baseLine, descLine, bandH }];
+      } else {
+        const rows = [];
+        const bandH = Math.min(60, stageH * 0.22);
+        const startY = 30;
+        const gap = bandH * 1.65;
+        for (let i = 0; i < 2; i++) {
+          const topLine = startY + i * gap;
+          const midLine = topLine + bandH * 0.5;
+          const baseLine = topLine + bandH;
+          const descLine = baseLine + bandH * 0.3;
+          rows.push({ topLine, midLine, baseLine, descLine, bandH });
+        }
+        return rows;
+      }
+    }
 
-function addSentenceFromWorksheetPanel() {
-  const input = document.getElementById('worksheet-add-input');
-  const value = input.value.trim();
+    function renderRuledPaperAndGhost() {
+      guideCtx.clearRect(0, 0, stageW, stageH);
+      const isDark = state.darkMode;
 
-  if (!value) {
-    announce('اكتب كلمة أو جملة أولاً.', 'worksheet-status');
-    input.focus();
-    return;
-  }
+      // خلفية منطقة الكتابة (داكنة تماماً في الوضع الليلي كما في الصورة المرفقة)
+      guideCtx.fillStyle = isDark ? '#0c0d0f' : '#FFFFFF';
+      guideCtx.fillRect(0, 0, stageW, stageH);
 
-  addWorksheetItem({en:value, ar:'جملة مخصصة'});
-  input.value = '';
-  renderCustomSentenceChips();
-  updateWorksheetBadge();
-  buildPrintableWorksheet();
-  announce('تمت إضافة الجملة إلى ورقة العمل.', 'worksheet-status');
-}
+      const rows = getRuledLinesLayout();
+      const padX = 24;
 
-function addWorksheetItem(item) {
-  const key = item.en.trim().toLowerCase();
-  if (worksheetItems.some(existing => existing.en.trim().toLowerCase() === key)) {
-    announce('هذا العنصر موجود بالفعل في ورقة العمل.', 'worksheet-status');
-    return false;
-  }
-  worksheetItems.push({...item});
-  return true;
-}
+      rows.forEach(r => {
+        // تظليل خفيف جداً لمنطقة مسار الحروف
+        guideCtx.fillStyle = isDark ? 'rgba(0, 136, 199, 0.035)' : 'rgba(0, 104, 155, 0.03)';
+        guideCtx.fillRect(padX, r.topLine, stageW - padX * 2, r.baseLine - r.topLine);
 
-function addCurrentPromptToWorksheet() {
-  const item = getCurrentItem();
-  if (!item.en) return;
+        // السطر العلوي
+        guideCtx.strokeStyle = isDark ? '#1E2329' : '#CBD5E1';
+        guideCtx.lineWidth = 1.2;
+        guideCtx.setLineDash([]);
+        guideCtx.beginPath();
+        guideCtx.moveTo(padX, r.topLine);
+        guideCtx.lineTo(stageW - padX, r.topLine);
+        guideCtx.stroke();
 
-  const added = addWorksheetItem(item);
-  renderCustomSentenceChips();
-  updateWorksheetBadge();
-  buildPrintableWorksheet();
-  if (added) announce('تمت إضافة العنصر الحالي إلى ورقة العمل.');
-}
+        // السطر الأوسط المنقط
+        guideCtx.strokeStyle = isDark ? '#2B3036' : '#94A3B8';
+        guideCtx.lineWidth = 1.2;
+        guideCtx.setLineDash([6, 6]);
+        guideCtx.beginPath();
+        guideCtx.moveTo(padX, r.midLine);
+        guideCtx.lineTo(stageW - padX, r.midLine);
+        guideCtx.stroke();
 
-function loadCurrentLevelIntoWorksheet() {
-  const list = currentList();
-  let added = 0;
+        // السطر الأساسي الثابت (أزرق سماوي متوهج وأنيق في الوضع الليلي)
+        guideCtx.save();
+        guideCtx.strokeStyle = isDark ? '#0088C7' : '#00689B';
+        guideCtx.lineWidth = 2.2;
+        if (isDark) {
+          guideCtx.shadowColor = 'rgba(0, 136, 199, 0.45)';
+          guideCtx.shadowBlur = 6;
+        }
+        guideCtx.setLineDash([]);
+        guideCtx.beginPath();
+        guideCtx.moveTo(padX, r.baseLine);
+        guideCtx.lineTo(stageW - padX, r.baseLine);
+        guideCtx.stroke();
+        guideCtx.restore();
 
-  list.forEach(item => {
-    if (addWorksheetItem(item)) added++;
-  });
+        // سطر الحروف الهابطة
+        guideCtx.strokeStyle = isDark ? '#1A1E23' : '#E2E8F0';
+        guideCtx.lineWidth = 1.1;
+        guideCtx.setLineDash([3, 4]);
+        guideCtx.beginPath();
+        guideCtx.moveTo(padX, r.descLine);
+        guideCtx.lineTo(stageW - padX, r.descLine);
+        guideCtx.stroke();
+        guideCtx.setLineDash([]);
+      });
 
-  renderCustomSentenceChips();
-  updateWorksheetBadge();
-  buildPrintableWorksheet();
-  announce(
-    added ? `تمت إضافة ${added} عناصر إلى ورقة العمل.` : 'كل عناصر هذا المستوى موجودة بالفعل.',
-    'worksheet-status'
-  );
-}
+      // رسم النص المساعد بلون رمادي صلب وواضح (#777F88) في الوضع الليلي مطابق للصورة المرفقة
+      if (!state.freeMode) {
+        const ghostColor = isDark ? '#777F88' : 'rgba(100, 116, 139, 0.34)';
+        drawTargetOnContext(guideCtx, ghostColor);
+      }
+    }
 
-function clearWorksheetSentences() {
-  worksheetItems.length = 0;
-  renderCustomSentenceChips();
-  updateWorksheetBadge();
-  buildPrintableWorksheet();
-  announce('تم إفراغ قائمة الطباعة. لم تتأثر قائمة التدريب.', 'worksheet-status');
-}
+    function drawTargetOnContext(ctx, colorStyle) {
+      const item = getCurrentItem();
+      const rows = getRuledLinesLayout();
+      const fontObj = getActiveFont();
+      const padX = 44;
+      const maxW = stageW - padX * 2;
 
-function removeCustomSentence(index) {
-  if (index < 0 || index >= CONTENT.custom.length) return;
+      ctx.save();
+      ctx.fillStyle = colorStyle;
+      ctx.textBaseline = 'alphabetic';
+      ctx.direction = 'ltr';
 
-  CONTENT.custom.splice(index, 1);
-  if (state.level === 'custom') {
-    state.itemIndex = Math.min(state.itemIndex, Math.max(0, CONTENT.custom.length - 1));
-  }
-  updateAll();
-}
+      if (rows.length === 1) {
+        const r = rows[0];
+        let fontSize = Math.round(r.bandH * (state.style === 'cursive' ? 1.12 : 1.02));
+        ctx.font = `500 ${fontSize}px ${fontObj.css}`;
+        let textW = ctx.measureText(item.text).width;
+        while (textW > maxW && fontSize > 22) {
+          fontSize -= 2;
+          ctx.font = `500 ${fontSize}px ${fontObj.css}`;
+          textW = ctx.measureText(item.text).width;
+        }
+        const x = Math.max(padX, (stageW - textW) / 2);
+        ctx.fillText(item.text, x, r.baseLine - 2);
+      } else {
+        const r0 = rows[0];
+        let fontSize = Math.round(r0.bandH * 0.96);
+        ctx.font = `500 ${fontSize}px ${fontObj.css}`;
 
-function removeWorksheetSentence(index) {
-  if (index < 0 || index >= worksheetItems.length) return;
-  worksheetItems.splice(index, 1);
-  renderCustomSentenceChips();
-  updateWorksheetBadge();
-  buildPrintableWorksheet();
-}
+        const words = item.text.split(' ');
+        let line1 = '';
+        let line2 = '';
+        for (const w of words) {
+          const test = line1 ? line1 + ' ' + w : w;
+          if (ctx.measureText(test).width <= maxW || !line1) {
+            line1 = test;
+          } else {
+            line2 = line2 ? line2 + ' ' + w : w;
+          }
+        }
+        const x1 = Math.max(padX, (stageW - ctx.measureText(line1).width) / 2);
+        ctx.fillText(line1, x1, rows[0].baseLine - 2);
+        if (line2 && rows[1]) {
+          const x2 = Math.max(padX, (stageW - ctx.measureText(line2).width) / 2);
+          ctx.fillText(line2, x2, rows[1].baseLine - 2);
+        }
+      }
+      ctx.restore();
+    }
 
-function selectCustomSentenceForPractice(index) {
-  if (!CONTENT.custom[index]) return;
-  state.level = 'custom';
-  state.itemIndex = index;
-  clearCanvas(false);
-  updateAll();
-}
+    function drawSingleStrokeOnContext(ctx, stroke, overrideColor = null) {
+      if (!stroke || !stroke.points || stroke.points.length === 0) return;
+      ctx.save();
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
 
-function renderCustomSentenceChips() {
-  const practiceContainer = document.getElementById('custom-sentences-chips');
-  const worksheetContainer = document.getElementById('worksheet-sentences-manager');
+      if (stroke.isEraser) {
+        ctx.globalCompositeOperation = 'destination-out';
+        ctx.strokeStyle = 'rgba(0,0,0,1)';
+        ctx.lineWidth = stroke.width * 3;
+      } else {
+        ctx.globalCompositeOperation = 'source-over';
+        ctx.strokeStyle = overrideColor || stroke.color;
+        ctx.fillStyle = overrideColor || stroke.color;
+        ctx.lineWidth = stroke.width;
+      }
 
-  practiceContainer.innerHTML = CONTENT.custom.map((item, index) => `
-    <div class="chip">
-      <button type="button" class="chip-text" onclick="selectCustomSentenceForPractice(${index})">
-        ${index + 1}. ${escapeHtml(item.en)}
-      </button>
-      <button type="button" class="chip-delete" aria-label="حذف الجملة" onclick="removeCustomSentence(${index})">×</button>
-    </div>
-  `).join('') || '<span class="muted" style="font-size:12px">لم تضف جُملاً للتدريب بعد.</span>';
+      const pts = stroke.points;
+      if (pts.length === 1) {
+        ctx.beginPath();
+        ctx.arc(pts[0].x, pts[0].y, stroke.width / 2, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+        return;
+      }
 
-  worksheetContainer.innerHTML = worksheetItems.map((item, index) => `
-    <div class="chip">
-      <span class="chip-text">${index + 1}. ${escapeHtml(item.en)}</span>
-      <button type="button" class="chip-delete" aria-label="حذف العنصر من الطباعة" onclick="removeWorksheetSentence(${index})">×</button>
-    </div>
-  `).join('') || '<span class="muted" style="font-size:12px">قائمة الطباعة فارغة. أضف جملة أو المستوى الحالي.</span>';
-}
+      ctx.beginPath();
+      ctx.moveTo(pts[0].x, pts[0].y);
+      for (let i = 1; i < pts.length; i++) {
+        const midX = (pts[i - 1].x + pts[i].x) / 2;
+        const midY = (pts[i - 1].y + pts[i].y) / 2;
+        ctx.quadraticCurveTo(pts[i - 1].x, pts[i - 1].y, midX, midY);
+      }
+      ctx.lineTo(pts[pts.length - 1].x, pts[pts.length - 1].y);
+      ctx.stroke();
+      ctx.restore();
+    }
 
-function updateWorksheetBadge() {
-  document.getElementById('worksheet-count-badge').textContent = worksheetItems.length;
-}
+    function redrawUserStrokes() {
+      drawCtx.clearRect(0, 0, stageW, stageH);
+      for (const s of state.strokes) {
+        drawSingleStrokeOnContext(drawCtx, s);
+      }
+      if (state.currentStroke) {
+        drawSingleStrokeOnContext(drawCtx, state.currentStroke);
+      }
+    }
 
-function toggleWorksheetView(show) {
-  const practice = document.getElementById('practice-view');
-  const worksheet = document.getElementById('worksheet-view');
+    function setupPointerEvents() {
+      const getPt = (e) => {
+        const rect = drawCanvas.getBoundingClientRect();
+        return {
+          x: e.clientX - rect.left,
+          y: e.clientY - rect.top
+        };
+      };
 
-  if (show) {
-    renderCustomSentenceChips();
-    buildPrintableWorksheet();
-    practice.classList.add('hidden');
-    worksheet.classList.remove('hidden');
-    window.scrollTo({top:0, behavior:'auto'});
-  } else {
-    worksheet.classList.add('hidden');
-    practice.classList.remove('hidden');
-    requestAnimationFrame(resizeNotebook);
-  }
-}
+      drawCanvas.addEventListener('pointerdown', (e) => {
+        if (e.button !== undefined && e.button !== 0 && e.pointerType === 'mouse') return;
+        e.preventDefault();
+        drawCanvas.setPointerCapture(e.pointerId);
 
-function setPrintRowMode(mode) {
-  if (!['trace_and_blank','trace_only','trace_and_two_blank'].includes(mode)) return;
+        state.isDrawing = true;
+        state.currentStroke = {
+          color: state.penColor,
+          width: PEN_WIDTHS[state.penSize] || 6,
+          isEraser: state.isEraser,
+          points: [getPt(e)]
+        };
+        startWritingSound();
+        redrawUserStrokes();
+      }, { passive: false });
 
-  state.printRowMode = mode;
-  const ids = {
-    trace_and_blank:'pmode-both',
-    trace_only:'pmode-trace',
-    trace_and_two_blank:'pmode-double'
-  };
+      drawCanvas.addEventListener('pointermove', (e) => {
+        if (!state.isDrawing || !state.currentStroke) return;
+        e.preventDefault();
+        const pt = getPt(e);
+        const pts = state.currentStroke.points;
+        const last = pts[pts.length - 1];
+        const dist = Math.hypot(pt.x - last.x, pt.y - last.y);
+        if (dist > 1.5) {
+          pts.push(pt);
+          modulateWritingSound(dist);
+          redrawUserStrokes();
+        }
+      }, { passive: false });
 
-  Object.entries(ids).forEach(([key, id]) => {
-    document.getElementById(id).classList.toggle('active', key === mode);
-  });
+      const endPointer = (e) => {
+        if (!state.isDrawing || !state.currentStroke) return;
+        e.preventDefault();
+        state.isDrawing = false;
+        stopWritingSound();
+        state.strokes.push(state.currentStroke);
+        state.currentStroke = null;
+        redrawUserStrokes();
 
-  buildPrintableWorksheet();
-}
+        // فحص التحقق التلقائي عند 100% في جميع المعايير (فقط خارج وضع الكتابة الحرة)
+        if (!state.freeMode) {
+          checkAutomaticCompletion();
+        }
+      };
 
-function buildPrintableWorksheet() {
-  const container = document.getElementById('printable-area');
-  if (!container) return;
+      drawCanvas.addEventListener('pointerup', endPointer, { passive: false });
+      drawCanvas.addEventListener('pointercancel', endPointer, { passive: false });
+    }
 
-  const list = worksheetItems;
-  const font = state.selectedFont;
-  const fontSize = Math.round(30 * font.scale);
+    /*************************************************************************
+     * 6. محرك التقييم الصارم والتحقق التلقائي عند 100%
+     *************************************************************************/
+    function runCoreAccuracyCalculation() {
+      const inkStrokes = state.strokes.filter(s => !s.isEraser && s.points.length > 0);
+      if (inkStrokes.length === 0) return null;
 
-  if (!list.length) {
-    container.innerHTML = `
-      <div style="text-align:center;padding:55px 12px">
-        <h2 style="font-size:20px;font-weight:800">ورقة العمل فارغة</h2>
-        <p style="font-size:13px;margin-top:8px">أضف كلمات أو جملاً من لوحة التحكم أعلاه.</p>
-      </div>`;
-    return;
-  }
+      const W = stageW;
+      const H = stageH;
 
-  const header = `
-    <div class="print-header">
-      <div class="print-brand">
-        <img src="https://file.yazeedenglish.com/logo.png" alt="Yazeed English" onerror="this.style.display='none'">
-        <div>
-          <h2>Yazeed English</h2>
-          <p>ورقة تدريب الخط الإنجليزي · ${escapeHtml(font.label)} · ${list.length} عنصر</p>
+      const refCanvas = document.createElement('canvas');
+      refCanvas.width = W;
+      refCanvas.height = H;
+      const refCtx = refCanvas.getContext('2d');
+      drawTargetOnContext(refCtx, '#000000');
+
+      const usrCanvas = document.createElement('canvas');
+      usrCanvas.width = W;
+      usrCanvas.height = H;
+      const usrCtx = usrCanvas.getContext('2d');
+      for (const s of state.strokes) {
+        drawSingleStrokeOnContext(usrCtx, { ...s, width: Math.max(5, s.width) }, '#000000');
+      }
+
+      const directResult = computePixelMatchMetrics(refCanvas, usrCanvas, W, H, false);
+      const alignedResult = computePixelMatchMetrics(refCanvas, usrCanvas, W, H, true);
+
+      return alignedResult.overall > directResult.overall ? alignedResult : directResult;
+    }
+
+    function checkAutomaticCompletion() {
+      const res = runCoreAccuracyCalculation();
+      if (!res) return;
+
+      // إذا كانت الدقة الإجمالية وتطابق شكل الحرف والمسار واكتمال النص والالتزام بالسطر والحجم جميعها 100%
+      if (res.overall >= 100 && res.precision >= 100 && res.recall >= 100 && res.scaleScore >= 100) {
+        const item = getCurrentItem();
+        state.progress[item.id] = { best: 100, passed: true };
+        saveState();
+        updateUI();
+        showRatingModal(res);
+      }
+    }
+
+    function manualCheckHandwriting() {
+      const res = runCoreAccuracyCalculation();
+      if (!res) {
+        triggerEmptyShake();
+        return;
+      }
+
+      const item = getCurrentItem();
+      const prev = state.progress[item.id] || { best: 0, passed: false };
+      const best = Math.max(prev.best, res.overall);
+      const passed = prev.passed || res.overall >= 80;
+      state.progress[item.id] = { best, passed };
+      saveState();
+      updateUI();
+
+      showRatingModal(res);
+    }
+
+    function computePixelMatchMetrics(refCanvas, usrCanvas, W, H, alignHorizontally) {
+      const rCtx = refCanvas.getContext('2d');
+      const uCtx = usrCanvas.getContext('2d');
+
+      const rImg = rCtx.getImageData(0, 0, W, H).data;
+      const uImg = uCtx.getImageData(0, 0, W, H).data;
+
+      let rMinX = W, rMaxX = 0, rMinY = H, rMaxY = 0, rCount = 0;
+      let uMinX = W, uMaxX = 0, uMinY = H, uMaxY = 0, uCount = 0;
+
+      const stride = 2;
+      for (let y = 0; y < H; y += stride) {
+        for (let x = 0; x < W; x += stride) {
+          const idx = (y * W + x) * 4 + 3;
+          if (rImg[idx] > 60) {
+            rCount++;
+            if (x < rMinX) rMinX = x;
+            if (x > rMaxX) rMaxX = x;
+            if (y < rMinY) rMinY = y;
+            if (y > rMaxY) rMaxY = y;
+          }
+          if (uImg[idx] > 60) {
+            uCount++;
+            if (x < uMinX) uMinX = x;
+            if (x > uMaxX) uMaxX = x;
+            if (y < uMinY) uMinY = y;
+            if (y > uMaxY) uMaxY = y;
+          }
+        }
+      }
+
+      if (uCount < 8 || rCount < 8) {
+        return { overall: 0, precision: 0, recall: 0, scaleScore: 0, previewCanvas: createComparisonCanvas(refCanvas, usrCanvas, W, H) };
+      }
+
+      const rW = Math.max(10, rMaxX - rMinX);
+      const rH = Math.max(10, rMaxY - rMinY);
+      const uW = Math.max(4, uMaxX - uMinX);
+      const uH = Math.max(4, uMaxY - uMinY);
+
+      let activeUsrCanvas = usrCanvas;
+      if (alignHorizontally) {
+        const shiftX = Math.round(((rMinX + rMaxX) / 2) - ((uMinX + uMaxX) / 2));
+        const shifted = document.createElement('canvas');
+        shifted.width = W;
+        shifted.height = H;
+        shifted.getContext('2d').drawImage(usrCanvas, shiftX, 0);
+        activeUsrCanvas = shifted;
+      }
+
+      const refTight = document.createElement('canvas');
+      refTight.width = W;
+      refTight.height = H;
+      const rtCtx = refTight.getContext('2d');
+      rtCtx.filter = 'blur(3.2px)';
+      rtCtx.drawImage(refCanvas, 0, 0);
+
+      const usrTight = document.createElement('canvas');
+      usrTight.width = W;
+      usrTight.height = H;
+      const utCtx = usrTight.getContext('2d');
+      utCtx.filter = 'blur(3.2px)';
+      utCtx.drawImage(activeUsrCanvas, 0, 0);
+
+      const rtData = rtCtx.getImageData(0, 0, W, H).data;
+      const utData = utCtx.getImageData(0, 0, W, H).data;
+      const activeUData = activeUsrCanvas.getContext('2d').getImageData(0, 0, W, H).data;
+
+      let refMatched = 0;
+      let usrOnTrack = 0;
+
+      const NUM_SLICES = 12;
+      const refSlices = new Array(NUM_SLICES).fill(0);
+      const matchedSlices = new Array(NUM_SLICES).fill(0);
+
+      for (let y = 0; y < H; y += stride) {
+        for (let x = 0; x < W; x += stride) {
+          const i = (y * W + x) * 4 + 3;
+          const rCore = rImg[i] > 60;
+          const uCore = activeUData[i] > 60;
+
+          if (rCore) {
+            const sIdx = Math.min(NUM_SLICES - 1, Math.max(0, Math.floor(((x - rMinX) / rW) * NUM_SLICES)));
+            refSlices[sIdx]++;
+            if (utData[i] > 42) {
+              refMatched++;
+              matchedSlices[sIdx]++;
+            }
+          }
+
+          if (uCore) {
+            if (rtData[i] > 42) {
+              usrOnTrack++;
+            }
+          }
+        }
+      }
+
+      const rawPrecision = usrOnTrack / uCount;
+      const rawRecall = refMatched / rCount;
+
+      let activeSlicesCount = 0;
+      let completedSlicesCount = 0;
+      for (let s = 0; s < NUM_SLICES; s++) {
+        if (refSlices[s] > 3) {
+          activeSlicesCount++;
+          if (matchedSlices[s] / refSlices[s] >= 0.35) {
+            completedSlicesCount++;
+          }
+        }
+      }
+      const sliceCoverage = activeSlicesCount > 0 ? completedSlicesCount / activeSlicesCount : 0;
+
+      const widthRatio = Math.min(uW / rW, rW / uW);
+      const heightRatio = Math.min(uH / rH, rH / uH);
+      const baselineDiff = Math.abs(uMaxY - rMaxY);
+      const baselineFactor = Math.max(0, 1 - (baselineDiff / Math.max(45, rH * 1.1)));
+
+      const inkRatio = uCount / rCount;
+      let inkPenalty = 1;
+      if (inkRatio > 1.85) {
+        inkPenalty = Math.max(0.15, 1.85 / inkRatio);
+      } else if (inkRatio < 0.35) {
+        inkPenalty = Math.max(0.1, inkRatio / 0.35);
+      }
+
+      const scaleAndLineFactor = (widthRatio * 0.35 + heightRatio * 0.35 + baselineFactor * 0.30);
+
+      const f1 = (rawPrecision + rawRecall) > 0
+        ? (2 * rawPrecision * rawRecall) / (rawPrecision + rawRecall)
+        : 0;
+
+      let strictOverall = f1 * (0.75 + 0.25 * sliceCoverage) * inkPenalty * (0.65 + 0.35 * scaleAndLineFactor) * 112;
+
+      if (rawPrecision < 0.25 || rawRecall < 0.22) {
+        strictOverall = Math.min(strictOverall, 28);
+      }
+
+      const overall = Math.round(Math.max(0, Math.min(100, strictOverall)));
+      const precisionPct = Math.round(Math.max(0, Math.min(100, rawPrecision * inkPenalty * 108)));
+      const recallPct = Math.round(Math.max(0, Math.min(100, (rawRecall * 0.75 + sliceCoverage * 0.25) * 108)));
+      const scalePct = Math.round(Math.max(0, Math.min(100, scaleAndLineFactor * 105)));
+
+      const previewCanvas = createComparisonCanvas(refCanvas, activeUsrCanvas, W, H, rtData, activeUData, {
+        minX: Math.min(rMinX, uMinX),
+        maxX: Math.max(rMaxX, uMaxX),
+        minY: Math.min(rMinY, uMinY),
+        maxY: Math.max(rMaxY, uMaxY)
+      });
+
+      return {
+        overall,
+        precision: precisionPct,
+        recall: recallPct,
+        scaleScore: scalePct,
+        previewCanvas
+      };
+    }
+
+    function createComparisonCanvas(refCanvas, usrCanvas, W, H, rtData, uData, bounds) {
+      const out = document.createElement('canvas');
+      out.width = W;
+      out.height = H;
+      const ctx = out.getContext('2d');
+
+      ctx.fillStyle = state.darkMode ? '#0c0d0f' : '#FFFFFF';
+      ctx.fillRect(0, 0, W, H);
+
+      ctx.save();
+      ctx.globalAlpha = state.darkMode ? 0.45 : 0.28;
+      if (state.darkMode) {
+        ctx.filter = 'invert(1)';
+      }
+      ctx.drawImage(refCanvas, 0, 0);
+      ctx.restore();
+
+      if (rtData && uData) {
+        const img = ctx.getImageData(0, 0, W, H);
+        const d = img.data;
+        for (let i = 0; i < uData.length; i += 4) {
+          if (uData[i + 3] > 60) {
+            const onTrack = rtData[i + 3] > 42;
+            if (onTrack) {
+              d[i] = 22;
+              d[i + 1] = 163;
+              d[i + 2] = 74;
+              d[i + 3] = 245;
+            } else {
+              d[i] = 225;
+              d[i + 1] = 29;
+              d[i + 2] = 72;
+              d[i + 3] = 235;
+            }
+          }
+        }
+        ctx.putImageData(img, 0, 0);
+      }
+
+      out.dataset.bounds = JSON.stringify(bounds || { minX: 0, maxX: W, minY: 0, maxY: H });
+      return out;
+    }
+
+    function showRatingModal(res) {
+      const passed = res.overall >= 80;
+      if (passed) {
+        playSuccessChord();
+      } else {
+        playRetrySound();
+      }
+
+      const badge = document.getElementById('rating-badge-pill');
+      const title = document.getElementById('rating-title');
+      const feedback = document.getElementById('rating-feedback-text');
+
+      document.getElementById('score-overall-val').textContent = `${res.overall}%`;
+      document.getElementById('score-precision-val').textContent = `${res.precision}%`;
+      document.getElementById('score-recall-val').textContent = `${res.recall}%`;
+      document.getElementById('score-scale-val').textContent = `${res.scaleScore}%`;
+
+      // حساب النجوم من 5 بدلاً من 3
+      const stars = res.overall >= 95 ? 5
+                  : res.overall >= 85 ? 4
+                  : res.overall >= 70 ? 3
+                  : res.overall >= 50 ? 2
+                  : res.overall >= 25 ? 1 : 0;
+      for (let i = 1; i <= 5; i++) {
+        const st = document.getElementById(`star-${i}`);
+        if (st) {
+          if (i <= stars) st.classList.add('earned');
+          else st.classList.remove('earned');
+        }
+      }
+
+      if (res.overall >= 100) {
+        badge.style.background = 'var(--success-bg)';
+        badge.style.color = 'var(--success)';
+        badge.textContent = 'إتقان تام 100% (تحقق تلقائي)';
+        title.textContent = 'مذهل! خطك مطابق للنموذج تماماً';
+        feedback.textContent = 'لقد حققت الدرجة الكاملة في جميع المعايير. يمكنك الانتقال للتمرين التالي!';
+      } else if (passed) {
+        badge.style.background = 'var(--success-bg)';
+        badge.style.color = 'var(--success)';
+        badge.textContent = 'اجتياز بنجاح (≥80%)';
+        title.textContent = res.overall >= 90 ? 'ممتاز جداً! خطك متقن وجميل' : 'أحسنت! كتابة صحيحة وواضحة';
+        feedback.textContent = 'التزام رائع بشكل الحروف وبالسطر الأساسي. يمكنك الانتقال للتمرين التالي!';
+      } else if (res.overall >= 50) {
+        badge.style.background = 'rgba(245, 158, 11, 0.15)';
+        badge.style.color = '#D97706';
+        badge.textContent = 'قريب من الهدف (المطلوب 80%)';
+        title.textContent = 'محاولة جيدة — تدرّب مرة أخرى';
+        feedback.textContent = 'بعض الأجزاء خرجت عن مسار الحروف. تمهّل واكتب فوق الخط المساعد بدقة أكبر.';
+      } else {
+        badge.style.background = 'var(--error-bg)';
+        badge.style.color = 'var(--error)';
+        badge.textContent = 'يحتاج إلى إعادة كتابة';
+        title.textContent = 'الكتابة غير مطابقة للنموذج';
+        feedback.textContent = 'تأكد من كتابة الكلمة كاملة على السطر وعدم رسم خطوط عشوائية خارج الكلمة.';
+      }
+
+      const dest = document.getElementById('eval-comparison-canvas');
+      const dCtx = dest.getContext('2d');
+      dCtx.clearRect(0, 0, dest.width, dest.height);
+
+      if (res.previewCanvas) {
+        const b = JSON.parse(res.previewCanvas.dataset.bounds || '{}');
+        const pad = 18;
+        const sx = Math.max(0, (b.minX || 0) - pad);
+        const sy = Math.max(0, (b.minY || 0) - pad);
+        const sw = Math.min(stageW - sx, ((b.maxX || stageW) - (b.minX || 0)) + pad * 2);
+        const sh = Math.min(stageH - sy, ((b.maxY || stageH) - (b.minY || 0)) + pad * 2);
+
+        const scale = Math.min((dest.width - 12) / Math.max(1, sw), (dest.height - 12) / Math.max(1, sh));
+        const dw = sw * scale;
+        const dh = sh * scale;
+        dCtx.drawImage(res.previewCanvas, sx, sy, sw, sh, (dest.width - dw) / 2, (dest.height - dh) / 2, dw, dh);
+      }
+
+      document.getElementById('rating-modal').hidden = false;
+      lucide.createIcons();
+    }
+
+    function retryExerciseFromModal() {
+      document.getElementById('rating-modal').hidden = true;
+      clearCanvas(true);
+    }
+
+    function nextExerciseFromModal() {
+      document.getElementById('rating-modal').hidden = true;
+      nextExercise();
+    }
+
+    function triggerEmptyShake() {
+      playRetrySound();
+      const wrap = document.getElementById('main-exercise-wrapper');
+      wrap.classList.remove('shake');
+      void wrap.offsetWidth;
+      wrap.classList.add('shake');
+    }
+
+    /*************************************************************************
+     * 7. وظائف التنقل والأدوات المبسطة (بدون أي صوت عند النقر على الأزرار)
+     *************************************************************************/
+    function toggleFreeWriteMode() {
+      state.freeMode = !state.freeMode;
+      clearCanvas(true);
+      updateUI();
+    }
+
+    function selectPenColor(color) {
+      state.penColor = color;
+      state.isEraser = false;
+      document.getElementById('eraser-btn').classList.remove('active');
+      document.querySelectorAll('.color-swatch').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.color === color);
+      });
+    }
+
+    function selectPenSize(sizeKey) {
+      state.penSize = sizeKey;
+      state.isEraser = false;
+      document.getElementById('eraser-btn').classList.remove('active');
+      document.querySelectorAll('.size-dot-btn[data-size]').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.size === sizeKey);
+      });
+    }
+
+    function toggleEraserMode() {
+      state.isEraser = !state.isEraser;
+      document.getElementById('eraser-btn').classList.toggle('active', state.isEraser);
+    }
+
+    function undoLastStroke() {
+      if (state.strokes.length === 0) return;
+      state.strokes.pop();
+      redrawUserStrokes();
+    }
+
+    function clearCanvas() {
+      state.strokes = [];
+      state.currentStroke = null;
+      redrawUserStrokes();
+    }
+
+    function toggleHandwritingStyle() {
+      state.style = state.style === 'print' ? 'cursive' : 'print';
+      state.fontIndex = 0;
+      saveState();
+      updateUI();
+    }
+
+    function cycleFontChoice() {
+      const list = FONTS_LIST[state.style];
+      state.fontIndex = (state.fontIndex + 1) % list.length;
+      saveState();
+      updateUI();
+    }
+
+    function toggleSound() {
+      state.sound = !state.sound;
+      if (!state.sound) stopWritingSound();
+      saveState();
+      const btn = document.getElementById('toggle-sfx-btn');
+      btn.innerHTML = `<i data-lucide="${state.sound ? 'volume-2' : 'volume-x'}"></i>`;
+      lucide.createIcons();
+    }
+
+    function toggleDarkMode() {
+      state.darkMode = !state.darkMode;
+      document.body.classList.toggle('dark', state.darkMode);
+
+      // تبديل لون القلم الافتراضي والخطوط المرسومة تلقائياً بين الأبيض الساطع (#FFFFFF) في الوضع الليلي والكحلي (#00273A) في النهاري
+      if (state.darkMode) {
+        if (state.penColor === '#00273A' || state.penColor === '#000000') {
+          selectPenColor('#FFFFFF');
+        }
+        state.strokes.forEach(s => {
+          if (!s.isEraser && (s.color === '#00273A' || s.color === '#000000')) {
+            s.color = '#FFFFFF';
+          }
+        });
+      } else {
+        if (state.penColor === '#FFFFFF') {
+          selectPenColor('#00273A');
+        }
+        state.strokes.forEach(s => {
+          if (!s.isEraser && s.color === '#FFFFFF') {
+            s.color = '#00273A';
+          }
+        });
+      }
+
+      saveState();
+      const btn = document.getElementById('theme-toggle-btn');
+      btn.innerHTML = `<i data-lucide="${state.darkMode ? 'sun' : 'moon'}"></i>`;
+      renderRuledPaperAndGhost();
+      redrawUserStrokes();
+      lucide.createIcons();
+    }
+
+    function setModeFilter(mode) {
+      state.filterMode = mode;
+      state.index = 0;
+      if (state.freeMode) state.freeMode = false;
+      clearCanvas(true);
+      saveState();
+      updateFilterChips();
+      updateUI();
+    }
+
+    function updateFilterChips() {
+      ['letters', 'words', 'sentences'].forEach(m => {
+        const chip = document.getElementById(`chip-${m}`);
+        if (chip) chip.classList.toggle('active', state.filterMode === m);
+      });
+    }
+
+    function pickRandomExercise() {
+      if (state.freeMode) state.freeMode = false;
+      const list = getActiveList();
+      state.index = Math.floor(Math.random() * list.length);
+      clearCanvas(true);
+      saveState();
+      updateUI();
+    }
+
+    function prevExercise() {
+      const list = getActiveList();
+      state.index = (state.index - 1 + list.length) % list.length;
+      clearCanvas(true);
+      saveState();
+      updateUI();
+    }
+
+    function nextExercise() {
+      const list = getActiveList();
+      state.index = (state.index + 1) % list.length;
+      clearCanvas(true);
+      saveState();
+      updateUI();
+    }
+
+    /*************************************************************************
+     * 8. طباعة ورقة عمل مسطرة
+     *************************************************************************/
+    function printWorksheetNow() {
+      const list = getActiveList().slice(0, 8);
+      const fontObj = getActiveFont();
+
+      const escapeSvgText = (str) => String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;');
+
+      const buildRuledRowSvg = (traceText) => {
+        const len = traceText ? traceText.length : 0;
+        const baseFontSize = state.style === 'cursive' ? 46 : 43;
+        const computedSize = len > 26
+          ? Math.max(26, Math.round(baseFontSize * (26 / len)))
+          : baseFontSize;
+
+        return `
+        <div style="position:relative; width:100%; height:68px; margin:6px 0; direction:ltr;">
+          <svg viewBox="0 0 800 68" style="width:100%; height:68px; display:block; overflow:visible;" preserveAspectRatio="none">
+            <!-- خلفية المسار الشبيه بالشارع بين السطر العلوي والسطر الأساسي -->
+            <rect x="0" y="10" width="800" height="42" fill="rgba(0, 104, 155, 0.035)" />
+            <!-- السطر العلوي (Top line) -->
+            <line x1="0" y1="10" x2="800" y2="10" stroke="#CBD5E1" stroke-width="1.2" />
+            <!-- الخط المنقط الأوسط كخط منتصف الشارع (Midline) -->
+            <line x1="0" y1="31" x2="800" y2="31" stroke="#94A3B8" stroke-width="1.2" stroke-dasharray="6 6" />
+            <!-- السطر الأزرق الأساسي الذي ترتكز عليه الحروف (Baseline y=52) -->
+            <line x1="0" y1="52" x2="800" y2="52" stroke="#00689B" stroke-width="2" />
+            <!-- سطر الحروف الهابطة مثل g, y, p (Descender line) -->
+            <line x1="0" y1="64" x2="800" y2="64" stroke="#E2E8F0" stroke-width="1" stroke-dasharray="3 4" />
+            ${traceText ? `
+              <text x="16" y="52"
+                    dominant-baseline="alphabetic"
+                    text-anchor="start"
+                    direction="ltr"
+                    style="font-family:${fontObj.css}; font-size:${computedSize}px; font-weight:500; fill:#CBD5E1;">
+                ${escapeSvgText(traceText)}
+              </text>
+            ` : ''}
+          </svg>
         </div>
-      </div>
-      <div class="print-name">Name: ____________________<br>Date: _____________________</div>
-    </div>`;
+      `;
+      };
 
-  function makeRow(item, blank=false) {
-    let text = '';
-    if (!blank) {
-      text = `<span class="print-row-text ${font.cls}" data-print-text style="font-size:${fontSize}px">${escapeHtml(item.en)}</span>`;
+      const rowsHtml = list.map((it, i) => `
+        <div style="margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid #E2E8F0; page-break-inside:avoid;">
+          <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:4px;">
+            <strong style="font-family:${fontObj.css}; font-size:20px; direction:ltr;">${i + 1}. ${it.text}</strong>
+            <span style="font-size:13px; color:#5B645F;">${it.arabic}</span>
+          </div>
+          ${buildRuledRowSvg(it.text)}
+          ${buildRuledRowSvg('')}
+        </div>
+      `).join('');
+
+      const container = document.getElementById('print-worksheet-container');
+      container.innerHTML = `
+        <div style="padding:10px; font-family:'Tajawal', sans-serif; direction:rtl;">
+          <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid #00273A; padding-bottom:10px; margin-bottom:16px;">
+            <div>
+              <h1 style="margin:0; font-size:22px; color:#00273A;">يزيد للإنجليزية — كراسة تحسين الخط الإنجليزي</h1>
+              <p style="margin:4px 0 0; font-size:13px; color:#5B645F;">تمارين عشوائية • الخط: ${fontObj.id}</p>
+            </div>
+            <div style="font-size:13px; text-align:left;">
+              <div>الاسم: _______________________</div>
+              <div style="margin-top:4px;">التاريخ: ____ / ____ / 2026</div>
+            </div>
+          </div>
+          ${rowsHtml}
+        </div>
+      `;
+
+      setTimeout(() => window.print(), 120);
     }
-    return `<div class="print-row-4line ${blank ? 'print-row-blank' : ''}">${text}</div>`;
-  }
 
-  const itemsPerPage = state.printRowMode === 'trace_and_two_blank' ? 4
-    : state.printRowMode === 'trace_and_blank' ? 6 : 9;
+    /*************************************************************************
+     * 9. تحديث عناصر الواجهة
+     *************************************************************************/
+    function updateUI() {
+      const list = getActiveList();
+      const item = getCurrentItem();
+      const fontObj = getActiveFont();
 
-  const pages = [];
+      // تحديث حالة وضع الكتابة الحرة
+      const freeBtn = document.getElementById('free-write-btn');
+      const freeLabel = document.getElementById('free-write-label');
+      freeBtn.classList.toggle('active-pro', state.freeMode);
+      freeLabel.textContent = state.freeMode ? 'العودة للتمارين' : 'الكتابة الحرة';
 
-  for (let start = 0; start < list.length; start += itemsPerPage) {
-    const subset = list.slice(start, start + itemsPerPage);
-    let rows = '';
+      document.getElementById('top-category-capsule').hidden = state.freeMode;
+      document.getElementById('free-mode-banner').hidden = !state.freeMode;
+      document.getElementById('reference-header-bar').hidden = state.freeMode;
+      document.getElementById('target-showcase-box').hidden = state.freeMode;
+      document.getElementById('translation-divider').hidden = state.freeMode;
+      document.getElementById('arabic-meaning-display').hidden = state.freeMode;
+      document.getElementById('exercise-nav-controls').hidden = state.freeMode;
 
-    subset.forEach(item => {
-      rows += makeRow(item, false);
-      if (state.printRowMode !== 'trace_only') rows += makeRow(item, true);
-      if (state.printRowMode === 'trace_and_two_blank') rows += makeRow(item, true);
+      document.documentElement.style.setProperty('--active-ref-font', fontObj.css);
+      document.getElementById('font-cycle-label').textContent = `خط: ${fontObj.id}`;
+      document.getElementById('footer-font-name').textContent = fontObj.label;
+
+      document.getElementById('style-toggle-label').textContent =
+        state.style === 'print' ? 'الخط: عادي (Print)' : 'الخط: متصل (Cursive)';
+
+      document.getElementById('meta-counter-label').textContent = `تمرين ${state.index + 1} من ${list.length}`;
+
+      const progressPct = state.freeMode ? 100 : Math.round(((state.index + 1) / list.length) * 100);
+      document.getElementById('top-progress-fill').style.width = `${progressPct}%`;
+
+      document.getElementById('target-english-display').textContent = item.text;
+      document.getElementById('arabic-meaning-display').textContent = item.arabic;
+
+      const totalPassed = Object.values(state.progress).filter(p => p && p.passed).length;
+      document.getElementById('footer-completed-count').textContent = totalPassed;
+
+      const curProg = state.progress[item.id];
+      document.getElementById('footer-best-score').textContent = state.freeMode
+        ? 'وضع حر'
+        : (curProg ? `${curProg.best}%` : 'لم يُختبر بعد');
+
+      renderRuledPaperAndGhost();
+      lucide.createIcons();
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      loadSavedState();
+      document.body.classList.toggle('dark', state.darkMode);
+
+      // ضبط لون القلم الافتراضي وأيقونة الوضع الليلي عند التحميل
+      if (state.darkMode && state.penColor === '#00273A') {
+        selectPenColor('#FFFFFF');
+      }
+      const themeBtn = document.getElementById('theme-toggle-btn');
+      if (themeBtn) {
+        themeBtn.innerHTML = `<i data-lucide="${state.darkMode ? 'sun' : 'moon'}"></i>`;
+      }
+      const sfxBtn = document.getElementById('toggle-sfx-btn');
+      if (sfxBtn) {
+        sfxBtn.innerHTML = `<i data-lucide="${state.sound ? 'volume-2' : 'volume-x'}"></i>`;
+      }
+
+      lucide.createIcons();
+      setupPointerEvents();
+      updateFilterChips();
+      updateUI();
+      resizeStageCanvases();
+
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(() => {
+          renderRuledPaperAndGhost();
+        });
+      }
+
+      window.addEventListener('resize', resizeStageCanvases);
     });
-
-    pages.push(`<div class="print-page">${header}<div>${rows}</div></div>`);
-  }
-
-  container.innerHTML = pages.join('');
-
-  /* Shrink each trace sentence to fit its own line instead of clipping it. */
-  container.querySelectorAll('[data-print-text]').forEach(element => {
-    const row = element.parentElement;
-    const available = row.clientWidth - 28;
-    let size = fontSize;
-    element.style.fontSize = size + 'px';
-
-    while (element.scrollWidth > available && size > 12) {
-      size -= 1;
-      element.style.fontSize = size + 'px';
-    }
-  });
-}
-
-function escapeHtml(value) {
-  return String(value)
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#39;');
-}
-</script>
+  </script>
 </body>
 </html>

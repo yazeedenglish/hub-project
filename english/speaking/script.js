@@ -851,20 +851,29 @@ function ensureAudioContext() {
 function playMotivationalSuccessSound() {
     const ctx = ensureAudioContext();
     if (!ctx) return;
-    const now = ctx.currentTime;
+
     const notes = [523.25, 659.25, 783.99, 1046.50];
+
     notes.forEach((freq, idx) => {
+        const startTime = ctx.currentTime + idx * 0.07;
+
         const osc = ctx.createOscillator();
         const gain = ctx.createGain();
-        osc.type = "triangle";
-        osc.frequency.setValueAtTime(freq, now + idx * 0.085);
-        gain.gain.setValueAtTime(0.001, now + idx * 0.085);
-        gain.gain.exponentialRampToValueAtTime(0.18, now + idx * 0.085 + 0.02);
-        gain.gain.exponentialRampToValueAtTime(0.0001, now + idx * 0.085 + 0.38);
+
+        osc.type = "sine";
+        osc.frequency.setValueAtTime(freq, startTime);
+
+        gain.gain.setValueAtTime(0.1, startTime);
+        gain.gain.exponentialRampToValueAtTime(
+            0.001,
+            startTime + 0.25
+        );
+
         osc.connect(gain);
         gain.connect(ctx.destination);
-        osc.start(now + idx * 0.085);
-        osc.stop(now + idx * 0.085 + 0.4);
+
+        osc.start(startTime);
+        osc.stop(startTime + 0.27);
     });
 }
 
