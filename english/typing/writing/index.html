@@ -54,7 +54,21 @@
     /* Base */
     * {
         box-sizing: border-box;
-        -webkit-tap-highlight-color: transparent;
+        -webkit-tap-highlight-color: transparent !important;
+        user-select: none !important;
+        -webkit-user-select: none !important;
+        -webkit-touch-callout: none !important;
+        -webkit-user-drag: none !important;
+    }
+
+    *::selection {
+        background: transparent !important;
+        color: inherit !important;
+    }
+
+    *::-webkit-selection {
+        background: transparent !important;
+        color: inherit !important;
     }
 
     [hidden] {
@@ -337,12 +351,33 @@
         direction: ltr;
         text-align: center;
         font-family: var(--active-ref-font);
-        font-size: clamp(28px, 4vw, 48px);
+        font-size: calc(clamp(28px, 4vw, 48px) * var(--font-scale-factor, 1));
         font-weight: 500;
         line-height: 1.35;
         color: var(--ink);
         overflow-wrap: anywhere;
         user-select: none;
+        transition: font-size .18s ease;
+    }
+
+    /* مؤشر مستويات حجم الخط الخمسة داخل الزر */
+    .scale-bars-indicator {
+        display: inline-flex;
+        align-items: flex-end;
+        gap: 2px;
+        height: 14px;
+        margin-right: 2px;
+    }
+
+    .scale-bar-item {
+        width: 3px;
+        border-radius: 2px;
+        background: var(--line);
+        transition: background .18s ease, transform .18s ease;
+    }
+
+    .scale-bar-item.active {
+        background: var(--indigo);
     }
 
     /* Ruled Notebook Canvas Card */
@@ -356,6 +391,10 @@
         overflow: hidden;
         direction: ltr;
         transition: background .2s, border-color .2s, box-shadow .2s;
+        touch-action: none !important;
+        -webkit-user-select: none !important;
+        user-select: none !important;
+        -webkit-touch-callout: none !important;
     }
 
     body.dark .notebook-canvas-card {
@@ -369,8 +408,12 @@
         width: 100%;
         height: 290px;
         background: #FFFFFF;
-        touch-action: none;
-        -ms-touch-action: none;
+        touch-action: none !important;
+        -ms-touch-action: none !important;
+        -webkit-user-select: none !important;
+        user-select: none !important;
+        -webkit-touch-callout: none !important;
+        -webkit-user-drag: none !important;
         transition: background .2s;
     }
 
@@ -384,7 +427,16 @@
         width: 100%;
         height: 100%;
         display: block;
-        touch-action: none;
+        touch-action: none !important;
+        -webkit-user-select: none !important;
+        user-select: none !important;
+        -webkit-touch-callout: none !important;
+        -webkit-user-drag: none !important;
+    }
+
+    #guide-canvas {
+        pointer-events: none !important;
+        z-index: 1;
     }
 
     #drawing-canvas {
@@ -532,183 +584,7 @@
         font-size: 12px;
     }
 
-    /* Modals */
-    .modal-backdrop {
-        position: fixed;
-        inset: 0;
-        z-index: 50;
-        display: grid;
-        place-items: center;
-        padding: 16px;
-        background: rgba(0, 12, 20, .7);
-        -webkit-backdrop-filter: blur(5px);
-        backdrop-filter: blur(5px);
-        overflow-y: auto;
-    }
-
-    .stories-modal-card,
-    .rating-modal-card {
-        width: 100%;
-        max-height: 88vh;
-        max-height: 88dvh;
-        overflow-y: auto;
-        overscroll-behavior: contain;
-        border: 1px solid var(--line);
-        border-radius: 20px;
-        background: var(--card);
-        box-shadow: var(--shadow);
-    }
-
-    .stories-modal-card {
-        max-width: 900px;
-        padding: clamp(16px, 3vw, 28px);
-    }
-
-    .stories-modal-header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 12px;
-        margin-bottom: 18px;
-        padding-bottom: 14px;
-        border-bottom: 1px solid var(--line);
-    }
-
-    .stories-modal-header h2 {
-        margin: 0;
-        font-size: clamp(19px, 3vw, 24px) !important;
-        line-height: 1.5;
-    }
-
-    .stories-grid {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 14px;
-    }
-
-    .story-card {
-        display: flex;
-        flex-direction: column;
-        min-width: 0;
-        overflow: hidden;
-        border: 1px solid var(--line);
-        border-radius: 16px;
-        background: var(--paper);
-        cursor: pointer;
-        transition: border-color .2s, transform .2s;
-    }
-
-    .story-card:hover {
-        border-color: var(--indigo);
-        transform: translateY(-2px);
-    }
-
-    .story-card.selected-story {
-        border: 2px solid var(--course-button);
-        background: rgba(0, 104, 155, .05);
-    }
-
-    .story-card-body {
-        display: flex;
-        flex: 1;
-        flex-direction: column;
-        padding: 14px 16px;
-    }
-
-    .story-title {
-        margin: 0;
-        color: var(--ink);
-        font: 700 18px/1.4 "Quicksand", sans-serif;
-        direction: ltr;
-        text-align: left;
-        overflow-wrap: anywhere;
-    }
-
-    .story-arabic-title {
-        margin: 6px 0 4px;
-        color: var(--indigo);
-        font-size: 15px;
-        font-weight: 800;
-    }
-
-    /* Completion & Accuracy Evaluation Modal */
-    .rating-modal-card {
-        max-width: 500px;
-        padding: clamp(18px, 4vw, 28px);
-        text-align: center;
-    }
-
-    .rating-modal-card h3 {
-        margin: 8px 0 4px;
-        font-size: clamp(22px, 5vw, 26px) !important;
-    }
-
-    .stars-row {
-        display: flex;
-        justify-content: center;
-        gap: 8px;
-        margin: 14px 0;
-        direction: ltr;
-    }
-
-    .star-item {
-        color: var(--line);
-        font-size: clamp(30px, 7vw, 40px);
-        line-height: 1;
-    }
-
-    .star-item.earned {
-        color: var(--gold);
-        filter: drop-shadow(0 3px 7px rgba(245, 158, 11, .3));
-        animation: starPop .4s ease both;
-    }
-
-    .modal-metrics-grid {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 10px;
-        margin: 14px 0 18px;
-    }
-
-    .modal-metric-box {
-        min-width: 0;
-        padding: 12px 8px;
-        border: 1px solid var(--line);
-        border-radius: 12px;
-        background: var(--paper);
-        overflow-wrap: anywhere;
-    }
-
-    .modal-metric-box span {
-        display: block;
-        color: var(--ink-soft);
-        font-size: 12px;
-        font-weight: 700;
-    }
-
-    .modal-metric-box strong {
-        display: block;
-        margin-top: 5px;
-        color: var(--indigo);
-        font-size: 18px;
-        font-weight: 900;
-    }
-
-    .comparison-box {
-        border: 1px solid var(--line);
-        border-radius: 12px;
-        background: var(--paper);
-        padding: 8px;
-        margin-bottom: 16px;
-    }
-
     /* Animations */
-    @keyframes starPop {
-        0% { transform: scale(.5); }
-        70% { transform: scale(1.15); }
-        100% { transform: scale(1); }
-    }
-
     @keyframes gentleShake {
         0%, 100% { transform: translateX(0); }
         25% { transform: translateX(-4px); }
@@ -864,7 +740,7 @@
     }
   </style>
 </head>
-<body>
+<body oncontextmenu="return false;" onselectstart="return false;" ondragstart="return false;">
 
   <!-- خط التقدم العلوي -->
   <div class="top-progress-line">
@@ -936,7 +812,7 @@
 
       <!-- شريط أدوات الخط فوق الكلمة -->
       <div id="reference-header-bar" class="reference-header-bar">
-        <div style="display:flex; gap:8px; align-items:center;">
+        <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
           <!-- زر تبديل نوع الخط: عادي أو متصل -->
           <button id="style-toggle-btn" class="pill-btn" onclick="toggleHandwritingStyle()">
             <i data-lucide="pen-tool"></i>
@@ -948,10 +824,19 @@
             <i data-lucide="type"></i>
             <span id="font-cycle-label">خط: Lexend</span>
           </button>
-        </div>
 
-        <div id="auto-check-hint" style="font-size: 12px; font-weight: 700; color: var(--ink-soft);">
-          التحقق التلقائي عند 100% مفعّل تلقائياً
+          <!-- زر التحكم في 5 مستويات لحجم الخط والسطور -->
+          <button id="fontScaleCycleBtn" class="pill-btn" onclick="cycleFontScale()" title="تغيير حجم الخط والسطور (5 مستويات)">
+            <i data-lucide="scaling"></i>
+            <span id="font-scale-label">حجم الخط: 5/5 (كبير جداً)</span>
+            <span id="font-scale-bars" class="scale-bars-indicator" aria-hidden="true">
+              <span class="scale-bar-item active" style="height:5px;"></span>
+              <span class="scale-bar-item active" style="height:7px;"></span>
+              <span class="scale-bar-item active" style="height:9px;"></span>
+              <span class="scale-bar-item active" style="height:11px;"></span>
+              <span class="scale-bar-item active" style="height:14px;"></span>
+            </span>
+          </button>
         </div>
       </div>
 
@@ -961,10 +846,10 @@
       </div>
 
       <!-- الدفتر المسطر التفاعلي (Ruled Lines Only) -->
-      <div class="notebook-canvas-card">
-        <div id="canvas-stage" class="canvas-layers-wrap">
-          <canvas id="guide-canvas"></canvas>
-          <canvas id="drawing-canvas"></canvas>
+      <div class="notebook-canvas-card" scribble="false" contenteditable="false">
+        <div id="canvas-stage" class="canvas-layers-wrap" scribble="false" contenteditable="false">
+          <canvas id="guide-canvas" scribble="false"></canvas>
+          <canvas id="drawing-canvas" scribble="false"></canvas>
         </div>
 
         <!-- شريط القلم والألوان المبسط (مناسب للصغار والكبار) -->
@@ -1021,19 +906,14 @@
         حرف A
       </div>
 
-      <!-- أزرار التحكم الرئيسية الحصرية: التالي (يمين) - تحقق من خطي (وسط) - السابق (يسار) -->
+      <!-- أزرار التحكم الرئيسية الحصرية: التالي (يمين) - السابق (يسار) فقط -->
       <div id="exercise-nav-controls" class="zen-quick-actions">
-        <button class="pill-btn" onclick="nextExercise()">
+        <button class="primary-btn" onclick="nextExercise()" style="min-width: 145px;">
           <i data-lucide="arrow-right"></i>
           <span>التالي</span>
         </button>
 
-        <button class="primary-btn" onclick="manualCheckHandwriting()" style="min-width: 190px; font-size: 15px;">
-          <i data-lucide="check-circle-2"></i>
-          <span>تحقق من خطي</span>
-        </button>
-
-        <button class="pill-btn" onclick="prevExercise()">
+        <button class="pill-btn" onclick="prevExercise()" style="min-width: 145px;">
           <span>السابق</span>
           <i data-lucide="arrow-left"></i>
         </button>
@@ -1046,12 +926,8 @@
   <footer class="bottom-bar">
     <div class="telemetry-group">
       <div class="telemetry-item">
-        <span>التمارين المتقنة (≥80%):</span>
-        <strong id="footer-completed-count">0</strong>
-      </div>
-      <div class="telemetry-item">
-        <span>أفضل نتيجة لهذا التمرين:</span>
-        <strong id="footer-best-score">—</strong>
+        <span>القسم الحالي:</span>
+        <strong id="footer-category-name">حروف (A - Z)</strong>
       </div>
       <div class="telemetry-item">
         <span>نوع الخط الحالي:</span>
@@ -1060,77 +936,16 @@
     </div>
 
     <div class="hint-shortcuts">
-      <span>اكتب مباشرة على الأسطر بالقلم أو الإصبع، وسيتم التحقق تلقائياً عند الإتقان الكامل 100%</span>
+      <span>اكتب مباشرة على الأسطر بقلم الآيباد (Apple Pencil) أو الإصبع بحرية وسلاسة</span>
     </div>
   </footer>
-
-  <!-- نافذة تقييم دقة الخط اليدوي -->
-  <div id="rating-modal" class="modal-backdrop" hidden>
-    <div class="rating-modal-card">
-      <div id="rating-badge-pill" style="display:inline-block; padding:4px 14px; border-radius:999px; font-size:13px; font-weight:800; margin-bottom:4px;">
-        النتيجة
-      </div>
-      <h3 id="rating-title">ممتاز! خطك رائع وواضح</h3>
-      <p id="rating-feedback-text" style="color:var(--ink-soft); font-size:14px; font-weight:700; margin:4px 0 10px;">
-        لقد التزمت بالسطر وشكل الحروف بدقة عالية.
-      </p>
-
-      <!-- النجوم الخمس -->
-      <div class="stars-row">
-        <span id="star-1" class="star-item">★</span>
-        <span id="star-2" class="star-item">★</span>
-        <span id="star-3" class="star-item">★</span>
-        <span id="star-4" class="star-item">★</span>
-        <span id="star-5" class="star-item">★</span>
-      </div>
-
-      <!-- تفاصيل التقييم الصارم -->
-      <div class="modal-metrics-grid">
-        <div class="modal-metric-box">
-          <span>نسبة الدقة الإجمالية</span>
-          <strong id="score-overall-val">0%</strong>
-        </div>
-        <div class="modal-metric-box">
-          <span>تطابق شكل الحروف والمسار</span>
-          <strong id="score-precision-val">0%</strong>
-        </div>
-        <div class="modal-metric-box">
-          <span>اكتمال كتابة النص</span>
-          <strong id="score-recall-val">0%</strong>
-        </div>
-        <div class="modal-metric-box">
-          <span>الالتزام بالسطر والحجم</span>
-          <strong id="score-scale-val">0%</strong>
-        </div>
-      </div>
-
-      <!-- معاينة بصرية لمطابقة الخط مع المرجع -->
-      <div class="comparison-box">
-        <div style="font-size:11px; font-weight:800; color:var(--ink-soft); margin-bottom:6px;">
-          مقارنة خطك مع النموذج (الأخضر: متطابق مع الحرف • الأحمر: خارج المسار)
-        </div>
-        <canvas id="eval-comparison-canvas" width="400" height="110" style="max-width:100%; height:auto;"></canvas>
-      </div>
-
-      <div style="display:flex; justify-content:center; gap:10px; flex-wrap:wrap;">
-        <button class="pill-btn" onclick="retryExerciseFromModal()">
-          <i data-lucide="rotate-ccw"></i>
-          <span>إعادة المحاولة</span>
-        </button>
-        <button class="primary-btn" onclick="nextExerciseFromModal()">
-          <span>التمرين التالي</span>
-          <i data-lucide="arrow-left"></i>
-        </button>
-      </div>
-    </div>
-  </div>
 
   <!-- حاوية ورقة العمل المخصصة للطباعة -->
   <div id="print-worksheet-container"></div>
 
   <script>
     /*************************************************************************
-     * 1. قائمة الخطوط المبسطة (عادي Print + متصل Cursive)
+     * 1. قائمة الخطوط المبسطة (عادي Print + متصل Cursive) + 5 مستويات لحجم الخط
      *************************************************************************/
     const FONTS_LIST = {
       print: [
@@ -1144,6 +959,15 @@
         { id: 'Great Vibes', label: 'Great Vibes (متصل كلاسيكي)', css: "'Great Vibes', cursive" }
       ]
     };
+
+    // 5 مستويات لحجم الخط (المستوى الخامس 1.00 هو الحجم الأقصى الحالي + 4 مستويات أصغر منه)
+    const FONT_SCALE_LEVELS = [
+      { level: 1, scale: 0.48, name: 'صغير جداً' },
+      { level: 2, scale: 0.61, name: 'صغير' },
+      { level: 3, scale: 0.74, name: 'متوسط' },
+      { level: 4, scale: 0.87, name: 'كبير' },
+      { level: 5, scale: 1.00, name: 'كبير جداً' }
+    ];
 
     /*************************************************************************
      * 2. بنك الحروف (A-Z) والكلمات والجمل الإنجليزية العشوائية (بدون مستويات وبدون حركات)
@@ -1225,7 +1049,7 @@
     /*************************************************************************
      * 3. حالة التطبيق والتخزين المحلي
      *************************************************************************/
-    const STORAGE_KEY = 'yazeed_handwriting_random_v4';
+    const STORAGE_KEY = 'yazeed_handwriting_clean_v5';
 
     const state = {
       filterMode: 'letters',  // 'letters' | 'words' | 'sentences'
@@ -1233,6 +1057,7 @@
       index: 0,
       style: 'print',         // 'print' | 'cursive'
       fontIndex: 0,
+      fontScaleIndex: 4,      // 0..4 (الافتراضي 4 أي المستوى 5 الأكبر حجماً 1.00)
       sound: true,
       darkMode: false,
       penColor: '#00273A',
@@ -1240,8 +1065,8 @@
       isEraser: false,
       strokes: [],
       isDrawing: false,
-      currentStroke: null,
-      progress: {}            // { [id]: { best: number, passed: boolean } }
+      activePointerId: null,
+      currentStroke: null
     };
 
     function loadSavedState() {
@@ -1255,9 +1080,11 @@
         if (typeof parsed.index === 'number') state.index = parsed.index;
         if (parsed.style) state.style = parsed.style;
         if (typeof parsed.fontIndex === 'number') state.fontIndex = parsed.fontIndex;
+        if (typeof parsed.fontScaleIndex === 'number' && parsed.fontScaleIndex >= 0 && parsed.fontScaleIndex < FONT_SCALE_LEVELS.length) {
+          state.fontScaleIndex = parsed.fontScaleIndex;
+        }
         if (typeof parsed.darkMode === 'boolean') state.darkMode = parsed.darkMode;
         if (typeof parsed.sound === 'boolean') state.sound = parsed.sound;
-        if (parsed.progress) state.progress = parsed.progress;
       } catch (e) {}
     }
 
@@ -1268,11 +1095,15 @@
           index: state.index,
           style: state.style,
           fontIndex: state.fontIndex,
+          fontScaleIndex: state.fontScaleIndex,
           darkMode: state.darkMode,
-          sound: state.sound,
-          progress: state.progress
+          sound: state.sound
         }));
       } catch (e) {}
+    }
+
+    function getActiveFontScaleObj() {
+      return FONT_SCALE_LEVELS[state.fontScaleIndex] || FONT_SCALE_LEVELS[4];
     }
 
     function getActiveList() {
@@ -1394,53 +1225,22 @@
           writingGainNode = null;
           writingFilterNode = null;
           setTimeout(() => {
-            try {
-              src.stop();
-              src.disconnect();
-            } catch (e) {}
-          }, 35);
+          try {
+            src.stop();
+            src.disconnect();
+          } catch (e) {}
+        }, 35);
         }
       } catch (e) {}
     }
 
-    function playTone(freq, duration = 0.06, type = 'sine', gainVal = 0.06) {
-      if (!state.sound) return;
-      try {
-        const ctx = getAudioCtx();
-        if (!ctx) return;
-        const osc = ctx.createOscillator();
-        const gain = ctx.createGain();
-        osc.type = type;
-        osc.frequency.setValueAtTime(freq, ctx.currentTime);
-        gain.gain.setValueAtTime(gainVal, ctx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + duration);
-        osc.connect(gain);
-        gain.connect(ctx.destination);
-        osc.start();
-        osc.stop(ctx.currentTime + duration);
-      } catch (e) {}
-    }
-
-    function playSuccessChord() {
-      if (!state.sound) return;
-      [523.25, 659.25, 783.99, 1046.5].forEach((f, i) => {
-        setTimeout(() => playTone(f, 0.45, 'triangle', 0.1), i * 85);
-      });
-    }
-
-    function playRetrySound() {
-      if (!state.sound) return;
-      playTone(330, 0.18, 'sine', 0.08);
-      setTimeout(() => playTone(293.66, 0.25, 'sine', 0.08), 120);
-    }
-
     /*************************************************************************
-     * 5. الدفتر المسطر والرسم السلس
+     * 5. الدفتر المسطر والرسم الفوري فائق السلاسة للآيباد (Apple Pencil 120Hz)
      *************************************************************************/
     const guideCanvas = document.getElementById('guide-canvas');
     const guideCtx = guideCanvas.getContext('2d');
     const drawCanvas = document.getElementById('drawing-canvas');
-    const drawCtx = drawCanvas.getContext('2d');
+    const drawCtx = drawCanvas.getContext('2d', { desynchronized: true });
 
     let stageW = 800;
     let stageH = 290;
@@ -1471,11 +1271,15 @@
     }
 
     function getRuledLinesLayout() {
+      const scaleObj = getActiveFontScaleObj();
+      const scale = scaleObj.scale;
+
       if (state.freeMode) {
         const rows = [];
-        const bandH = Math.min(58, stageH * 0.22);
-        const startY = 30;
-        const gap = bandH * 1.65;
+        const baseBandH = Math.min(58, stageH * 0.22);
+        const bandH = Math.max(24, Math.round(baseBandH * scale));
+        const startY = 30 + Math.round((baseBandH - bandH) * 0.4);
+        const gap = Math.max(48, Math.round(baseBandH * 1.65 * (0.7 + 0.3 * scale)));
         for (let i = 0; i < 2; i++) {
           const topLine = startY + i * gap;
           const midLine = topLine + bandH * 0.5;
@@ -1490,7 +1294,8 @@
       const isLong = item.text.length > 34;
       if (!isLong) {
         const centerY = stageH * 0.52;
-        const bandH = Math.min(110, stageH * 0.40);
+        const maxBandH = Math.min(110, stageH * 0.40);
+        const bandH = Math.round(maxBandH * scale);
         const topLine = centerY - bandH * 0.5;
         const midLine = centerY;
         const baseLine = centerY + bandH * 0.5;
@@ -1498,9 +1303,10 @@
         return [{ topLine, midLine, baseLine, descLine, bandH }];
       } else {
         const rows = [];
-        const bandH = Math.min(60, stageH * 0.22);
-        const startY = 30;
-        const gap = bandH * 1.65;
+        const maxBandH = Math.min(60, stageH * 0.22);
+        const bandH = Math.round(maxBandH * scale);
+        const startY = 30 + Math.round((maxBandH - bandH) * 0.4);
+        const gap = Math.max(46, Math.round(maxBandH * 1.65 * (0.72 + 0.28 * scale)));
         for (let i = 0; i < 2; i++) {
           const topLine = startY + i * gap;
           const midLine = topLine + bandH * 0.5;
@@ -1583,6 +1389,7 @@
       const item = getCurrentItem();
       const rows = getRuledLinesLayout();
       const fontObj = getActiveFont();
+      const scale = getActiveFontScaleObj().scale;
       const padX = 44;
       const maxW = stageW - padX * 2;
 
@@ -1594,9 +1401,10 @@
       if (rows.length === 1) {
         const r = rows[0];
         let fontSize = Math.round(r.bandH * (state.style === 'cursive' ? 1.12 : 1.02));
+        const minAllowedSize = Math.max(14, Math.round(22 * scale));
         ctx.font = `500 ${fontSize}px ${fontObj.css}`;
         let textW = ctx.measureText(item.text).width;
-        while (textW > maxW && fontSize > 22) {
+        while (textW > maxW && fontSize > minAllowedSize) {
           fontSize -= 2;
           ctx.font = `500 ${fontSize}px ${fontObj.css}`;
           textW = ctx.measureText(item.text).width;
@@ -1677,19 +1485,110 @@
       }
     }
 
+    // رسم الجزء الجديد من الخط فوراً على طبقة الحبر دون مسح الكانفاس (استجابة 120Hz لقلم الآيباد)
+    function drawIncrementalSegment(ctx, stroke, prevIndex) {
+      if (!stroke || !stroke.points || stroke.points.length === 0) return;
+      const pts = stroke.points;
+
+      ctx.save();
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+
+      if (stroke.isEraser) {
+        ctx.globalCompositeOperation = 'destination-out';
+        ctx.strokeStyle = 'rgba(0,0,0,1)';
+        ctx.fillStyle = 'rgba(0,0,0,1)';
+        ctx.lineWidth = stroke.width * 3;
+      } else {
+        ctx.globalCompositeOperation = 'source-over';
+        ctx.strokeStyle = stroke.color;
+        ctx.fillStyle = stroke.color;
+        ctx.lineWidth = stroke.width;
+      }
+
+      if (pts.length === 1) {
+        ctx.beginPath();
+        ctx.arc(pts[0].x, pts[0].y, (stroke.isEraser ? stroke.width * 1.5 : stroke.width / 2), 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+        return;
+      }
+
+      const startIdx = Math.max(1, prevIndex);
+      ctx.beginPath();
+      if (startIdx === 1) {
+        ctx.moveTo(pts[0].x, pts[0].y);
+      } else {
+        const prevMidX = (pts[startIdx - 2].x + pts[startIdx - 1].x) / 2;
+        const prevMidY = (pts[startIdx - 2].y + pts[startIdx - 1].y) / 2;
+        ctx.moveTo(prevMidX, prevMidY);
+      }
+
+      for (let i = startIdx; i < pts.length; i++) {
+        const midX = (pts[i - 1].x + pts[i].x) / 2;
+        const midY = (pts[i - 1].y + pts[i].y) / 2;
+        ctx.quadraticCurveTo(pts[i - 1].x, pts[i - 1].y, midX, midY);
+      }
+      ctx.stroke();
+      ctx.restore();
+    }
+
     function setupPointerEvents() {
+      const stageWrap = document.getElementById('canvas-stage');
+
+      // 1. منع التظليل الأزرق وزر "نسخ" في سفاري iPadOS نهائياً على مستوى الصفحة والكانفاس
+      const clearSafariSelection = () => {
+        try {
+          const sel = window.getSelection ? window.getSelection() : null;
+          if (sel && sel.rangeCount > 0) sel.removeAllRanges();
+        } catch (err) {}
+      };
+
+      document.addEventListener('selectionchange', clearSafariSelection);
+      ['selectstart', 'contextmenu', 'dragstart', 'gesturestart', 'gesturechange'].forEach(evtName => {
+        window.addEventListener(evtName, (ev) => {
+          ev.preventDefault();
+          clearSafariSelection();
+        }, { passive: false });
+      });
+
+      // 2. منع نافذة النسخ والتمرير في سفاري عند اللمس المطول دون تعطيل أحداث Pointer Events للقلم!
+      // ملاحظة هامة لنظام iPadOS: نمنع السلوك الافتراضي على touchmove و touchend، ونكتفي بإزالة التظليل في touchstart
+      // حتى لا يلغي سفاري حدث pointerdown الخاص بقلم Apple Pencil!
+      stageWrap.addEventListener('touchstart', () => {
+        clearSafariSelection();
+      }, { passive: true });
+
+      stageWrap.addEventListener('touchmove', (ev) => {
+        if (ev.cancelable) ev.preventDefault();
+      }, { passive: false });
+
       const getPt = (e) => {
         const rect = drawCanvas.getBoundingClientRect();
+        const scaleX = stageW / (rect.width || 1);
+        const scaleY = stageH / (rect.height || 1);
         return {
-          x: e.clientX - rect.left,
-          y: e.clientY - rect.top
+          x: (e.clientX - rect.left) * scaleX,
+          y: (e.clientY - rect.top) * scaleY
         };
       };
 
       drawCanvas.addEventListener('pointerdown', (e) => {
         if (e.button !== undefined && e.button !== 0 && e.pointerType === 'mouse') return;
-        e.preventDefault();
-        drawCanvas.setPointerCapture(e.pointerId);
+
+        // إذا بدأ المستخدم الكتابة بقلم Apple Pencil بينما كانت يده ملامسة للشاشة، نعطي الأولوية للقلم فوراً
+        if (state.isDrawing && e.pointerType === 'pen' && state.activePointerType !== 'pen') {
+          state.currentStroke = null;
+        } else if (state.isDrawing && e.pointerId !== state.activePointerId) {
+          return;
+        }
+
+        if (e.cancelable) e.preventDefault();
+        clearSafariSelection();
+
+        state.activePointerId = e.pointerId;
+        state.activePointerType = e.pointerType;
+        try { drawCanvas.setPointerCapture(e.pointerId); } catch (err) {}
 
         state.isDrawing = true;
         state.currentStroke = {
@@ -1698,37 +1597,54 @@
           isEraser: state.isEraser,
           points: [getPt(e)]
         };
+
         startWritingSound();
-        redrawUserStrokes();
+        drawIncrementalSegment(drawCtx, state.currentStroke, 0);
       }, { passive: false });
 
       drawCanvas.addEventListener('pointermove', (e) => {
         if (!state.isDrawing || !state.currentStroke) return;
-        e.preventDefault();
-        const pt = getPt(e);
+        if (state.activePointerId !== null && e.pointerId !== state.activePointerId) return;
+        if (e.cancelable) e.preventDefault();
+
+        const events = e.getCoalescedEvents ? e.getCoalescedEvents() : [e];
         const pts = state.currentStroke.points;
-        const last = pts[pts.length - 1];
-        const dist = Math.hypot(pt.x - last.x, pt.y - last.y);
-        if (dist > 1.5) {
-          pts.push(pt);
-          modulateWritingSound(dist);
-          redrawUserStrokes();
+        const prevLen = pts.length;
+        let maxDist = 0;
+
+        for (const ev of events) {
+          const pt = getPt(ev);
+          const last = pts[pts.length - 1];
+          const dist = Math.hypot(pt.x - last.x, pt.y - last.y);
+          if (dist > 0.4) {
+            pts.push(pt);
+            if (dist > maxDist) maxDist = dist;
+          }
+        }
+
+        if (pts.length > prevLen) {
+          modulateWritingSound(maxDist);
+          drawIncrementalSegment(drawCtx, state.currentStroke, prevLen);
         }
       }, { passive: false });
 
       const endPointer = (e) => {
         if (!state.isDrawing || !state.currentStroke) return;
-        e.preventDefault();
+        if (e && e.pointerId !== undefined && state.activePointerId !== null && e.pointerId !== state.activePointerId) return;
+        if (e && e.cancelable) e.preventDefault();
+
+        try {
+          if (e && e.pointerId !== undefined) drawCanvas.releasePointerCapture(e.pointerId);
+        } catch (err) {}
+
         state.isDrawing = false;
+        state.activePointerId = null;
+        state.activePointerType = null;
         stopWritingSound();
+
         state.strokes.push(state.currentStroke);
         state.currentStroke = null;
         redrawUserStrokes();
-
-        // فحص التحقق التلقائي عند 100% في جميع المعايير (فقط خارج وضع الكتابة الحرة)
-        if (!state.freeMode) {
-          checkAutomaticCompletion();
-        }
       };
 
       drawCanvas.addEventListener('pointerup', endPointer, { passive: false });
@@ -1736,368 +1652,7 @@
     }
 
     /*************************************************************************
-     * 6. محرك التقييم الصارم والتحقق التلقائي عند 100%
-     *************************************************************************/
-    function runCoreAccuracyCalculation() {
-      const inkStrokes = state.strokes.filter(s => !s.isEraser && s.points.length > 0);
-      if (inkStrokes.length === 0) return null;
-
-      const W = stageW;
-      const H = stageH;
-
-      const refCanvas = document.createElement('canvas');
-      refCanvas.width = W;
-      refCanvas.height = H;
-      const refCtx = refCanvas.getContext('2d');
-      drawTargetOnContext(refCtx, '#000000');
-
-      const usrCanvas = document.createElement('canvas');
-      usrCanvas.width = W;
-      usrCanvas.height = H;
-      const usrCtx = usrCanvas.getContext('2d');
-      for (const s of state.strokes) {
-        drawSingleStrokeOnContext(usrCtx, { ...s, width: Math.max(5, s.width) }, '#000000');
-      }
-
-      const directResult = computePixelMatchMetrics(refCanvas, usrCanvas, W, H, false);
-      const alignedResult = computePixelMatchMetrics(refCanvas, usrCanvas, W, H, true);
-
-      return alignedResult.overall > directResult.overall ? alignedResult : directResult;
-    }
-
-    function checkAutomaticCompletion() {
-      const res = runCoreAccuracyCalculation();
-      if (!res) return;
-
-      // إذا كانت الدقة الإجمالية وتطابق شكل الحرف والمسار واكتمال النص والالتزام بالسطر والحجم جميعها 100%
-      if (res.overall >= 100 && res.precision >= 100 && res.recall >= 100 && res.scaleScore >= 100) {
-        const item = getCurrentItem();
-        state.progress[item.id] = { best: 100, passed: true };
-        saveState();
-        updateUI();
-        showRatingModal(res);
-      }
-    }
-
-    function manualCheckHandwriting() {
-      const res = runCoreAccuracyCalculation();
-      if (!res) {
-        triggerEmptyShake();
-        return;
-      }
-
-      const item = getCurrentItem();
-      const prev = state.progress[item.id] || { best: 0, passed: false };
-      const best = Math.max(prev.best, res.overall);
-      const passed = prev.passed || res.overall >= 80;
-      state.progress[item.id] = { best, passed };
-      saveState();
-      updateUI();
-
-      showRatingModal(res);
-    }
-
-    function computePixelMatchMetrics(refCanvas, usrCanvas, W, H, alignHorizontally) {
-      const rCtx = refCanvas.getContext('2d');
-      const uCtx = usrCanvas.getContext('2d');
-
-      const rImg = rCtx.getImageData(0, 0, W, H).data;
-      const uImg = uCtx.getImageData(0, 0, W, H).data;
-
-      let rMinX = W, rMaxX = 0, rMinY = H, rMaxY = 0, rCount = 0;
-      let uMinX = W, uMaxX = 0, uMinY = H, uMaxY = 0, uCount = 0;
-
-      const stride = 2;
-      for (let y = 0; y < H; y += stride) {
-        for (let x = 0; x < W; x += stride) {
-          const idx = (y * W + x) * 4 + 3;
-          if (rImg[idx] > 60) {
-            rCount++;
-            if (x < rMinX) rMinX = x;
-            if (x > rMaxX) rMaxX = x;
-            if (y < rMinY) rMinY = y;
-            if (y > rMaxY) rMaxY = y;
-          }
-          if (uImg[idx] > 60) {
-            uCount++;
-            if (x < uMinX) uMinX = x;
-            if (x > uMaxX) uMaxX = x;
-            if (y < uMinY) uMinY = y;
-            if (y > uMaxY) uMaxY = y;
-          }
-        }
-      }
-
-      if (uCount < 8 || rCount < 8) {
-        return { overall: 0, precision: 0, recall: 0, scaleScore: 0, previewCanvas: createComparisonCanvas(refCanvas, usrCanvas, W, H) };
-      }
-
-      const rW = Math.max(10, rMaxX - rMinX);
-      const rH = Math.max(10, rMaxY - rMinY);
-      const uW = Math.max(4, uMaxX - uMinX);
-      const uH = Math.max(4, uMaxY - uMinY);
-
-      let activeUsrCanvas = usrCanvas;
-      if (alignHorizontally) {
-        const shiftX = Math.round(((rMinX + rMaxX) / 2) - ((uMinX + uMaxX) / 2));
-        const shifted = document.createElement('canvas');
-        shifted.width = W;
-        shifted.height = H;
-        shifted.getContext('2d').drawImage(usrCanvas, shiftX, 0);
-        activeUsrCanvas = shifted;
-      }
-
-      const refTight = document.createElement('canvas');
-      refTight.width = W;
-      refTight.height = H;
-      const rtCtx = refTight.getContext('2d');
-      rtCtx.filter = 'blur(3.2px)';
-      rtCtx.drawImage(refCanvas, 0, 0);
-
-      const usrTight = document.createElement('canvas');
-      usrTight.width = W;
-      usrTight.height = H;
-      const utCtx = usrTight.getContext('2d');
-      utCtx.filter = 'blur(3.2px)';
-      utCtx.drawImage(activeUsrCanvas, 0, 0);
-
-      const rtData = rtCtx.getImageData(0, 0, W, H).data;
-      const utData = utCtx.getImageData(0, 0, W, H).data;
-      const activeUData = activeUsrCanvas.getContext('2d').getImageData(0, 0, W, H).data;
-
-      let refMatched = 0;
-      let usrOnTrack = 0;
-
-      const NUM_SLICES = 12;
-      const refSlices = new Array(NUM_SLICES).fill(0);
-      const matchedSlices = new Array(NUM_SLICES).fill(0);
-
-      for (let y = 0; y < H; y += stride) {
-        for (let x = 0; x < W; x += stride) {
-          const i = (y * W + x) * 4 + 3;
-          const rCore = rImg[i] > 60;
-          const uCore = activeUData[i] > 60;
-
-          if (rCore) {
-            const sIdx = Math.min(NUM_SLICES - 1, Math.max(0, Math.floor(((x - rMinX) / rW) * NUM_SLICES)));
-            refSlices[sIdx]++;
-            if (utData[i] > 42) {
-              refMatched++;
-              matchedSlices[sIdx]++;
-            }
-          }
-
-          if (uCore) {
-            if (rtData[i] > 42) {
-              usrOnTrack++;
-            }
-          }
-        }
-      }
-
-      const rawPrecision = usrOnTrack / uCount;
-      const rawRecall = refMatched / rCount;
-
-      let activeSlicesCount = 0;
-      let completedSlicesCount = 0;
-      for (let s = 0; s < NUM_SLICES; s++) {
-        if (refSlices[s] > 3) {
-          activeSlicesCount++;
-          if (matchedSlices[s] / refSlices[s] >= 0.35) {
-            completedSlicesCount++;
-          }
-        }
-      }
-      const sliceCoverage = activeSlicesCount > 0 ? completedSlicesCount / activeSlicesCount : 0;
-
-      const widthRatio = Math.min(uW / rW, rW / uW);
-      const heightRatio = Math.min(uH / rH, rH / uH);
-      const baselineDiff = Math.abs(uMaxY - rMaxY);
-      const baselineFactor = Math.max(0, 1 - (baselineDiff / Math.max(45, rH * 1.1)));
-
-      const inkRatio = uCount / rCount;
-      let inkPenalty = 1;
-      if (inkRatio > 1.85) {
-        inkPenalty = Math.max(0.15, 1.85 / inkRatio);
-      } else if (inkRatio < 0.35) {
-        inkPenalty = Math.max(0.1, inkRatio / 0.35);
-      }
-
-      const scaleAndLineFactor = (widthRatio * 0.35 + heightRatio * 0.35 + baselineFactor * 0.30);
-
-      const f1 = (rawPrecision + rawRecall) > 0
-        ? (2 * rawPrecision * rawRecall) / (rawPrecision + rawRecall)
-        : 0;
-
-      let strictOverall = f1 * (0.75 + 0.25 * sliceCoverage) * inkPenalty * (0.65 + 0.35 * scaleAndLineFactor) * 112;
-
-      if (rawPrecision < 0.25 || rawRecall < 0.22) {
-        strictOverall = Math.min(strictOverall, 28);
-      }
-
-      const overall = Math.round(Math.max(0, Math.min(100, strictOverall)));
-      const precisionPct = Math.round(Math.max(0, Math.min(100, rawPrecision * inkPenalty * 108)));
-      const recallPct = Math.round(Math.max(0, Math.min(100, (rawRecall * 0.75 + sliceCoverage * 0.25) * 108)));
-      const scalePct = Math.round(Math.max(0, Math.min(100, scaleAndLineFactor * 105)));
-
-      const previewCanvas = createComparisonCanvas(refCanvas, activeUsrCanvas, W, H, rtData, activeUData, {
-        minX: Math.min(rMinX, uMinX),
-        maxX: Math.max(rMaxX, uMaxX),
-        minY: Math.min(rMinY, uMinY),
-        maxY: Math.max(rMaxY, uMaxY)
-      });
-
-      return {
-        overall,
-        precision: precisionPct,
-        recall: recallPct,
-        scaleScore: scalePct,
-        previewCanvas
-      };
-    }
-
-    function createComparisonCanvas(refCanvas, usrCanvas, W, H, rtData, uData, bounds) {
-      const out = document.createElement('canvas');
-      out.width = W;
-      out.height = H;
-      const ctx = out.getContext('2d');
-
-      ctx.fillStyle = state.darkMode ? '#0c0d0f' : '#FFFFFF';
-      ctx.fillRect(0, 0, W, H);
-
-      ctx.save();
-      ctx.globalAlpha = state.darkMode ? 0.45 : 0.28;
-      if (state.darkMode) {
-        ctx.filter = 'invert(1)';
-      }
-      ctx.drawImage(refCanvas, 0, 0);
-      ctx.restore();
-
-      if (rtData && uData) {
-        const img = ctx.getImageData(0, 0, W, H);
-        const d = img.data;
-        for (let i = 0; i < uData.length; i += 4) {
-          if (uData[i + 3] > 60) {
-            const onTrack = rtData[i + 3] > 42;
-            if (onTrack) {
-              d[i] = 22;
-              d[i + 1] = 163;
-              d[i + 2] = 74;
-              d[i + 3] = 245;
-            } else {
-              d[i] = 225;
-              d[i + 1] = 29;
-              d[i + 2] = 72;
-              d[i + 3] = 235;
-            }
-          }
-        }
-        ctx.putImageData(img, 0, 0);
-      }
-
-      out.dataset.bounds = JSON.stringify(bounds || { minX: 0, maxX: W, minY: 0, maxY: H });
-      return out;
-    }
-
-    function showRatingModal(res) {
-      const passed = res.overall >= 80;
-      if (passed) {
-        playSuccessChord();
-      } else {
-        playRetrySound();
-      }
-
-      const badge = document.getElementById('rating-badge-pill');
-      const title = document.getElementById('rating-title');
-      const feedback = document.getElementById('rating-feedback-text');
-
-      document.getElementById('score-overall-val').textContent = `${res.overall}%`;
-      document.getElementById('score-precision-val').textContent = `${res.precision}%`;
-      document.getElementById('score-recall-val').textContent = `${res.recall}%`;
-      document.getElementById('score-scale-val').textContent = `${res.scaleScore}%`;
-
-      // حساب النجوم من 5 بدلاً من 3
-      const stars = res.overall >= 95 ? 5
-                  : res.overall >= 85 ? 4
-                  : res.overall >= 70 ? 3
-                  : res.overall >= 50 ? 2
-                  : res.overall >= 25 ? 1 : 0;
-      for (let i = 1; i <= 5; i++) {
-        const st = document.getElementById(`star-${i}`);
-        if (st) {
-          if (i <= stars) st.classList.add('earned');
-          else st.classList.remove('earned');
-        }
-      }
-
-      if (res.overall >= 100) {
-        badge.style.background = 'var(--success-bg)';
-        badge.style.color = 'var(--success)';
-        badge.textContent = 'إتقان تام 100% (تحقق تلقائي)';
-        title.textContent = 'مذهل! خطك مطابق للنموذج تماماً';
-        feedback.textContent = 'لقد حققت الدرجة الكاملة في جميع المعايير. يمكنك الانتقال للتمرين التالي!';
-      } else if (passed) {
-        badge.style.background = 'var(--success-bg)';
-        badge.style.color = 'var(--success)';
-        badge.textContent = 'اجتياز بنجاح (≥80%)';
-        title.textContent = res.overall >= 90 ? 'ممتاز جداً! خطك متقن وجميل' : 'أحسنت! كتابة صحيحة وواضحة';
-        feedback.textContent = 'التزام رائع بشكل الحروف وبالسطر الأساسي. يمكنك الانتقال للتمرين التالي!';
-      } else if (res.overall >= 50) {
-        badge.style.background = 'rgba(245, 158, 11, 0.15)';
-        badge.style.color = '#D97706';
-        badge.textContent = 'قريب من الهدف (المطلوب 80%)';
-        title.textContent = 'محاولة جيدة — تدرّب مرة أخرى';
-        feedback.textContent = 'بعض الأجزاء خرجت عن مسار الحروف. تمهّل واكتب فوق الخط المساعد بدقة أكبر.';
-      } else {
-        badge.style.background = 'var(--error-bg)';
-        badge.style.color = 'var(--error)';
-        badge.textContent = 'يحتاج إلى إعادة كتابة';
-        title.textContent = 'الكتابة غير مطابقة للنموذج';
-        feedback.textContent = 'تأكد من كتابة الكلمة كاملة على السطر وعدم رسم خطوط عشوائية خارج الكلمة.';
-      }
-
-      const dest = document.getElementById('eval-comparison-canvas');
-      const dCtx = dest.getContext('2d');
-      dCtx.clearRect(0, 0, dest.width, dest.height);
-
-      if (res.previewCanvas) {
-        const b = JSON.parse(res.previewCanvas.dataset.bounds || '{}');
-        const pad = 18;
-        const sx = Math.max(0, (b.minX || 0) - pad);
-        const sy = Math.max(0, (b.minY || 0) - pad);
-        const sw = Math.min(stageW - sx, ((b.maxX || stageW) - (b.minX || 0)) + pad * 2);
-        const sh = Math.min(stageH - sy, ((b.maxY || stageH) - (b.minY || 0)) + pad * 2);
-
-        const scale = Math.min((dest.width - 12) / Math.max(1, sw), (dest.height - 12) / Math.max(1, sh));
-        const dw = sw * scale;
-        const dh = sh * scale;
-        dCtx.drawImage(res.previewCanvas, sx, sy, sw, sh, (dest.width - dw) / 2, (dest.height - dh) / 2, dw, dh);
-      }
-
-      document.getElementById('rating-modal').hidden = false;
-      lucide.createIcons();
-    }
-
-    function retryExerciseFromModal() {
-      document.getElementById('rating-modal').hidden = true;
-      clearCanvas(true);
-    }
-
-    function nextExerciseFromModal() {
-      document.getElementById('rating-modal').hidden = true;
-      nextExercise();
-    }
-
-    function triggerEmptyShake() {
-      playRetrySound();
-      const wrap = document.getElementById('main-exercise-wrapper');
-      wrap.classList.remove('shake');
-      void wrap.offsetWidth;
-      wrap.classList.add('shake');
-    }
-
-    /*************************************************************************
-     * 7. وظائف التنقل والأدوات المبسطة (بدون أي صوت عند النقر على الأزرار)
+     * 6. وظائف التنقل والأدوات المبسطة (بدون أي صوت عند النقر على الأزرار)
      *************************************************************************/
     function toggleFreeWriteMode() {
       state.freeMode = !state.freeMode;
@@ -2150,6 +1705,14 @@
     function cycleFontChoice() {
       const list = FONTS_LIST[state.style];
       state.fontIndex = (state.fontIndex + 1) % list.length;
+      saveState();
+      updateUI();
+    }
+
+    // التنقل السلس بين 5 مستويات لحجم الخط والسطور (5 -> 4 -> 3 -> 2 -> 1 -> 5)
+    function cycleFontScale() {
+      state.fontScaleIndex = (state.fontScaleIndex - 1 + FONT_SCALE_LEVELS.length) % FONT_SCALE_LEVELS.length;
+      clearCanvas();
       saveState();
       updateUI();
     }
@@ -2244,6 +1807,8 @@
     function printWorksheetNow() {
       const list = getActiveList().slice(0, 8);
       const fontObj = getActiveFont();
+      const scaleObj = getActiveFontScaleObj();
+      const scale = scaleObj.scale;
 
       const escapeSvgText = (str) => String(str)
         .replace(/&/g, '&amp;')
@@ -2252,26 +1817,33 @@
 
       const buildRuledRowSvg = (traceText) => {
         const len = traceText ? traceText.length : 0;
-        const baseFontSize = state.style === 'cursive' ? 46 : 43;
+        const baseFontSize = Math.round((state.style === 'cursive' ? 46 : 43) * scale);
         const computedSize = len > 26
-          ? Math.max(26, Math.round(baseFontSize * (26 / len)))
+          ? Math.max(16, Math.round(baseFontSize * (26 / len)))
           : baseFontSize;
+
+        // حساب مواضع السطور في الـ SVG لتتطابق مع حجم الخط المختار
+        const baseLineY = 52;
+        const bandH = Math.round(42 * scale);
+        const topLineY = baseLineY - bandH;
+        const midLineY = Math.round(topLineY + bandH * 0.5);
+        const descLineY = Math.round(baseLineY + bandH * 0.29);
 
         return `
         <div style="position:relative; width:100%; height:68px; margin:6px 0; direction:ltr;">
           <svg viewBox="0 0 800 68" style="width:100%; height:68px; display:block; overflow:visible;" preserveAspectRatio="none">
             <!-- خلفية المسار الشبيه بالشارع بين السطر العلوي والسطر الأساسي -->
-            <rect x="0" y="10" width="800" height="42" fill="rgba(0, 104, 155, 0.035)" />
+            <rect x="0" y="${topLineY}" width="800" height="${bandH}" fill="rgba(0, 104, 155, 0.035)" />
             <!-- السطر العلوي (Top line) -->
-            <line x1="0" y1="10" x2="800" y2="10" stroke="#CBD5E1" stroke-width="1.2" />
+            <line x1="0" y1="${topLineY}" x2="800" y2="${topLineY}" stroke="#CBD5E1" stroke-width="1.2" />
             <!-- الخط المنقط الأوسط كخط منتصف الشارع (Midline) -->
-            <line x1="0" y1="31" x2="800" y2="31" stroke="#94A3B8" stroke-width="1.2" stroke-dasharray="6 6" />
+            <line x1="0" y1="${midLineY}" x2="800" y2="${midLineY}" stroke="#94A3B8" stroke-width="1.2" stroke-dasharray="6 6" />
             <!-- السطر الأزرق الأساسي الذي ترتكز عليه الحروف (Baseline y=52) -->
-            <line x1="0" y1="52" x2="800" y2="52" stroke="#00689B" stroke-width="2" />
+            <line x1="0" y1="${baseLineY}" x2="800" y2="${baseLineY}" stroke="#00689B" stroke-width="2" />
             <!-- سطر الحروف الهابطة مثل g, y, p (Descender line) -->
-            <line x1="0" y1="64" x2="800" y2="64" stroke="#E2E8F0" stroke-width="1" stroke-dasharray="3 4" />
+            <line x1="0" y1="${descLineY}" x2="800" y2="${descLineY}" stroke="#E2E8F0" stroke-width="1" stroke-dasharray="3 4" />
             ${traceText ? `
-              <text x="16" y="52"
+              <text x="16" y="${baseLineY}"
                     dominant-baseline="alphabetic"
                     text-anchor="start"
                     direction="ltr"
@@ -2301,7 +1873,7 @@
           <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid #00273A; padding-bottom:10px; margin-bottom:16px;">
             <div>
               <h1 style="margin:0; font-size:22px; color:#00273A;">يزيد للإنجليزية — كراسة تحسين الخط الإنجليزي</h1>
-              <p style="margin:4px 0 0; font-size:13px; color:#5B645F;">تمارين عشوائية • الخط: ${fontObj.id}</p>
+              <p style="margin:4px 0 0; font-size:13px; color:#5B645F;">تمارين عشوائية • الخط: ${fontObj.id} • الحجم: ${scaleObj.level}/5 (${scaleObj.name})</p>
             </div>
             <div style="font-size:13px; text-align:left;">
               <div>الاسم: _______________________</div>
@@ -2322,6 +1894,7 @@
       const list = getActiveList();
       const item = getCurrentItem();
       const fontObj = getActiveFont();
+      const scaleObj = getActiveFontScaleObj();
 
       // تحديث حالة وضع الكتابة الحرة
       const freeBtn = document.getElementById('free-write-btn');
@@ -2338,8 +1911,19 @@
       document.getElementById('exercise-nav-controls').hidden = state.freeMode;
 
       document.documentElement.style.setProperty('--active-ref-font', fontObj.css);
+      document.documentElement.style.setProperty('--font-scale-factor', scaleObj.scale);
       document.getElementById('font-cycle-label').textContent = `خط: ${fontObj.id}`;
-      document.getElementById('footer-font-name').textContent = fontObj.label;
+      document.getElementById('footer-font-name').textContent = `${fontObj.label} (${scaleObj.level}/5)`;
+
+      // تحديث زر ومؤشر مستويات حجم الخط الخمسة
+      const scaleLabelEl = document.getElementById('font-scale-label');
+      if (scaleLabelEl) {
+        scaleLabelEl.textContent = `حجم الخط: ${scaleObj.level}/5 (${scaleObj.name})`;
+      }
+      const scaleBars = document.querySelectorAll('#font-scale-bars .scale-bar-item');
+      scaleBars.forEach((bar, idx) => {
+        bar.classList.toggle('active', idx < scaleObj.level);
+      });
 
       document.getElementById('style-toggle-label').textContent =
         state.style === 'print' ? 'الخط: عادي (Print)' : 'الخط: متصل (Cursive)';
@@ -2352,13 +1936,15 @@
       document.getElementById('target-english-display').textContent = item.text;
       document.getElementById('arabic-meaning-display').textContent = item.arabic;
 
-      const totalPassed = Object.values(state.progress).filter(p => p && p.passed).length;
-      document.getElementById('footer-completed-count').textContent = totalPassed;
-
-      const curProg = state.progress[item.id];
-      document.getElementById('footer-best-score').textContent = state.freeMode
-        ? 'وضع حر'
-        : (curProg ? `${curProg.best}%` : 'لم يُختبر بعد');
+      const categoryNames = {
+        letters: 'حروف (A - Z)',
+        words: 'كلمات عشوائية',
+        sentences: 'جمل عشوائية'
+      };
+      const catEl = document.getElementById('footer-category-name');
+      if (catEl) {
+        catEl.textContent = state.freeMode ? 'الكتابة الحرة' : (categoryNames[state.filterMode] || 'حروف (A - Z)');
+      }
 
       renderRuledPaperAndGhost();
       lucide.createIcons();
