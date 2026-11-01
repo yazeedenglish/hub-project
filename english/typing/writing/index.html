@@ -150,17 +150,11 @@
     }
 
     .brand-logo {
-        width: 40px;
-        height: 40px;
-        border-radius: 11px;
-        background: linear-gradient(135deg, #00689B, #0088C7);
-        color: #FFFFFF;
-        display: grid;
-        place-items: center;
-        flex-shrink: 0;
-        font-weight: 900;
-        font-size: 20px;
-    }
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
 
     .brand-text {
         display: flex;
@@ -747,14 +741,17 @@
     <div id="top-progress-fill" class="top-progress-fill" style="width: 5%"></div>
   </div>
 
-  <!-- الشريط العلوي (Header) -->
-  <header class="top-header">
+  <!-- MINIMAL HEADER -->
+<header class="top-header">
     <div class="brand">
-      <div class="brand-logo">Y</div>
-      <div class="brand-text">
-        <strong>يزيد للإنجليزية</strong>
-        <span>دفتر تحسين الخط الإنجليزي</span>
-      </div>
+        <img src="https://file.yazeedenglish.com/logo.png"
+             alt="Yazeed English"
+             class="brand-logo">
+
+        <div class="brand-text">
+            <strong>Yazeed English</strong>
+            <span>منصة يزيد للانجليزية</span>
+        </div>
     </div>
 
     <div class="header-actions">
@@ -762,12 +759,6 @@
       <button id="free-write-btn" class="pill-btn" onclick="toggleFreeWriteMode()" title="مساحة حرة للتدريب بدون نص إرشادي">
         <i data-lucide="edit-3"></i>
         <span id="free-write-label">الكتابة الحرة</span>
-      </button>
-
-      <!-- زر عشوائي فوري -->
-      <button id="random-ex-btn" class="pill-btn" onclick="pickRandomExercise()" title="اختيار تمرين عشوائي جديد">
-        <i data-lucide="shuffle"></i>
-        <span>تمرين عشوائي</span>
       </button>
 
       <!-- زر طباعة ورقة عمل PDF -->
@@ -1049,7 +1040,7 @@
     /*************************************************************************
      * 3. حالة التطبيق والتخزين المحلي
      *************************************************************************/
-    const STORAGE_KEY = 'yazeed_handwriting_clean_v5';
+    const STORAGE_KEY = 'yazeed_handwriting_clean_v6';
 
     const state = {
       filterMode: 'letters',  // 'letters' | 'words' | 'sentences'
@@ -1240,7 +1231,7 @@
     const guideCanvas = document.getElementById('guide-canvas');
     const guideCtx = guideCanvas.getContext('2d');
     const drawCanvas = document.getElementById('drawing-canvas');
-    const drawCtx = drawCanvas.getContext('2d', { desynchronized: true });
+    const drawCtx = drawCanvas.getContext('2d');
 
     let stageW = 800;
     let stageH = 290;
@@ -1843,7 +1834,7 @@
             <!-- سطر الحروف الهابطة مثل g, y, p (Descender line) -->
             <line x1="0" y1="${descLineY}" x2="800" y2="${descLineY}" stroke="#E2E8F0" stroke-width="1" stroke-dasharray="3 4" />
             ${traceText ? `
-              <text x="16" y="${baseLineY}"
+              <text x="16" y="50"
                     dominant-baseline="alphabetic"
                     text-anchor="start"
                     direction="ltr"
