@@ -1,3463 +1,1290 @@
-/* =========================================================
-   YAZEED ENGLISH — القارئ التفاعلي
-   PDF.js 4.10.38
-
-   الوظائف:
-   1. تحميل PDF مباشرة
-   2. PDF.js — صفحة واحدة
-   3. التنقل السابق / التالي
-   4. الانتقال المباشر لرقم الصفحة
-   5. التكبير والتصغير
-   6. النطق
-   7. Samantha كصوت مفضل
-   8. سرعة النطق
-   9. قلم أحمر 4px
-   10. ممحاة
-   11. حفظ الرسومات محليًا
-   12. إشعار أول استخدام
-   13. روابط PDF الداخلية والخارجية
-   14. دعم Safari / iOS
-========================================================= */
-
-
-import * as pdfjsLib from
-    "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.min.mjs";
-
-
-/* =========================================================
-   PDF.JS WORKER
-========================================================= */
-
-pdfjsLib.GlobalWorkerOptions.workerSrc =
-    "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.worker.min.mjs";
-
-
-/* =========================================================
-   PDF FILE
-=========================================================
-
-   غيّر هذا المسار فقط إذا أردت فتح ملف PDF آخر.
-========================================================= */
-
-const PDF_FILE = "https://file.yazeedenglish.com/wr/Writing.pdf";
-
-
-/* =========================================================
-   DOM ELEMENTS
-========================================================= */
-
-const readerApp =
-    document.getElementById("readerApp");
-
-const viewerContainer =
-    document.getElementById("viewerContainer");
-
-const pdfViewer =
-    document.getElementById("pdfViewer");
-
-const pageInput =
-    document.getElementById("pageInput");
-
-const totalPagesElement =
-    document.getElementById("totalPages");
-
-const previousPageButton =
-    document.getElementById("previousPage");
-
-const nextPageButton =
-    document.getElementById("nextPage");
-
-const zoomOutButton =
-    document.getElementById("zoomOut");
-
-const zoomInButton =
-    document.getElementById("zoomIn");
-
-const zoomLevelElement =
-    document.getElementById("zoomLevel");
-
-const statusMessage =
-    document.getElementById("statusMessage");
-
-const pronunciationStatus =
-    document.getElementById("pronunciationStatus");
-
-const voiceSelect =
-    document.getElementById("voiceSelect");
-
-const testVoiceButton =
-    document.getElementById("testVoiceButton");
-
-const speedRange =
-    document.getElementById("speedRange");
-
-const speedValue =
-    document.getElementById("speedValue");
-
-const handTool =
-    document.getElementById("handTool");
-
-const penTool =
-    document.getElementById("penTool");
-
-const eraserTool =
-    document.getElementById("eraserTool");
-
-const pronunciationModal =
-    document.getElementById("pronunciationModal");
-
-const understoodButton =
-    document.getElementById("understoodButton");
-
-const contentLoadingOverlay =
-    document.getElementById(
-        "contentLoadingOverlay"
-    );
-
-
-/* =========================================================
-   APPLICATION STATE
-========================================================= */
-
-let pdfDocument = null;
-
-let currentPage = 1;
-
-let scale = 1;
-
-let voices = [];
-
-let selectedVoice = null;
-
-let speechRate = 0.85;
-
-let activeMode = "hand";
-
-let renderGeneration = 0;
-
-let activeUtterance = null;
-
-let activeDrawing = null;
-
-let annotationStore = {};
-
-let annotationStorageKey = "";
-
-let currentSpeechSentence = [];
-
-
-/* =========================================================
-   LOAD PDF
-========================================================= */
-
-async function openPDF(pdfPath) {
-
-    showContentLoading();
-
-    try {
-
-        statusMessage.textContent =
-            "جارٍ تحميل المحتوى...";
-
-
-        stopSpeech();
-
-
-        /* ---------------------------------------------
-           LOAD SAVED ANNOTATIONS
-        --------------------------------------------- */
-
-        loadAnnotations(pdfPath);
-
-
-        /* ---------------------------------------------
-           DOWNLOAD PDF
-        --------------------------------------------- */
-
-        const response =
-            await fetch(
-                pdfPath,
-                {
-                    cache: "no-store"
-                }
-            );
-
-
-        if (!response.ok) {
-
-            throw new Error(
-                `HTTP ${response.status}`
-            );
-
-        }
-
-
-        const arrayBuffer =
-            await response.arrayBuffer();
-
-
-        const data =
-            new Uint8Array(
-                arrayBuffer
-            );
-
-
-        /* ---------------------------------------------
-           PDF.JS
-        --------------------------------------------- */
-
-        const loadingTask =
-            pdfjsLib.getDocument({
-                data
-            });
-
-
-        pdfDocument =
-            await loadingTask.promise;
-
-
-        /* ---------------------------------------------
-           INITIAL PAGE
-        --------------------------------------------- */
-
-        currentPage = 1;
-
-        scale = 1;
-
-        pageInput.value = "1";
-
-        totalPagesElement.textContent =
-            String(
-                pdfDocument.numPages
-            );
-
-        zoomLevelElement.textContent =
-            "100%";
-
-
-        updateNavigation();
-
-
-        /* ---------------------------------------------
-           RENDER FIRST PAGE
-        --------------------------------------------- */
-
-        await renderPage(
-            currentPage
-        );
-
-
-        statusMessage.textContent =
-            "تم تحميل الملف بنجاح";
-
-
-        hideContentLoading();
-
-
-        maybeShowPronunciationNotice();
-
-
-    } catch (error) {
-
-        console.error(
-            "PDF loading error:",
-            error
-        );
-
-
-        statusMessage.textContent =
-            "تعذر تحميل الملف";
-
-
-        hideContentLoading();
-
-
-        pdfViewer.innerHTML = `
-            <div class="pdf-error">
-                تعذر فتح ملف PDF.
-                تأكد من أن الملف موجود داخل مجلد pdfs.
-            </div>
-        `;
-
-    }
-
-}
-
-
-/* =========================================================
-   LOADING OVERLAY
-========================================================= */
-
-function showContentLoading() {
-
-    if (!contentLoadingOverlay) {
-        return;
-    }
-
-    contentLoadingOverlay.hidden = false;
-
-}
-
-
-function hideContentLoading() {
-
-    if (!contentLoadingOverlay) {
-        return;
-    }
-
-    contentLoadingOverlay.hidden = true;
-
-}
-
-
-/* =========================================================
-   RENDER PAGE
-========================================================= */
-
-async function renderPage(pageNumber) {
-
-    if (!pdfDocument) {
-        return;
-    }
-
-
-    const target =
-        Math.max(
-            1,
-            Math.min(
-                Number(pageNumber) || 1,
-                pdfDocument.numPages
-            )
-        );
-
-
-    const generation =
-        ++renderGeneration;
-
-
-    try {
-
-        const page =
-            await pdfDocument.getPage(
-                target
-            );
-
-
-        if (
-            generation !==
-            renderGeneration
-        ) {
-            return;
-        }
-
-
-        /* ---------------------------------------------
-           VIEWPORT
-        --------------------------------------------- */
-
-        const viewport =
-            page.getViewport({
-                scale
-            });
-
-
-        const outputScale =
-            window.devicePixelRatio || 1;
-
-
-        /* ---------------------------------------------
-           CLEAR PREVIOUS PAGE
-        --------------------------------------------- */
-
-        pdfViewer.innerHTML = "";
-
-
-        /* ---------------------------------------------
-           PAGE CONTAINER
-        --------------------------------------------- */
-
-        const pageContainer =
-            document.createElement(
-                "div"
-            );
-
-
-        pageContainer.className =
-            "pdf-page";
-
-
-        pageContainer.dataset.pageNumber =
-            String(target);
-
-
-        pageContainer.style.width =
-            `${viewport.width}px`;
-
-
-        pageContainer.style.height =
-            `${viewport.height}px`;
-
-
-        pageContainer.setAttribute(
-            "aria-label",
-            `صفحة ${target}`
-        );
-
-
-        /* ---------------------------------------------
-           CANVAS
-        --------------------------------------------- */
-
-        const canvas =
-            document.createElement(
-                "canvas"
-            );
-
-
-        canvas.className =
-            "pdf-canvas";
-
-
-        const context =
-            canvas.getContext(
-                "2d",
-                {
-                    alpha: false
-                }
-            );
-
-
-        canvas.width =
-            Math.floor(
-                viewport.width *
-                outputScale
-            );
-
-
-        canvas.height =
-            Math.floor(
-                viewport.height *
-                outputScale
-            );
-
-
-        canvas.style.width =
-            `${viewport.width}px`;
-
-
-        canvas.style.height =
-            `${viewport.height}px`;
-
-
-        await page.render({
-
-            canvasContext:
-                context,
-
-            viewport:
-                page.getViewport({
-                    scale:
-                        scale *
-                        outputScale
-                })
-
-        }).promise;
-
-
-        if (
-            generation !==
-            renderGeneration
-        ) {
-            return;
-        }
-
-
-        /* ---------------------------------------------
-           TEXT LAYER
-        --------------------------------------------- */
-
-        const textLayerDiv =
-            document.createElement(
-                "div"
-            );
-
-
-        textLayerDiv.className =
-            "textLayer";
-
-
-        const textContent =
-            await page.getTextContent();
-
-
-        if (
-            typeof pdfjsLib.TextLayer !==
-            "function"
-        ) {
-
-            throw new Error(
-                "PDF.js TextLayer غير متوفر."
-            );
-
-        }
-
-
-        const textLayer =
-            new pdfjsLib.TextLayer({
-
-                textContentSource:
-                    textContent,
-
-                container:
-                    textLayerDiv,
-
-                viewport
-
-            });
-
-
-        await textLayer.render();
-
-
-        if (
-            generation !==
-            renderGeneration
-        ) {
-            return;
-        }
-
-
-        /* ---------------------------------------------
-           ANNOTATION CANVAS
-        --------------------------------------------- */
-
-        const annotationCanvas =
-            document.createElement(
-                "canvas"
-            );
-
-
-        annotationCanvas.className =
-            "annotation-canvas";
-
-
-        annotationCanvas.width =
-            Math.floor(
-                viewport.width *
-                outputScale
-            );
-
-
-        annotationCanvas.height =
-            Math.floor(
-                viewport.height *
-                outputScale
-            );
-
-
-        annotationCanvas.style.width =
-            `${viewport.width}px`;
-
-
-        annotationCanvas.style.height =
-            `${viewport.height}px`;
-
-
-        annotationCanvas.dataset.pageNumber =
-            String(target);
-
-
-        /* ---------------------------------------------
-           PDF LINK LAYER
-        --------------------------------------------- */
-
-        const linkLayer =
-            document.createElement(
-                "div"
-            );
-
-
-        linkLayer.className =
-            "pdf-link-layer";
-
-
-        linkLayer.style.width =
-            `${viewport.width}px`;
-
-
-        linkLayer.style.height =
-            `${viewport.height}px`;
-
-
-        await renderPDFLinks(
-            page,
-            linkLayer,
-            viewport
-        );
-
-
-        /* ---------------------------------------------
-           APPEND EVERYTHING
-        --------------------------------------------- */
-
-        pageContainer.appendChild(
-            canvas
-        );
-
-
-        pageContainer.appendChild(
-            textLayerDiv
-        );
-
-
-        pageContainer.appendChild(
-            linkLayer
-        );
-
-
-        pageContainer.appendChild(
-            annotationCanvas
-        );
-
-
-        pdfViewer.appendChild(
-            pageContainer
-        );
-
-
-        /* ---------------------------------------------
-           TEXT INTERACTION
-        --------------------------------------------- */
-
-        setupTextInteraction(
-            textLayerDiv,
-            pageContainer,
-            target
-        );
-
-
-        /* ---------------------------------------------
-           DRAWING
-        --------------------------------------------- */
-
-        setupAnnotationCanvas(
-            annotationCanvas,
-            pageContainer,
-            target
-        );
-
-
-        /* ---------------------------------------------
-           RESTORE DRAWINGS
-        --------------------------------------------- */
-
-        redrawAnnotations(
-            pageContainer,
-            target
-        );
-
-
-        /* ---------------------------------------------
-           MODE
-        --------------------------------------------- */
-
-        applyModeToPage(
-            pageContainer
-        );
-
-
-        /* ---------------------------------------------
-           PAGE STATE
-        --------------------------------------------- */
-
-        currentPage =
-            target;
-
-
-        pageInput.value =
-            String(target);
-
-
-        totalPagesElement.textContent =
-            String(
-                pdfDocument.numPages
-            );
-
-
-        zoomLevelElement.textContent =
-            `${Math.round(scale * 100)}%`;
-
-
-        updateNavigation();
-
-
-    } catch (error) {
-
-        console.error(
-            `تعذر رسم الصفحة ${target}:`,
-            error
-        );
-
-
-        if (
-            generation !==
-            renderGeneration
-        ) {
-            return;
-        }
-
-
-        pdfViewer.innerHTML = `
-            <div class="page-error">
-                تعذر رسم الصفحة ${target}
-            </div>
-        `;
-
-    }
-
-}
-
-
-/* =========================================================
-   PDF LINKS
-=========================================================
-
-   يدعم:
-   - الروابط الخارجية
-   - الروابط الداخلية داخل نفس PDF
-   - روابط تنقلك إلى صفحة أخرى
-========================================================= */
-
-async function renderPDFLinks(
-    page,
-    linkLayer,
-    viewport
-) {
-
-    try {
-
-        const annotations =
-            await page.getAnnotations({
-                intent: "display"
-            });
-
-
-        annotations.forEach(
-            annotation => {
-
-                if (
-                    annotation.subtype !==
-                    "Link"
-                ) {
-                    return;
-                }
-
-
-                if (
-                    !annotation.rect
-                ) {
-                    return;
-                }
-
-
-                const rect =
-                    viewport.convertToViewportRectangle(
-                        annotation.rect
-                    );
-
-
-                const left =
-                    Math.min(
-                        rect[0],
-                        rect[2]
-                    );
-
-
-                const top =
-                    Math.min(
-                        rect[1],
-                        rect[3]
-                    );
-
-
-                const width =
-                    Math.abs(
-                        rect[2] -
-                        rect[0]
-                    );
-
-
-                const height =
-                    Math.abs(
-                        rect[3] -
-                        rect[1]
-                    );
-
-
-                const link =
-                    document.createElement(
-                        "a"
-                    );
-
-
-                link.className =
-                    "pdf-link";
-
-
-                link.style.position =
-                    "absolute";
-
-
-                link.style.left =
-                    `${left}px`;
-
-
-                link.style.top =
-                    `${top}px`;
-
-
-                link.style.width =
-                    `${width}px`;
-
-
-                link.style.height =
-                    `${height}px`;
-
-
-                link.style.cursor =
-                    "pointer";
-
-
-                /* -----------------------------------------
-                   EXTERNAL LINK
-                ----------------------------------------- */
-
-                if (
-                    annotation.url
-                ) {
-
-                    link.href =
-                        annotation.url;
-
-
-                    link.target =
-                        "_blank";
-
-
-                    link.rel =
-                        "noopener noreferrer";
-
-                }
-
-
-                /* -----------------------------------------
-                   INTERNAL LINK
-                ----------------------------------------- */
-
-                else if (
-                    annotation.dest
-                ) {
-
-                    link.href =
-                        "#";
-
-
-                    link.addEventListener(
-                        "click",
-                        async function(event) {
-
-                            event.preventDefault();
-
-                            event.stopPropagation();
-
-                            await navigateToPDFDestination(
-                                annotation.dest
-                            );
-
-                        }
-                    );
-
-                }
-
-
-                linkLayer.appendChild(
-                    link
-                );
-
-            }
-        );
-
-    } catch (error) {
-
-        console.error(
-            "PDF link layer error:",
-            error
-        );
-
-    }
-
-}
-
-
-/* =========================================================
-   INTERNAL PDF DESTINATION
-========================================================= */
-
-async function navigateToPDFDestination(
-    destination
-) {
-
-    try {
-
-        let resolvedDestination =
-            destination;
-
-
-        /* ---------------------------------------------
-           Named destination
-        --------------------------------------------- */
-
-        if (
-            typeof destination ===
-            "string"
-        ) {
-
-            resolvedDestination =
-                await pdfDocument.getDestination(
-                    destination
-                );
-
-        }
-
-
-        if (
-            !Array.isArray(
-                resolvedDestination
-            )
-        ) {
-            return;
-        }
-
-
-        const pageReference =
-            resolvedDestination[0];
-
-
-        const pageIndex =
-            await pdfDocument.getPageIndex(
-                pageReference
-            );
-
-
-        const targetPage =
-            pageIndex + 1;
-
-
-        if (
-            targetPage < 1 ||
-            targetPage >
-            pdfDocument.numPages
-        ) {
-            return;
-        }
-
-
-        await goToPage(
-            targetPage
-        );
-
-
-    } catch (error) {
-
-        console.error(
-            "تعذر الانتقال إلى رابط PDF الداخلي:",
-            error
-        );
-
-    }
-
-}
-
-
-/* =========================================================
-   PAGE NAVIGATION
-========================================================= */
-
-function updateNavigation() {
-
-    if (!pdfDocument) {
-
-        previousPageButton.disabled =
-            true;
-
-        nextPageButton.disabled =
-            true;
-
-        return;
-
-    }
-
-
-    previousPageButton.disabled =
-        currentPage <= 1;
-
-
-    nextPageButton.disabled =
-        currentPage >=
-        pdfDocument.numPages;
-
-}
-
-
-async function goToPage(
-    pageNumber
-) {
-
-    if (!pdfDocument) {
-        return;
-    }
-
-
-    const target =
-        Math.max(
-            1,
-            Math.min(
-                Number(pageNumber) || 1,
-                pdfDocument.numPages
-            )
-        );
-
-
-    stopSpeech();
-
-
-    pageInput.value =
-        String(target);
-
-
-    currentPage =
-        target;
-
-
-    updateNavigation();
-
-
-    viewerContainer.scrollTop =
-        0;
-
-
-    await renderPage(
-        target
-    );
-
-
-    requestAnimationFrame(
-        () => {
-
-            viewerContainer.scrollTop =
-                0;
-
-        }
-    );
-
-}
-
-
-/* =========================================================
-   PAGE INPUT
-========================================================= */
-
-function navigateFromPageInput() {
-
-    if (!pdfDocument) {
-        return;
-    }
-
-
-    let requested =
-        parseInt(
-            pageInput.value,
-            10
-        );
-
-
-    if (
-        Number.isNaN(
-            requested
-        )
-    ) {
-
-        pageInput.value =
-            String(currentPage);
-
-        return;
-
-    }
-
-
-    requested =
-        Math.max(
-            1,
-            Math.min(
-                requested,
-                pdfDocument.numPages
-            )
-        );
-
-
-    pageInput.value =
-        String(requested);
-
-
-    goToPage(
-        requested
-    );
-
-}
-
-
-pageInput.addEventListener(
-    "change",
-    navigateFromPageInput
-);
-
-
-pageInput.addEventListener(
-    "blur",
-    navigateFromPageInput
-);
-
-
-pageInput.addEventListener(
-    "keydown",
-    event => {
-
-        if (
-            event.key ===
-            "Enter"
-        ) {
-
-            event.preventDefault();
-
-            navigateFromPageInput();
-
-            pageInput.blur();
-
-        }
-
-    }
-);
-
-
-/* =========================================================
-   PREVIOUS / NEXT
-========================================================= */
-
-previousPageButton.addEventListener(
-    "click",
-    () => {
-
-        if (
-            currentPage > 1
-        ) {
-
-            goToPage(
-                currentPage - 1
-            );
-
-        }
-
-    }
-);
-
-
-nextPageButton.addEventListener(
-    "click",
-    () => {
-
-        if (
-            pdfDocument &&
-            currentPage <
-            pdfDocument.numPages
-        ) {
-
-            goToPage(
-                currentPage + 1
-            );
-
-        }
-
-    }
-);
-
-
-/* =========================================================
-   ZOOM
-========================================================= */
-
-async function rebuildAtCurrentZoom() {
-
-    await renderPage(
-        currentPage
-    );
-
-
-    zoomLevelElement.textContent =
-        `${Math.round(scale * 100)}%`;
-
-}
-
-
-zoomInButton.addEventListener(
-    "click",
-    async () => {
-
-        if (!pdfDocument) {
-            return;
-        }
-
-
-        scale =
-            Math.min(
-                3,
-                Number(
-                    (
-                        scale +
-                        0.1
-                    ).toFixed(2)
-                )
-            );
-
-
-        await rebuildAtCurrentZoom();
-
-    }
-);
-
-
-zoomOutButton.addEventListener(
-    "click",
-    async () => {
-
-        if (!pdfDocument) {
-            return;
-        }
-
-
-        scale =
-            Math.max(
-                0.5,
-                Number(
-                    (
-                        scale -
-                        0.1
-                    ).toFixed(2)
-                )
-            );
-
-
-        await rebuildAtCurrentZoom();
-
-    }
-);
-
-
-/* =========================================================
-   TEXT HELPERS
-========================================================= */
-
-function normalizeText(
-    text
-) {
-
-    return String(
-        text || ""
-    )
-        .replace(
-            /\s+/g,
-            " "
-        )
-        .trim();
-
-}
-
-
-function containsEnglish(
-    text
-) {
-
-    return /[A-Za-z]/.test(
-        text
-    );
-
-}
-
-
-/* =========================================================
-   TEXT INTERACTION
-========================================================= */
-
-function setupTextInteraction(
-    textLayer,
-    pageContainer,
-    pageNumber
-) {
-
-    const spans =
-        Array.from(
-            textLayer.querySelectorAll(
-                "span"
-            )
-        );
-
-
-    spans.forEach(
-        span => {
-
-            const text =
-                normalizeText(
-                    span.textContent
-                );
-
-
-            if (!text) {
-                return;
-            }
-
-
-            if (
-                !containsEnglish(
-                    text
-                )
-            ) {
-                return;
-            }
-
-
-            span.classList.add(
-                "clickable-text"
-            );
-
-
-            span.dataset.speechText =
-                text;
-
-
-            span.title =
-                "اضغط لسماع النطق";
-
-
-            span.addEventListener(
-                "click",
-                event => {
-
-                    event.preventDefault();
-
-                    event.stopPropagation();
-
-
-                    if (
-                        activeMode !==
-                        "hand"
-                    ) {
-                        return;
-                    }
-
-
-                    handlePronunciation(
-                        pageContainer,
-                        span,
-                        pageNumber
-                    );
-
-                }
-            );
-
-        }
-    );
-
-}
-
-
-/* =========================================================
-   PRONUNCIATION
-========================================================= */
-
-function handlePronunciation(
-    pageContainer,
-    span,
-    pageNumber
-) {
-
-    clearTemporarySpeechHighlight();
-
-
-    if (!span) {
-        return;
-    }
-
-
-    span.classList.add(
-        "speech-highlight"
-    );
-
-
-    currentSpeechSentence =
-        [span];
-
-
-    const text =
-        normalizeText(
-            span.textContent
-        );
-
-
-    if (!text) {
-
-        clearTemporarySpeechHighlight();
-
-        return;
-
-    }
-
-
-    speak(
-        text,
-        clearTemporarySpeechHighlight,
-        pageNumber
-    );
-
-}
-
-
-function clearTemporarySpeechHighlight() {
-
-    currentSpeechSentence.forEach(
-        span => {
-
-            span.classList.remove(
-                "speech-highlight"
-            );
-
-        }
-    );
-
-
-    currentSpeechSentence =
-        [];
-
-}
-
-
-/* =========================================================
-   SPEECH
-========================================================= */
-
-function speak(
-    text,
-    onComplete = null
-) {
-
-    if (
-        !(
-            "speechSynthesis"
-            in window
-        )
-    ) {
-
-        pronunciationStatus.textContent =
-            "النطق غير مدعوم في هذا المتصفح.";
-
-
-        if (
-            typeof onComplete ===
-            "function"
-        ) {
-            onComplete();
-        }
-
-
-        return;
-
-    }
-
-
-    text =
-        normalizeText(
-            text
-        );
-
-
-    if (!text) {
-
-        if (
-            typeof onComplete ===
-            "function"
-        ) {
-            onComplete();
-        }
-
-        return;
-
-    }
-
-
-    stopSpeech();
-
-
-    activeUtterance =
-        new SpeechSynthesisUtterance(
-            text
-        );
-
-
-    const utterance =
-        activeUtterance;
-
-
-    /* ---------------------------------------------
-       SAMANTHA FIRST
-    --------------------------------------------- */
-
-    const availableVoices =
-        speechSynthesis.getVoices();
-
-
-    const samantha =
-        availableVoices.find(
-            voice =>
-                voice.name
-                    .toLowerCase()
-                    .includes(
-                        "samantha"
-                    )
-        );
-
-
-    if (samantha) {
-
-        utterance.voice =
-            samantha;
-
-        utterance.lang =
-            samantha.lang;
-
-    }
-
-    else if (
-        selectedVoice
-    ) {
-
-        utterance.voice =
-            selectedVoice;
-
-        utterance.lang =
-            selectedVoice.lang;
-
-    }
-
-    else {
-
-        utterance.lang =
-            "en-US";
-
-    }
-
-
-    /* ---------------------------------------------
-       SPEECH SETTINGS
-    --------------------------------------------- */
-
-    utterance.rate =
-        speechRate;
-
-    utterance.pitch =
-        1;
-
-
-    /* ---------------------------------------------
-       IOS SAFARI KEEP-ALIVE
-    --------------------------------------------- */
-
-    startSpeechKeepAlive();
-
-
-    /* ---------------------------------------------
-       START
-    --------------------------------------------- */
-
-    utterance.onstart =
-        () => {
-
-            pronunciationStatus.textContent =
-                `🔊 ${text}`;
-
-        };
-
-
-    /* ---------------------------------------------
-       END
-    --------------------------------------------- */
-
-    utterance.onend =
-        () => {
-
-            stopSpeechKeepAlive();
-
-            activeUtterance =
-                null;
-
-
-            pronunciationStatus.textContent =
-                "🔊 اضغط على النص الإنجليزي لسماع النطق";
-
-
-            if (
-                typeof onComplete ===
-                "function"
-            ) {
-
-                onComplete();
-
-            }
-
-        };
-
-
-    /* ---------------------------------------------
-       ERROR
-    --------------------------------------------- */
-
-    utterance.onerror =
-        error => {
-
-            stopSpeechKeepAlive();
-
-            activeUtterance =
-                null;
-
-
-            console.error(
-                "Speech error:",
-                error
-            );
-
-
-            pronunciationStatus.textContent =
-                "تعذر تشغيل النطق.";
-
-
-            if (
-                typeof onComplete ===
-                "function"
-            ) {
-
-                onComplete();
-
-            }
-
-        };
-
-
-    speechSynthesis.speak(
-        utterance
-    );
-
-}
-
-
-/* =========================================================
-   STOP SPEECH
-========================================================= */
-
-function stopSpeech() {
-
-    if (
-        "speechSynthesis"
-        in window
-    ) {
-
-        speechSynthesis.cancel();
-
-    }
-
-
-    stopSpeechKeepAlive();
-
-
-    activeUtterance =
-        null;
-
-
-    clearTemporarySpeechHighlight();
-
-}
-
-
-/* =========================================================
-   IOS SPEECH KEEP ALIVE
-========================================================= */
-
-let speechResumeInterval =
-    null;
-
-
-function startSpeechKeepAlive() {
-
-    stopSpeechKeepAlive();
-
-
-    speechResumeInterval =
-        setInterval(
-            () => {
-
-                if (
-                    speechSynthesis.speaking
-                ) {
-
-                    speechSynthesis.resume();
-
-                }
-                else {
-
-                    stopSpeechKeepAlive();
-
-                }
-
-            },
-            250
-        );
-
-}
-
-
-function stopSpeechKeepAlive() {
-
-    if (
-        speechResumeInterval
-    ) {
-
-        clearInterval(
-            speechResumeInterval
-        );
-
-        speechResumeInterval =
-            null;
-
-    }
-
-}
-
-
-/* =========================================================
-   VOICES
-========================================================= */
-
-function loadVoices() {
-
-    if (
-        !(
-            "speechSynthesis"
-            in window
-        )
-    ) {
-        return;
-    }
-
-
-    voices =
-        speechSynthesis.getVoices();
-
-
-    const englishVoices =
-        voices.filter(
-            voice =>
-                voice.lang &&
-                voice.lang
-                    .toLowerCase()
-                    .startsWith(
-                        "en"
-                    )
-        );
-
-
-    if (
-        englishVoices.length ===
-        0
-    ) {
-        return;
-    }
-
-
-    voiceSelect.innerHTML =
-        "";
-
-
-    englishVoices.forEach(
-        voice => {
-
-            const option =
-                document.createElement(
-                    "option"
-                );
-
-
-            option.value =
-                `${voice.name}|${voice.lang}`;
-
-
-            option.textContent =
-                `${voice.name} — ${voice.lang}`;
-
-
-            voiceSelect.appendChild(
-                option
-            );
-
-        }
-    );
-
-
-    /* ---------------------------------------------
-       SAVED VOICE
-    --------------------------------------------- */
-
-    const savedVoice =
-        localStorage.getItem(
-            "pdfReaderVoice"
-        );
-
-
-    if (savedVoice) {
-
-        const saved =
-            englishVoices.find(
-                voice =>
-                    `${voice.name}|${voice.lang}` ===
-                    savedVoice
-            );
-
-
-        if (saved) {
-
-            selectedVoice =
-                saved;
-
-            voiceSelect.value =
-                savedVoice;
-
-            return;
-
-        }
-
-    }
-
-
-    /* ---------------------------------------------
-       SAMANTHA DEFAULT
-    --------------------------------------------- */
-
-    const samantha =
-        englishVoices.find(
-            voice =>
-                voice.name
-                    .toLowerCase()
-                    .includes(
-                        "samantha"
-                    )
-        );
-
-
-    selectedVoice =
-        samantha ||
-        englishVoices[0];
-
-
-    voiceSelect.value =
-        `${selectedVoice.name}|${selectedVoice.lang}`;
-
-}
-
-
-/* =========================================================
-   VOICE CHANGE
-========================================================= */
-
-voiceSelect.addEventListener(
-    "change",
-    function () {
-
-        const value =
-            this.value;
-
-
-        selectedVoice =
-            voices.find(
-                voice =>
-                    `${voice.name}|${voice.lang}` ===
-                    value
-            );
-
-
-        if (selectedVoice) {
-
-            localStorage.setItem(
-                "pdfReaderVoice",
-                value
-            );
-
-        }
-
-    }
-);
-
-
-/* =========================================================
-   SPEECH SPEED
-========================================================= */
-
-function updateSpeed() {
-
-    speedValue.textContent =
-        `${speechRate.toFixed(2)}×`;
-
-}
-
-
-speedRange.addEventListener(
-    "input",
-    function () {
-
-        speechRate =
-            parseFloat(
-                this.value
-            );
-
-
-        updateSpeed();
-
-
-        localStorage.setItem(
-            "pdfReaderSpeechRate",
-            speechRate
-        );
-
-    }
-);
-
-
-/* =========================================================
-   LOAD SPEECH SETTINGS
-========================================================= */
-
-function loadSpeechSettings() {
-
-    const savedRate =
-        localStorage.getItem(
-            "pdfReaderSpeechRate"
-        );
-
-
-    if (savedRate) {
-
-        const parsed =
-            parseFloat(
-                savedRate
-            );
-
-
-        if (
-            !Number.isNaN(
-                parsed
-            ) &&
-            parsed >= 0.5 &&
-            parsed <= 1.5
-        ) {
-
-            speechRate =
-                parsed;
-
-        }
-
-    }
-
-
-    speedRange.value =
-        speechRate;
-
-
-    updateSpeed();
-
-}
-
-
-/* =========================================================
-   TEST VOICE
-========================================================= */
-
-testVoiceButton.addEventListener(
-    "click",
-    () => {
-
-        speak(
-            "Hello! This is a pronunciation test."
-        );
-
-    }
-);
-
-
-/* =========================================================
-   MODES
-========================================================= */
-
-function setActiveMode(
-    mode
-) {
-
-    activeMode =
-        mode;
-
-
-    [
-        handTool,
-        penTool,
-        eraserTool
-    ].forEach(
-        button => {
-
-            button.classList.remove(
-                "active"
-            );
-
-        }
-    );
-
-
-    const buttonMap = {
-
-        hand:
-            handTool,
-
-        pen:
-            penTool,
-
-        eraser:
-            eraserTool
-
+/*************************************************************************
+     * 1. قائمة الخطوط المبسطة (عادي Print + متصل Cursive) + 5 مستويات لحجم الخط
+     *************************************************************************/
+    const FONTS_LIST = {
+      print: [
+        { id: 'Lexend', label: 'Lexend', css: "'Lexend', sans-serif" },
+        { id: 'Comic Neue', label: 'Comic Neue', css: "'Comic Neue', cursive" },
+        { id: 'Patrick Hand', label: 'Patrick Hand', css: "'Patrick Hand', cursive" }
+      ],
+      cursive: [
+    { id: 'Dancing Script', label: 'Dancing Script', css: "'Dancing Script', cursive" },
+    { id: 'Caveat', label: 'Caveat', css: "'Caveat', cursive" },
+    { id: 'Great Vibes', label: 'Great Vibes', css: "'Great Vibes', cursive" },
+    { id: 'Sacramento', label: 'Sacramento', css: "'Sacramento', cursive" },
+    { id: 'Allura', label: 'Allura', css: "'Allura', cursive" },
+    { id: 'Satisfy', label: 'Satisfy', css: "'Satisfy', cursive" },
+    { id: 'Kaushan Script', label: 'Kaushan Script', css: "'Kaushan Script', cursive" },
+    { id: 'Pacifico', label: 'Pacifico', css: "'Pacifico', cursive" }
+]
     };
 
+    // 5 مستويات لحجم الخط (المستوى الخامس 1.00 هو الحجم الأقصى الحالي + 4 مستويات أصغر منه)
+    const FONT_SCALE_LEVELS = [
+      { level: 1, scale: 0.48, name: 'صغير جداً' },
+      { level: 2, scale: 0.61, name: 'صغير' },
+      { level: 3, scale: 0.74, name: 'متوسط' },
+      { level: 4, scale: 0.87, name: 'كبير' },
+      { level: 5, scale: 1.00, name: 'كبير جداً' }
+    ];
 
-    buttonMap[
-        mode
-    ]?.classList.add(
-        "active"
+    /*************************************************************************
+     * 2. بنك الحروف (A-Z) والكلمات والجمل الإنجليزية العشوائية (بدون مستويات وبدون حركات)
+     *************************************************************************/
+    const RANDOM_EXERCISES_POOL = [
+
+      // الحروف الإنجليزية من A إلى Z
+      { id: 'l_1', type: 'letters', text: 'Aa', arabic: '' },
+      { id: 'l_2', type: 'letters', text: 'Bb', arabic: '' },
+      { id: 'l_3', type: 'letters', text: 'Cc', arabic: '' },
+      { id: 'l_4', type: 'letters', text: 'Dd', arabic: '' },
+      { id: 'l_5', type: 'letters', text: 'Ee', arabic: '' },
+      { id: 'l_6', type: 'letters', text: 'Ff', arabic: '' },
+      { id: 'l_7', type: 'letters', text: 'Gg', arabic: '' },
+      { id: 'l_8', type: 'letters', text: 'Hh', arabic: '' },
+      { id: 'l_9', type: 'letters', text: 'Ii', arabic: '' },
+      { id: 'l_10', type: 'letters', text: 'Jj', arabic: '' },
+      { id: 'l_11', type: 'letters', text: 'Kk', arabic: '' },
+      { id: 'l_12', type: 'letters', text: 'Ll', arabic: '' },
+      { id: 'l_13', type: 'letters', text: 'Mm', arabic: '' },
+      { id: 'l_14', type: 'letters', text: 'Nn', arabic: '' },
+      { id: 'l_15', type: 'letters', text: 'Oo', arabic: '' },
+      { id: 'l_16', type: 'letters', text: 'Pp', arabic: '' },
+      { id: 'l_17', type: 'letters', text: 'Qq', arabic: '' },
+      { id: 'l_18', type: 'letters', text: 'Rr', arabic: '' },
+      { id: 'l_19', type: 'letters', text: 'Ss', arabic: '' },
+      { id: 'l_20', type: 'letters', text: 'Tt', arabic: '' },
+      { id: 'l_21', type: 'letters', text: 'Uu', arabic: '' },
+      { id: 'l_22', type: 'letters', text: 'Vv', arabic: '' },
+      { id: 'l_23', type: 'letters', text: 'Ww', arabic: '' },
+      { id: 'l_24', type: 'letters', text: 'Xx', arabic: '' },
+      { id: 'l_25', type: 'letters', text: 'Yy', arabic: '' },
+      { id: 'l_26', type: 'letters', text: 'Zz', arabic: '' },
+
+      // كلمات A1 – أساسية
+{ id: 'w_1', type: 'words', text: 'Cat', arabic: 'قطة' },
+{ id: 'w_2', type: 'words', text: 'Book', arabic: 'كتاب' },
+{ id: 'w_3', type: 'words', text: 'Water', arabic: 'ماء' },
+{ id: 'w_4', type: 'words', text: 'Apple', arabic: 'تفاحة' },
+{ id: 'w_5', type: 'words', text: 'School', arabic: 'مدرسة' },
+{ id: 'w_6', type: 'words', text: 'Friend', arabic: 'صديق' },
+{ id: 'w_7', type: 'words', text: 'Morning', arabic: 'صباح' },
+{ id: 'w_8', type: 'words', text: 'Family', arabic: 'عائلة' },
+{ id: 'w_9', type: 'words', text: 'House', arabic: 'منزل' },
+{ id: 'w_10', type: 'words', text: 'Happy', arabic: 'سعيد' },
+{ id: 'w_11', type: 'words', text: 'Food', arabic: 'طعام' },
+{ id: 'w_12', type: 'words', text: 'Water', arabic: 'ماء' },
+{ id: 'w_13', type: 'words', text: 'Mother', arabic: 'أم' },
+{ id: 'w_14', type: 'words', text: 'Father', arabic: 'أب' },
+{ id: 'w_15', type: 'words', text: 'Window', arabic: 'نافذة' },
+{ id: 'w_16', type: 'words', text: 'Garden', arabic: 'حديقة' },
+{ id: 'w_17', type: 'words', text: 'Market', arabic: 'سوق' },
+{ id: 'w_18', type: 'words', text: 'Breakfast', arabic: 'وجبة الإفطار' },
+{ id: 'w_19', type: 'words', text: 'Beautiful', arabic: 'جميل' },
+{ id: 'w_20', type: 'words', text: 'Tired', arabic: 'متعب' },
+
+// كلمات A2 – الحياة اليومية
+{ id: 'w_21', type: 'words', text: 'Weather', arabic: 'الطقس' },
+{ id: 'w_22', type: 'words', text: 'Journey', arabic: 'رحلة' },
+{ id: 'w_23', type: 'words', text: 'Healthy', arabic: 'صحي' },
+{ id: 'w_24', type: 'words', text: 'Library', arabic: 'مكتبة' },
+{ id: 'w_25', type: 'words', text: 'Careful', arabic: 'حذر' },
+{ id: 'w_26', type: 'words', text: 'Expensive', arabic: 'غالي' },
+{ id: 'w_27', type: 'words', text: 'Convenient', arabic: 'ملائم' },
+{ id: 'w_28', type: 'words', text: 'Appointment', arabic: 'موعد' },
+{ id: 'w_29', type: 'words', text: 'Neighbour', arabic: 'جار' },
+{ id: 'w_30', type: 'words', text: 'Improve', arabic: 'يحسّن' },
+{ id: 'w_31', type: 'words', text: 'Remember', arabic: 'يتذكر' },
+{ id: 'w_32', type: 'words', text: 'Borrow', arabic: 'يستعير' },
+{ id: 'w_33', type: 'words', text: 'Celebrate', arabic: 'يحتفل' },
+{ id: 'w_34', type: 'words', text: 'Usually', arabic: 'عادةً' },
+{ id: 'w_35', type: 'words', text: 'Suddenly', arabic: 'فجأة' },
+{ id: 'w_36', type: 'words', text: 'Polite', arabic: 'مهذب' },
+{ id: 'w_37', type: 'words', text: 'Crowded', arabic: 'مزدحم' },
+{ id: 'w_38', type: 'words', text: 'Direction', arabic: 'اتجاه' },
+{ id: 'w_39', type: 'words', text: 'Invitation', arabic: 'دعوة' },
+{ id: 'w_40', type: 'words', text: 'Decision', arabic: 'قرار' },
+
+// كلمات B1 – المستوى المتوسط
+{ id: 'w_41', type: 'words', text: 'Knowledge', arabic: 'معرفة' },
+{ id: 'w_42', type: 'words', text: 'Confidence', arabic: 'ثقة بالنفس' },
+{ id: 'w_43', type: 'words', text: 'Experience', arabic: 'خبرة أو تجربة' },
+{ id: 'w_44', type: 'words', text: 'Opportunity', arabic: 'فرصة' },
+{ id: 'w_45', type: 'words', text: 'Achievement', arabic: 'إنجاز' },
+{ id: 'w_46', type: 'words', text: 'Environment', arabic: 'بيئة' },
+{ id: 'w_47', type: 'words', text: 'Behaviour', arabic: 'سلوك' },
+{ id: 'w_48', type: 'words', text: 'Responsible', arabic: 'مسؤول' },
+{ id: 'w_49', type: 'words', text: 'Independent', arabic: 'مستقل' },
+{ id: 'w_50', type: 'words', text: 'Successful', arabic: 'ناجح' },
+{ id: 'w_51', type: 'words', text: 'Relationship', arabic: 'علاقة' },
+{ id: 'w_52', type: 'words', text: 'Communication', arabic: 'تواصل' },
+{ id: 'w_53', type: 'words', text: 'Challenge', arabic: 'تحدي' },
+{ id: 'w_54', type: 'words', text: 'Advantage', arabic: 'ميزة' },
+{ id: 'w_55', type: 'words', text: 'Disadvantage', arabic: 'عيب' },
+{ id: 'w_56', type: 'words', text: 'Recommend', arabic: 'يوصي' },
+{ id: 'w_57', type: 'words', text: 'Available', arabic: 'متاح' },
+{ id: 'w_58', type: 'words', text: 'Effective', arabic: 'فعّال' },
+{ id: 'w_59', type: 'words', text: 'Organize', arabic: 'ينظّم' },
+{ id: 'w_60', type: 'words', text: 'Consider', arabic: 'يأخذ بعين الاعتبار' },
+
+// كلمات B1 – تطوير اللغة والتفكير
+{ id: 'w_61', type: 'words', text: 'Purpose', arabic: 'هدف أو غرض' },
+{ id: 'w_62', type: 'words', text: 'Solution', arabic: 'حل' },
+{ id: 'w_63', type: 'words', text: 'Reason', arabic: 'سبب' },
+{ id: 'w_64', type: 'words', text: 'Opinion', arabic: 'رأي' },
+{ id: 'w_65', type: 'words', text: 'Suggest', arabic: 'يقترح' },
+{ id: 'w_66', type: 'words', text: 'Require', arabic: 'يتطلب' },
+{ id: 'w_67', type: 'words', text: 'Develop', arabic: 'يطوّر' },
+{ id: 'w_68', type: 'words', text: 'Achieve', arabic: 'يحقق' },
+{ id: 'w_69', type: 'words', text: 'Avoid', arabic: 'يتجنب' },
+{ id: 'w_70', type: 'words', text: 'Compare', arabic: 'يقارن' },
+{ id: 'w_71', type: 'words', text: 'Reduce', arabic: 'يقلل' },
+{ id: 'w_72', type: 'words', text: 'Increase', arabic: 'يزيد' },
+{ id: 'w_73', type: 'words', text: 'Support', arabic: 'يدعم' },
+{ id: 'w_74', type: 'words', text: 'Provide', arabic: 'يوفر' },
+{ id: 'w_75', type: 'words', text: 'Maintain', arabic: 'يحافظ على' },
+
+// كلمات B2 – المستوى فوق المتوسط
+{ id: 'w_76', type: 'words', text: 'Perspective', arabic: 'وجهة نظر' },
+{ id: 'w_77', type: 'words', text: 'Sustainable', arabic: 'مستدام' },
+{ id: 'w_78', type: 'words', text: 'Collaboration', arabic: 'تعاون' },
+{ id: 'w_79', type: 'words', text: 'Perseverance', arabic: 'مثابرة وإصرار' },
+{ id: 'w_80', type: 'words', text: 'Significant', arabic: 'مهم أو ملحوظ' },
+{ id: 'w_81', type: 'words', text: 'Consequences', arabic: 'عواقب' },
+{ id: 'w_82', type: 'words', text: 'Furthermore', arabic: 'علاوة على ذلك' },
+{ id: 'w_83', type: 'words', text: 'Nevertheless', arabic: 'ومع ذلك' },
+{ id: 'w_84', type: 'words', text: 'Efficient', arabic: 'كفؤ' },
+{ id: 'w_85', type: 'words', text: 'Complicated', arabic: 'معقد' },
+{ id: 'w_86', type: 'words', text: 'Establish', arabic: 'يؤسس' },
+{ id: 'w_87', type: 'words', text: 'Approach', arabic: 'نهج أو أسلوب' },
+{ id: 'w_88', type: 'words', text: 'Evidence', arabic: 'دليل' },
+{ id: 'w_89', type: 'words', text: 'Influence', arabic: 'تأثير' },
+{ id: 'w_90', type: 'words', text: 'Determine', arabic: 'يحدد' },
+{ id: 'w_91', type: 'words', text: 'Alternative', arabic: 'بديل' },
+{ id: 'w_92', type: 'words', text: 'Assumption', arabic: 'افتراض' },
+{ id: 'w_93', type: 'words', text: 'Accomplish', arabic: 'ينجز' },
+{ id: 'w_94', type: 'words', text: 'Beneficial', arabic: 'مفيد' },
+{ id: 'w_95', type: 'words', text: 'Compromise', arabic: 'تسوية' },
+{ id: 'w_96', type: 'words', text: 'Contribution', arabic: 'مساهمة' },
+{ id: 'w_97', type: 'words', text: 'Contribute', arabic: 'يساهم' },
+{ id: 'w_98', type: 'words', text: 'Circumstances', arabic: 'ظروف' },
+{ id: 'w_99', type: 'words', text: 'Interpret', arabic: 'يفسر' },
+{ id: 'w_100', type: 'words', text: 'Overcome', arabic: 'يتغلب على' },
+
+      // ==================== A1 — BEGINNER ====================
+// Simple words and familiar everyday scenes
+
+{ id: 's_1', type: 'sentences', text: 'The birds can sing', arabic: 'تستطيع الطيور الغناء' },
+{ id: 's_2', type: 'sentences', text: 'Bread smells so good', arabic: 'رائحة الخبز شهية جدًا' },
+{ id: 's_3', type: 'sentences', text: 'Rain taps the roof', arabic: 'المطر يطرق السقف' },
+{ id: 's_4', type: 'sentences', text: 'Bees make honey', arabic: 'ينتج النحل العسل' },
+{ id: 's_5', type: 'sentences', text: 'The baby is smiling', arabic: 'الطفل يبتسم' },
+{ id: 's_6', type: 'sentences', text: 'Stars shine at night', arabic: 'تلمع النجوم ليلًا' },
+{ id: 's_7', type: 'sentences', text: 'We planted a tree', arabic: 'زرعنا شجرة' },
+{ id: 's_8', type: 'sentences', text: 'The soup needs salt', arabic: 'الحساء يحتاج إلى الملح' },
+{ id: 's_9', type: 'sentences', text: 'Small waves roll in', arabic: 'تتلاطم الأمواج الصغيرة' },
+{ id: 's_10', type: 'sentences', text: 'Dad fixed the lamp', arabic: 'أصلح أبي المصباح' },
+{ id: 's_11', type: 'sentences', text: 'Cookies smell sweet', arabic: 'رائحة البسكويت حلوة' },
+{ id: 's_12', type: 'sentences', text: 'The clock ticks', arabic: 'تدق الساعة' },
+{ id: 's_13', type: 'sentences', text: 'Our garden blooms', arabic: 'تزهر حديقتنا' },
+{ id: 's_14', type: 'sentences', text: 'A yellow kite flies', arabic: 'تحلق طائرة ورقية صفراء' },
+{ id: 's_15', type: 'sentences', text: 'The girl laughed', arabic: 'ضحكت الفتاة' },
+{ id: 's_16', type: 'sentences', text: 'Leaves dance in wind', arabic: 'تتمايل الأوراق مع الرياح' },
+{ id: 's_17', type: 'sentences', text: 'I found a shell', arabic: 'وجدت صدفة بحرية' },
+{ id: 's_18', type: 'sentences', text: 'The bus stops here', arabic: 'تتوقف الحافلة هنا' },
+{ id: 's_19', type: 'sentences', text: 'The candle burns slowly', arabic: 'تحترق الشمعة ببطء' },
+{ id: 's_20', type: 'sentences', text: 'Cats chase bugs', arabic: 'تطارد القطط الحشرات' },
+{ id: 's_21', type: 'sentences', text: 'Snow covers the road', arabic: 'يغطي الثلج الطريق' },
+{ id: 's_22', type: 'sentences', text: 'Fish swim fast', arabic: 'تسبح الأسماك بسرعة' },
+{ id: 's_23', type: 'sentences', text: 'My pencil broke', arabic: 'انكسر قلمي' },
+{ id: 's_24', type: 'sentences', text: 'The bell rang twice', arabic: 'رن الجرس مرتين' },
+{ id: 's_25', type: 'sentences', text: 'We baked a cake', arabic: 'خبزنا كعكة' },
+
+
+// ==================== A2 — ELEMENTARY ====================
+// More detailed everyday situations and activities
+
+{ id: 's_26', type: 'sentences', text: 'She watered plants', arabic: 'سقت النباتات' },
+{ id: 's_27', type: 'sentences', text: 'The train left town', arabic: 'غادر القطار المدينة' },
+{ id: 's_28', type: 'sentences', text: 'Clouds hid the sun', arabic: 'حجبت الغيوم الشمس' },
+{ id: 's_29', type: 'sentences', text: 'He packed his lunch', arabic: 'جهز وجبة غدائه' },
+{ id: 's_30', type: 'sentences', text: 'The old bridge shook', arabic: 'اهتز الجسر القديم' },
+{ id: 's_31', type: 'sentences', text: 'Juice tastes great', arabic: 'مذاق العصير رائع' },
+{ id: 's_32', type: 'sentences', text: 'A cool breeze blew', arabic: 'هب نسيم بارد' },
+{ id: 's_33', type: 'sentences', text: 'We painted the fence', arabic: 'طلينا السياج' },
+{ id: 's_34', type: 'sentences', text: 'The shop opens early', arabic: 'يفتح المتجر مبكرًا' },
+{ id: 's_35', type: 'sentences', text: 'Zebras have stripes', arabic: 'للحمير الوحشية خطوط' },
+{ id: 's_36', type: 'sentences', text: 'Lights were left on', arabic: 'تُركت الأضواء مضاءة' },
+{ id: 's_37', type: 'sentences', text: 'The river bends', arabic: 'ينحني النهر' },
+{ id: 's_38', type: 'sentences', text: 'I spilled some milk', arabic: 'سكبت بعض الحليب' },
+{ id: 's_39', type: 'sentences', text: 'They moved the sofa', arabic: 'نقلوا الأريكة' },
+{ id: 's_40', type: 'sentences', text: 'The phone rang again', arabic: 'رن الهاتف مجددًا' },
+{ id: 's_41', type: 'sentences', text: 'Stars filled the sky', arabic: 'ملأت النجوم السماء' },
+{ id: 's_42', type: 'sentences', text: 'Soup began to boil', arabic: 'بدأ الحساء بالغليان' },
+{ id: 's_43', type: 'sentences', text: 'A small bird landed', arabic: 'حط طائر صغير' },
+{ id: 's_44', type: 'sentences', text: 'We missed the bus', arabic: 'فاتتنا الحافلة' },
+{ id: 's_45', type: 'sentences', text: 'Wind shook the trees', arabic: 'هزت الرياح الأشجار' },
+{ id: 's_46', type: 'sentences', text: 'Her new shoes squeak', arabic: 'يصدر حذاؤها الجديد صريرًا' },
+{ id: 's_47', type: 'sentences', text: 'Bread came out warm', arabic: 'خرج الخبز دافئًا' },
+{ id: 's_48', type: 'sentences', text: 'Kids built a fort', arabic: 'بنى الأطفال حصنًا' },
+{ id: 's_49', type: 'sentences', text: 'A fox crossed by', arabic: 'مر ثعلب من هنا' },
+{ id: 's_50', type: 'sentences', text: 'Gardens need care', arabic: 'تحتاج الحدائق إلى العناية' },
+
+
+// ==================== B1 — INTERMEDIATE ====================
+// Richer descriptions and more varied sentence structures
+
+{ id: 's_51', type: 'sentences', text: 'Heavy rain fell', arabic: 'هطلت أمطار غزيرة' },
+{ id: 's_52', type: 'sentences', text: 'The engine stopped', arabic: 'توقف المحرك' },
+{ id: 's_53', type: 'sentences', text: 'She folded the map', arabic: 'طوت الخريطة' },
+{ id: 's_54', type: 'sentences', text: 'Golden leaves fell', arabic: 'تساقطت أوراق ذهبية' },
+{ id: 's_55', type: 'sentences', text: 'The dog dug a hole', arabic: 'حفر الكلب حفرة' },
+{ id: 's_56', type: 'sentences', text: 'Steam rose up', arabic: 'تصاعد البخار' },
+{ id: 's_57', type: 'sentences', text: 'Strong winds blew', arabic: 'هبّت رياح قوية' },
+{ id: 's_58', type: 'sentences', text: 'We watched sunset', arabic: 'شاهدنا غروب الشمس' },
+{ id: 's_59', type: 'sentences', text: 'Old stairs creaked', arabic: 'أصدرت السلالم القديمة صريرًا' },
+{ id: 's_60', type: 'sentences', text: 'He polished his desk', arabic: 'لمّع مكتبه' },
+{ id: 's_61', type: 'sentences', text: 'Lights flashed', arabic: 'ومضت الأضواء' },
+{ id: 's_62', type: 'sentences', text: 'The path wound on', arabic: 'امتد الممر بشكل متعرج' },
+{ id: 's_63', type: 'sentences', text: 'A tiny crack grew', arabic: 'اتسع شق صغير' },
+{ id: 's_64', type: 'sentences', text: 'They fixed the gate', arabic: 'أصلحوا البوابة' },
+{ id: 's_65', type: 'sentences', text: 'The smell spread', arabic: 'انتشرت الرائحة' },
+{ id: 's_66', type: 'sentences', text: 'Water dripped down', arabic: 'تقطر الماء إلى الأسفل' },
+{ id: 's_67', type: 'sentences', text: 'A rabbit eats grass', arabic: 'يأكل الأرنب العشب' },
+{ id: 's_68', type: 'sentences', text: 'She tied her hair', arabic: 'ربطت شعرها' },
+{ id: 's_69', type: 'sentences', text: 'Thick fog rolled in', arabic: 'زحف ضباب كثيف' },
+{ id: 's_70', type: 'sentences', text: 'Floorboards creak', arabic: 'تصرّ ألواح الأرضية' },
+{ id: 's_71', type: 'sentences', text: 'Someone moved chairs', arabic: 'نقل أحدهم الكراسي' },
+{ id: 's_72', type: 'sentences', text: 'The paint dried fast', arabic: 'جف الطلاء بسرعة' },
+{ id: 's_73', type: 'sentences', text: 'The kettle whistled', arabic: 'أصدر إبريق الماء صفيرًا' },
+{ id: 's_74', type: 'sentences', text: 'The battery ran out', arabic: 'نفدت البطارية' },
+{ id: 's_75', type: 'sentences', text: 'The roof needs work', arabic: 'يحتاج السقف إلى إصلاح' },
+
+
+// ==================== B2 — UPPER INTERMEDIATE ====================
+// More expressive vocabulary and precise descriptions
+
+{ id: 's_76', type: 'sentences', text: 'Sun lit the room', arabic: 'أضاءت الشمس الغرفة' },
+{ id: 's_77', type: 'sentences', text: 'The fabric shrank', arabic: 'انكمش القماش' },
+{ id: 's_78', type: 'sentences', text: 'Dust covered shelves', arabic: 'غطى الغبار الرفوف' },
+{ id: 's_79', type: 'sentences', text: 'A smell lingered', arabic: 'ظلت رائحة عالقة' },
+{ id: 's_80', type: 'sentences', text: 'The lane bends', arabic: 'ينحني الطريق الضيق' },
+{ id: 's_81', type: 'sentences', text: 'Rain soaked roads', arabic: 'بللت الأمطار الطرق' },
+{ id: 's_82', type: 'sentences', text: 'Wooden frames warp', arabic: 'تلتوي الإطارات الخشبية' },
+{ id: 's_83', type: 'sentences', text: 'Waves crashed hard', arabic: 'تحطمت الأمواج بقوة' },
+{ id: 's_84', type: 'sentences', text: 'The metal gleamed', arabic: 'لمع المعدن' },
+{ id: 's_85', type: 'sentences', text: 'The glass fogged up', arabic: 'تكون الضباب على الزجاج' },
+{ id: 's_86', type: 'sentences', text: 'Herbs add flavor', arabic: 'تضيف الأعشاب نكهة' },
+{ id: 's_87', type: 'sentences', text: 'Paint began peeling', arabic: 'بدأ الطلاء بالتقشر' },
+{ id: 's_88', type: 'sentences', text: 'Footsteps echoed', arabic: 'تردد صدى خطوات الأقدام' },
+{ id: 's_89', type: 'sentences', text: 'Wheels rolled downhill', arabic: 'تدحرجت العجلات إلى أسفل التل' },
+{ id: 's_90', type: 'sentences', text: 'Clouds drifted east', arabic: 'انجرفت الغيوم شرقًا' },
+{ id: 's_91', type: 'sentences', text: 'Warm air escaped', arabic: 'تسرب الهواء الدافئ' },
+{ id: 's_92', type: 'sentences', text: 'Roots spread below', arabic: 'امتدت الجذور في الأسفل' },
+{ id: 's_93', type: 'sentences', text: 'Floors reflect light', arabic: 'تعكس الأرضيات الضوء' },
+{ id: 's_94', type: 'sentences', text: 'A sudden gust blew', arabic: 'هبّت هبة رياح مفاجئة' },
+{ id: 's_95', type: 'sentences', text: 'Glass broke loudly', arabic: 'تحطم الزجاج بصوت عالٍ' },
+{ id: 's_96', type: 'sentences', text: 'Dry leaves crunched', arabic: 'تكسّرت الأوراق الجافة' },
+{ id: 's_97', type: 'sentences', text: 'Pine scents lingered', arabic: 'ظلت رائحة الصنوبر عالقة' },
+{ id: 's_98', type: 'sentences', text: 'Silk caught light', arabic: 'عكس الحرير الضوء' },
+{ id: 's_99', type: 'sentences', text: 'The machine vibrated', arabic: 'اهتزت الآلة' },
+{ id: 's_100', type: 'sentences', text: 'Wild flowers bloomed', arabic: 'تفتحت الأزهار البرية' }
+    ];
+
+    /*************************************************************************
+     * 3. حالة التطبيق والتخزين المحلي
+     *************************************************************************/
+    const STORAGE_KEY = 'yazeed_handwriting_clean_v6';
+
+    const state = {
+      filterMode: 'letters',  // 'letters' | 'words' | 'sentences'
+      freeMode: false,        // وضع الكتابة الحرة المستقل
+      index: 0,
+      style: 'print',         // 'print' | 'cursive'
+      fontIndex: 0,
+      fontScaleIndex: 2,      // 0..4 (الافتراضي 4 أي المستوى 5 الأكبر حجماً 1.00)
+      sound: true,
+      darkMode: false,
+      penColor: '#00273A',
+      penSize: 'medium',      // 'thin' | 'medium' | 'thick'
+      isEraser: false,
+      strokes: [],
+      isDrawing: false,
+      activePointerId: null,
+      currentStroke: null
+    };
+
+    function loadSavedState() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) return;
+        const parsed = JSON.parse(raw);
+        if (['letters', 'words', 'sentences'].includes(parsed.filterMode)) {
+          state.filterMode = parsed.filterMode;
+        }
+        if (typeof parsed.index === 'number') state.index = parsed.index;
+        if (parsed.style) state.style = parsed.style;
+        if (typeof parsed.fontIndex === 'number') state.fontIndex = parsed.fontIndex;
+        if (typeof parsed.fontScaleIndex === 'number' && parsed.fontScaleIndex >= 0 && parsed.fontScaleIndex < FONT_SCALE_LEVELS.length) {
+          state.fontScaleIndex = parsed.fontScaleIndex;
+        }
+        if (typeof parsed.darkMode === 'boolean') state.darkMode = parsed.darkMode;
+        if (typeof parsed.sound === 'boolean') state.sound = parsed.sound;
+      } catch (e) {}
+    }
+
+    function saveState() {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify({
+          filterMode: state.filterMode,
+          index: state.index,
+          style: state.style,
+          fontIndex: state.fontIndex,
+          fontScaleIndex: state.fontScaleIndex,
+          darkMode: state.darkMode,
+          sound: state.sound
+        }));
+      } catch (e) {}
+    }
+
+    function getActiveFontScaleObj() {
+      return FONT_SCALE_LEVELS[state.fontScaleIndex] || FONT_SCALE_LEVELS[4];
+    }
+
+    // ==================== EXERCISE RANDOMIZATION ====================
+
+// Store the current exercise order so it doesn't change unexpectedly
+let activeExerciseList = [];
+let activeExerciseMode = null;
+
+// Create a new exercise list
+function createExerciseList(mode) {
+    const exercises = RANDOM_EXERCISES_POOL.filter(
+        item => item.type === mode
     );
 
+    // Keep letters permanently in alphabetical order
+    if (mode === 'letters') {
+        return exercises;
+    }
 
-    document.body.dataset.readerMode =
-        mode;
+    // Shuffle words and sentences
+    for (let i = exercises.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
 
+        [exercises[i], exercises[j]] = [exercises[j], exercises[i]];
+    }
 
-    document
-        .querySelectorAll(
-            ".pdf-page"
-        )
-        .forEach(
-            applyModeToPage
-        );
-
+    return exercises;
 }
 
-
-function applyModeToPage(
-    pageContainer
-) {
-
-    const textLayer =
-        pageContainer.querySelector(
-            ".textLayer"
-        );
-
-
-    const annotationCanvas =
-        pageContainer.querySelector(
-            ".annotation-canvas"
-        );
-
-
+// Return the existing order without reshuffling
+function getActiveList() {
     if (
-        !textLayer ||
-        !annotationCanvas
+        activeExerciseMode !== state.filterMode ||
+        activeExerciseList.length === 0
     ) {
+        activeExerciseList = createExerciseList(state.filterMode);
+        activeExerciseMode = state.filterMode;
+    }
+
+    return activeExerciseList;
+}
+
+    function getCurrentItem() {
+      const list = getActiveList();
+      if (state.index >= list.length) state.index = 0;
+      if (state.index < 0) state.index = list.length - 1;
+      return list[state.index];
+    }
+
+    function getActiveFont() {
+      const arr = FONTS_LIST[state.style] || FONTS_LIST.print;
+      return arr[state.fontIndex % arr.length];
+    }
+
+    /*************************************************************************
+     * 4. محرك صوت القلم الواقعي عبر Web Audio API (بدون ملفات خارجية وبدون أصوات للأزرار)
+     *************************************************************************/
+    let audioCtx = null;
+    let writingNoiseSource = null;
+    let writingGainNode = null;
+    let writingFilterNode = null;
+    let pencilSilenceTimer = null;
+
+    function getAudioCtx() {
+      if (!audioCtx) {
+        const Ctx = window.AudioContext || window.webkitAudioContext;
+        if (Ctx) audioCtx = new Ctx();
+      }
+      if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
+      return audioCtx;
+    }
+
+    function startWritingSound() {
+      if (!state.sound) return;
+      try {
+        const ctx = getAudioCtx();
+        if (!ctx) return;
+        stopWritingSound();
+
+        // توليد ضجيج ناعم يحاكي ملمس ألياف الورق تحت سن القلم الرصاص
+        const bufferSize = ctx.sampleRate * 1.5;
+        const noiseBuffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+        const output = noiseBuffer.getChannelData(0);
+        let lastOut = 0.0;
+        for (let i = 0; i < bufferSize; i++) {
+          const white = Math.random() * 2 - 1;
+          output[i] = (lastOut + (0.035 * white)) / 1.035;
+          lastOut = output[i];
+          output[i] *= 2.2;
+        }
+
+        writingNoiseSource = ctx.createBufferSource();
+        writingNoiseSource.buffer = noiseBuffer;
+        writingNoiseSource.loop = true;
+
+        // فلتر تمرير النطاق لتقريب الترددات من صوت احتكاك الجرافيت بالورق
+        writingFilterNode = ctx.createBiquadFilter();
+        writingFilterNode.type = 'bandpass';
+        writingFilterNode.frequency.setValueAtTime(1550, ctx.currentTime);
+        writingFilterNode.Q.setValueAtTime(1.4, ctx.currentTime);
+
+        // فلتر تنعيم إضافي لإزالة الحدة المزعجة
+        const lowpassNode = ctx.createBiquadFilter();
+        lowpassNode.type = 'lowpass';
+        lowpassNode.frequency.setValueAtTime(2800, ctx.currentTime);
+
+        writingGainNode = ctx.createGain();
+        writingGainNode.gain.setValueAtTime(0.001, ctx.currentTime);
+
+        writingNoiseSource.connect(writingFilterNode);
+        writingFilterNode.connect(lowpassNode);
+        lowpassNode.connect(writingGainNode);
+        writingGainNode.connect(ctx.destination);
+
+        writingNoiseSource.start();
+      } catch (e) {}
+    }
+
+    function modulateWritingSound(dist = 4) {
+      if (!state.sound) return;
+      try {
+        const ctx = getAudioCtx();
+        if (!ctx) return;
+        if (!writingNoiseSource || !writingGainNode) {
+          startWritingSound();
+        }
+        if (!writingGainNode || !writingFilterNode) return;
+
+        // تعديل شدة وتردد صوت القلم حسب سرعة تحريك اليد على الورقة
+        const speedFactor = Math.min(1, Math.max(0.15, dist / 14));
+        const targetGain = 0.035 + speedFactor * 0.065;
+        const targetFreq = 1350 + speedFactor * 750;
+
+        writingGainNode.gain.setTargetAtTime(targetGain, ctx.currentTime, 0.015);
+        writingFilterNode.frequency.setTargetAtTime(targetFreq, ctx.currentTime, 0.02);
+
+        clearTimeout(pencilSilenceTimer);
+        pencilSilenceTimer = setTimeout(() => {
+          if (writingGainNode && audioCtx) {
+            writingGainNode.gain.setTargetAtTime(0.0001, audioCtx.currentTime, 0.02);
+          }
+        }, 70);
+      } catch (e) {}
+    }
+
+    function stopWritingSound() {
+      clearTimeout(pencilSilenceTimer);
+      try {
+        if (writingGainNode && audioCtx) {
+          writingGainNode.gain.setTargetAtTime(0.0001, audioCtx.currentTime, 0.015);
+        }
+        if (writingNoiseSource) {
+          const src = writingNoiseSource;
+          writingNoiseSource = null;
+          writingGainNode = null;
+          writingFilterNode = null;
+          setTimeout(() => {
+          try {
+            src.stop();
+            src.disconnect();
+          } catch (e) {}
+        }, 35);
+        }
+      } catch (e) {}
+    }
+
+    /*************************************************************************
+     * 5. الدفتر المسطر والرسم الفوري فائق السلاسة للآيباد (Apple Pencil 120Hz)
+     *************************************************************************/
+    const guideCanvas = document.getElementById('guide-canvas');
+    const guideCtx = guideCanvas.getContext('2d');
+    const drawCanvas = document.getElementById('drawing-canvas');
+    const drawCtx = drawCanvas.getContext('2d');
+
+    let stageW = 800;
+    let stageH = 290;
+
+    const PEN_WIDTHS = {
+      thin: 3,
+      medium: 6,
+      thick: 10
+    };
+
+    function resizeStageCanvases() {
+      const wrap = document.getElementById('canvas-stage');
+      const rect = wrap.getBoundingClientRect();
+      const dpr = window.devicePixelRatio || 1;
+
+      stageW = Math.max(280, Math.floor(rect.width));
+      stageH = Math.max(220, Math.floor(rect.height));
+
+      [guideCanvas, drawCanvas].forEach(c => {
+        c.width = stageW * dpr;
+        c.height = stageH * dpr;
+        const ctx = c.getContext('2d');
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      });
+
+      renderRuledPaperAndGhost();
+      redrawUserStrokes();
+    }
+
+    function getRuledLinesLayout() {
+      const scaleObj = getActiveFontScaleObj();
+      const scale = scaleObj.scale;
+
+      if (state.freeMode) {
+        const rows = [];
+        const baseBandH = Math.min(58, stageH * 0.22);
+        const bandH = Math.max(24, Math.round(baseBandH * scale));
+        const startY = 30 + Math.round((baseBandH - bandH) * 0.4);
+        const gap = Math.max(48, Math.round(baseBandH * 1.65 * (0.7 + 0.3 * scale)));
+        for (let i = 0; i < 2; i++) {
+          const topLine = startY + i * gap;
+          const midLine = topLine + bandH * 0.5;
+          const baseLine = topLine + bandH;
+          const descLine = baseLine + bandH * 0.3;
+          rows.push({ topLine, midLine, baseLine, descLine, bandH });
+        }
+        return rows;
+      }
+
+      const item = getCurrentItem();
+      const isLong = item.text.length > 34;
+      if (!isLong) {
+        const centerY = stageH * 0.52;
+        const maxBandH = Math.min(110, stageH * 0.40);
+        const bandH = Math.round(maxBandH * scale);
+        const topLine = centerY - bandH * 0.5;
+        const midLine = centerY;
+        const baseLine = centerY + bandH * 0.5;
+        const descLine = baseLine + bandH * 0.32;
+        return [{ topLine, midLine, baseLine, descLine, bandH }];
+      } else {
+        const rows = [];
+        const maxBandH = Math.min(60, stageH * 0.22);
+        const bandH = Math.round(maxBandH * scale);
+        const startY = 30 + Math.round((maxBandH - bandH) * 0.4);
+        const gap = Math.max(46, Math.round(maxBandH * 1.65 * (0.72 + 0.28 * scale)));
+        for (let i = 0; i < 2; i++) {
+          const topLine = startY + i * gap;
+          const midLine = topLine + bandH * 0.5;
+          const baseLine = topLine + bandH;
+          const descLine = baseLine + bandH * 0.3;
+          rows.push({ topLine, midLine, baseLine, descLine, bandH });
+        }
+        return rows;
+      }
+    }
+
+    function renderRuledPaperAndGhost() {
+      guideCtx.clearRect(0, 0, stageW, stageH);
+      const isDark = state.darkMode;
+
+      // خلفية منطقة الكتابة (داكنة تماماً في الوضع الليلي كما في الصورة المرفقة)
+      guideCtx.fillStyle = isDark ? '#0c0d0f' : '#FFFFFF';
+      guideCtx.fillRect(0, 0, stageW, stageH);
+
+      const rows = getRuledLinesLayout();
+      const padX = 24;
+
+      rows.forEach(r => {
+        // تظليل خفيف جداً لمنطقة مسار الحروف
+        guideCtx.fillStyle = isDark ? 'rgba(0, 136, 199, 0.035)' : 'rgba(0, 104, 155, 0.03)';
+        guideCtx.fillRect(padX, r.topLine, stageW - padX * 2, r.baseLine - r.topLine);
+
+        // السطر العلوي
+        guideCtx.strokeStyle = isDark ? '#1E2329' : '#CBD5E1';
+        guideCtx.lineWidth = 1.2;
+        guideCtx.setLineDash([]);
+        guideCtx.beginPath();
+        guideCtx.moveTo(padX, r.topLine);
+        guideCtx.lineTo(stageW - padX, r.topLine);
+        guideCtx.stroke();
+
+        // السطر الأوسط المنقط
+        guideCtx.strokeStyle = isDark ? '#2B3036' : '#94A3B8';
+        guideCtx.lineWidth = 1.2;
+        guideCtx.setLineDash([6, 6]);
+        guideCtx.beginPath();
+        guideCtx.moveTo(padX, r.midLine);
+        guideCtx.lineTo(stageW - padX, r.midLine);
+        guideCtx.stroke();
+
+        // السطر الأساسي الثابت (أزرق سماوي متوهج وأنيق في الوضع الليلي)
+        guideCtx.save();
+        guideCtx.strokeStyle = isDark ? '#0088C7' : '#00689B';
+        guideCtx.lineWidth = 2.2;
+        if (isDark) {
+          guideCtx.shadowColor = 'rgba(0, 136, 199, 0.45)';
+          guideCtx.shadowBlur = 6;
+        }
+        guideCtx.setLineDash([]);
+        guideCtx.beginPath();
+        guideCtx.moveTo(padX, r.baseLine);
+        guideCtx.lineTo(stageW - padX, r.baseLine);
+        guideCtx.stroke();
+        guideCtx.restore();
+
+        // سطر الحروف الهابطة
+        guideCtx.strokeStyle = isDark ? '#1A1E23' : '#E2E8F0';
+        guideCtx.lineWidth = 1.1;
+        guideCtx.setLineDash([3, 4]);
+        guideCtx.beginPath();
+        guideCtx.moveTo(padX, r.descLine);
+        guideCtx.lineTo(stageW - padX, r.descLine);
+        guideCtx.stroke();
+        guideCtx.setLineDash([]);
+      });
+
+      // رسم النص المساعد بلون رمادي صلب وواضح (#777F88) في الوضع الليلي مطابق للصورة المرفقة
+      if (!state.freeMode) {
+        const ghostColor = isDark ? '#777F88' : 'rgba(100, 116, 139, 0.34)';
+        drawTargetOnContext(guideCtx, ghostColor);
+      }
+    }
+
+    function drawTargetOnContext(ctx, colorStyle) {
+      const item = getCurrentItem();
+      const rows = getRuledLinesLayout();
+      const fontObj = getActiveFont();
+      const scale = getActiveFontScaleObj().scale;
+      const padX = 44;
+      const maxW = stageW - padX * 2;
+
+      ctx.save();
+      ctx.fillStyle = colorStyle;
+      ctx.textBaseline = 'alphabetic';
+      ctx.direction = 'ltr';
+
+      if (rows.length === 1) {
+        const r = rows[0];
+        let fontSize = Math.round(r.bandH * (state.style === 'cursive' ? 1.12 : 1.02));
+        const minAllowedSize = Math.max(14, Math.round(22 * scale));
+        ctx.font = `500 ${fontSize}px ${fontObj.css}`;
+        let textW = ctx.measureText(item.text).width;
+        while (textW > maxW && fontSize > minAllowedSize) {
+          fontSize -= 2;
+          ctx.font = `500 ${fontSize}px ${fontObj.css}`;
+          textW = ctx.measureText(item.text).width;
+        }
+        const x = Math.max(padX, (stageW - textW) / 2);
+        ctx.fillText(item.text, x, r.baseLine - 2);
+      } else {
+        const r0 = rows[0];
+        let fontSize = Math.round(r0.bandH * 0.96);
+        ctx.font = `500 ${fontSize}px ${fontObj.css}`;
+
+        const words = item.text.split(' ');
+        let line1 = '';
+        let line2 = '';
+        for (const w of words) {
+          const test = line1 ? line1 + ' ' + w : w;
+          if (ctx.measureText(test).width <= maxW || !line1) {
+            line1 = test;
+          } else {
+            line2 = line2 ? line2 + ' ' + w : w;
+          }
+        }
+        const x1 = Math.max(padX, (stageW - ctx.measureText(line1).width) / 2);
+        ctx.fillText(line1, x1, rows[0].baseLine - 2);
+        if (line2 && rows[1]) {
+          const x2 = Math.max(padX, (stageW - ctx.measureText(line2).width) / 2);
+          ctx.fillText(line2, x2, rows[1].baseLine - 2);
+        }
+      }
+      ctx.restore();
+    }
+
+    function drawSingleStrokeOnContext(ctx, stroke, overrideColor = null) {
+      if (!stroke || !stroke.points || stroke.points.length === 0) return;
+      ctx.save();
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+
+      if (stroke.isEraser) {
+        ctx.globalCompositeOperation = 'destination-out';
+        ctx.strokeStyle = 'rgba(0,0,0,1)';
+        ctx.lineWidth = stroke.width * 3;
+      } else {
+        ctx.globalCompositeOperation = 'source-over';
+        ctx.strokeStyle = overrideColor || stroke.color;
+        ctx.fillStyle = overrideColor || stroke.color;
+        ctx.lineWidth = stroke.width;
+      }
+
+      const pts = stroke.points;
+      if (pts.length === 1) {
+        ctx.beginPath();
+        ctx.arc(pts[0].x, pts[0].y, stroke.width / 2, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
         return;
+      }
+
+      ctx.beginPath();
+      ctx.moveTo(pts[0].x, pts[0].y);
+      for (let i = 1; i < pts.length; i++) {
+        const midX = (pts[i - 1].x + pts[i].x) / 2;
+        const midY = (pts[i - 1].y + pts[i].y) / 2;
+        ctx.quadraticCurveTo(pts[i - 1].x, pts[i - 1].y, midX, midY);
+      }
+      ctx.lineTo(pts[pts.length - 1].x, pts[pts.length - 1].y);
+      ctx.stroke();
+      ctx.restore();
     }
 
-
-    const isHand =
-        activeMode ===
-        "hand";
-
-
-    textLayer.style.pointerEvents =
-        isHand
-            ? "auto"
-            : "none";
-
-
-    annotationCanvas.style.pointerEvents =
-        isHand
-            ? "none"
-            : "auto";
-
-
-    annotationCanvas.style.cursor =
-        activeMode === "pen"
-            ? "crosshair"
-            : activeMode === "eraser"
-                ? "cell"
-                : "default";
-
-}
-
-
-handTool.addEventListener(
-    "click",
-    () => {
-
-        setActiveMode(
-            "hand"
-        );
-
-    }
-);
-
-
-penTool.addEventListener(
-    "click",
-    () => {
-
-        setActiveMode(
-            "pen"
-        );
-
-
-        colorDrawer.classList.toggle(
-            "hidden"
-        );
-
-    }
-);
-
-
-eraserTool.addEventListener(
-    "click",
-    () => {
-
-        setActiveMode(
-            "eraser"
-        );
-
-    }
-);
-
-
-/* =========================================================
-   ANNOTATION STORAGE
-========================================================= */
-
-function getAnnotationStorageKey(
-    pdfPath
-) {
-
-    const safePath =
-        String(
-            pdfPath
-        )
-            .replace(
-                /[^a-zA-Z0-9_-]/g,
-                "_"
-            )
-            .slice(
-                0,
-                180
-            );
-
-
-    return (
-        "yazeedInteractiveReaderAnnotations:" +
-        safePath
-    );
-
-}
-
-
-function loadAnnotations(
-    pdfPath
-) {
-
-    annotationStorageKey =
-        getAnnotationStorageKey(
-            pdfPath
-        );
-
-
-    try {
-
-        const raw =
-            localStorage.getItem(
-                annotationStorageKey
-            );
-
-
-        annotationStore =
-            raw
-                ? JSON.parse(raw)
-                : {};
-
-    } catch (error) {
-
-        console.error(
-            "تعذر تحميل التحديدات:",
-            error
-        );
-
-
-        annotationStore =
-            {};
-
+    function redrawUserStrokes() {
+      drawCtx.clearRect(0, 0, stageW, stageH);
+      for (const s of state.strokes) {
+        drawSingleStrokeOnContext(drawCtx, s);
+      }
+      if (state.currentStroke) {
+        drawSingleStrokeOnContext(drawCtx, state.currentStroke);
+      }
     }
 
-}
+    // رسم الجزء الجديد من الخط فوراً على طبقة الحبر دون مسح الكانفاس (استجابة 120Hz لقلم الآيباد)
+    function drawIncrementalSegment(ctx, stroke, prevIndex) {
+      if (!stroke || !stroke.points || stroke.points.length === 0) return;
+      const pts = stroke.points;
 
+      ctx.save();
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
 
-function saveAnnotations() {
+      if (stroke.isEraser) {
+        ctx.globalCompositeOperation = 'destination-out';
+        ctx.strokeStyle = 'rgba(0,0,0,1)';
+        ctx.fillStyle = 'rgba(0,0,0,1)';
+        ctx.lineWidth = stroke.width * 3;
+      } else {
+        ctx.globalCompositeOperation = 'source-over';
+        ctx.strokeStyle = stroke.color;
+        ctx.fillStyle = stroke.color;
+        ctx.lineWidth = stroke.width;
+      }
 
-    try {
+      if (pts.length === 1) {
+        ctx.beginPath();
+        ctx.arc(pts[0].x, pts[0].y, (stroke.isEraser ? stroke.width * 1.5 : stroke.width / 2), 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+        return;
+      }
 
-        localStorage.setItem(
-            annotationStorageKey,
-            JSON.stringify(
-                annotationStore
-            )
-        );
+      const startIdx = Math.max(1, prevIndex);
+      ctx.beginPath();
+      if (startIdx === 1) {
+        ctx.moveTo(pts[0].x, pts[0].y);
+      } else {
+        const prevMidX = (pts[startIdx - 2].x + pts[startIdx - 1].x) / 2;
+        const prevMidY = (pts[startIdx - 2].y + pts[startIdx - 1].y) / 2;
+        ctx.moveTo(prevMidX, prevMidY);
+      }
 
-    } catch (error) {
-
-        console.error(
-            "تعذر حفظ التحديدات:",
-            error
-        );
-
-
-        statusMessage.textContent =
-            "تعذر حفظ بعض الرسومات محليًا.";
-
+      for (let i = startIdx; i < pts.length; i++) {
+        const midX = (pts[i - 1].x + pts[i].x) / 2;
+        const midY = (pts[i - 1].y + pts[i].y) / 2;
+        ctx.quadraticCurveTo(pts[i - 1].x, pts[i - 1].y, midX, midY);
+      }
+      ctx.stroke();
+      ctx.restore();
     }
 
-}
+    function setupPointerEvents() {
+      const stageWrap = document.getElementById('canvas-stage');
 
+      // 1. منع التظليل الأزرق وزر "نسخ" في سفاري iPadOS نهائياً على مستوى الصفحة والكانفاس
+      const clearSafariSelection = () => {
+        try {
+          const sel = window.getSelection ? window.getSelection() : null;
+          if (sel && sel.rangeCount > 0) sel.removeAllRanges();
+        } catch (err) {}
+      };
 
-function getPageAnnotations(
-    pageNumber
-) {
+      document.addEventListener('selectionchange', clearSafariSelection);
+      ['selectstart', 'contextmenu', 'dragstart', 'gesturestart', 'gesturechange'].forEach(evtName => {
+        window.addEventListener(evtName, (ev) => {
+          ev.preventDefault();
+          clearSafariSelection();
+        }, { passive: false });
+      });
 
-    const key =
-        String(
-            pageNumber
-        );
+      // 2. منع نافذة النسخ والتمرير في سفاري عند اللمس المطول دون تعطيل أحداث Pointer Events للقلم!
+      // ملاحظة هامة لنظام iPadOS: نمنع السلوك الافتراضي على touchmove و touchend، ونكتفي بإزالة التظليل في touchstart
+      // حتى لا يلغي سفاري حدث pointerdown الخاص بقلم Apple Pencil!
+      stageWrap.addEventListener('touchstart', () => {
+        clearSafariSelection();
+      }, { passive: true });
 
+      stageWrap.addEventListener('touchmove', (ev) => {
+        if (ev.cancelable) ev.preventDefault();
+      }, { passive: false });
 
-    if (
-        !annotationStore[key]
-    ) {
+      const getPt = (e) => {
+        const rect = drawCanvas.getBoundingClientRect();
+        const scaleX = stageW / (rect.width || 1);
+        const scaleY = stageH / (rect.height || 1);
+        return {
+          x: (e.clientX - rect.left) * scaleX,
+          y: (e.clientY - rect.top) * scaleY
+        };
+      };
 
-        annotationStore[key] = {
+      drawCanvas.addEventListener('pointerdown', (e) => {
+        if (e.button !== undefined && e.button !== 0 && e.pointerType === 'mouse') return;
 
-            strokes: [],
+        // إذا بدأ المستخدم الكتابة بقلم Apple Pencil بينما كانت يده ملامسة للشاشة، نعطي الأولوية للقلم فوراً
+        if (state.isDrawing && e.pointerType === 'pen' && state.activePointerType !== 'pen') {
+          state.currentStroke = null;
+        } else if (state.isDrawing && e.pointerId !== state.activePointerId) {
+          return;
+        }
 
-            highlights: []
+        if (e.cancelable) e.preventDefault();
+        clearSafariSelection();
 
+        state.activePointerId = e.pointerId;
+        state.activePointerType = e.pointerType;
+        try { drawCanvas.setPointerCapture(e.pointerId); } catch (err) {}
+
+        state.isDrawing = true;
+        state.currentStroke = {
+          color: state.penColor,
+          width: PEN_WIDTHS[state.penSize] || 6,
+          isEraser: state.isEraser,
+          points: [getPt(e)]
         };
 
+        startWritingSound();
+        drawIncrementalSegment(drawCtx, state.currentStroke, 0);
+      }, { passive: false });
+
+      drawCanvas.addEventListener('pointermove', (e) => {
+        if (!state.isDrawing || !state.currentStroke) return;
+        if (state.activePointerId !== null && e.pointerId !== state.activePointerId) return;
+        if (e.cancelable) e.preventDefault();
+
+        const events = e.getCoalescedEvents ? e.getCoalescedEvents() : [e];
+        const pts = state.currentStroke.points;
+        const prevLen = pts.length;
+        let maxDist = 0;
+
+        for (const ev of events) {
+          const pt = getPt(ev);
+          const last = pts[pts.length - 1];
+          const dist = Math.hypot(pt.x - last.x, pt.y - last.y);
+          if (dist > 0.4) {
+            pts.push(pt);
+            if (dist > maxDist) maxDist = dist;
+          }
+        }
+
+        if (pts.length > prevLen) {
+          modulateWritingSound(maxDist);
+          drawIncrementalSegment(drawCtx, state.currentStroke, prevLen);
+        }
+      }, { passive: false });
+
+      const endPointer = (e) => {
+        if (!state.isDrawing || !state.currentStroke) return;
+        if (e && e.pointerId !== undefined && state.activePointerId !== null && e.pointerId !== state.activePointerId) return;
+        if (e && e.cancelable) e.preventDefault();
+
+        try {
+          if (e && e.pointerId !== undefined) drawCanvas.releasePointerCapture(e.pointerId);
+        } catch (err) {}
+
+        state.isDrawing = false;
+        state.activePointerId = null;
+        state.activePointerType = null;
+        stopWritingSound();
+
+        state.strokes.push(state.currentStroke);
+        state.currentStroke = null;
+        redrawUserStrokes();
+      };
+
+      drawCanvas.addEventListener('pointerup', endPointer, { passive: false });
+      drawCanvas.addEventListener('pointercancel', endPointer, { passive: false });
     }
 
-
-    if (
-        !Array.isArray(
-            annotationStore[key].strokes
-        )
-    ) {
-
-        annotationStore[key].strokes =
-            [];
-
+    /*************************************************************************
+     * 6. وظائف التنقل والأدوات المبسطة (بدون أي صوت عند النقر على الأزرار)
+     *************************************************************************/
+    function toggleFreeWriteMode() {
+      state.freeMode = !state.freeMode;
+      clearCanvas(true);
+      updateUI();
     }
 
-
-    if (
-        !Array.isArray(
-            annotationStore[key].highlights
-        )
-    ) {
-
-        annotationStore[key].highlights =
-            [];
-
+    function selectPenColor(color) {
+      state.penColor = color;
+      state.isEraser = false;
+      document.getElementById('eraser-btn').classList.remove('active');
+      document.querySelectorAll('.color-swatch').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.color === color);
+      });
     }
 
+    function selectPenSize(sizeKey) {
+      state.penSize = sizeKey;
+      state.isEraser = false;
+      document.getElementById('eraser-btn').classList.remove('active');
+      document.querySelectorAll('.size-dot-btn[data-size]').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.size === sizeKey);
+      });
+    }
 
-    return annotationStore[key];
+    function toggleEraserMode() {
+      state.isEraser = !state.isEraser;
+      document.getElementById('eraser-btn').classList.toggle('active', state.isEraser);
+    }
 
+    function undoLastStroke() {
+      if (state.strokes.length === 0) return;
+      state.strokes.pop();
+      redrawUserStrokes();
+    }
+
+    function clearCanvas() {
+      state.strokes = [];
+      state.currentStroke = null;
+      redrawUserStrokes();
+    }
+
+    function toggleHandwritingStyle() {
+      state.style = state.style === 'print' ? 'cursive' : 'print';
+      state.fontIndex = 0;
+      saveState();
+      updateUI();
+    }
+
+    function cycleFontChoice() {
+      const list = FONTS_LIST[state.style];
+      state.fontIndex = (state.fontIndex + 2) % list.length;
+      saveState();
+      updateUI();
+    }
+
+    // التنقل السلس بين 5 مستويات لحجم الخط والسطور (5 -> 4 -> 3 -> 2 -> 1 -> 5)
+    function cycleFontScale() {
+      state.fontScaleIndex = (state.fontScaleIndex - 1 + FONT_SCALE_LEVELS.length) % FONT_SCALE_LEVELS.length;
+      clearCanvas();
+      saveState();
+      updateUI();
+    }
+
+    function toggleSound() {
+      state.sound = !state.sound;
+      if (!state.sound) stopWritingSound();
+      saveState();
+      const btn = document.getElementById('toggle-sfx-btn');
+      btn.innerHTML = `<i data-lucide="${state.sound ? 'volume-2' : 'volume-x'}"></i>`;
+      lucide.createIcons();
+    }
+
+    function toggleDarkMode() {
+      state.darkMode = !state.darkMode;
+      document.body.classList.toggle('dark', state.darkMode);
+
+      // تبديل لون القلم الافتراضي والخطوط المرسومة تلقائياً بين الأبيض الساطع (#FFFFFF) في الوضع الليلي والكحلي (#00273A) في النهاري
+      if (state.darkMode) {
+        if (state.penColor === '#00273A' || state.penColor === '#000000') {
+          selectPenColor('#FFFFFF');
+        }
+        state.strokes.forEach(s => {
+          if (!s.isEraser && (s.color === '#00273A' || s.color === '#000000')) {
+            s.color = '#FFFFFF';
+          }
+        });
+      } else {
+        if (state.penColor === '#FFFFFF') {
+          selectPenColor('#00273A');
+        }
+        state.strokes.forEach(s => {
+          if (!s.isEraser && s.color === '#FFFFFF') {
+            s.color = '#00273A';
+          }
+        });
+      }
+
+      saveState();
+      const btn = document.getElementById('theme-toggle-btn');
+      btn.innerHTML = `<i data-lucide="${state.darkMode ? 'sun' : 'moon'}"></i>`;
+      renderRuledPaperAndGhost();
+      redrawUserStrokes();
+      lucide.createIcons();
+    }
+
+    function setModeFilter(mode) {
+    if (!['letters', 'words', 'sentences'].includes(mode)) return;
+
+    state.filterMode = mode;
+    state.index = 0;
+
+    // Generate a fresh order every time a section is selected
+    activeExerciseList = createExerciseList(mode);
+    activeExerciseMode = mode;
+
+    if (state.freeMode) state.freeMode = false;
+
+    clearCanvas(true);
+    saveState();
+    updateFilterChips();
+    updateUI();
 }
 
+    function updateFilterChips() {
+      ['letters', 'words', 'sentences'].forEach(m => {
+        const chip = document.getElementById(`chip-${m}`);
+        if (chip) chip.classList.toggle('active', state.filterMode === m);
+      });
+    }
 
-/* =========================================================
-   ANNOTATION CANVAS
-========================================================= */
+    function pickRandomExercise() {
+      if (state.freeMode) state.freeMode = false;
+      const list = getActiveList();
+      state.index = Math.floor(Math.random() * list.length);
+      clearCanvas(true);
+      saveState();
+      updateUI();
+    }
 
-let currentDrawColor = "#dc2626";
-    
+    function prevExercise() {
+      const list = getActiveList();
+      state.index = (state.index - 1 + list.length) % list.length;
+      clearCanvas(true);
+      saveState();
+      updateUI();
+    }
 
-const colorDrawer =
-    document.getElementById("colorDrawer");
+    function nextExercise() {
+      const list = getActiveList();
+      state.index = (state.index + 1) % list.length;
+      clearCanvas(true);
+      saveState();
+      updateUI();
+    }
 
+    /*************************************************************************
+     * 8. طباعة ورقة عمل مسطرة
+     *************************************************************************/
+    function printWorksheetNow() {
+      const list = getActiveList().slice(0, 100);
+      const fontObj = getActiveFont();
+      const scaleObj = getActiveFontScaleObj();
+      const scale = scaleObj.scale;
 
-document
-    .querySelectorAll(".color-option")
-    .forEach(button => {
+      const escapeSvgText = (str) => String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;');
 
-        button.addEventListener(
-            "click",
-            () => {
+      const buildRuledRowSvg = (traceText) => {
+        const len = traceText ? traceText.length : 0;
+        const baseFontSize = Math.round((state.style === 'cursive' ? 46 : 43) * scale);
+        const computedSize = len > 26
+          ? Math.max(16, Math.round(baseFontSize * (26 / len)))
+          : baseFontSize;
 
-                currentDrawColor =
-                    button.dataset.color;
+        // حساب مواضع السطور في الـ SVG لتتطابق مع حجم الخط المختار
+        const baseLineY = 52;
+        const bandH = Math.round(42 * scale);
+        const topLineY = baseLineY - bandH;
+        const midLineY = Math.round(topLineY + bandH * 0.5);
+        const descLineY = Math.round(baseLineY + bandH * 0.29);
 
+        return `
+        <div style="position:relative; width:100%; height:68px; margin:6px 0; direction:ltr;">
+          <svg viewBox="0 0 800 68" style="width:100%; height:68px; display:block; overflow:visible;" preserveAspectRatio="none">
+            <!-- خلفية المسار الشبيه بالشارع بين السطر العلوي والسطر الأساسي -->
+            <rect x="0" y="${topLineY}" width="800" height="${bandH}" fill="rgba(0, 104, 155, 0.035)" />
+            <!-- السطر العلوي (Top line) -->
+            <line x1="0" y1="${topLineY}" x2="800" y2="${topLineY}" stroke="#CBD5E1" stroke-width="1.2" />
+            <!-- الخط المنقط الأوسط كخط منتصف الشارع (Midline) -->
+            <line x1="0" y1="${midLineY}" x2="800" y2="${midLineY}" stroke="#94A3B8" stroke-width="1.2" stroke-dasharray="6 6" />
+            <!-- السطر الأزرق الأساسي الذي ترتكز عليه الحروف (Baseline y=52) -->
+            <line x1="0" y1="${baseLineY}" x2="800" y2="${baseLineY}" stroke="#00689B" stroke-width="2" />
+            <!-- سطر الحروف الهابطة مثل g, y, p (Descender line) -->
+            <line x1="0" y1="${descLineY}" x2="800" y2="${descLineY}" stroke="#E2E8F0" stroke-width="1" stroke-dasharray="3 4" />
+            ${traceText ? `
+              <text x="16" y="50"
+                    dominant-baseline="alphabetic"
+                    text-anchor="start"
+                    direction="ltr"
+                    style="font-family:${fontObj.css}; font-size:${computedSize}px; font-weight:500; fill:#CBD5E1;">
+                ${escapeSvgText(traceText)}
+              </text>
+            ` : ''}
+          </svg>
+        </div>
+      `;
+      };
 
-                colorDrawer.classList.add(
-                    "hidden"
-                );
+      const rowsHtml = list.map((it, i) => `
+        <div style="margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid #E2E8F0; page-break-inside:avoid;">
+          <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:4px;">
+            <strong style="font-family:${fontObj.css}; font-size:20px; direction:ltr;">${i + 1}. ${it.text}</strong>
+            <span style="font-size:13px; color:#5B645F;">${it.arabic}</span>
+          </div>
+          ${buildRuledRowSvg(it.text)}
+          ${buildRuledRowSvg('')}
+        </div>
+      `).join('');
 
-            }
-        );
+      const container = document.getElementById('print-worksheet-container');
+      container.innerHTML = `
+        <div style="padding:10px; font-family:'Tajawal', sans-serif; direction:rtl;">
+          <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid #00273A; padding-bottom:10px; margin-bottom:16px;">
+            <div>
+              <h1 style="margin:0; font-size:22px; color:#00273A;">Yazeed English  كراسة تحسين الخط</h1>
+              <p style="margin:4px 0 0; font-size:13px; color:#5B645F;">الخط: ${fontObj.id}</p>
+            </div>
+            <div style="font-size:13px; text-align:left;">
+              <div>____________________________________ :Name</div>
+              <div style="margin-top:4px;"></div>
+            </div>
+          </div>
+          ${rowsHtml}
+        </div>
+      `;
 
+      setTimeout(() => window.print(), 120);
+    }
+
+    /*************************************************************************
+     * 9. تحديث عناصر الواجهة
+     *************************************************************************/
+    function updateUI() {
+      const list = getActiveList();
+      const item = getCurrentItem();
+      const fontObj = getActiveFont();
+      const scaleObj = getActiveFontScaleObj();
+
+      // تحديث حالة وضع الكتابة الحرة
+      const freeBtn = document.getElementById('free-write-btn');
+      const freeLabel = document.getElementById('free-write-label');
+      freeBtn.classList.toggle('active-pro', state.freeMode);
+      freeLabel.textContent = state.freeMode ? 'العودة للتمارين' : 'الكتابة الحرة';
+
+      document.getElementById('top-category-capsule').hidden = state.freeMode;
+      document.getElementById('free-mode-banner').hidden = !state.freeMode;
+      document.getElementById('reference-header-bar').hidden = state.freeMode;
+      document.getElementById('target-showcase-box').hidden = state.freeMode;
+      document.getElementById('translation-divider').hidden = state.freeMode;
+      document.getElementById('arabic-meaning-display').hidden = state.freeMode;
+      document.getElementById('exercise-nav-controls').hidden = state.freeMode;
+
+      document.documentElement.style.setProperty('--active-ref-font', fontObj.css);
+      document.documentElement.style.setProperty('--font-scale-factor', scaleObj.scale);
+      document.getElementById('font-cycle-label').textContent = `${fontObj.id}`;
+      document.getElementById('footer-font-name').textContent = `${fontObj.label}`;
+
+      // تحديث زر ومؤشر مستويات حجم الخط الخمسة
+      const scaleLabelEl = document.getElementById('font-scale-label');
+      if (scaleLabelEl) {
+        scaleLabelEl.textContent = ` ${scaleObj.name}`;
+      }
+      const scaleBars = document.querySelectorAll('#font-scale-bars .scale-bar-item');
+      scaleBars.forEach((bar, idx) => {
+        bar.classList.toggle('active', idx < scaleObj.level);
+      });
+
+      document.getElementById('style-toggle-label').textContent =
+        state.style === 'print' ? 'عادي (Print)' : 'متصل (Cursive)';
+
+      document.getElementById('meta-counter-label').textContent = ` ${state.index + 1} / ${list.length}`;
+
+      const progressPct = state.freeMode ? 100 : Math.round(((state.index + 1) / list.length) * 100);
+      document.getElementById('top-progress-fill').style.width = `${progressPct}%`;
+
+      document.getElementById('target-english-display').textContent = item.text;
+      document.getElementById('arabic-meaning-display').textContent = item.arabic;
+
+      const categoryNames = {
+        letters: 'الحروف',
+        words: 'الكلمات',
+        sentences: 'العبارات'
+      };
+      const catEl = document.getElementById('footer-category-name');
+      if (catEl) {
+        catEl.textContent = state.freeMode ? 'الكتابة الحرة' : (categoryNames[state.filterMode] || 'حروف (A - Z)');
+      }
+
+      renderRuledPaperAndGhost();
+      lucide.createIcons();
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      loadSavedState();
+      document.body.classList.toggle('dark', state.darkMode);
+
+      // ضبط لون القلم الافتراضي وأيقونة الوضع الليلي عند التحميل
+      if (state.darkMode && state.penColor === '#00273A') {
+        selectPenColor('#FFFFFF');
+      }
+      const themeBtn = document.getElementById('theme-toggle-btn');
+      if (themeBtn) {
+        themeBtn.innerHTML = `<i data-lucide="${state.darkMode ? 'sun' : 'moon'}"></i>`;
+      }
+      const sfxBtn = document.getElementById('toggle-sfx-btn');
+      if (sfxBtn) {
+        sfxBtn.innerHTML = `<i data-lucide="${state.sound ? 'volume-2' : 'volume-x'}"></i>`;
+      }
+
+      lucide.createIcons();
+      setupPointerEvents();
+      updateFilterChips();
+      updateUI();
+      resizeStageCanvases();
+
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(() => {
+          renderRuledPaperAndGhost();
+        });
+      }
+
+      window.addEventListener('resize', resizeStageCanvases);
     });
 
-function setupAnnotationCanvas(
-    canvas,
-    pageContainer,
-    pageNumber
-) {
-
-    let drawing =
-        false;
-
-
-    canvas.addEventListener(
-        "pointerdown",
-        event => {
-
-            if (
-                activeMode !== "pen" &&
-                activeMode !== "eraser"
-            ) {
-                return;
-            }
-
-
-            event.preventDefault();
-
-
-            canvas.setPointerCapture(
-                event.pointerId
-            );
-
-
-            /* -----------------------------------------
-               PEN
-            ----------------------------------------- */
-
-            if (
-                activeMode ===
-                "pen"
-            ) {
-
-                drawing =
-                    true;
-
-
-                const point =
-                    getNormalizedPoint(
-                        event,
-                        canvas
-                    );
-
-
-                activeDrawing = {
-
-    pageNumber,
-
-    points:
-        [point],
-
-    width:
-        4,
-
-    color:
-        currentDrawColor
-
-};
-
-
-                redrawAnnotations(
-                    pageContainer,
-                    pageNumber,
-                    activeDrawing
-                );
-
-
-                return;
-
-            }
-
-
-            /* -----------------------------------------
-               ERASER
-            ----------------------------------------- */
-
-            eraseAtPoint(
-                event,
-                canvas,
-                pageContainer,
-                pageNumber
-            );
-
-        }
-    );
-
-
-    canvas.addEventListener(
-        "pointermove",
-        event => {
-
-            if (
-                activeMode ===
-                    "pen" &&
-                drawing &&
-                activeDrawing
-            ) {
-
-                event.preventDefault();
-
-
-                activeDrawing.points.push(
-                    getNormalizedPoint(
-                        event,
-                        canvas
-                    )
-                );
-
-
-                redrawAnnotations(
-                    pageContainer,
-                    pageNumber,
-                    activeDrawing
-                );
-
-            }
-
-        }
-    );
-
-
-    function finishDrawing(
-        event
-    ) {
-
-        if (
-            activeMode !==
-                "pen" ||
-            !drawing ||
-            !activeDrawing
-        ) {
-            return;
-        }
-
-
-        event.preventDefault();
-
-
-        drawing =
-            false;
-
-
-        canvas.releasePointerCapture?.(
-            event.pointerId
-        );
-
-
-        if (
-            activeDrawing.points
-                .length >= 2
-        ) {
-
-            const annotations =
-                getPageAnnotations(
-                    pageNumber
-                );
-
-
-            annotations.strokes.push(
-                activeDrawing
-            );
-
-
-            saveAnnotations();
-
-        }
-
-
-        activeDrawing =
-            null;
-
-
-        redrawAnnotations(
-            pageContainer,
-            pageNumber
-        );
-
-    }
-
-
-    canvas.addEventListener(
-        "pointerup",
-        finishDrawing
-    );
-
-
-    canvas.addEventListener(
-        "pointercancel",
-        finishDrawing
-    );
-
-
-    canvas.addEventListener(
-        "click",
-        event => {
-
-            if (
-                activeMode !==
-                "eraser"
-            ) {
-                return;
-            }
-
-
-            eraseAtPoint(
-                event,
-                canvas,
-                pageContainer,
-                pageNumber
-            );
-
-        }
-    );
-
-}
-
-
-/* =========================================================
-   NORMALIZED POINT
-========================================================= */
-
-function getNormalizedPoint(
-    event,
-    canvas
-) {
-
-    const rect =
-        canvas.getBoundingClientRect();
-
-
-    return {
-
-        x:
-            Math.max(
-                0,
-                Math.min(
-                    1,
-                    (
-                        event.clientX -
-                        rect.left
-                    ) /
-                    rect.width
-                )
-            ),
-
-        y:
-            Math.max(
-                0,
-                Math.min(
-                    1,
-                    (
-                        event.clientY -
-                        rect.top
-                    ) /
-                    rect.height
-                )
-            )
-
-    };
-
-}
-
-
-/* =========================================================
-   REDRAW ANNOTATIONS
-========================================================= */
-
-function redrawAnnotations(
-    pageContainer,
-    pageNumber,
-    temporaryStroke = null
-) {
-
-    const canvas =
-        pageContainer.querySelector(
-            ".annotation-canvas"
-        );
-
-
-    if (!canvas) {
-        return;
-    }
-
-
-    const ctx =
-        canvas.getContext(
-            "2d"
-        );
-
-
-    const rect =
-        canvas.getBoundingClientRect();
-
-
-    const width =
-        rect.width;
-
-
-    const height =
-        rect.height;
-
-
-    ctx.clearRect(
-        0,
-        0,
-        canvas.width,
-        canvas.height
-    );
-
-
-    if (
-        width <= 0 ||
-        height <= 0
-    ) {
-        return;
-    }
-
-
-    ctx.save();
-
-
-    ctx.scale(
-        canvas.width /
-            width,
-
-        canvas.height /
-            height
-    );
-
-
-    const annotations =
-        getPageAnnotations(
-            pageNumber
-        );
-
-
-    /* ---------------------------------------------
-       HIGHLIGHTS
-    --------------------------------------------- */
-
-    annotations.highlights.forEach(
-        group => {
-
-            group.forEach(
-                rect => {
-
-                    ctx.fillStyle =
-                        "rgba(250, 204, 21, 0.42)";
-
-
-                    ctx.fillRect(
-
-                        rect.x *
-                            width,
-
-                        rect.y *
-                            height,
-
-                        rect.width *
-                            width,
-
-                        rect.height *
-                            height
-
-                    );
-
-                }
-            );
-
-        }
-    );
-
-
-    /* ---------------------------------------------
-       STROKES
-    --------------------------------------------- */
-
-    annotations.strokes.forEach(
-        stroke => {
-
-            drawStrokeOnContext(
-                ctx,
-                width,
-                height,
-                stroke
-            );
-
-        }
-    );
-
-
-    /* ---------------------------------------------
-       CURRENT STROKE
-    --------------------------------------------- */
-
-    if (
-        temporaryStroke
-    ) {
-
-        drawStrokeOnContext(
-            ctx,
-            width,
-            height,
-            temporaryStroke
-        );
-
-    }
-
-
-    ctx.restore();
-
-}
-
-
-/* =========================================================
-   DRAW STROKE
-========================================================= */
-
-function drawStrokeOnContext(
-    ctx,
-    width,
-    height,
-    stroke
-) {
-
-    if (
-        !stroke?.points?.length
-    ) {
-        return;
-    }
-
-
-    ctx.save();
-
-
-    ctx.lineCap =
-        "round";
-
-
-    ctx.lineJoin =
-        "round";
-
-
-    ctx.strokeStyle =
-    stroke.color || "#dc2626";
-
-
-    ctx.lineWidth =
-        Number(
-            stroke.width || 4
-        );
-
-
-    ctx.beginPath();
-
-
-    stroke.points.forEach(
-        (point, index) => {
-
-            const x =
-                point.x *
-                width;
-
-
-            const y =
-                point.y *
-                height;
-
-
-            if (
-                index === 0
-            ) {
-
-                ctx.moveTo(
-                    x,
-                    y
-                );
-
-            }
-
-            else {
-
-                ctx.lineTo(
-                    x,
-                    y
-                );
-
-            }
-
-        }
-    );
-
-
-    ctx.stroke();
-
-
-    ctx.restore();
-
-}
-
-
-/* =========================================================
-   ERASER
-========================================================= */
-
-function eraseAtPoint(
-    event,
-    canvas,
-    pageContainer,
-    pageNumber
-) {
-
-    const point =
-        getNormalizedPoint(
-            event,
-            canvas
-        );
-
-
-    const annotations =
-        getPageAnnotations(
-            pageNumber
-        );
-
-
-    const width =
-        canvas.getBoundingClientRect()
-            .width;
-
-
-    const height =
-        canvas.getBoundingClientRect()
-            .height;
-
-
-    const hitRadius =
-        Math.max(
-            8 /
-                Math.max(
-                    width,
-                    height
-                ),
-
-            0.006
-        );
-
-
-    /* ---------------------------------------------
-       STROKES
-    --------------------------------------------- */
-
-    for (
-        let i =
-            annotations.strokes.length -
-            1;
-
-        i >= 0;
-
-        i--
-    ) {
-
-        const stroke =
-            annotations.strokes[i];
-
-
-        if (
-            stroke.points.some(
-                point =>
-                    distance(
-                        point,
-                        {
-                            x:
-                                point.x,
-                            y:
-                                point.y
-                        }
-                    ) <=
-                    hitRadius
-            )
-        ) {
-
-            annotations.strokes.splice(
-                i,
-                1
-            );
-
-
-            saveAnnotations();
-
-
-            redrawAnnotations(
-                pageContainer,
-                pageNumber
-            );
-
-
-            return;
-
-        }
-
-
-        for (
-            let p = 1;
-
-            p <
-            stroke.points.length;
-
-            p++
-        ) {
-
-            if (
-                distanceToSegment(
-                    point,
-                    stroke.points[p - 1],
-                    stroke.points[p]
-                ) <=
-                hitRadius
-            ) {
-
-                annotations.strokes.splice(
-                    i,
-                    1
-                );
-
-
-                saveAnnotations();
-
-
-                redrawAnnotations(
-                    pageContainer,
-                    pageNumber
-                );
-
-
-                return;
-
-            }
-
-        }
-
-    }
-
-
-    /* ---------------------------------------------
-       HIGHLIGHTS
-    --------------------------------------------- */
-
-    for (
-        let i =
-            annotations.highlights.length -
-            1;
-
-        i >= 0;
-
-        i--
-    ) {
-
-        const group =
-            annotations.highlights[i];
-
-
-        const inside =
-            group.some(
-                rect =>
-                    point.x >= rect.x &&
-                    point.x <=
-                        rect.x +
-                        rect.width &&
-
-                    point.y >= rect.y &&
-                    point.y <=
-                        rect.y +
-                        rect.height
-            );
-
-
-        if (inside) {
-
-            annotations.highlights.splice(
-                i,
-                1
-            );
-
-
-            saveAnnotations();
-
-
-            redrawAnnotations(
-                pageContainer,
-                pageNumber
-            );
-
-
-            return;
-
-        }
-
-    }
-
-}
-
-
-/* =========================================================
-   DISTANCE
-========================================================= */
-
-function distance(
-    a,
-    b
-) {
-
-    return Math.hypot(
-        a.x - b.x,
-        a.y - b.y
-    );
-
-}
-
-
-function distanceToSegment(
-    point,
-    a,
-    b
-) {
-
-    const dx =
-        b.x -
-        a.x;
-
-
-    const dy =
-        b.y -
-        a.y;
-
-
-    if (
-        dx === 0 &&
-        dy === 0
-    ) {
-
-        return distance(
-            point,
-            a
-        );
-
-    }
-
-
-    const t =
-        Math.max(
-            0,
-            Math.min(
-                1,
-                (
-                    (
-                        point.x -
-                        a.x
-                    ) *
-                        dx +
-
-                    (
-                        point.y -
-                        a.y
-                    ) *
-                        dy
-                ) /
-                (
-                    dx * dx +
-                    dy * dy
-                )
-            )
-        );
-
-
-    return distance(
-        point,
-        {
-            x:
-                a.x +
-                t * dx,
-
-            y:
-                a.y +
-                t * dy
-        }
-    );
-
-}
-
-
-/* =========================================================
-   FIRST-USE PRONUNCIATION NOTICE
-========================================================= */
-
-function maybeShowPronunciationNotice() {
-
-    const seen =
-        localStorage.getItem(
-            "yazeedPronunciationNoticeSeen"
-        );
-
-
-    if (
-        seen === "true"
-    ) {
-        return;
-    }
-
-
-    if (
-        !pronunciationModal
-    ) {
-        return;
-    }
-
-
-    pronunciationModal.hidden =
-        false;
-
-
-    setActiveMode(
-        "hand"
-    );
-
-
-    setTimeout(
-        () => {
-
-            understoodButton?.focus();
-
-        },
-        50
-    );
-
-}
-
-
-understoodButton?.addEventListener(
-    "click",
-    () => {
-
-        localStorage.setItem(
-            "yazeedPronunciationNoticeSeen",
-            "true"
-        );
-
-
-        pronunciationModal.hidden =
-            true;
-
-    }
-);
-
-
-/* =========================================================
-   KEYBOARD SHORTCUTS
-========================================================= */
-
-document.addEventListener(
-    "keydown",
-    event => {
-
-        const active =
-            document.activeElement;
-
-
-        if (
-            active &&
-            (
-                active.tagName ===
-                    "INPUT" ||
-
-                active.tagName ===
-                    "TEXTAREA" ||
-
-                active.tagName ===
-                    "SELECT"
-            )
-        ) {
-            return;
-        }
-
-
-        /* ---------------------------------------------
-           LEFT
-        --------------------------------------------- */
-
-        if (
-            event.key ===
-            "ArrowLeft"
-        ) {
-
-            if (pdfDocument) {
-
-                goToPage(
-                    currentPage + 1
-                );
-
-            }
-
-        }
-
-
-        /* ---------------------------------------------
-           RIGHT
-        --------------------------------------------- */
-
-        if (
-            event.key ===
-            "ArrowRight"
-        ) {
-
-            if (pdfDocument) {
-
-                goToPage(
-                    currentPage - 1
-                );
-
-            }
-
-        }
-
-
-        /* ---------------------------------------------
-           ZOOM IN
-        --------------------------------------------- */
-
-        if (
-            event.key === "+" ||
-            event.key === "="
-        ) {
-
-            zoomInButton.click();
-
-        }
-
-
-        /* ---------------------------------------------
-           ZOOM OUT
-        --------------------------------------------- */
-
-        if (
-            event.key === "-"
-        ) {
-
-            zoomOutButton.click();
-
-        }
-
-    }
-);
-
-
-/* =========================================================
-   RESIZE
-========================================================= */
-
-let resizeTimer =
-    null;
-
-
-let lastViewportWidth =
-    window.innerWidth;
-
-
-window.addEventListener(
-    "resize",
-    () => {
-
-        const currentWidth =
-            window.innerWidth;
-
-
-        if (
-            currentWidth ===
-            lastViewportWidth
-        ) {
-            return;
-        }
-
-
-        lastViewportWidth =
-            currentWidth;
-
-
-        clearTimeout(
-            resizeTimer
-        );
-
-
-        resizeTimer =
-            setTimeout(
-                async () => {
-
-                    if (
-                        pdfDocument &&
-                        !readerApp.hidden
-                    ) {
-
-                        const savedScrollTop =
-                            viewerContainer.scrollTop;
-
-
-                        const savedScrollLeft =
-                            viewerContainer.scrollLeft;
-
-
-                        await renderPage(
-                            currentPage
-                        );
-
-
-                        viewerContainer.scrollTop =
-                            savedScrollTop;
-
-
-                        viewerContainer.scrollLeft =
-                            savedScrollLeft;
-
-                    }
-
-                },
-                250
-            );
-
-    }
-);
-
-
-/* =========================================================
-   BEFORE UNLOAD
-========================================================= */
-
-window.addEventListener(
-    "beforeunload",
-    () => {
-
-        stopSpeech();
-
-    }
-);
-
-
-/* =========================================================
-   INITIALIZATION
-========================================================= */
-
-async function initializeReader() {
-
-    /* ---------------------------------------------
-       APP IS VISIBLE DIRECTLY
-    --------------------------------------------- */
-
-    if (readerApp) {
-
-        readerApp.hidden =
-            false;
-
-    }
-
-
-    /* ---------------------------------------------
-       SPEECH SETTINGS
-    --------------------------------------------- */
-
-    loadSpeechSettings();
-
-
-    /* ---------------------------------------------
-       DEFAULT MODE
-    --------------------------------------------- */
-
-    setActiveMode(
-        "hand"
-    );
-
-
-    /* ---------------------------------------------
-       VOICES
-    --------------------------------------------- */
-
-    if (
-        "speechSynthesis"
-        in window
-    ) {
-
-        loadVoices();
-
-
-        speechSynthesis.onvoiceschanged =
-            loadVoices;
-
-    }
-
-
-    /* ---------------------------------------------
-       OPEN PDF
-    --------------------------------------------- */
-
-    await openPDF(
-        PDF_FILE
-    );
-
-}
-
-
-/* =========================================================
-   START
-========================================================= */
-
-initializeReader();
+    Object.assign(window, {
+    nextExercise,
+    prevExercise,
+    toggleDarkMode,
+    toggleSound,
+    toggleFreeWriteMode,
+    printWorksheetNow,
+    toggleHandwritingStyle,
+    cycleFontChoice,
+    cycleFontScale,
+    setModeFilter,
+    selectPenColor,
+    selectPenSize,
+    toggleEraserMode,
+    undoLastStroke,
+    clearCanvas
+});
