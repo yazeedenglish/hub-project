@@ -675,12 +675,12 @@ body.dark .canvas-layers-wrap {
 @media print {
     @page {
         size: A4 portrait;
-        margin: 12mm;
+        margin: 10mm 12mm 10mm 12mm;
     }
 
     body {
-        display: block;
-        min-width: 0;
+        display: block !important;
+        min-width: 0 !important;
         background: #FFFFFF !important;
         color: #00273A !important;
     }
@@ -702,15 +702,52 @@ body.dark .canvas-layers-wrap {
         visibility: visible !important;
     }
 
+    /* Natural block flow (NO absolute positioning) so multi-page printing works */
     #print-worksheet-container {
-        position: absolute;
-        inset: 0;
         display: block !important;
-        width: 100%;
+        position: static !important;
+        width: 100% !important;
         background: #FFFFFF !important;
         color: #00273A !important;
         -webkit-print-color-adjust: exact !important;
         print-color-adjust: exact !important;
+    }
+
+    /* Print Table Layout: repeats the footer on every page */
+    .print-table {
+        width: 100%;
+        border-collapse: collapse;
+        border: none;
+    }
+
+    .print-table tfoot {
+        display: table-footer-group; /* Forces repeat at bottom of each page */
+    }
+
+    .print-footer-cell {
+        padding-top: 6px;
+        border-top: 0.5px solid #CBD5E1;
+    }
+
+    .print-footer-content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        font-family: 'Tajawal', sans-serif;
+        font-size: 8.5px;
+        color: #94A3B8;
+        direction: rtl;
+    }
+
+    #print-worksheet-container svg {
+        overflow: visible !important;
+    }
+
+    #print-worksheet-container text,
+    #print-worksheet-container tspan {
+        text-rendering: geometricPrecision !important;
+        -webkit-font-smoothing: antialiased !important;
     }
 }
 

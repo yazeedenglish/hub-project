@@ -333,6 +333,29 @@
       } catch (e) {}
     }
 
+    /*************************************************************************
+     * Helper: Font Metrics Alignment
+     * sizeRatio: Scales the font so the Capital letter touches the top line.
+     * midRatio: Shifts the dashed midline to match the small letters (0.50 = 50%).
+     * descRatio: Shifts the bottom line for descending letters like g, j, p, y.
+     *************************************************************************/
+    function getFontAlignment(fontId) {
+      const metrics = {
+        'Lexend': { sizeRatio: 1.43, yOffset: 0, midRatio: 0.52, descRatio: 0.32 },
+        'Comic Neue': { sizeRatio: 1.34, yOffset: 0, midRatio: 0.50, descRatio: 0.30 },
+        'Patrick Hand': { sizeRatio: 1.36, yOffset: 0, midRatio: 0.54, descRatio: 0.30 },
+        'Dancing Script': { sizeRatio: 1.55, yOffset: 0, midRatio: 0.44, descRatio: 0.40 },
+        'Caveat': { sizeRatio: 1.45, yOffset: 0, midRatio: 0.48, descRatio: 0.35 },
+        'Great Vibes': { sizeRatio: 1.32, yOffset: 0, midRatio: 0.40, descRatio: 0.45 },
+        'Sacramento': { sizeRatio: 1.60, yOffset: 0, midRatio: 0.45, descRatio: 0.45 },
+        'Allura': { sizeRatio: 1.42, yOffset: 0, midRatio: 0.45, descRatio: 0.45 },
+        'Satisfy': { sizeRatio: 1.39, yOffset: 0, midRatio: 0.48, descRatio: 0.35 },
+        'Kaushan Script': { sizeRatio: 1.32, yOffset: 0, midRatio: 0.45, descRatio: 0.40 },
+        'Pacifico': { sizeRatio: 1.26, yOffset: 0, midRatio: 0.48, descRatio: 0.35 }
+      };
+      return metrics[fontId] || { sizeRatio: 1.35, yOffset: 0, midRatio: 0.50, descRatio: 0.30 };
+    }
+
     function saveState() {
       try {
         localStorage.setItem(STORAGE_KEY, JSON.stringify({
@@ -666,6 +689,142 @@ function getActiveList() {
       }
     }
 
+    /*************************************************************************
+     * Independent Capital & Lowercase Letter Alignment Engine
+     * - Automatically measures each font's real pixel Cap-Height and x-Height.
+     * - Gives you independent control over Capital Letters and Small Letters.
+     *************************************************************************/
+    const HANDWRITING_ALIGNMENT_CONFIG = {
+      default: {
+        capScale: 1.00,      // 1.00 = Capital letters reach 100% of top line (bandH)
+        lowerScale: 1.00,    // 1.00 = Regular small letters reach 100% of midline (0.5 * bandH)
+        capYOffset: 0,       // Vertical pixel offset for capital letters (+ down, - up)
+        lowerYOffset: 0      // Vertical pixel offset for small letters (+ down, - up)
+      },
+      // Optional per-font fine-tuning (adjust capScale or lowerScale independently at any time)
+      fonts: {
+        'Lexend':          { capScale: 1.00, lowerScale: 1.00, capYOffset: 0, lowerYOffset: 0 },
+        'Comic Neue':      { capScale: 1.00, lowerScale: 1.00, capYOffset: 0, lowerYOffset: 0 },
+        'Patrick Hand':    { capScale: 1.00, lowerScale: 1.00, capYOffset: 0, lowerYOffset: 0 },
+        'Dancing Script':  { capScale: 1.00, lowerScale: 1.00, capYOffset: 0, lowerYOffset: 0 },
+        'Caveat':          { capScale: 1.00, lowerScale: 1.00, capYOffset: 0, lowerYOffset: 0 },
+        'Great Vibes':     { capScale: 1.00, lowerScale: 1.00, capYOffset: 0, lowerYOffset: 0 },
+        'Sacramento':      { capScale: 1.00, lowerScale: 1.00, capYOffset: 0, lowerYOffset: 0 },
+        'Allura':          { capScale: 1.00, lowerScale: 1.00, capYOffset: 0, lowerYOffset: 0 },
+        'Satisfy':         { capScale: 1.00, lowerScale: 1.00, capYOffset: 0, lowerYOffset: 0 },
+        'Kaushan Script':  { capScale: 1.00, lowerScale: 1.00, capYOffset: 0, lowerYOffset: 0 },
+        'Pacifico':        { capScale: 1.00, lowerScale: 1.00, capYOffset: 0, lowerYOffset: 0 }
+      }
+    };
+
+    const _fontMetricsCache = {};
+    let _measureCanvas = null;
+
+    function getMeasuredFontMetrics(fontObj) {
+      if (_fontMetricsCache[fontObj.id]) {
+        return _fontMetricsCache[fontObj.id];
+      }
+      if (!_measureCanvas) {
+        _measureCanvas = document.createElement('canvas');
+      }
+      const mCtx = _measureCanvas.getContext('2d');
+      const testSize = 200;
+      mCtx.font = `500 ${testSize}px ${fontObj.css}`;
+      mCtx.textBaseline = 'alphabetic';
+
+      // Measure flat-top uppercase 'H' and flat-top lowercase 'x'
+      const capMeasure = mCtx.measureText('H');
+      const lowerMeasure = mCtx.measureText('x');
+
+      const capAscent = capMeasure.actualBoundingBoxAscent || (testSize * 0.72);
+      const lowerAscent = lowerMeasure.actualBoundingBoxAscent || (testSize * 0.48);
+
+      const capRatio = capAscent / testSize;     // Cap height per 1px of font-size
+      const lowerRatio = lowerAscent / testSize; // x-height per 1px of font-size
+
+      // Only cache once web font has loaded
+      if (document.fonts && document.fonts.check(`500 48px ${fontObj.css}`)) {
+        _fontMetricsCache[fontObj.id] = { capRatio, lowerRatio };
+      }
+
+      return { capRatio, lowerRatio };
+    }
+
+    function getFontLetterSizes(fontObj, bandH) {
+      const { capRatio, lowerRatio } = getMeasuredFontMetrics(fontObj);
+      const cfg = {
+        ...HANDWRITING_ALIGNMENT_CONFIG.default,
+        ...(HANDWRITING_ALIGNMENT_CONFIG.fonts[fontObj.id] || {})
+      };
+
+      // Target physical heights on the 4-line system:
+      // Capitals -> full bandH (top line to baseline)
+      // Regular lowercase -> half bandH (midline to baseline)
+      const targetCapHeight = bandH * cfg.capScale;
+      const targetLowerHeight = (bandH * 0.5) * cfg.lowerScale;
+
+      const capFontSize = targetCapHeight / capRatio;
+      const lowerFontSize = targetLowerHeight / lowerRatio;
+
+      return {
+        capFontSize,
+        lowerFontSize,
+        capYOffset: cfg.capYOffset || 0,
+        lowerYOffset: cfg.lowerYOffset || 0,
+        capToLowerRatio: lowerFontSize / capFontSize
+      };
+    }
+
+    // Splits text into contiguous uppercase and non-uppercase runs so that
+    // capital letters and small letters can be sized independently without distortion,
+    // while keeping cursive lowercase letters connected.
+    function splitTextIntoCaseRuns(text) {
+      const runs = [];
+      let current = '';
+      let currentIsUpper = null;
+
+      for (const ch of String(text)) {
+        const isUpper = ch >= 'A' && ch <= 'Z';
+        if (currentIsUpper === null) {
+          current = ch;
+          currentIsUpper = isUpper;
+        } else if (isUpper === currentIsUpper) {
+          current += ch;
+        } else {
+          runs.push({ text: current, isUpper: currentIsUpper });
+          current = ch;
+          currentIsUpper = isUpper;
+        }
+      }
+      if (current) {
+        runs.push({ text: current, isUpper: currentIsUpper });
+      }
+      return runs;
+    }
+
+    function measureSegmentedTextWidth(ctx, text, fontObj, capFontSize, lowerFontSize) {
+      const runs = splitTextIntoCaseRuns(text);
+      let totalWidth = 0;
+      for (const run of runs) {
+        const fSize = run.isUpper ? capFontSize : lowerFontSize;
+        ctx.font = `500 ${fSize}px ${fontObj.css}`;
+        totalWidth += ctx.measureText(run.text).width;
+      }
+      return totalWidth;
+    }
+
+    function drawSegmentedText(ctx, text, startX, baseLineY, fontObj, sizes) {
+      const runs = splitTextIntoCaseRuns(text);
+      let cursorX = startX;
+      for (const run of runs) {
+        const fSize = run.isUpper ? sizes.capFontSize : sizes.lowerFontSize;
+        const yOff = run.isUpper ? sizes.capYOffset : sizes.lowerYOffset;
+        ctx.font = `500 ${fSize}px ${fontObj.css}`;
+        ctx.fillText(run.text, cursorX, baseLineY + yOff);
+        cursorX += ctx.measureText(run.text).width;
+      }
+    }
+
     function drawTargetOnContext(ctx, colorStyle) {
       const item = getCurrentItem();
       const rows = getRuledLinesLayout();
@@ -681,38 +840,63 @@ function getActiveList() {
 
       if (rows.length === 1) {
         const r = rows[0];
-        let fontSize = Math.round(r.bandH * (state.style === 'cursive' ? 1.12 : 1.02));
-        const minAllowedSize = Math.max(14, Math.round(22 * scale));
-        ctx.font = `500 ${fontSize}px ${fontObj.css}`;
-        let textW = ctx.measureText(item.text).width;
-        while (textW > maxW && fontSize > minAllowedSize) {
-          fontSize -= 2;
-          ctx.font = `500 ${fontSize}px ${fontObj.css}`;
-          textW = ctx.measureText(item.text).width;
+        const baseSizes = getFontLetterSizes(fontObj, r.bandH);
+        let fitFactor = 1.0;
+
+        let textW = measureSegmentedTextWidth(
+          ctx,
+          item.text,
+          fontObj,
+          baseSizes.capFontSize,
+          baseSizes.lowerFontSize
+        );
+
+        if (textW > maxW && textW > 0) {
+          fitFactor = Math.max((14 * scale) / baseSizes.capFontSize, maxW / textW);
         }
+
+        const finalSizes = {
+          capFontSize: baseSizes.capFontSize * fitFactor,
+          lowerFontSize: baseSizes.lowerFontSize * fitFactor,
+          capYOffset: baseSizes.capYOffset,
+          lowerYOffset: baseSizes.lowerYOffset
+        };
+
+        textW = measureSegmentedTextWidth(
+          ctx,
+          item.text,
+          fontObj,
+          finalSizes.capFontSize,
+          finalSizes.lowerFontSize
+        );
+
         const x = Math.max(padX, (stageW - textW) / 2);
-        ctx.fillText(item.text, x, r.baseLine - 2);
+        drawSegmentedText(ctx, item.text, x, r.baseLine, fontObj, finalSizes);
       } else {
         const r0 = rows[0];
-        let fontSize = Math.round(r0.bandH * 0.96);
-        ctx.font = `500 ${fontSize}px ${fontObj.css}`;
+        const sizes = getFontLetterSizes(fontObj, r0.bandH);
 
         const words = item.text.split(' ');
         let line1 = '';
         let line2 = '';
         for (const w of words) {
           const test = line1 ? line1 + ' ' + w : w;
-          if (ctx.measureText(test).width <= maxW || !line1) {
+          const testW = measureSegmentedTextWidth(ctx, test, fontObj, sizes.capFontSize, sizes.lowerFontSize);
+          if (testW <= maxW || !line1) {
             line1 = test;
           } else {
             line2 = line2 ? line2 + ' ' + w : w;
           }
         }
-        const x1 = Math.max(padX, (stageW - ctx.measureText(line1).width) / 2);
-        ctx.fillText(line1, x1, rows[0].baseLine - 2);
+
+        const w1 = measureSegmentedTextWidth(ctx, line1, fontObj, sizes.capFontSize, sizes.lowerFontSize);
+        const x1 = Math.max(padX, (stageW - w1) / 2);
+        drawSegmentedText(ctx, line1, x1, rows[0].baseLine, fontObj, sizes);
+
         if (line2 && rows[1]) {
-          const x2 = Math.max(padX, (stageW - ctx.measureText(line2).width) / 2);
-          ctx.fillText(line2, x2, rows[1].baseLine - 2);
+          const w2 = measureSegmentedTextWidth(ctx, line2, fontObj, sizes.capFontSize, sizes.lowerFontSize);
+          const x2 = Math.max(padX, (stageW - w2) / 2);
+          drawSegmentedText(ctx, line2, x2, rows[1].baseLine, fontObj, sizes);
         }
       }
       ctx.restore();
@@ -1091,7 +1275,7 @@ function getActiveList() {
     }
 
     /*************************************************************************
-     * 8. طباعة ورقة عمل مسطرة
+     * 8. طباعة ورقة عمل مسطرة (Print Worksheet)
      *************************************************************************/
     function printWorksheetNow() {
       const list = getActiveList().slice(0, 100);
@@ -1104,41 +1288,74 @@ function getActiveList() {
         .replace(/</g, '&lt;')
         .replace(/>/g, '&gt;');
 
+      // Precise optical tuning ratios per font for SVG print rendering
+      // capRatio: scales the font so capitals touch the top line
+      // lowerRatio: proportion applied to lowercase letters so they hit the midline
+      // baselineNudge: fine-tunes the baseline so letters rest directly on top of the solid line
+      const PRINT_METRICS = {
+        'Lexend':         { capRatio: 1.39, lowerRatio: 0.58, baselineNudge: -1 },
+        'Comic Neue':     { capRatio: 1.39, lowerRatio: 0.65, baselineNudge: -1 },
+        'Patrick Hand':   { capRatio: 1.43, lowerRatio: 0.66, baselineNudge: -1 },
+        'Dancing Script': { capRatio: 1.40, lowerRatio: 1.12, baselineNudge: 0 },
+        'Caveat':         { capRatio: 1.34, lowerRatio: 0.70, baselineNudge: -1 },
+        'Great Vibes':    { capRatio: 1.26, lowerRatio: 1.10, baselineNudge: 0 },
+        'Sacramento':     { capRatio: 1.48, lowerRatio: 0.62, baselineNudge: 0 },
+        'Allura':         { capRatio: 1.70, lowerRatio: 0.97, baselineNudge: 0 },
+        'Satisfy':        { capRatio: 1.30, lowerRatio: 0.68, baselineNudge: 0 },
+        'Kaushan Script': { capRatio: 1.40, lowerRatio: 0.70, baselineNudge: 0 },
+        'Pacifico':       { capRatio: 1.18, lowerRatio: 0.70, baselineNudge: -1 }
+      };
+
+      const metrics = PRINT_METRICS[fontObj.id] || { capRatio: 1.40, lowerRatio: 0.70, baselineNudge: -1 };
+
       const buildRuledRowSvg = (traceText) => {
         const len = traceText ? traceText.length : 0;
-        const baseFontSize = Math.round((state.style === 'cursive' ? 46 : 43) * scale);
-        const computedSize = len > 26
-          ? Math.max(16, Math.round(baseFontSize * (26 / len)))
-          : baseFontSize;
-
-        // حساب مواضع السطور في الـ SVG لتتطابق مع حجم الخط المختار
-        const baseLineY = 52;
-        const bandH = Math.round(42 * scale);
+        const bandH = Math.round(38 * scale);
+        const baseLineY = 50;
         const topLineY = baseLineY - bandH;
         const midLineY = Math.round(topLineY + bandH * 0.5);
-        const descLineY = Math.round(baseLineY + bandH * 0.29);
+        const descLineY = Math.round(baseLineY + bandH * 0.35);
+
+        // Calculate proportional sizes
+        let capSize = bandH * metrics.capRatio;
+        let lowerSize = capSize * metrics.lowerRatio;
+
+        // Scale down if line is too long for the page width
+        if (len > 24) {
+          const shrink = Math.max(0.60, 24 / len);
+          capSize *= shrink;
+          lowerSize *= shrink;
+        }
+
+        const renderTspans = (str) => {
+          if (!str) return '';
+          return splitTextIntoCaseRuns(str).map(run => {
+            const fontSize = run.isUpper ? capSize.toFixed(1) : lowerSize.toFixed(1);
+            return `<tspan style="font-size:${fontSize}px;">${escapeSvgText(run.text)}</tspan>`;
+          }).join('');
+        };
 
         return `
-        <div style="position:relative; width:100%; height:68px; margin:6px 0; direction:ltr;">
-          <svg viewBox="0 0 800 68" style="width:100%; height:68px; display:block; overflow:visible;" preserveAspectRatio="none">
-            <!-- خلفية المسار الشبيه بالشارع بين السطر العلوي والسطر الأساسي -->
+        <div style="position:relative; width:100%; height:70px; margin:4px 0; direction:ltr;">
+          <svg viewBox="0 0 800 70" style="width:100%; height:70px; display:block; overflow:visible;" preserveAspectRatio="none">
+            <!-- مسار الكتابة الخفيف -->
             <rect x="0" y="${topLineY}" width="800" height="${bandH}" fill="rgba(0, 104, 155, 0.035)" />
             <!-- السطر العلوي (Top line) -->
             <line x1="0" y1="${topLineY}" x2="800" y2="${topLineY}" stroke="#CBD5E1" stroke-width="1.2" />
-            <!-- الخط المنقط الأوسط كخط منتصف الشارع (Midline) -->
+            <!-- السطر الأوسط المنقط (Midline) -->
             <line x1="0" y1="${midLineY}" x2="800" y2="${midLineY}" stroke="#94A3B8" stroke-width="1.2" stroke-dasharray="6 6" />
-            <!-- السطر الأزرق الأساسي الذي ترتكز عليه الحروف (Baseline y=52) -->
+            <!-- السطر الأساسي (Baseline) -->
             <line x1="0" y1="${baseLineY}" x2="800" y2="${baseLineY}" stroke="#00689B" stroke-width="2" />
-            <!-- سطر الحروف الهابطة مثل g, y, p (Descender line) -->
+            <!-- سطر النزول (Descender line) -->
             <line x1="0" y1="${descLineY}" x2="800" y2="${descLineY}" stroke="#E2E8F0" stroke-width="1" stroke-dasharray="3 4" />
             ${traceText ? `
-              <text x="16" y="50"
+              <text x="20" y="${baseLineY + metrics.baselineNudge}"
                     dominant-baseline="alphabetic"
+                    alignment-baseline="alphabetic"
                     text-anchor="start"
                     direction="ltr"
-                    style="font-family:${fontObj.css}; font-size:${computedSize}px; font-weight:500; fill:#CBD5E1;">
-                ${escapeSvgText(traceText)}
-              </text>
+                    xml:space="preserve"
+                    style="font-family:${fontObj.css}; font-weight:500; fill:#CBD5E1;">${renderTspans(traceText)}</text>
             ` : ''}
           </svg>
         </div>
@@ -1146,9 +1363,9 @@ function getActiveList() {
       };
 
       const rowsHtml = list.map((it, i) => `
-        <div style="margin-bottom:14px; padding-bottom:8px; border-bottom:1px solid #E2E8F0; page-break-inside:avoid;">
-          <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:4px;">
-            <strong style="font-family:${fontObj.css}; font-size:20px; direction:ltr;">${i + 1}. ${it.text}</strong>
+        <div style="margin-bottom:12px; padding-bottom:6px; border-bottom:1px solid #E2E8F0; page-break-inside:avoid;">
+          <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:2px;">
+            <strong style="font-family:${fontObj.css}; font-size:18px; direction:ltr;">${i + 1}. ${it.text}</strong>
             <span style="font-size:13px; color:#5B645F;">${it.arabic}</span>
           </div>
           ${buildRuledRowSvg(it.text)}
@@ -1158,22 +1375,52 @@ function getActiveList() {
 
       const container = document.getElementById('print-worksheet-container');
       container.innerHTML = `
-        <div style="padding:10px; font-family:'Tajawal', sans-serif; direction:rtl;">
-          <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid #00273A; padding-bottom:10px; margin-bottom:16px;">
-            <div>
-              <h1 style="margin:0; font-size:22px; color:#00273A;">Yazeed English  كراسة تحسين الخط</h1>
-              <p style="margin:4px 0 0; font-size:13px; color:#5B645F;">الخط: ${fontObj.id}</p>
-            </div>
-            <div style="font-size:13px; text-align:left;">
-              <div>____________________________________ :Name</div>
-              <div style="margin-top:4px;"></div>
-            </div>
-          </div>
-          ${rowsHtml}
+        <div style="padding:4px; font-family:'Tajawal', sans-serif; direction:rtl;">
+          <table class="print-table">
+            
+            <!-- This footer automatically appears at the bottom of EVERY printed page -->
+            <!-- Centered footer on every page -->
+            <tfoot>
+              <tr>
+                <td class="print-footer-cell">
+                  <div class="print-footer-content">
+                    <span>YazeedEnglish.com</span>
+                  </div>
+                </td>
+              </tr>
+            </tfoot>
+
+            <!-- The main exercise content that spans across all 20 pages -->
+            <tbody>
+              <tr>
+                <td>
+                  <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid #00537c; padding-bottom:8px; margin-bottom:14px;">
+                    <div>
+                      <h1 style="margin:0; font-size:16px; color:#00273A;">Yazeed English - Handwriting Practice</h1>
+                      <p style="margin:4px 0 0; font-size:12px; color:#5B645F;">الخط: ${fontObj.id}</p>
+                    </div>
+                    <div style="font-size:13px; text-align:left;">
+                      <div>Name: _______________________________</div>
+                    </div>
+                  </div>
+                  
+                  ${rowsHtml}
+                </td>
+              </tr>
+            </tbody>
+
+          </table>
         </div>
       `;
 
-      setTimeout(() => window.print(), 120);
+      // Allow Google Fonts to finish layout render before triggering print
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(() => {
+          setTimeout(() => window.print(), 100);
+        });
+      } else {
+        setTimeout(() => window.print(), 180);
+      }
     }
 
     /*************************************************************************
@@ -1222,7 +1469,13 @@ function getActiveList() {
       const progressPct = state.freeMode ? 100 : Math.round(((state.index + 1) / list.length) * 100);
       document.getElementById('top-progress-fill').style.width = `${progressPct}%`;
 
-      document.getElementById('target-english-display').textContent = item.text;
+      const showcaseSizes = getFontLetterSizes(fontObj, 100);
+      const targetDisplayEl = document.getElementById('target-english-display');
+      targetDisplayEl.innerHTML = splitTextIntoCaseRuns(item.text).map(run => {
+        const cls = run.isUpper ? 'hw-cap-run' : 'hw-lower-run';
+        const safeText = run.text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        return `<span class="${cls}" style="${run.isUpper ? '' : `font-size:${(showcaseSizes.capToLowerRatio * 100).toFixed(1)}%;`}">${safeText}</span>`;
+      }).join('');
       document.getElementById('arabic-meaning-display').textContent = item.arabic;
 
       const categoryNames = {
@@ -1264,7 +1517,8 @@ function getActiveList() {
 
       if (document.fonts && document.fonts.ready) {
         document.fonts.ready.then(() => {
-          renderRuledPaperAndGhost();
+          Object.keys(_fontMetricsCache).forEach(k => delete _fontMetricsCache[k]);
+          updateUI();
         });
       }
 
