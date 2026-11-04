@@ -306,7 +306,7 @@
       sound: true,
       darkMode: false,
       penColor: '#00273A',
-      penSize: 'medium',      // 'thin' | 'medium' | 'thick'
+      penSize: '6',      // 'thin' | 'medium' | 'thick'
       isEraser: false,
       strokes: [],
       isDrawing: false,
@@ -548,12 +548,6 @@ function getActiveList() {
 
     let stageW = 800;
     let stageH = 290;
-
-    const PEN_WIDTHS = {
-      thin: 3,
-      medium: 6,
-      thick: 10
-    };
 
     function resizeStageCanvases() {
       const wrap = document.getElementById('canvas-stage');
@@ -941,62 +935,15 @@ function getActiveList() {
     }
 
     function redrawUserStrokes() {
-      drawCtx.clearRect(0, 0, stageW, stageH);
-      for (const s of state.strokes) {
-        drawSingleStrokeOnContext(drawCtx, s);
-      }
-      if (state.currentStroke) {
-        drawSingleStrokeOnContext(drawCtx, state.currentStroke);
-      }
-    }
-
-    // رسم الجزء الجديد من الخط فوراً على طبقة الحبر دون مسح الكانفاس (استجابة 120Hz لقلم الآيباد)
-    function drawIncrementalSegment(ctx, stroke, prevIndex) {
-      if (!stroke || !stroke.points || stroke.points.length === 0) return;
-      const pts = stroke.points;
-
-      ctx.save();
-      ctx.lineCap = 'round';
-      ctx.lineJoin = 'round';
-
-      if (stroke.isEraser) {
-        ctx.globalCompositeOperation = 'destination-out';
-        ctx.strokeStyle = 'rgba(0,0,0,1)';
-        ctx.fillStyle = 'rgba(0,0,0,1)';
-        ctx.lineWidth = stroke.width * 3;
-      } else {
-        ctx.globalCompositeOperation = 'source-over';
-        ctx.strokeStyle = stroke.color;
-        ctx.fillStyle = stroke.color;
-        ctx.lineWidth = stroke.width;
-      }
-
-      if (pts.length === 1) {
-        ctx.beginPath();
-        ctx.arc(pts[0].x, pts[0].y, (stroke.isEraser ? stroke.width * 1.5 : stroke.width / 2), 0, Math.PI * 2);
-        ctx.fill();
-        ctx.restore();
-        return;
-      }
-
-      const startIdx = Math.max(1, prevIndex);
-      ctx.beginPath();
-      if (startIdx === 1) {
-        ctx.moveTo(pts[0].x, pts[0].y);
-      } else {
-        const prevMidX = (pts[startIdx - 2].x + pts[startIdx - 1].x) / 2;
-        const prevMidY = (pts[startIdx - 2].y + pts[startIdx - 1].y) / 2;
-        ctx.moveTo(prevMidX, prevMidY);
-      }
-
-      for (let i = startIdx; i < pts.length; i++) {
-        const midX = (pts[i - 1].x + pts[i].x) / 2;
-        const midY = (pts[i - 1].y + pts[i].y) / 2;
-        ctx.quadraticCurveTo(pts[i - 1].x, pts[i - 1].y, midX, midY);
-      }
-      ctx.stroke();
-      ctx.restore();
-    }
+  // Widen the clearRect area to prevent subpixel artifacts on High-DPI screens
+  drawCtx.clearRect(0, 0, stageW * 2, stageH * 2);
+  for (const s of state.strokes) {
+    drawSingleStrokeOnContext(drawCtx, s);
+  }
+  if (state.currentStroke) {
+    drawSingleStrokeOnContext(drawCtx, state.currentStroke);
+  }
+}
 
     function setupPointerEvents() {
       const stageWrap = document.getElementById('canvas-stage');
@@ -1058,40 +1005,43 @@ function getActiveList() {
         state.isDrawing = true;
         state.currentStroke = {
           color: state.penColor,
-          width: PEN_WIDTHS[state.penSize] || 6,
+          width: state.penWeight,
           isEraser: state.isEraser,
           points: [getPt(e)]
         };
 
         startWritingSound();
-        drawIncrementalSegment(drawCtx, state.currentStroke, 0);
+redrawUserStrokes();
       }, { passive: false });
 
       drawCanvas.addEventListener('pointermove', (e) => {
-        if (!state.isDrawing || !state.currentStroke) return;
-        if (state.activePointerId !== null && e.pointerId !== state.activePointerId) return;
-        if (e.cancelable) e.preventDefault();
+    if (!state.isDrawing || !state.currentStroke) return;
+    if (state.activePointerId !== null && e.pointerId !== state.activePointerId) return;
+    if (e.cancelable) e.preventDefault();
 
-        const events = e.getCoalescedEvents ? e.getCoalescedEvents() : [e];
-        const pts = state.currentStroke.points;
-        const prevLen = pts.length;
-        let maxDist = 0;
+    const events = e.getCoalescedEvents ? e.getCoalescedEvents() : [e];
+    const pts = state.currentStroke.points;
+    const prevLen = pts.length;
+    let maxDist = 0;
 
-        for (const ev of events) {
-          const pt = getPt(ev);
-          const last = pts[pts.length - 1];
-          const dist = Math.hypot(pt.x - last.x, pt.y - last.y);
-          if (dist > 0.4) {
-            pts.push(pt);
-            if (dist > maxDist) maxDist = dist;
-          }
-        }
+    for (const ev of events) {
+      const pt = getPt(ev);
+      const last = pts[pts.length - 1];
+      const dist = Math.hypot(pt.x - last.x, pt.y - last.y);
+      
+      // Increased threshold to 3.0 to drop microscopic hardware jitter
+      if (dist > 3.0) {
+        pts.push(pt);
+        if (dist > maxDist) maxDist = dist;
+      }
+    }
 
-        if (pts.length > prevLen) {
-          modulateWritingSound(maxDist);
-          drawIncrementalSegment(drawCtx, state.currentStroke, prevLen);
-        }
-      }, { passive: false });
+    if (pts.length > prevLen) {
+      modulateWritingSound(maxDist);
+      // Force a full smooth redraw instead of an incremental segment
+      redrawUserStrokes();
+    }
+  }, { passive: false });
 
       const endPointer = (e) => {
         if (!state.isDrawing || !state.currentStroke) return;
@@ -1134,14 +1084,14 @@ function getActiveList() {
       });
     }
 
-    function selectPenSize(sizeKey) {
-      state.penSize = sizeKey;
-      state.isEraser = false;
-      document.getElementById('eraser-btn').classList.remove('active');
-      document.querySelectorAll('.size-dot-btn[data-size]').forEach(btn => {
-        btn.classList.toggle('active', btn.dataset.size === sizeKey);
-      });
-    }
+    function updatePenWeight(val) {
+  state.penWeight = parseInt(val, 10);
+  document.getElementById('weight-val').textContent = state.penWeight;
+  
+  // Auto-disable eraser if user changes pen thickness
+  state.isEraser = false;
+  document.getElementById('eraser-btn').classList.remove('active');
+}
 
     function toggleEraserMode() {
       state.isEraser = !state.isEraser;
@@ -1537,7 +1487,7 @@ function getActiveList() {
     cycleFontScale,
     setModeFilter,
     selectPenColor,
-    selectPenSize,
+    updatePenWeight,
     toggleEraserMode,
     undoLastStroke,
     clearCanvas

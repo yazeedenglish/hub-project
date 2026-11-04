@@ -139,21 +139,11 @@
             <button class="color-swatch white-swatch" style="background:#FFFFFF" data-color="#FFFFFF" onclick="selectPenColor('#FFFFFF')" title="أبيض"></button>
           </div>
 
-          <!-- سُمك القلم (3 خيارات) -->
-          <div class="pen-group" aria-label="سُمك القلم">
-            <button class="size-dot-btn" data-size="thin" onclick="selectPenSize('thin')">
-              <span class="dot-indicator" style="width:5px; height:6px;"></span>
-              <span>رفيع</span>
-            </button>
-            <button class="size-dot-btn active" data-size="medium" onclick="selectPenSize('medium')">
-              <span class="dot-indicator" style="width:9px; height:9px;"></span>
-              <span>متوسط</span>
-            </button>
-            <button class="size-dot-btn" data-size="thick" onclick="selectPenSize('thick')">
-              <span class="dot-indicator" style="width:13px; height:13px;"></span>
-              <span>عريض</span>
-            </button>
-          </div>
+          <!-- سُمك القلم (شريط تمرير) -->
+      <div class="pen-group" aria-label="سُمك القلم" style="gap: 8px;">
+        <span style="font-size:12px; font-weight:800; color:var(--ink-soft);">السُمك: <span id="weight-val">6</span>px</span>
+        <input type="range" id="pen-weight-slider" min="1" max="25" value="6" oninput="updatePenWeight(this.value)" style="width: 100px; accent-color: var(--indigo); cursor: pointer;">
+      </div>
 
           <!-- أدوات المسح والتراجع -->
           <div class="pen-group">
