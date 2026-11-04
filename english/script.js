@@ -11,12 +11,15 @@ const ENGLISH_CARDS = {
 
     grammar: true,
 
-    writing: false,
+    writing: true,
 
     stories: true,
 
-    games: true
+    games: true,
 
+    speaking: false,
+
+    progress: false
 };
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -43,6 +46,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (!ENGLISH_CARDS.games) {
         document.getElementById("games-card")?.remove();
+    }
+
+    if (!ENGLISH_CARDS.speaking) {
+        document.getElementById("speaking-card")?.remove();
+    }
+
+    if (!ENGLISH_CARDS.progress) {
+        document.getElementById("progress-card")?.remove();
     }
 
 });

@@ -1,224 +1,274 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Yazeed English - Handwriting</title>
 
-  <!-- Lucide Icons -->
-  <script src="https://unpkg.com/lucide@latest"></script>
+    <meta charset="UTF-8">
 
-  <!-- Google Fonts: Tajawal, Quicksand, Inter, JetBrains Mono + Print & Cursive Handwriting Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Allura&family=Andika:wght@400;700&family=Caveat:wght@500;700&family=Comic+Neue:wght@400;700&family=Dancing+Script:wght@500;700&family=Great+Vibes&family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@700&family=Kaushan+Script&family=Lexend:wght@400;500;600&family=Pacifico&family=Patrick+Hand&family=Quicksand:wght@700;800&family=Sacramento&family=Satisfy&family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Yazeed English | اللغة الإنجليزية</title>
+
+    <!-- Tajawal -->
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
 
 </head>
-<body oncontextmenu="return false;" onselectstart="return false;" ondragstart="return false;">
 
-  <!-- خط التقدم العلوي -->
-  <div class="top-progress-line">
-    <div id="top-progress-fill" class="top-progress-fill" style="width: 5%"></div>
-  </div>
+<body>
 
-  <!-- MINIMAL HEADER -->
-  <header class="top-header">
-    <div class="brand">
-      <img src="https://file.yazeedenglish.com/logo.png"
-           alt="Yazeed English"
-           class="brand-logo">
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
 
-      <div class="brand-text">
-        <strong>Yazeed English</strong>
-        <span>منصة يزيد للانجليزية</span>
-      </div>
-    </div>
+    <header class="top-header">
 
-    <div class="header-actions">
-      <!-- زر الوضع الاحترافي -->
-      <button id="pro-mode-btn" class="pill-btn" onclick="toggleProMode()" title="التحقق الذكي من دقة الكتابة على المسار">
-        <i data-lucide="award"></i>
-        <span id="pro-mode-label">الوضع الاحترافي</span>
-      </button>
+        <a
+            href="/"
+            class="brand"
+            aria-label="Yazeed English"
+        >
 
-      <!-- زر الكتابة الحرة -->
-      <button id="free-write-btn" class="pill-btn" onclick="toggleFreeWriteMode()" title="مساحة حرة للتدريب بدون نص إرشادي">
-        <i data-lucide="edit-3"></i>
-        <span id="free-write-label">الكتابة الحرة</span>
-      </button>
+            <!--
+                Replace this with your real logo later.
 
-      <!-- زر طباعة ورقة عمل PDF -->
-      <button id="print-pdf-btn" class="pill-btn" onclick="printWorksheetNow()">
-        <i data-lucide="printer"></i>
-        <span>طباعة</span>
-      </button>
+                Example:
 
-      <!-- زر الصوت -->
-      <button id="toggle-sfx-btn" class="theme-btn" onclick="toggleSound()" title="تشغيل / كتم الصوت">
-        <i id="sound-icon" data-lucide="volume-2"></i>
-      </button>
+                <img
+                    src="assets/logo.png"
+                    alt="Yazeed English"
+                    class="brand-logo"
+                >
+            -->
 
-      <!-- زر الوضع الليلي -->
-      <button id="theme-toggle-btn" class="theme-btn" onclick="toggleDarkMode()" title="الوضع الليلي / النهاري">
-        <i id="theme-icon" data-lucide="moon"></i>
-      </button>
-    </div>
-  </header>
+        <!-- This displays your actual Yazeed English logo. -->
+        <img
+            src="https://file.yazeedenglish.com/logo.png"
+            alt="Yazeed English Logo"
+            class="brand-logo"
+        >
 
-  <!-- مساحة التدريب الرئيسية البسيطة (Zen Stage) -->
-  <main class="zen-stage">
+            <div class="brand-text">
 
-    <!-- الكبسولة العلوية لتحديد نوع التدريب (حروف A-Z أو كلمات عشوائية أو جمل عشوائية) -->
-    <div id="top-category-capsule" class="zen-top-meta">
-      <span style="font-weight: 800; color: var(--ink);"></span>
-      <button class="filter-chip active" id="chip-letters" onclick="setModeFilter('letters')">الحروف</button>
-      <button class="filter-chip" id="chip-words" onclick="setModeFilter('words')">الكلمات</button>
-      <button class="filter-chip" id="chip-sentences" onclick="setModeFilter('sentences')">العبارات</button>
-      <span style="color: var(--line);">|</span>
-      <span id="meta-counter-label" style="font-size: 12px; font-weight: 800;">تمرين 1 من 26</span>
-    </div>
+                <strong>Yazeed English</strong>
 
-    <!-- لافتة وضع الكتابة الحرة -->
-    <div id="free-mode-banner" class="zen-top-meta" hidden style="border-color: var(--indigo); color: var(--indigo);">
-      <i data-lucide="pen" style="width:16px;height:16px;"></i>
-      <span>وضع الكتابة الحرة</span>
-    </div>
+                <span>منصة يزيد للانجليزية</span>
 
-    <!-- حاوية الجملة والدفتر المسطر -->
-    <div id="main-exercise-wrapper" class="zen-sentence-wrapper">
+            </div>
 
-      <!-- شريط أدوات الخط فوق الكلمة -->
-      <div id="reference-header-bar" class="reference-header-bar">
-        <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
-          <!-- زر تبديل نوع الخط: عادي أو متصل -->
-          <button id="style-toggle-btn" class="pill-btn" onclick="toggleHandwritingStyle()">
-            <i data-lucide="pen-tool"></i>
-            <span id="style-toggle-label">الخط: عادي (Print)</span>
-          </button>
+        </a>
 
-          <!-- زر تغيير شكل الخط لإعطاء حرية للمستخدم -->
-          <button id="font-cycle-btn" class="pill-btn" onclick="cycleFontChoice()" title="تغيير شكل الخط الإنجليزي">
-            <i data-lucide="type"></i>
-            <span id="font-cycle-label">خط: Lexend</span>
-          </button>
 
-          <!-- زر التحكم في 5 مستويات لحجم الخط والسطور -->
-          <button id="fontScaleCycleBtn" class="pill-btn" onclick="cycleFontScale()" title="تغيير حجم الخط والسطور (5 مستويات)">
-            <i data-lucide="a-large-small"></i>
-            <span id="font-scale-label">حجم الخط: 5/5 (كبير جداً)</span>
-            <span id="font-scale-bars" class="scale-bars-indicator" aria-hidden="true">
-              <span class="scale-bar-item active" style="height:5px;"></span>
-              <span class="scale-bar-item active" style="height:7px;"></span>
-              <span class="scale-bar-item active" style="height:9px;"></span>
-              <span class="scale-bar-item active" style="height:11px;"></span>
-              <span class="scale-bar-item active" style="height:14px;"></span>
-            </span>
-          </button>
-        </div>
-      </div>
+        <div class="header-actions">
 
-      <!-- عرض الكلمة أو الحرف المطلوب بخط واضح -->
-      <div id="target-showcase-box" class="target-showcase-box">
-        <div id="target-english-display" class="giant-english-sentence">Aa</div>
-      </div>
+            <button
+    type="button"
+    class="theme-btn"
+    id="themeToggle"
+    aria-label="تغيير المظهر"
+    title="تغيير المظهر"
+>
+    <i data-lucide="moon" id="themeIcon"></i>
+</button>
 
-      <!-- الدفتر المسطر التفاعلي (Ruled Lines Only) -->
-      <div class="notebook-canvas-card" scribble="false" contenteditable="false">
-        <div id="canvas-stage" class="canvas-layers-wrap" scribble="false" contenteditable="false">
-          <canvas id="guide-canvas" scribble="false"></canvas>
-          <canvas id="drawing-canvas" scribble="false"></canvas>
         </div>
 
-        <!-- شريط القلم والألوان المبسط (مناسب للصغار والكبار) -->
-        <div class="simple-pen-toolbar">
-          <!-- الألوان السبعة -->
-          <div class="pen-group" aria-label="ألوان القلم">
-            <span style="font-size:12px; font-weight:800; color:var(--ink-soft); margin-left:4px;"></span>
-            <button class="color-swatch active" style="background:#000000" data-color="#00273A" onclick="selectPenColor('#000000')" title="أسود"></button>
-            <button class="color-swatch" style="background:#002ab3" data-color="#00689B" onclick="selectPenColor('#002ab3')" title="أزرق"></button>
-            <button class="color-swatch" style="background:#b700ff" data-color="#E11D48" onclick="selectPenColor('#b700ff')" title="بنفسجي"></button>
-            <button class="color-swatch" style="background:#cf0000" data-color="#EA580C" onclick="selectPenColor('#cf0000')" title="أحمر"></button>
-            <button class="color-swatch" style="background:#ffd000" data-color="#EAB308" onclick="selectPenColor('#ffd000')" title="أصفر"></button>
-            <button class="color-swatch" style="background:#00c41a" data-color="#7C3AED" onclick="selectPenColor('#00c41a')" title="أخضر"></button>
-            
-            <button class="color-swatch white-swatch" style="background:#FFFFFF" data-color="#FFFFFF" onclick="selectPenColor('#FFFFFF')" title="أبيض"></button>
-          </div>
+    </header>
 
-          <!-- سُمك القلم (شريط تمرير) -->
-      <div class="pen-group" aria-label="سُمك القلم" style="gap: 8px;">
-        <span style="font-size:12px; font-weight:800; color:var(--ink-soft);"> <span id="weight-val">6</span>px</span>
-        <input type="range" id="pen-weight-slider" min="1" max="25" value="6" oninput="updatePenWeight(this.value)" style="width: 100px; accent-color: var(--indigo); cursor: pointer;">
-      </div>
 
-          <!-- أدوات المسح والتراجع -->
-          <div class="pen-group">
-            <button id="eraser-btn" class="size-dot-btn" onclick="toggleEraserMode()">
-              <i data-lucide="eraser" style="width:15px;height:15px;"></i>
-              <span>ممحاة</span>
-            </button>
-            <button class="size-dot-btn" onclick="undoLastStroke()" title="تراجع عن آخر خطوة">
-              <i data-lucide="undo-2" style="width:15px;height:15px;"></i>
-              <span>تراجع</span>
-            </button>
-            <button class="size-dot-btn" onclick="clearCanvas(false)" title="مسح الدفتر بالكامل">
-              <i data-lucide="rotate-ccw" style="width:15px;height:15px;"></i>
-              <span>مسح الكل</span>
-            </button>
-          </div>
-        </div>
-      </div>
+    <!-- =====================================================
+         MAIN
+    ====================================================== -->
 
-      <!-- فاصل وترجمة عربية واضحة بدون حركات تشكيلية -->
-      <div id="translation-divider" class="zen-divider"></div>
-      <div id="arabic-meaning-display" class="zen-arabic-translation">
-        حرف A
-      </div>
+    <main class="main-website">
 
-      <!-- أزرار التحكم الرئيسية الحصرية: التالي (يمين) - السابق (يسار) فقط -->
-      <div id="exercise-nav-controls" class="zen-quick-actions">
-        <button id="next-exercise-btn" class="primary-btn" onclick="nextExercise()" style="min-width: 145px;">
-          <i data-lucide="arrow-right"></i>
-          <span>التالي</span>
-        </button>
 
-        <button class="pill-btn" onclick="prevExercise()" style="min-width: 145px;">
-          <span>السابق</span>
-          <i data-lucide="arrow-left"></i>
-        </button>
-      </div>
+        <!-- =================================================
+             SECTIONS
+        ================================================== -->
 
-    </div>
-  </main>
+        <section class="content-section">
 
-  <!-- الشريط السفلي للإحصائيات (Bottom Bar) -->
-  <footer class="bottom-bar">
-    <div class="telemetry-group">
-      <div class="telemetry-item">
-        <span>القسم:</span>
-        <strong id="footer-category-name">حروف (A - Z)</strong>
-      </div>
-      <div class="telemetry-item">
-        <span>الخط:</span>
-        <strong id="footer-font-name"></strong>
-      </div>
-    </div>
+            <div class="section-heading">
 
-    <div class="hint-shortcuts">
-      <span></span>
-    </div>
-  </footer>
+                <span class="section-label">
+                    
+                </span>
 
-  <!-- حاوية ورقة العمل المخصصة للطباعة -->
-  <div id="print-worksheet-container"></div>
+                <h2>
+                   
+                </h2>
 
-  <script src="../../access.js"></script>
+                <p>
+                
+                </p>
 
-    <script>
-        initializeCourseAccess("english");
-    </script>
+            </div>
+
+
+            <div class="english-grid">
+
+
+                <!-- =========================================
+                     TYPING
+                ========================================== -->
+
+                <a
+                    href="/english/writing/typing"
+                    class="english-card"
+                    id="book-card"
+                    style="--card-delay: 0s;"
+                >
+
+                    <div class="card-media">
+
+                        <div class="card-icon">
+                            ⌨️
+                        </div>
+
+                    </div>
+
+
+                    <div class="card-content">
+
+                        <div>
+
+                            <h3>
+                              لوحة المفاتيح
+                            </h3>
+
+                            <p>
+                              
+                       </p>
+
+                        </div>
+
+
+                        <div class="card-action">
+
+                            <span>
+                                دخول
+                            </span>
+
+                            <span class="arrow">
+                                ←
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </a>
+
+
+                <!-- =========================================
+                     HANDWRITING
+                ========================================== -->
+
+                <a
+                    href="/english/writing/hand"
+                    class="english-card"
+                    id="grammar-card"
+                    style="--card-delay: 0.12s;"
+                >
+
+                    <div class="card-media">
+
+                        <div class="card-icon">
+                            ✍️
+                        </div>
+
+                    </div>
+
+
+                    <div class="card-content">
+
+                        <div>
+
+                            <h3>
+                               خط اليد
+                            </h3>
+
+                            <p>
+                                
+                            </p>
+
+                        </div>
+
+
+                        <div class="card-action">
+
+                            <span>
+                                دخول
+                            </span>
+
+                            <span class="arrow">
+                                ←
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </a>
+
+
+            </div> <!-- END grid -->
+
+         </section>
+
+        </main>
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <footer class="site-footer">
+
+        <div class="footer-line"></div>
+
+        <p>
+            Yazeed English
+        </p>
+
+    </footer>
+
+
+<script src="../access.js"></script>
+
+<script>
+    initializeCourseAccess("english");
+</script>
+
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>
+    lucide.createIcons();
+</script>
 
 <script type="module" src="script.js"></script>
 
 </body>
+
 </html>
