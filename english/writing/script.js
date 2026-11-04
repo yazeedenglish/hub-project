@@ -316,7 +316,7 @@
       proMode: false,         // تفعيل الوضع الاحترافي
       proPassed: false,       // هل اجتاز التمرين الحالي بنجاح؟
       proFailedCurrent: false,// هل خرج عن المسار في الحركة الحالية؟
-      MIN_PRO_PEN_WEIGHT: 7   // الحد الأدنى لسمك القلم لمنع التحايل
+      MIN_PRO_PEN_WEIGHT: 5   // الحد الأدنى لسمك القلم لمنع التحايل
     };
 
     function loadSavedState() {
