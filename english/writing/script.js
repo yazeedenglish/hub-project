@@ -302,16 +302,21 @@
       index: 0,
       style: 'print',         // 'print' | 'cursive'
       fontIndex: 0,
-      fontScaleIndex: 2,      // 0..4 (الافتراضي 4 أي المستوى 5 الأكبر حجماً 1.00)
+      fontScaleIndex: 2,      // 0..4
       sound: true,
       darkMode: false,
       penColor: '#00273A',
-      penSize: '6',      // 'thin' | 'medium' | 'thick'
+      penWeight: 6,           // سمك القلم بالبكسل
       isEraser: false,
       strokes: [],
       isDrawing: false,
       activePointerId: null,
-      currentStroke: null
+      activePointerType: null,
+      currentStroke: null,    // <-- الفاصلة المهمة هنا
+      proMode: false,         // تفعيل الوضع الاحترافي
+      proPassed: false,       // هل اجتاز التمرين الحالي بنجاح؟
+      proFailedCurrent: false,// هل خرج عن المسار في الحركة الحالية؟
+      MIN_PRO_PEN_WEIGHT: 7   // الحد الأدنى لسمك القلم لمنع التحايل
     };
 
     function loadSavedState() {
@@ -538,6 +543,56 @@ function getActiveList() {
       } catch (e) {}
     }
 
+    // صوت تنبيه الخروج عن المسار (خسارة)
+    function playProFailSound() {
+      if (!state.sound) return;
+      try {
+        const ctx = getAudioCtx();
+        if (!ctx) return;
+        const now = ctx.currentTime;
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(190, now);
+        osc.frequency.linearRampToValueAtTime(115, now + 0.22);
+
+        gain.gain.setValueAtTime(0.12, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.24);
+
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(now);
+        osc.stop(now + 0.25);
+      } catch (e) {}
+    }
+
+    // صوت تحفيزي عند إكمال الكلمة بنجاح
+    function playProSuccessSound() {
+      if (!state.sound) return;
+      try {
+        const ctx = getAudioCtx();
+        if (!ctx) return;
+        const notes = [523.25, 659.25, 783.99, 1046.50]; // نغمة نجاح متصاعدة (C5 - E5 - G5 - C6)
+        notes.forEach((freq, idx) => {
+          const start = ctx.currentTime + idx * 0.075;
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(freq, start);
+
+          gain.gain.setValueAtTime(0.15, start);
+          gain.gain.exponentialRampToValueAtTime(0.001, start + 0.28);
+
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start(start);
+          osc.stop(start + 0.3);
+        });
+      } catch (e) {}
+    }
+
     /*************************************************************************
      * 5. الدفتر المسطر والرسم الفوري فائق السلاسة للآيباد (Apple Pencil 120Hz)
      *************************************************************************/
@@ -566,6 +621,8 @@ function getActiveList() {
 
       renderRuledPaperAndGhost();
       redrawUserStrokes();
+      buildProValidationMask();
+      updateProStatusUI();
     }
 
     function getRuledLinesLayout() {
@@ -616,7 +673,7 @@ function getActiveList() {
       }
     }
 
-    function renderRuledPaperAndGhost() {
+    function renderRuledPaperAndGhost(overrideGhostColor = null) {
       guideCtx.clearRect(0, 0, stageW, stageH);
       const isDark = state.darkMode;
 
@@ -676,9 +733,14 @@ function getActiveList() {
         guideCtx.setLineDash([]);
       });
 
-      // رسم النص المساعد بلون رمادي صلب وواضح (#777F88) في الوضع الليلي مطابق للصورة المرفقة
+
       if (!state.freeMode) {
-        const ghostColor = isDark ? '#777F88' : 'rgba(100, 116, 139, 0.34)';
+        let ghostColor = isDark ? '#777F88' : 'rgba(100, 116, 139, 0.34)';
+        if (overrideGhostColor) {
+          ghostColor = overrideGhostColor;
+        } else if (state.proMode && state.proPassed) {
+          ghostColor = '#16A34A'; // أخضر عند الاجتياز بنجاح
+        }
         drawTargetOnContext(guideCtx, ghostColor);
       }
     }
@@ -890,10 +952,341 @@ function getActiveList() {
         if (line2 && rows[1]) {
           const w2 = measureSegmentedTextWidth(ctx, line2, fontObj, sizes.capFontSize, sizes.lowerFontSize);
           const x2 = Math.max(padX, (stageW - w2) / 2);
+          buildIndividualCharacterMasks(
+    proMaskCtx,
+    line2,
+    x2,
+    rows[1].baseLine,
+    fontObj,
+    sizes
+);
           drawSegmentedText(ctx, line2, x2, rows[1].baseLine, fontObj, sizes);
         }
       }
       ctx.restore();
+    }
+
+/*************************************************************************
+     * محرك الوضع الاحترافي (Pro Mode Validation & Anti-Cheat Engine)
+     *************************************************************************/
+    const proMaskCanvas = document.createElement('canvas');
+    const proMaskCtx = proMaskCanvas.getContext('2d', { willReadFrequently: true });
+    const proUserCanvas = document.createElement('canvas');
+    const proUserCtx = proUserCanvas.getContext('2d', { willReadFrequently: true });
+
+    let proTargetPixels = null;
+    let proAllowedPixels = null;
+    let proTotalTargetCount = 0;
+    let proRowCheckpoints = [];
+
+    // رسم النص مع حدود مسموحة لبناء قناع التحقق (Hit-Mask)
+    function strokeSegmentedTextOnMask(ctx, text, startX, baseLineY, fontObj, sizes, strokeWidth) {
+      const runs = splitTextIntoCaseRuns(text);
+      let cursorX = startX;
+      ctx.lineJoin = 'round';
+      ctx.lineCap = 'round';
+      ctx.lineWidth = strokeWidth;
+      for (const run of runs) {
+        const fSize = run.isUpper ? sizes.capFontSize : sizes.lowerFontSize;
+        const yOff = run.isUpper ? sizes.capYOffset : sizes.lowerYOffset;
+        ctx.font = `500 ${fSize}px ${fontObj.css}`;
+        ctx.strokeText(run.text, cursorX, baseLineY + yOff);
+        ctx.fillText(run.text, cursorX, baseLineY + yOff);
+        cursorX += ctx.measureText(run.text).width;
+      }
+    }
+
+    function buildProValidationMask() {
+      if (!state.proMode || state.freeMode || stageW <= 10 || stageH <= 10) return;
+
+      proMaskCanvas.width = stageW;
+      proMaskCanvas.height = stageH;
+      proUserCanvas.width = stageW;
+      proUserCanvas.height = stageH;
+
+      // 1. حساب البكسلات الأساسية للحرف المطلوب تغطيته (Core Target)
+      proMaskCtx.clearRect(0, 0, stageW, stageH);
+      drawTargetOnContext(proMaskCtx, '#000000');
+      const coreData = proMaskCtx.getImageData(0, 0, stageW, stageH).data;
+
+      proTargetPixels = new Uint8Array(stageW * stageH);
+      proTotalTargetCount = 0;
+      for (let i = 3, p = 0; i < coreData.length; i += 4, p++) {
+        if (coreData[i] > 40) {
+          proTargetPixels[p] = 1;
+          proTotalTargetCount++;
+        }
+      }
+
+      // تقسيم الكلمة إلى شرائح تفتيش أفقية لضمان عدم تجاهل آخر حرف
+      proRowCheckpoints = [];
+      const rows = getRuledLinesLayout();
+      rows.forEach((r) => {
+        const yMin = Math.max(0, Math.floor(r.topLine - r.bandH * 0.6));
+        const yMax = Math.min(stageH - 1, Math.ceil(r.descLine + r.bandH * 0.4));
+
+        let minX = stageW, maxX = 0;
+        for (let y = yMin; y <= yMax; y++) {
+          const rowOffset = y * stageW;
+          for (let x = 0; x < stageW; x++) {
+            if (proTargetPixels[rowOffset + x] === 1) {
+              if (x < minX) minX = x;
+              if (x > maxX) maxX = x;
+            }
+          }
+        }
+
+        if (maxX > minX) {
+          const spanW = maxX - minX + 1;
+          const numBins = Math.min(12, Math.max(3, Math.round(spanW / 28)));
+          const bins = Array.from({ length: numBins }, () => ({ total: 0 }));
+
+          for (let y = yMin; y <= yMax; y++) {
+            const rowOffset = y * stageW;
+            for (let x = minX; x <= maxX; x++) {
+              if (proTargetPixels[rowOffset + x] === 1) {
+                const bIdx = Math.min(numBins - 1, Math.floor(((x - minX) / spanW) * numBins));
+                bins[bIdx].total++;
+              }
+            }
+          }
+          proRowCheckpoints.push({ yMin, yMax, minX, maxX, spanW, numBins, bins });
+        }
+      });
+
+      // 2. حساب المسار المسموح به حول الحرف بمرونة عالية (Tolerance Zone)
+      proMaskCtx.clearRect(0, 0, stageW, stageH);
+      const item = getCurrentItem();
+      const fontObj = getActiveFont();
+      const scale = getActiveFontScaleObj().scale;
+      const padX = 44;
+      const maxW = stageW - padX * 2;
+      const toleranceWidth = Math.max(2, Math.round(4 * scale));
+
+      proMaskCtx.save();
+      proMaskCtx.fillStyle = '#000000';
+      proMaskCtx.strokeStyle = '#000000';
+      proMaskCtx.textBaseline = 'alphabetic';
+      proMaskCtx.direction = 'ltr';
+
+      if (rows.length === 1) {
+        const r = rows[0];
+        const baseSizes = getFontLetterSizes(fontObj, r.bandH);
+        let fitFactor = 1.0;
+        let textW = measureSegmentedTextWidth(proMaskCtx, item.text, fontObj, baseSizes.capFontSize, baseSizes.lowerFontSize);
+        if (textW > maxW && textW > 0) {
+          fitFactor = Math.max((14 * scale) / baseSizes.capFontSize, maxW / textW);
+        }
+        const finalSizes = {
+          capFontSize: baseSizes.capFontSize * fitFactor,
+          lowerFontSize: baseSizes.lowerFontSize * fitFactor,
+          capYOffset: baseSizes.capYOffset,
+          lowerYOffset: baseSizes.lowerYOffset
+        };
+        textW = measureSegmentedTextWidth(proMaskCtx, item.text, fontObj, finalSizes.capFontSize, finalSizes.lowerFontSize);
+        const x = Math.max(padX, (stageW - textW) / 2);
+        strokeSegmentedTextOnMask(proMaskCtx, item.text, x, r.baseLine, fontObj, finalSizes, toleranceWidth);
+      } else {
+        const r0 = rows[0];
+        const sizes = getFontLetterSizes(fontObj, r0.bandH);
+        const words = item.text.split(' ');
+        let line1 = '', line2 = '';
+        for (const w of words) {
+          const test = line1 ? line1 + ' ' + w : w;
+          const testW = measureSegmentedTextWidth(proMaskCtx, test, fontObj, sizes.capFontSize, sizes.lowerFontSize);
+          if (testW <= maxW || !line1) line1 = test;
+          else line2 = line2 ? line2 + ' ' + w : w;
+        }
+        const w1 = measureSegmentedTextWidth(proMaskCtx, line1, fontObj, sizes.capFontSize, sizes.lowerFontSize);
+        const x1 = Math.max(padX, (stageW - w1) / 2);
+        strokeSegmentedTextOnMask(proMaskCtx, line1, x1, rows[0].baseLine, fontObj, sizes, toleranceWidth);
+
+        if (line2 && rows[1]) {
+          const w2 = measureSegmentedTextWidth(proMaskCtx, line2, fontObj, sizes.capFontSize, sizes.lowerFontSize);
+          const x2 = Math.max(padX, (stageW - w2) / 2);
+          strokeSegmentedTextOnMask(proMaskCtx, line2, x2, rows[1].baseLine, fontObj, sizes, toleranceWidth);
+        }
+      }
+      proMaskCtx.restore();
+
+      const allowedData = proMaskCtx.getImageData(0, 0, stageW, stageH).data;
+      proAllowedPixels = new Uint8Array(stageW * stageH);
+      for (let i = 3, p = 0; i < allowedData.length; i += 4, p++) {
+        if (allowedData[i] > 80) {
+          proAllowedPixels[p] = 1;
+        }
+      }
+    }
+
+    // فحص مرن أثناء الكتابة يمنع الأخطاء الوهمية عند حواف الحرف
+    function isPointInsideProTrack(x, y) {
+  if (!proAllowedPixels) return true;
+  const px = Math.round(x);
+  const py = Math.round(y);
+  if (px < 0 || py < 0 || px >= stageW || py >= stageH) return false;
+
+  // 1. The exact center of the pen tip MUST be inside the track
+  if (proAllowedPixels[py * stageW + px] === 0) return false;
+
+  // 2. Strict edge check: if the pen's inner edge crosses the boundary, fail immediately
+  const strictRadius = 2; 
+  const offsets = [
+    [strictRadius, 0],
+    [-strictRadius, 0],
+    [0, strictRadius],
+    [0, -strictRadius]
+  ];
+
+  for (const [dx, dy] of offsets) {
+    const cx = px + dx;
+    const cy = py + dy;
+    if (cx < 0 || cy < 0 || cx >= stageW || cy >= stageH) return false;
+    if (proAllowedPixels[cy * stageW + cx] === 0) {
+      return false; // Immediate error if any side of the tip touches outside
+    }
+  }
+
+  return true;
+}
+
+    // التحقق من تغطية كامل الكلمة شاملاً الحرف الأخير عند رفع القلم
+    function evaluateProCompletion() {
+      if (!state.proMode || state.freeMode || state.proPassed || !proTargetPixels || proTotalTargetCount === 0) return;
+
+      proUserCtx.clearRect(0, 0, stageW, stageH);
+      for (const s of state.strokes) {
+        drawSingleStrokeOnContext(proUserCtx, s, '#000000');
+      }
+
+      const userData = proUserCtx.getImageData(0, 0, stageW, stageH).data;
+      let coveredCount = 0;
+
+      for (let p = 0; p < proTargetPixels.length; p++) {
+        if (proTargetPixels[p] === 1 && userData[p * 4 + 3] > 40) {
+          coveredCount++;
+        }
+      }
+
+      const coverageRatio = coveredCount / proTotalTargetCount;
+
+      // فحص جميع مقاطع الكلمة والتأكد من كتابة الحرف الأخير
+      for (const cp of proRowCheckpoints) {
+        const coveredBins = new Array(cp.numBins).fill(0);
+
+        for (let y = cp.yMin; y <= cp.yMax; y++) {
+          const rowOffset = y * stageW;
+          for (let x = cp.minX; x <= cp.maxX; x++) {
+            const p = rowOffset + x;
+            if (proTargetPixels[p] === 1 && userData[p * 4 + 3] > 40) {
+              const bIdx = Math.min(cp.numBins - 1, Math.floor(((x - cp.minX) / cp.spanW) * cp.numBins));
+              coveredBins[bIdx]++;
+            }
+          }
+        }
+
+        for (let b = 0; b < cp.numBins; b++) {
+          const binTotal = cp.bins[b].total;
+          if (binTotal < 12) continue;
+          const binRatio = coveredBins[b] / binTotal;
+
+          const isLastPart = (b === cp.numBins - 1);
+          const minRequiredForPart = isLastPart ? 0.72 : 0.55;
+
+          if (binRatio < minRequiredForPart) {
+            return; // لم يكمل هذا الجزء أو ترك الحرف الأخير
+          }
+        }
+      }
+
+      if (coverageRatio >= 0.78) {
+        state.proPassed = true;
+        state.strokes.forEach(s => {
+          if (!s.isEraser) s.color = '#16A34A';
+        });
+        playProSuccessSound();
+        renderRuledPaperAndGhost();
+        redrawUserStrokes();
+        updateProStatusUI();
+      }
+    }
+
+    function triggerProBoundaryError() {
+      state.proFailedCurrent = true;
+      if (state.currentStroke) {
+        state.currentStroke.color = '#E11D48'; // يتحول خط المستخدم للون الأحمر فوراً
+      }
+      stopWritingSound();
+      playProFailSound();
+
+      const card = document.querySelector('.notebook-canvas-card');
+      const titleEl = document.getElementById('target-english-display');
+      if (card) card.classList.add('pro-error');
+      if (titleEl) titleEl.classList.add('pro-error-text');
+
+      renderRuledPaperAndGhost('#E11D48');
+      redrawUserStrokes();
+
+      // إزالة الخط الخاطئ تلقائياً بعد لحظة قصيرة ليبدأ المستخدم من جديد بنظافة
+      setTimeout(() => {
+        if (card) card.classList.remove('pro-error');
+        if (titleEl && !state.proPassed) titleEl.classList.remove('pro-error-text');
+        state.proFailedCurrent = false;
+        renderRuledPaperAndGhost();
+        redrawUserStrokes();
+      }, 450);
+    }
+
+    function updateProStatusUI() {
+      const proBtn = document.getElementById('pro-mode-btn');
+      const nextBtn = document.getElementById('next-exercise-btn');
+      const card = document.querySelector('.notebook-canvas-card');
+      const titleEl = document.getElementById('target-english-display');
+      const slider = document.getElementById('pen-weight-slider');
+
+      if (proBtn) {
+        proBtn.classList.toggle('active-pro', state.proMode);
+      }
+
+      // منع التحايل: فرض حد أدنى لسمك القلم (7px) في الوضع الاحترافي
+      if (slider) {
+        if (state.proMode) {
+          slider.min = state.MIN_PRO_PEN_WEIGHT;
+          if (state.penWeight < state.MIN_PRO_PEN_WEIGHT) {
+            updatePenWeight(state.MIN_PRO_PEN_WEIGHT);
+            slider.value = state.MIN_PRO_PEN_WEIGHT;
+          }
+        } else {
+          slider.min = 1;
+        }
+      }
+
+      // قفل زر "التالي" في الوضع الاحترافي حتى ينجح المستخدم
+      if (nextBtn) {
+        const shouldLock = state.proMode && !state.freeMode && !state.proPassed;
+        nextBtn.disabled = shouldLock;
+        nextBtn.innerHTML = shouldLock
+          ? `<i data-lucide="lock"></i><span>التالي</span>`
+          : `<i data-lucide="arrow-right"></i><span>التالي</span>`;
+        lucide.createIcons();
+      }
+
+      if (card) {
+        card.classList.toggle('pro-success', state.proMode && state.proPassed);
+      }
+      if (titleEl) {
+        titleEl.classList.toggle('pro-success-text', state.proMode && state.proPassed);
+      }
+    }
+
+    function toggleProMode() {
+      state.proMode = !state.proMode;
+      if (state.proMode && state.freeMode) {
+        state.freeMode = false; // الخروج من الكتابة الحرة عند تشغيل الوضع الاحترافي
+      }
+      state.proPassed = false;
+      state.proFailedCurrent = false;
+      clearCanvas();
+      updateUI();
     }
 
     function drawSingleStrokeOnContext(ctx, stroke, overrideColor = null) {
@@ -1010,6 +1403,17 @@ function getActiveList() {
           points: [getPt(e)]
         };
 
+        // التحقق الفوري عند وضع سن القلم في الوضع الاحترافي
+        if (state.proMode && !state.freeMode && !state.isEraser && !state.proPassed) {
+          const startPt = state.currentStroke.points[0];
+          if (!isPointInsideProTrack(startPt.x, startPt.y)) {
+            state.isDrawing = false;
+            triggerProBoundaryError();
+            state.currentStroke = null;
+            return;
+          }
+        }
+
         startWritingSound();
 redrawUserStrokes();
       }, { passive: false });
@@ -1025,16 +1429,26 @@ redrawUserStrokes();
     let maxDist = 0;
 
     for (const ev of events) {
-      const pt = getPt(ev);
-      const last = pts[pts.length - 1];
-      const dist = Math.hypot(pt.x - last.x, pt.y - last.y);
-      
-      // Increased threshold to 3.0 to drop microscopic hardware jitter
-      if (dist > 3.0) {
-        pts.push(pt);
-        if (dist > maxDist) maxDist = dist;
-      }
-    }
+          const pt = getPt(ev);
+          const last = pts[pts.length - 1];
+          const dist = Math.hypot(pt.x - last.x, pt.y - last.y);
+
+          // فحص الخروج عن المسار في الوضع الاحترافي
+          if (state.proMode && !state.freeMode && !state.isEraser && !state.proPassed) {
+            if (!isPointInsideProTrack(pt.x, pt.y)) {
+              pts.push(pt);
+              state.isDrawing = false;
+              triggerProBoundaryError();
+              state.currentStroke = null;
+              return;
+            }
+          }
+
+          if (dist > 3.0) {
+            pts.push(pt);
+            if (dist > maxDist) maxDist = dist;
+          }
+        }
 
     if (pts.length > prevLen) {
       modulateWritingSound(maxDist);
@@ -1060,6 +1474,11 @@ redrawUserStrokes();
         state.strokes.push(state.currentStroke);
         state.currentStroke = null;
         redrawUserStrokes();
+
+        // التحقق مما إذا أكمل المستخدم تتبع الحرف أو الكلمة بنجاح
+        if (state.proMode && !state.freeMode && !state.proPassed) {
+          evaluateProCompletion();
+        }
       };
 
       drawCanvas.addEventListener('pointerup', endPointer, { passive: false });
@@ -1071,6 +1490,9 @@ redrawUserStrokes();
      *************************************************************************/
     function toggleFreeWriteMode() {
       state.freeMode = !state.freeMode;
+      if (state.freeMode && state.proMode) {
+        state.proMode = false;
+      }
       clearCanvas(true);
       updateUI();
     }
@@ -1085,13 +1507,18 @@ redrawUserStrokes();
     }
 
     function updatePenWeight(val) {
-  state.penWeight = parseInt(val, 10);
-  document.getElementById('weight-val').textContent = state.penWeight;
-  
-  // Auto-disable eraser if user changes pen thickness
-  state.isEraser = false;
-  document.getElementById('eraser-btn').classList.remove('active');
-}
+      let weight = parseInt(val, 10);
+      if (state.proMode && weight < state.MIN_PRO_PEN_WEIGHT) {
+        weight = state.MIN_PRO_PEN_WEIGHT;
+      }
+      state.penWeight = weight;
+      const weightLabel = document.getElementById('weight-val');
+      if (weightLabel) weightLabel.textContent = state.penWeight;
+
+      state.isEraser = false;
+      document.getElementById('eraser-btn').classList.remove('active');
+
+    }
 
     function toggleEraserMode() {
       state.isEraser = !state.isEraser;
@@ -1107,7 +1534,11 @@ redrawUserStrokes();
     function clearCanvas() {
       state.strokes = [];
       state.currentStroke = null;
+      state.proPassed = false;
+      state.proFailedCurrent = false;
+      renderRuledPaperAndGhost();
       redrawUserStrokes();
+      updateProStatusUI();
     }
 
     function toggleHandwritingStyle() {
@@ -1217,9 +1648,11 @@ redrawUserStrokes();
     }
 
     function nextExercise() {
+      if (state.proMode && !state.freeMode && !state.proPassed) return;
       const list = getActiveList();
       state.index = (state.index + 1) % list.length;
-      clearCanvas(true);
+      state.proPassed = false;
+      clearCanvas();
       saveState();
       updateUI();
     }
@@ -1381,6 +1814,8 @@ redrawUserStrokes();
       const item = getCurrentItem();
       const fontObj = getActiveFont();
       const scaleObj = getActiveFontScaleObj();
+      buildProValidationMask();
+      updateProStatusUI();
 
       // تحديث حالة وضع الكتابة الحرة
       const freeBtn = document.getElementById('free-write-btn');
@@ -1476,6 +1911,7 @@ redrawUserStrokes();
     });
 
     Object.assign(window, {
+    toggleProMode,  
     nextExercise,
     prevExercise,
     toggleDarkMode,

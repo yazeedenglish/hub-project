@@ -23,19 +23,25 @@
   </div>
 
   <!-- MINIMAL HEADER -->
-<header class="top-header">
+  <header class="top-header">
     <div class="brand">
-        <img src="https://file.yazeedenglish.com/logo.png"
-             alt="Yazeed English"
-             class="brand-logo">
+      <img src="https://file.yazeedenglish.com/logo.png"
+           alt="Yazeed English"
+           class="brand-logo">
 
-        <div class="brand-text">
-            <strong>Yazeed English</strong>
-            <span>منصة يزيد للانجليزية</span>
-        </div>
+      <div class="brand-text">
+        <strong>Yazeed English</strong>
+        <span>منصة يزيد للانجليزية</span>
+      </div>
     </div>
 
     <div class="header-actions">
+      <!-- زر الوضع الاحترافي -->
+      <button id="pro-mode-btn" class="pill-btn" onclick="toggleProMode()" title="التحقق الذكي من دقة الكتابة على المسار">
+        <i data-lucide="award"></i>
+        <span id="pro-mode-label">الوضع الاحترافي</span>
+      </button>
+
       <!-- زر الكتابة الحرة -->
       <button id="free-write-btn" class="pill-btn" onclick="toggleFreeWriteMode()" title="مساحة حرة للتدريب بدون نص إرشادي">
         <i data-lucide="edit-3"></i>
@@ -43,9 +49,9 @@
       </button>
 
       <!-- زر طباعة ورقة عمل PDF -->
-      <button class="pill-btn" onclick="printWorksheetNow()">
+      <button id="print-pdf-btn" class="pill-btn" onclick="printWorksheetNow()">
         <i data-lucide="printer"></i>
-        <span>طباعة PDF</span>
+        <span>طباعة</span>
       </button>
 
       <!-- زر الصوت -->
@@ -128,7 +134,7 @@
         <div class="simple-pen-toolbar">
           <!-- الألوان السبعة -->
           <div class="pen-group" aria-label="ألوان القلم">
-            <span style="font-size:12px; font-weight:800; color:var(--ink-soft); margin-left:4px;">لون القلم:</span>
+            <span style="font-size:12px; font-weight:800; color:var(--ink-soft); margin-left:4px;"></span>
             <button class="color-swatch active" style="background:#000000" data-color="#00273A" onclick="selectPenColor('#000000')" title="أسود"></button>
             <button class="color-swatch" style="background:#002ab3" data-color="#00689B" onclick="selectPenColor('#002ab3')" title="أزرق"></button>
             <button class="color-swatch" style="background:#b700ff" data-color="#E11D48" onclick="selectPenColor('#b700ff')" title="بنفسجي"></button>
@@ -141,7 +147,7 @@
 
           <!-- سُمك القلم (شريط تمرير) -->
       <div class="pen-group" aria-label="سُمك القلم" style="gap: 8px;">
-        <span style="font-size:12px; font-weight:800; color:var(--ink-soft);">السُمك: <span id="weight-val">6</span>px</span>
+        <span style="font-size:12px; font-weight:800; color:var(--ink-soft);"> <span id="weight-val">6</span>px</span>
         <input type="range" id="pen-weight-slider" min="1" max="25" value="6" oninput="updatePenWeight(this.value)" style="width: 100px; accent-color: var(--indigo); cursor: pointer;">
       </div>
 
@@ -171,7 +177,7 @@
 
       <!-- أزرار التحكم الرئيسية الحصرية: التالي (يمين) - السابق (يسار) فقط -->
       <div id="exercise-nav-controls" class="zen-quick-actions">
-        <button class="primary-btn" onclick="nextExercise()" style="min-width: 145px;">
+        <button id="next-exercise-btn" class="primary-btn" onclick="nextExercise()" style="min-width: 145px;">
           <i data-lucide="arrow-right"></i>
           <span>التالي</span>
         </button>
@@ -205,6 +211,12 @@
 
   <!-- حاوية ورقة العمل المخصصة للطباعة -->
   <div id="print-worksheet-container"></div>
+
+  <script src="../../access.js"></script>
+
+    <script>
+        initializeCourseAccess("english");
+    </script>
 
 <script type="module" src="script.js"></script>
 

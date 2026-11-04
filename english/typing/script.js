@@ -908,32 +908,32 @@
     "clear": "واضح",
     "peace of mind": "راحة البال",
 
-    // ================= B2: MOVING APARTMENT =================
-    "moving": "الانتقال",
-    "apartment": "شقة",
-    "brown": "بني",
-    "boxes": "صناديق",
-    "hallway": "ممر",
-    "labels": "ملصقات",
-    "belongs": "ينتمي",
-    "fragile": "قابل للكسر",
-    "wrap": "يلف",
-    "carefully": "بعناية",
-    "movers": "عمال نقل الأثاث",
-    "furniture": "أثاث",
-    "truck": "شاحنة",
-    "check": "يتفقد",
-    "room": "غرفة",
-    "make sure": "يتأكد من",
-    "left behind": "متروك خلفه",
-    "spacious": "واسع",
-    "unpack": "يفرغ الأمتعة",
-    "essentials": "الأساسيات",
-    "plants": "نباتات",
-    "welcoming": "مرحّب / باعث على الارتياح",
-    "neighbors": "جيران",
-    "first night": "الليلة الأولى",
-    "pizza": "بيتزا",
+    // ================= B2: MOVING HOUSE =================
+"moving": "الانتقال",
+"house": "منزل",
+"brown": "بني",
+"boxes": "صناديق",
+"hallway": "ممر",
+"labels": "ملصقات",
+"belongs": "ينتمي",
+"fragile": "قابل للكسر",
+"wrap": "يلف",
+"carefully": "بعناية",
+"movers": "عمال نقل الأثاث",
+"furniture": "أثاث",
+"truck": "شاحنة",
+"check": "يتفقد",
+"room": "غرفة",
+"make sure": "يتأكد من",
+"left behind": "متروك خلفه",
+"spacious": "واسع",
+"unpack": "يفرغ الأمتعة",
+"essentials": "الأساسيات",
+"plants": "نباتات",
+"welcoming": "مرحّب / باعث على الارتياح",
+"neighbors": "جيران",
+"first night": "الليلة الأولى",
+"pizza": "بيتزا",
 
     // ================= C1: SELF-IMPROVEMENT =================
     "personal": "شخصي",
@@ -1151,7 +1151,7 @@ const STORIES_DATA = [
         emoji: "☀️",
         enTitle: "Morning Routine",
         arTitle: "روتين الصباح",
-        desc: "خطوات الصباح من الاستيقاظ حتى الخروج.",
+        desc: "خطوات الصباح من الاستيقاظ حتى الخروج",
         sentences: [
             { en: "Sunlight fills my quiet room", ar: "يملأ ضوء الشمس غرفتي الهادئة" },
             { en: "I wake up and open the window", ar: "أستيقظ وأفتح النافذة" },
@@ -1171,7 +1171,7 @@ const STORIES_DATA = [
         emoji: "☕",
         enTitle: "At the Café",
         arTitle: "في المقهى",
-        desc: "زيارة هادئة للمقهى لطلب القهوة والقراءة.",
+        desc: "زيارة هادئة للمقهى لطلب القهوة والقراءة",
         sentences: [
             { en: "There is a quiet cafe nearby", ar: "يوجد مقهى هادئ بالقرب مني" },
             { en: "The fresh coffee smells wonderful", ar: "رائحة القهوة الطازجة رائعة" },
@@ -1191,7 +1191,7 @@ const STORIES_DATA = [
         emoji: "🛒",
         enTitle: "Grocery Shopping",
         arTitle: "التسوق لشراء الاحتياجات",
-        desc: "جولة لشراء الفواكه والخضراوات والخبز.",
+        desc: "جولة لشراء الفواكه والخضراوات والخبز",
         sentences: [
             { en: "I go grocery shopping every Saturday", ar: "أذهب للتسوق لشراء احتياجات المنزل كل يوم سبت" },
             { en: "I take a shopping cart", ar: "آخذ عربة تسوق" },
@@ -1211,7 +1211,7 @@ const STORIES_DATA = [
         emoji: "🍲",
         enTitle: "Family Dinner",
         arTitle: "عشاء العائلة",
-        desc: "تحضير العشاء واجتماع العائلة حول المائدة.",
+        desc: "تحضير العشاء واجتماع العائلة حول المائدة",
         sentences: [
             { en: "In the evening, my family gathers for dinner", ar: "في المساء، تجتمع عائلتي لتناول العشاء" },
             { en: "My mother makes chicken soup", ar: "تحضر أمي حساء الدجاج" },
@@ -1233,7 +1233,7 @@ const STORIES_DATA = [
         emoji: "🎓",
         enTitle: "A Day at University",
         arTitle: "يوم في الجامعة",
-        desc: "يوم طالب جامعي بين المحاضرات والمكتبة.",
+        desc: "يوم طالب جامعي بين المحاضرات والمكتبة",
         sentences: [
             { en: "The campus bus arrives at eight", ar: "تصل حافلة الجامعة في الساعة الثامنة" },
             { en: "Students enter through the main gate", ar: "يدخل الطلاب عبر البوابة الرئيسية" },
@@ -1253,7 +1253,7 @@ const STORIES_DATA = [
         emoji: "🏞️",
         enTitle: "Weekend Trip",
         arTitle: "رحلة نهاية الأسبوع",
-        desc: "رحلة بالسيارة لاستكشاف التلال والبلدة القديمة.",
+        desc: "رحلة بالسيارة لاستكشاف التلال والبلدة القديمة",
         sentences: [
             { en: "We pack our bags on Friday", ar: "نجهز حقائبنا يوم الجمعة" },
             { en: "The road winds through the hills", ar: "يمتد الطريق متعرجًا بين التلال" },
@@ -1273,7 +1273,7 @@ const STORIES_DATA = [
         emoji: "🩺",
         enTitle: "Visiting the Doctor",
         arTitle: "زيارة الطبيب",
-        desc: "زيارة الطبيب في العيادة للحصول على الفحص والعلاج.",
+        desc: "زيارة الطبيب في العيادة للحصول على الفحص والعلاج",
         sentences: [
             { en: "My throat hurts today", ar: "أشعر بألم في حلقي اليوم" },
             { en: "I call the local clinic", ar: "أتصل بالعيادة القريبة" },
@@ -1293,7 +1293,7 @@ const STORIES_DATA = [
         emoji: "🍝",
         enTitle: "At the Restaurant",
         arTitle: "في المطعم",
-        desc: "تناول العشاء وتجربة أطباق شهية في مطعم إيطالي.",
+        desc: "تناول العشاء وتجربة أطباق شهية في مطعم إيطالي",
         sentences: [
             { en: "The Italian restaurant looks busy", ar: "يبدو المطعم الإيطالي مزدحمًا" },
             { en: "A friendly host shows us to our table", ar: "يرشدنا موظف الاستقبال الودود إلى طاولتنا" },
@@ -1315,7 +1315,7 @@ const STORIES_DATA = [
         emoji: "💼",
         enTitle: "Job Interview",
         arTitle: "مقابلة عمل",
-        desc: "الاستعداد لمقابلة وظيفية والتحدث بثقة.",
+        desc: "الاستعداد لمقابلة وظيفية والتحدث بثقة",
         sentences: [
             { en: "I research the company before the interview", ar: "أبحث عن معلومات حول الشركة قبل المقابلة" },
             { en: "I prepare my suit the night before", ar: "أجهز بدلتي في الليلة السابقة" },
@@ -1335,7 +1335,7 @@ const STORIES_DATA = [
         emoji: "🥗",
         enTitle: "Healthy Lifestyle",
         arTitle: "نمط حياة صحي",
-        desc: "عادات يومية بسيطة للحفاظ على النشاط والصحة.",
+        desc: "عادات يومية بسيطة للحفاظ على النشاط والصحة",
         sentences: [
             { en: "Good health starts with simple habits", ar: "تبدأ الصحة الجيدة بعادات بسيطة" },
             { en: "I start my day with a glass of water", ar: "أبدأ يومي بكوب من الماء" },
@@ -1355,7 +1355,7 @@ const STORIES_DATA = [
         emoji: "🗺️",
         enTitle: "Planning a Journey",
         arTitle: "التخطيط لرحلة",
-        desc: "ترتيب الحجوزات والاستعداد للسفر قبل الانطلاق.",
+        desc: "ترتيب الحجوزات والاستعداد للسفر قبل الانطلاق",
         sentences: [
             { en: "I start by choosing a destination", ar: "أبدأ باختيار وجهة السفر" },
             { en: "I compare flight prices online", ar: "أقارن أسعار الرحلات الجوية عبر الإنترنت" },
@@ -1375,7 +1375,7 @@ const STORIES_DATA = [
         emoji: "✈️",
         enTitle: "At the Airport",
         arTitle: "في المطار",
-        desc: "إجراءات المطار من تسليم الأمتعة حتى الصعود إلى الطائرة.",
+        desc: "إجراءات المطار من تسليم الأمتعة حتى الصعود إلى الطائرة",
         sentences: [
             { en: "A taxi drops me off at the terminal", ar: "تقلني سيارة أجرة إلى صالة المطار" },
             { en: "The departure boards display flight times", ar: "تعرض لوحات المغادرة مواعيد الرحلات" },
@@ -1417,7 +1417,7 @@ const STORIES_DATA = [
         emoji: "🏋️",
         enTitle: "Fitness at the Gym",
         arTitle: "اللياقة في النادي الرياضي",
-        desc: "تمرين متكامل يجمع بين الإحماء والقوة والاستشفاء.",
+        desc: "تمرين متكامل يجمع بين الإحماء والقوة والاستشفاء",
         sentences: [
             { en: "Regular exercise improves my health", ar: "تحسن التمارين المنتظمة صحتي" },
             { en: "I pack my gym clothes, shoes, and water bottle", ar: "أجهز ملابس النادي وحذائي وزجاجة الماء" },
@@ -1437,7 +1437,7 @@ const STORIES_DATA = [
         emoji: "📊",
         enTitle: "Financial Planning",
         arTitle: "التخطيط المالي",
-        desc: "تنظيم الميزانية الشهرية والادخار للمستقبل.",
+        desc: "تنظيم الميزانية الشهرية والادخار للمستقبل",
         sentences: [
             { en: "Good financial planning helps me feel secure", ar: "يساعدني التخطيط المالي الجيد على الشعور بالاستقرار" },
             { en: "I track my monthly expenses", ar: "أتابع مصاريفي الشهرية" },
@@ -1452,25 +1452,25 @@ const STORIES_DATA = [
         ]
     },
     {
-        id: "b2-moving-apartment",
-        level: "B2",
-        emoji: "📦",
-        enTitle: "Moving to a New Apartment",
-        arTitle: "الانتقال إلى شقة جديدة",
-        desc: "ترتيب الصناديق ونقل الأثاث إلى مسكن جديد.",
-        sentences: [
-            { en: "Brown boxes fill the hallway", ar: "تملأ الصناديق البنية الممر" },
-            { en: "Labels show which room each box belongs in", ar: "توضح الملصقات الغرفة التي تنتمي إليها كل علبة" },
-            { en: "I wrap fragile items carefully", ar: "أغلف الأغراض القابلة للكسر بعناية" },
-            { en: "The movers load our furniture onto the truck", ar: "يحمل عمال النقل أثاثنا إلى الشاحنة" },
-            { en: "I check every room to make sure nothing is left behind", ar: "أتفقد كل غرفة للتأكد من عدم ترك أي شيء" },
-            { en: "The new apartment feels bright and spacious", ar: "تبدو الشقة الجديدة مشرقة وواسعة" },
-            { en: "We unpack the essentials first", ar: "نخرج الأغراض الأساسية من الصناديق أولًا" },
-            { en: "Green plants make the rooms feel more welcoming", ar: "تجعل النباتات الخضراء الغرف أكثر ترحيبًا" },
-            { en: "Our new neighbors greet us warmly", ar: "يرحب بنا جيراننا الجدد بحرارة" },
-            { en: "We celebrate our first night with pizza", ar: "نحتفل بليلتنا الأولى بتناول البيتزا" }
-        ]
-    },
+    id: "b2-moving-house",
+    level: "B2",
+    emoji: "🏡",
+    enTitle: "Moving to a New House",
+    arTitle: "الانتقال إلى منزل جديد",
+    desc: "ترتيب الصناديق ونقل الأثاث إلى منزل جديد",
+    sentences: [
+        { en: "Brown boxes fill the hallway", ar: "تملأ الصناديق البنية الممر" },
+        { en: "Labels show which room each box belongs in", ar: "توضح الملصقات الغرفة التي تنتمي إليها كل علبة" },
+        { en: "I wrap fragile items carefully", ar: "أغلف الأغراض القابلة للكسر بعناية" },
+        { en: "The movers load our furniture onto the truck", ar: "يحمل عمال النقل أثاثنا إلى الشاحنة" },
+        { en: "I check every room to make sure nothing is left behind", ar: "أتفقد كل غرفة للتأكد من عدم ترك أي شيء" },
+        { en: "The new house feels bright and spacious", ar: "يبدو المنزل الجديد مشرقًا وواسعًا" },
+        { en: "We unpack the essentials first", ar: "نخرج الأغراض الأساسية من الصناديق أولًا" },
+        { en: "Green plants make the rooms feel more welcoming", ar: "تجعل النباتات الخضراء الغرف أكثر ترحيبًا" },
+        { en: "Our new neighbors greet us warmly", ar: "يرحب بنا جيراننا الجدد بحرارة" },
+        { en: "We celebrate our first night with pizza", ar: "نحتفل بليلتنا الأولى بتناول البيتزا" }
+    ]
+},
 
     // ================= C1 TOPICS (4) =================
     {
@@ -1479,7 +1479,7 @@ const STORIES_DATA = [
         emoji: "🚀",
         enTitle: "Self-Improvement",
         arTitle: "تطوير الذات",
-        desc: "بناء الانضباط الذاتي وتحقيق تقدم مستمر.",
+        desc: "بناء الانضباط الذاتي وتحقيق تقدم مستمر",
         sentences: [
             { en: "Personal growth requires patience and consistent effort", ar: "يتطلب النمو الشخصي الصبر والجهد المستمر" },
             { en: "I set clear goals for each week", ar: "أحدد أهدافًا واضحة لكل أسبوع" },
@@ -1499,7 +1499,7 @@ const STORIES_DATA = [
         emoji: "🧭",
         enTitle: "Effective Leadership",
         arTitle: "القيادة الفعّالة",
-        desc: "إلهام الفريق بالرؤية الواضحة والتفويض والتواصل البنّاء.",
+        desc: "إلهام الفريق بالرؤية الواضحة والتفويض والتواصل البنّاء",
         sentences: [
             { en: "A clear vision helps leaders inspire others", ar: "تساعد الرؤية الواضحة القادة على إلهام الآخرين" },
             { en: "A good leader listens to people's concerns", ar: "يستمع القائد الجيد إلى مخاوف الآخرين" },
@@ -1519,7 +1519,7 @@ const STORIES_DATA = [
         emoji: "📈",
         enTitle: "Starting a Business",
         arTitle: "تأسيس مشروع تجاري",
-        desc: "رحلة ريادة الأعمال من دراسة السوق إلى النمو المستدام.",
+        desc: "رحلة ريادة الأعمال من دراسة السوق إلى النمو المستدام",
         sentences: [
             { en: "Successful businesses solve real problems", ar: "تحل الشركات الناجحة مشكلات حقيقية" },
             { en: "Market research informs business decisions", ar: "تسهم دراسة السوق في توجيه القرارات التجارية" },
@@ -1539,7 +1539,7 @@ const STORIES_DATA = [
         emoji: "🎙️",
         enTitle: "Public Speaking",
         arTitle: "فن الإلقاء والتحدث",
-        desc: "تطوير مهارات الإلقاء والتأثير في الجمهور بثقة.",
+        desc: "تطوير مهارات الإلقاء والتأثير في الجمهور بثقة",
         sentences: [
             { en: "Regular practice helps reduce stage fright", ar: "تساعد الممارسة المنتظمة على تقليل رهبة المسرح" },
             { en: "A strong opening captures the audience's attention", ar: "تجذب البداية القوية انتباه الجمهور" },
