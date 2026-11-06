@@ -182,7 +182,7 @@ const TOPICS_DATA = [
         desc: "مهارات تقديم الذات والخبرات المهنية",
         sentences: [
             { en: "Thank you for inviting me today", ar: "شكراً لدعوتي إلى المقابلة اليوم" },
-            { en: "I studied software at university", ar: "درست البرمجيات في الجامعة" },
+            { en: "I studied software engineering at university", ar: "درست هندسة البرمجيات في الجامعة" },
             { en: "I worked on three team projects", ar: "عملت على ثلاثة مشاريع جماعية" },
             { en: "I enjoy solving complex problems", ar: "أستمتع بحل المشكلات المعقدة" },
             { en: "What are the daily duties here?", ar: "ما هي المهام اليومية هنا؟" },
@@ -224,7 +224,7 @@ const TOPICS_DATA = [
             { en: "Speaking out loud builds confidence", ar: "التحدث بصوت عالٍ يبني الثقة" },
             { en: "Never fear making small mistakes", ar: "لا تخف أبداً من ارتكاب أخطاء صغيرة" },
             { en: "Native audio teaches natural phrases", ar: "الصوت الأصلي يعلم عبارات طبيعية" },
-            { en: "Write full sentences every day", ar: "اكتب جملاً كاملة كل يوم" },
+            { en: "Write full sentences everyday", ar: "اكتب جملاً كاملة كل يوم" },
             { en: "English videos improve listening", ar: "المقاطع الإنجليزية تطور الاستماع" },
             { en: "Repeating phrases makes speech smooth", ar: "تكرار العبارات يجعل الكلام سلساً" },
             { en: "Fluency takes patience and effort", ar: "الطلاقة تتطلب صبراً وجهداً" },
@@ -527,7 +527,7 @@ const WORD_TRANSLATIONS = {
 
     // Topic: b1-interview (A Successful Job Interview — مقابلة عمل ناجحة)
     "b1-interview": {
-        inviting: "دعوة", studied: "درست", software: "البرمجيات", university: "الجامعة",
+        inviting: "دعوة", studied: "درست", software: "البرمجيات", engineering: "الهندسة", university: "الجامعة",
         worked: "عملت", on: "على", team: "فريق",
         enjoy: "أستمتع", solving: "حل", complex: "معقدة", problems: "مشكلات",
         what: "ما هي", daily: "اليومية", duties: "المهام / الواجبات",
@@ -1157,7 +1157,10 @@ const HOMOPHONE_GROUPS = [
     ["got to", "gotta"],
     ["back", "bag"],
     ["sit", "set"],
-    ["bill", "pill"]
+    ["bill", "pill"],
+    ["bills", "builds"],
+    ["call", "com", "calm"],
+    ["steady", "study",]
 ];
 
 // Build a lookup table for fast equivalence checks.
