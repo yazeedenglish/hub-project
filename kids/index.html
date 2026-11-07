@@ -1,0 +1,1208 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#7c5cff">
+<title>Yazeed English Kids | عالم الإنجليزية للأطفال</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#f5f7ff;--card:#fff;--ink:#202344;--muted:#737894;
+  --line:#e8e9f4;--purple:#7958f5;--shadow:0 7px 0 rgba(57,48,107,.09);
+  --green:#20bf83;--pink:#ff66a5;--yellow:#ffce48;--blue:#42b9f5;
+}
+body.dark{
+  --bg:#15172a;--card:#22253d;--ink:#f7f7ff;--muted:#b1b4d0;
+  --line:#393d59;--shadow:0 7px 0 rgba(0,0,0,.15);
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{
+  margin:0;background-color:var(--bg);
+  background-image:radial-gradient(#d8dafa 1px,transparent 1px);
+  background-size:22px 22px;color:var(--ink);
+  font-family:"Tajawal",sans-serif;transition:background .2s;
+}
+button,a{font:inherit}
+button{cursor:pointer}
+button:focus-visible,a:focus-visible{outline:4px solid #ffce48;outline-offset:3px}
+button:disabled{opacity:.7;cursor:default}
+[hidden]{display:none!important}
+.top-header{
+  position:sticky;top:0;z-index:20;display:flex;align-items:center;
+  justify-content:space-between;gap:12px;padding:12px max(16px,calc((100% - 1200px)/2));
+  background:var(--card);border-bottom:2px solid var(--line);
+}
+.brand{display:flex;align-items:center;gap:10px;cursor:pointer;min-width:0}
+.brand-logo{width:43px;height:43px;object-fit:contain;border-radius:12px}
+.brand strong{display:block;font-size:18px;font-weight:900}
+.brand small{display:block;color:var(--muted);font-weight:700}
+.header-controls{display:flex;align-items:center;gap:9px}
+.icon-btn{
+  width:43px;height:43px;border:2px solid var(--line);border-radius:15px;
+  background:var(--card);color:var(--ink);font-size:20px;box-shadow:var(--shadow)
+}
+.icon-btn:active,.action-btn:active,.play-btn:active{transform:translateY(3px)}
+.star-counter{
+  display:flex;align-items:center;gap:6px;background:#fff0a9;color:#815500;
+  border:2px solid #ffd44c;border-radius:999px;padding:8px 13px;font-weight:900;
+  box-shadow:0 4px 0 #eab936;direction:ltr
+}
+main{max-width:1200px;margin:auto;padding:20px 20px 50px}
+.hero{
+  position:relative;overflow:hidden;text-align:center;padding:34px 20px;
+  border-radius:32px;background:linear-gradient(130deg,#7557f4,#9b67f8 50%,#54c9f7);
+  color:white;box-shadow:0 12px 0 rgba(93,71,205,.13);
+}
+.hero:before,.hero:after{content:"";position:absolute;border-radius:50%;background:#fff2;pointer-events:none}
+.hero:before{width:180px;height:180px;top:-80px;right:-30px}
+.hero:after{width:150px;height:150px;bottom:-90px;left:5%}
+.mascots{font-size:clamp(35px,5vw,55px);display:flex;justify-content:center;gap:18px;animation:bob 3s ease-in-out infinite}
+.hero h1{font-size:clamp(27px,4vw,43px);font-weight:900;margin:12px 0 8px}
+.hero p{max-width:650px;margin:0 auto 20px;font-size:18px;font-weight:700;line-height:1.8}
+.primary-btn,.play-btn,.action-btn{
+  border:0;border-radius:17px;padding:13px 22px;font-weight:900;
+  transition:transform .12s,filter .12s
+}
+.primary-btn{background:var(--yellow);color:#654300;box-shadow:0 5px 0 #d9a92a;font-size:18px}
+.primary-btn:hover,.play-btn:hover,.action-btn:hover{filter:brightness(1.04)}
+.level-box{max-width:460px;margin:22px auto 0;background:#ffffff20;padding:12px 16px;border-radius:18px;text-align:right}
+.level-top{display:flex;justify-content:space-between;gap:10px;font-weight:800;margin-bottom:8px}
+.progress-track{height:12px;background:#ffffff40;border-radius:99px;overflow:hidden}
+.progress-fill{height:100%;width:0;background:linear-gradient(90deg,#ffeb79,#ff9f43);border-radius:99px;transition:width .4s}
+.section-title{text-align:center;margin:35px 0 23px}
+.section-title h2{font-size:clamp(25px,3vw,32px);font-weight:900;margin:0 0 6px}
+.section-title p{color:var(--muted);font-size:16px;font-weight:700;margin:0}
+.course-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:19px}
+.kids-card{
+  background:var(--card);border:3px solid var(--card-border);border-radius:25px;
+  overflow:hidden;display:flex;flex-direction:column;box-shadow:var(--shadow);
+  min-width:0;transition:transform .18s
+}
+
+
+.handwriting-card {
+  background: var(--card);
+  border: 3px solid #c8d7ff;
+  border-radius: 26px;
+  padding: 20px;
+  box-shadow: var(--shadow);
+}
+.handwriting-stage {
+  position: relative;
+  max-width: 560px;
+  margin: 18px auto;
+  border: 3px solid #d9e3ff;
+  border-radius: 22px;
+  overflow: hidden;
+  background-color: #fff;
+  background-image:
+    linear-gradient(#dce7ff 1px, transparent 1px),
+    linear-gradient(90deg, #dce7ff 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+#writingCanvas {
+  display: block;
+  width: 100%;
+  height: 300px;
+  touch-action: none;
+  cursor: crosshair;
+}
+.handwriting-controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+.handwriting-letter {
+  font-size: 76px;
+  line-height: 1.2;
+  color: #9aafff;
+  font-weight: 900;
+  direction: ltr;
+}
+.handwriting-tip {
+  text-align: center;
+  color: var(--muted);
+  font-weight: 700;
+  line-height: 1.8;
+}
+.memory-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  max-width: 600px;
+  margin: 20px auto;
+}
+.memory-card {
+  min-height: 100px;
+  border: 3px solid #d9d5ff;
+  border-radius: 17px;
+  background: #eeeaff;
+  color: #45328a;
+  font-size: 34px;
+  font-weight: 900;
+}
+.memory-card.revealed,
+.memory-card.matched {
+  background: #e0f9ed;
+  border-color: #39bf8b;
+}
+.memory-card.matched { opacity: .65; }
+.paint-tools {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin: 15px 0;
+}
+.paint-color {
+  width: 38px;
+  height: 38px;
+  border: 3px solid #ffffff;
+  outline: 2px solid #dedeee;
+  border-radius: 50%;
+}
+.paint-color.active { outline: 4px solid #7a60ef; }
+#paintCanvas {
+  display: block;
+  width: 100%;
+  max-width: 560px;
+  height: 300px;
+  margin: 15px auto;
+  background: #fff;
+  border: 3px solid #d9e3ff;
+  border-radius: 20px;
+  touch-action: none;
+}
+.achievement-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(135px,1fr));
+  gap: 12px;
+}
+.achievement {
+  text-align: center;
+  background: var(--bg);
+  border: 2px solid var(--line);
+  border-radius: 20px;
+  padding: 18px 10px;
+}
+.achievement span { display:block; font-size:36px; margin-bottom:8px; }
+.achievement strong { display:block; font-size:17px; }
+.achievement small { display:block; color:var(--muted); margin-top:5px; }
+@media(max-width:450px) {
+  #writingCanvas,#paintCanvas { height:240px; }
+  .memory-grid { grid-template-columns:repeat(3,minmax(0,1fr)); }
+  .memory-card { min-height:80px; }
+}
+
+
+.kids-card:hover{transform:translateY(-5px)}
+.card-art{
+  min-height:155px;background:var(--card-gradient);display:grid;place-items:center;
+  position:relative;overflow:hidden
+}
+.card-art:before,.card-art:after{content:"";position:absolute;border-radius:50%;background:#ffffff38}
+.card-art:before{width:70px;height:70px;top:-20px;right:-15px}
+.card-art:after{width:48px;height:48px;bottom:-15px;left:18px}
+.card-emoji{font-size:66px;filter:drop-shadow(0 6px 4px #25204420);animation:bob 3s ease-in-out infinite}
+.card-number{position:absolute;top:10px;right:10px;background:#fff;color:#30304e;border-radius:999px;padding:4px 10px;font-weight:900;font-size:12px}
+.card-body{padding:17px;display:flex;flex-direction:column;flex:1;text-align:center}
+.card-body h3{font-size:22px;font-weight:900;margin:0 0 2px}
+.card-en{font-size:13px;font-weight:900;color:var(--accent);direction:ltr}
+.card-body p{color:var(--muted);font-size:15px;line-height:1.7;margin:10px 0 17px}
+.play-btn{width:100%;margin-top:auto;background:var(--accent);color:white;box-shadow:0 5px 0 var(--accent-dark);font-size:16px}
+.play-btn:active{box-shadow:0 1px 0 var(--accent-dark)}
+.daily{
+  margin-top:30px;background:linear-gradient(115deg,#fff0ae,#ffdeeb,#d8f4ff);
+  color:#333451;border:3px solid white;border-radius:25px;padding:22px;
+  display:flex;align-items:center;gap:17px;justify-content:space-between;box-shadow:var(--shadow)
+}
+.daily-emoji{font-size:54px}
+.daily h3{font-size:22px;margin:0 0 4px}
+.daily p{margin:0;line-height:1.7;font-weight:700}
+.store{
+  margin-top:28px;background:var(--card);border:2px solid var(--line);border-radius:24px;
+  padding:23px;display:flex;align-items:center;justify-content:space-between;gap:18px
+}
+.store h3{margin:0 0 5px;font-size:22px}
+.store p{margin:0;color:var(--muted);line-height:1.7}
+.store a{background:var(--purple);color:white;text-decoration:none;border-radius:15px;padding:13px 18px;font-weight:900;white-space:nowrap}
+footer{text-align:center;color:var(--muted);font-size:13px;font-weight:700;padding:25px}
+.overlay{
+  position:fixed;inset:0;z-index:50;background:var(--bg);
+  background-image:radial-gradient(#d8dafa55 1px,transparent 1px);background-size:22px 22px;
+  display:none;flex-direction:column;overflow-y:auto
+}
+.overlay.open{display:flex;animation:appear .2s ease}
+.activity-topbar{
+  position:sticky;top:0;z-index:5;background:var(--card);border-bottom:2px solid var(--line);
+  display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 18px
+}
+.back-btn{border:2px solid var(--line);border-radius:14px;background:var(--card);color:var(--ink);padding:10px 14px;font-weight:900}
+.activity-heading{font-size:20px;font-weight:900;text-align:center}
+.activity-container{width:min(100%,1000px);margin:25px auto 55px;padding:0 18px}
+.activity-intro{text-align:center;margin:0 0 22px}
+.activity-intro h2{font-size:30px;margin:0 0 5px}
+.activity-intro p{color:var(--muted);font-weight:700;font-size:17px;margin:0}
+.panel{background:var(--card);border:3px solid var(--line);border-radius:27px;padding:23px;box-shadow:var(--shadow)}
+.alphabet-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(66px,1fr));gap:12px;margin-top:20px}
+.letter-tile{
+  background:var(--card);border:2px solid #a8dfff;border-radius:17px;padding:12px 5px;
+  box-shadow:0 4px 0 #83ccf2;text-align:center;color:var(--ink)
+}
+.letter-tile strong{display:block;font-size:30px;direction:ltr}
+.letter-tile small{font-size:24px}
+.letter-tile.active{background:#4bbaf4;color:white;border-color:#1597d8}
+.showcase{display:flex;align-items:center;justify-content:center;gap:22px;flex-wrap:wrap;text-align:center;margin-bottom:22px}
+.big-letter{width:140px;height:140px;border-radius:28px;background:linear-gradient(135deg,#4dbdf7,#6275fa);color:white;display:grid;place-items:center;font-size:72px;font-weight:900;direction:ltr;box-shadow:0 7px 0 #3585ce}
+.big-picture{font-size:95px}
+.showcase h3{font-size:32px;margin:0}
+.showcase p{font-size:20px;color:var(--muted);margin:5px 0}
+.action-row{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin:15px 0}
+.action-btn{background:#7658f4;color:white;box-shadow:0 4px 0 #5238bf;font-size:16px}
+.action-btn.green{background:#20bf83;box-shadow:0 4px 0 #12885b}
+.action-btn.pink{background:#f25d9c;box-shadow:0 4px 0 #b9326b}
+.category-tabs{display:flex;flex-wrap:wrap;gap:9px;justify-content:center;margin-bottom:20px}
+.cat-tab{border:2px solid var(--line);border-radius:999px;padding:10px 16px;background:var(--card);color:var(--ink);font-weight:900}
+.cat-tab.active{background:#7658f4;color:white;border-color:#7658f4}
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:15px}
+.vocab-card{background:var(--card);border:3px solid var(--line);border-radius:22px;padding:19px 10px;text-align:center;box-shadow:0 5px 0 var(--line)}
+.vocab-card:hover{border-color:#b4a2ff}
+.vocab-emoji{display:block;font-size:54px;margin-bottom:8px}
+.vocab-en{font-size:23px;font-weight:900;direction:ltr}
+.vocab-ar{font-size:16px;color:var(--accent,#7658f4);font-weight:800;margin-top:4px}
+.speaker-label{font-size:13px;color:var(--muted);margin-top:8px;font-weight:800}
+.story-card{border:3px solid #f6a5cb;border-radius:25px;padding:20px;background:var(--card);margin-bottom:15px}
+.story-line{display:flex;gap:15px;align-items:center;background:#ffeff6;border-radius:17px;padding:15px;margin-bottom:12px;color:#40243b}
+.story-line:last-child{margin-bottom:0}
+.story-emoji{font-size:39px}
+.story-en{font-size:22px;font-weight:900;direction:ltr;text-align:left}
+.story-ar{font-size:16px;font-weight:700;color:#78556c;margin-top:4px}
+.story-line button{border:0;border-radius:12px;background:#f6b9d8;padding:8px 10px;font-size:18px}
+.game-box{text-align:center;background:var(--card);border:3px solid #ffc078;border-radius:28px;padding:24px;box-shadow:var(--shadow)}
+.game-label{color:var(--muted);font-weight:800}
+.game-emoji{font-size:clamp(75px,12vw,115px);margin:12px 0;animation:bob 2.5s infinite}
+.game-prompt{font-size:25px;font-weight:900;margin:0 0 18px}
+.options-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px;max-width:650px;margin:auto}
+.option-btn{background:var(--card);color:var(--ink);border:3px solid var(--line);border-radius:20px;padding:17px 10px;font-size:21px;font-weight:900;box-shadow:0 5px 0 var(--line);min-height:75px}
+.option-btn .option-emoji{display:block;font-size:37px;margin-bottom:5px}
+.option-btn.correct{background:#c9ffe5!important;border-color:#20bf83!important;color:#126a4b!important;animation:pop .3s}
+.option-btn.wrong{background:#ffe0e5!important;border-color:#ff7890!important;color:#9d1835!important;animation:shake .3s}
+.feedback{min-height:43px;margin:16px 0 5px;font-size:20px;font-weight:900}
+.feedback.good{color:#17a66f}
+.feedback.try{color:#e58a21}
+.next-btn{background:#ffce48;color:#614500;box-shadow:0 4px 0 #dca82d}
+.big-action-emoji{text-align:center;font-size:75px;margin:10px}
+.speak-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:13px}
+.speak-word{background:#f0eaff;color:#49328c;border:2px solid #d5c9ff;border-radius:18px;padding:18px 10px;font-size:22px;font-weight:900;direction:ltr;box-shadow:0 4px 0 #d5c9ff}
+.speak-word span{display:block;font-size:15px;direction:rtl;color:#7257ad;margin-top:6px}
+.sentence-target{direction:ltr;min-height:70px;border:3px dashed #b9b3d8;border-radius:18px;padding:12px;display:flex;gap:9px;flex-wrap:wrap;justify-content:center;align-items:center;margin:18px 0;background:var(--bg)}
+.word-chip{border:0;border-radius:13px;background:#4abcf4;color:white;padding:11px 17px;font-size:19px;font-weight:900;direction:ltr;box-shadow:0 4px 0 #2589c2}
+.word-bank{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.toast{
+  position:fixed;z-index:100;bottom:22px;left:50%;transform:translateX(-50%);
+  background:#292744;color:white;padding:12px 20px;border-radius:16px;font-weight:900;
+  box-shadow:0 8px 25px #0002;max-width:90%;text-align:center
+}
+#confettiCanvas{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:90}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+@keyframes appear{from{opacity:0;transform:scale(.98)}to{opacity:1;transform:scale(1)}}
+@keyframes pop{0%{transform:scale(.94)}70%{transform:scale(1.06)}100%{transform:scale(1)}}
+@keyframes shake{25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+@media(max-width:950px){.course-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){
+  main{padding:13px 12px 35px}.top-header{padding:10px 12px}
+  .brand strong{font-size:15px}.brand small{font-size:10px}
+  .brand-logo{width:35px;height:35px}.header-controls{gap:6px}
+  .icon-btn{width:38px;height:38px}.star-counter{padding:7px 9px}
+  .hero{padding:27px 14px;border-radius:25px}.hero p{font-size:16px}
+  .course-grid{gap:12px}.card-art{min-height:115px}.card-emoji{font-size:50px}
+  .card-body{padding:12px}.card-body h3{font-size:18px}.card-body p{font-size:13px}
+  .play-btn{padding:11px 7px;font-size:14px}.daily{padding:15px;align-items:flex-start}
+  .daily-emoji{font-size:39px}.daily h3{font-size:19px}.store{flex-direction:column;text-align:center}
+  .activity-topbar{padding:10px}.back-btn{padding:9px;font-size:13px}
+  .activity-heading{font-size:16px}.activity-container{padding:0 11px;margin-top:15px}
+  .panel,.game-box{padding:15px}.options-grid{gap:9px}.option-btn{font-size:17px;padding:13px 6px;min-height:67px}
+  .option-btn .option-emoji{font-size:30px}.big-letter{width:110px;height:110px;font-size:60px}
+}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+
+<body>
+<canvas id="confettiCanvas" aria-hidden="true"></canvas>
+
+<header class="top-header">
+  <div class="brand" id="homeBrand" role="button" tabindex="0" aria-label="العودة للرئيسية">
+    <img src="https://file.yazeedenglish.com/logo.png" class="brand-logo" alt="" onerror="this.hidden=true">
+    <div><strong>Yazeed English Kids</strong><small>هَيّا نتعلّم ونلعب! 🌈</small></div>
+  </div>
+  <div class="header-controls">
+    <div class="star-counter" aria-label="عدد النجوم">⭐ <span id="starCountText">0</span></div>
+    <button class="icon-btn" id="soundToggle" type="button" aria-label="تشغيل أو إيقاف الأصوات" title="الأصوات">🔊</button>
+    <button class="icon-btn" id="themeToggle" type="button" aria-label="تغيير المظهر" title="تغيير المظهر">🌙</button>
+  </div>
+</header>
+
+<main id="mainHub">
+  <section class="hero">
+    <div class="mascots" aria-hidden="true"><span>🦁</span><span>🚀</span><span>🎨</span><span>🦄</span></div>
+    <h1>أهلًا يا بطل! 🌟</h1>
+    <p>تعال نكتشف الحروف والكلمات والقصص، ونلعب ألعابًا ممتعة بالإنجليزية!</p>
+    <button class="primary-btn" id="startBtn" type="button">🚀 هيا نبدأ!</button>
+    <div class="level-box">
+      <div class="level-top"><span id="rankTitle">🌱 المستكشف الصغير</span><span>الهدف <b id="nextGoal">10</b> ⭐</span></div>
+      <div class="progress-track"><div class="progress-fill" id="starProgressBar"></div></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-title"><h2>اختر مغامرتك! 🎮</h2><p>كل يوم فرصة لتعلّم شيء جديد</p></div>
+    <div class="course-grid" id="courseGrid"></div>
+  </section>
+
+  <section class="daily">
+    <div style="display:flex;align-items:center;gap:13px">
+      <span class="daily-emoji">🦊</span>
+      <div><h3>مهمّة اليوم</h3><p>تعلّم 3 كلمات جديدة، واستمع إلى نطقها. أنت تستطيع! 💪</p></div>
+    </div>
+    <button class="primary-btn" id="dailyBtn" type="button">ابدأ المهمة ⭐</button>
+  </section>
+
+  <section class="store">
+    <div><h3>🎓 متجر يزيد للإنجليزية</h3><p>اكتشف المزيد من البرامج التعليمية.</p></div>
+    <a href="https://yazeedenglish.com" target="_blank" rel="noopener noreferrer">زيارة المتجر ↗</a>
+  </section>
+</main>
+
+<div class="overlay" id="activityOverlay" aria-hidden="true">
+  <div class="activity-topbar">
+    <button class="back-btn" id="backBtn" type="button">➡️ العودة</button>
+    <div class="activity-heading" id="activityHeaderTitle">المغامرة</div>
+    <div class="star-counter">⭐ <span id="overlayStarCount">0</span></div>
+  </div>
+  <div class="activity-container" id="activityContent"></div>
+</div>
+
+<footer>جميع الحقوق محفوظة © 2026 Yazeed English Kids</footer>
+<div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+<script>
+"use strict";
+
+/* ---------------- DATA ---------------- */
+const activities = [
+ {id:"letters",title:"عالم الحروف",en:"ABC Adventure",emoji:"🔤",desc:"اكتشف الحروف وأصواتها.",color:"#4bbaf4",dark:"#2589c2",bg:"linear-gradient(140deg,#7bd7ff,#3b9df4)"},
+ {id:"words",title:"الكلمات المصوّرة",en:"Word World",emoji:"🍎",desc:"كلمات جديدة مع صور ونطق.",color:"#8b68f8",dark:"#6143c8",bg:"linear-gradient(140deg,#c1a9ff,#8c6af7)"},
+ {id:"stories",title:"حكايات الأصدقاء",en:"Story Time",emoji:"📚",desc:"اقرأ واستمع إلى قصص صغيرة.",color:"#f45da2",dark:"#bd3676",bg:"linear-gradient(140deg,#ffafd0,#f45da2)"},
+ {id:"games",title:"ألعاب التعلّم",en:"Play & Learn",emoji:"🎮",desc:"اختر الإجابة واجمع النجوم.",color:"#ff963f",dark:"#d76b1b",bg:"linear-gradient(140deg,#ffd080,#ff923d)"},
+ {id:"listen",title:"اسمع واختر",en:"Listen & Pick",emoji:"🎧",desc:"اسمع الكلمة وابحث عن صورتها.",color:"#1cbf91",dark:"#10845f",bg:"linear-gradient(140deg,#8cefd2,#25c59b)"},
+ {id:"speak",title:"اسمع وكرّر",en:"Say It!",emoji:"🗣️",desc:"استمع إلى كلمات وعبارات سهلة.",color:"#ef6bba",dark:"#bb368a",bg:"linear-gradient(140deg,#ffb8e5,#ef6bba)"},
+ {id:"numbers",title:"الأرقام والألوان",en:"Numbers & Colors",emoji:"🌈",desc:"تعلّم الأرقام والألوان بالصور.",color:"#e9ad22",dark:"#b17b06",bg:"linear-gradient(140deg,#fff18a,#ffbd42)"},
+ {id:"sentences",title:"كوّن العبارة",en:"Build a Phrase",emoji:"🧩",desc:"رتّب الكلمات لتكوين عبارة.",color:"#3bb9d6",dark:"#16849e",bg:"linear-gradient(140deg,#9befff,#38bdd8)"},
+ {id:"handwriting",title:"تعلّم الكتابة اليدوية",en:"Handwriting Lab",emoji:"✍️",desc:"تتبّع الحروف الإنجليزية وتدرّب على كتابتها.",color:"#4968E8",dark:"#3047AF",bg:"linear-gradient(140deg,#c5d5ff,#7898ff)"},
+{id:"memory",title:"تحدّي الذاكرة",en:"Memory Match",emoji:"🧠",desc:"طابق الصور المتشابهة واختبر ذاكرتك.",color:"#F06B63",dark:"#B63C38",bg:"linear-gradient(140deg,#ffd0c9,#ff8c85)"},
+{id:"coloring",title:"الرسم والتلوين",en:"Creative Corner",emoji:"🎨",desc:"لوّن رسوماتك وتعلّم أسماء الألوان.",color:"#25A875",dark:"#14774F",bg:"linear-gradient(140deg,#b9f4d7,#53d4a0)"},
+{id:"review",title:"المراجعة والمكافآت",en:"My Achievements",emoji:"🏆",desc:"راجع ما تعلمته واكتشف إنجازاتك.",color:"#E6A51B",dark:"#AC7500",bg:"linear-gradient(140deg,#fff0a0,#ffc74c)"}
+];
+
+const letters = [
+ ["A","a","Apple","تفاحة","🍎"],["B","b","Ball","كرة","⚽"],["C","c","Cat","قطة","🐱"],
+ ["D","d","Dog","كلب","🐶"],["E","e","Egg","بيضة","🥚"],["F","f","Fish","سمكة","🐟"],
+ ["G","g","Giraffe","زرافة","🦒"],["H","h","House","منزل","🏠"],["I","i","Ice cream","آيس كريم","🍦"],
+ ["J","j","Juice","عصير","🧃"],["K","k","Kite","طائرة ورقية","🪁"],["L","l","Lion","أسد","🦁"],
+ ["M","m","Moon","قمر","🌙"],["N","n","Nest","عش","🪺"],["O","o","Orange","برتقالة","🍊"],
+ ["P","p","Panda","باندا","🐼"],["Q","q","Queen","ملكة","👑"],["R","r","Rabbit","أرنب","🐰"],
+ ["S","s","Sun","شمس","☀️"],["T","t","Tiger","نمر","🐯"],["U","u","Umbrella","مظلة","☂️"],
+ ["V","v","Van","شاحنة صغيرة","🚐"],["W","w","Water","ماء","💧"],["X","x","Box","صندوق","📦"],
+ ["Y","y","Yo-yo","يويو","🪀"],["Z","z","Zebra","حمار وحشي","🦓"]
+];
+
+const vocab = {
+ "الحيوانات":[["Cat","قطة","🐱"],["Dog","كلب","🐶"],["Lion","أسد","🦁"],["Fish","سمكة","🐟"],["Bird","طائر","🐦"],["Rabbit","أرنب","🐰"],["Monkey","قرد","🐵"],["Elephant","فيل","🐘"]],
+ "الطعام":[["Apple","تفاحة","🍎"],["Banana","موزة","🍌"],["Bread","خبز","🍞"],["Egg","بيضة","🥚"],["Milk","حليب","🥛"],["Pizza","بيتزا","🍕"],["Orange","برتقالة","🍊"],["Cake","كعكة","🍰"]],
+ "الألوان":[["Red","أحمر","🔴"],["Blue","أزرق","🔵"],["Green","أخضر","🟢"],["Yellow","أصفر","🟡"],["Purple","بنفسجي","🟣"],["Black","أسود","⚫"],["White","أبيض","⚪"],["Pink","وردي","🩷"]],
+ "الأرقام":[["One","واحد","1️⃣"],["Two","اثنان","2️⃣"],["Three","ثلاثة","3️⃣"],["Four","أربعة","4️⃣"],["Five","خمسة","5️⃣"],["Six","ستة","6️⃣"],["Seven","سبعة","7️⃣"],["Eight","ثمانية","8️⃣"],["Nine","تسعة","9️⃣"],["Ten","عشرة","🔟"]],
+ "أشياء":[["Book","كتاب","📕"],["Car","سيارة","🚗"],["Ball","كرة","⚽"],["House","منزل","🏠"],["Sun","شمس","☀️"],["Moon","قمر","🌙"],["Flower","زهرة","🌸"],["Star","نجمة","⭐"]]
+};
+
+const stories = [
+ {title:"The Little Cat",emoji:"🐱",lines:[
+  ["I see a little cat.","أرى قطة صغيرة.","🐱"],
+  ["The cat is happy.","القطة سعيدة.","😸"],
+  ["It can run and play.","يمكنها الركض واللعب.","🏃"],
+  ["Goodbye, little cat!","وداعًا أيتها القطة الصغيرة!","👋"]
+ ],question:"Who is in the story?",answer:"Cat",options:["Cat","Fish","Dog","Bird"],optionsAr:["قطة","سمكة","كلب","طائر"]},
+ {title:"A Sunny Day",emoji:"☀️",lines:[
+  ["The sun is bright.","الشمس مشرقة.","☀️"],
+  ["I see a blue sky.","أرى سماء زرقاء.","🌤️"],
+  ["I play with my ball.","ألعب بكرتي.","⚽"],
+  ["What a happy day!","يا له من يوم سعيد!","😄"]
+ ],question:"What do I play with?",answer:"Ball",options:["Book","Ball","Apple","Car"],optionsAr:["كتاب","كرة","تفاحة","سيارة"]},
+ {title:"My Red Apple",emoji:"🍎",lines:[
+  ["I have an apple.","لدي تفاحة.","🍎"],
+  ["My apple is red.","تفاحتي حمراء.","🔴"],
+  ["It is sweet and good.","إنها حلوة ولذيذة.","😋"],
+  ["I like my apple!","أحب تفاحتي!","❤️"]
+ ],question:"What color is the apple?",answer:"Red",options:["Blue","Green","Red","Yellow"],optionsAr:["أزرق","أخضر","أحمر","أصفر"]}
+];
+
+const phrases = [
+ {en:"I am happy",ar:"أنا سعيد",words:["I","am","happy"],emoji:"😄"},
+ {en:"I like apples",ar:"أنا أحب التفاح",words:["I","like","apples"],emoji:"🍎"},
+ {en:"This is a cat",ar:"هذه قطة",words:["This","is","a","cat"],emoji:"🐱"},
+ {en:"I see a dog",ar:"أرى كلبًا",words:["I","see","a","dog"],emoji:"🐶"},
+ {en:"It is blue",ar:"إنه أزرق",words:["It","is","blue"],emoji:"🔵"},
+ {en:"Thank you",ar:"شكرًا لك",words:["Thank","you"],emoji:"💛"}
+];
+
+/* ---------------- SAFE PROGRESS ---------------- */
+const SAVE_KEY="ye_kids_adventure_v1";
+function readSave(){
+ try{return JSON.parse(localStorage.getItem(SAVE_KEY))||{};}catch(e){return {};}
+}
+let saved=readSave();
+let stars=Number(saved.stars)||0;
+let correctAnswers=Number(saved.correctAnswers)||0;
+let completed=Array.isArray(saved.completed)?saved.completed:[];
+let soundEnabled=saved.soundEnabled!==false;
+let darkMode=saved.darkMode===true;
+
+function save(){
+ saved={stars,correctAnswers,completed,soundEnabled,darkMode};
+ try{localStorage.setItem(SAVE_KEY,JSON.stringify(saved));}catch(e){}
+ updateProgress();
+}
+function updateProgress(){
+ document.getElementById("starCountText").textContent=stars;
+ document.getElementById("overlayStarCount").textContent=stars;
+ const levels=[
+  {min:0,name:"🌱 المستكشف الصغير"},
+  {min:10,name:"🧭 مغامر نشيط"},
+  {min:25,name:"🚀 بطل التعلّم"},
+  {min:50,name:"🌟 نجم الإنجليزية"},
+  {min:100,name:"🏆 بطل الأبطال"}
+ ];
+ let level=levels[0],next=10;
+ levels.forEach((l,i)=>{if(stars>=l.min)level=l;if(stars<l.min&&next===10)next=l.min;});
+ if(stars>=100)next=100;
+ document.getElementById("rankTitle").textContent=level.name;
+ document.getElementById("nextGoal").textContent=next;
+ document.getElementById("starProgressBar").style.width=(stars>=100?100:Math.min(100,(stars/next)*100))+"%";
+}
+function addStar(amount=1){
+ stars+=amount;correctAnswers++;save();
+ const counter=document.querySelector(".star-counter");
+ counter.classList.remove("bump");void counter.offsetWidth;counter.classList.add("bump");
+ setTimeout(()=>counter.classList.remove("bump"),300);
+ cheer();confetti();
+}
+
+/* ---------------- SOUND EFFECTS ---------------- */
+let audioCtx=null;
+function initAudio(){
+ if(!soundEnabled)return null;
+ try{
+  const AC=window.AudioContext||window.webkitAudioContext;
+  if(!AC)return null;
+  if(!audioCtx)audioCtx=new AC();
+  if(audioCtx.state==="suspended")audioCtx.resume();
+  return audioCtx;
+ }catch(e){return null;}
+}
+function tone(freq,delay=0,duration=.12,type="sine",volume=.055){
+ const ctx=initAudio();if(!ctx)return;
+ const osc=ctx.createOscillator(),gain=ctx.createGain();
+ const start=ctx.currentTime+delay;
+ osc.type=type;osc.frequency.setValueAtTime(freq,start);
+ gain.gain.setValueAtTime(.001,start);
+ gain.gain.exponentialRampToValueAtTime(volume,start+.015);
+ gain.gain.exponentialRampToValueAtTime(.001,start+duration);
+ osc.connect(gain);gain.connect(ctx.destination);
+ osc.start(start);osc.stop(start+duration+.025);
+}
+function tapSound(){tone(650,0,.045,"triangle",.025);}
+function cheer(){[523,659,784,1047].forEach((f,i)=>tone(f,i*.085,.22,"sine",.075));}
+function trySound(){tone(430,0,.09,"sine",.035);tone(520,.1,.12,"sine",.04);}
+function speak(text){
+ if(!("speechSynthesis" in window)){showToast("النطق غير متاح في هذا المتصفح.");return;}
+ window.speechSynthesis.cancel();
+ const utter=new SpeechSynthesisUtterance(text);
+ utter.lang="en-GB";utter.rate=.82;utter.pitch=1.08;
+ const voices=window.speechSynthesis.getVoices();
+ const voice=voices.find(v=>/en-GB/i.test(v.lang))||voices.find(v=>/^en/i.test(v.lang));
+ if(voice)utter.voice=voice;
+ window.speechSynthesis.speak(utter);
+}
+function speakArabic(text){
+ if(!("speechSynthesis" in window))return;
+ const u=new SpeechSynthesisUtterance(text);u.lang="ar-SA";u.rate=.9;
+ const v=window.speechSynthesis.getVoices().find(x=>/^ar/i.test(x.lang));if(v)u.voice=v;
+ window.speechSynthesis.speak(u);
+}
+function showToast(text){
+ const el=document.getElementById("toast");el.textContent=text;el.hidden=false;
+ clearTimeout(showToast.timer);showToast.timer=setTimeout(()=>el.hidden=true,2300);
+}
+
+/* ---------------- CONFETTI ---------------- */
+const canvas=document.getElementById("confettiCanvas"),ctx2=canvas.getContext("2d");
+let particles=[],confettiFrame=0;
+function resizeCanvas(){canvas.width=innerWidth*devicePixelRatio;canvas.height=innerHeight*devicePixelRatio;ctx2.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);}
+addEventListener("resize",resizeCanvas);resizeCanvas();
+function confetti(){
+ if(matchMedia("(prefers-reduced-motion: reduce)").matches)return;
+ const colors=["#ff66a5","#ffce48","#42b9f5","#20bf83","#8b68f8","#ff963f"];
+ for(let i=0;i<65;i++)particles.push({
+  x:innerWidth*.2+Math.random()*innerWidth*.6,y:-10-Math.random()*100,
+  vx:(Math.random()-.5)*5,vy:2+Math.random()*5,size:4+Math.random()*7,
+  color:colors[Math.floor(Math.random()*colors.length)],life:80+Math.random()*40
+ });
+ if(!confettiFrame)animateConfetti();
+}
+function animateConfetti(){
+ ctx2.clearRect(0,0,innerWidth,innerHeight);
+ particles=particles.filter(p=>p.life-->0&&p.y<innerHeight+20);
+ particles.forEach(p=>{
+  p.x+=p.vx;p.y+=p.vy;p.vy+=.045;
+  ctx2.fillStyle=p.color;ctx2.fillRect(p.x,p.y,p.size,p.size*.7);
+ });
+ if(particles.length)confettiFrame=requestAnimationFrame(animateConfetti);
+ else{cancelAnimationFrame(confettiFrame);confettiFrame=0;ctx2.clearRect(0,0,innerWidth,innerHeight);}
+}
+
+/* ---------------- HOMEPAGE ---------------- */
+const grid=document.getElementById("courseGrid");
+function renderHome(){
+ grid.innerHTML=activities.map((a,i)=>`
+ <article class="kids-card" style="--card-border:${a.color}55;--card-gradient:${a.bg};--accent:${a.color};--accent-dark:${a.dark}">
+  <div class="card-art"><span class="card-number">${i+1}</span><span class="card-emoji">${a.emoji}</span></div>
+  <div class="card-body">
+   <h3>${a.title}</h3><div class="card-en">${a.en}</div>
+   <p>${a.desc}</p>
+   <button type="button" class="play-btn" data-open="${a.id}">هيا نبدأ! <span aria-hidden="true">🚀</span></button>
+  </div>
+ </article>`).join("");
+}
+let activeId=null,letterIndex=0,wordCategory="الحيوانات",quiz=null,phraseIndex=0,phraseBuilt=[];
+const overlay=document.getElementById("activityOverlay");
+const content=document.getElementById("activityContent");
+function openActivity(id){
+ const a=activities.find(x=>x.id===id);if(!a)return;
+ activeId=id;overlay.classList.add("open");overlay.setAttribute("aria-hidden","false");
+ document.getElementById("activityHeaderTitle").textContent=a.emoji+" "+a.title;
+ document.getElementById("mainHub").setAttribute("aria-hidden","true");
+ document.body.style.overflow="hidden";
+ renderActivity();window.scrollTo(0,0);
+}
+function closeActivity(){
+ overlay.classList.remove("open");overlay.setAttribute("aria-hidden","true");
+ document.getElementById("mainHub").removeAttribute("aria-hidden");
+ document.body.style.overflow="";activeId=null;
+}
+function renderActivity(){
+ if(activeId==="letters")renderLetters();
+ else if(activeId==="words")renderWords();
+ else if(activeId==="stories")renderStories();
+ else if(activeId==="games")renderQuiz("games");
+ else if(activeId==="listen")renderQuiz("listen");
+ else if(activeId==="speak")renderSpeak();
+ else if(activeId==="numbers"){wordCategory="الأرقام";renderWords();}
+ else if(activeId==="sentences")renderSentences();
+ else if (activeId === "handwriting") renderHandwriting();
+else if (activeId === "memory") renderMemory();
+else if (activeId === "coloring") renderColoring();
+else if (activeId === "review") renderReview();
+ updateProgress();
+}
+
+/* ---------------- LETTERS ---------------- */
+function renderLetters(){
+ const l=letters[letterIndex];
+ content.innerHTML=`
+ <div class="activity-intro"><h2>🔤 هيا نكتشف الحروف!</h2><p>اضغط على أي حرف لتسمع الكلمة الإنجليزية.</p></div>
+ <div class="panel">
+  <div class="showcase">
+   <div class="big-letter">${l[0]} ${l[1]}</div>
+   <div><div class="big-picture">${l[4]}</div><h3>${l[2]}</h3><p>${l[3]}</p>
+    <div class="action-row"><button class="action-btn" id="sayLetter">🔊 اسمع الحرف</button><button class="action-btn pink" id="sayWord">🗣️ اسمع الكلمة</button></div>
+   </div>
+  </div>
+  <div class="action-row">
+   <button class="action-btn" id="prevLetter">السابق ◀</button>
+   <button class="action-btn green" id="nextLetter">الحرف التالي ▶</button>
+  </div>
+  <div class="alphabet-grid">${letters.map((x,i)=>`<button class="letter-tile ${i===letterIndex?"active":""}" data-letter="${i}"><strong>${x[0]}</strong><small>${x[1]}</small></button>`).join("")}</div>
+ </div>`;
+ document.getElementById("sayLetter").onclick=()=>speak(l[0]);
+ document.getElementById("sayWord").onclick=()=>speak(l[2]);
+ document.getElementById("prevLetter").onclick=()=>{letterIndex=(letterIndex+25)%26;renderLetters();};
+ document.getElementById("nextLetter").onclick=()=>{letterIndex=(letterIndex+1)%26;renderLetters();};
+ content.querySelectorAll("[data-letter]").forEach(b=>b.onclick=()=>{letterIndex=+b.dataset.letter;renderLetters();speak(letters[letterIndex][2]);});
+}
+
+/* ---------------- VOCABULARY ---------------- */
+function renderWords(){
+ const categories=Object.keys(vocab);
+ if(!vocab[wordCategory])wordCategory="الحيوانات";
+ content.innerHTML=`
+ <div class="activity-intro"><h2>${activeId==="numbers"?"🌈 الأرقام والألوان":"🍎 هيا نتعلّم كلمات جديدة!"}</h2><p>اضغط على البطاقة لتسمع الكلمة وتتعرف على معناها.</p></div>
+ <div class="category-tabs">${categories.map(c=>`<button class="cat-tab ${c===wordCategory?"active":""}" data-cat="${c}">${c}</button>`).join("")}</div>
+ <div class="vocab-grid">${vocab[wordCategory].map((v,i)=>`
+  <button class="vocab-card" data-word="${i}" style="--accent:${activeId==="numbers"?"#e9ad22":"#8b68f8"}">
+   <span class="vocab-emoji">${v[2]}</span><span class="vocab-en">${v[0]}</span>
+   <span class="vocab-ar">${v[1]}</span><span class="speaker-label">🔊 اضغط للاستماع</span>
+  </button>`).join("")}</div>`;
+ content.querySelectorAll("[data-cat]").forEach(b=>b.onclick=()=>{wordCategory=b.dataset.cat;renderWords();});
+ content.querySelectorAll("[data-word]").forEach(b=>b.onclick=()=>{const v=vocab[wordCategory][+b.dataset.word];speak(v[0]);tapSound();});
+}
+
+/* ---------------- STORIES ---------------- */
+function renderStories(){
+ content.innerHTML=`
+ <div class="activity-intro"><h2>📚 وقت الحكايات!</h2><p>استمع إلى القصة، واقرأ معناها بالعربية.</p></div>
+ ${stories.map((s,i)=>`<section class="story-card">
+  <div class="showcase"><div class="big-picture">${s.emoji}</div><div><h3>${s.title}</h3><button class="action-btn pink" data-story-all="${i}">🔊 استمع للقصة</button></div></div>
+  ${s.lines.map(line=>`<div class="story-line"><span class="story-emoji">${line[2]}</span><div style="flex:1"><div class="story-en">${line[0]}</div><div class="story-ar">${line[1]}</div></div><button type="button" aria-label="استمع للجملة" data-sentence="${encodeURIComponent(line[0])}">🔊</button></div>`).join("")}
+  <div class="action-row"><button class="action-btn green" data-story-quiz="${i}">🎯 سؤال عن القصة</button></div>
+ </section>`).join("")}`;
+ content.querySelectorAll("[data-story-all]").forEach(b=>b.onclick=()=>playStory(stories[+b.dataset.storyAll]));
+ content.querySelectorAll("[data-sentence]").forEach(b=>b.onclick=()=>speak(decodeURIComponent(b.dataset.sentence)));
+ content.querySelectorAll("[data-story-quiz]").forEach(b=>b.onclick=()=>{const s=stories[+b.dataset.storyQuiz];startCustomQuiz(s.question,s.options,s.optionsAr,s.answer,"stories");});
+}
+function playStory(s){
+ let i=0;const next=()=>{if(i<s.lines.length){speak(s.lines[i++][0]);setTimeout(next,2300);}};
+ next();
+}
+
+/* ---------------- QUIZZES ---------------- */
+let quizState=null;
+function renderQuiz(kind){
+ const pool=kind==="listen"?[...vocab["الحيوانات"],...vocab["الطعام"],...vocab["الأشياء"]||[]]:[...vocab["الحيوانات"],...vocab["الطعام"],...vocab["الألوان"]];
+ const valid=pool.filter(Boolean);
+ const chosen=valid[Math.floor(Math.random()*valid.length)];
+ const options=[chosen];
+ while(options.length<4){
+  const item=valid[Math.floor(Math.random()*valid.length)];
+  if(!options.some(o=>o[0]===item[0]))options.push(item);
+ }
+ options.sort(()=>Math.random()-.5);
+ quizState={kind,chosen,options,answered:false};
+ content.innerHTML=`
+ <div class="activity-intro"><h2>${kind==="listen"?"🎧 اسمع واختر!":"🎮 لنلعب ونتعلّم!"}</h2><p>${kind==="listen"?"اضغط على زر الصوت، ثم اختر الصورة الصحيحة.":"انظر إلى الصورة، واختر الكلمة الصحيحة."}</p></div>
+ <div class="game-box">
+  <div class="game-label">${kind==="listen"?"استمع جيدًا 👂":"ما اسم هذه الصورة؟ 🤔"}</div>
+  <div class="game-emoji" id="quizPicture">${kind==="listen"?"🎧":chosen[2]}</div>
+  <p class="game-prompt" id="quizPrompt">${kind==="listen"?"اضغط هنا للاستماع":"ما اسم هذه الصورة بالإنجليزية؟"}</p>
+  ${kind==="listen"?'<button class="action-btn" id="playQuestion">🔊 اسمع الكلمة</button>':""}
+  <div class="options-grid">${options.map((v,i)=>`<button class="option-btn" data-answer="${i}"><span class="option-emoji">${kind==="listen"?v[2]:""}</span>${kind==="listen"?v[1]:v[0]}</button>`).join("")}</div>
+  <div class="feedback" id="quizFeedback" aria-live="polite"></div>
+  <button class="action-btn next-btn" id="nextQuestion" hidden>السؤال التالي ➜</button>
+ </div>`;
+ if(kind==="listen")document.getElementById("playQuestion").onclick=()=>speak(chosen[0]);
+ content.querySelectorAll("[data-answer]").forEach(b=>b.onclick=()=>answerQuiz(+b.dataset.answer));
+ if(kind==="listen")setTimeout(()=>{if(activeId==="listen")speak(chosen[0]);},400);
+}
+function answerQuiz(index){
+ if(!quizState||quizState.answered)return;
+ quizState.answered=true;
+ const correct=quizState.options[index][0]===quizState.chosen[0];
+ const buttons=[...content.querySelectorAll("[data-answer]")];
+ buttons.forEach((b,i)=>{
+  b.disabled=true;
+  if(quizState.options[i][0]===quizState.chosen[0])b.classList.add("correct");
+ });
+ const feedback=document.getElementById("quizFeedback");
+ if(correct){
+  feedback.className="feedback good";feedback.textContent=["أحسنت! إجابة رائعة! 🌟","برافو يا بطل! 🎉","ممتاز! أنت تتعلّم بسرعة! 🚀"][Math.floor(Math.random()*3)];
+  addStar();speak("Great job!");
+ }else{
+  buttons[index].classList.add("wrong");
+  feedback.className="feedback try";feedback.textContent="محاولة جميلة! الإجابة الصحيحة باللون الأخضر. 💛";
+  trySound();
+ }
+ const next=document.getElementById("nextQuestion");next.hidden=false;
+ next.onclick=()=>renderQuiz(quizState.kind);
+}
+function startCustomQuiz(question,options,optionsAr,answer){
+ quizState={kind:"stories",chosen:[answer],options:options.map((o,i)=>[o,optionsAr[i],""]),answered:false};
+ content.innerHTML=`
+ <div class="activity-intro"><h2>🎯 سؤال القصة</h2><p>فكّر جيدًا واختر الإجابة.</p></div>
+ <div class="game-box"><p class="game-prompt">${question}</p>
+ <div class="options-grid">${options.map((o,i)=>`<button class="option-btn" data-answer="${i}">${o}<br><small>${optionsAr[i]}</small></button>`).join("")}</div>
+ <div class="feedback" id="quizFeedback" aria-live="polite"></div>
+ <button class="action-btn next-btn" id="nextQuestion" hidden>العودة إلى القصص ➜</button></div>`;
+ content.querySelectorAll("[data-answer]").forEach(b=>b.onclick=()=>{
+  if(quizState.answered)return;quizState.answered=true;
+  const ok=options[+b.dataset.answer]===answer;
+  content.querySelectorAll("[data-answer]").forEach((x,i)=>{x.disabled=true;if(options[i]===answer)x.classList.add("correct");});
+  const fb=document.getElementById("quizFeedback");
+  if(ok){fb.className="feedback good";fb.textContent="أحسنت! لقد فهمت القصة! 🌟";addStar();cheer();}
+  else{b.classList.add("wrong");fb.className="feedback try";fb.textContent="أحسنت على المحاولة! جرّب مرة أخرى في المرة القادمة. 💛";trySound();}
+  document.getElementById("nextQuestion").hidden=false;
+ });
+ document.getElementById("nextQuestion").onclick=renderStories;
+}
+
+/* ---------------- SPEAKING ---------------- */
+function renderSpeak(){
+ const items=[
+  ["Hello","مرحبًا","👋"],["Good morning","صباح الخير","🌞"],["Thank you","شكرًا لك","💛"],
+  ["Please","من فضلك","🙏"],["Goodbye","إلى اللقاء","👋"],["How are you?","كيف حالك؟","😊"],
+  ["I am happy","أنا سعيد","😄"],["I like apples","أحب التفاح","🍎"],["Well done!","أحسنت!","🏆"]
+ ];
+ content.innerHTML=`
+ <div class="activity-intro"><h2>🗣️ اسمع وكرّر!</h2><p>اضغط على العبارة لتسمع النطق، ثم حاول تقليدها.</p></div>
+ <div class="panel"><div class="big-action-emoji">🎤</div>
+ <div class="speak-list">${items.map(x=>`<button class="speak-word" data-say="${encodeURIComponent(x[0])}">${x[2]} ${x[0]}<span>${x[1]}</span></button>`).join("")}</div>
+ <p class="story-ar" style="text-align:center;margin-top:20px">نصيحة: استمع أولًا، ثم كرّر بصوت واضح. لا بأس إن أخطأت! 💜</p></div>`;
+ content.querySelectorAll("[data-say]").forEach(b=>b.onclick=()=>speak(decodeURIComponent(b.dataset.say)));
+}
+
+/* ---------------- SENTENCE BUILDER ---------------- */
+function renderSentences(){
+ phraseIndex=Math.floor(Math.random()*phrases.length);phraseBuilt=[];
+ drawPhrase();
+}
+function drawPhrase(message=""){
+ const p=phrases[phraseIndex];
+ const remaining=p.words.map((w,i)=>({w,i})).filter(x=>!phraseBuilt.includes(x.i)).sort(()=>Math.random()-.5);
+ content.innerHTML=`
+ <div class="activity-intro"><h2>🧩 كوّن العبارة!</h2><p>اضغط الكلمات بالترتيب لتكوين العبارة الإنجليزية.</p></div>
+ <div class="game-box">
+  <div class="game-emoji">${p.emoji}</div><div class="game-prompt">${p.ar}</div>
+  <div class="sentence-target">${phraseBuilt.map(i=>`<button class="word-chip" data-remove="${i}">${p.words[i]}</button>`).join("")||'<span style="color:var(--muted)">ضع الكلمات هنا 👇</span>'}</div>
+  <div class="word-bank">${remaining.map(x=>`<button class="word-chip" data-word="${x.i}">${x.w}</button>`).join("")}</div>
+  <div class="feedback ${message?"good":""}" aria-live="polite">${message}</div>
+  <div class="action-row"><button class="action-btn pink" id="clearPhrase">إعادة 🔄</button><button class="action-btn" id="checkPhrase">تحقّق من الإجابة ⭐</button><button class="action-btn next-btn" id="newPhrase">عبارة جديدة ➜</button></div>
+ </div>`;
+ content.querySelectorAll("[data-word]").forEach(b=>b.onclick=()=>{phraseBuilt.push(+b.dataset.word);tapSound();drawPhrase();});
+ content.querySelectorAll("[data-remove]").forEach(b=>b.onclick=()=>{phraseBuilt=phraseBuilt.filter(i=>i!==+b.dataset.remove);drawPhrase();});
+ document.getElementById("clearPhrase").onclick=()=>{phraseBuilt=[];drawPhrase();};
+ document.getElementById("checkPhrase").onclick=()=>{
+  const correct=phraseBuilt.length===p.words.length&&phraseBuilt.every((v,i)=>v===i);
+  if(correct){drawPhrase("رائع! كوّنت العبارة بشكل صحيح! 🌟");addStar();speak(p.en);}
+  else{trySound();showToast("قريب جدًا! جرّب ترتيب الكلمات مرة أخرى.");}
+ };
+ document.getElementById("newPhrase").onclick=()=>{phraseIndex=(phraseIndex+1)%phrases.length;phraseBuilt=[];drawPhrase();};
+}
+
+/* ---------------- NAVIGATION ---------------- */
+grid.addEventListener("click",e=>{
+ const b=e.target.closest("[data-open]");if(b){tapSound();openActivity(b.dataset.open);}
+});
+document.getElementById("startBtn").onclick=()=>openActivity("letters");
+document.getElementById("dailyBtn").onclick=()=>openActivity("words");
+document.getElementById("backBtn").onclick=closeActivity;
+document.getElementById("homeBrand").onclick=closeActivity;
+document.getElementById("homeBrand").onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();closeActivity();}};
+document.getElementById("soundToggle").onclick=()=>{
+ soundEnabled=!soundEnabled;save();
+ document.getElementById("soundToggle").textContent=soundEnabled?"🔊":"🔇";
+ showToast(soundEnabled?"الأصوات تعمل! 🎵":"تم إيقاف الأصوات.");
+ if(soundEnabled)tapSound();
+};
+document.getElementById("themeToggle").onclick=()=>{
+ darkMode=!darkMode;document.body.classList.toggle("dark",darkMode);
+ document.getElementById("themeToggle").textContent=darkMode?"☀️":"🌙";save();
+};
+document.addEventListener("click",e=>{
+ if(e.target.closest("button")&&!e.target.closest("#soundToggle"))tapSound();
+});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&overlay.classList.contains("open"))closeActivity();});
+document.body.classList.toggle("dark",darkMode);
+document.getElementById("soundToggle").textContent=soundEnabled?"🔊":"🔇";
+document.getElementById("themeToggle").textContent=darkMode?"☀️":"🌙";
+renderHome();updateProgress();
+
+
+/* -------- 9. HANDWRITING LAB -------- */
+let handwritingIndex = 0;
+let writingCanvas, writingCtx, isWriting = false;
+const writingLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+
+function renderHandwriting() {
+  const letter = writingLetters[handwritingIndex];
+  const lower = letter.toLowerCase();
+
+  content.innerHTML = `
+    <div class="activity-intro">
+      <h2>✍️ حان وقت الكتابة!</h2>
+      <p>اتبع شكل الحرف بإصبعك أو بالماوس، وحاول الكتابة فوق الخط المنقّط.</p>
+    </div>
+    <div class="handwriting-card">
+      <div style="text-align:center">
+        <div class="handwriting-letter">${letter} ${lower}</div>
+        <h3 style="font-size:24px;margin:5px">${letters[handwritingIndex][2]}</h3>
+        <p style="color:var(--muted)">${letters[handwritingIndex][3]}</p>
+        <button class="action-btn" id="hearWritingLetter">🔊 استمع إلى الكلمة</button>
+      </div>
+      <div class="handwriting-stage">
+        <canvas id="writingCanvas" aria-label="مساحة التدريب على كتابة الحروف"></canvas>
+      </div>
+      <p class="handwriting-tip">
+        ابدأ من أعلى الحرف، واتبع الخط المنقّط ✨<br>
+        يمكنك المحاولة أكثر من مرة!
+      </p>
+      <div class="handwriting-controls">
+        <button class="action-btn pink" id="clearWriting">🧽 امسح وأعد المحاولة</button>
+        <button class="action-btn green" id="finishWriting">⭐ أنهيت التدريب</button>
+      </div>
+      <div class="action-row">
+        <button class="action-btn" id="previousWriting">◀ السابق</button>
+        <button class="action-btn next-btn" id="nextWriting">الحرف التالي ▶</button>
+      </div>
+    </div>`;
+
+  writingCanvas = document.getElementById("writingCanvas");
+  writingCtx = writingCanvas.getContext("2d");
+
+  function setupCanvas() {
+    const rect = writingCanvas.getBoundingClientRect();
+    const dpr = window.devicePixelRatio || 1;
+    writingCanvas.width = Math.round(rect.width * dpr);
+    writingCanvas.height = Math.round(rect.height * dpr);
+    writingCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    drawGuide();
+  }
+
+  function drawGuide() {
+    const w = writingCanvas.clientWidth;
+    const h = writingCanvas.clientHeight;
+    writingCtx.clearRect(0, 0, w, h);
+    writingCtx.save();
+    writingCtx.font = `900 ${Math.min(h * .72, 190)}px Tajawal, sans-serif`;
+    writingCtx.textAlign = "center";
+    writingCtx.textBaseline = "middle";
+    writingCtx.direction = "ltr";
+    writingCtx.setLineDash([7, 8]);
+    writingCtx.lineWidth = 2;
+    writingCtx.strokeStyle = "#9bb0ff";
+    writingCtx.strokeText(letter, w / 2, h / 2);
+    writingCtx.restore();
+  }
+
+  function pointerPosition(e) {
+    const r = writingCanvas.getBoundingClientRect();
+    return { x: e.clientX - r.left, y: e.clientY - r.top };
+  }
+
+  writingCanvas.onpointerdown = e => {
+    isWriting = true;
+    writingCanvas.setPointerCapture(e.pointerId);
+    const p = pointerPosition(e);
+    writingCtx.beginPath();
+    writingCtx.moveTo(p.x, p.y);
+    writingCtx.strokeStyle = "#7958f5";
+    writingCtx.lineWidth = 7;
+    writingCtx.lineCap = "round";
+    writingCtx.lineJoin = "round";
+  };
+
+  writingCanvas.onpointermove = e => {
+    if (!isWriting) return;
+    const p = pointerPosition(e);
+    writingCtx.lineTo(p.x, p.y);
+    writingCtx.stroke();
+  };
+
+  writingCanvas.onpointerup = () => {
+    isWriting = false;
+    writingCtx.beginPath();
+  };
+  writingCanvas.onpointercancel = () => { isWriting = false; };
+
+  document.getElementById("hearWritingLetter").onclick =
+    () => speak(letters[handwritingIndex][2]);
+
+  document.getElementById("clearWriting").onclick = drawGuide;
+
+  document.getElementById("finishWriting").onclick = () => {
+    addStar();
+    showToast("أحسنت! لقد تدربت على كتابة الحرف ⭐");
+  };
+
+  document.getElementById("previousWriting").onclick = () => {
+    handwritingIndex = (handwritingIndex + 25) % 26;
+    renderHandwriting();
+  };
+
+  document.getElementById("nextWriting").onclick = () => {
+    handwritingIndex = (handwritingIndex + 1) % 26;
+    renderHandwriting();
+  };
+
+  setupCanvas();
+}
+
+/* -------- 10. MEMORY MATCH -------- */
+let memoryCards = [], memoryFirst = null, memoryLocked = false;
+let memoryMatches = 0, memoryMoves = 0;
+
+function renderMemory() {
+  const pairs = [
+    ["🐱", "Cat"], ["🐶", "Dog"], ["🍎", "Apple"], ["☀️", "Sun"]
+  ];
+
+  memoryCards = pairs.flatMap((p, i) => [
+    { id: i, face: p[0], key: i },
+    { id: i + 10, face: p[1], key: i }
+  ]).sort(() => Math.random() - .5);
+
+  memoryFirst = null;
+  memoryLocked = false;
+  memoryMatches = 0;
+  memoryMoves = 0;
+
+  content.innerHTML = `
+    <div class="activity-intro">
+      <h2>🧠 تحدّي الذاكرة</h2>
+      <p>اكشف البطاقات وطابق الصورة مع الكلمة الإنجليزية.</p>
+    </div>
+    <div class="panel">
+      <p class="handwriting-tip" id="memoryStats">الأزواج: 0 / 4 · المحاولات: 0</p>
+      <div class="memory-grid">
+        ${memoryCards.map((c,i) => `
+          <button class="memory-card" data-memory="${i}"
+            aria-label="بطاقة مخفية">❔</button>`).join("")}
+      </div>
+      <div class="action-row">
+        <button class="action-btn" id="restartMemory">🔄 العب مرة أخرى</button>
+      </div>
+    </div>`;
+
+  content.querySelectorAll("[data-memory]").forEach(btn => {
+    btn.onclick = () => {
+      const index = +btn.dataset.memory;
+      const card = memoryCards[index];
+
+      if (memoryLocked || btn.classList.contains("revealed") ||
+          btn.classList.contains("matched")) return;
+
+      btn.textContent = card.face;
+      btn.classList.add("revealed");
+      tapSound();
+
+      if (memoryFirst === null) {
+        memoryFirst = index;
+        return;
+      }
+
+      memoryMoves++;
+      const first = memoryCards[memoryFirst];
+      const firstBtn = content.querySelector(`[data-memory="${memoryFirst}"]`);
+
+      if (first.key === card.key) {
+        firstBtn.classList.add("matched");
+        btn.classList.add("matched");
+        firstBtn.classList.remove("revealed");
+        btn.classList.remove("revealed");
+        memoryMatches++;
+        memoryFirst = null;
+        document.getElementById("memoryStats").textContent =
+          `الأزواج: ${memoryMatches} / 4 · المحاولات: ${memoryMoves}`;
+        cheer();
+
+        if (memoryMatches === 4) {
+          addStar();
+          showToast("رائع! طابقت جميع البطاقات! 🏆");
+        }
+      } else {
+        memoryLocked = true;
+        const firstIndex = memoryFirst;
+        memoryFirst = null;
+
+        setTimeout(() => {
+          const a = content.querySelector(`[data-memory="${firstIndex}"]`);
+          const b = content.querySelector(`[data-memory="${index}"]`);
+          if (a && !a.classList.contains("matched")) {
+            a.textContent = "❔";
+            a.classList.remove("revealed");
+          }
+          if (b && !b.classList.contains("matched")) {
+            b.textContent = "❔";
+            b.classList.remove("revealed");
+          }
+          memoryLocked = false;
+        }, 850);
+      }
+    };
+  });
+
+  document.getElementById("restartMemory").onclick = renderMemory;
+}
+
+/* -------- 11. CREATIVE COLORING -------- */
+function renderColoring() {
+  const colors = [
+    "#ef4444", "#f97316", "#facc15", "#22c55e",
+    "#38bdf8", "#6366f1", "#a855f7", "#ec4899",
+    "#111827", "#ffffff"
+  ];
+
+  content.innerHTML = `
+    <div class="activity-intro">
+      <h2>🎨 مرسم الأبطال</h2>
+      <p>اختر لونًا ولوّن الرسم، ثم استمع إلى اسم اللون بالإنجليزية.</p>
+    </div>
+    <div class="panel">
+      <div class="paint-tools">
+        ${colors.map((c,i) => `
+          <button class="paint-color ${i===0?"active":""}"
+            style="background:${c}" data-color="${c}"
+            aria-label="اختيار اللون ${i+1}"></button>`).join("")}
+      </div>
+      <canvas id="paintCanvas" aria-label="مساحة الرسم والتلوين"></canvas>
+      <div class="action-row">
+        <button class="action-btn pink" id="clearPaint">🧽 امسح الرسم</button>
+        <button class="action-btn green" id="savePaint">⬇️ احفظ رسمتي</button>
+      </div>
+    </div>`;
+
+  const canvas = document.getElementById("paintCanvas");
+  const c = canvas.getContext("2d");
+  let color = colors[0], drawing = false, last = null;
+
+  function setup() {
+    const r = canvas.getBoundingClientRect();
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width = Math.round(r.width * dpr);
+    canvas.height = Math.round(r.height * dpr);
+    c.setTransform(dpr,0,0,dpr,0,0);
+    drawOutline();
+  }
+
+  function drawOutline() {
+    const w = canvas.clientWidth, h = canvas.clientHeight;
+    c.clearRect(0,0,w,h);
+    c.strokeStyle = "#34364a";
+    c.lineWidth = 4;
+    c.lineJoin = "round";
+    c.beginPath();
+    c.arc(w/2,h*.38,Math.min(w,h)*.16,0,Math.PI*2);
+    c.stroke();
+    c.beginPath();
+    c.arc(w/2,h*.38,Math.min(w,h)*.10,0,Math.PI*2);
+    c.stroke();
+    c.beginPath();
+    c.moveTo(w*.35,h*.52);
+    c.lineTo(w*.24,h*.85);
+    c.lineTo(w*.76,h*.85);
+    c.lineTo(w*.65,h*.52);
+    c.closePath();
+    c.stroke();
+    c.font = "900 17px Tajawal, sans-serif";
+    c.textAlign = "center";
+    c.fillStyle = "#777";
+    c.fillText("Colour your picture!",w/2,h-10);
+  }
+
+  function pos(e) {
+    const r=canvas.getBoundingClientRect();
+    return {x:e.clientX-r.left,y:e.clientY-r.top};
+  }
+
+  canvas.onpointerdown = e => {
+    drawing=true;
+    canvas.setPointerCapture(e.pointerId);
+    last=pos(e);
+  };
+  canvas.onpointermove = e => {
+    if(!drawing)return;
+    const p=pos(e);
+    c.beginPath();
+    c.moveTo(last.x,last.y);
+    c.lineTo(p.x,p.y);
+    c.strokeStyle=color;
+    c.lineWidth=10;
+    c.lineCap="round";
+    c.stroke();
+    last=p;
+  };
+  canvas.onpointerup=()=>{drawing=false;last=null;};
+  canvas.onpointercancel=()=>{drawing=false;last=null;};
+
+  content.querySelectorAll("[data-color]").forEach(b => {
+    b.onclick=()=>{
+      color=b.dataset.color;
+      content.querySelectorAll("[data-color]").forEach(x=>x.classList.remove("active"));
+      b.classList.add("active");
+      const name={
+        "#ef4444":"Red","#f97316":"Orange","#facc15":"Yellow",
+        "#22c55e":"Green","#38bdf8":"Blue","#6366f1":"Purple",
+        "#a855f7":"Violet","#ec4899":"Pink","#111827":"Black",
+        "#ffffff":"White"
+      };
+      speak(name[color]||"Colour");
+    };
+  });
+
+  document.getElementById("clearPaint").onclick=drawOutline;
+  document.getElementById("savePaint").onclick=()=>{
+    const link=document.createElement("a");
+    link.download="my-english-colouring.png";
+    link.href=canvas.toDataURL("image/png");
+    link.click();
+    showToast("احتفظ برسمتك الجميلة! 🎨");
+  };
+  setup();
+}
+
+/* -------- 12. REVIEW & ACHIEVEMENTS -------- */
+function renderReview() {
+  const badges = [
+    {emoji:"🔤",title:"مستكشف الحروف",desc:"تدرّب على الحروف الإنجليزية",goal:5},
+    {emoji:"⭐",title:"جامع النجوم",desc:"اجمع 10 نجوم",goal:10},
+    {emoji:"🧠",title:"بطل الذاكرة",desc:"واصل تحديات الذاكرة",goal:15},
+    {emoji:"🚀",title:"نجم التعلّم",desc:"اجمع 25 نجمة",goal:25}
+  ];
+
+  content.innerHTML = `
+    <div class="activity-intro">
+      <h2>🏆 إنجازاتك الرائعة!</h2>
+      <p>كل محاولة تساعدك على التقدّم. استمر يا بطل!</p>
+    </div>
+    <div class="panel">
+      <div class="achievement-grid">
+        <div class="achievement">
+          <span>⭐</span><strong>${stars} نجمة</strong>
+          <small>مجموع النجوم</small>
+        </div>
+        <div class="achievement">
+          <span>🎯</span><strong>${correctAnswers}</strong>
+          <small>إجابات صحيحة</small>
+        </div>
+        <div class="achievement">
+          <span>📚</span><strong>${completed.length}</strong>
+          <small>أنشطة مكتملة</small>
+        </div>
+      </div>
+      <h3 style="margin-top:25px">أوسمتك 🎖️</h3>
+      <div class="achievement-grid">
+        ${badges.map(b=>`
+          <div class="achievement" style="opacity:${stars>=b.goal?1:.55}">
+            <span>${b.emoji}</span><strong>${b.title}</strong>
+            <small>${b.desc}</small>
+            <small>${stars>=b.goal?"تم فتح الوسام!":"الهدف: "+b.goal+" نجوم"}</small>
+          </div>`).join("")}
+      </div>
+      <div class="action-row" style="margin-top:22px">
+        <button class="action-btn green" id="reviewWords">🍎 راجع الكلمات</button>
+        <button class="action-btn" id="reviewLetters">🔤 راجع الحروف</button>
+        <button class="action-btn pink" id="reviewQuiz">🎮 اختبر نفسك</button>
+      </div>
+    </div>`;
+
+  document.getElementById("reviewWords").onclick=()=>openActivity("words");
+  document.getElementById("reviewLetters").onclick=()=>openActivity("letters");
+  document.getElementById("reviewQuiz").onclick=()=>openActivity("games");
+}
+
+</script>
+</body>
+</html>
