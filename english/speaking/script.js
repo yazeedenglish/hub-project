@@ -7,684 +7,922 @@
  * - Samantha voice prioritized on iOS devices (iPhone / iPad)
  */
 
+
 const TOPICS_DATA = [
-    // ==================== LEVEL A1 (4 Topics) ====================
+
+    // =====================================================
+    // LEVEL A1 — BEGINNER (4 TOPICS)
+    // =====================================================
+
     {
         id: "a1-cafe",
         level: "A1",
         emoji: "☕",
         titleAr: "في المقهى",
         titleEn: "At the Café",
-        desc: "زيارة هادئة للمقهى لطلب القهوة والقراءة",
+        desc: "تعلم طلب القهوة والمشروبات والتعامل مع موظف المقهى",
         sentences: [
-            { en: "We sit near the bright window", ar: "نحن نجلس بالقرب من النافذة المشرقة" },
-            { en: "Can I see the coffee menu please?", ar: "هل يمكنني رؤية قائمة القهوة من فضلك؟" },
-            { en: "I would like a hot cup of coffee", ar: "أود كوباً ساخناً من القهوة" },
-            { en: "My friend wants tea with fresh mint", ar: "صديقي يريد شاياً مع النعناع الطازج" },
-            { en: "Please bring us two cold glasses", ar: "من فضلك أحضر لنا كوبين باردين" },
-            { en: "The coffee here is always fresh", ar: "القهوة هنا طازجة دائماً" },
-            { en: "Would you like some sweet cake?", ar: "هل ترغب في بعض الكعك الحلو؟" },
-            { en: "We also want three small cookies", ar: "نريد أيضاً ثلاث قطع بسكويت صغيرة" },
-            { en: "Excuse me, can we have the bill?", ar: "عفواً، هل يمكننا الحصول على الفاتورة؟" },
-            { en: "Thank you for the great service", ar: "شكراً لك على الخدمة الرائعة" }
+            { en: "Hello, can I see the menu?", ar: "مرحباً، هل يمكنني رؤية القائمة؟" },
+            { en: "I would like a cup of coffee", ar: "أود الحصول على كوب من القهوة" },
+            { en: "Can I have it without sugar?", ar: "هل يمكنني الحصول عليه بدون سكر؟" },
+            { en: "Do you have any cold drinks?", ar: "هل لديكم أي مشروبات باردة؟" },
+            { en: "I would also like a small cake", ar: "أود أيضاً الحصول على قطعة كعك صغيرة" },
+            { en: "How much is the coffee?", ar: "كم سعر القهوة؟" },
+            { en: "Can I pay by card today?", ar: "هل يمكنني الدفع بالبطاقة اليوم؟" },
+            { en: "Could I have a glass of water?", ar: "هل يمكنني الحصول على كوب من الماء؟" },
+            { en: "Can I take this drink with me?", ar: "هل يمكنني أخذ هذا المشروب معي؟" },
+            { en: "Thank you, have a lovely day", ar: "شكراً لك، أتمنى لك يوماً جميلاً" }
         ]
     },
+
     {
-        id: "a1-morning",
+        id: "a1-introduction",
         level: "A1",
-        emoji: "☀️",
-        titleAr: "روتين الصباح",
-        titleEn: "Morning Routine",
-        desc: "خطوات الصباح من الاستيقاظ حتى الخروج",
+        emoji: "👋",
+        titleAr: "التعريف بالنفس",
+        titleEn: "Introducing Yourself",
+        desc: "تعلم تقديم نفسك والتحدث عن معلوماتك الشخصية",
         sentences: [
-            { en: "I wake up at six every morning", ar: "أستيقظ في السادسة كل صباح" },
-            { en: "First, I wash my face with water", ar: "أولاً، أغسل وجهي بالماء" },
-            { en: "I brush my teeth for two minutes", ar: "أنظف أسناني لمدة دقيقتين" },
-            { en: "Then I wear my clean blue shirt", ar: "ثم أرتدي قميصي الأزرق النظيف" },
-            { en: "I eat warm eggs for breakfast", ar: "أتناول بيضاً دافئاً على الفطور" },
-            { en: "My mother drinks a cup of coffee", ar: "تشرب أمي كوباً من القهوة" },
-            { en: "I put my book in my black bag", ar: "أضع كتابي في حقيبتي السوداء" },
-            { en: "The yellow bus arrives at seven", ar: "تصل الحافلة الصفراء في السابعة" },
-            { en: "I say goodbye to my kind family", ar: "أودع عائلتي اللطيفة" },
-            { en: "I am ready for a happy new day", ar: "أنا مستعد ليوم جديد سعيد" }
+            { en: "Hello, my name is Adam", ar: "مرحباً، اسمي آدم" },
+            { en: "I am twenty years old now", ar: "عمري الآن عشرون عاماً" },
+            { en: "I come from Saudi Arabia", ar: "أنا من المملكة العربية السعودية" },
+            { en: "I live with my family here", ar: "أعيش مع عائلتي هنا" },
+            { en: "I enjoy reading books at home", ar: "أستمتع بقراءة الكتب في المنزل" },
+            { en: "I speak Arabic and some English", ar: "أتحدث العربية والقليل من الإنجليزية" },
+            { en: "I am learning English every day", ar: "أتعلم اللغة الإنجليزية كل يوم" },
+            { en: "What do you like to do?", ar: "ماذا تحب أن تفعل؟" },
+            { en: "It is nice to meet you today", ar: "من الجميل مقابلتك اليوم" },
+            { en: "I hope we can become friends", ar: "آمل أن نصبح صديقين" }
         ]
     },
+
     {
-        id: "a1-family-dinner",
+        id: "a1-restaurant",
         level: "A1",
-        emoji: "🍲",
-        titleAr: "عشاء العائلة",
-        titleEn: "Family Dinner",
-        desc: "تحضير العشاء واجتماع العائلة حول المائدة",
+        emoji: "🍽️",
+        titleAr: "في المطعم",
+        titleEn: "At the Restaurant",
+        desc: "تعلم طلب الطعام واختيار الوجبات داخل المطعم",
         sentences: [
-            { en: "The family sits around the table", ar: "تجلس العائلة حول المائدة" },
-            { en: "Mother cooks a bowl of hot soup", ar: "تطهو الأم وعاءً من الحساء الساخن" },
-            { en: "The children wash their hands now", ar: "يغسل الأطفال أيديهم الآن" },
-            { en: "Father cuts the roasted chicken", ar: "يقطع الأب الدجاج المشوي" },
-            { en: "We pass the basket of warm bread", ar: "نمرر سلة الخبز الدافئ" },
-            { en: "Everyone talks about their day", ar: "يتحدث الجميع عن يومهم" },
-            { en: "Please pass me the green salad", ar: "من فضلك مرر لي السلطة الخضراء" },
-            { en: "We drink sweet juice after dinner", ar: "نشرب عصيراً حلواً بعد العشاء" },
-            { en: "My sister helps clear the table", ar: "تساعد أختي في تنظيف المائدة" },
-            { en: "We spend a quiet night together", ar: "نقضي ليلة هادئة معاً" }
+            { en: "A table for two, please", ar: "طاولة لشخصين من فضلك" },
+            { en: "Can we sit near the window?", ar: "هل يمكننا الجلوس بالقرب من النافذة؟" },
+            { en: "I would like grilled chicken", ar: "أود الحصول على دجاج مشوي" },
+            { en: "Does this meal come with rice?", ar: "هل تأتي هذه الوجبة مع الأرز؟" },
+            { en: "Please bring us some fresh bread", ar: "من فضلك أحضر لنا بعض الخبز الطازج" },
+            { en: "I would like a bottle of water", ar: "أود الحصول على زجاجة ماء" },
+            { en: "The food smells really delicious", ar: "رائحة الطعام شهية جداً" },
+            { en: "Could we have another fork please?", ar: "هل يمكننا الحصول على شوكة أخرى؟" },
+            { en: "Can we get the bill now?", ar: "هل يمكننا الحصول على الفاتورة الآن؟" },
+            { en: "Everything was wonderful, thank you", ar: "كان كل شيء رائعاً، شكراً لكم" }
         ]
     },
+
     {
-        id: "a1-grocery",
+        id: "a1-directions",
         level: "A1",
+        emoji: "🧭",
+        titleAr: "السؤال عن الاتجاهات",
+        titleEn: "Asking for Directions",
+        desc: "تعلم السؤال عن الأماكن وفهم الاتجاهات",
+        sentences: [
+            { en: "Excuse me, where is the bank?", ar: "عذراً، أين يقع البنك؟" },
+            { en: "Is there a shop near here?", ar: "هل يوجد متجر بالقرب من هنا؟" },
+            { en: "How can I get to the station?", ar: "كيف يمكنني الوصول إلى المحطة؟" },
+            { en: "Go straight along this street", ar: "سر مباشرة على طول هذا الشارع" },
+            { en: "Turn left at the traffic lights", ar: "انعطف يساراً عند إشارة المرور" },
+            { en: "The pharmacy is next to the bank", ar: "الصيدلية بجانب البنك" },
+            { en: "Is it far from this location?", ar: "هل يبعد عن هذا الموقع؟" },
+            { en: "Can I walk there in ten minutes?", ar: "هل يمكنني المشي إلى هناك في عشر دقائق؟" },
+            { en: "Thank you for showing me the way", ar: "شكراً لك على إرشادي إلى الطريق" },
+            { en: "I think I can find it now", ar: "أعتقد أنني أستطيع العثور عليه الآن" }
+        ]
+    },
+
+    // =====================================================
+    // LEVEL A2 — ELEMENTARY (4 TOPICS)
+    // =====================================================
+
+    {
+        id: "a2-supermarket",
+        level: "A2",
         emoji: "🛒",
-        titleAr: "التسوق لشراء الاحتياجات",
-        titleEn: "Grocery Shopping",
-        desc: "جولة لشراء الفواكه والخضراوات والخبز",
+        titleAr: "في السوبرماركت",
+        titleEn: "At the Supermarket",
+        desc: "التسوق وشراء الاحتياجات اليومية والسؤال عن المنتجات",
         sentences: [
-            { en: "Welcome to our local food store", ar: "أهلاً بك في متجر الطعام المحلي" },
-            { en: "These red apples are very sweet", ar: "هذا التفاح الأحمر حلو جداً" },
-            { en: "How much is one kilo of oranges?", ar: "بكم كيلو البرتقال الواحد؟" },
-            { en: "I need five yellow bananas today", ar: "أحتاج خمس موزات صفراء اليوم" },
-            { en: "Do you have fresh cold milk here?", ar: "هل لديكم حليب بارد طازج هنا؟" },
-            { en: "Yes, it came from the farm today", ar: "نعم، لقد وصل من المزرعة اليوم" },
-            { en: "Please put the bread in a bag", ar: "من فضلك ضع الخبز في كيس" },
-            { en: "I will pay with cash right now", ar: "سأدفع نقداً الآن" },
-            { en: "Here is your change and receipt", ar: "تفضل الباقي والإيصال الخاص بك" },
-            { en: "Have a nice day and see you soon", ar: "أتمنى لك يوماً سعيداً وأراك قريباً" }
+            { en: "I need to buy some things today", ar: "أحتاج إلى شراء بعض الأشياء اليوم" },
+            { en: "Where can I find the fresh milk?", ar: "أين يمكنني العثور على الحليب الطازج؟" },
+            { en: "Are these vegetables locally grown?", ar: "هل زُرعت هذه الخضراوات محلياً؟" },
+            { en: "I usually buy food for the week", ar: "عادة أشتري الطعام للأسبوع بأكمله" },
+            { en: "This brand is cheaper than the other", ar: "هذه العلامة التجارية أرخص من الأخرى" },
+            { en: "Do you have a larger package?", ar: "هل لديكم عبوة بحجم أكبر؟" },
+            { en: "I forgot to bring my shopping bags", ar: "نسيت إحضار أكياس التسوق الخاصة بي" },
+            { en: "Can I use the self checkout machine?", ar: "هل يمكنني استخدام جهاز الدفع الذاتي؟" },
+            { en: "I think everything is on the list", ar: "أعتقد أن كل شيء موجود في القائمة" },
+            { en: "Let's go home before it gets late", ar: "لنعد إلى المنزل قبل أن يتأخر الوقت" }
         ]
     },
 
-    // ==================== LEVEL A2 (4 Topics) ====================
     {
-        id: "a2-weekend",
+        id: "a2-clothes",
         level: "A2",
-        emoji: "🏞️",
-        titleAr: "رحلة نهاية الأسبوع",
-        titleEn: "Weekend Trip",
-        desc: "رحلة بالسيارة لاستكشاف التلال والحديقة",
+        emoji: "👕",
+        titleAr: "التسوق لشراء الملابس",
+        titleEn: "Shopping for Clothes",
+        desc: "اختيار الملابس وتجربة المقاسات والسؤال عن الأسعار",
         sentences: [
-            { en: "The weather is sunny this morning", ar: "الطقس مشمس هذا الصباح" },
-            { en: "We packed fresh juice and snacks", ar: "جهزنا عصيراً طازجاً ووجبات خفيفة" },
-            { en: "The boy is playing in the garden", ar: "يلعب الولد في الحديقة" },
-            { en: "We sat under the tall palm trees", ar: "جلسنا تحت أشجار النخيل الطويلة" },
-            { en: "Many families walk near the lake", ar: "تتجول عائلات كثيرة قرب البحيرة" },
-            { en: "My sister tookfour family photos", ar: "التقطت أختي أربع صور عائلية" },
-            { en: "We fed the ducks pieces of bread", ar: "أطعمنا البط قطعاً من الخبز" },
-            { en: "A cool breeze blew at four oclock", ar: "هب نسيم بارد في الساعة الرابعة" },
-            { en: "We cleaned our place before leaving", ar: "نظفنا مكاننا قبل المغادرة" },
-            { en: "It was a wonderful weekend trip", ar: "كانت رحلة نهاية أسبوع رائعة" }
+            { en: "I am looking for a new jacket", ar: "أبحث عن سترة جديدة" },
+            { en: "Do you have this shirt in blue?", ar: "هل لديكم هذا القميص باللون الأزرق؟" },
+            { en: "Can I try these shoes on please?", ar: "هل يمكنني تجربة هذه الأحذية من فضلك؟" },
+            { en: "I usually wear a medium size", ar: "عادة أرتدي مقاساً متوسطاً" },
+            { en: "These trousers are a little too long", ar: "هذا البنطال طويل قليلاً" },
+            { en: "Where are the fitting rooms located?", ar: "أين تقع غرف قياس الملابس؟" },
+            { en: "I prefer the darker color instead", ar: "أفضل اللون الأغمق بدلاً من ذلك" },
+            { en: "Is there a discount on these items?", ar: "هل يوجد خصم على هذه المنتجات؟" },
+            { en: "I will take both shirts today", ar: "سآخذ كلا القميصين اليوم" },
+            { en: "Can I exchange them if they do not fit?", ar: "هل يمكنني استبدالهما إذا لم يناسباني؟" }
         ]
     },
+
     {
-        id: "a2-university",
+        id: "a2-phone",
         level: "A2",
-        emoji: "🎓",
-        titleAr: "يوم في الجامعة",
-        titleEn: "A Day at University",
-        desc: "يوم طالب جامعي بين المحاضرات والمكتبة",
+        emoji: "📞",
+        titleAr: "إجراء المكالمات الهاتفية",
+        titleEn: "Making Phone Calls",
+        desc: "التحدث عبر الهاتف وترك الرسائل وطلب المعلومات",
         sentences: [
-            { en: "I arrive at campus before nine", ar: "أصل إلى الحرم الجامعي قبل التاسعة" },
-            { en: "My first class is computer science", ar: "محاضرتي الأولى هي علوم الحاسب" },
-            { en: "The teacher gives clear examples", ar: "يقدم المعلم أمثلة واضحة" },
-            { en: "I meet my friends during the break", ar: "أقابل أصدقائي أثناء الاستراحة" },
-            { en: "We borrow books from the library", ar: "نستعير كتباً من المكتبة" },
-            { en: "I write notes in every lecture", ar: "أكتب ملاحظات في كل محاضرة" },
-            { en: "Group projects build our teamwork", ar: "المشاريع الجماعية تبني عملنا الجماعي" },
-            { en: "The campus garden is very quiet", ar: "حديقة الجامعة هادئة جداً" },
-            { en: "I send my weekly report at eight", ar: "أرسل تقريري الأسبوعي في الثامنة" },
-            { en: "College life teaches time skills", ar: "الحياة الجامعية تعلم مهارات الوقت" }
+            { en: "Hello, may I speak to Ahmed please?", ar: "مرحباً، هل يمكنني التحدث مع أحمد من فضلك؟" },
+            { en: "I am calling about tomorrow's meeting", ar: "أتصل بخصوص اجتماع الغد" },
+            { en: "Could you speak a little more slowly?", ar: "هل يمكنك التحدث ببطء أكثر قليلاً؟" },
+            { en: "Sorry, I cannot hear you clearly", ar: "عذراً، لا أستطيع سماعك بوضوح" },
+            { en: "The connection seems quite weak today", ar: "يبدو أن الاتصال ضعيف جداً اليوم" },
+            { en: "Can you call me back in an hour?", ar: "هل يمكنك معاودة الاتصال بي بعد ساعة؟" },
+            { en: "Please leave your name and number", ar: "يرجى ترك اسمك ورقم هاتفك" },
+            { en: "I will send you a quick message", ar: "سأرسل لك رسالة سريعة" },
+            { en: "Thank you for returning my call", ar: "شكراً لك على معاودة الاتصال بي" },
+            { en: "I will talk to you again soon", ar: "سأتحدث معك مرة أخرى قريباً" }
         ]
     },
+
     {
-        id: "a2-airport",
+        id: "a2-hotel",
         level: "A2",
+        emoji: "🏨",
+        titleAr: "حجز غرفة فندقية",
+        titleEn: "Booking a Hotel Room",
+        desc: "حجز الغرف والسؤال عن الخدمات والمرافق الفندقية",
+        sentences: [
+            { en: "I would like to book a room", ar: "أود حجز غرفة" },
+            { en: "Do you have any rooms available?", ar: "هل لديكم أي غرف متاحة؟" },
+            { en: "I need a room for three nights", ar: "أحتاج إلى غرفة لمدة ثلاث ليالٍ" },
+            { en: "Does the price include breakfast?", ar: "هل يشمل السعر وجبة الإفطار؟" },
+            { en: "I would prefer a room with a view", ar: "أفضل غرفة ذات إطلالة جميلة" },
+            { en: "What time does check in start?", ar: "في أي وقت يبدأ تسجيل الدخول؟" },
+            { en: "Is there free parking for guests?", ar: "هل يوجد موقف سيارات مجاني للنزلاء؟" },
+            { en: "Can I request an extra pillow?", ar: "هل يمكنني طلب وسادة إضافية؟" },
+            { en: "My reservation is under this name", ar: "الحجز مسجل بهذا الاسم" },
+            { en: "Thank you for making everything easy", ar: "شكراً لكم على تسهيل كل شيء" }
+        ]
+    },
+
+    // =====================================================
+    // LEVEL B1 — INTERMEDIATE (4 TOPICS)
+    // =====================================================
+
+    {
+        id: "b1-airport",
+        level: "B1",
         emoji: "✈️",
-        titleAr: "في المطار قبل السفر",
-        titleEn: "At the Airport Before Flying",
-        desc: "إجراءات السفر وحقائب الطائرة",
+        titleAr: "في المطار",
+        titleEn: "At the Airport",
+        desc: "إجراءات السفر وتسجيل الأمتعة والتعامل مع موظفي المطار",
         sentences: [
-            { en: "We reached the airport at ten", ar: "وصلنا إلى المطار في العاشرة" },
-            { en: "Please show me your passport now", ar: "يرجى إظهار جواز سفرك الآن" },
-            { en: "I have one bag and a small pack", ar: "لدي حقيبة واحدة وحقيبة ظهر صغيرة" },
-            { en: "Do you want a window seat today?", ar: "هل تريد مقعداً بجانب النافذة اليوم؟" },
-            { en: "Our flight leaves from gate six", ar: "تغادر رحلتنا من البوابة السادسة" },
-            { en: "We must go through security now", ar: "يجب أن نمر عبر التفتيش الأمني الآن" },
-            { en: "Let us buy water from the shop", ar: "دعنا نشتري ماءً من المتجر" },
-            { en: "Boarding starts in ten minutes", ar: "يبدأ صعود الطائرة خلال عشر دقائق" },
-            { en: "Please fasten your seat belt now", ar: "يرجى ربط حزام الأمان الآن" },
-            { en: "I hope we have a smooth flight", ar: "آمل أن نحظى برحلة سلسة" }
+            { en: "I have a flight to London this evening", ar: "لدي رحلة إلى لندن هذا المساء" },
+            { en: "Where can I check in for my flight?", ar: "أين يمكنني تسجيل الدخول لرحلتي؟" },
+            { en: "I would like to check in my suitcase", ar: "أود تسجيل حقيبة السفر الخاصة بي" },
+            { en: "Is my flight expected to leave on time?", ar: "هل من المتوقع أن تغادر رحلتي في موعدها؟" },
+            { en: "Could you tell me which gate to use?", ar: "هل يمكنك إخباري بالبوابة التي يجب أن أستخدمها؟" },
+            { en: "I have a connecting flight in Dubai", ar: "لدي رحلة مواصلة في دبي" },
+            { en: "Where can I collect my checked luggage?", ar: "أين يمكنني استلام أمتعتي المسجلة؟" },
+            { en: "My suitcase has not arrived yet", ar: "حقيبة سفري لم تصل بعد" },
+            { en: "I need some help with my boarding pass", ar: "أحتاج إلى بعض المساعدة بخصوص بطاقة الصعود" },
+            { en: "I hope the rest of the journey goes well", ar: "آمل أن تسير بقية الرحلة على ما يرام" }
         ]
     },
+
     {
-        id: "a2-doctor",
-        level: "A2",
+        id: "b1-taxi",
+        level: "B1",
+        emoji: "🚕",
+        titleAr: "استخدام خدمة سيارات الأجرة",
+        titleEn: "Using a Taxi Service",
+        desc: "التواصل مع السائق وتحديد الوجهة والتعامل مع الرحلة",
+        sentences: [
+            { en: "Could you take me to this address?", ar: "هل يمكنك إيصالي إلى هذا العنوان؟" },
+            { en: "How long will the journey take today?", ar: "كم ستستغرق الرحلة اليوم؟" },
+            { en: "Please use the fastest available route", ar: "من فضلك استخدم أسرع طريق متاح" },
+            { en: "There seems to be heavy traffic ahead", ar: "يبدو أن هناك ازدحاماً مرورياً شديداً أمامنا" },
+            { en: "Could you stop near the main entrance?", ar: "هل يمكنك التوقف بالقرب من المدخل الرئيسي؟" },
+            { en: "I booked the ride through the application", ar: "حجزت الرحلة من خلال التطبيق" },
+            { en: "The location on the map looks incorrect", ar: "يبدو أن الموقع على الخريطة غير صحيح" },
+            { en: "Can you wait here for a few minutes?", ar: "هل يمكنك الانتظار هنا لبضع دقائق؟" },
+            { en: "I would like to pay using my phone", ar: "أود الدفع باستخدام هاتفي" },
+            { en: "Thank you for getting me here safely", ar: "شكراً لك على إيصالي إلى هنا بأمان" }
+        ]
+    },
+
+    {
+        id: "b1-doctor",
+        level: "B1",
         emoji: "🩺",
-        titleAr: "زيارة عيادة الطبيب",
-        titleEn: "Visiting the Doctor's Clinic",
-        desc: "الكشف الطبي ووصف الأدوية المناسبة",
+        titleAr: "زيارة الطبيب",
+        titleEn: "Visiting the Doctor",
+        desc: "شرح الأعراض وفهم التعليمات والتحدث مع الطبيب",
         sentences: [
-            { en: "I have a doctor visit at nine", ar: "لدي زيارة للطبيب في التاسعة" },
-            { en: "I felt a strong headache today", ar: "شعرت بصداع قوي اليوم" },
-            { en: "My throat hurts when I drink", ar: "حلقي يؤلمني عندما أشرب" },
-            { en: "Let me check your fever right now", ar: "دعني أفحص حرارتك الآن" },
-            { en: "Take a deep breath and relax now", ar: "خذ نفساً عميقاً واسترخ الآن" },
-            { en: "You only have a mild winter cold", ar: "لديك فقط نزلة برد شتوية خفيفة" },
-            { en: "Take this medicine twice a day", ar: "تناول هذا الدواء مرتين يومياً" },
-            { en: "Make sure you drink warm water", ar: "تأكد من شرب الماء الدافئ" },
-            { en: "Stay at home for two full days", ar: "ابق في المنزل لمدة يومين كاملين" },
-            { en: "I feel much better after resting", ar: "أشعر بتحسن كبير بعد الراحة" }
+            { en: "I have been feeling unwell since Monday", ar: "أشعر بالتعب منذ يوم الاثنين" },
+            { en: "I sometimes experience pain in my back", ar: "أشعر أحياناً بألم في ظهري" },
+            { en: "The symptoms started about three days ago", ar: "بدأت الأعراض قبل نحو ثلاثة أيام" },
+            { en: "I have difficulty sleeping at night", ar: "أواجه صعوبة في النوم أثناء الليل" },
+            { en: "Could you explain what the results mean?", ar: "هل يمكنك توضيح معنى النتائج؟" },
+            { en: "Do I need to take any medicine?", ar: "هل أحتاج إلى تناول أي دواء؟" },
+            { en: "Should I come back for another checkup?", ar: "هل يجب أن أعود لإجراء فحص آخر؟" },
+            { en: "I would like to understand my treatment plan", ar: "أود فهم الخطة العلاجية الخاصة بي" },
+            { en: "Are there any activities I should avoid?", ar: "هل توجد أنشطة ينبغي علي تجنبها؟" },
+            { en: "Thank you for explaining everything clearly", ar: "شكراً لك على شرح كل شيء بوضوح" }
         ]
     },
 
-    // ==================== LEVEL B1 (4 Topics) ====================
     {
-        id: "b1-interview",
+        id: "b1-friends",
         level: "B1",
+        emoji: "🤝",
+        titleAr: "التخطيط مع الأصدقاء",
+        titleEn: "Making Plans with Friends",
+        desc: "اقتراح الأنشطة وتنسيق المواعيد والاتفاق على الخطط",
+        sentences: [
+            { en: "Are you free to meet this weekend?", ar: "هل أنت متفرغ للقاء في نهاية هذا الأسبوع؟" },
+            { en: "We could visit the new shopping center", ar: "يمكننا زيارة مركز التسوق الجديد" },
+            { en: "What time would be convenient for you?", ar: "ما الوقت المناسب لك؟" },
+            { en: "I would rather meet in the afternoon", ar: "أفضل اللقاء في فترة ما بعد الظهر" },
+            { en: "Let me check my schedule before deciding", ar: "دعني أراجع جدولي قبل اتخاذ القرار" },
+            { en: "We should invite the others as well", ar: "ينبغي أن ندعو الآخرين أيضاً" },
+            { en: "I can pick you up on my way there", ar: "يمكنني اصطحابك في طريقي إلى هناك" },
+            { en: "The weather might change our plans", ar: "قد يغير الطقس خططنا" },
+            { en: "I will let everyone know the details", ar: "سأخبر الجميع بالتفاصيل" },
+            { en: "I am really looking forward to it", ar: "أنا متحمس جداً لذلك" }
+        ]
+    },
+
+    // =====================================================
+    // LEVEL B2 — UPPER INTERMEDIATE (4 TOPICS)
+    // =====================================================
+
+    {
+        id: "b2-returns",
+        level: "B2",
+        emoji: "📦",
+        titleAr: "إرجاع المنتجات أو استبدالها",
+        titleEn: "Returning or Exchanging Items",
+        desc: "شرح مشكلات المنتجات ومناقشة سياسات الاسترجاع والاستبدال",
+        sentences: [
+            { en: "I would like to return this item", ar: "أود إرجاع هذا المنتج" },
+            { en: "Unfortunately, the product arrived damaged", ar: "للأسف، وصل المنتج تالفاً" },
+            { en: "I noticed the problem after opening it", ar: "لاحظت المشكلة بعد فتح العبوة" },
+            { en: "I still have the original receipt", ar: "لا يزال الإيصال الأصلي بحوزتي" },
+            { en: "Could you explain your return policy?", ar: "هل يمكنك توضيح سياسة الإرجاع لديكم؟" },
+            { en: "I would prefer a full refund instead", ar: "أفضل استرداد المبلغ بالكامل بدلاً من ذلك" },
+            { en: "Is it possible to exchange this for another?", ar: "هل من الممكن استبدال هذا بمنتج آخر؟" },
+            { en: "The replacement should arrive within a week", ar: "من المفترض أن يصل البديل خلال أسبوع" },
+            { en: "I expected better quality for this price", ar: "كنت أتوقع جودة أفضل مقابل هذا السعر" },
+            { en: "I appreciate your help resolving this issue", ar: "أقدر مساعدتك في حل هذه المشكلة" }
+        ]
+    },
+
+    {
+        id: "b2-customer-service",
+        level: "B2",
+        emoji: "🎧",
+        titleAr: "التعامل مع خدمة العملاء",
+        titleEn: "Dealing with Customer Service",
+        desc: "شرح المشكلات ومتابعة الطلبات والتواصل مع الدعم الفني",
+        sentences: [
+            { en: "I am contacting you about my recent order", ar: "أتواصل معكم بخصوص طلبي الأخير" },
+            { en: "The payment went through but the order failed", ar: "تمت عملية الدفع لكن الطلب لم يكتمل" },
+            { en: "I have already tried restarting the application", ar: "حاولت بالفعل إعادة تشغيل التطبيق" },
+            { en: "Could you check the status of my request?", ar: "هل يمكنك التحقق من حالة طلبي؟" },
+            { en: "I have been waiting for a response since yesterday", ar: "أنتظر الرد منذ يوم أمس" },
+            { en: "Is there another way to solve this problem?", ar: "هل توجد طريقة أخرى لحل هذه المشكلة؟" },
+            { en: "I would appreciate a clear explanation", ar: "سأكون ممتناً للحصول على توضيح واضح" },
+            { en: "Could you transfer me to a supervisor?", ar: "هل يمكنك تحويلي إلى أحد المشرفين؟" },
+            { en: "Please send me a confirmation by email", ar: "يرجى إرسال تأكيد لي عبر البريد الإلكتروني" },
+            { en: "Thank you for taking the time to help", ar: "شكراً لكم على تخصيص الوقت للمساعدة" }
+        ]
+    },
+
+    {
+        id: "b2-apartment",
+        level: "B2",
+        emoji: "🏠",
+        titleAr: "استئجار شقة",
+        titleEn: "Renting an Apartment",
+        desc: "البحث عن سكن ومناقشة الشروط والإيجار والعقد",
+        sentences: [
+            { en: "I am interested in renting this apartment", ar: "أنا مهتم باستئجار هذه الشقة" },
+            { en: "Could I arrange a visit this afternoon?", ar: "هل يمكنني ترتيب زيارة بعد ظهر اليوم؟" },
+            { en: "Is the monthly rent negotiable at all?", ar: "هل يمكن التفاوض على الإيجار الشهري؟" },
+            { en: "Are electricity and water included in the rent?", ar: "هل الكهرباء والماء مشمولان في الإيجار؟" },
+            { en: "How much is the security deposit required?", ar: "كم تبلغ قيمة مبلغ التأمين المطلوب؟" },
+            { en: "I would like to review the contract first", ar: "أود مراجعة العقد أولاً" },
+            { en: "Are pets allowed inside the building?", ar: "هل يُسمح بالحيوانات الأليفة داخل المبنى؟" },
+            { en: "The location is convenient for my workplace", ar: "الموقع مناسب لمكان عملي" },
+            { en: "When would the apartment be ready?", ar: "متى ستكون الشقة جاهزة؟" },
+            { en: "I would like to discuss the final terms", ar: "أود مناقشة الشروط النهائية" }
+        ]
+    },
+
+    {
+        id: "b2-workplace",
+        level: "B2",
         emoji: "💼",
-        titleAr: "مقابلة عمل ناجحة",
-        titleEn: "A Successful Job Interview",
-        desc: "مهارات تقديم الذات والخبرات المهنية",
+        titleAr: "المحادثات في بيئة العمل",
+        titleEn: "Workplace Conversations",
+        desc: "التواصل المهني ومناقشة المهام والاجتماعات والتعاون",
         sentences: [
-            { en: "Thank you for inviting me today", ar: "شكراً لدعوتي إلى المقابلة اليوم" },
-            { en: "I studied software engineering at university", ar: "درست هندسة البرمجيات في الجامعة" },
-            { en: "I worked on three team projects", ar: "عملت على ثلاثة مشاريع جماعية" },
-            { en: "I enjoy solving complex problems", ar: "أستمتع بحل المشكلات المعقدة" },
-            { en: "What are the daily duties here?", ar: "ما هي المهام اليومية هنا؟" },
-            { en: "I plan my tasks every morning", ar: "أخطط لمهامي كل صباح" },
-            { en: "Calm focus helps me under stress", ar: "التركيز الهادئ يساعدني تحت الضغط" },
-            { en: "I want to grow with your company", ar: "أريد أن أتطور مع شركتكم" },
-            { en: "We will email you next Tuesday", ar: "سنراسلك عبر البريد الثلاثاء القادم" },
-            { en: "It was great meeting your team", ar: "كان من الرائع مقابلة فريقكم" }
-        ]
-    },
-    {
-        id: "b1-fitness",
-        level: "B1",
-        emoji: "🏃",
-        titleAr: "حياة صحية ولياقة بدنية",
-        titleEn: "Healthy Lifestyle and Fitness",
-        desc: "عادات النوم والتغذية والرياضة اليومية",
-        sentences: [
-            { en: "Daily exercise boosts my energy", ar: "التمارين اليومية تزيد من طاقتي" },
-            { en: "I replaced soda with green tea", ar: "استبدلت المشروبات الغازية بالشاي الأخضر" },
-            { en: "Walking after dinner aids health", ar: "المشي بعد العشاء يساعد الصحة" },
-            { en: "Eight hours of sleep is vital", ar: "ثماني ساعات من النوم أمر حيوي" },
-            { en: "Always warm up before training", ar: "قم بالإحماء دائماً قبل التدريب" },
-            { en: "Home cooking keeps meals healthy", ar: "الطبخ المنزلي يحفظ صحة الوجبات" },
-            { en: "Steady habits beat strict diets", ar: "العادات المستمرة تتفوق على الحميات القاسية" },
-            { en: "A quick run clears my busy mind", ar: "جولة جري سريعة تصفي ذهني المشغول" },
-            { en: "Weekly goals keep me motivated", ar: "الأهداف الأسبوعية تبقيني متحفزاً" },
-            { en: "Good health is a great treasure", ar: "الصحة الجيدة هي كنز عظيم" }
-        ]
-    },
-    {
-        id: "b1-language",
-        level: "B1",
-        emoji: "🗣️",
-        titleAr: "رحلة تعلم لغة جديدة",
-        titleEn: "The Journey of Learning a Language",
-        desc: "استراتيجيات اكتساب الطلاقة وبناء الثقة",
-        sentences: [
-            { en: "Speaking out loud builds confidence", ar: "التحدث بصوت عالٍ يبني الثقة" },
-            { en: "Never fear making small mistakes", ar: "لا تخف أبداً من ارتكاب أخطاء صغيرة" },
-            { en: "Native audio teaches natural phrases", ar: "الصوت الأصلي يعلم عبارات طبيعية" },
-            { en: "Write full sentences everyday", ar: "اكتب جملاً كاملة كل يوم" },
-            { en: "English videos improve listening", ar: "المقاطع الإنجليزية تطور الاستماع" },
-            { en: "Repeating phrases makes speech smooth", ar: "تكرار العبارات يجعل الكلام سلساً" },
-            { en: "Fluency takes patience and effort", ar: "الطلاقة تتطلب صبراً وجهداً" },
-            { en: "Short stories expand your words", ar: "القصص القصيرة توسع حصيلة كلماتك" },
-            { en: "Study partners make learning fun", ar: "شركاء الدراسة يجعلون التعلم ممتعاً" },
-            { en: "Small daily steps lead to success", ar: "الخطوات اليومية الصغيرة تقود للنجاح" }
-        ]
-    },
-    {
-        id: "b1-car-trouble",
-        level: "B1",
-        emoji: "🚗",
-        titleAr: "عطل مفاجئ في السيارة",
-        titleEn: "Unexpected Car Trouble",
-        desc: "التعامل مع الأعطال وخدمات الإنقاذ على الطريق",
-        sentences: [
-            { en: "I heard a strange engine noise", ar: "سمعت صوتاً غريباً من المحرك" },
-            { en: "I pulled over near the highway", ar: "توقفت بجانب الطريق السريع" },
-            { en: "The battery light turned on fast", ar: "أضاء تحذير البطارية بسرعة" },
-            { en: "I switched on the hazard lights", ar: "شغلت أضواء التحذير الرباعية" },
-            { en: "I called road service for help", ar: "اتصلت بخدمة الطريق للمساعدة" },
-            { en: "The mechanic arrived in ten minutes", ar: "وصل الميكانيكي خلال عشر دقائق" },
-            { en: "The cooling belt needed repair", ar: "حزام التبريد كان يحتاج لإصلاح" },
-            { en: "The fix took less than two hours", ar: "استغرق الإصلاح أقل من ساعتين" },
-            { en: "Regular checks prevent car faults", ar: "الفحص الدوري يمنع أعطال السيارة" },
-            { en: "I returned to the road safely", ar: "عدت إلى الطريق بكل أمان" }
+            { en: "Could we discuss the project timeline?", ar: "هل يمكننا مناقشة الجدول الزمني للمشروع؟" },
+            { en: "I have completed most of my assigned tasks", ar: "أنجزت معظم المهام الموكلة إلي" },
+            { en: "We may need additional time to finish", ar: "قد نحتاج إلى وقت إضافي للانتهاء" },
+            { en: "I would like to suggest another approach", ar: "أود اقتراح أسلوب آخر للعمل" },
+            { en: "Could you clarify the main expectations?", ar: "هل يمكنك توضيح التوقعات الرئيسية؟" },
+            { en: "I will share the updated report shortly", ar: "سأشارك التقرير المحدث بعد قليل" },
+            { en: "We should address this issue before Friday", ar: "ينبغي أن نعالج هذه المشكلة قبل يوم الجمعة" },
+            { en: "Your feedback would be very helpful", ar: "ستكون ملاحظاتك مفيدة جداً" },
+            { en: "I believe we are making good progress", ar: "أعتقد أننا نحقق تقدماً جيداً" },
+            { en: "Let's agree on the next steps together", ar: "لنتفق معاً على الخطوات التالية" }
         ]
     },
 
-    // ==================== LEVEL B2 (4 Topics) ====================
+    // =====================================================
+    // LEVEL C1 — ADVANCED (4 TOPICS)
+    // =====================================================
+
     {
-        id: "b2-remote-work",
-        level: "B2",
-        emoji: "💻",
-        titleAr: "العمل عن بُعد",
-        titleEn: "Remote Work & Balance",
-        desc: "توازن الحياة المهنية وإدارة الفرق العالمية",
+        id: "c1-unexpected",
+        level: "C1",
+        emoji: "⚠️",
+        titleAr: "التعامل مع المواقف غير المتوقعة",
+        titleEn: "Handling Unexpected Situations",
+        desc: "التصرف بثقة ووضوح عند مواجهة ظروف ومشكلات مفاجئة",
         sentences: [
-            { en: "Remote work changed modern teams", ar: "العمل عن بعد غير الفرق الحديثة" },
-            { en: "Working from home saves travel time", ar: "العمل من المنزل يوفر وقت التنقل" },
-            { en: "Work life balance needs discipline", ar: "توازن العمل والحياة يتطلب انضباطاً" },
-            { en: "A quiet desk boosts daily focus", ar: "المكتب الهادئ يعزز التركيز اليومي" },
-            { en: "Clear chat prevents team errors", ar: "التواصل الواضح يمنع أخطاء الفريق" },
-            { en: "Many firms prefer hybrid models", ar: "تفضل شركات عديدة النظام الهجين" },
-            { en: "Regular screen breaks protect health", ar: "فترات الراحة من الشاشة تحمي الصحة" },
-            { en: "Managers value results over hours", ar: "المديرون يقدرون النتائج أكثر من الساعات" },
-            { en: "Cloud tools connect global staff", ar: "الأدوات السحابية تربط الموظفين عالمياً" },
-            { en: "Flexible schedules improve morale", ar: "الجداول المرنة تحسن الروح المعنوية" }
-        ]
-    },
-    {
-        id: "b2-environment",
-        level: "B2",
-        emoji: "🌱",
-        titleAr: "حماية البيئة والاستدامة",
-        titleEn: "Environmental Sustainability",
-        desc: "الطاقة المتجددة وتقليل الانبعاثات الكربونية",
-        sentences: [
-            { en: "Clean energy reduces carbon gas", ar: "الطاقة النظيفة تقلل غازات الكربون" },
-            { en: "Plastic waste harms ocean life", ar: "النفايات البلاستيكية تضر الحياة البحرية" },
-            { en: "Urban trees cool down hot cities", ar: "أشجار المدن تلطف حرارة المدن" },
-            { en: "Buyers support eco friendly brands", ar: "المشترون يدعمون العلامات الصديقة للبيئة" },
-            { en: "Smart farming saves fresh water", ar: "الزراعة الذكية توفر المياه العذبة" },
-            { en: "Recycling protects soil from waste", ar: "إعادة التدوير تحمي التربة من النفايات" },
-            { en: "Public trains reduce city traffic", ar: "القطارات العامة تقلل ازدحام المدينة" },
-            { en: "Green habits start at home today", ar: "العادات الخضراء تبدأ من المنزل اليوم" },
-            { en: "Industry must invest in clean tech", ar: "يجب أن تستثمر الصناعة بالتقنية النظيفة" },
-            { en: "Protecting nature secures our future", ar: "حماية الطبيعة تؤمن مستقبلنا" }
-        ]
-    },
-    {
-        id: "b2-presentation",
-        level: "B2",
-        emoji: "📊",
-        titleAr: "تقديم مشروع تقني",
-        titleEn: "Technical Project Pitch",
-        desc: "عرض الأفكار وتحليل النتائج للمستثمرين",
-        sentences: [
-            { en: "Today I will present our new app", ar: "اليوم سأعرض تطبيقنا الجديد" },
-            { en: "Our goal is a simple user design", ar: "هدفنا هو تصميم بسيط للمستخدم" },
-            { en: "User feedback showed login delays", ar: "ملاحظات المستخدمين أظهرت تأخراً بالدخول" },
-            { en: "We cut loading time by ten percent", ar: "قللنا وقت التحميل بنسبة عشرة بالمائة" },
-            { en: "Data security is our top priority", ar: "أمن البيانات هو أولويتنا القصوى" },
-            { en: "This chart shows strong growth", ar: "هذا الرسم يظهر نمواً قوياً" },
-            { en: "We tested every feature carefully", ar: "اختبرنا كل ميزة بعناية فائقة" },
-            { en: "Close teamwork met all deadlines", ar: "التعاون الوثيق حقق كل المواعيد" },
-            { en: "I welcome your technical questions", ar: "أرحب بأسئلتكم التقنية" },
-            { en: "Thank you for backing this project", ar: "شكراً لكم على دعم هذا المشروع" }
-        ]
-    },
-    {
-        id: "b2-finance",
-        level: "B2",
-        emoji: "💰",
-        titleAr: "التخطيط المالي الذكي",
-        titleEn: "Smart Financial Planning",
-        desc: "إدارة المدخرات والاستثمار لبناء مستقبل آمن",
-        sentences: [
-            { en: "Emergency savings bring peace of mind", ar: "مدخرات الطوارئ تجلب راحة البال" },
-            { en: "Track your spending every month", ar: "تتبع نفقاتك في كل شهر" },
-            { en: "Save twenty percent of your income", ar: "ادخر عشرين بالمائة من دخلك" },
-            { en: "Avoid high interest credit debt", ar: "تجنب ديون الائتمان عالية الفائدة" },
-            { en: "Diverse assets lower market risk", ar: "تنوع الأصول يقلل مخاطر السوق" },
-            { en: "Separate basic needs from desires", ar: "افصل الاحتياجات الأساسية عن الرغبات" },
-            { en: "Clear money goals guide your budget", ar: "الأهداف المالية الواضحة توجه ميزانيتك" },
-            { en: "Economic knowledge aids decision making", ar: "المعرفة الاقتصادية تساعد في اتخاذ القرار" },
-            { en: "Automated transfers build wealth", ar: "التحويلات التلقائية تبني الثروة" },
-            { en: "Financial freedom beats luxury items", ar: "الحرية المالية أفضل من المقتنيات الفاخرة" }
+            { en: "We need to reconsider our plans immediately", ar: "نحتاج إلى إعادة النظر في خططنا فوراً" },
+            { en: "The situation is more complicated than expected", ar: "الوضع أكثر تعقيداً مما كان متوقعاً" },
+            { en: "Let's focus on what we can control", ar: "لنركز على الأمور التي يمكننا التحكم بها" },
+            { en: "I would rather avoid making rushed decisions", ar: "أفضل تجنب اتخاذ قرارات متسرعة" },
+            { en: "We should consider every possible outcome", ar: "ينبغي أن نأخذ كل النتائج المحتملة بعين الاعتبار" },
+            { en: "There must be a reasonable alternative available", ar: "لا بد من وجود بديل مناسب ومتاح" },
+            { en: "I will take responsibility for my part", ar: "سأتحمل مسؤولية الجزء الخاص بي" },
+            { en: "We need to communicate this change clearly", ar: "نحتاج إلى توضيح هذا التغيير بشكل جلي" },
+            { en: "Staying calm will help us find a solution", ar: "سيساعدنا الحفاظ على الهدوء في إيجاد حل" },
+            { en: "We can learn valuable lessons from this experience", ar: "يمكننا تعلم دروس قيمة من هذه التجربة" }
         ]
     },
 
-    // ==================== LEVEL C1 (4 Topics) ====================
     {
-        id: "c1-ai-education",
+        id: "c1-opinions",
         level: "C1",
-        emoji: "🤖",
-        titleAr: "الذكاء الاصطناعي والتعليم",
-        titleEn: "AI in Modern Education",
-        desc: "مستقبل التكنولوجيا الحديثة في المناهج الأكاديمية",
+        emoji: "💬",
+        titleAr: "التعبير عن الآراء والاختلاف",
+        titleEn: "Expressing Opinions and Disagreements",
+        desc: "عرض وجهات النظر ومناقشة الأفكار المختلفة باحترام",
         sentences: [
-            { en: "Smart systems reshape modern learning", ar: "الأنظمة الذكية تعيد تشكيل التعلم الحديث" },
-            { en: "Adaptive tools match student pace", ar: "الأدوات التكيفية تناسب سرعة الطالب" },
-            { en: "Machines cannot replace human empathy", ar: "الآلات لا تعوض التعاطف البشري" },
-            { en: "Critical thinking remains essential", ar: "التفكير النقدي يظل أمراً جوهرياً" },
-            { en: "Schools need clear ethical rules", ar: "تحتاج المدارس لقواعد أخلاقية واضحة" },
-            { en: "Instant feedback corrects errors fast", ar: "التغذية الراجعة الفورية تصحح الأخطاء سريعاً" },
-            { en: "Equal digital access empowers youth", ar: "الوصول الرقمي العادل يمكّن الشباب" },
-            { en: "Lifelong learning beats static facts", ar: "التعلم المستمر يتفوق على الحفظ الجامد" },
-            { en: "Shared research solves global issues", ar: "البحث المشترك يحل القضايا العالمية" },
-            { en: "Education prepares responsible minds", ar: "التعليم يعد عقولاً مسؤولة" }
+            { en: "From my perspective, the issue deserves attention", ar: "من وجهة نظري، تستحق هذه المسألة الاهتمام" },
+            { en: "I understand your argument, but I disagree", ar: "أتفهم حجتك، لكنني أختلف معك" },
+            { en: "There are several factors worth considering", ar: "هناك عدة عوامل تستحق الدراسة" },
+            { en: "I would approach the matter differently", ar: "سأتعامل مع المسألة بطريقة مختلفة" },
+            { en: "Could you explain the reasoning behind that?", ar: "هل يمكنك توضيح المنطق وراء ذلك؟" },
+            { en: "I agree with your point to some extent", ar: "أتفق مع وجهة نظرك إلى حد ما" },
+            { en: "We should distinguish facts from assumptions", ar: "ينبغي أن نميز بين الحقائق والافتراضات" },
+            { en: "That is a valid argument worth discussing", ar: "هذه حجة وجيهة تستحق النقاش" },
+            { en: "I appreciate hearing a different viewpoint", ar: "أقدر الاستماع إلى وجهة نظر مختلفة" },
+            { en: "Perhaps we can find common ground here", ar: "ربما يمكننا إيجاد أرضية مشتركة هنا" }
         ]
     },
+
     {
-        id: "c1-psychology",
+        id: "c1-negotiation",
         level: "C1",
-        emoji: "🧠",
-        titleAr: "علم نفس العادات والتركيز",
-        titleEn: "Psychology of Deep Focus",
-        desc: "التحكم في الانتباه وبناء العادات المستدامة",
+        emoji: "🤝",
+        titleAr: "التفاوض على الأسعار والخدمات",
+        titleEn: "Negotiating Prices and Services",
+        desc: "التفاوض والإقناع والوصول إلى اتفاقات مناسبة للطرفين",
         sentences: [
-            { en: "Deep focus is rare in digital life", ar: "التركيز العميق نادر في الحياة الرقمية" },
-            { en: "Constant alerts fragment our minds", ar: "التنبيهات المستمرة تشتت أذهاننا" },
-            { en: "Daily cues shape lasting habits", ar: "الإشارات اليومية تشكل عادات دائمة" },
-            { en: "Small gains compound over five years", ar: "المكاسب الصغيرة تتراكم خلال خمس سنوات" },
-            { en: "Simple spaces support good routines", ar: "المساحات البسيطة تدعم العادات الجيدة" },
-            { en: "Deliberate practice builds mastery", ar: "التدريب المتعمد يبني الإتقان" },
-            { en: "Too many choices cause mental fatigue", ar: "كثرة الخيارات تسبب الإرهاق الذهني" },
-            { en: "Quiet blocks protect creative work", ar: "الفترات الهادئة تحمي العمل الإبداعي" },
-            { en: "Self kindness prevents total burnout", ar: "الرفق بالنفس يمنع الاحتراق الكامل" },
-            { en: "Attention control defines success", ar: "التحكم في الانتباه يصنع النجاح" }
+            { en: "Would you consider offering a better price?", ar: "هل يمكنكم التفكير في تقديم سعر أفضل؟" },
+            { en: "The current offer exceeds my available budget", ar: "العرض الحالي يتجاوز الميزانية المتاحة لدي" },
+            { en: "I believe there is room for negotiation", ar: "أعتقد أن هناك مجالاً للتفاوض" },
+            { en: "Could we agree on a more reasonable figure?", ar: "هل يمكننا الاتفاق على مبلغ أكثر ملاءمة؟" },
+            { en: "I am willing to commit to a longer contract", ar: "أنا مستعد للالتزام بعقد أطول" },
+            { en: "What additional services are included?", ar: "ما الخدمات الإضافية التي يتضمنها العرض؟" },
+            { en: "That proposal seems fair under the circumstances", ar: "يبدو ذلك الاقتراح عادلاً في ظل هذه الظروف" },
+            { en: "I would need some time to review the offer", ar: "سأحتاج إلى بعض الوقت لمراجعة العرض" },
+            { en: "Let's see if we can reach a compromise", ar: "لنرَ إن كان بإمكاننا التوصل إلى حل وسط" },
+            { en: "I believe we have reached a fair agreement", ar: "أعتقد أننا توصلنا إلى اتفاق عادل" }
         ]
     },
+
     {
-        id: "c1-leadership",
+        id: "c1-complaints",
         level: "C1",
-        emoji: "⚡",
-        titleAr: "القيادة وإدارة الأزمات",
-        titleEn: "Strategic Leadership",
-        desc: "اتخاذ القرارات الحاسمة في الظروف المعقدة",
+        emoji: "📢",
+        titleAr: "تقديم الشكاوى بأسلوب مهذب",
+        titleEn: "Making Complaints Politely",
+        desc: "توضيح أسباب عدم الرضا والمطالبة بحلول بطريقة احترافية",
         sentences: [
-            { en: "True leaders shine during crises", ar: "القادة الحقيقيون يبرزون وقت الأزمات" },
-            { en: "Honest dialogue builds lasting trust", ar: "الحوار الصادق يبني ثقة دائمة" },
-            { en: "Wise decision making blends data and care", ar: "اتخاذ القرار الحكيم يمزج البيانات والاهتمام" },
-            { en: "Shared authority speeds up action", ar: "تفويض الصلاحيات يسرع الإنجاز" },
-            { en: "Open debate prevents group errors", ar: "النقاش المفتوح يمنع أخطاء الجماعة" },
-            { en: "Resilient teams turn setbacks into growth", ar: "الفرق المرنة تحول العثرات إلى نمو" },
-            { en: "Long term vision guides strategy", ar: "الرؤية بعيدة المدى توجه الاستراتيجية" },
-            { en: "Safe cultures welcome bold ideas", ar: "البيئات الآمنة ترحب بالأفكار الجريئة" },
-            { en: "Reviewing past errors builds wisdom", ar: "مراجعة أخطاء الماضي تبني الحكمة" },
-            { en: "Authentic purpose unites great teams", ar: "الهدف الأصيل يوحد الفرق العظيمة" }
-        ]
-    },
-    {
-        id: "c1-architecture",
-        level: "C1",
-        emoji: "🏛️",
-        titleAr: "العمارة والهوية الثقافية",
-        titleEn: "Architecture & Culture",
-        desc: "التصميم الحضري المعاصر والحفاظ على التراث",
-        sentences: [
-            { en: "Modern design blends tech and heritage", ar: "التصميم الحديث يدمج التقنية والتراث" },
-            { en: "Ancient Courtyards cool desert homes", ar: "الأفنية القديمة تبرد منازل الصحراء" },
-            { en: "Historic streets preserve city memory", ar: "الشوارع التاريخية تحفظ ذاكرة المدينة" },
-            { en: "Walkable plazas enrich urban life", ar: "الساحات المهيأة للمشي تثري حياة المدن" },
-            { en: "Natural light improves indoor health", ar: "الضوء الطبيعي يحسن الصحة الداخلية" },
-            { en: "Cultural landmarks inspire pride", ar: "المعالم الثقافية تلهم الفخر" },
-            { en: "Green roofs reduce urban heat", ar: "الأسطح الخضراء تقلل حرارة المدن" },
-            { en: "Buildings shape how communities meet", ar: "المباني تشكل طريقة تلاقي المجتمعات" },
-            { en: "Great spaces balance beauty and use", ar: "المساحات الرائعة توازن الجمال والمنفعة" },
-            { en: "Cities thrive when honoring identity", ar: "تزدهر المدن عندما تحترم هويتها" }
+            { en: "I am afraid I am not satisfied with the service", ar: "أخشى أنني غير راضٍ عن الخدمة" },
+            { en: "I would like to bring an issue to your attention", ar: "أود لفت انتباهكم إلى مشكلة معينة" },
+            { en: "The service did not meet my expectations", ar: "لم ترقَ الخدمة إلى مستوى توقعاتي" },
+            { en: "I was given information that turned out incorrect", ar: "قُدمت لي معلومات اتضح لاحقاً أنها غير صحيحة" },
+            { en: "I have already attempted to resolve this matter", ar: "حاولت بالفعل معالجة هذه المسألة" },
+            { en: "I would appreciate a prompt response from your team", ar: "سأقدر الحصول على رد سريع من فريقكم" },
+            { en: "Could you clarify how you intend to address this?", ar: "هل يمكنكم توضيح كيفية التعامل مع هذه المشكلة؟" },
+            { en: "I believe a partial refund would be appropriate", ar: "أعتقد أن استرداد جزء من المبلغ سيكون مناسباً" },
+            { en: "I hope we can resolve this without further action", ar: "آمل أن نتمكن من حل هذا الأمر دون اتخاذ إجراءات إضافية" },
+            { en: "Thank you for taking my concerns seriously", ar: "شكراً لكم على أخذ مخاوفي بعين الاعتبار" }
         ]
     }
+
 ];
+
 
 // ==================== ARABIC WORD TRANSLATIONS ORGANIZED BY TOPIC ====================
 const WORD_TRANSLATIONS = {
+
+    // =====================================================
+    // LEVEL A1 — BEGINNER
+    // =====================================================
+
     // Topic: a1-cafe (At the Café — في المقهى)
     "a1-cafe": {
-        we: "نحن", sit: "نجلس", near: "بالقرب من", the: "الـ", bright: "المشرقة", window: "النافذة",
-        can: "هل يمكن", i: "أنا", see: "أرى", coffee: "القهوة", menu: "قائمة", please: "من فضلك",
-        would: "أود / هل", like: "أحب / ترغب", a: "واحد", hot: "ساخن", cup: "كوب", of: "من",
-        my: "خاصتي", friend: "صديق", wants: "يريد", tea: "شاي", with: "مع", fresh: "طازج", mint: "نعناع",
-        bring: "أحضر", us: "لنا", two: "اثنين", cold: "بارد", glasses: "أكواب",
-        here: "هنا", is: "يكون", always: "دائماً", you: "أنت", some: "بعض", sweet: "حلو", cake: "كعك",
-        also: "أيضاً", want: "نريد", three: "ثلاثة", small: "صغيرة", cookies: "قطع بسكويت",
-        excuse: "اعذر", me: "ني", have: "نحصل على", bill: "الفاتورة",
-        thank: "شكراً", for: "على", great: "الرائعة", service: "الخدمة"
+        hello: "مرحباً", can: "هل يمكن", i: "أنا", see: "أرى",
+        the: "الـ", menu: "القائمة", would: "أود", like: "أحب / أريد",
+        a: "أداة تنكير", cup: "كوب", of: "من", coffee: "قهوة",
+        have: "لدي / أملك", it: "ذلك / إياه", without: "بدون",
+        sugar: "سكر", do: "فعل مساعد للسؤال", you: "أنت",
+        any: "أي", cold: "بارد", drinks: "مشروبات",
+        also: "أيضاً", small: "صغير", cake: "كعكة",
+        how: "كم / كيف", much: "مقدار / كثير", is: "يكون",
+        pay: "أدفع", by: "بـ / بواسطة", card: "بطاقة",
+        today: "اليوم", could: "هل يمكن", glass: "كأس",
+        water: "ماء", take: "آخذ", this: "هذا / هذه",
+        drink: "مشروب", with: "مع", me: "أنا / ني",
+        thank: "شكراً", lovely: "جميل", day: "يوم"
     },
 
-    // Topic: a1-morning (Morning Routine — روتين الصباح)
-    "a1-morning": {
-        wake: "أستيقظ", up: "فوق / استيقاظ", at: "في", six: "السادسة", every: "كل", morning: "صباح",
-        first: "أولاً", wash: "أغسل", face: "وجه", water: "ماء",
-        brush: "أنظف بالفرشاة", teeth: "أسنان", minutes: "دقائق",
-        then: "ثم", wear: "أرتدي", clean: "نظيف", blue: "أزرق", shirt: "قميص",
-        eat: "أتناول", warm: "دافئ", eggs: "بيض", breakfast: "الفطور",
-        mother: "أم", drinks: "تشرب", put: "أضع", book: "كتاب", in: "في", black: "أسود", bag: "حقيبة",
-        yellow: "أصفر", bus: "حافلة", arrives: "تصل", seven: "السابعة",
-        say: "أقول", goodbye: "وداعاً", to: "إلى", kind: "لطيفة", family: "عائلة",
-        am: "أكون", ready: "مستعد", happy: "سعيد", new: "جديد", day: "يوم"
+    // Topic: a1-introduction (Introducing Yourself — التعريف بالنفس)
+    "a1-introduction": {
+        hello: "مرحباً", my: "ـي / الخاص بي", name: "اسم",
+        is: "هو / يكون", adam: "آدم", i: "أنا",
+        am: "أكون", twenty: "عشرون", years: "سنوات",
+        old: "من العمر", now: "الآن", come: "آتي",
+        from: "من", saudi: "السعودية", arabia: "العربية",
+        live: "أعيش", with: "مع", family: "عائلة",
+        here: "هنا", enjoy: "أستمتع", reading: "قراءة",
+        books: "كتب", at: "في", home: "المنزل",
+        speak: "أتحدث", arabic: "العربية", and: "و",
+        some: "بعض", english: "الإنجليزية", learning: "تعلم",
+        every: "كل", day: "يوم", what: "ماذا",
+        do: "هل / تفعل", you: "أنت", like: "تحب",
+        it: "ذلك", nice: "جميل / لطيف", meet: "أقابل",
+        today: "اليوم", hope: "آمل", we: "نحن",
+        can: "نستطيع", become: "نصبح", friends: "أصدقاء"
     },
 
-    // Topic: a1-family-dinner (Family Dinner — عشاء العائلة)
-    "a1-family-dinner": {
-        sits: "تجلس", around: "حول", table: "المائدة",
-        cooks: "تطهو", bowl: "وعاء", soup: "حساء",
-        children: "الأطفال", their: "الخاص بهم", hands: "أيدي", now: "الآن",
-        father: "الأب", cuts: "يقطع", roasted: "المشوي", chicken: "الدجاج",
-        pass: "نمرر / مرر", basket: "سلة", bread: "خبز",
-        everyone: "الجميع", talks: "يتحدث", about: "عن",
-        green: "خضراء", salad: "سلطة", drink: "نشرب", juice: "عصير", after: "بعد", dinner: "العشاء",
-        sister: "أخت", helps: "تساعد", clear: "تنظيف / ترتيب",
-        spend: "نقضي", quiet: "هادئة", night: "ليلة", together: "معاً"
+    // Topic: a1-restaurant (At the Restaurant — في المطعم)
+    "a1-restaurant": {
+        a: "أداة تنكير", table: "طاولة", for: "لـ / من أجل",
+        two: "اثنان", please: "من فضلك", can: "هل يمكن",
+        we: "نحن", sit: "نجلس", near: "بالقرب من",
+        the: "الـ", window: "نافذة", i: "أنا",
+        would: "أود", like: "أحب / أريد", grilled: "مشوي",
+        chicken: "دجاج", does: "فعل مساعد للسؤال", this: "هذا / هذه",
+        meal: "وجبة", come: "تأتي", with: "مع",
+        rice: "أرز", bring: "أحضر", us: "لنا",
+        some: "بعض", fresh: "طازج", bread: "خبز",
+        bottle: "زجاجة", of: "من", water: "ماء",
+        food: "طعام", smells: "تنبعث منه رائحة", really: "حقاً",
+        delicious: "لذيذ", could: "هل يمكن", have: "نحصل على",
+        another: "آخر / أخرى", fork: "شوكة", get: "نحصل على",
+        bill: "فاتورة", now: "الآن", everything: "كل شيء",
+        was: "كان", wonderful: "رائع", thank: "شكراً",
+        you: "أنتم / أنت"
     },
 
-    // Topic: a1-grocery (Grocery Shopping — التسوق لشراء الاحتياجات)
-    "a1-grocery": {
-        welcome: "أهلاً بك", our: "الخاص بنا", local: "المحلي", food: "طعام", store: "متجر",
-        these: "هذه", red: "أحمر", apples: "تفاح", are: "تكون", very: "جداً",
-        how: "كم / كيف", much: "سعر / كثير", one: "واحد", kilo: "كيلو", oranges: "برتقال",
-        need: "أحتاج", five: "خمسة", bananas: "موز", today: "اليوم",
-        do: "هل", milk: "حليب", yes: "نعم", it: "هو", came: "جاء / وصل", from: "من", farm: "المزرعة",
-        will: "سوف", pay: "أدفع", cash: "نقداً", right: "تماماً / الآن",
-        your: "الخاص بك", change: "الباقي", and: "و", receipt: "الإيصال",
-        nice: "لطيف / سعيد", soon: "قريباً"
+    // Topic: a1-directions (Asking for Directions — السؤال عن الاتجاهات)
+    "a1-directions": {
+        excuse: "اعذر", me: "ني / أنا", where: "أين",
+        is: "يقع / يكون", the: "الـ", bank: "بنك",
+        there: "هناك", a: "أداة تنكير", shop: "متجر",
+        near: "بالقرب من", here: "هنا", how: "كيف",
+        can: "هل يمكن", i: "أنا", get: "أصل / أحصل",
+        to: "إلى", station: "محطة", go: "اذهب / سر",
+        straight: "مباشرة", along: "على طول", this: "هذا / هذه",
+        street: "شارع", turn: "انعطف", left: "يساراً",
+        at: "عند", traffic: "مرور", lights: "إشارات",
+        pharmacy: "صيدلية", next: "التالي / بجانب", it: "هو / ذلك",
+        far: "بعيد", from: "من", location: "موقع",
+        walk: "أمشي", in: "في / خلال", ten: "عشرة",
+        minutes: "دقائق", thank: "شكراً", you: "أنت",
+        for: "لـ / من أجل", showing: "إرشاد / إظهار",
+        way: "طريق", think: "أعتقد", find: "أجد",
+        now: "الآن"
     },
 
-    // Topic: a2-weekend (Weekend Trip — رحلة نهاية الأسبوع)
-    "a2-weekend": {
-        weather: "الطقس", sunny: "مشمس", this: "هذا",
-        packed: "جهزنا", snacks: "وجبات خفيفة",
-        boy: "الولد", playing: "يلعب", garden: "الحديقة",
-        sat: "جلسنا", under: "تحت", tall: "طويلة", palm: "نخيل", trees: "أشجار",
-        many: "كثير", families: "عائلات", walk: "تتجول", lake: "البحيرة",
-        took: "التقطت", four: "أربعة", photos: "صور",
-        fed: "أطعمنا", ducks: "البط", pieces: "قطع",
-        cool: "بارد / لطيف", breeze: "نسيم", blew: "هب", oclock: "تماماً (الساعة)",
-        cleaned: "نظفنا", place: "مكان", before: "قبل", leaving: "المغادرة",
-        was: "كانت", wonderful: "رائعة", weekend: "نهاية الأسبوع", trip: "رحلة"
+    // =====================================================
+    // LEVEL A2 — ELEMENTARY
+    // =====================================================
+
+    // Topic: a2-supermarket (At the Supermarket — في السوبرماركت)
+    "a2-supermarket": {
+        i: "أنا", need: "أحتاج", to: "إلى / أن", buy: "أشتري",
+        some: "بعض", things: "أشياء", today: "اليوم",
+        where: "أين", can: "يمكنني", find: "أجد",
+        the: "الـ", fresh: "طازج", milk: "حليب",
+        are: "تكون / هل", these: "هذه", vegetables: "خضراوات",
+        locally: "محلياً", grown: "مزروعة", usually: "عادةً",
+        food: "طعام", for: "لـ / من أجل", week: "أسبوع",
+        this: "هذا / هذه", brand: "علامة تجارية", is: "يكون",
+        cheaper: "أرخص", than: "من", other: "آخر",
+        do: "فعل مساعد للسؤال", you: "أنت", have: "لديكم",
+        a: "أداة تنكير", larger: "أكبر", package: "عبوة",
+        forgot: "نسيت", bring: "أحضر", my: "ـي / الخاص بي",
+        shopping: "التسوق", bags: "أكياس", use: "أستخدم",
+        self: "ذاتي", checkout: "دفع / إنهاء الشراء",
+        machine: "آلة / جهاز", think: "أعتقد",
+        everything: "كل شيء", on: "على", list: "قائمة",
+        "let's": "هيا بنا", go: "نذهب", home: "المنزل",
+        before: "قبل", it: "ذلك", gets: "يصبح",
+        late: "متأخراً"
     },
 
-    // Topic: a2-university (A Day at University — يوم في الجامعة)
-    "a2-university": {
-        arrive: "أصل", campus: "الحرم الجامعي", nine: "التاسعة",
-        class: "محاضرة / حصة", computer: "حاسوب", science: "علوم",
-        teacher: "المعلم", gives: "يعطي", clear: "واضحة", examples: "أمثلة",
-        meet: "أقابل", friends: "أصدقاء", during: "أثناء", break: "الاستراحة",
-        borrow: "نستعير", books: "كتب", library: "المكتبة",
-        write: "أكتب", notes: "ملاحظات", lecture: "محاضرة",
-        group: "جماعية", projects: "مشاريع", build: "تبني", teamwork: "العمل الجماعي",
-        send: "أرسل", weekly: "الأسبوعي", report: "تقرير", eight: "الثامنة",
-        college: "الكلية / الجامعة", life: "حياة", teaches: "تعلّم", time: "الوقت", skills: "مهارات"
+    // Topic: a2-clothes (Shopping for Clothes — التسوق لشراء الملابس)
+    "a2-clothes": {
+        i: "أنا", am: "أكون", looking: "أبحث",
+        for: "عن / لـ", a: "أداة تنكير", new: "جديد",
+        jacket: "سترة", do: "فعل مساعد للسؤال",
+        you: "أنت", have: "لديكم", this: "هذا / هذه",
+        shirt: "قميص", in: "بـ / في", blue: "أزرق",
+        can: "هل يمكن", try: "أجرب", these: "هذه",
+        shoes: "أحذية", on: "على", please: "من فضلك",
+        usually: "عادةً", wear: "أرتدي", medium: "متوسط",
+        size: "مقاس", trousers: "بنطال", are: "تكون",
+        little: "قليلاً", too: "أكثر من اللازم",
+        long: "طويل", where: "أين", the: "الـ",
+        fitting: "قياس", rooms: "غرف", located: "تقع",
+        prefer: "أفضل", darker: "أغمق", color: "لون",
+        instead: "بدلاً من ذلك", is: "هل / يكون",
+        there: "هناك", discount: "خصم", items: "منتجات",
+        will: "سوف", take: "آخذ", both: "كلا",
+        shirts: "قمصان", today: "اليوم", exchange: "أستبدل",
+        them: "إياها / هم", if: "إذا", they: "هم",
+        not: "لا / ليس", fit: "يناسب"
     },
 
-    // Topic: a2-airport (At the Airport Before Flying — في المطار قبل السفر)
-    "a2-airport": {
-        reached: "وصلنا", airport: "المطار", ten: "العاشرة / عشرة",
-        show: "أظهر", passport: "جواز السفر",
-        pack: "حقيبة ظهر", seat: "مقعد",
-        flight: "رحلة طيران", leaves: "تغادر", gate: "بوابة",
-        must: "يجب", go: "نذهب / نمر", through: "عبر", security: "الأمن",
-        let: "دع", buy: "نشتري", shop: "متجر",
-        boarding: "صعود الطائرة", starts: "يبدأ",
-        fasten: "اربط", belt: "حزام", hope: "آمل", smooth: "سلسة"
+    // Topic: a2-phone (Making Phone Calls — إجراء المكالمات الهاتفية)
+    "a2-phone": {
+        hello: "مرحباً", may: "هل يمكن", i: "أنا",
+        speak: "أتحدث", to: "مع / إلى", ahmed: "أحمد",
+        please: "من فضلك", am: "أكون", calling: "أتصل",
+        about: "بخصوص", "tomorrow's": "الغد / الخاص بالغد",
+        meeting: "اجتماع", could: "هل يمكنك", you: "أنت",
+        a: "أداة تنكير", little: "قليلاً", more: "أكثر",
+        slowly: "ببطء", sorry: "آسف / عذراً", cannot: "لا أستطيع",
+        hear: "أسمع", clearly: "بوضوح", the: "الـ",
+        connection: "اتصال", seems: "يبدو", quite: "إلى حد كبير",
+        weak: "ضعيف", today: "اليوم", can: "هل يمكنك",
+        call: "تتصل", me: "بي / أنا", back: "مرة أخرى",
+        in: "بعد / في", an: "أداة تنكير", hour: "ساعة",
+        leave: "اترك", your: "ـك / الخاص بك", name: "اسم",
+        and: "و", number: "رقم", will: "سوف",
+        send: "أرسل", quick: "سريع", message: "رسالة",
+        thank: "شكراً", for: "على / من أجل",
+        returning: "إعادة / معاودة", my: "ـي / الخاص بي",
+        talk: "أتحدث", again: "مرة أخرى", soon: "قريباً"
     },
 
-    // Topic: a2-doctor (Visiting the Doctor's Clinic — زيارة عيادة الطبيب)
-    "a2-doctor": {
-        doctor: "طبيب", visit: "زيارة / موعد",
-        felt: "شعرت", strong: "قوي", headache: "صداع",
-        throat: "حلق", hurts: "يؤلم", when: "عندما",
-        check: "أفحص", fever: "حرارة / حمى",
-        take: "خذ / تناول", deep: "عميق", breath: "نَفَس", relax: "استرخ",
-        only: "فقط", mild: "خفيفة", winter: "شتوية",
-        medicine: "دواء", twice: "مرتين",
-        make: "تأكد / اصنع", sure: "متأكد",
-        stay: "ابق", home: "المنزل", full: "كاملين", days: "أيام",
-        feel: "أشعر", better: "أفضل", resting: "الراحة"
+    // Topic: a2-hotel (Booking a Hotel Room — حجز غرفة فندقية)
+    "a2-hotel": {
+        i: "أنا", would: "أود", like: "أرغب",
+        to: "أن / إلى", book: "أحجز", a: "أداة تنكير",
+        room: "غرفة", do: "فعل مساعد للسؤال",
+        you: "أنتم / أنت", have: "لديكم", any: "أي",
+        rooms: "غرف", available: "متاحة", need: "أحتاج",
+        for: "لمدة / لـ", three: "ثلاثة", nights: "ليالٍ",
+        does: "فعل مساعد للسؤال", the: "الـ", price: "سعر",
+        include: "يشمل", breakfast: "وجبة الإفطار",
+        prefer: "أفضل", with: "مع", view: "إطلالة",
+        what: "ما / ماذا", time: "وقت", check: "تسجيل",
+        in: "دخول / في", start: "يبدأ", is: "هل / يكون",
+        there: "هناك", free: "مجاني", parking: "موقف سيارات",
+        guests: "نزلاء", can: "هل يمكن", request: "أطلب",
+        an: "أداة تنكير", extra: "إضافي", pillow: "وسادة",
+        my: "ـي / الخاص بي", reservation: "حجز",
+        under: "باسم / تحت", this: "هذا", name: "اسم",
+        thank: "شكراً", making: "جعل", everything: "كل شيء",
+        easy: "سهلاً"
     },
 
-    // Topic: b1-interview (A Successful Job Interview — مقابلة عمل ناجحة)
-    "b1-interview": {
-        inviting: "دعوة", studied: "درست", software: "البرمجيات", engineering: "الهندسة", university: "الجامعة",
-        worked: "عملت", on: "على", team: "فريق",
-        enjoy: "أستمتع", solving: "حل", complex: "معقدة", problems: "مشكلات",
-        what: "ما هي", daily: "اليومية", duties: "المهام / الواجبات",
-        plan: "أخطط", tasks: "مهام",
-        calm: "هادئ", focus: "تركيز", under: "تحت", stress: "ضغط",
-        grow: "أتطور / أنمو", company: "شركة",
-        email: "نراسل بالبريد", next: "القادم", tuesday: "الثلاثاء",
-        meeting: "مقابلة / لقاء"
+    // =====================================================
+    // LEVEL B1 — INTERMEDIATE
+    // =====================================================
+
+    // Topic: b1-airport (At the Airport — في المطار)
+    "b1-airport": {
+        i: "أنا", have: "لدي", a: "أداة تنكير",
+        flight: "رحلة جوية", to: "إلى", london: "لندن",
+        this: "هذا / هذه", evening: "المساء", where: "أين",
+        can: "يمكنني", check: "تسجيل", in: "دخول / في",
+        for: "لـ / من أجل", my: "ـي / الخاص بي",
+        would: "أود", like: "أرغب", suitcase: "حقيبة سفر",
+        is: "هل / يكون", expected: "من المتوقع", leave: "يغادر",
+        on: "في", time: "الوقت", could: "هل يمكنك",
+        you: "أنت", tell: "تخبر", me: "ني / أنا",
+        which: "أي", gate: "بوابة", use: "أستخدم",
+        connecting: "مواصلة / ربط", dubai: "دبي",
+        collect: "أستلم", checked: "مسجلة", luggage: "أمتعة",
+        has: "قد / لديه", not: "لم / لا", arrived: "وصلت",
+        yet: "بعد", need: "أحتاج", some: "بعض",
+        help: "مساعدة", with: "بخصوص / مع",
+        boarding: "صعود إلى الطائرة", pass: "بطاقة / تصريح",
+        hope: "آمل", the: "الـ", rest: "بقية",
+        of: "من", journey: "رحلة", goes: "تسير",
+        well: "بشكل جيد"
     },
 
-    // Topic: b1-fitness (Healthy Lifestyle and Fitness — حياة صحية ولياقة بدنية)
-    "b1-fitness": {
-        exercise: "التمرين", boosts: "يعزز / يزيد", energy: "طاقة",
-        replaced: "استبدلت", soda: "المشروبات الغازية",
-        walking: "المشي", aids: "يساعد", health: "الصحة",
-        hours: "ساعات", sleep: "النوم", vital: "حيوي / ضروري",
-        training: "التدريب", cooking: "الطبخ", keeps: "يحفظ", meals: "الوجبات", healthy: "صحية",
-        steady: "المستمرة", habits: "العادات", beat: "تتفوق على", strict: "القاسية", diets: "الحميات",
-        quick: "سريعة", run: "جري", clears: "يصفي", busy: "مشغول", mind: "ذهن",
-        goals: "أهداف", keep: "تبقي", motivated: "متحفزاً",
-        good: "جيدة", treasure: "كنز"
+    // Topic: b1-taxi (Using a Taxi Service — استخدام خدمة سيارات الأجرة)
+    "b1-taxi": {
+        could: "هل يمكنك", you: "أنت", take: "تأخذ / توصل",
+        me: "ني / أنا", to: "إلى", this: "هذا",
+        address: "عنوان", how: "كم / كيف", long: "طويل",
+        will: "سوف", the: "الـ", journey: "رحلة",
+        today: "اليوم", please: "من فضلك", use: "استخدم",
+        fastest: "الأسرع", available: "المتاح", route: "طريق / مسار",
+        there: "هناك", seems: "يبدو", be: "يكون",
+        heavy: "شديد", traffic: "ازدحام مروري", ahead: "أمام",
+        stop: "توقف", near: "بالقرب من", main: "رئيسي",
+        entrance: "مدخل", i: "أنا", booked: "حجزت",
+        ride: "رحلة", through: "من خلال", application: "تطبيق",
+        location: "موقع", on: "على", map: "خريطة",
+        looks: "يبدو", incorrect: "غير صحيح", can: "هل يمكنك",
+        wait: "تنتظر", here: "هنا", for: "لمدة",
+        a: "أداة تنكير", few: "بضعة", minutes: "دقائق",
+        would: "أود", like: "أرغب", pay: "أدفع",
+        using: "باستخدام", my: "ـي / الخاص بي",
+        phone: "هاتف", thank: "شكراً", getting: "إيصال",
+        safely: "بأمان"
     },
 
-    // Topic: b1-language (The Journey of Learning a Language — رحلة تعلم لغة جديدة)
-    "b1-language": {
-        speaking: "التحدث", out: "بصوت", loud: "عالٍ", builds: "يبني", confidence: "الثقة",
-        never: "أبداً", fear: "تخف", making: "ارتكاب / صنع", mistakes: "أخطاء",
-        native: "أصلي", audio: "صوت", phrases: "عبارات",
-        sentences: "جُمل", english: "إنجليزية", videos: "مقاطع فيديو", improve: "تطور", listening: "الاستماع",
-        repeating: "تكرار", makes: "يجعل", speech: "الكلام",
-        fluency: "الطلاقة", takes: "تتطلب", patience: "صبر", effort: "جهد",
-        short: "قصيرة", stories: "قصص", expand: "توسع", words: "كلمات",
-        study: "دراسة", partners: "شركاء", learning: "التعلم", fun: "ممتع",
-        steps: "خطوات", lead: "تقود", success: "النجاح"
+    // Topic: b1-doctor (Visiting the Doctor — زيارة الطبيب)
+    "b1-doctor": {
+        i: "أنا", have: "قد / لدي", been: "كنت",
+        feeling: "أشعر", unwell: "بالتعب / لست بخير",
+        since: "منذ", monday: "يوم الاثنين",
+        sometimes: "أحياناً", experience: "أعاني من / أختبر",
+        pain: "ألم", in: "في", my: "ـي / الخاص بي",
+        back: "ظهر", the: "الـ", symptoms: "أعراض",
+        started: "بدأت", about: "حوالي", three: "ثلاثة",
+        days: "أيام", ago: "منذ", difficulty: "صعوبة",
+        sleeping: "النوم", at: "في / أثناء", night: "الليل",
+        could: "هل يمكنك", you: "أنت", explain: "تشرح",
+        what: "ماذا", results: "نتائج", mean: "تعني",
+        do: "فعل مساعد للسؤال", need: "أحتاج", to: "أن",
+        take: "أتناول", any: "أي", medicine: "دواء",
+        should: "ينبغي / يجب", come: "أعود / آتي",
+        for: "لـ / من أجل", another: "آخر", checkup: "فحص طبي",
+        would: "أود", like: "أرغب", understand: "أفهم",
+        treatment: "علاج", plan: "خطة", are: "هل / تكون",
+        there: "هناك", activities: "أنشطة", avoid: "أتجنب",
+        thank: "شكراً", explaining: "شرح", everything: "كل شيء",
+        clearly: "بوضوح"
     },
 
-    // Topic: b1-car-trouble (Unexpected Car Trouble — عطل مفاجئ في السيارة)
-    "b1-car-trouble": {
-        heard: "سمعت", strange: "غريب", engine: "محرك", noise: "صوت / ضجيج",
-        pulled: "توقفت جانباً", over: "إلى الجانب", highway: "الطريق السريع",
-        battery: "البطارية", light: "ضوء", turned: "أضاء / تحول", fast: "بسرعة",
-        switched: "شغلت", hazard: "طوارئ / تحذير", lights: "أضواء",
-        called: "اتصلت", road: "الطريق", help: "مساعدة",
-        mechanic: "الميكانيكي", arrived: "وصل",
-        cooling: "التبريد", needed: "احتاج", repair: "إصلاح",
-        fix: "الإصلاح", less: "أقل", than: "من",
-        regular: "دوري / منتظم", checks: "فحوصات", prevent: "تمنع", car: "سيارة", faults: "أعطال",
-        returned: "عدت", safely: "بأمان"
+    // Topic: b1-friends (Making Plans with Friends — التخطيط مع الأصدقاء)
+    "b1-friends": {
+        are: "هل / يكونون", you: "أنت", free: "متفرغ",
+        to: "لـ / أن", meet: "نلتقي", this: "هذا",
+        weekend: "نهاية الأسبوع", we: "نحن", could: "يمكننا",
+        visit: "نزور", the: "الـ", new: "جديد",
+        shopping: "التسوق", center: "مركز", what: "ما",
+        time: "وقت", would: "أود / سوف", be: "يكون",
+        convenient: "مناسب", for: "لـ", i: "أنا",
+        rather: "أفضل", in: "في", afternoon: "فترة ما بعد الظهر",
+        let: "دع", me: "ني / أنا", check: "أراجع",
+        my: "ـي / الخاص بي", schedule: "جدول", before: "قبل",
+        deciding: "اتخاذ القرار", should: "ينبغي",
+        invite: "ندعو", others: "الآخرين", as: "كـ / أيضاً",
+        well: "أيضاً / جيداً", can: "يمكنني", pick: "أقلّ",
+        up: "من", on: "في / على", way: "طريق",
+        there: "هناك", weather: "الطقس", might: "قد",
+        change: "يغير", our: "ـنا / الخاص بنا", plans: "خطط",
+        will: "سوف", everyone: "الجميع", know: "يعرف",
+        details: "تفاصيل", am: "أكون", really: "حقاً",
+        looking: "أتطلع", forward: "قدماً", it: "ذلك"
     },
 
-    // Topic: b2-remote-work (Remote Work & Balance — العمل عن بُعد)
-    "b2-remote-work": {
-        remote: "عن بُعد", work: "العمل", changed: "غيّر", modern: "الحديثة", teams: "الفرق",
-        working: "العمل", saves: "يوفر", travel: "التنقل / السفر",
-        balance: "توازن", needs: "يتطلب / احتياجات", discipline: "انضباط",
-        desk: "مكتب", chat: "تواصل / محادثة", prevents: "يمنع", errors: "أخطاء",
-        firms: "شركات", prefer: "تفضل", hybrid: "هجين", models: "نماذج",
-        screen: "شاشة", breaks: "فترات راحة", protect: "تحمي",
-        managers: "المديرون", value: "يقدرون", results: "النتائج",
-        cloud: "سحابية", tools: "أدوات", connect: "تربط", global: "عالمي", staff: "الموظفين",
-        flexible: "مرنة", schedules: "جداول", morale: "الروح المعنوية"
+    // =====================================================
+    // LEVEL B2 — UPPER INTERMEDIATE
+    // =====================================================
+
+    // Topic: b2-returns (Returning or Exchanging Items — إرجاع المنتجات أو استبدالها)
+    "b2-returns": {
+        i: "أنا", would: "أود", like: "أرغب", to: "أن",
+        return: "أُرجع", this: "هذا", item: "منتج",
+        unfortunately: "للأسف", the: "الـ", product: "منتج",
+        arrived: "وصل", damaged: "تالف", noticed: "لاحظت",
+        problem: "مشكلة", after: "بعد", opening: "فتح",
+        it: "ذلك / إياه", still: "ما زال", have: "لدي",
+        original: "أصلي", receipt: "إيصال", could: "هل يمكنك",
+        you: "أنت", explain: "توضح", your: "ـكم / الخاص بكم",
+        policy: "سياسة", prefer: "أفضل", a: "أداة تنكير",
+        full: "كامل", refund: "استرداد المبلغ", instead: "بدلاً من ذلك",
+        is: "هل / يكون", possible: "ممكن", exchange: "أستبدل",
+        for: "بـ / من أجل", another: "آخر", replacement: "بديل",
+        should: "من المفترض أن", arrive: "يصل", within: "خلال",
+        week: "أسبوع", expected: "توقعت", better: "أفضل",
+        quality: "جودة", price: "سعر", appreciate: "أقدر",
+        help: "مساعدة", resolving: "حل", issue: "مشكلة"
     },
 
-    // Topic: b2-environment (Environmental Sustainability — حماية البيئة والاستدامة)
-    "b2-environment": {
-        reduces: "تقلل", carbon: "الكربون", gas: "غاز",
-        plastic: "بلاستيكي", waste: "نفايات", harms: "تضر", ocean: "المحيط",
-        urban: "الحضرية / المدن", down: "تخفض", cities: "المدن",
-        buyers: "المشترون", support: "يدعمون", eco: "بيئي", friendly: "صديق", brands: "علامات تجارية",
-        smart: "ذكية", farming: "الزراعة",
-        recycling: "إعادة التدوير", protects: "تحمي", soil: "التربة",
-        public: "العامة", trains: "القطارات", reduce: "تقلل", city: "المدينة", traffic: "الازدحام المروري",
-        start: "تبدأ", industry: "الصناعة", invest: "تستثمر", tech: "التقنية",
-        protecting: "حماية", nature: "الطبيعة", secures: "تؤمن", future: "المستقبل"
+    // Topic: b2-customer-service (Dealing with Customer Service — التعامل مع خدمة العملاء)
+    "b2-customer-service": {
+        i: "أنا", am: "أكون", contacting: "أتواصل",
+        you: "معكم / أنت", about: "بخصوص", my: "ـي / الخاص بي",
+        recent: "الأخير / الحديث", order: "طلب", the: "الـ",
+        payment: "عملية الدفع", went: "تمت / ذهبت", through: "بنجاح / من خلال",
+        but: "لكن", failed: "فشل / لم يكتمل", have: "قد",
+        already: "بالفعل", tried: "حاولت", restarting: "إعادة تشغيل",
+        application: "تطبيق", could: "هل يمكنك", check: "تتحقق",
+        status: "حالة", of: "لـ / من", request: "طلب",
+        been: "كنت / تم", waiting: "أنتظر", for: "لـ / من أجل",
+        a: "أداة تنكير", response: "رد", since: "منذ",
+        yesterday: "أمس", is: "هل / يكون", there: "هناك",
+        another: "آخر", way: "طريقة", to: "أن",
+        solve: "أحل", this: "هذه", problem: "مشكلة",
+        would: "سوف / أود", appreciate: "أقدر", clear: "واضح",
+        explanation: "توضيح", transfer: "تحول", me: "ني / أنا",
+        supervisor: "مشرف", please: "من فضلك", send: "ترسل",
+        confirmation: "تأكيد", by: "عبر / بواسطة", email: "البريد الإلكتروني",
+        thank: "شكراً", taking: "تخصيص", time: "وقت",
+        help: "المساعدة"
     },
 
-    // Topic: b2-presentation (Technical Project Pitch — تقديم مشروع تقني)
-    "b2-presentation": {
-        present: "أعرض", app: "تطبيق",
-        goal: "هدف", simple: "بسيط", user: "مستخدم", design: "تصميم",
-        feedback: "ملاحظات / آراء", showed: "أظهرت", login: "تسجيل الدخول", delays: "تأخيرات",
-        cut: "قللنا", loading: "التحميل", by: "بنسبة", percent: "بالمائة",
-        data: "البيانات", top: "القصوى", priority: "أولوية",
-        chart: "رسم بياني", shows: "يظهر", growth: "نمو",
-        tested: "اختبرنا", feature: "ميزة", carefully: "بعناية",
-        close: "وثيق", met: "حقق", all: "كل", deadlines: "المواعيد النهائية",
-        technical: "تقنية", questions: "أسئلة",
-        backing: "دعم", project: "مشروع"
+    // Topic: b2-apartment (Renting an Apartment — استئجار شقة)
+    "b2-apartment": {
+        i: "أنا", am: "أكون", interested: "مهتم",
+        in: "بـ / في", renting: "استئجار", this: "هذه",
+        apartment: "شقة", could: "هل يمكنني", arrange: "أرتب",
+        a: "أداة تنكير", visit: "زيارة", afternoon: "بعد الظهر",
+        is: "هل / يكون", the: "الـ", monthly: "شهري",
+        rent: "إيجار", negotiable: "قابل للتفاوض", at: "على / في",
+        all: "الإطلاق / كل", are: "هل / تكون",
+        electricity: "كهرباء", and: "و", water: "ماء",
+        included: "مشمول", how: "كم", much: "مقدار",
+        security: "ضمان", deposit: "مبلغ تأمين", required: "مطلوب",
+        would: "أود", like: "أرغب", to: "أن",
+        review: "أراجع", contract: "عقد", first: "أولاً",
+        pets: "حيوانات أليفة", allowed: "مسموح بها",
+        inside: "داخل", building: "مبنى", location: "موقع",
+        convenient: "مناسب", for: "لـ", my: "ـي / الخاص بي",
+        workplace: "مكان العمل", when: "متى", be: "يكون",
+        ready: "جاهز", discuss: "أناقش", final: "نهائية",
+        terms: "شروط"
     },
 
-    // Topic: b2-finance (Smart Financial Planning — التخطيط المالي الذكي)
-    "b2-finance": {
-        emergency: "طوارئ", savings: "مدخرات", peace: "سلام / راحة",
-        track: "تتبع", spending: "الإنفاق", month: "شهر",
-        save: "ادخر", twenty: "عشرين", income: "الدخل",
-        avoid: "تجنب", high: "عالية", interest: "فائدة", credit: "ائتمان", debt: "دَين",
-        diverse: "متنوعة", assets: "أصول", lower: "تقلل", market: "السوق", risk: "مخاطر",
-        separate: "افصل", basic: "أساسية", desires: "رغبات",
-        money: "مال", guide: "توجه", budget: "ميزانية",
-        economic: "اقتصادية", knowledge: "معرفة", decision: "قرار",
-        automated: "تلقائية", transfers: "تحويلات", wealth: "ثروة",
-        financial: "مالية", freedom: "حرية", beats: "تتفوق على", luxury: "فاخرة", items: "مقتنيات"
+    // Topic: b2-workplace (Workplace Conversations — المحادثات في بيئة العمل)
+    "b2-workplace": {
+        could: "هل يمكننا", we: "نحن", discuss: "نناقش",
+        the: "الـ", project: "مشروع", timeline: "جدول زمني",
+        i: "أنا", have: "قد", completed: "أنجزت",
+        most: "معظم", of: "من", my: "ـي / الخاص بي",
+        assigned: "الموكلة", tasks: "مهام", may: "قد",
+        need: "نحتاج", additional: "إضافي", time: "وقت",
+        to: "أن", finish: "ننتهي", would: "أود",
+        like: "أن / أحب", suggest: "أقترح", another: "آخر",
+        approach: "أسلوب / نهج", you: "أنت", clarify: "توضح",
+        main: "رئيسية", expectations: "توقعات", will: "سوف",
+        share: "أشارك", updated: "محدث", report: "تقرير",
+        shortly: "بعد قليل", should: "ينبغي", address: "نعالج",
+        this: "هذه", issue: "مسألة", before: "قبل",
+        friday: "يوم الجمعة", your: "ـك / الخاص بك",
+        feedback: "ملاحظات", be: "تكون", very: "جداً",
+        helpful: "مفيدة", believe: "أعتقد", are: "نحن / يكونون",
+        making: "نحقق", good: "جيد", progress: "تقدم",
+        "let's": "دعونا", agree: "نتفق", on: "على",
+        next: "التالية", steps: "خطوات", together: "معاً"
     },
 
-    // Topic: c1-ai-education (AI in Modern Education — الذكاء الاصطناعي والتعليم)
-    "c1-ai-education": {
-        systems: "أنظمة", reshape: "تعيد تشكيل",
-        adaptive: "تكيفية", match: "تناسب", student: "طالب", pace: "سرعة / وتيرة",
-        machines: "الآلات", cannot: "لا تستطيع", replace: "تستبدل", human: "بشري", empathy: "تعاطف",
-        critical: "نقدي", thinking: "تفكير", remains: "يظل", essential: "أساسي / جوهري",
-        schools: "المدارس", ethical: "أخلاقية", rules: "قواعد",
-        instant: "فورية", corrects: "تصحح",
-        equal: "عادل / متساوٍ", digital: "رقمي", access: "وصول", empowers: "يمكّن", youth: "الشباب",
-        lifelong: "مدى الحياة", static: "جامدة / ثابتة", facts: "حقائق",
-        shared: "مشترك", research: "بحث", solves: "يحل", issues: "قضايا",
-        education: "التعليم", prepares: "يُعدّ", responsible: "مسؤولة", minds: "عقول"
+    // =====================================================
+    // LEVEL C1 — ADVANCED
+    // =====================================================
+
+    // Topic: c1-unexpected (Handling Unexpected Situations — التعامل مع المواقف غير المتوقعة)
+    "c1-unexpected": {
+        we: "نحن", need: "نحتاج", to: "إلى / أن",
+        reconsider: "نعيد النظر", our: "ـنا / الخاصة بنا",
+        plans: "خطط", immediately: "فوراً", the: "الـ",
+        situation: "وضع / موقف", is: "يكون", more: "أكثر",
+        complicated: "تعقيداً", than: "من", expected: "المتوقع",
+        "let's": "دعونا", focus: "نركز", on: "على",
+        what: "ما", can: "نستطيع", control: "نتحكم",
+        i: "أنا", would: "أفضل / أود", rather: "بالأحرى",
+        avoid: "أتجنب", making: "اتخاذ", rushed: "متسرعة",
+        decisions: "قرارات", should: "ينبغي", consider: "نأخذ بعين الاعتبار",
+        every: "كل", possible: "ممكنة", outcome: "نتيجة",
+        there: "هناك", must: "لا بد", be: "يكون",
+        a: "أداة تنكير", reasonable: "معقول", alternative: "بديل",
+        available: "متاح", will: "سوف", take: "أتحمل",
+        responsibility: "مسؤولية", for: "عن", my: "ـي / الخاص بي",
+        part: "جزء", communicate: "نوضح / نتواصل",
+        this: "هذا", change: "تغيير", clearly: "بوضوح",
+        staying: "البقاء", calm: "هادئاً", help: "يساعد",
+        us: "نا / نحن", find: "نجد", solution: "حل",
+        learn: "نتعلم", valuable: "قيمة", lessons: "دروس",
+        from: "من", experience: "تجربة"
     },
 
-    // Topic: c1-psychology (Psychology of Deep Focus — علم نفس العادات والتركيز)
-    "c1-psychology": {
-        rare: "نادر", constant: "مستمرة", alerts: "تنبيهات", fragment: "تشتت",
-        cues: "إشارات", shape: "تشكل", lasting: "دائمة",
-        gains: "مكاسب", compound: "تتراكم", years: "سنوات",
-        spaces: "مساحات", routines: "روتين / عادات",
-        deliberate: "متعمد", practice: "تدريب / ممارسة", mastery: "إتقان",
-        too: "كثير جداً", choices: "خيارات", cause: "تسبب", mental: "ذهني", fatigue: "إرهاق",
-        blocks: "فترات", creative: "إبداعي",
-        self: "الذات / النفس", kindness: "لطف / رفق", total: "كامل", burnout: "احتراق نفسي",
-        attention: "انتباه", control: "تحكم", defines: "يحدد / يصنع"
+    // Topic: c1-opinions (Expressing Opinions and Disagreements — التعبير عن الآراء والاختلاف)
+    "c1-opinions": {
+        from: "من", my: "ـي / الخاص بي", perspective: "وجهة نظر",
+        the: "الـ", issue: "مسألة", deserves: "تستحق",
+        attention: "اهتمام", i: "أنا", understand: "أتفهم",
+        your: "ـك / الخاص بك", argument: "حجة", but: "لكن",
+        disagree: "أختلف", there: "هناك", are: "توجد",
+        several: "عدة", factors: "عوامل", worth: "تستحق",
+        considering: "الدراسة / النظر", would: "سوف / أود",
+        approach: "أتعامل مع / أسلوب", matter: "مسألة",
+        differently: "بطريقة مختلفة", could: "هل يمكنك",
+        you: "أنت", explain: "توضح", reasoning: "منطق",
+        behind: "وراء", that: "ذلك", agree: "أتفق",
+        with: "مع", point: "وجهة نظر / نقطة", to: "إلى",
+        some: "بعض", extent: "حد", we: "نحن",
+        should: "ينبغي", distinguish: "نميز", facts: "حقائق",
+        assumptions: "افتراضات", is: "يكون", a: "أداة تنكير",
+        valid: "وجيهة / صحيحة", discussing: "النقاش",
+        appreciate: "أقدر", hearing: "الاستماع", different: "مختلفة",
+        viewpoint: "وجهة نظر", perhaps: "ربما", can: "يمكننا",
+        find: "نجد", common: "مشترك", ground: "أرضية",
+        here: "هنا"
     },
 
-    // Topic: c1-leadership (Strategic Leadership — القيادة وإدارة الأزمات)
-    "c1-leadership": {
-        true: "حقيقيون", leaders: "قادة", shine: "يبرزون / يتألقون", crises: "أزمات",
-        honest: "صادق", dialogue: "حوار", trust: "ثقة",
-        wise: "حكيم", blends: "يمزج", care: "اهتمام / رعاية",
-        authority: "سلطة / صلاحية", speeds: "يسرع", action: "العمل / الإنجاز",
-        open: "مفتوح", debate: "نقاش",
-        resilient: "مرنة", turn: "تحول", setbacks: "عثرات", into: "إلى",
-        long: "طويل", term: "المدى", vision: "رؤية", guides: "توجه", strategy: "استراتيجية",
-        safe: "آمنة", cultures: "بيئات / ثقافات", bold: "جريئة", ideas: "أفكار",
-        reviewing: "مراجعة", past: "الماضي", wisdom: "حكمة",
-        authentic: "أصيل", purpose: "هدف / غاية", unites: "يوحد"
+    // Topic: c1-negotiation (Negotiating Prices and Services — التفاوض على الأسعار والخدمات)
+    "c1-negotiation": {
+        would: "هل يمكن / أود", you: "أنتم / أنت", consider: "تفكرون",
+        offering: "تقديم", a: "أداة تنكير", better: "أفضل",
+        price: "سعر", the: "الـ", current: "الحالي",
+        offer: "عرض", exceeds: "يتجاوز", my: "ـي / الخاص بي",
+        available: "المتاحة", budget: "ميزانية", i: "أنا",
+        believe: "أعتقد", there: "هناك", is: "يوجد",
+        room: "مجال", for: "لـ / من أجل", negotiation: "تفاوض",
+        could: "هل يمكننا", we: "نحن", agree: "نتفق",
+        on: "على", more: "أكثر", reasonable: "معقول",
+        figure: "مبلغ", am: "أكون", willing: "مستعد",
+        to: "أن", commit: "ألتزم", longer: "أطول",
+        contract: "عقد", what: "ما", additional: "إضافية",
+        services: "خدمات", are: "هل / تكون", included: "مشمولة",
+        that: "ذلك", proposal: "اقتراح", seems: "يبدو",
+        fair: "عادل", under: "في ظل", circumstances: "الظروف",
+        need: "أحتاج", some: "بعض", time: "وقت",
+        review: "أراجع", "let's": "دعونا", see: "نرى",
+        if: "إذا", can: "نستطيع", reach: "نتوصل إلى",
+        compromise: "حل وسط", have: "قد", reached: "توصلنا إلى",
+        agreement: "اتفاق"
     },
 
-    // Topic: c1-architecture (Architecture & Culture — العمارة والهوية الثقافية)
-    "c1-architecture": {
-        heritage: "تراث", ancient: "قديمة", courtyards: "أفنية", desert: "صحراء", homes: "منازل",
-        historic: "تاريخية", streets: "شوارع", preserve: "تحفظ", memory: "ذاكرة",
-        walkable: "مهيأة للمشي", plazas: "ساحات", enrich: "تثري",
-        natural: "طبيعي", improves: "يحسن", indoor: "داخلي",
-        cultural: "ثقافية", landmarks: "معالم", inspire: "تلهم", pride: "فخر",
-        roofs: "أسطح", heat: "حرارة",
-        buildings: "المباني", communities: "المجتمعات",
-        beauty: "جمال", use: "منفعة / استخدام",
-        thrive: "تزدهر", honoring: "احترام / تكريم", identity: "هوية"
+    // Topic: c1-complaints (Making Complaints Politely — تقديم الشكاوى بأسلوب مهذب)
+    "c1-complaints": {
+        i: "أنا", am: "أكون", afraid: "أخشى",
+        not: "لست / لا", satisfied: "راضٍ", with: "عن / مع",
+        the: "الـ", service: "خدمة", would: "أود",
+        like: "أن / أرغب", to: "أن", bring: "ألفت",
+        an: "أداة تنكير", issue: "مشكلة / مسألة",
+        your: "ـكم / الخاص بكم", attention: "انتباه",
+        did: "فعل مساعد للماضي", meet: "تلبي", my: "ـي / الخاص بي",
+        expectations: "توقعات", was: "تم / كان",
+        given: "قُدمت / أُعطيت", information: "معلومات",
+        that: "التي / ذلك", turned: "اتضح", out: "لاحقاً / إلى الخارج",
+        incorrect: "غير صحيحة", have: "قد", already: "بالفعل",
+        attempted: "حاولت", resolve: "أعالج / أحل", this: "هذه",
+        matter: "مسألة", appreciate: "أقدر", a: "أداة تنكير",
+        prompt: "سريع", response: "رد", from: "من",
+        team: "فريق", could: "هل يمكنكم", you: "أنتم",
+        clarify: "توضحون", how: "كيف", intend: "تنوي",
+        address: "تعالج", believe: "أعتقد", partial: "جزئي",
+        refund: "استرداد المبلغ", be: "يكون", appropriate: "مناسب",
+        hope: "آمل", we: "نحن", can: "نستطيع",
+        without: "دون", further: "إضافية", action: "إجراء",
+        thank: "شكراً", for: "على / من أجل",
+        taking: "أخذ", concerns: "مخاوف / ملاحظات",
+        seriously: "على محمل الجد"
     }
+
 };
 
 // ==================== NUMBER NORMALIZATION FOR SPEECH RECOGNITION ====================
@@ -824,6 +1062,7 @@ const dom = {
     summaryModal: document.getElementById("summaryModal"),
     summaryLevelDot: document.getElementById("summaryLevelDot"),
     summaryTopicTitle: document.getElementById("summaryTopicTitle"),
+    summaryModalTitle: document.getElementById("summaryModalTitle"),
     summaryFeedbackMessage: document.getElementById("summaryFeedbackMessage"),
     starsContainer: document.getElementById("starsContainer"),
     starsScoreText: document.getElementById("starsScoreText"),
@@ -1603,22 +1842,24 @@ function showTopicSummaryModal() {
     let stars = overallAccuracy >= 90 ? 5 : overallAccuracy >= 75 ? 4 : overallAccuracy >= 60 ? 3 : overallAccuracy >= 40 ? 2 : 1;
 
     const feedbackMessages = {
-        5: "أداء استثنائي! نطقك واضح جداً وطلاقتك ممتازة في هذا الموضوع",
-        4: "أداء رائع جداً! أتقنت معظم الجمل بوضوح وثقة عالية",
-        3: "أداء جيد! استمر في التدرب على الكلمات لرفع دقتك",
-        2: "بداية طيبة! استمع للجمل مرة أخرى وحاول تكرارها بهدوء",
-        1: "لقد أنهيت استعراض الموضوع! جرب نطق الجمل بالمايكروفون لتحصل على تقييم أعلى"
+        5: "أداء استثنائي! 🏆",
+        4: "أداء رائع جداً!",
+        3: "أداء جيد!",
+        2: "بداية جيدة!",
+        1: "واصل التدرّب"
     };
 
     setLevelBadgeClass(dom.summaryLevelDot, topic.level);
     dom.summaryTopicTitle.textContent = topic.titleAr;
     dom.summaryFeedbackMessage.textContent = feedbackMessages[stars];
+    dom.summaryModalTitle.textContent = feedbackMessages[stars];
+    dom.summaryFeedbackMessage.hidden = true;
 
     dom.starsContainer.innerHTML = "";
     for (let i = 1; i <= 5; i++) {
         dom.starsContainer.innerHTML += `<span class="star-item ${i <= stars ? "filled" : ""}"><i data-lucide="star"></i></span>`;
     }
-    dom.starsScoreText.textContent = `${stars} من 5 نجوم`;
+    dom.starsScoreText.textContent = ``;
     dom.summaryAccuracyValue.textContent = `${overallAccuracy}%`;
     dom.summaryWordsValue.textContent = `${totalMatchedWords} / ${totalTopicWords}`;
     dom.summaryPerfectValue.textContent = `${perfectSentences} / 10`;
@@ -1666,7 +1907,7 @@ function bindEvents() {
 
     dom.muteTtsBtn.addEventListener("click", toggleMuteTts);
     dom.themeToggleBtn.addEventListener("click", toggleDarkMode);
-    dom.listenMetaBtn.addEventListener("click", () => speakText(getCurrentSentenceObj().en, true));
+    dom.listenMetaBtn.addEventListener("click", openTopicsModal);
     dom.replayAudioBtn.addEventListener("click", () => speakText(getCurrentSentenceObj().en, true));
     dom.tryAgainBtn.addEventListener("click", handleTryAgain);
     dom.nextSentenceBtn.addEventListener("click", handleNextSentence);

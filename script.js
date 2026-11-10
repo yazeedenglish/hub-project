@@ -24,7 +24,7 @@ const COURSES = {
         url: "/step",
 
         purchaseUrl:
-            "https://yazeedenglish.com/ar/%D9%83%D8%AA%D8%A7%D8%A8-%D8%A7%D8%AE%D8%AA%D8%A8%D8%A7%D8%B1-%D8%B3%D8%AA%D9%8A%D8%A8-step/p788306677",
+            "https://yazeedenglish.com/ar/%D9%83%D8%AA%D8%A7%D8%A8-%D8%A7%D8%AE%D8%AA%D8%A8%D8%A7%D8%B1-%D8%B3%D8%AA%D9%8A%D8%A8-step/p788306677?utm_source=hub",
 
         image:
             "https://file.yazeedenglish.com/STEP-Cover.png",
@@ -45,7 +45,7 @@ const COURSES = {
         url: "/english",
 
         purchaseUrl:
-            "https://yazeedenglish.com/ar/%D9%83%D8%AA%D8%A7%D8%A8-%D8%AF%D9%84%D9%8A%D9%84-%D8%A7%D9%84%D8%A7%D9%86%D8%AC%D9%84%D9%8A%D8%B2%D9%8A%D8%A9-%D8%A7%D9%84%D8%B4%D8%A7%D9%85%D9%84/p295866233",
+            "https://yazeedenglish.com/ar/%D9%83%D8%AA%D8%A7%D8%A8-%D8%AF%D9%84%D9%8A%D9%84-%D8%A7%D9%84%D8%A7%D9%86%D8%AC%D9%84%D9%8A%D8%B2%D9%8A%D8%A9-%D8%A7%D9%84%D8%B4%D8%A7%D9%85%D9%84/p295866233?utm_source=hub",
 
         image:
             "https://file.yazeedenglish.com/english.png",
@@ -66,7 +66,7 @@ const COURSES = {
         url: "/trab6",
 
         purchaseUrl:
-            "https://yazeedenglish.com/ar/%D9%83%D8%AA%D8%A7%D8%A8-%D8%AA%D8%B1%D8%A7%D8%A8%D8%B7-%D8%A7%D9%84%D9%83%D9%84%D9%85%D8%A7%D8%AA/p331712928",
+            "https://yazeedenglish.com/ar/%D9%83%D8%AA%D8%A7%D8%A8-%D8%AA%D8%B1%D8%A7%D8%A8%D8%B7-%D8%A7%D9%84%D9%83%D9%84%D9%85%D8%A7%D8%AA/p331712928?utm_source=hub",
 
         image:
             "https://file.yazeedenglish.com/trab6.png",
@@ -87,7 +87,7 @@ const COURSES = {
         url: "/writing",
 
         purchaseUrl:
-            STORE_URL,
+            "https://yazeedenglish.com/ar/?utm_source=hub",
 
         image:
             "images/writing.png",

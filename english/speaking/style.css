@@ -334,11 +334,6 @@ button i {
     background: rgba(128, 128, 128, .12);
 }
 
-.story-word.active-word-popup {
-    background: rgba(0, 104, 155, .14);
-    outline: 1.5px solid var(--indigo);
-}
-
 .story-word.word-correct {
     color: var(--success) !important;
     background: var(--success-bg);
@@ -373,18 +368,7 @@ button i {
     transition: opacity .15s ease, transform .15s ease;
 }
 
-.word-translation-popup::after {
-    content: "";
-    position: absolute;
-    bottom: -6px;
-    left: 50%;
-    width: 10px;
-    height: 10px;
-    background: var(--card);
-    border-right: 1px solid var(--indigo);
-    border-bottom: 1px solid var(--indigo);
-    transform: translateX(-50%) rotate(45deg);
-}
+
 
 .word-translation-popup.popup-below {
     transform: translate(-50%, 0);
@@ -751,9 +735,10 @@ body.dark .topic-card-banner {
 }
 
 .summary-heading {
-    margin: 4px 0 6px;
+    margin: 6px 0 18px;
     font-size: 24px;
     font-weight: 900;
+    line-height: 1.5;
 }
 
 .summary-subtext {
